@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+	<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="css/zmatherlib.css" />
+	<script src="js/lib/jQ.js"></script>
+	<script src="js/lib/Base64.js"></script>
+	<script src="js/lib/zlr.js"></script>
+
+	<script src="js/zmatherlib/io.js"></script>
+	<script src="js/zmatherlib/exp.js"></script>
+	<script src="js/zmatherlib/calc.js"></script>
+	<script src="js/zmatherlib/graph.js"></script>
+	<script src="js/zmatherlib/graphic.js"></script>
+
+	<script src="js/zmatherlib/interface.js"></script>
+	<script src="js/zmatherlib/common.js"></script>
+
+	<script src="js/zmatherlib/main.js"></script>
+	<script src="js/zmatherlib/wiki.js"></script>
+
+	<script src="js/zmatherlib/obj/Num.js"></script>
+	<script src="js/zmatherlib/obj/Function.js"></script>
+	<script src="js/zmatherlib/obj/Proposition.js"></script>
+	<script src="js/zmatherlib/obj/Set.js"></script>
+	<script src="js/zmatherlib/obj/Permutation.js"></script>
+	<script src="js/zmatherlib/obj/Matrix.js"></script>
+	<script src="js/zmatherlib/obj/Relate.js"></script>
+
+
+
+  </head>
+  <body>
+<div id=zMather>
+<div><span id=logo>2018.9.29</span>
+	<label><input type=radio name=tool value=calc id=Calc checked=checked />解题</label>
+	<label><input type=radio name=tool value=plot id=Plot />图形</label>
+	<select id=topic></select>
+
+<span id=subject><select id=subject0></select><select id=subject1 hidden></select>
+	<input type=search id=wikisech />
+	<input type=button id=wikisechGO value=GO class=main />
+</span>
+</div>
+
+
+<div id=subject2></div>
+
+
+<div id=iContent>
+<div id=iText>
+	<div id=sbs hidden></div>
+	<div id=funcs hidden></div>
+	<div id=formu hidden>
+		<div id=formus></div>
+		<div id=formulae></div>
+		</div>
+	<div id=forms hidden></div>
+
+	<div class=pd2>
+		<input type=button id=sbson class=tool value="字符" />
+		<input type=button id=funcson class=tool value="函数" />
+		<input type=button id=formuon class=tool value="排版" />
+		<input type=button id=formson class=tool value="表单" />
+		<input type=button id=formsOK value=OK hidden />
+		
+		
+		<select id=input0Type></select>
+		<input type=button class=Clear id=iClear value=⌫ />
+		<input type=button id=display value="显示为" />
+		<select id=output0Type></select>
+		<input type=button class=Clear id=displayOff value=⌫ hidden />
+		
+		</div>
+	<div><div class="floatl pd10" id=input0Preview contentEditable=true hidden></div>
+		
+		<textarea id=input0 class=floatl></textarea>
+		<div id=input0Tip class=floatl></div>
+		<div class=clear></div></div>
+
+	<div class=pd10>
+		<input id=Condon class=tool type=button value="赋值/条件" />
+		
+		<input type=button class=Clear id=cClear value=⌫ hidden />
+		</div>
+	<div hidden id=Cond>
+		<div class=floatl id=input1Preview></div>
+		<textarea id=input1 class=floatl></textarea>
+		<div id=input1Tip class=floatl></div>
+		<div class=clear></div></div>
+	<div>
+		<span id=subTool></span>
+		<input type=button id=go value="  GO  " />
+		<input type=button class="Clear oClear" value=⌫ />
+		</div>
+</div>
+
+</div>
+</div>
+
+
+<div id=bar></div>
+<div id=oContent>
+	<canvas id=cvsbg style="position:absolute;left:0;top:0;z-index:-1"></canvas>
+	<div id=oHTML contentEditable=true class=pd10></div>
+	<details id=outputOpt class=pd10 hidden>
+		<summary>
+			<input type=button id=add2oHTML value="+" title="添加预览内容到输出区域" />
+			<input type=button class="Clear oClear" value=⌫ />
+		</summary>
+		<div id=btnNum>
+				编号开始于<input type=number id=numStart value=1 min=0 />
+				<select id=num>
+			        <option value=1>012</option>
+			        <option value=2>０１２</option>
+			        <option value=3>001</option>
+			        <option value=4>００１</option>
+			        <option value=5>①②③</option>
+			        <option value=6>⑴⑵⑶</option>
+			        <option value=7>⒈⒉⒊</option>
+			        <option value=8>ⅠⅡⅢ</option>
+			        <option value=9>ⅰⅱⅲ</option>
+			        <option value=10>ABC</option>
+			        <option value=11>abc</option>
+			        <option value=12>ＡＢＣ</option>
+			        <option value=13>ａｂｃ</option>
+			        <option value=14>一二三</option>
+			        <option value=15>㈠㈡㈢</option>
+				</select>
+				<select id=numStyle>
+			        <option value=1>空格</option>
+			        <option value=2>.</option>
+			        <option value=3>、</option>
+			        <option value=4>)</option>
+			        <option value=5>()</option>
+			        <option value=6>[]</option>
+				</select>
+				<input type=button id=numAdd value="添加序号" /><input type=button id=numDel value="删除序号" />
+			</div>
+			<details id=graphOpt class=pd10>
+				<summary>
+					<input type=button id=graphGO value="绘图" />
+					<input type=button id=graphClear class="Clear" value="清除画布⌫" />
+					<input type=button class=Clear id=iClear2 value=⌫ />
+				</summary>
+				<div>
+					<textarea id=input2 class=floatl></textarea>
+					<div id=input2Tip class=floatl></div>
+					<div class=clear></div>
+					</div>
+
+			</details>
+		</details>
+
+
+</div>
+
+
+
+<div id=dom hidden>
+	<div id=dom1></div>
+	<div id=dom2></div>
+	<div id=log></div>
+</div>
+<div id=calc hidden></div>
+
+
+
+	<script src="js/zmatherlib/sbj/17.js"></script>
+	<script src="js/zmatherlib/sbj/21.js"></script>
+	<script src="js/zmatherlib/sbj/34.js"></script>
+	<script src="js/zmatherlib/sbj/81.js"></script>
+
+</body></html>
