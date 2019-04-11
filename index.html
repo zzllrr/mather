@@ -1,175 +1,468 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML">
-	<head>
+<head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval'; object-src 'self'">
     <title>Test</title>
+
+    <link rel="stylesheet" href="css/katex.css" />
+
+    <link rel="stylesheet" href="css/zmather.io.css" />
+
     <link rel="stylesheet" href="css/zmatherlib.css" />
-	<script src="js/lib/jQ.js"></script>
-	<script src="js/lib/Base64.js"></script>
-	<script src="js/lib/zlr.js"></script>
-
-	<script src="js/zmatherlib/io.js"></script>
-	<script src="js/zmatherlib/exp.js"></script>
-	<script src="js/zmatherlib/calc.js"></script>
-	<script src="js/zmatherlib/graph.js"></script>
-	<script src="js/zmatherlib/graphic.js"></script>
-
-	<script src="js/zmatherlib/interface.js"></script>
-	<script src="js/zmatherlib/common.js"></script>
-
-	<script src="js/zmatherlib/main.js"></script>
-	<script src="js/zmatherlib/wiki.js"></script>
-
-	<script src="js/zmatherlib/obj/Num.js"></script>
-	<script src="js/zmatherlib/obj/Function.js"></script>
-	<script src="js/zmatherlib/obj/Proposition.js"></script>
-	<script src="js/zmatherlib/obj/Set.js"></script>
-	<script src="js/zmatherlib/obj/Permutation.js"></script>
-	<script src="js/zmatherlib/obj/Matrix.js"></script>
-	<script src="js/zmatherlib/obj/Relate.js"></script>
 
 
+<!-- 引用第三方库 -->
+    <script src="js/lib/jQuery.js"></script>
+    <script src="js/lib/Base64.js"></script> <!-- 增加了XML的解析功能-->
+    <script src="js/lib/katex.js"></script>
 
-  </head>
-  <body>
+    <script src="js/lib/qrcode.js"></script>
+    
+    <script src="js/lib/raphael.js"></script>
+    <script src="js/lib/flowchart.js"></script>
+
+
+    <script src="js/i18n/en.js"></script>
+    <script src="js/i18n/zh_cn.js"></script>
+    
+    
+    
+    
+<!-- 引用小乐库 -->
+    <script src="js/lib/zlr.js"></script>
+
+
+    <script src="js/zmather.io.js"></script>
+
+
+<!-- 界面及通用的变量和函数 -->
+
+
+    <script src="js/interface.js"></script>
+    
+    <script src="js/common.js"></script>
+
+
+
+<!-- 底层对象 -->
+    <script src="js/obj/math/Function.js"></script>
+    <script src="js/obj/math/Num.js"></script>
+    <script src="js/obj/math/Prime.js"></script>
+    <script src="js/obj/math/Statistic.js"></script>
+    <script src="js/obj/math/Geometry.js"></script>
+    <script src="js/obj/math/Proposition.js"></script>
+    <script src="js/obj/math/Set.js"></script>
+    <script src="js/obj/math/Permutation.js"></script>
+    <script src="js/obj/math/Matrix.js"></script>
+    <script src="js/obj/math/Relation.js"></script>
+
+    <script src="js/obj/graphic/svg.js"></script>
+    <script src="js/obj/graphic/canvas.js"></script>
+
+
+<!-- 底层对象封装 -->
+    <script src="js/obj/math.js"></script>
+    <script src="js/obj/graphic.js"></script>
+
+
+
+<!-- 界面数据层 -->
+
+
+
+
+
+	<script src="js/interface/solve/2110.js"></script>
+	<script src="js/interface/solve/2199.js"></script>
+	<script src="js/interface/solve/3430.js"></script>
+	<script src="js/interface/solve/81.js"></script>
+
+
+    <script src="js/interface/graphic/canvas.js"></script>
+    <script src="js/interface/graphic/svg.js"></script>
+
+    <script src="js/interface/graphic/shape.js"></script>
+    <script src="js/interface/graphic/hasse.js"></script>
+    <script src="js/interface/graphic/flowchart.js"></script>
+
+
+
+
+	<script src="js/interface/show/Voice.js"></script>
+	<script src="js/interface/show/Video.js"></script>
+	
+	<script src="js/interface/show/2D.js"></script>
+	<script src="js/interface/show/3D.js"></script>
+	
+	<script src="js/interface/show/VR.js"></script>
+	<script src="js/interface/show/AR.js"></script>
+
+
+
+	<script src="js/interface/wiki/algebra.js"></script>
+	<script src="js/interface/wiki/Algebra_Group.js"></script>
+	<script src="js/interface/wiki/Algebra_Ring.js"></script>
+	<script src="js/interface/wiki/Algebra_Lattice.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/algebraic.js"></script>
+	<script src="js/interface/wiki/analytic.js"></script>
+	<script src="js/interface/wiki/complex.js"></script>
+	<script src="js/interface/wiki/differential.js"></script>
+	<script src="js/interface/wiki/Formal_Power_Series.js"></script>
+	<script src="js/interface/wiki/fraction.js"></script>
+	<script src="js/interface/wiki/function.js"></script>
+	
+	
+	<script src="js/interface/wiki/Geometry_Point.js"></script>
+	<script src="js/interface/wiki/Geometry_Line.js"></script>
+	<script src="js/interface/wiki/Geometry_Angle.js"></script>
+	<script src="js/interface/wiki/Geometry_Plane.js"></script>
+	<script src="js/interface/wiki/Geometry_Solid.js"></script>
+	
+
+	<script src="js/interface/wiki/Graph_Type.js"></script>
+	<script src="js/interface/wiki/Graph_Unary_Operation.js"></script>
+	<script src="js/interface/wiki/Graph_Binary_Operation.js"></script>
+	<script src="js/interface/wiki/Graph_Binary_Relation.js"></script>
+	<script src="js/interface/wiki/Graph_Path.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/hyperbolic.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/Infinite_Series.js"></script>
+	
+	
+	<script src="js/interface/wiki/integer.js"></script>
+	<script src="js/interface/wiki/Integer_Divide.js"></script>
+	<script src="js/interface/wiki/Integer_Fermat_Number.js"></script>
+	<script src="js/interface/wiki/Integer_Type.js"></script>
+	<script src="js/interface/wiki/integral.js"></script>
+	
+	<script src="js/interface/wiki/limit.js"></script>
+	<script src="js/interface/wiki/logic.js"></script>
+	
+	
+
+
+	<script src="js/interface/wiki/Matrix_Type.js"></script>
+	<script src="js/interface/wiki/Matrix_Unary_Operation.js"></script>
+	<script src="js/interface/wiki/Matrix_Binary_Operation.js"></script>
+	<script src="js/interface/wiki/Matrix_Binary_Relation.js"></script>
+	<script src="js/interface/wiki/Matrix_Determinant.js"></script>
+	<script src="js/interface/wiki/Matrix_Factorization.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/number.js"></script>
+	<script src="js/interface/wiki/polynomial.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/prime.js"></script>
+	<script src="js/interface/wiki/Prime_Mersenne_Number.js"></script>
+	<script src="js/interface/wiki/Prime_Structure.js"></script>
+	<script src="js/interface/wiki/Prime_Type.js"></script>
+	
+	
+	<script src="js/interface/wiki/radical.js"></script>
+	<script src="js/interface/wiki/recursive.js"></script>
+
+
+
+
+
+	<script src="js/interface/wiki/Relation_Type.js"></script>
+	<script src="js/interface/wiki/Relation_Equivalence.js"></script>
+	<script src="js/interface/wiki/Relation_Compatible.js"></script>
+	<script src="js/interface/wiki/Relation_Partial_Order.js"></script>
+
+
+	<script src="js/interface/wiki/Sequence_Rational.js"></script>
+	<script src="js/interface/wiki/Sequence_Combination.js"></script>
+	<script src="js/interface/wiki/Sequence_Sum.js"></script>
+	<script src="js/interface/wiki/Sequence_Amicable_Numbers.js"></script>
+	
+	
+	
+	<script src="js/interface/wiki/set.js"></script>
+	<script src="js/interface/wiki/tensor.js"></script>
+	<script src="js/interface/wiki/trigonometric.js"></script>
+	<script src="js/interface/wiki/unit.js"></script>
+	<script src="js/interface/wiki/vector.js"></script>
+
+
+
+    <script src="js/interface/wiki.js"></script>
+
+
+
+
+<!--
+
+	<script src="js/interface/course/2110.js"></script>
+
+-->
+    <script src="js/interface/course.js"></script>
+
+
+
+
+
+	<script src="js/interface/drill/2110.js"></script>
+
+    <script src="js/interface/drill.js"></script>
+
+
+
+
+
+	<script src="js/interface/topic/lottery.js"></script>
+
+	<script src="js/interface/topic/sudoku.js"></script>
+
+
+
+
+    <script src="js/interface/topic.js"></script>
+
+
+<!--
+	<script src="js/interface/pitfall/ .js"></script>
+	
+-->
+    <script src="js/interface/pitfall.js"></script>
+
+
+
+
+
+
+	<script src="js/interface/unsolved/3n_1.js"></script>
+
+	<script src="js/interface/unsolved/transcendental.js"></script>
+
+    <script src="js/interface/unsolved.js"></script>
+
+
+
+<!--
+	<script src="js/interface/refer/activity.js"></script>
+	<script src="js/interface/refer/org.js"></script>
+	<script src="js/interface/refer/edu.js"></script>
+	<script src="js/interface/refer/fan.js"></script>
+	<script src="js/interface/refer/pub.js"></script>
+	<script src="js/interface/refer/mooc.js"></script>
+	<script src="js/interface/refer/ppt.js"></script>
+	<script src="js/interface/refer/exam.js"></script>
+	<script src="js/interface/refer/hardware.js"></script>
+	<script src="js/interface/refer/software.js"></script>
+	<script src="js/interface/refer/ref.js"></script>
+
+
+
+
+-->
+
+
+    <script src="js/interface/refer.js"></script>
+
+
+
+
+
+
+	<script src="js/interface/about/version.js"></script>
+	<script src="js/interface/about/whitepaper.js"></script>
+
+	<script src="js/interface/about/donate.js"></script>
+	<script src="js/interface/about/API.js"></script>
+
+
+
+<!-- 界面逻辑层封装 -->
+    <script src="js/interface/graphic.js"></script>
+    <script src="js/interface/solve.js"></script>
+    <script src="js/interface/show.js"></script>
+    <script src="js/interface/explore.js"></script>
+    <script src="js/interface/about.js"></script>
+
+
+
+<!-- 业务逻辑层 -->
+
+
+	<script src="js/run/solve/2110.js"></script>
+	<script src="js/run/solve/2199.js"></script>
+	<script src="js/run/solve/3430.js"></script>
+	<script src="js/run/solve/81.js"></script>
+
+
+
+<!-- 业务封装层 -->
+
+	<script src="js/run/go.js"></script>
+
+
+
+
+
+</head>
+<body>
 <div id=zMather>
-<div><span id=logo>2018.9.29</span>
-	<label><input type=radio name=tool value=calc id=Calc checked=checked />解题</label>
-	<label><input type=radio name=tool value=plot id=Plot />图形</label>
-	<select id=topic></select>
+<div class="opac pd2"><span id=logo></span>
+    <label><input type=radio name=tool value=solve id=solve /></label>
+    <label><input type=radio name=tool value=graphic id=graphic /></label>
+    <label><input type=radio name=tool value=show id=show /></label>
+    <label><input type=radio name=tool value=explore id=explore /></label>
+    <label><input type=radio name=tool value=about id=about /></label>
 
-<span id=subject><select id=subject0></select><select id=subject1 hidden></select>
-	<input type=search id=wikisech />
-	<input type=button id=wikisechGO value=GO class=main />
-</span>
+	<select id=lang></select>
+			</div>
+
+<details id=subject><summary class=opac>
+	<select id=subject0></select>
+	<select id=subject1 hidden></select>
+	<select id=subject2 hidden></select>
+	</summary>
+	<div class=ground0></div>
+	<div class=ground1></div>
+			</details>
+
+<div id=solveGround class=ground>
+	<div class=ground0></div>
+	<div class=ground1></div>
+	<div class=ground2></div>
+	<div class=tasks></div>
 </div>
 
+<div id=graphicGround class=ground>
+	<div class=ground0></div>
+	<div class=ground1></div>
+	<div class=ground2></div>
+	<div class=tasks></div>
+</div>
 
-<div id=subject2></div>
+<div id=showGround class=ground>
+	<div class=ground0></div>
+	<div class=ground1></div>
+	<div class=ground2></div>
+	<div class=tasks></div>
+</div>
 
+<div id=exploreGround class=ground>
+	<div class="opac">
+		<select id=explores></select>
+		
+    	<input type=search id=search size=60 /></div>
+	<div class=ground0></div>
+	<div class=ground1></div>
+	<div class=ground2></div>
+	<div class=tasks></div>
+</div>
+
+<div id=aboutGround class=ground>
+	<div class=ground0></div>
+	<div class=ground1></div>
+	<div class=ground2></div>
+	<div class=tasks></div>
+
+</div>
 
 <div id=iContent>
 <div id=iText>
-	<div id=sbs hidden></div>
-	<div id=funcs hidden></div>
-	<div id=formu hidden>
-		<div id=formus></div>
-		<div id=formulae></div>
-		</div>
-	<div id=forms hidden></div>
+    <div id=sbs hidden class=iTextLaTeX></div>
+    <div id=funcs hidden class=iTextLaTeX></div>
+    <div id=struc hidden class=iTextLaTeX></div>
 
-	<div class=pd2>
-		<input type=button id=sbson class=tool value="字符" />
-		<input type=button id=funcson class=tool value="函数" />
-		<input type=button id=formuon class=tool value="排版" />
-		<input type=button id=formson class=tool value="表单" />
-		<input type=button id=formsOK value=OK hidden />
-		
-		
-		<select id=input0Type></select>
-		<input type=button class=Clear id=iClear value=⌫ />
-		<input type=button id=display value="显示为" />
-		<select id=output0Type></select>
-		<input type=button class=Clear id=displayOff value=⌫ hidden />
-		
-		</div>
-	<div><div class="floatl pd10" id=input0Preview contentEditable=true hidden></div>
-		
-		<textarea id=input0 class=floatl></textarea>
-		<div id=input0Tip class=floatl></div>
-		<div class=clear></div></div>
 
-	<div class=pd10>
-		<input id=Condon class=tool type=button value="赋值/条件" />
+    <div><div id=input0Preview contentEditable=true class="floatl pd10" hidden></div>
+        
+        <textarea id=input0 class=floatl></textarea>
+        <div id=input0Tool class="floatl opac">
+        	<input type=button class=Clear id=iClear value=⌫ />
+        	<br />
+			<input id=lineSplit type=button />
+			<br />
+			<input id=lineMerge type=button />
+			<br />
+			<input id=Condon class=tool type=button />
+        	</div>
+        
+        <div id=input0Tip class=floatl></div>
+        <div class=clear></div></div>
+
+
+    <div hidden id=Cond>
+        <div class=floatl id=input1Preview></div>
+        <textarea id=input1 class=floatl></textarea>
+        <div id=input1Tool class="floatl opac">
+     	    <div><input type=button class=Clear id=cClear value=⌫ hidden /></div>
+
+
+        	</div>
+        <div id=input1Tip class=floatl></div>
+        <div class=clear></div></div>
+        
+        
+
+
+    <div id=iTextOpt class="pd2">
+		<div hidden><input type="file" accept="image/*" multiple="multiple" id=upimg /></div>
+		<div hidden><input type="file" accept="image/*" capture="camera"></div>
+
+		<div hidden><input type="file" accept="video/*" capture="camcorder"></div>
+
+		<div hidden><input type="file" accept="audio/*" capture="microphone"></div>
 		
-		<input type=button class=Clear id=cClear value=⌫ hidden />
-		</div>
-	<div hidden id=Cond>
-		<div class=floatl id=input1Preview></div>
-		<textarea id=input1 class=floatl></textarea>
-		<div id=input1Tip class=floatl></div>
-		<div class=clear></div></div>
-	<div>
-		<span id=subTool></span>
-		<input type=button id=go value="  GO  " />
-		<input type=button class="Clear oClear" value=⌫ />
-		</div>
+		<input type=button class="Clear rotate90" id=displayOff value=⌫ hidden />
+        <input type=button id=go value="  GO  " />
+        
+	    <span class=opac>
+	        
+	        <input type=button id=sbson class=tool />
+	        <input type=button id=funcson class=tool />
+	        <input type=button id=strucon class=tool />
+
+	        <select id=input0Type></select>
+	        
+			<input id=FullScreen type=button />
+	        <input type=button id=display />
+	        
+	        <select id=output0Type></select>
+
+			
+
+	        </span>
+	    <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ hidden />
+        
+        
+        
+        
+        </div>
+
+
 </div>
 
 </div>
 </div>
 
 
-<div id=bar></div>
+<div id=bar>&nbsp;</div>
 <div id=oContent>
-	<canvas id=cvsbg style="position:absolute;left:0;top:0;z-index:-1"></canvas>
-	<div id=oHTML contentEditable=true class=pd10></div>
-	<details id=outputOpt class=pd10 hidden>
-		<summary>
-			<input type=button id=add2oHTML value="+" title="添加预览内容到输出区域" />
-			<input type=button class="Clear oClear" value=⌫ />
-		</summary>
-		<div id=btnNum>
-				编号开始于<input type=number id=numStart value=1 min=0 />
-				<select id=num>
-			        <option value=1>012</option>
-			        <option value=2>０１２</option>
-			        <option value=3>001</option>
-			        <option value=4>００１</option>
-			        <option value=5>①②③</option>
-			        <option value=6>⑴⑵⑶</option>
-			        <option value=7>⒈⒉⒊</option>
-			        <option value=8>ⅠⅡⅢ</option>
-			        <option value=9>ⅰⅱⅲ</option>
-			        <option value=10>ABC</option>
-			        <option value=11>abc</option>
-			        <option value=12>ＡＢＣ</option>
-			        <option value=13>ａｂｃ</option>
-			        <option value=14>一二三</option>
-			        <option value=15>㈠㈡㈢</option>
-				</select>
-				<select id=numStyle>
-			        <option value=1>空格</option>
-			        <option value=2>.</option>
-			        <option value=3>、</option>
-			        <option value=4>)</option>
-			        <option value=5>()</option>
-			        <option value=6>[]</option>
-				</select>
-				<input type=button id=numAdd value="添加序号" /><input type=button id=numDel value="删除序号" />
-			</div>
-			<details id=graphOpt class=pd10>
-				<summary>
-					<input type=button id=graphGO value="绘图" />
-					<input type=button id=graphClear class="Clear" value="清除画布⌫" />
-					<input type=button class=Clear id=iClear2 value=⌫ />
-				</summary>
-				<div>
-					<textarea id=input2 class=floatl></textarea>
-					<div id=input2Tip class=floatl></div>
-					<div class=clear></div>
-					</div>
 
-			</details>
-		</details>
+    <canvas id=cvsbg hidden></canvas>
+
+    <div id=oHTML class=pd10></div>
 
 
 </div>
 
 
-
-<div id=dom hidden>
-	<div id=dom1></div>
-	<div id=dom2></div>
-	<div id=log></div>
-</div>
-<div id=calc hidden></div>
-
-
-
-	<script src="js/zmatherlib/sbj/17.js"></script>
-	<script src="js/zmatherlib/sbj/21.js"></script>
-	<script src="js/zmatherlib/sbj/34.js"></script>
-	<script src="js/zmatherlib/sbj/81.js"></script>
 
 </body></html>
