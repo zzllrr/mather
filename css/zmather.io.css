@@ -1,0 +1,62 @@
+
+.Symboli .td:not(:hover),.Symboli td:not(:hover){
+	color:limegreen
+}
+
+.Fn .td{
+	font-size:12px
+}
+
+.sbsTbl .td{
+	float:left;
+	padding:2px 10px;
+	margin:2px;
+	overflow:hidden;
+}
+
+
+.sbsTbl td{
+	font: normal 1em KaTeX_Main,Times New Roman,serif;
+}
+
+.Symboli_ {
+    background-color: palegoldenrod;
+}
+
+
+.sbsTbl .td:hover, .sbsTbl td:hover{
+    background: green;
+    color: white;
+}
+
+.sbsiTbl .td:not(.seled),.sbsiTbl td:not(.seled){
+	border-color:transparent
+}
+
+.sbsTbl .td:empty{
+	display:none
+}
+.sbsTbl .td, .sbsTbl td:not(:empty){
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sbsTbl .td:not(:empty):active,.sbsTbl td:not(:empty):active{
+	border-color:gray
+}
+
+
+.sbsTbl .td:not(:empty){
+	min-width:25px;
+}
+#sbs td:not(:empty){
+	min-width:30px;
+	font-size: 22px;
+}
+
+.sbsTbl:not(.sbsiTbl) tr:nth-child(odd), .Symboli:not(.Symboli_){
+	background: rgba(162,195,97,.1);
+}

@@ -11,14 +11,33 @@
 .scbox{white-space: nowrap}
 .hidden{display:none}
 
-.symboli{
-	font-weight:bold;
-	color:green
+.opac0:not(:hover){
+	opacity:0
 }
-.Fn td,.inputTip,.subtools, #outputOpt{
+
+.opac:not(:hover){
+	opacity:0.5
+}
+
+.opac:not(:hover) #output0Type, .opac:not(:hover) #lang, .opac:not(:hover) #night{
+	opacity:0
+}
+
+
+.seled{
+	border-color:gray
+}
+.wiki,.wiki > tbody > tr > td{
+	border-color:gainsboro
+}
+
+
+
+
+.inputTip,.subtools, #outputOpt{
 	font-size:12px
 }
-.sbsTbl,#go,.subtools summary{
+#go,.subtools summary{
 	font-size:16px
 }
 
@@ -58,22 +77,20 @@ sup,sub,.small{
 }
 .eg,.obj{
 	background:silver;
-	padding:2px;
+	padding:2px 5px;
 	font-size:14px;
 	color: black;
+	border-radius: 5px;
 }
-#wiki details[open] > summary, #wiki>span, .wiki tr:hover, #wiki > details > table > tbody > tr:hover{
-	background-image: -webkit-linear-gradient(top, white, lightblue 20%, lightblue 80%, white);
-}
-#zKeyBoard svg{
-	fill:white;
-	background-image: -webkit-linear-gradient(top, white, lightblue 20%, lightblue 80%, white);
-	width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
+#wiki details[open] > summary, #wiki>span, #oHTML tr:hover{
+
+    color: limegreen;
 }
 
+#zMather select:not(#explores){
+	border-style:none none solid none;
+	border-width:1px;
+}
 
 .gainsboro{
 	color:gainsboro
@@ -84,151 +101,106 @@ sup,sub,.small{
 .red,.Clear{
 	color:red
 }
+
+.Clear{
+	border: 0;
+    background: none;
+
+}
+
 .black{
 	color:black
 }
-.inputTip,.sbsTbl,.notes{
+.inputTip,.notes{
 	color:gray
 }
-.sudoku td:not(.red){
-	color:white
-}
-.sbsTbl tr:not(.Symboli) td:not(.seled):not(:active):not(:empty),#wiki>span{
-	border: outset lightyellow 1px;
-}
+
+
 #bar{
-    padding: 8px;
-    text-align: center;
     background-image: -webkit-linear-gradient(top,  gainsboro ,white 20%, gainsboro 80%, white);
-    color:white;
+    color:black;
+    cursor:pointer;
+}
+.fdetail:hover summary{
+	color:white;
+	background:black;
 }
 
-
-.subtool.seled,.toolname{
+.task.seled,.taskname{
 	color:white;
 	background:gray;
 }
 
-.toolname{
+
+.taskname{
 	font-size:10px;
 	border-radius:15px;
 	padding: 1px 0 2px 12px;
 	margin:0 2px;
 }
-.toolnameOff{
+.tasknameOff{
 	border-radius: 0 15px 15px 0;
 	border: solid darkgray 1px;
     margin-left: 2px;
 
 }
-/*
-.subtool{
-	-webkit-user-select:none
+
+.task{
+	-webkit-user-select:none;
+	display:inline-block
 }
-*/
+summary{
+	-webkit-user-select:none;
+}
+
 .collapse{border-collapse: collapse}
 
+.edit > thead th{
+	border:0;
+	padding-bottom: 15px;
+}
 
 .bds{
 	border: solid black 1px;
 }
 
-.sudoku td:not(.bdr){
-	border-right: outset gainsboro 1px;
-}
+
 .bdr{
 	border-right: outset black 1px;
 }
 
-.sudoku td:not(.bdl){
-	border-left: outset gainsboro 1px;
-}
-.bdl, .sudoku td:first-child{
+
+.bdl{
 	border-left: outset black 1px;
 }
 
-.sudoku td:not(.bdt){
-	border-top: outset gainsboro 1px;
-}
+
 .bdt{
 	border-top: outset black 1px;
 }
-
-.eq,.arrowr2,.arrowl2,.arrowlr2{
-	border-bottom: solid black 1px;
-}
-.eq,.arrowr,.arrowl,.arrowlr, .arrowr2,.arrowl2,.arrowlr2{
-	border-top: solid black 1px;
-	padding:1px
-}
-.arrowl2,.arrowr2,.arrowlr2{
-	height:0
-}
-
-
-.arrowl2:before{
-	content: "〈";
-    position: relative;
-	left:  calc(-50% - 4px);
-    top: -13px;
-    font-size: 12px;
-}
-.arrowlr2:before{
-	content: "〈";
-    position: relative;
-	left:  calc(-50% + 2px);
-    top: -13px;
-    font-size: 12px;
-}
-
-.arrowr2:after{
-	content: "〉";
-    position: relative;
-	left: calc(50% + 4px);
-    top: -14px;
-    font-size: 12px;
-}
-.arrowlr2:after{
-	content: "〉";
-    position: relative;
-	left: calc(50% - 2px);
-    top: -14px;
-    font-size: 12px;
-}
-
-
-
-
-.arrowr:after,.arrowlr:after{
-	content: "→";
-    position: relative;
-    left: 50%;
-    top: -12px;
-}
-.arrowl:before,.arrowlr:before{
-	content: "←";
-    position: relative;
-    left: -50%;
-    top: -12px;
-}
-
 
 
 
 .inblk:not(.notm),.vam{
 	vertical-align: middle;
 }
-.vat,.mtrx+sup,.det+sup{
+.vat{
 	vertical-align: top;
 }
-.vab,.mtrx+sub,.det+sub{
+.vab{
 	vertical-align: bottom;
 }
 li,#wiki{
 	padding:2px
 }
-.subtools summary{
+.subtools summary, .edit > thead tr{
 	padding-bottom:6px
+}
+
+
+
+#zMather > details{
+	padding:10px 0
 }
 .inblk:not(.large):not(.larger):not(.xlarge):not(.xxlarge):not(.xxxlarge):not(.rootleft){
 	margin:0 2px;
@@ -237,68 +209,25 @@ li,#wiki{
 .relation{
 	margin:0 5px;
 }
-.subtool{
+.ground > details,.ground summary{
+	margin-bottom:5px
+}
+
+.task,#Topic a{
 	margin:10px;
 	padding:2px 10px;
 	border-radius:5px;
-	background:white;
-}
 
-.rootleft{
-    vertical-align: -webkit-baseline-middle;/*bottom;*/
-}
-.rootleftline{
-    position: relative;
-}
-.rootleftline:before{
-	content: attr(data-index);
-    position: absolute;
-	font-size:.5rem;
-	top: -10px;
 }
 
 
-.fracline{
-	border-bottom:0;
-	border-top:solid 1px;
-	padding-top: 1px;
-}
-.sudoku td:not(.bdb), .subtools{
-	border-bottom: outset gainsboro 1px;
-}
+
+
 .bdb{
 	border-bottom: outset black 1px;
 }
 
 
-.sudoku .red{
-  text-shadow: gray 1px 1px 2px;
-  -webkit-text-stroke: 1px red;
-}
-  /*
-  text-shadow: black 1px 1px 2px,pink -1px 1px 2px,gray 1px -1px 2px,white -1px -1px 2px;
-   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px red;
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));  
-  
-    background:-webkit-linear-gradient(left,#f00,#ff0 25%,#0f0 40%,#0ff 55%,#00f 70%,#f00);
-  -webkit-background-clip:text;
-  */
-.sudoku td:not(.red){
-    text-shadow: black 1px 1px 2px;
-}
-
-
-.sudoku td:before,.sudoku td:after{
-    color: white;
-    text-shadow: black 1px 1px 1px;
- 	position: absolute;
-}
-.sudokuks:before{
-    content: attr(data-ks);
-    font-size: 10px;
-    margin: -4px -12px;
-}
 
 .bdt[data-mt]:before{
     content: attr(data-mt);
@@ -336,54 +265,23 @@ li,#wiki{
     margin-right: 2px;
 }
 
-.digidot:after{
-    content: ".";
-    position: relative;
-}
 
 
 
-.Symboli > td:not(.seled){
-	border-color:transparent
-}
-.seled,.sbsTbl td:not(:empty):active{
-	border-color:green
-}
-.wiki,.wiki > tbody > tr > td{
-	border-color:gainsboro
-}
 
 
-.sudoku{
-	font-size:30px;
-	margin:25px;
-	border:6px outset;
-	border-spacing:0;
-	border-collapse: separate;
-	text-align:center;
-	float:left;
-	border: 6px outset;
-  	border-radius: 10px;
-}
-	
-	
-}
-
-.sudoku td:not([class]){
-	opacity:0
-}
-.sudokuAppend{
-	opaicty:.7;
-	background: rgba(154, 205, 50,.5);
-}
-
-
-.wiki:not(.bd0),.sbsTbl td:not(:empty){
+.wiki:not(.bd0){
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 5px;
 }
-input[type=text],#wiki>span,.mtrx,.mtrxl,.mtrxr,.brad{
+.wiki:not(.bd0){
+	min-width:25px;
+}
+
+
+
+input[type=text],#wiki>span,.brad{
 	border-radius: 5px;
 }
 
@@ -478,19 +376,21 @@ input[type=text],#wiki>span,.mtrx,.mtrxl,.mtrxr,.brad{
 }
 
 .subtools details[open]{
-	background: gainsboro;
+	border: solid 1px;
 }
-.sbsTbl tr:nth-child(odd),.wiki > tbody > tr:nth-child(odd):not(:hover){
+.wiki > tbody > tr:nth-child(odd):not(:hover){
 	background: rgba(162,195,97,.1);
 }
 .opa0{
 	opacity:0;
 	cursor:default
 }
-#subject2 .tool,#outputOpt input,#wiki>span,.scbox{
+#outputOpt input,#wiki>span,.scbox{
 	margin:2px
 }
-
+#Topic{
+	margin:4px
+}
 .inblk:not(.pd2):not(.pd10), .var{
 	padding:0 1px;
 }
@@ -508,17 +408,30 @@ input[type=text],#wiki>span,.mtrx,.mtrxl,.mtrxr,.brad{
     margin-right: 10px;
 
 }
-#subject2{
-    margin: 10px 0;
+
+#explores{
+    height: 30px;
+    padding-left: 10px;
+    vertical-align: top;
 }
-#subject2{
-    padding: 20px;
-    background-color: gainsboro;
+
+#search{
+    height: 30px;
+    padding-left:10px;
+    border-style: none none solid none;
+    border-width: 1px;
+    border-color:gray;
 }
-.sudoku td{
-	width: 40px;
-	height:40px;
-	border-radius: 5px;
+#search:hover{
+    border-color:transparent;
+}
+
+#search:hover{
+	background: rgba(50, 205, 50, 0.2);
+}
+
+.fdetail{
+    margin-bottom: 100px;
 }
 
 
@@ -532,27 +445,27 @@ input[type=text],#wiki>span,.mtrx,.mtrxl,.mtrxr,.brad{
 #input0,#input1,#input2{
 	min-width:25%;
 }
-#forms td{
-	max-width:600px
-}
+
 #input0Tip,#input1Tip{
 	max-width:74%;
-	overflow-x:hidden;
+/*	overflow-x:hidden; */
 	max-height:50%;
 }
-#wiki details{
-	max-height:1000px;
-	overflow-x:hidden;
-}
+
 #input0,#input1,#input2{
-	min-height:100px
+	min-height:120px;
+	background:rgba(50, 205, 50, 0.2);
 }
 code,pre,#outputOpt{
-	background: #eee;
+	background: rgba(0,0,0,0.1);
+	border-radius:5px;
+}
+.katexv{
+	width:98%;
+	min-height:100px;
 }
 
-
-.sbsTbl,.wiki,.alignc{
+.wiki,.alignc{
 	text-align:center
 }
 
@@ -598,9 +511,7 @@ code,pre,#outputOpt{
 	text-decoration: underline;
 }
 
-svg {
-  -webkit-transition: all 0.2s linear
-}
+
 
 #input1Tip{
 	counter-reset:cnt1 0
@@ -623,48 +534,151 @@ svg {
 	resize: none;
 	overflow:hidden;
 }
-.sbsTbl td:not(:empty),.eg,.windex,#logo,.Clear,.subtool{
+.eg,.windex,#logo,#night,.Clear,.task,th{
 	cursor: pointer;
 }
 
-
-#sudokuTable{
-	zoom:.7
+textarea{
+	background: transparent;
 }
+
 
 .inblk{
 	display:inline-block;
 }
 
-#logo{
-	color:blue;
+a{
+	color:limegreen;
 }
 .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
-.mtrx td:not([class]){
-	border:0
-}
-.mtrx,.mtrxl{
-    border-left: solid 1px;
-    padding-left: 5px;
-}
-.mtrx,.mtrxr{
-    border-right: solid 1px;
-    padding-right: 5px;
-}
-.det,.detl{
-    border-left: solid 1px;
-    padding-left: 2px;
-}
-.det,.detr{
-    border-right: solid 1px;
-    padding-right: 2px;
-}
 
 summary ~ details{
 	padding-left: 15px;
 }
 
-.inputTip{
-	padding:2px 5px;
+.inputTip,.ground,.ground > div{
+	margin:10px
+}
+
+#cvsbg{
+	width:98%;
+	z-index:-1;
+}
+
+#logo{
+	background: limegreen;
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+}
+.level.seled{
+	background:limegreen;
+}
+
+.level{
+	padding:2px 10px;
+	margin:2px;
+	color:white;
+	border-radius:5px;
+	cursor:pointer;
+	user-select: none;
+	display: inline-block;
+}
+
+#solveGround .level:not(.seled){
+	background:lightslategray;
+}
+#subject .ground0 .level:not(.seled){
+	background:darkgreen;
+}
+#subject .ground1 .level:not(.seled){
+	background:seagreen;
+}
+#graphicGround .level:not(.seled){
+	background:lightpink;
+}
+
+
+#showGround .level:not(.seled){
+	background:slateblue;
+}
+
+#exploreGround .level:not(.seled){
+	background:darkmagenta;
+}
+
+#aboutGround .level:not(.seled){
+	background:salmon;
+}
+
+
+
+.audioPlay, .mediaPlay {
+    font-weight: bold;
+    font-size: medium;
+}
+
+#bar .toolTip{
+	padding:0 5px;
+	opacity:0;
+	animation: inf01 2s 1 ease-out;
+	background:limegreen;
+	color:white;
+}
+@keyframes inf01 {
+	from {opacity:0}
+	25%{opacity:.7}
+	50%{opacity:1}
+	75%{opacity:.7}
+	to {opacity:0}
+}
+
+
+.editorText {width:20%;height:60px}
+
+#donate div {margin:10px}
+#donaQR img{width:150px}
+#donaQR img:not(.alipayImg):not(.qqpayImg){margin:0 100px}
+#Jiaohang{margin-right:50px;}
+.pay .jiaohang{
+	font-size: 12px;
+    background-color: #acbdd3;
+    color: black;
+}
+
+.rotate90{
+    transform: rotateZ(90deg);
+}
+.rotate270{
+    transform: rotateZ(270deg);
+}
+
+#donaQR .via{margin-bottom: 0}
+
+.via img{
+    border-radius: 5px;
+}
+.alipayImg{
+    background: #00a0e9; 
+}
+.qqpayImg{
+    background: white;
+}
+
+.pay > div {
+    border-radius: 15px;
+    padding: 15px;
+}
+.pay .long {
+    width: 50%;
+}
+.pay input{
+	text-align:center
+}
+
+
+
+img{
+	cursor: pointer;
 }
