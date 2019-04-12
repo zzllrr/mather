@@ -21,5 +21,18 @@ about['whitepaper']=XML.wrapE('p',
 		]).join(''))+
 	XML.wrapE('h2',gM('File'))+
 	XML.wrapE('p',href(Hs+'github.com/zzllrr/Mather',gM('zzllrr Mather')+' on GitHub'))+
-	href(GMAIL,gM('Contact'))
+	href(GMAIL,gM('Contact')+' zzllrr@gmail.com')+
+	XML.wrapE('h3',gM('WeChat'))+
+	'<div id=weixinZQR>'+dc
 );
+
+
+OHthen['whitepaper']=function(){
+	if($('#weixinZQR').length){
+		var qrcode001 = new QRCode($('#weixinZQR')[0], {
+			text:qrs['weixinZQR'],
+			width : 150,
+			height : 150
+		});
+	}
+};
