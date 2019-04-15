@@ -8,7 +8,7 @@
 tooltip['shape']=['【基本形状】shape(id,type,content,attrs,style,translateA)',[
 	detail('文本text【x y dx dy rotate】 路径文本textPath【d href pathid】',Arrf(sceg,
 		["shape('','text','O','x=90 y=112 rotate=20')",
-		"shape('','textPath','路径文本','d=\"M0 0 L12 12\" pathid=path1')"
+		"shape('','textPath','路径文本','d="+'"M20 20 L120 102"'+" pathid=path1')"
 		]).join(br)),
 
 sceg("shape('test','ellipse','','rx=40 ry=30 cx=60 cy=50 fill=red')"),
