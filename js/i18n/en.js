@@ -6,8 +6,18 @@
  */
 if(!lang){var lang={}}
 lang['en']={
-
 	
+	
+	'bW':'Border Width',
+	'Bw':'Border Width',
+	'Fgc':'FG Color',
+	'Bgc':'BG Color',
+	'Opts':'Option',
+	'Opa':'Opacity',
+	'Backvisi':'Back Visible',
+	'fonT':'Font',
+		
+		
 	'sbson':'Unicode',
 	'funcson':'Function',
 	'strucon':'Structure',
