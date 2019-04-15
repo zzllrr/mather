@@ -17,6 +17,14 @@ var Graphic={
 			d=flowchart.parse(v?v.replace(/&&/g,'\n'):$(ID?'#'+ID:DOM).html());
 			
 		}
+		
+		if(g=='echarts'){
+			
+			
+			
+		}
+		
+		
 		return d;
 	},
 	drawSVG:function(graphType,v,ID,DOM){
@@ -37,10 +45,22 @@ var Graphic={
 
 			}while($('#'+id+' text tspan').filter(function(){return /\$\$[^\$]+\$\$/.test($(this).text())}).length);
 
-			$('#'+id+' text').filter(function(){return /^\$[^\$]+\$$/.test($(this).text())}).each(function(){
+			$('#'+id+' text').filter(function(){return /^\$.+\$$/.test($(this).text())}).each(function(){
 				var t=$(this).text();
-				graphic.drawHTMLinSVG('latex',kx(t.replace(/^\$|\$$/g,'')),'',this);
+				Graphic.drawHTMLinSVG('latex',kx(fnv0(t)),'',this);
 			});
+			
+		}else if(g=='echarts'){
+
+			var id=ID||$(DOM).attr('id'),D=$('#'+id),
+			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
+
+			D.append(DCtv('echart0" style="width:'+D.width()+'px;height:'+(D.height()||600)+'px',''));
+consolelog(D.html());
+			var myChart = echarts.init(D.children().last()[0]);
+
+	        //使用制定的配置项和数据显示图表
+	        myChart.setOption(o);
 			
 		}else{
 			
@@ -76,10 +96,11 @@ var Graphic={
 
 		}
 	},
-	drawHTMLinSVG:function(graphType,v,ID,DOM){
+	drawHTMLinSVG:function(graphType,v,ID,DOM){//用于在SVG绘制之后，再次加工HTML
 		var g=graphType,h;
 		if(g=='latex'){
 			var d=$(ID?'#'+ID:DOM);
+			consolelog(v||d.text());
 			h=katex.renderToString(v||d.text());
 //这里使用原式JS，是因为jQuery对元素的大小写不敏感
 			h='<foreignObject x="'+(d.attr('x')||0)+'" y="'+(+(d.attr('y')||0)-10)+'" transform="'+(d.attr('transform')||'')+'" width="'+scrollW()+'" height="'+scrollH()+
