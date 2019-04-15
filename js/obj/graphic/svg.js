@@ -1195,17 +1195,23 @@ consolelog(xy,irx,iry);
 		$('#oHTML').append(v); //jQuery不支持大写节点
 		//$('#oHTML').children().last()[0].outerHTML=v;
 		//consolelog($('#oHTML').children().last()[0].outerHTML);
+
 		setTimeout(function(){
 			var dm=$('#oHTML svg').last(),w=0,h=0;
 			//consolelog(dm[0].id);
 			if(/_svg$/.test(dm.attr('id'))){
 				var BCR=dm[0].getBoundingClientRect(),dml=parseInt(BCR.left),dmt=parseInt(BCR.top),dmw=BCR.width,dmh=BCR.height;
-				dm.children().each(function(){
+				dm.children().not('defs').each(function(){
 					var t=this.getBoundingClientRect();
-					w=Math.max(w,parseInt(t.right));
-					h=Math.max(h,parseInt(t.bottom));
+					console.log(this.id,t.right,t.bottom,t);
+				//	w=Math.max(w,parseInt(t.right));
+				//	h=Math.max(h,parseInt(t.bottom));
+					w=Math.max(w,parseInt(t.width+t.left));
+					h=Math.max(h,parseInt(t.height+t.top));
+				
+					console.log('w , h',w,h);
 				});
-				//consolelog(w,h);
+				console.log(w,h);
 				dm.attr({width:w,height:h});
 			}
 		},300);
