@@ -9,8 +9,9 @@
 graphics={
 	'Geometry':["shape“shape('test','ellipse','','rx=40 ry=30 cx=60 cy=50 fill=red')"],
 	'81':["hasse“hasse('hasse1',[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]])"],
-	'Statistics':['bar','polyline','pie'],
-	'Project':['flowchart'],
+	'Statistics':['bar','line','pie'],
+	'Project':['flowchart','echarts'],
+	'Doodle':[],
 },
 
 $(function(){
@@ -27,6 +28,8 @@ $(function(){
 	
 	$('body').on('click','#graphicGround .task', function(e){
 		var me=$(this).toggleClass('seled'),se=me.is('.seled'),met=me.attr('data-tool'),eg=me.attr('data-eg'), shft=e.shiftKey, v=$('#graphicGround .level.seled').attr('data-i');
+		
+
 		if(se && shft){
 			$('#input0').val(function(i,v){return (v.trim()?v.trim()+'\n':'')+(eg||$('#input0Tip .eg').attr('data-eg')||'')})
 			
@@ -65,6 +68,12 @@ $(function(){
 		var me=$(this),mei=me.attr('data-i'),i=me.index();
 		me.parent().nextAll().empty();
 		
+		if(mei=='Doodle'){
+			window.open('cap.html');
+			return
+		}
+		
+		
 		if(me.is('.seled')){
 			me.removeClass('seled');
 			
@@ -75,7 +84,7 @@ $(function(){
 			$.each(o, function(x,A){
 
 				if(isStr(A[0])){
-					$('#graphicGround .tasks').html(jdetail(A,'','task'))
+					$('#graphicGround .tasks').append(jdetail(A,'','task'))
 					
 				}else{
 					
@@ -113,7 +122,7 @@ $(function(){
 
 			$.each(o, function(x,A){
 				if(isStr(A[0])){
-					$('#graphicGround .tasks').html(jdetail(A,'','task'))
+					$('#graphicGround .tasks').append(jdetail(A,'','task'))
 					
 				}else{
 					
@@ -151,7 +160,7 @@ $(function(){
 			});
 
 			$.each(o, function(x,A){
-				$('#graphicGround .tasks').html(jdetail(A,'','task'))
+				$('#graphicGround .tasks').append(jdetail(A,'','task'))
 			});
 
 		}
