@@ -89,27 +89,16 @@ solve[2199]=function(){
 			
 		}
 
-		if(sel('60进制')){//输入1个数字：秒→度()分秒；输入多个数字：度分秒→秒
+		if(sel('秒→度(时) 分 秒')){
 			rS=rS.concat(Arrf(function(t){
-				var v=Arrf(Zh2n,t.split(/[ &,]/)),l=v.length,r=+v[0], uA=[
+				var v=Arrf(Zh2n,t.split(/[ &,]/)),r=+v[0], uA=[
 					['~度','~分','~秒'],
 					['~°','~′','~″'],
 					['~时','~分','~秒'],
 					Arrf(kxf,['~h','~m','~s']),
 				
 				];
-				if(l>1){
-					if(l==2){
-						v.unshift(0);
-						Arrf(function(x){x.shift()},uA);
-					}
-					r=ArrfcA([plus,times],[[v[0],'3600'],[v[1],'60'],[v[2],1]]);
-					return kxA([concat(Arrf(kxu,v),uA[0]).join('~')+' = '+kxu(r)+'~秒',
-							concat(Arrf(kxu,v),uA[1]).join('~')+' = '+kxu(r)+'~″',
-							concat(Arrf(kxu,v),uA[2]).join('~')+' = '+kxu(r)+'~秒',
-							concat(Arrf(kxu,v),uA[3]).join('~')+' = '+kxu(r)+'~'+kxf('s'),
-							])
-				}else{
+
 					var r1=r%3600;
 					v=[(r-r1)/3600,(r1-r1%60)/60, r1%60];
 					if(!v[0]){
@@ -121,13 +110,38 @@ solve[2199]=function(){
 							kxu(r)+'~秒 = '+concat(Arrf(kxu,v),uA[2]).join('~'),
 							kxu(r)+'~'+kxf('s')+' = '+concat(Arrf(kxu,v),uA[3]).join('~'),
 							])
+
+
+			
+			},VA));
+		}
+
+		if(sel('度(时) 分 秒→秒')){
+			rS=rS.concat(Arrf(function(t){
+				var v=Arrf(Zh2n,t.split(/[ &,]/)),l=v.length,r=+v[0], uA=[
+					['~度','~分','~秒'],
+					['~°','~′','~″'],
+					['~时','~分','~秒'],
+					Arrf(kxf,['~h','~m','~s']),
+				
+				];
+
+				if(l==2){
+					v.unshift(0);
+					Arrf(function(x){x.shift()},uA);
 				}
+				r=ArrfcA([plus,times],[[v[0],'3600'],[v[1],'60'],[v[2],1]]);
+				return kxA([concat(Arrf(kxu,v),uA[0]).join('~')+' = '+kxu(r)+'~秒',
+						concat(Arrf(kxu,v),uA[1]).join('~')+' = '+kxu(r)+'~″',
+						concat(Arrf(kxu,v),uA[2]).join('~')+' = '+kxu(r)+'~秒',
+						concat(Arrf(kxu,v),uA[3]).join('~')+' = '+kxu(r)+'~'+kxf('s'),
+						])
+
 
 			
 			},VA));
 			
 		}
-
 
 		if(sel('进制转换')){//数字n&进制a [进制b（支持seqsA表达式）] 整数转换
 			rS=rS.concat(
@@ -467,8 +481,8 @@ solve[2199]=function(){
 					return kxA([ztable(ps.concat([[''].concat(p)]),'J'+seqA(2,n-1).join('_')+'_'+
 							zlr3('i',seqA(1,ps.length).join(' '),'j1r','_')+'_'+
 							zlr3('i',seqA(1,ps.length).join(' '),'b','_')),	//alignr dash
-							x+'的最大公约数是'+g,
-							x+'的最小公倍数是'+gs.concat(p).filter(function(t){return t!=1}).join('×')+'='+l
+							xs.join(', ')+'的最大公约数是'+g,
+							xs.join(', ')+'的最小公倍数是'+gs.concat(p).filter(function(t){return t!=1}).join('×')+'='+l
 							])
 				},VA)
 			);
@@ -1508,6 +1522,8 @@ a b c d
 						A=Mtrx.fromStr(sA[0]);
 						t.push('方程组：\\\\ '+piece(Arrf(function(x,i){return kmod(x[0]+'x'+visiplus(x[1]),0,sA[1])},A)));
 						Arrf(function(x,i){
+							console.log(x,sA[1]);
+							console.log(equationM(x,sA[1]));
 							A[i]=equationM(x,sA[1])[0][0].split('m')
 						},A);
 
