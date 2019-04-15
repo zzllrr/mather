@@ -227,6 +227,7 @@ tooltip={
 		].join(br),
 		
 	"Matrix":[
+		'<button data-tool="line Merge">'+gM('lineMerge')+'</button>',
 		gM('Square Matrix')+sceg('1 2 3 4'),
 		gM('Enumerate')+sceg('[1 2;3 4]'),
 		gM('Identity Matrix')+sceg('I3'),

@@ -21,6 +21,7 @@ if(H_o().lang !=L.lang){
 
 $(function(){
 	oH=$('#oHTML');
+
 	$('#logo').text(gM('zzllrr Mather')).before('<span id=night> ☽ </span>').wrap(href('./index.html',' '));
 	$(':button').not('[value]').val(function(){return gM(this.id)});
 	$('.Clear').attr('title',gM('Clear'));
@@ -31,12 +32,17 @@ $(function(){
 		$('body,textarea').css({color:(isnight?'gainsboro':'black')});
 		$('body').css({"background-color":(isnight?'black':'white')});
 		L.night=isnight;
+		dayOrNight();
 	});
 
 	if(L.night=='true'){
 		$('#night').html(' ☽ ').click();
 	}
 	
+	
+	if(!oH.length){
+		return
+	}
 	
 	$('#iTextOpt .tool').attr('title',function(){return gM(this.id+'Tip')});
 	$('#bar').attr('title',gM('FullScreen'));
@@ -84,8 +90,8 @@ $(function(){
 
 
 	$('#input0Tip').on('click','button',function(){
-		var t=$(this).text(),i0=$('#input0'),tl=$(this).parents('.inputTip').attr('data-tool');
-		if(tl=='矩阵' && t=='转为一行'){
+		var t=$(this).attr('data-tool'),i0=$('#input0'),tl=$(this).parents('.inputTip').attr('data-tool');
+		if(tl=='Matrix' && t=='line Merge'){
 			i0.val(function(i,x){return '['+Arrf(function(s){
 					var isfsi=/=\s*[^0]/.test(s), a=s, b=isfsi?exp2coe(s,'='):'';
 					if(/x\d/i.test(s)){
@@ -168,53 +174,12 @@ $(function(){
 		}
 		
 	});
-/*
-	$('#numAdd').on('click',function(){
-		var t,A=$('#oHTML>div'),n=A.length,nT=$('#num option:selected').text(),num=nT[0],v=+$('#numStart').val(),nS=$('#numStyle option:selected').text(),nSv=+$('#numStyle').val();
-		var sn=(''+(v+n-1)).length,s=Array(sn).join(0),snT=/[0０]{2}/.test(nT),nSE=$('#numStyleEnd').val();
-		for(var i=0;i<n;i++){
-			if(num=='一'){
-				t=n2Zh(i+v)
-			}else if(/0|０/.test(num)){
-				t=snT?(s+(v+i)).substr(-sn):v+i
-				if(num=='０'){
-					t=n2ArabBig(t)
-				}
-			}else{
-				t=String.fromCharCode(num.charCodeAt(0)+v+i-1);
-			}
-			A.eq(i).children('.numAdd').remove();
-			A.eq(i).prepend(SCtv('numAdd',(nSv>4?nS[0]:'')+t+(nSv>4?nS[1]:nS[0].replace('空',''))+' '));
-		}
 
-	});
-
-	$('#numDel').on('click',function(){
-		$('#oHTML>div>.numAdd').remove();
-	});
-*/
 	
 	$('#bar').on('click',function(){
 		//$('#zMather,#outputOpt').toggle();
 		$('#zMather').toggle();
 	});
-/*
-	$('#graphClear').on('click',function(){
-		draw.clear(0,0,1000,800);
-		$('#oHTML svg').remove();
-	});
-	$('#graphGO').on('click',function(){
-		Arrf(function(t){
-			if(/^draw./.test(t)){
-				eval(t);
-			}else{
-				plot
-			}
-		},$('#input2').val().split('\n'));
-	});
-
-*/
-
 
 	
 	$('body').on('keydown',function(e){
@@ -381,7 +346,8 @@ $(function(){
 		$('#bar').html(SCtv('toolTip',gM('thTip')));
 
 	}).on('click','.eg', function(){
-		var me=$(this),t=me.attr('data-eg'),i1=me.parents('.inputTip').parent().attr('id');
+		var me=$(this),t=me.attr('data-eg').replace(/&&/g,'\n'),
+		i1=me.parents('.inputTip').parent().attr('id');
 		if(!i1){
 			$('#bar').html(SCtv('toolTip','<input type=text value="'+t+'" />'));
 			$('#bar input').select();
@@ -460,37 +426,7 @@ $(function(){
 		p.parent().nextAll('.task.seled').filter(function(){return $(this).text()==t}).click();
 
 	}).on('click','.tool', function(e){
-		var me=$(this).toggleClass('seled'),id=me.attr('id'),se=me.is('.seled'),
-			t=me.find('annotation').eq(0).text()||me.text(),//me.text()
-			iT=$('#input0Tip [data-tool="'+t+'"]'),iT1=$('#input1Tip [data-tool="'+t+'"]'),
-			tip=tooltip[t]||(se?tooltip[me.find('annotation').eq(0).text()]:''),tip0=tooltip[t+'运算'],tip1=tooltip[t+'条件'], ctrl=e.ctrlKey;
-
-		var sm=me.prevAll('summary');
-		sm.find('span').filter(function(){return $(this).find('annotation').eq(0).text()==t}).remove();
-		if(se){
-			sm.append(SCtv('taskname',me.html()+strbtn+'×" class=tasknameOff />'));
-			var ttl=me.attr('title');
-			if(ctrl && /例如/.test(ttl)){
-				$('#input0').val(ttl.split('例如：')[1])
-			}
-		}
-
-
-		if(iT.length<1){
-			if(isArr(tip)){
-				
-				$('#input0Tip').append('<details class=inputTip data-tool="'+t+'"><summary>'+zx(t)+'</summary>'+
-					Arrf(function(x){return sceg(x,0)+zx(eval(tip[0]))},tip[1]).join(br)
-					+'</details>')
-				
-			}
-
-			iT=$('#iText [data-tool="'+t+'"]');
-		}
-
-
-		
-		iT.add(iT1).toggle(se);
+		var me=$(this).toggleClass('seled'),id=me.attr('id'),se=me.is('.seled');
 
 
 		if(/on/.test(id)){
@@ -498,8 +434,6 @@ $(function(){
 			if(id=='Condon'){
 				$('#input1').val('');
 				$('#cClear').toggle();
-			}else{
-				 $('.inputTip[data-tool="帮助"]').toggle(me.is('.seled'))
 			}
 		}
 
@@ -527,17 +461,31 @@ $(function(){
 	});
 
 	$('#lineSplit').on('click',function(){
-		$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
-		$('#display').click();
+		var t=$('[name=tool]:checked').val();
+		if(t=='solve'){
+			$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
+			$('#display').click();
+		}
+		if(t=='graphic'){
+			$('#input0').val(function(i,v){return v.replace(/&&/g,'\n')});
+		}
+			
 	});
 	$('#lineMerge').on('click',function(){
-		$('#input0').val(function(i,v){return v.replace(/\n/g,'').replace(/\\\\/g,'')});
-		$('#display').click();
+		var t=$('[name=tool]:checked').val();
+		if(t=='solve'){
+			$('#input0').val(function(i,v){return v.replace(/\n+/g,'').replace(/\\\\/g,'')});
+			$('#display').click();
+		}
+		if(t=='graphic'){
+			$('#input0').val(function(i,v){return v.replace(/\n+/g,'&&')});
+		}
+		
 	});
 
 
 
-	$('#input0').attr('placeholder',tooltip['运算符']).on('click',function(){//.on('mouseover', function(){this.focus()})
+	$('#input0').on('click',function(){//.on('mouseover', function(){this.focus()})
 		$('#input1').removeClass('seled');
 		$(this).addClass('.seled');
 		L.input0=$(this).val();
@@ -607,3 +555,8 @@ var toolSwitch=function(x){
 var MfS=function(x,typ){return Mtrx.fromStr(x,typ)},
 	PfS=function(x){return Perm.fromStr(x.replace(/&.+/,''))},
 	PtS=function(x,typ){return Perm.toStr(x,typ)};
+	
+function dayOrNight(){
+	var isnight=L.night=='true';
+	$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});	
+}
