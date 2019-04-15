@@ -294,11 +294,11 @@ jdetail=function(A,i18nObj,subTool){var f=function(t,subtool){
 	if(isStr(t)){var tool=t.replace(/[…—“][\S\s]+/,''),ts=t.split('…'),title=ts.length>1?ts[1].replace(/[—“].+/,''):'',tip=(t.split('—')[1]||'').replace(/“.+/,''), eg=t.split('“')[1]||'';
 
 		var m=/^[-a-z &]+$/i.test(tool)?gM(tool):tool;
-		return subtool=='task'?SCtv('task" data-tool="'+tool.replace(/^\$|\$$/g,'')
+		return subtool=='task'?SCtv('task" data-tool="'+fnv0(tool)
 			+'" title="'+gM(title)
-			+'" data-tip="'+gM(tip||tool).replace(/^\$|\$$/g,'')
+			+'" data-tip="'+fnv0(gM(tip||tool))
 			+'" data-eg="'+eg,
-			/^\$.+\$$/.test(m)?zx(m.replace(/^\$|\$$/g,'')):m):SCtv('level '+(subtool||'')+'" data-i="'+tool,gM(tool,'',i18nObj))
+			/^\$.+\$$/.test(m)?zx(fnv0(m)):m):SCtv('level '+(subtool||'')+'" data-i="'+tool,gM(tool,'',i18nObj))
 	} 
 	if(isArr(t)){
 		return Arrf(function(x){return f(x,subtool)},t).join('')
@@ -322,7 +322,7 @@ $A=function(A){return Arrf(function(x){return x instanceof Array? $A(x):(x||x===
 $B=function(A,esc){return Arrf(function(x){return x instanceof Array? $B(x,esc):(esc?(''+x).replace(/[\{\}]/g,'\\$&'):(x||x===0?'{'+x+'}':''))},A)}, 
 
 Kx=function(t){return t.replace(/\$\$[^\$]+\$\$/g,function(x){return kdc(x.substr(2,x.length-4))}).replace(/\$[^\$]+\$/g,function(x){return ksc(x.substr(1,x.length-2))})},
-KxA=function(A){return Table([[SCtv('','LaTeX'),SCtv('Clear oClear','⌫')]],[[Kx(A.join(kbr2))]],'edit')},
+KxA=function(A){return Table([[SCtv('oLaTeX','LaTeX'),SCtv('Clear oClear','⌫')]],[[Kx(A.join(kbr2))]],'edit')},
 kx=function(t){var s=re((''+t).replace(/−/g,'-').replace(/​/g,'').replace(/[ ]/g,' ')
 	.replace(/\$[^\$]+\$/g,function(x){return eval(x.replace(/\$/g,''))}))
 
@@ -927,8 +927,8 @@ piece=function(A,r){return arguments.length>=2?mtrx(A,['\\{','.','\\{'][+r],(+r?
 
 
 
-sceg=function(v,substr,hiddenpre){return SCtv('eg" data-eg="'+(hiddenpre||'')+v,typeof substr=='number'?v.substr(0,substr):v)},
-sceg2=function(v,substr,hiddenpre){return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+v,typeof substr=='number'?v.substr(0,substr):v)},
+sceg=function(v,substr,hiddenpre){return SCtv('eg" data-eg="'+(hiddenpre||'')+fnq(''+v),typeof substr=='number'?v.substr(0,substr):v)},
+sceg2=function(v,substr,hiddenpre){return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+fnq(''+v),typeof substr=='number'?v.substr(0,substr):v)},
 
 zMath=function(v){return SCtv('zMath" title="'+v,v)};
 
@@ -1191,6 +1191,10 @@ function fne(k){return escape(k.replace(/ /g,'-'))}
 function fnt(k){return escape(H_d(k))}
 function fnx(k){return k.replace(/^<!\[CDATA\[|\]{2}>$/g,'') }
 function fnr(k){return k.replace(/\\/g,'\\\\')}
+function fnq(k){return k.replace(/"/g,'&#34;')}
+function fnv0(k){return k.replace(/^\$|\$$/g,'')}
+function fnv(k){return k.replace(/\$[^\$]+\$/g,function(t){return eval(fnv0(t))})}
+
 
 function fns(webid, url, title, smry, pic){
 	var arr=(FNS[webid]||'').split(' '), p=pic?'&pic='+pic:'', str, k, web=webid;
