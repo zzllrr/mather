@@ -17,6 +17,10 @@ $(function(){
 
 
 			solve[sbj1v||sbj0v]();
+			
+			setTimeout(function(){
+				oH.find('.oLaTeX').eq(0).click();
+			},300);
 		}
 		if(tool=='graphic'){
 			oH.empty();
@@ -48,6 +52,9 @@ $(function(){
 				
 			}
 		}
+		
+		
+		setTimeout(dayOrNight,200)
 	});
 
 });
