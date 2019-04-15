@@ -4,7 +4,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-about['version']=href(Hs+'github.com/zzllrr/Mather','Demo V2019.4.11')+
+about['version']=href(Hs+'github.com/zzllrr/Mather','Demo Only V2019.4.14')+
 	XML.wrapE('h3',gM('Summary'))+
 	DCtv('',gM('SummaryTip')+
 	XML.wrapE('h3',gM('WeChat'))+
