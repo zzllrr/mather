@@ -19,7 +19,7 @@
 	opacity:0.5
 }
 
-.opac:not(:hover) #output0Type, .opac:not(:hover) #lang, .opac:not(:hover) #night{
+.opac:not(:hover) #output0Type{
 	opacity:0
 }
 
