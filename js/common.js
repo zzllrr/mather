@@ -14,12 +14,16 @@ qrs={
 	'V2weixinPay':qrwx+'f2f0KhK_RnSDrozki2q4gmcvsFMS0DQJPVas',
 	
 	'weixinZQR':H+'weixin.qq.com/r/uXUFCg3EKzNUhxxpnyCd'
-};
+},Ox,Oy;
 if(H_o().lang !=L.lang){
 	i18n=lang[H_o().lang||L.lang||'zh_cn']
 }
 
 $(function(){
+	$('#zzllrrCanvas,#menu').nextAll().hide();
+	$('span[for]').hide();
+	
+	
 	oH=$('#oHTML');
 
 	$('#logo').text(gM('zzllrr Mather')).before('<span id=night> ☽ </span>').wrap(href('./index.html',' '));
@@ -44,13 +48,13 @@ $(function(){
 		return
 	}
 	
-	$('#iTextOpt .tool').attr('title',function(){return gM(this.id+'Tip')});
+	$('#iTextOpt .tool,#input0Tool .tool').attr('title',function(){return gM(this.id+'Tip')});
 	$('#bar').attr('title',gM('FullScreen'));
 
 	$('[name=tool]').after(function(){return '<span>'+gM(this.id)+sc});
 	
 	$('#search').attr('placeholder',gM('search'));
-	$('#lang').html(Options(ZLR('lang en zh_cn zh_tw'),ZLR(gM('lang')+' English 简体 繁体'))).on('change',function(){
+	$('#lang').html(Options(ZLR('lang en zh_cn zh_tw'),ZLR('lang English 简体 繁体'))).on('change',function(){
 		var l=location.href, lA=l.split('lang='), v=$(this).val();
 		L.lang=v;
 		location.href=/lang=/.test(l)?lA[0]+'lang='+lA[1].replace(/^[^&]+/,v):l+(/\?/.test(l)?'&':'?')+'lang='+v
@@ -133,47 +137,6 @@ $(function(){
 	$('#displayOff').on('click',function(){
 		$('#input0Preview,#displayOff').hide();
 	});
-	$('#display').on('click',function(){
-		var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),w=$('#input0Preview');
-		if(v){
-			if(i==o && o!='H'){
-				w.add('#displayOff').hide();
-			}else if(i=='L' && o=='P'){
-				katex.render(kx(sub2n(v,1)), w[0], {
-				    throwOnError: false,
-				    displayMode: true
-				});
-				w.html(XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')))).add('#displayOff').show();
-				
-			}else if(o=='H'){
-				w.add('#displayOff').show();
-				if(i=='H'){
-					w.html(v)
-				}else if(i=='U'){
-					var l=$('summary:contains(显示) ~ .seled').length;
-					if(l){
-						$('summary:contains(显示) + .task').click();
-						$('#go').click();
-					}else{
-						w.html(asc2unicode(v).split('\n').join(br));
-					}
-					
-				}else if(i=='J'){
-					try{
-						w.html(eval(v))
-					}catch(e){
-						w.html(v)
-					}
-				}else if(i=='L'){//LaTex
-					katex.render(kx(sub2n(v,1)), w[0], {
-					    throwOnError: false,
-					    displayMode: true
-					});
-				}
-			}
-		}
-		
-	});
 
 	
 	$('#bar').on('click',function(){
@@ -210,7 +173,7 @@ $(function(){
 			}
 			if(shft){
 				if(k==13){
-					$('#display').click();
+					preDisplay();
 				}	
 			}
 		}
@@ -437,6 +400,17 @@ $(function(){
 			}
 		}
 
+		if(id=='display'){
+			var v=$('#input0').val().trim();
+			if(se && v){
+				preDisplay();
+			}else{
+				$('#displayOff').click()
+				
+			}
+		}
+
+
 	}).on('click','.oClear',function(){
 		$('#oHTML').empty();
 		$('#oHClear').hide();
@@ -446,7 +420,7 @@ $(function(){
 			graphic.close()
 		}
 		*/
-		draw.clear();
+		drawobj.clear();
 
 	})
 
@@ -454,7 +428,7 @@ $(function(){
 
 
 	$('#FullScreen').on('click',function(){
-		$('#display').click();
+		preDisplay();
 		OH($('#input0Preview').html());
 		$('#bar').click();
 		$('#oHClear').show();
@@ -464,7 +438,7 @@ $(function(){
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
-			$('#display').click();
+			preDisplay();
 		}
 		if(t=='graphic'){
 			$('#input0').val(function(i,v){return v.replace(/&&/g,'\n')});
@@ -475,7 +449,7 @@ $(function(){
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'').replace(/\\\\/g,'')});
-			$('#display').click();
+			preDisplay();
 		}
 		if(t=='graphic'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'&&')});
@@ -490,10 +464,21 @@ $(function(){
 		$(this).addClass('.seled');
 		L.input0=$(this).val();
 		
-	}).on('changed mouseout',function(){
-		L.input0=$(this).val()
+	}).on('changed keyup mouseover',function(){//mouseout 
+		var v=$(this).val(), l0=(L.input0||'').trim();
+		L.input0=v;
 		
+		if(l0!=v.trim() && $('#display').is('.seled')){
+			/*
+			katex.render(kx(sub2n(v,1)), $('#oHTML')[0], {
+			    throwOnError: false,
+			    displayMode: true
+			});
+			*/
+			preDisplay();
+		}
 	});
+	
 	$('#input1').on('click',function(){
 		$('#input0').removeClass('seled');
 		$(this).addClass('.seled');
@@ -517,6 +502,156 @@ $(function(){
 		}
 	});
 	$('#output0Type').html(Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')));
+
+
+
+	$('#panel').on('click','.mi-span',function(){
+		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle'),nx=me.next('[for='+id+']');
+		
+		if(nx.length){
+			nx.toggle();
+		}else{
+			me.removeClass('toggle');
+		}
+
+	}).on('click','#aniControl .mi',function(){
+		var me=$(this),id=this.id.substr(3), L=localStorage;
+		
+		if(id=='Play'){
+			if(me.text()=='play_arrow'){
+				me.text('pause');
+				
+				
+			}else{
+				me.text('play_arrow');
+				//clearInterval();
+				
+			}
+			
+		}
+
+		if(id=='Stop'){
+			
+			//clearInterval();
+			drawobj.clear();
+			
+		}
+
+		if(id=='Shot'){
+			
+			//clearInterval();
+			drawobj.clear();
+			
+		}
+
+		if(id=='Input'){
+			
+			
+			
+		}
+
+		if(id=='Output'){
+			
+			
+			
+		}
+	}).on('click','#menu .mi',function(){
+		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
+
+		if(id=='zzllrrCanvas'){
+			me.nextAll().removeClass('toggle').toggle(tog);
+			if(!tog){
+				pa.nextAll().hide();
+			}
+		}else if(id=='clear'){
+			me.removeClass('toggle');
+			drawobj.clear();
+			$('.on').prop('checked',false);
+		}else{
+			me.siblings('.toggle:not(#zzllrrCanvas)').removeClass('toggle');
+			pa.nextAll('[for='+id+']').toggle(tog);
+			pa.nextAll().not('[for='+id+']').hide();
+		}
+
+	}).on('click','.Add',function(){
+		var me=$(this),p=me.parent().parent();
+		p.clone().insertAfter(p);
+
+	}).on('click','.Del',function(){
+		var me=$(this),p=me.parent().parent();
+		if(p.siblings('.multi').length){
+			p.remove();
+			drawobj.repaint();
+		}else{
+			p.parent().prev().find('.on').click();
+		}
+
+	}).on('click','.multinput',function(){
+		var me=$(this).prop('checked',true), pa=me.parent(),psib=pa.siblings(':has(.multinput)');
+		psib.find('.multinput').prop('checked',false);
+		psib.find('input').not('.multinput').attr('disabled','disabled');
+		pa.find('input').removeAttr('disabled');
+
+	}).on('change keyup mouseup','input,select',function(e){//keyup mouseup
+		var me=$(this);
+		e.stopPropagation();
+		if(me.parents('[for=ani]').length){
+			return
+		}
+		
+		if(me.is('.color')){
+			me.next().val(me.val());
+		}
+		if(me.is('.colorhex')){
+			me.prev().val(me.val());
+		}
+		if(me.is('.on')){
+			var on=me.prop('checked');
+			me.parent().next().toggle(on);
+		}
+		
+		drawobj.repaint();
+	}).on('click','#aniShot',function(){
+		cvs.toDataURL();
+	
+	});
+
+
+	
+	$(window).resize(function(){
+		drawobj.repaint();
+	});
+	
+	var colorTmpl='<div class=stroke>'+
+			'<label>描边<input type=checkbox class=strokeon checked=checked /></label>'+
+			'<input type=color value="#000000" class=color />'+
+			'<label>渐变<input type=checkbox class=gradon /></label>'+
+			'渐变色<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			'线性或放射性<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
+		'</div>'+
+		'<div class=fill>'+
+			'<label>填充<input type=checkbox class=fillon /></label>'+
+			'<input type=color value="#000000" class=color />'+
+			'<label>渐变<input type=checkbox class=gradon /></label>'+
+			'渐变色<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			'线性或放射性<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
+		'</div>'+
+		'<div class=shadow>'+
+			'<label>阴影<input type=checkbox class=shadowon /></label>'+
+			'<input type=color value="#000000" class=color />'+
+			'模糊<input type=number min=0 class=blur value=0 />'+
+			'偏移<input type=text placeholder="0 0" class=offset />'+
+		'</div>'+
+		'<div><i class="mi Add">add</i><i class="mi Del">clear</i></div>';
+	$('div[for=text] .multi').append(colorTmpl);
+	$('div[for=shape] .multi').append(
+		'<div>重叠<select class=comp>'+Options(['source-over','source-atop','source-in','source-out','destination-over','destination-atop','destination-in','destination-out','lighter','copy','xor']).join('')+'</select>'+
+			'虚线<input type=text class=dash placeholder="2,4,2" /></div>'+colorTmpl
+
+	);
+	$('.font').parent().after('<label>水平对齐 <select class=halign>'+Options(ZLR('center end left right start'))+'</select></label>'+
+						'<label>垂直对齐 <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'))+'</select></label>');
+	$('.color').after(function(){return '<input type=text value="'+$(this).val()+'" class=colorhex size=4 />透明度<input type=number value="1" min=0 max=1 step=.1 class=opa />'});
 
 
 	
@@ -560,3 +695,113 @@ function dayOrNight(){
 	var isnight=L.night=='true';
 	$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});	
 }
+
+var preDisplay=function(){
+	var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),w=$('#input0Preview');
+
+	if(i==o && o!='H'){
+		w.add('#displayOff').hide();
+	}else if(i=='L' && o=='P'){
+		katex.render(kx(sub2n(v,1)), w[0], {
+		    throwOnError: false,
+		    displayMode: true
+		});
+		w.html(XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')))).add('#displayOff').show();
+		
+	}else if(o=='H'){
+		w.add('#displayOff').show();
+		if(i=='H'){
+			w.html(v)
+		}else if(i=='U'){
+			var l=$('summary:contains(显示) ~ .seled').length;
+			if(l){
+				$('summary:contains(显示) + .task').click();
+				$('#go').click();
+			}else{
+				w.html(asc2unicode(v).split('\n').join(br));
+			}
+			
+		}else if(i=='J'){
+			try{
+				w.html(eval(v))
+			}catch(e){
+				w.html(v)
+			}
+		}else if(i=='L'){//LaTex
+			katex.render(kx(sub2n(v,1)), w[0], {
+			    throwOnError: false,
+			    displayMode: true
+			});
+		}
+	}
+},rng2=function(t,neg){
+	var A=(t.trim()||'0,0').split(/[^-\d\.]/);
+	A[0]=+A[0];
+	if(A.length==1){
+		return [neg?-A[0]:A[0], A[0]]
+	}
+	A[1]=+A[1];
+	return A
+
+},rng4=function(t){
+	var A=(t.trim()||'0;0').split(';');
+	if(A.length==1){
+		return [rng2(A[0],1),rng2(A[0],1)]
+	}
+	return [rng2(A[0],1),rng2(A[1],1)]
+
+},color2rgba=function(o,isjQ){
+	var me=$(o);
+	if(isjQ && me.prev('label').find(':checkbox').not(':checked').length){
+		return ''
+	}
+	if(isjQ && me.nextAll('label').find(':checked').length || !isjQ && o.grad){//渐变
+		var grad=isjQ?Arrf(Number,me.nextAll('.grad').val().split(' ')):o.grad,
+			color=isjQ?me.nextAll('.gradcolor').val().split(','):o.color;
+
+		//var grd=ctx['create'+(grad.length==6?'Radial':'Linear')+'Gradient'].apply(null,grad);	Illegal invocation
+		if(!/^[46]$/.test(grad.length)){//非法渐变
+			return '';
+		}
+		
+		var grd=grad.length==6?ctx.createRadialGradient(grad[0],grad[1],grad[2],grad[3],grad[4],grad[5]):ctx.createLinearGradient(grad[0],grad[1],grad[2],grad[3]);
+		for(var i=0;i<color.length;i++){
+			var c=color[i].split(' ');
+		//	console.log(c);
+			grd.addColorStop(+c[0],c[1]);
+		}
+		return grd
+	}
+	//console.log(me.val(),me.next().next().val(),hex2rgba(me.val(),me.next().next().val()),isjQ);
+	return isjQ?hex2rgba(me.val(),me.next().next().val()):(/rgba/i.test(o.color)?o.color:hex2rgba(o.color,o.opa||1))
+
+},shadow=function(obj,t){
+	var	color3=color2rgba(obj?t.color3:$(t).find('.shadow .color'),!obj);
+
+	if(color3){
+		ctx.shadowBlur=+(obj?t.color3.blur:$(t).find('.shadow .blur').val())||0;
+		var os=(obj?t.color3.offset:$(t).find('.shadow .offset').val())||'';
+		if(os){
+			ctx.shadowOffsetX=+os.split(' ')[0];
+			ctx.shadowOffsetY=+os.split(' ')[1];
+		}
+		ctx.shadowColor=color3;
+	}else{
+		ctx.shadowBlur=0;
+//		ctx.shadowColor=null;
+		ctx.shadowOffsetX=0;
+		ctx.shadowOffsetY=0;
+	}
+},atan=function(dy,dx){
+	//return (n<0 || n==0 && 1/n < 0)?Math.PI+n:n
+	if(dx==0){
+		return dy<0?Math.PI*3/2:Math.PI/2
+	}
+	if(dy==0){
+		return dx<0?Math.PI:0
+	}
+	if(dx>0 && dy>0){return Math.atan(dy/dx)}
+	if(dx<0 && dy>0){return Math.atan(dy/dx)+Math.PI}
+	if(dx<0 && dy<0){return Math.atan(dy/dx)+Math.PI}
+	if(dx>0 && dy<0){return Math.atan(dy/dx)+Math.PI*2}
+};
