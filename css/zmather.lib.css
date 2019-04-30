@@ -19,13 +19,14 @@
 	opacity:0.5
 }
 
-.opac:not(:hover) #output0Type{
+.opac:not(:hover) .hid{
 	opacity:0
 }
 
 
 .seled{
-	border-color:gray
+	border-color:gray;
+	background: yellow;
 }
 .wiki,.wiki > tbody > tr > td{
 	border-color:gainsboro
@@ -37,7 +38,7 @@
 .inputTip,.subtools, #outputOpt{
 	font-size:12px
 }
-#go,.subtools summary{
+.subtools summary{
 	font-size:16px
 }
 
@@ -117,7 +118,8 @@ sup,sub,.small{
 
 
 #bar{
-    background-image: -webkit-linear-gradient(top,  gainsboro ,white 20%, gainsboro 80%, white);
+    border-top: dashed 1px gainsboro;
+    background: rgba(0,0,0,.1);
     color:black;
     cursor:pointer;
 }
@@ -456,8 +458,8 @@ input[type=text],#wiki>span,.brad{
 }
 
 #input0,#input1,#input2{
-	min-height:120px;
-	background:rgba(50, 205, 50, 0.2);
+	min-height:160px;
+	background:rgba(50, 205, 50, 0.5);
 }
 code,pre,#outputOpt{
 	background: rgba(0,0,0,0.1);
@@ -537,7 +539,7 @@ code,pre,#outputOpt{
 	resize: none;
 	overflow:hidden;
 }
-.eg,.windex,#logo,#night,.Clear,.task,th{
+.eg,.windex,#logo,#night,.Clear,.task,th,[name=tool] + span{
 	cursor: pointer;
 }
 
@@ -550,8 +552,8 @@ textarea{
 	display:inline-block;
 }
 
-a{
-	color:limegreen;
+.opac a{
+	color:transparent;
 }
 .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
@@ -561,7 +563,7 @@ summary ~ details{
 }
 
 .inputTip,.ground,.ground > div{
-	margin:10px
+	margin:5px
 }
 
 #cvsbg{
@@ -570,16 +572,16 @@ summary ~ details{
 }
 
 #logo{
-	background: limegreen;
+	background: black;
     color: white;
     padding: 2px;
-    border-radius: 5px;
+    border-radius: 0 5px;
 }
-.level.seled{
+.level.seled, #solve:checked + span{
 	background:limegreen;
 }
 
-.level{
+.level,[name=tool]:checked + span{
 	padding:2px 10px;
 	margin:2px;
 	color:white;
@@ -598,20 +600,20 @@ summary ~ details{
 #subject .ground1 .level:not(.seled){
 	background:seagreen;
 }
-#graphicGround .level:not(.seled){
-	background:lightpink;
+#graphicGround .level:not(.seled),#graphic:checked + span{
+	background:hotpink;
 }
 
 
-#showGround .level:not(.seled){
+#showGround .level:not(.seled),#show:checked + span{
 	background:slateblue;
 }
 
-#exploreGround .level:not(.seled){
+#exploreGround .level:not(.seled),#explore:checked + span{
 	background:darkmagenta;
 }
 
-#aboutGround .level:not(.seled){
+#aboutGround .level:not(.seled),#about:checked + span{
 	background:salmon;
 }
 
@@ -686,4 +688,106 @@ summary ~ details{
 }
 img{
 	cursor: pointer;
+}
+
+
+
+#cvsbg{
+	width:100%;
+	height:100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:-1;
+
+}
+
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(fonts/MaterialIcons-Regular.woff2) format('woff2');
+}
+
+.mi{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+ /* font-size: 1.5rem;   Preferred icon size 24px;*/
+ /* display: inline-block;*/
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  cursor:pointer;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  vertical-align: middle;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+.mi-span:before{
+	font-family: 'Material Icons';
+    vertical-align: middle;
+    display: inline-block;
+	content:attr(mi);
+}
+
+#panel div > span.toggle{
+	vertical-align: middle;
+	font-weight:bold;
+}
+#panel div > .mi-span.toggle,#menu .toggle{
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+	padding-right:2px;
+}
+#menu{
+	margin-bottom:5px;
+	font-size:26px;
+}
+#menu .toggle[title]{
+	padding: 4px;
+}
+input[type="number"]{
+	width: 40px;
+}
+input[len="2"]{
+	width: 80px;
+}
+
+
+.mi-span{
+	cursor:pointer;
+}
+#menu .toggle:after{
+	content:attr(title);
+	padding:2px;
+	font-family: cursive;
+}
+#panel div > .mi-span.toggle + span{
+	font-family: cursive;
+}
+.multinput:checked ~ span{
+	font-weight:bold
+}
+.multi{
+	padding:2px;
+	border-bottom:dashed 1px;
+}
+.multi>div{
+	padding:1px;
+}
+.multinput{
+	-webkit-appearance:radio
+}
+
+[name=tool]{
+	-webkit-appearance:none
 }
