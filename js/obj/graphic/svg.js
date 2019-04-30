@@ -1203,15 +1203,15 @@ consolelog(xy,irx,iry);
 				var BCR=dm[0].getBoundingClientRect(),dml=parseInt(BCR.left),dmt=parseInt(BCR.top),dmw=BCR.width,dmh=BCR.height;
 				dm.children().not('defs').each(function(){
 					var t=this.getBoundingClientRect();
-					console.log(this.id,t.right,t.bottom,t);
+					consolelog(this.id,t.right,t.bottom,t);
 				//	w=Math.max(w,parseInt(t.right));
 				//	h=Math.max(h,parseInt(t.bottom));
 					w=Math.max(w,parseInt(t.width+t.left));
 					h=Math.max(h,parseInt(t.height+t.top));
 				
-					console.log('w , h',w,h);
+					consolelog('w , h',w,h);
 				});
-				console.log(w,h);
+				consolelog(w,h);
 				dm.attr({width:w,height:h});
 			}
 		},300);
