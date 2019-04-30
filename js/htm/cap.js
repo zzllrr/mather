@@ -23,6 +23,7 @@ $(function(){
 
 	setTimeout(function(){
 		$('#allEraser').click();
+		$('#color0').click();
 		$('#tileTool').show();
 
 		$('#caps').show().nextAll().hide();
