@@ -24,10 +24,6 @@
 }
 
 
-.seled{
-	border-color:gray;
-	background: yellow;
-}
 .wiki,.wiki > tbody > tr > td{
 	border-color:gainsboro
 }
@@ -116,13 +112,13 @@ sup,sub,.small{
 	color:gray
 }
 
-
-#bar{
-    border-top: dashed 1px gainsboro;
-    background: rgba(0,0,0,.1);
-    color:black;
-    cursor:pointer;
+#panel{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 20001;
 }
+
 .fdetail:hover summary{
 	color:white;
 	background:black;
@@ -508,6 +504,7 @@ code,pre,#outputOpt{
 }
 #oHTML{
 	position: relative;
+	padding-left:20px;
 }
 #oHTML > div.abs{
 	position:absolute;
@@ -627,9 +624,11 @@ summary ~ details{
 #bar .toolTip{
 	padding:0 5px;
 	opacity:0;
-	animation: inf01 2s 1 ease-out;
+	animation: inf01 3s 1 ease-out;
 	background:limegreen;
 	color:white;
+	
+    border-radius:5px 0;
 }
 @keyframes inf01 {
 	from {opacity:0}
@@ -657,6 +656,9 @@ summary ~ details{
 }
 .rotate270{
     transform: rotateZ(270deg);
+}
+.rotate180{
+    transform: rotateY(180deg);
 }
 
 #donaQR .via{margin-bottom: 0}
@@ -732,6 +734,7 @@ img{
   vertical-align: middle;
   /* Support for IE. */
   font-feature-settings: 'liga';
+  user-select: none;
 }
 .mi-span:before{
 	font-family: 'Material Icons';
@@ -748,9 +751,12 @@ img{
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 	padding-right:2px;
 }
+
+#menu i{
+	font-size:26px;
+}
 #menu{
 	margin-bottom:5px;
-	font-size:26px;
 }
 #menu .toggle[title]{
 	padding: 4px;

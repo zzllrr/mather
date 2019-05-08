@@ -60,3 +60,8 @@
 .sbsTbl:not(.sbsiTbl) tr:nth-child(odd), .Symboli:not(.Symboli_){
 	background: rgba(162,195,97,.1);
 }
+
+.seled{
+	border-color:gray;
+	background: yellow;
+}

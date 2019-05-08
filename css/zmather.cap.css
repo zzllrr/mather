@@ -27,22 +27,18 @@
 #fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
 
 #fontCSS span,#tileToolCap svg,#night{cursor:pointer}
-#tileTool{border-left: dashed white 1px}
+#tileTool{border-left: dashed white 1px; text-align:center}
 
 #svgShape svg{border-radius:5px}
 #tileToolCap,svg:hover,.caplatex:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
 
 
-#tileTool:after{
+#tileTool:not([for]):after{
 	position: fixed;
 	font-weight: bold;
 	color: yellow;
 	text-shadow:3px 3px 5px rgba(0, 0, 0, .5);
-}
 
-
-
-#tileTool:after{
 	content:attr(tip);
 	top:0;
 	right:12px;
@@ -84,13 +80,17 @@
 #Tile > table td{padding:0}
 #tileTool{right:12px}
 #tileTool{position:fixed}
-#tileTool{width:20%; height:100%; overflow-x:hidden}
+#tileTool{
+
+	overflow-x:hidden
+}
 #Tile table {
     border-spacing: 0;
 }
 body {
     margin: 0;
     font-size: 12px;
+    overflow-x: hidden;
 }
 
 input[type=number] {
@@ -98,8 +98,6 @@ input[type=number] {
 }
 input:not([readonly]), select{
     vertical-align: middle;
-    border: solid gainsboro 1px;
-    color: limegreen;
 }
 #COLOR summary input[readonly] {
     margin: 2px;
