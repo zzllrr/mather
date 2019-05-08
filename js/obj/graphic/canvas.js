@@ -18,10 +18,10 @@
 var cvs, ctx, ori=[0,0],cw,ch;
 
 $(function(){
-	cvs=$('#cvsbg')[0];
+	cvs=$('#caps')[0];
 	ctx=cvs.getContext('2d');
-	cw=$(window).width()-20;
-	ch=$(window).height()-20;
+	cw=$(window).width();//-20;
+	ch=$(window).height();//-20;
 	
 	cvs.width=cw;
 	cvs.height=ch;
