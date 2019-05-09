@@ -16,6 +16,7 @@
 <!-- 引用第三方库 -->
     <script src="js/lib/jQuery.js"></script>
     <script src="js/lib/Base64.js"></script> <!-- 增加了XML的解析功能-->
+	<script src="js/lib/effects.js"></script> <!-- JS特效-->
     <script src="js/lib/katex.js"></script>
 
     <script src="js/lib/qrcode.js"></script>
@@ -402,7 +403,9 @@
 		        <input type=button id=strucon class=tool />
 	            <br />
 	            </span>
-            
+            <input type="file" accept="image/*" capture="camera">
+            <input type="file" accept="image/*" multiple="multiple" id=upimg hidden />
+            <br />
             <input id=lineSplit type=button class=hid />
             <br />
             <input id=lineMerge type=button class=hid />
@@ -429,15 +432,13 @@
 
 
     <div id=iTextOpt class="pd2">
-        <div hidden><input type="file" accept="image/*" multiple="multiple" id=upimg /></div>
-        <div hidden><input type="file" accept="image/*" capture="camera"></div>
 
-        <div hidden><input type="file" accept="video/*" capture="camcorder"></div>
+        <span id=latexDisplayTool hidden>
+	        <input type=button class="Clear rotate90" id=displayOff value=⌫ />
 
-        <div hidden><input type="file" accept="audio/*" capture="microphone"></div>
-        
-        <input type=button class="Clear rotate90" id=displayOff value=⌫ hidden />
-
+      		<i class=mi id=displayOverCanvas>arrow_downward</i>
+			</span>
+		
         <span class=opac>
 
             <select id=input0Type class=hid></select>
@@ -454,7 +455,7 @@
         
 
         <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
-        
+        <i class=mi id=zMatherHide>keyboard_arrow_up</i>
         
         
         
@@ -469,36 +470,36 @@
 	<div id=panel>
 		<div id=menu>
 			<span id=bar>&nbsp;</span>
-			<i class=mi id=FullScreen>fullscreen</i>
-			<i class=mi id=zzllrrCanvas>apps</i>
-			<i class=mi id=bg title="背景">photo_size_select_actual</i>
-			<i class=mi id=grid title="网格坐标">grid_on</i>
-			<i class=mi id=shape title="图形">panorama_fish_eye</i>
-			<i class=mi id=text title="文本">title</i>
-			<i class=mi id=clear title="清除">backspace</i>
-			<i class=mi id=svgs title="部件">widgets</i>
-			<i class=mi id=ani title="动画">movie</i>
+			<i class=mi id=zMatherOn>unfold_less</i>
+			<i class=mi id=svgs title="Gadget">layers</i>
+			<i class=mi id=zzllrrCanvas title="Canvas">apps</i>
+			<i class=mi id=bg title="bg">photo_size_select_actual</i>
+			<i class=mi id=grid title="Grid">grid_on</i>
+			<i class=mi id=shape title="Shape">panorama_fish_eye</i>
+			<i class=mi id=text title="Text">title</i>
+			<i class=mi id=clear title="Clear">backspace</i>
+			<i class=mi id=ani title="Animation">movie</i>
 			</div>
 		<div for=bg>
-			<div><span class=mi-span id=bggrad mi=gradient>背景色</span>
+			<div><span class=mi-span id=bggrad mi=gradient>BGC</span>
 				<span for=bggrad><label><input type=checkbox id=bggradOn class=on /></label>
 					<span for=bggradOn>
 						<div class=fill>
-							<label hidden>填充<input type=checkbox class=fillon checked=checked /></label>
+							<label hidden><i18>Fill</i18><input type=checkbox class=fillon checked=checked /></label>
 							<input type=color value="#eeeeee" class=color />
-							<label>渐变<input type=checkbox class=gradon /></label>
-							渐变色<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />
-							线性或放射性<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />
+							<label><i18>Gradient</i18><input type=checkbox class=gradon /></label>
+							<i18>Gradient Color</i18><input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />
+							<i18>Linear / Radial</i18><input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />
 						</div>
 					</span>
 				</span></div>
-			<div><span class=mi-span id=bgimg mi=landscape>背景图片</span>
+			<div><span class=mi-span id=bgimg mi=landscape>Image</span>
 				<span for=bgimg><label><input type=checkbox id=bgimgOn class=on /></label>
 					<span for=bgimgOn>
 						<div class=multi>
-							<div>图片地址<input type=url class=imgurl placeholder="" /></div>
-							<div>剪切位置和尺寸<input type=text class=poswh placeholder="sx,sy,swidth,sheight" /></div>
-							<div>粘贴位置和尺寸<input type=text class=poswh placeholder="x,y,width,height" /></div>
+							<div><i18>Image URL</i18><input type=url class=imgurl placeholder="" /></div>
+							<div><i18>Cut Position and Size</i18><input type=text class=poswh placeholder="sx,sy,swidth,sheight" /></div>
+							<div><i18>Paste Position and Size</i18><input type=text class=poswh placeholder="x,y,width,height" /></div>
 							<div><i class="mi Add">add</i><i class="mi Del">clear</i></div>
 							
 						</div>
@@ -507,93 +508,93 @@
 
 		</div>
 		<div for=grid>
-			<div><span class=mi-span id=orig mi=filter_tilt_shift>原点</span>
+			<div><span class=mi-span id=orig mi=filter_tilt_shift>Origin</span>
 				<span><label>x=<input type=number value=600 id=Ox min=0 /></label>
 						<label>y=<input type=number value=400 id=Oy min=0 /></label></span>
 			</div>
-			<div><span class=mi-span id=dot mi=radio_button_checked>点</span>
+			<div><span class=mi-span id=dot mi=radio_button_checked>Point</span>
 				<span for=dot><label><input type=checkbox id=dotOn class=on /></label>
 
 					<span for=dotOn>
 						<div class=multi>
-							<div><span>坐标<input type=text class=pos placeholder="20 20,30 30" /></span>
-								<span>颜色<input type=color value="#000000" class=color /></span>
+							<div><span><i18>Coordinate</i18><input type=text class=pos placeholder="20 20,30 30" /></span>
+								<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
 								<i class="mi Add">add</i><i class="mi Del">clear</i>
 							</div>
 						</div>
 					</span>
 				</span></div>
 
-			<div><span class=mi-span id=axis mi=add_circle_outline>坐标轴</span>
+			<div><span class=mi-span id=axis mi=add_circle_outline>Axis</span>
 				<span for=axis><label><input type=checkbox id=axisOn class=on /></label>
 					<span for=axisOn>
-						<span>范围<input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" /></span>
-						<div>箭头分类（左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】）<input type=text value="0101" id=axisArrowType placeholder="0101" /></div>
-						<div>箭头参数（侧翼点长,宽;箭尾点偏移）<input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" /></div>
-						<span>颜色<input type=color value="#000000" class=color /></span>
+						<span><i18>Range</i18><input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" /></span>
+						<div><i18>Arrow</i18>分类（左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】）<input type=text value="0101" id=axisArrowType placeholder="0101" /></div>
+						<div><i18>Arrow</i18>参数（侧翼点长,宽;箭尾点偏移）<input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" /></div>
+						<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
 					</span>
 				</span></div>
-			<div><span class=mi-span id=tick mi=graphic_eq>刻度</span>
+			<div><span class=mi-span id=tick mi=graphic_eq>Tick</span>
 				<span for=tick><label><input type=checkbox id=tickOn class=on /></label>
 					<span for=tickOn>
-						<span>范围<input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" /></span>
+						<span><i18>Range</i18><input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" /></span>
 						<div class=multi>
-							<div><span>线长（负号表示负轴方向）<input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 /></span>
-								<span>间距<input type=text value=20 class=tickSpacing placeholder="20,20" size=10 /></span>
-								<span>颜色<input type=color value="#000000" class=color /></span>
+							<div><span><i18>Tick Length</i18>（负号表示负轴方向）<input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 /></span>
+								<span><i18>Spacing</i18><input type=text value=20 class=tickSpacing placeholder="20,20" size=10 /></span>
+								<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
 								<i class="mi Add">add</i><i class="mi Del">clear</i>
 							</div>
 						</div>
 
 					</span>
 				</span></div>
-			<div><span class=mi-span id=gridCross mi=border_all>直角坐标网格</span>
+			<div><span class=mi-span id=gridCross mi=border_all>Cartesian Grid</span>
 				<span for=gridCross><label><input type=checkbox id=gridCrossOn class=on /></label>
 					<span for=gridCrossOn>
 						<span class=orig>
-							<span>范围<input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" /></span>
-							<label>原点<input type=checkbox id=gridCrossOrigOn class=on /></label>
+							<span><i18>Range</i18><input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" /></span>
+							<label><i18>Origin</i18><input type=checkbox id=gridCrossOrigOn class=on /></label>
 							<span for=gridCrossOrigOn>
 								<label>x=<input type=number value=600 class=Ox min=0 /></label>
 								<label>y=<input type=number value=400 class=Oy min=0 /></label></span>
 							
 						</span>
 						<div class=primary>
-							<span>主网格间距<input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 /></span>
-							<span>主网格虚线<input type=text class=dash placeholder="2,4,2" size=10 /></span>
-							<span>主网格颜色<input type=color value="#a0a0a0" class=color /></span>
+							<span><i18>Primary Grid Spacing</i18><input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 /></span>
+							<span><i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 /></span>
+							<span><i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color /></span>
 						</div>
 						<div class=secondary>
-							<span>次网格间距<input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 /></span>
-							<span>次网格虚线<input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
-							<span>次网格颜色<input type=color value="#cecece" class=color /></span>
+							<span><i18>Secondary Grid Spacing</i18><input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 /></span>
+							<span><i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
+							<span><i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color /></span>
 						</div>
 					</span>
 				</span></div>
 
-			<div><span class=mi-span id=gridPolar mi=location_searching>极坐标网格</span>
+			<div><span class=mi-span id=gridPolar mi=location_searching>Polar Grid</span>
 				<span for=gridPolar><label><input type=checkbox id=gridPolarOn class=on /></label>
 					<span for=gridPolarOn>
 						<span class=orig>
-							<span>范围（半径）<input type=number value=0 id=gridPolarRange min=0 /></span>
-							<label>原点<input type=checkbox id=gridPolarOrigOn class=on /></label>
+							<span><i18>Range Radii</i18><input type=number value=0 id=gridPolarRange min=0 /></span>
+							<label><i18>Origin</i18><input type=checkbox id=gridPolarOrigOn class=on /></label>
 							<span for=gridPolarOrigOn>
 								<label>x=<input type=number value=600 class=Ox min=0 /></label>
 								<label>y=<input type=number value=400 class=Oy min=0 /></label></span>
 						</span>
 						<div class=primary>
-							<span>主网格r间距<input type=number value=200 id=gridPolarxSpacing min=0 /></span>
-							<span>主网格角等分线数<input type=number value=1 id=gridPolaryNum min=0 /></span>
-							<span>主网格虚线<input type=text class=dash placeholder="2,4,2" size=10 /></span>
-							<span>主网格颜色<input type=color value="#a0a0a0" class=color /></span>
+							<span><i18>Primary Grid Spacing</i18> r <input type=number value=200 id=gridPolarxSpacing min=0 /></span>
+							<span><i18>Primary Grid</i18>角等分线数<input type=number value=1 id=gridPolaryNum min=0 /></span>
+							<span><i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 /></span>
+							<span><i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color /></span>
 						
 						</div>
 						<div class=secondary>
-							<span>次网格r间距<input type=number value=0 id=gridPolar2xSpacing min=0 /></span>
-							<span>次网格角等分线数<input type=number value=0 id=gridPolar2yNum min=0 /></span>
-							<span>次网格虚线<input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
+							<span><i18>Secondary Grid Spacing</i18> r <input type=number value=0 id=gridPolar2xSpacing min=0 /></span>
+							<span><i18>Secondary Grid</i18>角等分线数<input type=number value=0 id=gridPolar2yNum min=0 /></span>
+							<span><i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
 							
-							<span>次网格颜色<input type=color value="#cecece" class=color /></span>
+							<span><i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color /></span>
 						</div>
 					</span>
 				</span>
@@ -603,35 +604,35 @@
 
 
 
-			<div><span class=mi-span id=circle mi=radio_button_unchecked>圆</span>
+			<div><span class=mi-span id=circle mi=radio_button_unchecked>Circle</span>
 				<span for=circle><label><input type=checkbox id=circleOn class=on /></label>
 					<span for=circleOn>
 						<div class=multi>
-							<div>圆心坐标<input type=text class=pos placeholder="200 200,300 300" /></div>
-							<div>半径<input type=text class=rad placeholder="15,10" /></div>
+							<div><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 200,300 300" /></div>
+							<div><i18>Radii</i18><input type=text class=rad placeholder="15,10" /></div>
 
 						</div>
 					</span>
 				</span></div>
 
-			<div><span class=mi-span id=ellipse mi=vignette>椭圆</span>
+			<div><span class=mi-span id=ellipse mi=vignette>Ellipse</span>
 				<span for=ellipse><label><input type=checkbox id=ellipseOn class=on /></label>
 					<span for=ellipseOn>
 						<div class=multi>
 							<div><input type=checkbox class=multinput checked=checked />
-								<span>中心坐标<input type=text class=pos placeholder="200 400;" /></span>
-								<span>半径（半长轴,半短轴,半焦距 3选2）<input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" /></span>
-								<span>旋转度数°<input type=text class=rot placeholder="45,-30" /></span>
+								<span><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Radii</i18>（半长轴,半短轴,半焦距 3选2）<input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" /></span>
+								<span><i18>Rotate</i18>°<input type=text class=rot placeholder="45,-30" /></span>
 							</div>
 							<div><input type=checkbox class=multinput />
-								<span>两焦点坐标<input type=text class=pos placeholder="300 400,380 400;" /></span>
-								<span>半径（半长轴,半短轴 2选1）<input type=text class=rad placeholder="ra50;rb30" /></span>
+								<span><i18>Foci Coordinate</i18><input type=text class=pos placeholder="300 400,380 400;" /></span>
+								<span><i18>Radii</i18>（半长轴,半短轴 2选1）<input type=text class=rad placeholder="ra50;rb30" /></span>
 							</div>
 							<div><input type=checkbox class=multinput />
-								<span>顶点坐标<input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 /></span>
+								<span><i18>Vertex Coordinate</i18><input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 /></span>
 							</div>
 							<div><input type=checkbox class=multinput />
-								<span>外接矩形顶点<input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 /></span>
+								<span><i18>CircumRectangle Vertex Coordinate</i18><input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 /></span>
 							</div>
 
 						</div>
@@ -639,25 +640,25 @@
 				</span></div>
 
 
-			<div><span class=mi-span id=rect mi=crop_landscape>长方形</span>
+			<div><span class=mi-span id=rect mi=crop_landscape>Rectangle</span>
 				<span for=rect><label><input type=checkbox id=rectOn class=on /></label>
 					<span for=rectOn>
 						<div class=multi>
-							<div>顶点坐标（左上）<input type=text class=pos placeholder="200 400;" size=50 /></div>
-							<div>长宽<input type=text class=rad placeholder="300 200;" /></div>
+							<div><i18>Vertex Coordinate</i18>（左上）<input type=text class=pos placeholder="200 400;" size=50 /></div>
+							<div><i18>Length Width</i18><input type=text class=rad placeholder="300 200;" /></div>
 
 
 						</div>
 					</span>
 				</span></div>
 
-			<div><span class=mi-span id=line mi=power_input>折线、多边形</span>
+			<div><span class=mi-span id=line mi=power_input>Polyline Polygon</span>
 				<span for=line><label><input type=checkbox id=lineOn class=on /></label>
 					<span for=lineOn>
 						<div class=multi>
-							<div>顶点坐标（或斜°长）<input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 /></div>
-							<div>圆角半径<input type=text class=rad2 placeholder="0,10" /></div>
-							<div><label>闭合（多边形）<input type=checkbox class=close /></label></div>
+							<div><i18>Vertex Coordinate</i18>（或斜°长）<input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 /></div>
+							<div><i18>Round Corner Radii</i18><input type=text class=rad2 placeholder="0,10" /></div>
+							<div><label><i18>Closed</i18> (<i18>Polygon</i18>) <input type=checkbox class=close /></label></div>
 
 						</div>
 
@@ -665,47 +666,47 @@
 				</span></div>
 
 
-			<div><span class=mi-span id=isogon mi=brightness_low>正多边形</span>
+			<div><span class=mi-span id=isogon mi=brightness_low>Regular Polygon</span>
 				<span for=isogon><label><input type=checkbox id=isogonOn class=on /></label>
 					<span for=isogonOn>
 						<div class=multi>
 							<div><input type=checkbox class=multinput checked=checked />
-								<span>中心坐标<input type=text class=pos placeholder="200 400;" /></span>
-								<span>半径<input type=text class=rad placeholder="50;" /></span>
-								<span>旋转度数°（起始半径偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
+								<span><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Radii</i18><input type=text class=rad placeholder="50;" /></span>
+								<span><i18>Rotate</i18>°（起始半径偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
 							</div>
 							<div><input type=checkbox class=multinput />
-								<span>起点坐标<input type=text class=pos placeholder="200 400;" /></span>
-								<span>边长<input type=text class=rad placeholder="50;" /></span>
-								<span>旋转度数°（起始边偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
-								<label>逆时针（方向）<input type=checkbox class=dir checked=checked /></label>
+								<span>起点<i18>Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Side Length</i18><input type=text class=rad placeholder="50;" /></span>
+								<span><i18>Rotate</i18>°（起始边偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
+								<label><i18>Counterclockwise</i18>（方向）<input type=checkbox class=dir checked=checked /></label>
 							</div>
 
-							<div>圆角半径<input type=text class=rad2 placeholder="0,0,5;10;" /></div>
-							<div>边数<input type=text class=line placeholder="3,4,5" value=3 /></div>
+							<div><i18>Round Corner Radii</i18><input type=text class=rad2 placeholder="0,0,5;10;" /></div>
+							<div><i18>Sides</i18><input type=text class=line placeholder="3,4,5" value=3 /></div>
 
 						</div>
 					</span>
 				</span></div>
 
 
-			<div><span class=mi-span id=bezier mi=all_inclusive>Bezier曲线</span>
+			<div><span class=mi-span id=bezier mi=all_inclusive>Bezier Curve</span>
 				<span for=bezier><label><input type=checkbox id=bezierOn class=on /></label>
 					<span for=bezierOn>
 						<div class=multi>
-							<div>顶点坐标（起点,控制点1、2;终点）<input type=text class=pos placeholder="20 20,30 50;80 60" size=50 /></div>
-							<div><label>闭合<input type=checkbox class=close /></label></div>
+							<div><i18>Point Coordinate</i18>（起点,控制点1、2;终点）<input type=text class=pos placeholder="20 20,30 50;80 60" size=50 /></div>
+							<div><label><i18>Closed</i18><input type=checkbox class=close /></label></div>
 
 						</div>
 
 					</span>
 				</span></div>
-			<div><span class=mi-span id=path mi=gesture>不规则曲线</span>
+			<div><span class=mi-span id=path mi=gesture>Curve</span>
 				<span for=path><label><input type=checkbox id=pathOn class=on /></label>
 					<span for=pathOn>
 						<div class=multi>
 							<div>SVG命令（MLHVAQC）<input type=text class=svg placeholder="M20 20L30 50" size=50 /></div>
-							<div><label>闭合<input type=checkbox class=close /></label></div>
+							<div><label><i18>Closed</i18><input type=checkbox class=close /></label></div>
 
 						</div>
 
@@ -714,14 +715,14 @@
 		</div>
 		<div for=text>
 
-			<div><span class=mi-span id=txt mi=text_format>文字</span>
+			<div><span class=mi-span id=txt mi=text_format>Text</span>
 				<span for=txt><label><input type=checkbox id=txtOn class=on /></label>
 
 					<span for=txtOn>
 						<div class=multi>
-							<span>坐标<input type=text class=pos placeholder="200 400;" /></span>
+							<span><i18>Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
 							<input type=text class=value size=80 />
-							<div><label>字体 <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" /></label>
+							<div><label><i18>Font</i18> <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" /></label>
 							</div>
 
 						</div>
@@ -731,34 +732,34 @@
 		</div>
 		<div for=ani>
 			<div id=aniControl>
-				<i class=mi id=aniPlay title="播放">play_arrow</i>
-				<i class=mi id=aniStop title="停止">stop</i>
+				<i class=mi id=aniPlay title="Play">play_arrow</i>
+				<i class=mi id=aniStop title="Stop">stop</i>
 				<i class=mi id=aniShot title="取景">camera_alt</i>
-				<i class=mi id=aniClear title="清除">close</i>
-				<i class=mi id=aniInput title="导入">file_upload</i>
-				<i class=mi id=aniOutput title="导出">file_download</i>
+				<i class=mi id=aniClear title="Clear">close</i>
+				<i class=mi id=aniInput title="Import">file_upload</i>
+				<i class=mi id=aniOutput title="Export">file_download</i>
 
 				</div>
-			<div><span class=mi-span id=scene mi=stay_current_landscape>场景</span>
+			<div><span class=mi-span id=scene mi=stay_current_landscape>Scene</span>
 				<span for=scene><label><input type=checkbox id=sceneOn class=on /></label>
 
 					<span for=sceneOn>
 						<div class=multi>
-							<span>时间（ms）<input type=text class=times size=80 placeholder="0 1500" /></span>
-							<div>帧 <textarea class=json placeholder="每一场初始静态化数据"></textarea>
+							<span><i18>Time</i18>（ms）<input type=text class=times size=80 placeholder="0 1500" /></span>
+							<div>Frame <textarea class=json placeholder="每一场初始静态化数据"></textarea>
 							</div>
 
 						</div>
 					</span>
 				</span></div>
 
-			<div><span class=mi-span id=act mi=directions_run>动作</span>
+			<div><span class=mi-span id=act mi=directions_run>Action</span>
 				<span for=act><label><input type=checkbox id=actOn class=on /></label>
 
 					<span for=actOn>
 						<div class=multi>
-							<span>时间（ms）<input type=text class=times size=80 placeholder="0 1000" /></span>
-							<div>命令 <textarea class=js placeholder="动作指令JS代码"></textarea>
+							<span><i18>Time</i18>（ms）<input type=text class=times size=80 placeholder="0 1000" /></span>
+							<div>JS <textarea class=js placeholder="动作指令JS代码"></textarea>
 							</div>
 
 						</div>
@@ -845,16 +846,7 @@
 								<input type=button value="LaTeX" id=GOlatex />
 								<input type=button id=clrLaTeX /></summary>
 								<textarea id=TextLaTeX></textarea>
-								<details><summary class=Char></summary>
-									<div id=sbs class=iTextLaTeX></div>
-									</details>
-								<details><summary>Math Fn</summary>
-									<div id=funcs class=iTextLaTeX></div>
-									</details>
-								<details><summary>Maths</summary>
-									<div id=struc class=iTextLaTeX></div>
-									</details>
-							
+
 								</details>
 
 							
