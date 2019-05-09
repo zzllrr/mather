@@ -16,6 +16,7 @@ lang['zh_cn']={
 	'W':'宽',
 	'H':'高',
 	'Fgc':'前景色',
+	'bg':'背景',
 	'BGC':'背景色',
 	'bgc':'背景色',
 	'Opts':'选项',
@@ -28,19 +29,62 @@ lang['zh_cn']={
 	"rotate2":"旋转180°",
 	"rotate3":"逆转90°",
 	
+	'Action':'动作',
+	'Scene':'场景',
+	'Curve':'曲线',
+	'Bezier':'贝塞尔',
+	'Regular Polygon':'正多边形',
+	'Polygon':'多边形',
+	'Polyline':'折线',
+	'Ellipse':'椭圆',
+	'Polar':'极坐标',
+	'Cartesian Grid':'直角坐标网格',
+	'Origin':'原点',
+	'Image':'图片',
+	'Fill':'填充',
+	'URL':'网址',
+	'Range':'范围',
+	'Primary':'主',
+	'Secondary':'次',
+	'Center Coordinate':'中心坐标',
+	'Time':'时间',
+	'Closed':'闭合',
+	'Clockwise':'顺时针',
+	'Counterclockwise':'逆时针',
+	'Side Length':'边长',
+	'Cut':'剪切',
+	'Paste':'粘贴',
+	'Position':'位置',
+	'and':'和',
+	'Arrow':'箭头',
+	'Round Corner':'圆角',
+	'Foci':'焦点',
+	'Stroke':'描边',
+	'Horizontal':'水平',
+	'Vertical':'垂直',
+	'Align':'对齐',
+	'Overlap':'重叠',
+	
+	
+	'Gadget':'部件',
+	'Canvas':'画布',
 	'sbson':'字符',
 	'funcson':'函数',
 	'strucon':'结构',
 	'Condon':'条件',
 	'thTip':'点击表头，可以显示/编辑LaTeX',
-	'sbsonTip':'同时按住Shift键，则得到Unicode字符，而不是LaTeX格式',
-	'funcsonTip':"同时按住Shift键，则函数后面不自动加(括号)",
-	'struconTip':"同时按住Shift键，则得到$内部函数命令$，而不是LaTeX格式",
-	'taskTip':"同时按住Shift键，则自动输入示例命令",
+	'sbsonTip':'点击并按住Shift键，则得到Unicode字符，而不是LaTeX格式',
+	'funcsonTip':"点击并按住Shift键，则函数后面不自动加(括号)",
+	'struconTip':"点击并按住Shift键，则得到$内部函数命令$，而不是LaTeX格式",
+	'taskTip':"点击并按住Shift键，则自动输入示例命令",
+	'copyTip':"点击并按住Shift键，复制到画布上方",
+
 	'donaTip':'需要您的支持！',
 	'donaTip0':'千里之行，始于足下<br />万年之兴，基于数学',
 	'Accnum':'收款账号',
 	'copiedTip':'已粘贴到剪贴板',
+	'copied2CanvasTip':'已复制到画布',
+		
 	'Five-year research plan':'未来五年主要工作计划',
 	'WeChat':'微信公众号',
 	'Contact':'联系',
@@ -100,6 +144,7 @@ lang['zh_cn']={
 	'MidPointLine':'中点连线',
 	'OppositeMidPointLine':'对边中点连线',
 	'Axis':'坐标轴',
+	'Coordinate':'坐标',
 	'Grid':'网格',
 	'Nest':'嵌套',
 	'PerpendicularFootLine':'垂足连线',
@@ -113,7 +158,7 @@ lang['zh_cn']={
 	'Length':'长度',
 	'Sides':'边数',
 	'Spacing':'间隔',
-
+	
 
 	'Crop':'裁剪',
 	'Hotkey':'快捷键',
@@ -138,7 +183,7 @@ lang['zh_cn']={
 	'Camera':'摄像头',
 	'Default':'默认',
 
-	'input your words':'输入你想说的话',
+	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
 	'input your Audio/Video URL':'输入你的音视频地址',
 	'Engine':'引擎',
 	'Person':'人物',
@@ -178,6 +223,7 @@ lang['zh_cn']={
 	'Play':'播放',
 	'Pause':'暂停',
 	'Stop':'停止',
+	'Animation':'动画',
 
 	'FullScreen':'全屏',
 		
@@ -620,7 +666,7 @@ lang['zh_cn']={
 		
 	
 	'SummaryTip':'小乐数学zzllrr Mather，是小乐原创开源实现的一款跨平台可离线运行并满足多用户背景、多场景需要的数学软件。<br />'+
-		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的解题，<br />'+
+		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的部分解题，<br />'+
 		'因个人能力和精力有限，缺陷和错误难以避免（如有浏览器假死情况，直接关闭网页即可）<br />'+
 		'在正式版本发布之前，内核、界面、功能可能还需经历数次重构和迭代，因此一切仅供参考。',
 	'VisionTip':'推动更多的数学、科技、教育、工程、人文工作者、爱好者加入全球开源工具项目：Mather（暂译为数学者），更专业化地普及、研究、发展数学',
