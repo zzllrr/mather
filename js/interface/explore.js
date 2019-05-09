@@ -29,7 +29,7 @@ $(function(){
 		}else{
 			me.addClass('seled').siblings().removeClass('seled');
 			var A=explores[v][mei],str='';
-			console.log(v,mei,A);
+			consolelog(v,mei,A);
 			
 			for(var i=0,l=A.length;i<l;i++){
 				if(isStr(A[i])){
@@ -97,11 +97,11 @@ $(function(){
 			var ev=eval(v);
 
 			if(isStr(o)){
-				console.log(v1, mei);
+				consolelog(v1, mei);
 				OH(ev[mei] || ev[v1i+' '+mei] || ev[mei+' '+v1i]);
 				
 			}else{
-				console.log(v,o);
+				consolelog(v,o);
 				OH(Arrf(function(x){return ev[x] || ev[mei+' '+x] || ev[x+' '+mei]},o))
 
 			}
