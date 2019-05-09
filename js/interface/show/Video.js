@@ -10,7 +10,7 @@
 OHthen['Video']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your Audio/Video URL')+'"></textarea>'+
-		detail(SCtv('VideoTool',strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
+		detail(SCtv('VideoTool','<input type="file" accept="video/*" capture="camcorder">'+strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
 	);
 	$('#showGround .ground2').html('<div id=mediaPlay2></div>');
 	OH(

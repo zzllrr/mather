@@ -9,8 +9,8 @@
 
 OHthen['Voice']=function(){
 	$('#showGround .ground1').html(
-		'<textarea class=editorText placeholder="'+gM('input your words')+'"></textarea>'+
-		detail(SCtv('VoiceTool',strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
+		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
+		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone">'+strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
 		`
 			<div><input type=text class=btntxt value=Engine readonly data-d=0 /><select id=audioEngine></select></div>
 			<div><input type=text class=btntxt value=Language readonly data-d=0 /><select id=audioLanguage></select></div>
