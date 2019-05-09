@@ -84,6 +84,10 @@ sup,sub,.small{
     color: limegreen;
 }
 
+.hmulti option{display:inline}
+.hmulti {
+    overflow: auto;
+}
 #zMather select:not(#explores){
 	border-style:none none solid none;
 	border-width:1px;
@@ -99,7 +103,7 @@ sup,sub,.small{
 	color:red
 }
 
-.Clear{
+.Clear, .btnSim{
 	border: 0;
     background: none;
 
