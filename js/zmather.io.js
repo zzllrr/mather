@@ -1456,7 +1456,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			return
 		}
 		
-		
+
 		if(fn||st){
 			$('.'+ZLR('Fns Sts')[[fn,st].indexOf(true)]+'[data-i="'+di+'"]').toggle();
 		}else{

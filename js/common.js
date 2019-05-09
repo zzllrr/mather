@@ -50,9 +50,12 @@ $(function(){
 	
 //for index.html
 
+	$('.mi[title]').attr('title',function(i,v){return gM(v)});
 	
 	$('#iTextOpt .tool,#input0Tool .tool').not('#display').attr('title',function(){return gM(this.id+'Tip')});
 
+
+	$('.mi-span,i18').text(function(i,v){return gM(v)});
 
 	$('[name=tool]').after(function(){return '<span>'+gM(this.id)+sc});
 	
@@ -64,7 +67,7 @@ $(function(){
 	});
 	
 
-	var sbj0=$('#subject0'),sbj1=$('#subject1'),sbj2=$('#subject2');
+	var sbj0=$('#subject0'), sbj1=$('#subject1'), sbj2=$('#subject2');
 	sbj0.html('<option value=0>'+gM('Subject Classification GB')+'</option>'+
 		Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join('')
 	).on('change', function(){//改变sbj1
@@ -133,17 +136,22 @@ $(function(){
 		$('#input0Tip').empty();
 	});
 
+	$('#zMatherHide').on('click',function(){
+		$('#zMatherOn').click();
+	});
 
-
+	$('#displayOverCanvas').on('click',function(){
+		OverCanvas($('#input0').val());
+		toolTip(gM('copiedTip'));
+	});
 
 
 
 //输出编辑
 	$('#displayOff').on('click',function(){
-		$('#input0Preview,#displayOff').hide();
+		$('#input0Preview, #latexDisplayTool').hide();
 	});
 
-	
 
 	
 	$('body').on('keydown',function(e){
@@ -299,25 +307,29 @@ $(function(){
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
 		var me=$(this);
-		$('#bar').html(SCtv('toolTip',$('#'+me.parents('.iTextLaTeX').attr('id')+'on').attr('title')));
+		toolTip($('#'+me.parents('.iTextLaTeX').attr('id')+'on').attr('title'));
 
 	}).on('mouseover', '.task',function(e){
 		var me=$(this);
-		$('#bar').html(SCtv('toolTip',me.attr('data-tip')+' '+gM('taskTip')));
+		toolTip(me.attr('data-tip')+' | '+gM('taskTip'));
 
 	}).on('mouseover', 'th:not(:has(.oClear))',function(e){
 		var me=$(this);
-		$('#bar').html(SCtv('toolTip',gM('thTip')));
+		toolTip(gM('thTip'));
+
+	}).on('mouseover', '#displayOverCanvas',function(e){
+
+		toolTip(gM('Copy'));
 
 	}).on('click','.eg', function(){
 		var me=$(this),t=me.attr('data-eg').replace(/&&/g,'\n'),
 		i1=me.parents('.inputTip').parent().attr('id');
 		if(!i1){
-			$('#bar').html(SCtv('toolTip','<input type=text value="'+t+'" />'));
+			toolTip('<input type=text value="'+t+'" />');
 			$('#bar input').select();
 			document.execCommand('copy', false, null);
 			$('#bar input').remove();
-			$('#bar').html(SCtv('toolTip',gM('copiedTip')));
+			toolTip(gM('copiedTip'));
 			return
 		}
 		
@@ -398,6 +410,11 @@ $(function(){
 			if(id=='Condon'){
 				$('#input1').val('');
 				$('#cClear').toggle();
+			}else if(/sbs|funcs|struc/.test(id)){
+				me.siblings('.seled').removeClass('seled').each(function(){
+					$('#'+this.id.replace(/on$/,'')).hide();
+				});
+
 			}
 		}
 
@@ -414,32 +431,38 @@ $(function(){
 
 	}).on('click','.oClear',function(){
 		$('#oHTML').empty();
-		//$('#oHClear').hide();
+		bodyFocus();
+		
+		if($(this).is('#oHClear') && $('#oHTML').html()==''){
+			
+			if($('#capsimg+div').next().length){
+				$('#noteEraser').click();
+			}else{
+				$('#clear').click();
+			}
+			
+			//drawobj.clear();
+		}
 		
 		/*
 		if(graphic){
 			graphic.close()
 		}
-		*/
-		if($(this).is('#oHClear')){
-			$('#noteEraser').click();
-			$('#clear').click();
-			
-			//drawobj.clear();
-		}
+	
 
+		*/
 	})
 
 
 
 
-	$('#FullScreen').on('click',function(){
+	$('#zMatherOn').on('click',function(){
 	//	preDisplay();
 	//	OH($('#input0Preview').html());
 		$('#zMather').toggle();
 		$('#zzllrrCanvas.toggle').click();
-		//$('#oHClear').show();
-		$(this).text(function(i,v){return v=='fullscreen'?v+'_exit':v.split('_')[0]})
+		$(this).text(function(i,v){return v=='unfold_less'?'unfold_more':'unfold_less'})
+
 	});
 
 	$('#lineSplit').on('click',function(){
@@ -472,7 +495,7 @@ $(function(){
 		$(this).addClass('.seled');
 		L.input0=$(this).val();
 		
-	}).on('changed keyup mouseover',function(){//mouseout 
+	}).on('change keyup mouseover',function(){//mouseout 
 		var v=$(this).val(), l0=(L.input0||'').trim();
 		L.input0=v;
 		
@@ -512,6 +535,32 @@ $(function(){
 	$('#output0Type').html(Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')));
 
 
+	$('#oHTML').on('click','.katex',function(e){
+		var shft=e.shiftKey;
+		if(shft){
+			OverCanvas($(this).find('annotation').eq(0).text());
+			toolTip(gM('copied2CanvasTip'));
+		}
+		
+	}).on('click','svg[id]',function(e){
+		var shft=e.shiftKey;
+		if(shft){
+			var zi=[],Z,me=$(this);
+			$('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
+			Z=max(zi)+1;
+			me.clone().appendTo('#Caps');
+			$('#Caps').find('#'+this.id).attr({'id':'graphic'+Time.now5()+(Math.random()+'').substr(2)})
+				.css({'position':'absolute', 'z-index':Z})
+			//L.drawShapeNow='';
+
+			$('#Pointer').click();
+			toolTip(gM('copied2CanvasTip'));
+		}
+		
+	}).on('mouseover','.katex, svg[id]',function(e){
+		toolTip(gM('copyTip'))
+		
+	})
 
 	$('#panel').on('click','.mi-span',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle'),nx=me.next('[for='+id+']');
@@ -563,19 +612,28 @@ $(function(){
 			
 			
 		}
-	}).on('click','#menu .mi:not(#FullScreen)',function(){
+	}).on('click','#menu .mi:not(#zMatherOn)',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(id=='zzllrrCanvas'){
 			me.css('display','inline-block').nextAll().removeClass('toggle').css('display',tog?'inline-block':'none');
-			if(!tog){
-				pa.nextAll().hide();
-			}
+
+			pa.nextAll().hide();
+
+			me.siblings('.toggle').removeClass('toggle');
 		}else if(id=='clear'){
 			me.removeClass('toggle');
 			drawobj.clear();
 			$('.on').prop('checked',false);
+			
 		}else{
+			 if(id=='svgs'){
+				$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
+			
+				Scroll('scrollB');
+			}else{
+				
+			}
 			me.siblings('.toggle:not(#zzllrrCanvas)').removeClass('toggle');
 			pa.nextAll('[for='+id+']').toggle(tog);
 			pa.nextAll().not('[for='+id+']').hide();
@@ -602,8 +660,12 @@ $(function(){
 
 	}).on('change keyup mouseup','input,select',function(e){//keyup mouseup
 		var me=$(this);
+		if(me.parents('#tileTool').length){	//,[for=svgs]
+			return
+		}
+		
 		e.stopPropagation();
-		if(me.parents('[for=ani],[for=svgs]').length){
+		if(me.parents('[for=ani]').length){
 			return
 		}
 		
@@ -631,35 +693,35 @@ $(function(){
 	});
 	
 	var colorTmpl='<div class=stroke>'+
-			'<label>描边<input type=checkbox class=strokeon checked=checked /></label>'+
+			'<label>'+gM('Stroke')+'<input type=checkbox class=strokeon checked=checked /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>渐变<input type=checkbox class=gradon /></label>'+
-			'渐变色<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			'线性或放射性<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
+			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
+			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
 		'</div>'+
 		'<div class=fill>'+
-			'<label>填充<input type=checkbox class=fillon /></label>'+
+			'<label>'+gM('Fill')+'<input type=checkbox class=fillon /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>渐变<input type=checkbox class=gradon /></label>'+
-			'渐变色<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			'线性或放射性<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
+			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
+			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
 		'</div>'+
 		'<div class=shadow>'+
-			'<label>阴影<input type=checkbox class=shadowon /></label>'+
+			'<label>'+gM('dropShadow')+'<input type=checkbox class=shadowon /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'模糊<input type=number min=0 class=blur value=0 />'+
-			'偏移<input type=text placeholder="0 0" class=offset />'+
+			gM('Blur')+'<input type=number min=0 class=blur value=0 />'+
+			gM('Offset')+'<input type=text placeholder="0 0" class=offset />'+
 		'</div>'+
 		'<div><i class="mi Add">add</i><i class="mi Del">clear</i></div>';
 	$('div[for=text] .multi').append(colorTmpl);
 	$('div[for=shape] .multi').append(
-		'<div>重叠<select class=comp>'+Options(['source-over','source-atop','source-in','source-out','destination-over','destination-atop','destination-in','destination-out','lighter','copy','xor']).join('')+'</select>'+
-			'虚线<input type=text class=dash placeholder="2,4,2" /></div>'+colorTmpl
+		'<div>'+gM('Overlap')+'<select class=comp>'+Options(['source-over','source-atop','source-in','source-out','destination-over','destination-atop','destination-in','destination-out','lighter','copy','xor']).join('')+'</select>'+
+			gM('Dash')+'<input type=text class=dash placeholder="2,4,2" /></div>'+colorTmpl
 
 	);
-	$('.font').parent().after('<label>水平对齐 <select class=halign>'+Options(ZLR('center end left right start'))+'</select></label>'+
-						'<label>垂直对齐 <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'))+'</select></label>');
-	$('.color').after(function(){return '<input type=text value="'+$(this).val()+'" class=colorhex size=4 />透明度<input type=number value="1" min=0 max=1 step=.1 class=opa />'});
+	$('.font').parent().after('<label>'+gM('Horizontal Align')+' <select class=halign>'+Options(ZLR('center end left right start'))+'</select></label>'+
+						'<label>'+gM('Vertical Align')+' <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'))+'</select></label>');
+	$('.color').after(function(){return '<input type=text value="'+$(this).val()+'" class=colorhex size=4 />'+gM('opa')+'<input type=number value="1" min=0 max=1 step=.1 class=opa />'});
 
 
 	
@@ -693,7 +755,7 @@ var toolSwitch=function(x){
 	$('#subject').toggle(/solve/.test(x) || /explore/.test(x) && /course|drill/.test($('#explores').val()));
 	//$('#iContent').toggle(/solve|graphic|show/.test(x));
 	if(x=='graphic'){
-		$('#zzllrrCanvas').not('.toggle').click();
+		$('#display.seled').click();
 		$('#svgs').not('.toggle').click();
 	}
 };
@@ -711,16 +773,16 @@ var preDisplay=function(){
 	var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),w=$('#input0Preview');
 
 	if(i==o && o!='H'){
-		w.add('#displayOff').hide();
+		w.add('#latexDisplayTool').hide();
 	}else if(i=='L' && o=='P'){
 		katex.render(kx(sub2n(v,1)), w[0], {
 		    throwOnError: false,
 		    displayMode: true
 		});
-		w.html(XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')))).add('#displayOff').show();
+		w.html(XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')))).add('#latexDisplayTool').show();
 		
 	}else if(o=='H'){
-		w.add('#displayOff').show();
+		w.add('#latexDisplayTool').show();
 		if(i=='H'){
 			w.html(v)
 		}else if(i=='U'){
@@ -816,3 +878,13 @@ var preDisplay=function(){
 	if(dx<0 && dy<0){return Math.atan(dy/dx)+Math.PI}
 	if(dx>0 && dy<0){return Math.atan(dy/dx)+Math.PI*2}
 };
+
+function OverCanvas(t){
+	L.drawShapeNow='';
+	$('#TextLaTeX').val(t);
+	$('#GOlatex').click();
+	$('#Pointer').click();
+}
+function toolTip(t){
+	$('#bar').html(SCtv('toolTip',t));
+}
