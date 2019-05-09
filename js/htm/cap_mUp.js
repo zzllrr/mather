@@ -391,7 +391,7 @@ function mUp(e,Last){
 		}
 		if(shp=='Eraser'){
 			var eD=$('#eraserDir').val(), st='svg,textarea,span.caplatex',me=$(eos).closest(st);
-			if(eD.length){
+			if(eD && eD.length){
 				var eDT=eD.join(''),po=me.position(),pl=po.left,pt=po.top,z=+me.css('z-index');
 				if(/[01]/.test(eDT)){
 					me.siblings(st).filter(function(){var po1=$(this).position(),pl1=po1.left,pt1=po1.top; return pt1==pt && (/01/.test(eDT) || /0/.test(eDT) && pl1<pl || /1/.test(eDT) && pl1>pl) }).remove();

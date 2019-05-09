@@ -275,6 +275,7 @@ $(function(){
 	$('#copyDir').append(Options(seqA(0,10),'←→↑↓↖↗↙↘↥↧'.split('')).join('')).before(gM('Copy'));
 	$('#eraserDir').append(Options(seqA(0,10),'←→↑↓↖↗↙↘↥↧'.split('')).join('')).before(gM('Del'));
 	
+
 	$('#copyDir').val(['1']);
 	$('#copyTileOn').prepend(gM('Tile')+' ');
 	$('[name=MarginCopyOpt]').after(function(){var v=this.value;
@@ -518,7 +519,7 @@ $(function(){
 		if(/^scr/.test(id)){t=gM(id.substr(3))}
 		if(t){
 			$('#tileTool').attr('tip',t);
-			$('#bar').html(SCtv('toolTip',t));
+			toolTip(t);
 		}
 		},function(){
 			var c=$('#caps'),w=c.width(),h=c.height(),wh=w+'x'+h;
@@ -607,7 +608,7 @@ $(function(){
 
 	}).on('change','#Color :range, #Color :color, select, #svgTexts',function(){cng_cap(this)
 	
-	}).on('change keyup mouseup',':number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text',function(){cng_cap(this)
+	}).on('change keyup mouseup','tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text',function(){cng_cap(this)
 	
 	}).on('paste',t,function(e){
 		//console.log(e);
@@ -718,7 +719,7 @@ $(function(){
 		};
 		reader.readAsDataURL(f);
 
-	}).on('change',':color',function(){
+	}).on('change','#tileTool :color',function(){
 		var me=$(this),v=me.val();
 		me.attr('title',v+'\n'+hex2rgba(v, +me.next(':range').val()))
 
@@ -734,10 +735,10 @@ $(function(){
 		}
 
 
-	}).on('click', '.sbsTbl td,.sbsTbl .td',function(e){
+	}).on('click', '#tileTool .sbsTbl td, #tileTool .sbsTbl .td',function(e){
 		sbsTbltd(this,e,'TextLaTeX');
 
-	}).on('change',':file:not([webkitdirectory])',function(e){
+	}).on('change','#tileTool :file:not([webkitdirectory])',function(e){
 		var me=$(this), id=this.id||'',v=me.val(), p=me.parent(),sm=p.prevAll('summary'),c=sm.find(':checked').length,uI=me.nextAll('.urlImg').add(p.find('.urlImg')),
 
 
