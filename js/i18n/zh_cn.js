@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -74,19 +73,20 @@ lang['zh_cn']={
 	// noun	
 
 // 人和组织
-	'Person':'人物',		
+	'Person':'人物',
+	'zzllrr':'小乐',
 	'zzllrr Mather':'小乐数学',
 	'Mather':'数学者',
-	'Organism':'有机体',	
+	'Organism':'有机体',
 	'Contributor':'贡献者',
 	'Payee':'收款人',
 
 	'3rd-party':'第三方',
 	
-	'WeChat':'微信公众号',			
+	'WeChat':'微信公众号',
 
 // 工程	
-	'Project':'工程',	
+	'Project':'工程',
 	'Program':'项目',
 	'Library':'库',
 	'File':'文件',
@@ -118,23 +118,23 @@ lang['zh_cn']={
 	'Image':'图片',
 	'Mic':'麦克风',
 	'Camera':'摄像头',
-	'Video':'视频',	
-	'Voice':'语音',	
+	'Video':'视频',
+	'Voice':'语音',
 	'Action':'动作',
-	'Scene':'场景',	
+	'Scene':'场景',
 	'Animation':'动画',
 	'Gadget':'部件',
-	'Show':'演示',		
+	'Show':'演示',
 	'Doodle':'涂鸦',
 	
 // 助词	或 词根
 	'and':'和',
 	'or':'或',
-	'About':'关于',	
+	'About':'关于',
 	'Anti':'反',
-	'Co':'互',	
-	'By':'按',	
-	'Semi':'半',	
+	'Co':'互',
+	'By':'按',
+	'Semi':'半',
 		
 // measure
 
@@ -155,7 +155,7 @@ lang['zh_cn']={
 	'Language':'语言',
 
 	'Color':'颜色',
-	'Colors':'颜色',	
+	'Colors':'颜色',
 	'Gradient':'渐变',
 	'Contrast':'对比度',
 	'Brightness':'亮度',
@@ -172,13 +172,13 @@ lang['zh_cn']={
 	'Path':'路径',
 	'URL':'网址',
 	'Version':'版本',
-	'Type':'类型',	
+	'Type':'类型',
 	'Classification':'分类',
-	'Parameter':'参数',	
+	'Parameter':'参数',
 	'Structure':'结构',
 	'Hotkey':'快捷键',
 	'Expression':'表达式',
-	'Unit':'单位',	
+	'Unit':'单位',
 	'Value':'值',
 
 
@@ -186,23 +186,23 @@ lang['zh_cn']={
 	'Name':'名称',
 	'Summary':'简介',
 	'Description':'描述',
-	'Definition':'定义',	
-	'Rule':'法则',	
+	'Definition':'定义',
+	'Rule':'法则',
 	'Aims':'宗旨',
 	'Vision':'愿景',
 	'Protocol':'协议',
 	'Whitepaper':'白皮书',
-	'Topic':'课题',	
+	'Topic':'课题',
 	'Consensus':'共识',
-	'Cooperation':'合作',	
+	'Cooperation':'合作',
 	'Condition':'条件',
-	'Concept':'概念',			
+	'Concept':'概念',
 	
 	// adj
-	'Random':'随机',	
+	'Random':'随机',
 	'Default':'默认',
 	
-	'Elementary':'初等',	
+	'Elementary':'初等',
 	
 	'Horizontal':'水平',
 	'Vertical':'垂直',
@@ -216,7 +216,7 @@ lang['zh_cn']={
 	'Unsolved':'未解',
 
 	'Offline':'离线',
-	'Localized':'本地化',	
+	'Localized':'本地化',
 	'Online Connection':'联网',
 	'Energy Consumption Minimization':'能耗最小化',
 	'Open Access':'开放获取',
@@ -235,10 +235,10 @@ lang['zh_cn']={
 		
 	'Align':'对齐',
 	'Overlap':'重叠',
-	'Clip':'裁剪',	
+	'Clip':'裁剪',
 	'Crop':'裁剪',
 	'Cut':'剪切',
-	'Offset':'偏移',	
+	'Offset':'偏移',
 	'Scale':'缩放',
 	'Skew':'扭曲',
 	'Translate':'平移',
@@ -256,7 +256,7 @@ lang['zh_cn']={
 	'Clear':'清除',
 	'Refresh':'刷新',
 	'Paste':'粘贴',
-	'Record':'录制',	
+	'Record':'录制',
 	'Play':'播放',
 	'Pause':'暂停',
 	'Stop':'停止',
@@ -280,7 +280,7 @@ lang['zh_cn']={
 	'Prime Mersenne Number':'梅森素数',
 	'Amicable Numbers':'亲和数',
 
-	'Form':'型',	
+	'Form':'型',
 	'Integer':'整数',
 	'Fraction':'分数',
 	'Decimal':'小数',
@@ -292,13 +292,13 @@ lang['zh_cn']={
 	'Equation':'方程',
 	'Equation Array':'方程组',
 	'Inequation':'不等式',
-	'Analytic':'解析式',	
+	'Analytic':'解析式',
 	'Limit':'极限',
 	
 	
 	'Vector':'向量',
-	'Tensor':'张量',	
-	'Matrix':'矩阵',	
+	'Tensor':'张量',
+	'Matrix':'矩阵',
 	'Identity Matrix':'单位矩阵',
 	'Square Matrix':'方阵',
 
@@ -337,17 +337,17 @@ lang['zh_cn']={
 	'Centroid':'质心',
 	'Orthocenter':'垂心',
 	'Incenter':'内心',
-	'Circumcenter':'外心',	
-	'Perpendicular Foot':'垂足',	
+	'Circumcenter':'外心',
+	'Perpendicular Foot':'垂足',
 	'Foci':'焦点',
 
 
 	
 	'Coordinate':'坐标',
-	'Centroid Coordinate':'中心坐标',	
+	'Centroid Coordinate':'中心坐标',
 
 	'Axis':'轴',
-	'Tick':'刻度',		
+	'Tick':'刻度',
 	'Grid':'网格',
 
 
@@ -362,7 +362,7 @@ lang['zh_cn']={
 	'Regular Polygon':'正多边形',
 	'Triangle':'三角形',
 	'Square':'正方形',
-	'Rectangle':'矩形',	
+	'Rectangle':'矩形',
 	'Quadrilateral':'四边形',
 	'Parallelogram':'平行四边形',
 	'Rhombus':'菱形',
@@ -371,13 +371,13 @@ lang['zh_cn']={
 
 
 	'Circle':'圆',
-	'Ellipse':'椭圆',	
+	'Ellipse':'椭圆',
 	'Incircle':'内切圆',
 
-	'Curve':'曲线',	
+	'Curve':'曲线',
 	'Conic Section':'圆锥曲线',
-	'Arc':'弧',	
-	'Polyline':'折线',	
+	'Arc':'弧',
+	'Polyline':'折线',
 	'Vertex Line':'顶点连线',
 	'Bisector':'平分线',
 	'Midline':'中位线',
@@ -409,11 +409,11 @@ lang['zh_cn']={
 	'Expansion':'展开',
 	'Sum':'求和',
 	'Prod':'求积',
-	'Combination':'组合',	
-	'Factorial':'阶乘',	
+	'Combination':'组合',
+	'Factorial':'阶乘',
 	'Greatest Common Divisor':'最大公约数',
 	'Least Common Multiple':'最小公倍数',
-	'Division':'除法',	
+	'Division':'除法',
 	
 	'Matrix Factorization':'矩阵分解',
 
@@ -422,20 +422,20 @@ lang['zh_cn']={
 	'Cross Product':'叉积',
 	'Digit':'数位',
 
-	'Block':'分块',	
+	'Block':'分块',
 	'Rank':'秩',
 	'Trace':'迹',
-	'Order':'阶',	
+	'Order':'阶',
 	'Determinant':'行列式',
 	'Norm':'模',
 	'Inverse':'逆',
-	'Cofactor':'余子式',	
+	'Cofactor':'余子式',
 	'Minor':'子式',
 	
 	// 几何
 	
 	'Diameter':'直径',
-	'Radii':'半径',		
+	'Radii':'半径',
 	'Sides':'边数',
 	'Side Length':'边长',
 	
@@ -447,7 +447,7 @@ lang['zh_cn']={
 	'Express':'表示',
 	'Simplify':'化简',
 	'Calculate':'计算',
-	'Prove':'证明',	
+	'Prove':'证明',
 	
 	'Divide':'整除',
 	
@@ -456,7 +456,7 @@ lang['zh_cn']={
 	'Orthogonalize':'正交化',
 	'Gram-Schmidt':'正交单位化',
 	'Enumerate':'枚举',
-	'Diagonalize':'对角化',		
+	'Diagonalize':'对角化',
 	
 	// 几何
 	
@@ -475,7 +475,7 @@ lang['zh_cn']={
 	'Natural':'自然',
 	'Prime':'质',
 	'Rational':'有理',
-	'Irrational':'无理',	
+	'Irrational':'无理',
 	'Radical':'根式',
 	'Transcendental':'超越',
 	'Real':'实',
@@ -488,12 +488,12 @@ lang['zh_cn']={
 	
 	'Eigen':'特征',
 	'Adjoint':'伴随',
-	'Augmented':'增广',	
+	'Augmented':'增广',
 	'Diagonal':'对角',
 	'Hermitian':'共轭转置',
 	'Coprime':'互素',
 	'Recursive':'递归',
-	'Cross':'交叉',		
+	'Cross':'交叉',
 	
 
 	'Nest':'嵌套',
@@ -506,7 +506,7 @@ lang['zh_cn']={
 	'Clockwise':'顺时针',
 	'Counterclockwise':'逆时针',
 	
-	'Infinite':'无限',	
+	'Infinite':'无限',
 
 	'Unary':'一元',
 	'Binary':'二元',
@@ -518,12 +518,12 @@ lang['zh_cn']={
 	
 	//几何
 	
-	'Conic':'圆锥',	
+	'Conic':'圆锥',
 	'Convex':'凸',
-	'Concave':'凹',	
+	'Concave':'凹',
 	'Circum':'外接',
-	'Isosceles':'等腰',	
-	'Radial':'圆形',	
+	'Isosceles':'等腰',
+	'Radial':'圆形',
 	'Straight':'直',
 	
 	'Polar':'极',
@@ -543,7 +543,7 @@ lang['zh_cn']={
 	'Logistical':'逻辑',
 	'Probabilistic':'概率',
 	'Statistical':'统计',
-	'Topological':'拓扑',	
+	'Topological':'拓扑',
 
 	'Formal':'形式',
 	'Differential':'微分',

@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -78,7 +77,7 @@ consolelog(D.html());
 							x+=ivi
 						
 						}else{				
-							if(g.indexOf('/Shape/')>0){
+							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
 								x+="shape('','"+gl+"','','";
 								if(/path/i.test(gl)){
 								
@@ -89,10 +88,10 @@ consolelog(D.html());
 								}else{
 							
 							
-									var eg=split($('.inputTip[data-tool*="/Shape"]').find('.eg[data-eg*="\''+gl+'\'"]').attr('data-eg')||'',/[a-z]+=/g);
+									var eg=split($('.inputTip[data-tool*="Plane Coordinate System"]').find('.eg[data-eg*="\''+gl+'\'"]').attr('data-eg')||'',/[a-z\d]+=/g);
 							
-							
-									x+=snake([eg,(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
+							console.log('eg=',eg);
+									x+=snake([eg[0],(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
 								}
 								
 								x+="')";
@@ -117,7 +116,7 @@ consolelog(D.html());
 							
 							
 						}
-
+console.log(x);
 						str+=eval(x);
 					}
 				}

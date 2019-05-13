@@ -583,7 +583,7 @@ summary ~ details{
     padding: 2px;
     border-radius: 0 5px;
 }
-.level.seled, #solve:checked + span{
+.level.seled, [name=tool]:checked + span{
 	background:limegreen;
 }
 
@@ -597,6 +597,9 @@ summary ~ details{
 	display: inline-block;
 }
 
+.level:not(.seled):not(:hover){
+	opacity:.5
+}
 #solveGround .level:not(.seled){
 	background:lightslategray;
 }
@@ -606,21 +609,21 @@ summary ~ details{
 #subject .ground1 .level:not(.seled){
 	background:darkgray;
 }
-#graphicGround .level:not(.seled),#graphic:checked + span{
+#graphicGround .level:not(.seled){
 	background:hotpink;
 }
 
 
-#showGround .level:not(.seled),#show:checked + span{
-	background:slateblue;
+#showGround .level:not(.seled){
+	background:blueviolet;
 }
 
-#exploreGround .level:not(.seled),#explore:checked + span{
-	background:darkmagenta;
+#exploreGround .level:not(.seled){
+	background:seagreen;
 }
 
-#aboutGround .level:not(.seled),#about:checked + span{
-	background:salmon;
+#aboutGround .level:not(.seled){
+	background:darkred;
 }
 
 

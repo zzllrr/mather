@@ -328,7 +328,7 @@ $(function(){
 
 	}).on('mouseover', '#displayOverCanvas',function(e){
 
-		toolTip(gM('Copy'));
+		toolTip(this.title);
 
 	}).on('click','.eg', function(){
 		var me=$(this),t=me.attr('data-eg').replace(/&&/g,'\n'),
@@ -913,8 +913,9 @@ function furi(o){
 	g.find('.level.seled').each(function(){
 		muri.push($(this).attr('data-i'))
 	});
-	if(o.is('.task')){
+	if(o.is('.task') || o.is('.level:not(.seled)')){
 		muri.push(o.attr('data-tool'));
+		
 	}
 	return muri.join('/');
 }

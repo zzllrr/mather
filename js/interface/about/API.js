@@ -6,6 +6,82 @@
  */
 
 tooltip['API']=[
+
+	{'数学对象obj':[
+		{'实体':[{'数':'Num','整数':'Integer','小数':'Decimal','分数':'Frac','根数':'Root',
+			'矩阵':'Mtrx',
+		
+			'多项式':'Polynomial',
+			'命题':'Prop',
+			'集合':'Set',
+			'置换':'Perm',
+			'关系':'Rlt',
+			'数学表达式':'Mfn',
+			'函数':'Fun',
+		}]},
+		{'Function.js':[{'实体':'Fun Mfn Polynomial'},
+			{'识别':'eType oType'},
+			{'运算符变换':'opneg opinv'},
+			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1'},
+		
+			{'符号计算':'plus minus times divide pow square cubic sqrt cbrt pmtds sums sumx kap fmin fmax'},
+			{'方程':'equationsMS equationsMX equationM equationA'},
+			
+		]},
+		
+		{'Num.js':[{'实体':'Integer Decimal Frac Root Num'},
+				{'识别':'nis nAis nisd nisVd nisVid nisn'},
+				{'正则':'nRegofab nReg2dot nReg2digits nReg2A'},
+				{'转换':'percnt2n n2percnt n2frac n2ArabBig n2Roman Roman2n'},
+				{'精度':'digi Nsqrt'},
+		]},
+		
+		{'Prime.js':[{'实体':''},
+			{'素数集合':'PrimeA PrimeAlist PrimeAlistRowland PrimeAlistBC PrimeNumerator'},
+			{'识别':'isPrime feet1'},
+			{'因子分解':'tMod factor2 factor factorA factorA2n factors cntfactors Rho Factor odd odd_5'},
+
+			{'同余':'Mod modP multiMod factorMod'},
+			{'数位性质':'lastDigitsOfPower last0OfFact'},
+			{'多元运算':'gcd lcm gcdFrac lcmFrac lcp'},
+			{'数论函数':'Primorial'},
+			{'数和分解':'SUMs'},
+		]},
+
+		{'Statistic.js':[{'实体':''},
+			{'概率':''},
+			{'统计':'count2pow'},
+			{'序关系':'floor ceil subA'},
+		]},
+
+		{'Geometry.js':[{'实体':''},
+			{'多边形':'gon'},
+
+			
+		]},
+		
+		{'Proposition.js':[{'实体':'Prop'},
+			{'功能':''},
+		]},
+		{'Set.js':[{'实体':'Set'},
+			{'功能':''},
+		]},
+		{'Permutation.js':[{'实体':'Perm'},
+			{'IO':'PfS PtS'},
+			{'排列组合':'Fact Fact2 Permut Combin FactN PermutN CombinN RandomPermutN RandomCombinN RandomCombinA'},
+			{'逆序':'nInvOrder nInvOrder_'},
+
+		]},
+		{'Matrix.js':[{'实体':'Mtrx'},
+
+		]},
+		{'Relation.js':[{'实体':'Rlt'},
+			{'功能':''},
+		]},
+		
+		
+	]},
+
 	{'zlr.js':[
 		{'URL':[
 			{'常量':[
@@ -180,82 +256,12 @@ tooltip['API']=[
 
 		]},
 
-	{'数学对象obj':[
-		{'实体':[{'数':'Num','整数':'Integer','小数':'Decimal','分数':'Frac','根数':'Root',
-			'矩阵':'Mtrx',
-		
-			'多项式':'Polynomial',
-			'命题':'Prop',
-			'集合':'Set',
-			'置换':'Perm',
-			'关系':'Rlt',
-			'数学表达式':'Mfn',
-			'函数':'Fun',
-		}]},
-		{'Function.js':[{'实体':'Fun Mfn Polynomial'},
-			{'识别':'eType oType'},
-			{'运算符变换':'opneg opinv'},
-			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1'},
-		
-			{'符号计算':'plus minus times divide pow square cubic sqrt cbrt pmtds sums sumx kap fmin fmax'},
-			{'方程':'equationsMS equationsMX equationM equationA'},
-			
-		]},
-		
-		{'Num.js':[{'实体':'Integer Decimal Frac Root Num'},
-				{'识别':'nis nAis nisd nisVd nisVid nisn'},
-				{'正则':'nRegofab nReg2dot nReg2digits nReg2A'},
-				{'转换':'percnt2n n2percnt n2frac n2ArabBig n2Roman Roman2n'},
-				{'精度':'digi Nsqrt'},
-		]},
-		
-		{'Prime.js':[{'实体':''},
-			{'素数集合':'PrimeA PrimeAlist PrimeAlistRowland PrimeAlistBC PrimeNumerator'},
-			{'识别':'isPrime feet1'},
-			{'因子分解':'tMod factor2 factor factorA factorA2n factors cntfactors Rho Factor odd odd_5'},
-
-			{'同余':'Mod modP multiMod factorMod'},
-			{'数位性质':'lastDigitsOfPower last0OfFact'},
-			{'多元运算':'gcd lcm gcdFrac lcmFrac lcp'},
-			{'数论函数':'Primorial'},
-			{'数和分解':'SUMs'},
-		]},
-
-		{'Statistic.js':[{'实体':''},
-			{'概率':''},
-			{'统计':'count2pow'},
-			{'序关系':'floor ceil subA'},
-		]},
-
-		{'Geometry.js':[{'实体':''},
-			{'多边形':'gon'},
-
-			
-		]},
-		
-		{'Proposition.js':[{'实体':'Prop'},
-			{'功能':''},
-		]},
-		{'Set.js':[{'实体':'Set'},
-			{'功能':''},
-		]},
-		{'Permutation.js':[{'实体':'Perm'},
-			{'IO':'PfS PtS'},
-			{'排列组合':'Fact Fact2 Permut Combin FactN PermutN CombinN RandomPermutN RandomCombinN RandomCombinA'},
-			{'逆序':'nInvOrder nInvOrder_'},
-
-		]},
-		{'Matrix.js':[{'实体':'Mtrx'},
-
-		]},
-		{'Relation.js':[{'实体':'Rlt'},
-			{'功能':''},
-		]},
-		
-		
-	]},
 
 ];
 
-about['API']=API(tooltip['API'])+br+detail('3rd-party library', DCtv('',href('./js/lib','JavaScript'))+
-		DCtv('',href('./css/fonts','Fonts')));
+about['API']=API(tooltip['API'])+br+detail(gM('3rd-party'),
+	detail(href('./js/lib','Javascript'),
+		ul(ZLR(zlr2('Base64 jQuery katex qrcode zlr echarts raphael flowchart effects','.js'))),1)+
+	detail(href('./css/fonts','Fonts'),
+		ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
+,1);
