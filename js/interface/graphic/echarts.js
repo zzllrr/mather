@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-tooltip['echarts']=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
+tooltip.graphic['Project/echarts']=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
 	'JS代码用$美元符号$括起来'+sceg2('$1+2$'),
 
 	detail('【折线图】line',[
