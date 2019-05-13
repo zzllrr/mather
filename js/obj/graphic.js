@@ -32,7 +32,7 @@ var Graphic={
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
-		}else if(g=='flowchart'){
+		}else if(/flowchart/.test(g)){
 			d=Graphic.parse(g,v,ID,DOM);
 			var id=ID||$(DOM).attr('id')||$(DOM).attr('id',(new Date()).getTime()+(Math.random()+'').substr(2)).attr('id');
 			d.drawSVG(id,{'scale':1});
@@ -50,7 +50,7 @@ var Graphic={
 				Graphic.drawHTMLinSVG('latex',kx(fnv0(t)),'',this);
 			});
 			
-		}else if(g=='echarts'){
+		}else if(/echarts/.test(g)){
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
 			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
@@ -73,8 +73,52 @@ consolelog(D.html());
 						
 						
 					}else{//svg
-					
-						str+=eval('plot.'+ivi);
+						var x='plot.',gA=g.split('/'),gl=gA.slice(-1)[0];
+						if(/^[a-z]+\(/.test(ivi)){
+							x+=ivi
+						
+						}else{				
+							if(g.indexOf('/Shape/')>0){
+								x+="shape('','"+gl+"','','";
+								if(/path/i.test(gl)){
+								
+									x+='d="'+ivi+'"'
+								}else if(/=/.test(ivi)){
+									x+=ivi
+								
+								}else{
+							
+							
+									var eg=split($('.inputTip[data-tool*="/Shape"]').find('.eg[data-eg*="\''+gl+'\'"]').attr('data-eg')||'',/[a-z]+=/g);
+							
+							
+									x+=snake([eg,(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
+								}
+								
+								x+="')";
+						
+						
+							}else if(g.indexOf('/nodesXY')>0){
+							
+								x+="nodesXY('',"+(/^'/.test(ivi)?'':"'',")+ivi+')';
+							
+							}else if(g.indexOf('/nodesPolar')>0){
+							
+								x+="nodesPolar('',"+(/^'/.test(ivi)?'':"'',")+ivi+')';
+							
+							
+							}else{
+
+								x+=gl+"('',"+ivi+')';
+							}
+							
+							
+							
+							
+							
+						}
+
+						str+=eval(x);
 					}
 				}
 			}
