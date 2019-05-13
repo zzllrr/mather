@@ -1,10 +1,9 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
-about['version']=href(Hs+'github.com/zzllrr/Mather','Demo V2019.5.8')+
+about['version']=href(Hs+'github.com/zzllrr/Mather','Demo V2019.5.13')+
 	XML.wrapE('h3',gM('Summary'))+
 	DCtv('',gM('SummaryTip')+
 	XML.wrapE('h3',gM('WeChat'))+
