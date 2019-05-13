@@ -1,5 +1,4 @@
 /*
- * ZIG - zzllrr Imager Geek <http://goo.gl/n8SMk>
  * Copyright by zzllrr. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
@@ -388,6 +387,20 @@ function mUp(e,Last){
 	}else{
 		if(shp=='Pointer'){
 			L.drawMove='';
+			
+			
+			
+			if(shpN.length<1){
+				
+				var offX=X-(+L.X0), offY=Y-(+L.Y0);
+
+				$('#Ox').val(function(i,v){return v-offX});
+				$('#Oy').val(function(i,v){return v-offY})
+				if(offX||offY){
+					$('#Oy').change();
+				}
+				
+			}
 		}
 		if(shp=='Eraser'){
 			var eD=$('#eraserDir').val(), st='svg,textarea,span.caplatex',me=$(eos).closest(st);

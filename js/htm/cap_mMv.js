@@ -1,5 +1,4 @@
 /*
- * ZIG - zzllrr Imager Geek <http://goo.gl/n8SMk>
  * Copyright by zzllrr. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
@@ -2040,13 +2039,28 @@ console.log('tp ',tp);
 		}
 
 	}else{
-		if(shp=='Pointer' && L.drawMove=='yes'){
-			var lt,tp;
-			shpN.css({left:function(i,v){lt=+v.replace('px','')+offX; return lt+'px'},top:function(i,v){tp=+v.replace('px','')+offY; return tp+'px'}});
-			L.X0=X;
-			L.Y0=Y;
-			WD=shpN.css('width').replace('px','');
-			HT=shpN.css('height').replace('px','');
+		if(shp=='Pointer'){
+			if(L.drawMove=='yes'){
+				
+				if(shpN.length){
+					var lt,tp;
+					shpN.css({left:function(i,v){lt=+v.replace('px','')+offX; return lt+'px'},top:function(i,v){tp=+v.replace('px','')+offY; return tp+'px'}});
+					L.X0=X;
+					L.Y0=Y;
+					WD=shpN.css('width').replace('px','');
+					HT=shpN.css('height').replace('px','');
+				}else{
+					
+					
+					$('#Ox').val(function(i,v){return v-offX});
+					$('#Oy').val(function(i,v){return v-offY})
+					if(offX||offY){
+						$('#Oy').change();
+					}
+					L.X0=X;
+					L.Y0=Y;
+				}
+			}
 		}
 
 	}

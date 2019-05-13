@@ -1,5 +1,4 @@
 /*
- * ZIG - zzllrr Imager Geek <http://goo.gl/n8SMk>
  * Copyright by zzllrr. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
@@ -51,13 +50,25 @@ function mDn(e){
 		//$('#svgTexts').toggle(isTxt);
 		if(/Pointer/.test(shp)){
 			var id=$(eos).closest('svg,textarea,span').attr('id');
+			
+			if(!id){
+			//if(shpN.length<1){
+				
+				L.drawMove='yes';
+			}
+			L.X0=X;
+			L.Y0=Y;
+			
+			
 			if(!id){return}
 
 			L.drawShapeNow=id;
 			tileToolCap(id, true);
 			L.drawMove='yes';
+			/*
 			L.X0=X;
 			L.Y0=Y;
+			*/
 			return;
 		}
 		if(/Eraser|Copy/.test(shp) || /textarea|span/.test(act.toLowerCase())){return}
@@ -375,6 +386,7 @@ function drawCopy(){
 		for(var i=0;i<4;i++){
 			B.push(+c.css(a[i]).replace('px',''))
 		}
+
 		/*	C.children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
 		zi=max(zi)+1;
 		←→↑↓↖↗↙↘↥↧
@@ -435,12 +447,14 @@ new WebKitCSSMatrix(...)
 		
 		
 		if(!cpTile){
+
 			for(var j=0;j<D.length;j++){
 				var d=D[j],A=[].concat(B);
 				for(var i=1;i<=n;i++){
 					var M1=Tranfm?co.replace(/transform:[^;]+/,'transform:'+fM(j*n+i)).split(/ .+height: *\d+px/):M;
 					if(/[89]/.test(d) || !copyMargin){
-						s+=M1.join(idStyle('',A,id)).replace(/z-index: *\d+/,function(t){return t.replace(/\d+/, function(x){return +x+i*(/9/.test(d)?-1:1)})})
+						s+=M1.join(idStyle('',A,id)).replace(/z-index: *\d+/,function(t){return t.replace(/\d+/, function(x){return +x+i*(/9/.test(d)?-1:1)})});
+
 					}else{
 						if(/[046]/.test(d)){
 							A[0]-=A[2]+m
@@ -454,14 +468,15 @@ new WebKitCSSMatrix(...)
 						if(/[367]/.test(d)){
 							A[1]+=A[3]+m
 						}
-						s+=M1.join(idStyle('',A,id))
+						s+=M1.join(idStyle('',A,id));
+
 					}
 					
 				}
 			}
 			cnt=D.length*n;
 		}else{
-		
+
 			for(var i=-n;i<=n;i++){//竖直方向
 				if(i<0 && !/[245]/.test(DT) || i>0 && !/[367]/.test(DT)){continue}
 
