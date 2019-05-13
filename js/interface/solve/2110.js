@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -119,7 +118,7 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 
 
 
-		{'Eigen':[
+		{'Eigen Value':[
 			{'Eigen Value':['Eigen Value…A&'+gM('Eigen Value'),'Singular Value']},
 			{'Polynomial':['Eigen Polynomial']},
 			{'Eigen Vector':[

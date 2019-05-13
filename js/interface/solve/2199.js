@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -64,7 +63,7 @@ solves[2199]={sbj2s:['Number','Sequence'],sbj2:{
 			]},
 
 			{'Integer':[
-
+				'竖式计算…算式&保留小数位数“124/3&3',
 			]},
 
 			{'Fraction':[
@@ -119,9 +118,7 @@ solves[2199]={sbj2s:['Number','Sequence'],sbj2:{
 					{'Expression':['浮点计算器','计算器','计算器步骤']},
 				]},
 			]},
-			{'Imaginery':[
-
-			]},
+	
 			{'Complex':[
 				{'形式转换':['代数形式','三角形式','指数形式']},
 				{'多元运算':[
