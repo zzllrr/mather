@@ -2,7 +2,11 @@
 #SvgOpt img, #COLOR img{vertical-align:middle}
 #fontCSS span{font-size:16px}
 
-
+#caps{
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
 
 #tileToolCap img{
     width: 16px;
@@ -27,7 +31,15 @@
 #fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
 
 #fontCSS span,#tileToolCap svg,#night{cursor:pointer}
-#tileTool{border-left: dashed white 1px; text-align:center}
+#tileTool{
+	border-left: dashed white 1px;
+	text-align:center;
+	right:12px;
+	position:fixed;
+	overflow-x:hidden;
+	user-select: none;
+
+}
 
 #svgShape svg{border-radius:5px}
 #tileToolCap,svg:hover,.caplatex:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
@@ -78,12 +90,7 @@
 }
 
 #Tile > table td{padding:0}
-#tileTool{right:12px}
-#tileTool{position:fixed}
-#tileTool{
 
-	overflow-x:hidden
-}
 #Tile table {
     border-spacing: 0;
 }

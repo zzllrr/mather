@@ -151,11 +151,11 @@ sup,sub,.small{
 }
 
 .task{
-	-webkit-user-select:none;
+	user-select:none;
 	display:inline-block
 }
-summary{
-	-webkit-user-select:none;
+summary,#menu{
+	user-select:none;
 }
 
 .collapse{border-collapse: collapse}
@@ -506,6 +506,11 @@ code,pre,#outputOpt{
 .fixb{
 	bottom:0;
 }
+
+#zMather{
+
+	border-bottom: dashed 1px gainsboro;
+}
 #oHTML{
 	position: relative;
 	padding-left:20px;
@@ -596,10 +601,10 @@ summary ~ details{
 	background:lightslategray;
 }
 #subject .ground0 .level:not(.seled){
-	background:darkgreen;
+	background:darkblue;
 }
 #subject .ground1 .level:not(.seled){
-	background:seagreen;
+	background:darkgray;
 }
 #graphicGround .level:not(.seled),#graphic:checked + span{
 	background:hotpink;
