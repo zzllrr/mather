@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  
@@ -130,7 +129,7 @@
 
 */
 
-$.each(lang,function(i,v){
+$.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键}	  ➡️ 值
 	$.each(v,function(ii,vv){
 		if(/@/.test(vv)){
 			var f=function(I,V){

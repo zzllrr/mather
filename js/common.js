@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -29,13 +28,17 @@ $(function(){
 	$('#logo').text(gM('zzllrr Mather')).before('<i id=night class=mi>brightness_3</i>').wrap(href('./index.html',' '));
 	$(':button').not('[value]').val(function(){return gM(this.id)});
 	$('.Clear').attr('title',gM('Clear'));
+	$('#displayOverCanvas').attr('title',gM('copy2Canvas'));
 	
 	$('#night').on('click',function(){
 		var me=$(this),isnight=me.text()=='brightness_3';
 		me.html(isnight?'wb_sunny':'brightness_3');
-		$('body,textarea').css({color:(isnight?'gainsboro':'black')});
-		$('body').css({"background-color":(isnight?'black':'white')});
+		//$('body,textarea').css({color:(isnight?'gainsboro':'black')});
+		//$('body').css({"background-color":(isnight?'black':'white')});
 		L.night=isnight;
+		
+		$('#allEraser').click();
+		$('#color'+(isnight?3:0)).click();
 		dayOrNight();
 	});
 
@@ -72,7 +75,7 @@ $(function(){
 		Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join('')
 	).on('change', function(){//改变sbj1
 		var me=$(this), v=me.val();
-		$('#input0Tip, #input1Tip, .tasks').empty();
+		$('#input0Tip, #input1Tip').add($('#'+$('[name=tool]:checked').attr('id')+'Ground .tasks')).empty();
 		if(v=='0'){
 			sbj1.empty().hide();
 		}else{
@@ -139,6 +142,12 @@ $(function(){
 	$('#zMatherHide').on('click',function(){
 		$('#zMatherOn').click();
 	});
+
+	$('#navHide').on('click',function(){
+		$('#nav').toggle();
+		$(this).text(function(i,v){return 'keyboard_arrow_'+(/up/.test(v)?'down':'up')});
+	});
+
 
 	$('#displayOverCanvas').on('click',function(){
 		OverCanvas($('#input0').val());
@@ -375,7 +384,7 @@ $(function(){
 		if(me.is('.seled')){
 			$('#subject1').val(i).change();
 		}else{
-			$('#'+$('[name=tool]:checked').val()+'Ground').children().empty()
+			//$('#'+$('[name=tool]:checked').val()+'Ground').children().empty()
 		}
 
 	}).on('click','.level_last',function(){
@@ -426,22 +435,29 @@ $(function(){
 				$('#displayOff').click()
 				
 			}
+			$('.inputTip').removeAttr('open');
 		}
 
 
 	}).on('click','.oClear',function(){
-		$('#oHTML').empty();
-		bodyFocus();
 		
-		if($(this).is('#oHClear') && $('#oHTML').html()==''){
-			
-			if($('#capsimg+div').next().length){
-				$('#noteEraser').click();
+	//	bodyFocus();
+		
+		if($(this).is('#oHClear')){
+			if($('#oHTML').html()==''){
+				if($('#capsimg+div').next().length){
+					$('#noteEraser').click();
+				}else{
+					$('#clear').click();
+				}
 			}else{
-				$('#clear').click();
+				$('#oHTML').empty();
 			}
 			
 			//drawobj.clear();
+		}else{
+			
+			$('#oHTML').empty();
 		}
 		
 		/*
@@ -540,6 +556,7 @@ $(function(){
 		if(shft){
 			OverCanvas($(this).find('annotation').eq(0).text());
 			toolTip(gM('copied2CanvasTip'));
+			Scroll('scrollB');
 		}
 		
 	}).on('click','svg[id]',function(e){
@@ -550,11 +567,12 @@ $(function(){
 			Z=max(zi)+1;
 			me.clone().appendTo('#Caps');
 			$('#Caps').find('#'+this.id).attr({'id':'graphic'+Time.now5()+(Math.random()+'').substr(2)})
-				.css({'position':'absolute', 'z-index':Z})
+				.css({'position':'absolute', 'z-index':Z,'top':$('#Caps').position().top,'height':me.height()})
 			//L.drawShapeNow='';
 
 			$('#Pointer').click();
 			toolTip(gM('copied2CanvasTip'));
+			Scroll('scrollB');
 		}
 		
 	}).on('mouseover','.katex, svg[id]',function(e){
@@ -753,7 +771,7 @@ var toolSwitch=function(x){
 	$('.ground:not('+G+')').hide();
 	$(G).show();
 	$('#subject').toggle(/solve/.test(x) || /explore/.test(x) && /course|drill/.test($('#explores').val()));
-	//$('#iContent').toggle(/solve|graphic|show/.test(x));
+	$('#iContent').toggle(!/about/.test(x));
 	if(x=='graphic'){
 		$('#display.seled').click();
 		$('#svgs').not('.toggle').click();
@@ -887,4 +905,16 @@ function OverCanvas(t){
 }
 function toolTip(t){
 	$('#bar').html(SCtv('toolTip',t));
+}
+function furi(o){
+	var g=o.parents('.ground');
+	
+	var muri=[];
+	g.find('.level.seled').each(function(){
+		muri.push($(this).attr('data-i'))
+	});
+	if(o.is('.task')){
+		muri.push(o.attr('data-tool'));
+	}
+	return muri.join('/');
 }
