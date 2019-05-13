@@ -894,7 +894,7 @@ consolelog(xy,irx,iry);
 //consolelog(nodeXYs);
 		return plot.nodesXY(id,types,texts,relations,' '+aligns,translates,'',nodeXYs,nodeAttr,nodeStyle,specialNodes)
 	},
-		venn:function(id,texts,relations,rotate,RA,radiusA,translates){/*韦恩图
+	venn:function(id,texts,relations,rotate,RA,radiusA,translates){/*韦恩图
 			椭圆旋转rotate 各椭圆半径radiusA
 			
 【韦恩图2】 venn('venn_2',{n:['A','B'],r:['A∩B']},[[1,2,,'stroke=none']],[0],[[50,0,2]],[[70]])

@@ -1090,6 +1090,7 @@ var drawobj={//绘制已知图形（静态）
 
 		}
 		*/
+		scrn('eraser');
 		var t='bggrad';
 		if(obj?obj.bggrad:$('#'+t+'On').prop('checked')){//背景色
 			var color2=color2rgba(obj?this.bggrad:$('[for=bggradOn] .fill .color'),!obj);
