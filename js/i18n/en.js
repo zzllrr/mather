@@ -19,22 +19,34 @@ lang['en']={
 	'Backvisi':'Back Visible',
 	'fonT':'Font',
 		
+	
+	
+	'nodesXY':'Cartesian Nodes',
+	'nodesPolar':'Polar Nodes',
 		
 	'sbson':'Unicode',
 	'funcson':'Function',
 	'strucon':'Structure',
 	'Condon':'Condition',
 	'thTip':'Click table heads to display/edit LaTeX',
-	'sbsonTip':'click with Shift key to get Unicode char instead of LaTeX code',
-	'funcsonTip':"click with Shift key to get function name without () followed",
-	'struconTip':"click with Shift key to get JS code instead of LaTeX code",
-	'taskTip':"click with Shift key to input the default expression",
-	'copyTip':"click with Shift key to copy it to Canvas",
+	'sbsonTip':'@{clickWithShift}get Unicode char@{notLaTeX}',
+	'funcsonTip':"@{clickWithShift}get function name without () followed",
+	'struconTip':"@{clickWithShift}get JS code@{notLaTeX}",
+	'taskTip':"@{clickWithShift}input the default expression",
+	'copyTip':"@{clickWithShift}@{copy2Canvas}",
+	
+	'copy2Canvas':'copy it to Canvas',
+	'clickWithShift':'click with Shift key to ',
+	'notLaTeX':' instead of LaTeX code',
+	
+	
 	'donaTip':'needs your help!',
 	'donaTip0':'Anything immortal has an intrinsic nature of Mathematics.',
 	'Accnum':'Account Number',
 	'copiedTip':'Copied to the clipboard',
 	'copied2CanvasTip':'Copied to the Canvas',
+	
+	
 	
 	'zzllrr Mather':'zzllrr Mather',
 

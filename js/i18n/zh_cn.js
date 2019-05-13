@@ -28,189 +28,226 @@ lang['zh_cn']={
 	"rotate1":"顺转90°",
 	"rotate2":"旋转180°",
 	"rotate3":"逆转90°",
+
+	'Bright':'亮度',
+	'hueRotate':'色相',
+
+	'dropShadow':'阴影',
 	
-	'Action':'动作',
-	'Scene':'场景',
-	'Curve':'曲线',
-	'Bezier':'贝塞尔',
-	'Regular Polygon':'正多边形',
-	'Polygon':'多边形',
-	'Polyline':'折线',
-	'Ellipse':'椭圆',
-	'Polar':'极坐标',
-	'Cartesian Grid':'直角坐标网格',
-	'Origin':'原点',
-	'Image':'图片',
-	'Fill':'填充',
-	'URL':'网址',
-	'Range':'范围',
-	'Primary':'主',
-	'Secondary':'次',
-	'Center Coordinate':'中心坐标',
-	'Time':'时间',
-	'Closed':'闭合',
-	'Clockwise':'顺时针',
-	'Counterclockwise':'逆时针',
-	'Side Length':'边长',
-	'Cut':'剪切',
-	'Paste':'粘贴',
-	'Position':'位置',
-	'and':'和',
-	'Arrow':'箭头',
-	'Round Corner':'圆角',
-	'Foci':'焦点',
-	'Stroke':'描边',
-	'Horizontal':'水平',
-	'Vertical':'垂直',
-	'Align':'对齐',
-	'Overlap':'重叠',
-	
-	
-	'Gadget':'部件',
-	'Canvas':'画布',
+	'Lang':'语言',
+	'Del':'删除',
+	'lineSplit':'分行',
+	'lineMerge':'合行',
+
+	'nodesXY':'笛卡尔节点',
+	'nodesPolar':'极坐标节点',
+
 	'sbson':'字符',
 	'funcson':'函数',
 	'strucon':'结构',
 	'Condon':'条件',
 	'thTip':'点击表头，可以显示/编辑LaTeX',
-	'sbsonTip':'点击并按住Shift键，则得到Unicode字符，而不是LaTeX格式',
-	'funcsonTip':"点击并按住Shift键，则函数后面不自动加(括号)",
-	'struconTip':"点击并按住Shift键，则得到$内部函数命令$，而不是LaTeX格式",
-	'taskTip':"点击并按住Shift键，则自动输入示例命令",
-	'copyTip':"点击并按住Shift键，复制到画布上方",
+	'sbsonTip':'@{clickWithShift}则得到Unicode字符@{notLaTeX}',
+	'funcsonTip':"@{clickWithShift}则函数后面不自动加(括号)",
+	'struconTip':"@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
+	'taskTip':"@{clickWithShift}则自动输入示例命令",
+	'copyTip':"@{clickWithShift}@{copy2Canvas}",
+	'copy2Canvas':'复制到画布上方',
+	'clickWithShift':'点击并按住Shift键，',
+	'notLaTeX':'，而不是LaTeX格式',
 
 	'donaTip':'需要您的支持！',
 	'donaTip0':'千里之行，始于足下<br />万年之兴，基于数学',
 	'Accnum':'收款账号',
 	'copiedTip':'已粘贴到剪贴板',
 	'copied2CanvasTip':'已复制到画布',
+
+
 		
 	'Five-year research plan':'未来五年主要工作计划',
-	'WeChat':'微信公众号',
-	'Contact':'联系',
 	'International Standard Open-Sourced Math Tool Program by Experts':'国际通用标准的专家级开源数学工具项目',
 	'Customized Math Tool Program based on Mather by zzllrr':'小乐基于Mather个性化开发的数学工具项目',
 	'Customized Math Tool Program based on Mather by someone':'某人基于Mather个性化开发的数学工具项目',
 // standard 
 
-//Tool
-	'Solve':'解题',
-	'Graphic':'作图',
-	'Show':'演示',
-	'Explore':'探索',
-	'About':'关于',
-	
-	
-	'Doodle':'涂鸦',
-	'Colors':'颜色',
-	'Random':'随机',
-	'Clip':'裁剪',
-	'Gradient':'渐变',
-	'Contrast':'对比度',
-	'Bright':'亮度',
-	'Saturate':'饱和度',
-	'Grayscale':'灰度',
-	'Sepia':'色偏',
-	'Invert':'反相',
-	'hueRotate':'色相',
-	'Blur':'模糊',
-	'dropShadow':'阴影',
-	'Scale':'缩放',
-	'Skew':'扭曲',
-	'Translate':'平移',
-	'Rotate':'旋转',
-	'Radial':'圆形',
-	'Dash':'虚线',
-	'Offset':'偏移',
-	'Radii':'半径',
-	'Vertex':'顶点',
-	'VertexLine':'顶点连线',
-	'CentroidLine':'中心线',
-	'OrthocenterLine':'垂心线',
-	'IncenterLine':'内心线',
-	'CircumcenterLine':'外心线',
-	'AngleBisector':'角平分线',
-	'Midline':'中位线',
-	
-	'Circum':'外接',
-	'Rectangle':'矩形',
-	'CircumRectangle':'外接矩形',
-	'CircumCircle':'外接圆',
-	'Circle':'圆',
-	'Arc':'弧',
-	'Incircle':'内切圆',
-	'Median':'中',
-	'Altitude':'高',
-	'MidPointLine':'中点连线',
-	'OppositeMidPointLine':'对边中点连线',
-	'Axis':'坐标轴',
-	'Coordinate':'坐标',
-	'Grid':'网格',
-	'Nest':'嵌套',
-	'PerpendicularFootLine':'垂足连线',
-	'Diameter':'直径',
-	'Rt':'直角',
-	'Equator':'赤道',
-	'SymmetryAxis':'对称轴',
-	'FontSize':'字体大小',
-	'Center':'居中',
-	'Tick':'刻度',
-	'Length':'长度',
-	'Sides':'边数',
-	'Spacing':'间隔',
-	
 
-	'Crop':'裁剪',
-	'Hotkey':'快捷键',
-	'Hide':'隐藏',
+	// noun	
 
+// 人和组织
+	'Person':'人物',		
+	'zzllrr Mather':'小乐数学',
+	'Mather':'数学者',
+	'Organism':'有机体',	
+	'Contributor':'贡献者',
+	'Payee':'收款人',
 
+	'3rd-party':'第三方',
+	
+	'WeChat':'微信公众号',			
+
+// 工程	
+	'Project':'工程',	
+	'Program':'项目',
+	'Library':'库',
+	'File':'文件',
+	'Engine':'引擎',
 	
 	'Wiki':'百科',
 	'Drill':'题库',
 	'Course':'课程',
-	'Topic':'课题',
-	'Pitfall':'陷阱',
-	'Unsolved':'未解',
-	'Refer':'参考',
 
-	'Input':'输入',
-	'Output':'输出',
-	'Voice':'语音',
-	'Video':'视频',
-	'Record':'录制',
+	'Pitfall':'陷阱',
+
+	'Statistics':'统计',
+	'Lottery':'彩票',
+	'Sudoku':'数独',
+
+
+	'Dash':'虚线',
+	'Arrow':'箭头',
+	'Round Corner':'圆角',
+
+	'Pie':'饼',
+	'Bar':'条形',
+	'Flowchart':'流程',
+	'Scatter':'散点',
+
+	'Canvas':'画布',
+	'Graphic':'作图',
+	'Text':'文本',
+	'Image':'图片',
 	'Mic':'麦克风',
 	'Camera':'摄像头',
-	'Default':'默认',
+	'Video':'视频',	
+	'Voice':'语音',	
+	'Action':'动作',
+	'Scene':'场景',	
+	'Animation':'动画',
+	'Gadget':'部件',
+	'Show':'演示',		
+	'Doodle':'涂鸦',
+	
+// 助词	或 词根
+	'and':'和',
+	'or':'或',
+	'About':'关于',	
+	'Anti':'反',
+	'Co':'互',	
+	'By':'按',	
+	'Semi':'半',	
+		
+// measure
 
-	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
-	'input your Audio/Video URL':'输入你的音视频地址',
-	'Engine':'引擎',
-	'Person':'人物',
-	'Speed':'速度',
-	'Pitch':'音调',
-	'Language':'语言',
-	'Lang':'语言',
-
-	'Text':'文本',
-	'Del':'删除',
-	'Font':'字体',
-	'Size':'大小',
-	'Color':'颜色',
+// 空间
+	
 	'Margin':'间距',
-	'Phantom':'隐形',
-
-
+	'Spacing':'间隔',
+	'Position':'位置',
+	'Size':'大小',
+	'Length':'长度',
 	'Shape':'形状',
-	'Pie':'饼图',
-	'Bar':'条形图',
-	'Polyline':'折线图',
-	'Project':'工程',
-	'Flowchart':'流程图',
-	'Statistics':'统计',
+	'Row':'行',
+	'Column':'列',
 
-	'lineSplit':'分行',
-	'lineMerge':'合行',
+	'Pitch':'音调',
+
+	'Font':'字体',
+	'Language':'语言',
+
+	'Color':'颜色',
+	'Colors':'颜色',	
+	'Gradient':'渐变',
+	'Contrast':'对比度',
+	'Brightness':'亮度',
+	'Saturate':'饱和度',
+	'Grayscale':'灰度',
+	'Sepia':'色偏',
+	'Invert':'反相',
+
+// 时间		
+	'Time':'时间',
+	'Speed':'速度',
+
+// 抽象属性
+	'Path':'路径',
+	'URL':'网址',
+	'Version':'版本',
+	'Type':'类型',	
+	'Classification':'分类',
+	'Parameter':'参数',	
+	'Structure':'结构',
+	'Hotkey':'快捷键',
+	'Expression':'表达式',
+	'Unit':'单位',	
+	'Value':'值',
+
+
+// 自由描述
+	'Name':'名称',
+	'Summary':'简介',
+	'Description':'描述',
+	'Definition':'定义',	
+	'Rule':'法则',	
+	'Aims':'宗旨',
+	'Vision':'愿景',
+	'Protocol':'协议',
+	'Whitepaper':'白皮书',
+	'Topic':'课题',	
+	'Consensus':'共识',
+	'Cooperation':'合作',	
+	'Condition':'条件',
+	'Concept':'概念',			
+	
+	// adj
+	'Random':'随机',	
+	'Default':'默认',
+	
+	'Elementary':'初等',	
+	
+	'Horizontal':'水平',
+	'Vertical':'垂直',
+	'Center':'居中',
+	'Full Screen':'全屏',
+	'Phantom':'隐形',
+	'Inner':'内',
+	'Outer':'外',
+	'Symmetric':'对称',
+		
+	'Unsolved':'未解',
+
+	'Offline':'离线',
+	'Localized':'本地化',	
+	'Online Connection':'联网',
+	'Energy Consumption Minimization':'能耗最小化',
+	'Open Access':'开放获取',
+
+	// action
+
+	
+	'Solve':'解题',
+	'Computation':'计算',
+	'Calculate':'计算',
+	'Operation':'运算',
+	'Explore':'探索',
+	'Search':'搜索',
+	'Contact':'联系',
+	'Donate':'捐赠',
+		
+	'Align':'对齐',
+	'Overlap':'重叠',
+	'Clip':'裁剪',	
+	'Crop':'裁剪',
+	'Cut':'剪切',
+	'Offset':'偏移',	
+	'Scale':'缩放',
+	'Skew':'扭曲',
+	'Translate':'平移',
+	'Rotate':'旋转',
+	'Display':'显示',
+	'Hide':'隐藏',
+	'Blur':'模糊',
+	'Fill':'填充',
+	'Stroke':'描边',
 
 	'Edit':'编辑',
 	'Replace':'替换',
@@ -218,270 +255,308 @@ lang['zh_cn']={
 	'Delete':'删除',
 	'Clear':'清除',
 	'Refresh':'刷新',
-
-	'Display':'显示',
+	'Paste':'粘贴',
+	'Record':'录制',	
 	'Play':'播放',
 	'Pause':'暂停',
 	'Stop':'停止',
-	'Animation':'动画',
 
-	'FullScreen':'全屏',
-		
-	'zzllrr Mather':'小乐数学',
-	'Mather':'数学者',
+	'Input':'输入',
+	'Output':'输出',
+	'Refer':'参考',
 	
-	'Contact':'联系',
-	'Version':'版本',
-	'Whitepaper':'白皮书',
-	'Donate':'捐赠',
-	'Contributor':'贡献者',
 
-	'Payee':'收款人',
-	'Summary':'简介',
-
-	'Name':'名称',
-	'Aims':'宗旨',
-	'Vision':'愿景',
-	'Protocol':'协议',
-	'Organism':'有机体',
-	'Offline':'离线',
-	'Computation':'计算',
-	'Online Connection':'联网',
-	'Energy Consumption Minimization':'能耗最小化',
-	'Open Access':'开放获取',
-	'Consensus':'共识',
-	'Cooperation':'合作',
-	'Localized':'本地化',
-	'Program':'项目',
-	'Description':'描述',
-	
-	'3rd-party':'第三方',
-	'Library':'库',
-	'File':'文件',
-	
-	'Search':'搜索',
-
-// Math operation
-	'Unary':'一元',
-	'Binary':'二元',
-	'Ternary':'三元',
-	'Multiary':'多元',//Multiary n-ary Polyadic
-	'Operation':'运算',
-
-	'Elementary':'初等',
-	'Parameter':'参数',
-	
-	'Type':'类型',
-	'Structure':'结构',
-
-
-// Math obj
-	'Number':'数',
-	'Integer':'整数',
-	'Positive':'正',
-	'Natural':'自然数',
-	
-	'Fraction':'分数',
-	
-	'Decimal':'小数',
-	'Rational':'有理数',
-	'Irrational':'无理数',
-	'Transcendental':'超越数',
-	'Real':'实数',
-	'Imaginery':'虚数',
-	'Complex':'复数',
-
-	'Prime':'质数',
-
-	'Sequence':'数列',
-
-	
-	'Polynomial':'多项式',
-
-	'Matrix':'矩阵',
-	
-	'Permutation':'置换',
-
-	'Relation':'关系',
-
-	'Function':'函数',
-
-
-	'Proposition':'命题',
-
-	'Set':'集合',
-
-
-
-//of Math subject
-	'Arithmetic':'算术',
-	
-	'Algebraic':'@3',
-
-	'Geometric':'几何',
-
-	'Trigonometric':'三角',
-	
-	'Hyperbolic':'双曲',
-
-	'Analytical':'分析',
-
-	'Logistical':'逻辑',
-
-	'Probabilistic':'概率',
-
-	'Statistical':'统计',
-
-	'Topological':'拓扑',
-
+	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
+	'input your Audio/Video URL':'输入你的音视频地址',
 
 
 //Math concept
-	'Divide':'整除',
-	'Factorization':'因数分解',
-	'Greatest Common Divisor':'最大公约数',
-	'Least Common Multiple':'最小公倍数',
-	'Matrix Factorization':'矩阵分解',
-	'Eigen':'特征',
-	'Value':'值',
-	'Block':'分块',
-	'Transpose':'转置',
-	'Rank':'秩',
-	'Trace':'迹',
-	'Row':'行',
-	'Column':'列',
-	'Adjoint':'伴随',
-	'Augmented':'增广',
-	'Rule':'法则',
-	'Order':'阶',
+		
+// noun
 	
-	'Coprime':'互素',
-	'Factorial':'阶乘',
-	'Digit':'数位',
-	'Unit':'单位',
-	
-	'Sum':'求和',
-	'Prod':'求积',
-	'Combination':'组合',
+	// structure entity
 
-	'Fermat':'费马',
-	
+	'Number':'数',
 	'Prime Mersenne Number':'梅森素数',
 	'Amicable Numbers':'亲和数',
-	
-	
-	'Recursive':'递归',
 
-	'Enumerate':'枚举',
-	'Determinant':'行列式',
-	'Norm':'模',
-	'Normalize':'单位化',
-	'Orthogonalize':'正交化',
-	'Gram-Schmidt':'正交单位化',
-	'Inverse':'逆',
-	'Transpose':'转置',
-	'Hermitian':'共轭转置',
-	'Diagonalize':'对角化',
-	'Diagonal':'对角',
-	'Expansion':'展开',
-	'Symmetric':'对称',
-	'Anti':'反',
-	'Identity Matrix':'单位矩阵',
-	'Square Matrix':'方阵',
-
-	'Expression':'表达式',
-	'Classification':'分类',
-	'By':'按',
-	'Definition':'按定义',
-	'Inner':'内',
-	'Outer':'外',
-	'Product':'积',
-	'Cross':'叉',
-	
-	'Division':'除法',
-	
-	'Quadratic':'二次',
-	'Quadric':'二次',
-	'Form':'型',
-
-	'Cofactor':'余子式',
-	'Singular':'奇异',
-	
-	'Inversion':'逆序',
-	'Minor':'子式',
-	'Base':'基',
-	'Space':'空间',
-	'Linear':'线性',
+	'Form':'型',	
+	'Integer':'整数',
+	'Fraction':'分数',
+	'Decimal':'小数',
+	'Sequence':'数列',
+	'Polynomial':'多项式',
+	'Power':'幂',
+	'Series':'级数',
 	
 	'Equation':'方程',
 	'Equation Array':'方程组',
-	
 	'Inequation':'不等式',
-	'Analytic':'解析式',
+	'Analytic':'解析式',	
+	'Limit':'极限',
 	
-	'Equivalence':'等价关系',
-	'Partial Order':'偏序',
-	
-	'Dot':'点',
-	'Boolean':'布尔',
 	
 	'Vector':'向量',
-	'Tensor':'张量',
-	'Limit':'极限',
-	'Power':'幂',
-	'Radical':'根式',
+	'Tensor':'张量',	
+	'Matrix':'矩阵',	
+	'Identity Matrix':'单位矩阵',
+	'Square Matrix':'方阵',
+
+	'Space':'空间',
+
+	'Permutation':'置换',
+	'Relation':'关系',
+	'Function':'函数',
+	'Proposition':'命题',
 	
-	'Series':'级数',
-	'Infinite':'无限',
-	'Formal':'形式',
-	'Differential':'微分',
-	'Integral':'积分',
 	'Logic':'逻辑',
 	'Algebra':'代数',
 	'Geometry':'几何',
 	'Graph':'图',
 
-
-	'Point':'点',
-	'Line':'线',
-	'Angle':'角',
-	'Plane':'平面',
-	'Solid':'立体',
-
-	'Path':'路径',
-
-
+	'Set':'集合',
 	'Group':'群',
 	'Ring':'环',
 	'Lattice':'格',
 
+	'Equivalence':'等价关系',
+	'Partial Order':'偏序',
+	'Cover':'覆盖',
+	'Chain':'链',
+	'Inversion':'逆序',
+		
+	'Dot':'点',
+	
+	'System':'系',
+	
+	// 几何
+	
+	'Point':'点',
+	'Vertex':'顶点',
+	'Origin':'原点',
+	'Centroid':'质心',
+	'Orthocenter':'垂心',
+	'Incenter':'内心',
+	'Circumcenter':'外心',	
+	'Perpendicular Foot':'垂足',	
+	'Foci':'焦点',
 
 
+	
+	'Coordinate':'坐标',
+	'Centroid Coordinate':'中心坐标',	
+
+	'Axis':'轴',
+	'Tick':'刻度',		
+	'Grid':'网格',
+
+
+	'Line':'线',
+	'Line Segment':'线段',
+	
+	'Angle':'角',
+	'Rt':'直角',
+
+
+	'Polygon':'多边形',
+	'Regular Polygon':'正多边形',
+	'Triangle':'三角形',
+	'Square':'正方形',
+	'Rectangle':'矩形',	
+	'Quadrilateral':'四边形',
+	'Parallelogram':'平行四边形',
+	'Rhombus':'菱形',
+	'Trapezoid':'梯形',
+	
+
+
+	'Circle':'圆',
+	'Ellipse':'椭圆',	
+	'Incircle':'内切圆',
+
+	'Curve':'曲线',	
+	'Conic Section':'圆锥曲线',
+	'Arc':'弧',	
+	'Polyline':'折线',	
+	'Vertex Line':'顶点连线',
+	'Bisector':'平分线',
+	'Midline':'中位线',
+	'Median Line':'中线',
+	'Altitude':'高',
+	'MidPoint Line':'中点连线',
+	'Opposite Mid Point Line':'对边中点连线',
+	'Perpendicular Foot Line':'垂足连线',
+
+
+	'Surface':'曲面',
+	'Plane':'平面',
+	'Sphere':'球面',
+	
+	
+	'Solid':'立体',
+	'Polyhedron':'多面体',
+	'Equator':'赤道',
+	
+	
+	
+	
+// measure
+	//代数
+	'Domain':'定义域',
+	'Range':'值域',
+
+	'Factorization':'因数分解',
+	'Expansion':'展开',
+	'Sum':'求和',
+	'Prod':'求积',
+	'Combination':'组合',	
+	'Factorial':'阶乘',	
+	'Greatest Common Divisor':'最大公约数',
+	'Least Common Multiple':'最小公倍数',
+	'Division':'除法',	
+	
+	'Matrix Factorization':'矩阵分解',
+
+	'Base':'基',
+	'Product':'积',
+	'Cross Product':'叉积',
+	'Digit':'数位',
+
+	'Block':'分块',	
+	'Rank':'秩',
+	'Trace':'迹',
+	'Order':'阶',	
+	'Determinant':'行列式',
+	'Norm':'模',
+	'Inverse':'逆',
+	'Cofactor':'余子式',	
+	'Minor':'子式',
+	
+	// 几何
+	
+	'Diameter':'直径',
+	'Radii':'半径',		
+	'Sides':'边数',
+	'Side Length':'边长',
+	
+		
+// verb
+	
 
 	'Convert':'转换',
 	'Express':'表示',
 	'Simplify':'化简',
 	'Calculate':'计算',
-	'Prove':'证明',
-
-	'Cover':'覆盖',
-	'Chain':'链',
-
+	'Prove':'证明',	
+	
+	'Divide':'整除',
+	
+	'Transpose':'转置',
+	'Normalize':'单位化',
+	'Orthogonalize':'正交化',
+	'Gram-Schmidt':'正交单位化',
+	'Enumerate':'枚举',
+	'Diagonalize':'对角化',		
+	
+	// 几何
+	
 	'Transform':'变形',
-	
 	'Transformation':'变换',
-	'Translate':'平移',
-	'Condition':'条件',
-
-
-
-//Math Topic
-
-	'Lottery':'彩票',
 	
-	'Sudoku':'数独',
+	'Map':'映射',
+	'Mapping':'映射',
 
 
+// adj
+
+	//代数
+	
+	'Positive':'正',
+	'Natural':'自然',
+	'Prime':'质',
+	'Rational':'有理',
+	'Irrational':'无理',	
+	'Radical':'根式',
+	'Transcendental':'超越',
+	'Real':'实',
+	'Imaginary':'虚',
+	'Complex':'复',
+	
+	'Regular':'正则',
+	'Singular':'奇异',
+	'Linear':'线性',
+	
+	'Eigen':'特征',
+	'Adjoint':'伴随',
+	'Augmented':'增广',	
+	'Diagonal':'对角',
+	'Hermitian':'共轭转置',
+	'Coprime':'互素',
+	'Recursive':'递归',
+	'Cross':'交叉',		
+	
+
+	'Nest':'嵌套',
+	'Symmetry':'对称',
+
+	'Primary':'主',
+	'Secondary':'次',
+
+	'Closed':'闭合',
+	'Clockwise':'顺时针',
+	'Counterclockwise':'逆时针',
+	
+	'Infinite':'无限',	
+
+	'Unary':'一元',
+	'Binary':'二元',
+	'Ternary':'三元',
+	'Multiary':'多元',//Multiary n-ary Polyadic
+	
+	'Quadratic':'二次',
+	'Quadric':'二次',
+	
+	//几何
+	
+	'Conic':'圆锥',	
+	'Convex':'凸',
+	'Concave':'凹',	
+	'Circum':'外接',
+	'Isosceles':'等腰',	
+	'Radial':'圆形',	
+	'Straight':'直',
+	
+	'Polar':'极',
+	
+	'Cylindrical':'柱面',
+	'Spherical':'球面',
+	
+	
+	
+//of Math subject
+	'Arithmetic':'算术',
+	'Algebraic':'@3',
+	'Geometric':'几何',
+	'Trigonometric':'三角',
+	'Hyperbolic':'双曲',
+	'Analytical':'分析',
+	'Logistical':'逻辑',
+	'Probabilistic':'概率',
+	'Statistical':'统计',
+	'Topological':'拓扑',	
+
+	'Formal':'形式',
+	'Differential':'微分',
+	'Integral':'积分',
+	'Boolean':'布尔',
+
+
+// 人名
+
+	'Euler':'欧拉',
+	'Bezier':'贝塞尔',
+	'Fermat':'费马',
+	'Cartesian':'笛卡尔',
 
 //Math subject
 
