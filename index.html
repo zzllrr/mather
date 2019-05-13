@@ -84,11 +84,7 @@
     <script src="js/interface/graphic/canvas.js"></script>
     <script src="js/interface/graphic/svg.js"></script>
 
-    <script src="js/interface/graphic/shape.js"></script>
-    <script src="js/interface/graphic/hasse.js"></script>
-    <script src="js/interface/graphic/flowchart.js"></script>
-    <script src="js/interface/graphic/echarts.js"></script>
-
+ 
 
 
     <script src="js/interface/show/Voice.js"></script>
@@ -289,6 +285,10 @@
 
 <!-- 界面逻辑层封装 -->
     <script src="js/interface/graphic.js"></script>
+
+<!-- 界面补充-->  
+    <script src="js/interface/graphic/echarts.js"></script>
+   
     <script src="js/interface/solve.js"></script>
     <script src="js/interface/show.js"></script>
     <script src="js/interface/explore.js"></script>
@@ -320,6 +320,7 @@
 </head>
 <body>
 <div id=zMather>
+<div id=nav>
 <div class="opac pd2"><span id=logo></span>
     <label><input type=radio name=tool value=solve id=solve /></label>
     <label><input type=radio name=tool value=graphic id=graphic /></label>
@@ -378,8 +379,8 @@
     <div class=tasks></div>
 
 </div>
-
-<div id=iContent>
+</div>
+<div id=iContent class=pd2>
 <div id=iText>
     <div id=sbs hidden class=iTextLaTeX></div>
     <div id=funcs hidden class=iTextLaTeX></div>
@@ -391,6 +392,7 @@
         <textarea id=input0 class=floatl></textarea>
         <div id=input0Tool class="floatl opac">
             <input type=button class=Clear id=iClear value=⌫ title="Ctrl + E" />
+            <i class=mi id=navHide>keyboard_arrow_up</i>
             <input type=button class="Clear rotate180" id=tClear value=⌫ />
             <br />
             
@@ -403,9 +405,9 @@
 		        <input type=button id=strucon class=tool />
 	            <br />
 	            </span>
-            <input type="file" accept="image/*" capture="camera">
-            <input type="file" accept="image/*" multiple="multiple" id=upimg hidden />
-            <br />
+            <input type="file" accept="image/*" capture="camera" hidden />
+            <input type="file" accept="image/*" multiple="multiple" hidden />
+
             <input id=lineSplit type=button class=hid />
             <br />
             <input id=lineMerge type=button class=hid />
@@ -455,7 +457,7 @@
         
 
         <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
-        <i class=mi id=zMatherHide>keyboard_arrow_up</i>
+        <i class=mi id=zMatherHide>unfold_less</i>
         
         
         
@@ -472,7 +474,7 @@
 			<span id=bar>&nbsp;</span>
 			<i class=mi id=zMatherOn>unfold_less</i>
 			<i class=mi id=svgs title="Gadget">layers</i>
-			<i class=mi id=zzllrrCanvas title="Canvas">apps</i>
+			<i class=mi id=zzllrrCanvas title="Canvas">wallpaper</i>
 			<i class=mi id=bg title="bg">photo_size_select_actual</i>
 			<i class=mi id=grid title="Grid">grid_on</i>
 			<i class=mi id=shape title="Shape">panorama_fish_eye</i>
@@ -608,7 +610,7 @@
 				<span for=circle><label><input type=checkbox id=circleOn class=on /></label>
 					<span for=circleOn>
 						<div class=multi>
-							<div><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 200,300 300" /></div>
+							<div><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 200,300 300" /></div>
 							<div><i18>Radii</i18><input type=text class=rad placeholder="15,10" /></div>
 
 						</div>
@@ -620,7 +622,7 @@
 					<span for=ellipseOn>
 						<div class=multi>
 							<div><input type=checkbox class=multinput checked=checked />
-								<span><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
 								<span><i18>Radii</i18>（半长轴,半短轴,半焦距 3选2）<input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" /></span>
 								<span><i18>Rotate</i18>°<input type=text class=rot placeholder="45,-30" /></span>
 							</div>
@@ -632,7 +634,7 @@
 								<span><i18>Vertex Coordinate</i18><input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 /></span>
 							</div>
 							<div><input type=checkbox class=multinput />
-								<span><i18>CircumRectangle Vertex Coordinate</i18><input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 /></span>
+								<span><i18>CircumRectangle</i18> <i18>Vertex Coordinate</i18><input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 /></span>
 							</div>
 
 						</div>
@@ -671,7 +673,7 @@
 					<span for=isogonOn>
 						<div class=multi>
 							<div><input type=checkbox class=multinput checked=checked />
-								<span><i18>Center Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
 								<span><i18>Radii</i18><input type=text class=rad placeholder="50;" /></span>
 								<span><i18>Rotate</i18>°（起始半径偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
 							</div>
@@ -784,6 +786,11 @@
 						<svg id=noteEraser><path d="M10 20 L20 10 M10 10 L20 20" /><rect x=5 y=7 width=20 height=16 /></svg>
 						<svg id=Crop><path d="M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18" /></svg>
 						<svg id=allEraser><rect x=5 y=7 width=20 height=16 stroke=white fill=white /></svg>
+						<svg id=LayerToggle>
+							<path d="M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" />
+							<circle r="3" cx="15" cy="12" stroke="white" fill="none"></circle>
+							<ellipse rx="4" ry="3" cx="15" cy="12" stroke="white" fill="none"></ellipse>
+						</svg>
 
 
 		                <div id=scrWH>
