@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -31,17 +30,29 @@ $(function(){
 			var A=explores[v][mei],str='';
 			consolelog(v,mei,A);
 			
-			for(var i=0,l=A.length;i<l;i++){
-				if(isStr(A[i])){
-					str+=jdetail(A[i])
-				}else{
-					$.each(A[i], function(k,v){
-						str+=jdetail(k);
-					});
-				}
-			}
+			if(!A){
+				/*
+				import(`./${v}/${mei}.js`)
+				  .then(module => {
+				    module.ui();
+				  })
+				*/
+				
+			}else{
 			
-			$('#exploreGround .ground1').html(str)
+			
+				for(var i=0,l=A.length;i<l;i++){
+					if(isStr(A[i])){
+						str+=jdetail(A[i])
+					}else{
+						$.each(A[i], function(k,v){
+							str+=jdetail(k);
+						});
+					}
+				}
+				
+				$('#exploreGround .ground1').html(str)
+			}
 
 		}
 

@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -38,7 +37,7 @@ $(function(){
 				
 				
 				sbj2.empty().hide();
-				$('#subject .ground1').empty();
+				//$('#subject .ground1').empty();
 				
 			}else{
 				
