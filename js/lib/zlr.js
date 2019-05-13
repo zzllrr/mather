@@ -95,7 +95,7 @@ function gM(msg,str,o){var M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o
 		x=chrome.i18n.getMessage(msg, str)
 	}
 	if(!x && /[a-z][A-Z]/.test(msg)){
-		x=msg.replace(/([a-z])([A-Z])/g,'$1 $2')
+		x=gM(msg.replace(/([a-z])([A-Z])/g,'$1 $2'),str,o)
 	}
 	if(!x && / & /.test(msg)){
 		x=Arrf(function(t){return gM(t,str,o)}, msg.split(' & ')).join(' & ');
