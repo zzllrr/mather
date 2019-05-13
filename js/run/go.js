@@ -10,7 +10,7 @@ $(function(){
 
 	$('#go').on('click',function(){
 		var tool=$('[name=tool]:checked').val(), sbj0v=+$('#subject0').val(), sbj1v=+$('#subject1').val(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
-		$('#oHClear').show();
+		
 
 		if(tool=='solve'){
 			oH.empty();
@@ -25,9 +25,15 @@ $(function(){
 		if(tool=='graphic'){
 			oH.empty();
 			var dmid='outPlot'+(new Date()).getTime()+(Math.random()+'').substr(2), gs=$('#graphicGround .task.seled');
+			if(gs.length<1){
+				gs=$('#graphicGround .level.seled').last();
+			}
 			if(i0v && gs.length){
+				
+			
+			
 				gs.each(function(){
-					Graphic.drawSVG($(this).attr('data-tool'),i0v,'oHTML');
+					Graphic.drawSVG(furi($(this)),i0v,'oHTML');
 				});
 
 				/*
@@ -52,7 +58,15 @@ $(function(){
 				
 			}
 		}
-		
+		if(tool=='explore'){
+			var v=$('#explores').val(),mei=$('#exploreGround .ground0 .level.seled').attr('data-i');
+			/*
+				import(`./${v}/${mei}.js`)
+				  .then(module => {
+				    module.go();
+				  })
+				  */
+		}
 		
 		setTimeout(dayOrNight,200)
 	});
