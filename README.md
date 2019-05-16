@@ -30,6 +30,7 @@ It is compact and portable, but powerful, and can be used offline and customized
 
 ## Aims 宗旨
 Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
+
 让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。
 
 
