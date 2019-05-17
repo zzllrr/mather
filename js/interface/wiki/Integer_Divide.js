@@ -1,12 +1,11 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
 
-wiki['divide']=detail('整除的快速判别法 k|m=□10^n+□10^{n-1}+□10^{n-2}+⋯+□10^2+□10+□',
+wiki['Integer Divide']=detail('整除的快速判别法 k|m=□10^n+□10^{n-1}+□10^{n-2}+⋯+□10^2+□10+□',
 		Table([['除数k','k|m的充要条件']],[
 			[2,['10=5×2 即2|末位='+kmod('0,2,4,6,8',0,2)].join(hr)],
 			[3,['10=3×3+1 即3|□+□+□+⋯+□+□+□',ol([

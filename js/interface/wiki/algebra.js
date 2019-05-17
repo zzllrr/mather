@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['algebra']=Kx(
+wiki['Algebra']=Kx(
 
 
 detail('代数系统（1个二元运算）',Table([['名称','记法','定义','性质']],[

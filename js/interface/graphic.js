@@ -5,8 +5,34 @@
  */
  
 graphics={
-
+	index:['Plane Coordinate System','Space Coordinate System','Surface','Solid','81','Statistics','Project','Doodle'],
 	'Plane Coordinate System':[
+		
+		{'Curve':[
+			{'Arc':''},
+			{'Semi Circle':''},
+			{'Straight Line':''},
+			{'Line Segment':''},
+			{'Polyline':''},
+			{'LineHV':''},
+			{'Bezier':''},
+			{'Vector':''},
+			{'Path':''},
+			{'Algebraic Curve':[
+				'Parabola'
+			]},
+		]},
+		{'Shape':[
+
+			{'Circle':''},
+			{'Ellipse':''},
+			{'Semi Circle':''},
+			{'Square':''},
+			{'Rectangle':''},
+			{'Polygon':''},
+			{'Regular Polygon':''},
+			{'Path':''}
+		]},
 		{'nodesXY':[
 			{'Point':[
 				'Point','Grid Point','Scatter'
@@ -19,30 +45,7 @@ graphics={
 				'Point','Grid Point','Scatter'
 			]},'Axis','Grid'
 		]},
-		
-		{'Curve':[
-			{'Algebraic Curve':[
-				'Parabola'
-			]},
-			{'Arc':''},
-			{'Straight Line':''},
-			{'Line Segment':''},
-			{'Polyline':''},
-			{'LineHV':''},
-			{'Bezier':''},
-			{'Vector':''},
-			{'Path':''},
-		]},
-		{'Shape':[
-			{'Square':''},
-			{'Rectangle':''},
-			{'Circle':''},
-			{'Ellipse':''},
-			{'Semi Circle':''},
-			{'Polygon':''},
-			{'Regular Polygon':''},
-			{'Path':''}
-		]},			
+		{'Text':''}
 	],
 	
 
@@ -90,66 +93,138 @@ graphics={
 
 tooltip.graphic={
 
+	'Plane Coordinate System/Shape':['shape(id,type,content,attrs,style,translateA)',[
+			gM('Ellipse')+': ellipse【rx ry cx cy fill】',
+		sceg("shape('','ellipse','','rx=40 ry=30 cx=60 cy=50 fill=red')"),
 
-	
-	'Plane Coordinate System/Shape':['【基本形状】shape(id,type,content,attrs,style,translateA)',[
-		detail('文本text【x y dx dy rotate】 路径文本textPath【d href pathid】',Arrf(sceg,
-			["shape('','text','O','x=90 y=112 rotate=20')",
-			"shape('','textPath','路径文本','d="+'"M20 20 L120 102"'+" pathid=path1')"
-			]).join(br)),
+			gM('Circle')+': circle【r cx cy】',
+		sceg("shape('','circle','','r=40 cx=60 cy=50 fill=blue')"),
 
-		sceg("shape('test','ellipse','','rx=40 ry=30 cx=60 cy=50 fill=red')"),
-				'圆circle【r cx cy】 椭圆ellipse【rx ry cx cy】',
 				'_有向椭圆circle|ellipse[01逆顺时针][旋转度数][lrbt相对方向] 在关系type中使用',
+			gM('Semi Circle')+': Arc【x1 y1 x2 y2 c[clockwise:↻1|↺0] z是否闭合 end mid start】',
+		sceg("shape('test','Arc','','x1=30 y1=150 x2=200 y2=150 c=1 z=1')"),
 
-				'矩形rect【x y width height rx ry [cx] [cy]】 _正方形Square【<del>height</del>】',
 
+			gM('Rectangle')+': rect【x y width height rx ry [cx] [cy]】',
+		sceg("shape('','rect','','x=40 y=30 width=160 height=50 rx=20 ry=20')"),
+				
+			gM('Square')+': Square【x y width <del>height</del> rx ry [cx] [cy]】',
+		sceg("shape('','Square','','x=40 y=30 width=160 rx=20 ry=20')"),
 
+			gM('Polygon')+': polygon【points】',
+		sceg("shape('','polygon','','points=\"50 60 150 120 130 80\"')"),
 
-				'多边形polygon【points】 _正多边形Polygon【r cx cy width a n】',
-		sceg("shape('test','Polygon','','cx=150 cy=200 width=50 n=9 fill=green')"),
-
-				'路径path【d=M起点 L H V A C S Q T Z闭合】L线段x,y H水平x V垂直y',
+			gM('Regular Polygon')+': 【r cx cy width a n】',
+		sceg("shape('','Polygon','','cx=150 cy=200 width=50 n=9 fill=green')"),
+	
+		sceg("shape('','Polygon','','r=150 cx=150 cy=200 a=90')"),
+			
+			gM('Path')+': path【d=M起点 L H V A C S Q T Z闭合】L线段x,y H水平x V垂直y',
 				'A弧 rx,ry,deg,[01小大弧],[01逆顺时针],x,y',
 				'C三次贝塞尔 x1 y1, x2 y2, x y S特殊三次 x2 y2, x y',
 				'Q二次贝塞尔 x1 y1, x y T特殊二次 x y',
 				'组合g',
 				'【end尾 mid中 start首 ∧△◇□○▲◆■●】 v {trig diamond square circle}×{Hollow Solid}'
 
+
 		].join(br)].join(br),
 
 
-	'Plane Coordinate System/Curve':[
+
+	'Plane Coordinate System/Shape/Ellipse':[
+		'【rx ry cx cy fill】',
+		sceg('40 30 60 50 red',20)
+		].join(br),
+
+	'Plane Coordinate System/Shape/Circle':[
+		'【r cx cy】',
+		sceg('40 60 50 blue',20)
+		].join(br),
+
+	'Plane Coordinate System/Shape/Semi Circle':[
+		'【x1 y1 x2 y2 c[clockwise:↻1|↺0] z是否闭合 end mid start】',
+		sceg('30 150 200 150 1 1',20)
+		].join(br),
+
+
+	'Plane Coordinate System/Shape/Rectangle':[
+		'【x y width height】',
+		sceg('40 30 160 50',20),
+		
+		gM('Round Corner【x y width height rx ry [cx] [cy]】'),
+		sceg('40 30 160 50 20 20',20)
+		
+		].join(br),
+
+	'Plane Coordinate System/Shape/Square':[
+		'【x y width】',
+		sceg('40 30 160',20),
+		
+		gM('Round Corner【x y width rx ry [cx] [cy]】'),
+		sceg('40 30 160 20 20',20)
+
+		].join(br),
+
+
+	'Plane Coordinate System/Shape/Polygon':[
+		'【points】',
+		sceg('50 60 150 120 130 80',20)
+		].join(br),
+
+	'Plane Coordinate System/Shape/Regular Polygon':[
+		'【r cx cy width a n】',
+		sceg('150 200 50 9',20)
+		].join(br),
+
+
+
+
+	'Plane Coordinate System/Curve':['shape(id,type,content,attrs,style,translateA)',
+				gM('Arc')+': arc【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
+		sceg("shape('test','arc','','x1=100 y1=100 x2=100 y2=50 rx=40 ry=30 m=1 c=0')"),
 			
-				'_弧arc【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
-		sceg("shape('test','arc','x1=200 y1=300 x2=260 y2=300 rx=40 ry=30 m=1 c=0')"),
-			
-				'_半圆Arc【x1 y1 x2 y2 c[clockwise:↻1|↺0] z是否闭合 end mid start】',
-		sceg("shape('test','Arc','x1=200 y1=300 x2=260 y2=300 c=1 z= ')"),
+				gM('Semi Circle')+': Arc【x1 y1 x2 y2 c[clockwise:↻1|↺0] end mid start】',
+		sceg("shape('test','Arc','','x1=30 y1=150 x2=200 y2=150 c=1')"),
 					
-				'线段line【x1 y1 x2 y2 end mid start】',
-		sceg("shape('test','line','x1=200 y1=300 x2=260 y2=300 end=∧ mid=∧ start=∧')"),
+				gM('Line')+': line【x1 y1 x2 y2 end mid start】',
+		sceg("shape('test','line','','x1=100 y1=50 x2=160 y2=100 end=∧ mid=∧ start=∧')"),
 					
 				'折线polyline【points】',
-		sceg("shape('test','polyline','','points=\"200 300 250 330 280 270\"')"),
+		sceg("shape('test','polyline','','points=\"100 100 150 130 180 70\"')"),
 
 				'_横竖折线lineHV【hv横竖位移序列 r拐角半径】',
-		sceg("shape('test','lineHV','','hv=V20H15V30 r=4')"),
+		sceg("shape('test','lineHV','','hv=V80H100V120 r=4')"),
 
 		].join(br),
 
 
 
-	'Plane Coordinate System/Curve/arc':[
-		'【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
-		sceg('200 300 260 300 40 30 1',20)
-		].join(br),
 
 	'Plane Coordinate System/Curve/Arc':[
-		'【x1 y1 x2 y2 c[clockwise:↻1|↺0] z是否闭合 end mid start】',
-		sceg('200 300 260 300 0 1',20)
+		'【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
+		sceg('100 100 100 50 40 30 1 0',20)
 		].join(br),
-			
+
+	'Plane Coordinate System/Curve/Semi Circle':[
+		'【x1 y1 x2 y2 c[clockwise:↻1|↺0] end mid start】',
+		sceg('30 150 200 150 1',20)
+		].join(br),
+
+
+
+
+
+
+
+	'Plane Coordinate System/Text':	detail('文本text【Text】【x y dx dy rotate】 路径文本textPath【Text】【d href pathid】',Arrf(sceg,
+		["shape('','text','O','x=90 y=112 rotate=20')",
+		"shape('','textPath','路径文本','d="+'"M20 20 L120 102"'+" pathid=path1')"
+		]).join(br)),
+
+
+
+
+
 	/*[
 		{'Cartesian':[
 			{'Point':[
@@ -225,215 +300,38 @@ tooltip.graphic={
 
 
 
-'Project/flowchart':['流程图 flowchart'+href(Hs+'flowchart.js.org','官网'),
-	'支持LaTeX的方法：',
-	'LaTeX公式用$美元符号$括起来'+sceg2('$x^2+y^2$'),
-	'JS代码再嵌套一层$'+sceg2('$$kxf(\'tr\')+\'(A)\'$$'),
-	,
-	sceg(['s=>start: $a^2+b^2$kroot(3)$=?$',
-	'e=>end: e',
-	'o1=>operation: o1',
-	's1=>subroutine: s1',
-	'c1=>condition: c1',
-	'i1=>inputoutput: i1',
-	'p1=>parallel: p1',
-	's->o1->c1',
-	'c1(yes)->i1->e',
-	'c1(no)->p1',
-	'p1(path1, bottom)->s1(right)->o1',
-	'p1(path2, top)->o1',
-	].join('&&'),10)+
-	Arrf(sceg,[
-	's@>o1({"stroke":"Red"})',
-	's@>o1({"stroke":"Red"})@>c1({"stroke":"Blue"})',
-	'o1@>c1({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})',
-	
-	]).join(br),
+	'Project/flowchart':['流程图 flowchart'+href(Hs+'flowchart.js.org','官网'),
+		'支持LaTeX的方法：',
+		'LaTeX公式用$美元符号$括起来'+sceg2('$x^2+y^2$'),
+		'JS代码再嵌套一层$'+sceg2('$$kxf(\'tr\')+\'(A)\'$$'),
+		,
+		sceg(['s=>start: $a^2+b^2$kroot(3)$=?$',
+		'e=>end: e',
+		'o1=>operation: o1',
+		's1=>subroutine: s1',
+		'c1=>condition: c1',
+		'i1=>inputoutput: i1',
+		'p1=>parallel: p1',
+		's->o1->c1',
+		'c1(yes)->i1->e',
+		'c1(no)->p1',
+		'p1(path1, bottom)->s1(right)->o1',
+		'p1(path2, top)->o1',
+		].join('&&'),10)+
+		Arrf(sceg,[
+		's@>o1({"stroke":"Red"})',
+		's@>o1({"stroke":"Red"})@>c1({"stroke":"Blue"})',
+		'o1@>c1({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})',
+		
+		]).join(br),
 
-	'常用命令片段：'+
-	Arrf(sceg2,[
-	'->',
-	's=>start:>',
-	'链接:>'+Hs+'[blank]',
-	]).join(br),
+		'常用命令片段：'+
+		Arrf(sceg2,[
+		'->',
+		's=>start:>',
+		'链接:>'+Hs+'[blank]',
+		]).join(br),
 
-].join(br)
+	].join(br)
 
 };
-
-
-
-function tooltipGraphic(issele,met,muri){
-
-		var v=muri.split('/')[0];
-console.log(met,muri,v);
-		if(issele){
-			var tip=tooltip[v],tip0=tooltip.graphic[muri],tip1=tooltip.graphic[muri+' Condition'];
-			if($('#input0Tip .inputTip[data-tool="'+v+'"]').length<1 && tip){
-				$('#input0Tip').append(detail(gM(v), tip, '', 'class=inputTip data-tool="'+v+'"'))
-
-			}
-			if($('#input0Tip .inputTip[data-tool="'+muri+'"]').length<1 && tip0){
-				$('#input0Tip').append(detail(gM(met), tip0, '', 'class=inputTip data-tool="'+muri+'"'))
-				if(tip1){
-					$('#input1Tip').append(detail(gM(met+' Condition'), tip1, '', 'class=inputTip data-tool="'+muri+'"'));
-				}
-			}
-
-		}else{
-			$('#input0Tip .inputTip[data-tool="'+muri+'"]').remove();
-			$('#input1Tip .inputTip[data-tool="'+muri+'"]').remove();
-		}
-
-}
-
-
-
-
-
-
-
-$(function(){
-			
-	var str='';
-	$.each(graphics, function(k,v){
-		str+=jdetail(k);
-	});
-
-	$('#graphicGround .ground0').html(str);
-
-	
-
-	
-	$('body').on('click','#graphicGround .task', function(e){
-		var me=$(this).toggleClass('seled'),se=me.is('.seled'),met=me.attr('data-tool'),eg=me.attr('data-eg'), shft=e.shiftKey;
-
-
-		if(se && shft){
-			$('#input0').val(function(i,v){return (v.trim()?v.trim()+'\n':'')+(eg||$('#input0Tip .eg').attr('data-eg')||'')})
-			
-			
-		}
-
-
-		tooltipGraphic(se,met,furi(me));
-
-
-
-		L.subtool=[
-			$('#graphicGround .ground0 .level.seled').index(),$('#graphicGround .ground1 .level.seled').index(),$('#graphicGround .ground2 .level.seled').index(),
-			$('#graphicGround .task.seled').index()
-		].join('.');
-		
-	}).on('click','#graphicGround .ground0 .level',function(){
-
-
-		var me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		
-		if(mei=='Doodle'){
-			window.open('cap.html');
-			return
-		}
-		
-		
-		if(me.is('.seled')){
-			me.removeClass('seled');
-			
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=graphics[mei],str='', str2='';
-
-			$.each({'i':o}, function(x,A){
-consolelog(x,A);
-				if(isStr(A[0])){
-					$('#graphicGround .tasks').append(jdetail(A,'','task'))
-					
-				}else{
-					
-					for(var i=0,l=A.length;i<l;i++){
-						if(isStr(A[i])){
-							str2+=jdetail(A[i],'','task')
-							
-						}else{
-							$.each(A[i], function(k,v){
-								str+=jdetail(k);
-							});
-						}
-					}
-					$('#graphicGround .ground1').html(str);
-					$('#graphicGround .tasks').html(str2);
-				}
-			});
-
-		}
-		$('#input0Tip,#input1Tip').empty();
-		//tooltipGraphic(me.is('.seled'),mei,furi(me))
-
-	}).on('click','#graphicGround .ground1 .level',function(){
-
-
-		var g0i=$('#graphicGround .ground0 .seled').attr('data-i'), me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=graphics[g0i][i],str='',str2='';
-			/*
-			$.each(o, function(x,A){
-				o=A[i];
-			});
-			*/
-
-			$.each(o, function(x,A){
-				if(isStr(A[0])){
-					$('#graphicGround .tasks').append(jdetail(A,'','task'))
-					
-				}else{
-					
-					for(var i=0,l=A.length;i<l;i++){
-						if(isStr(A[i])){
-							str2+=jdetail(A[i],'','task')
-							
-						}else{
-							$.each(A[i], function(k,v){
-								str+=jdetail(k);
-							});
-						}
-
-					}
-					$('#graphicGround .ground2').html(str);
-					$('#graphicGround .tasks').html(str2);
-				}
-			});
-
-		}
-		//$('#input0Tip,#input1Tip').empty();
-		tooltipGraphic(me.is('.seled'),mei,furi(me))
-
-	}).on('click','#graphicGround .ground2 .level',function(){
-
-
-		var g0i=$('#graphicGround .ground0 .seled').attr('data-i'),g1i=$('#graphicGround .ground1 .seled').index(), me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=graphics[g0i][g1i],str='';
-			$.each(o, function(x,A){
-				o=A[i]
-			});
-
-			$.each(o, function(x,A){
-				$('#graphicGround .tasks').append(jdetail(A,'','task'))
-			});
-
-		}
-		//$('#input0Tip,#input1Tip').empty();
-		tooltipGraphic(me.is('.seled'),mei,furi(me))		
-	});
-
-
-});

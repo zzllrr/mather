@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['logic']=Kx(
+wiki['Logic']=Kx(
 
 
 detail('逻辑恒等式',Table([ZLR('恒等式 名称')],[

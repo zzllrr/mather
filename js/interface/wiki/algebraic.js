@@ -1,11 +1,10 @@
-﻿/*
+/*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['algebraic']=Kx(
+wiki['Algebraic']=Kx(
 
 detail('整系数代数方程',Table([ZLR('解形式 等价方程 简化方程 方程解')],[
 

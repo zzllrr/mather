@@ -103,7 +103,8 @@ $(function(){
 		L.subtool=[$('#subject0').val(),$('#subject1').val(),$('#subject2 :selected').index(),
 			$('#solveGround .ground0 .level.seled').index(),$('#solveGround .ground1 .level.seled').index(),$('#solveGround .ground2 .level.seled').index(),
 			$('#solveGround .task.seled').index()].join('.').replace(/,-1.+/,'');
-		
+	});
+/*
 	}).on('click','#solveGround .ground0 .level',function(){
 
 
@@ -203,7 +204,7 @@ $(function(){
 		
 	});
 
-
+*/
 
 
 	var uo=H_o(sch);

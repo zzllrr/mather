@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['recursive']=
+wiki['Recursive']=
 	detail('阿克曼函数Ackermann （双归纳，扩展基本算术运算+ * ^ ↑）','A(m,n)='+
 		piece([
 			['n+1','当m=0时'],

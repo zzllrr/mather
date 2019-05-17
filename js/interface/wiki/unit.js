@@ -1,12 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['unit']=Kx(
-
+wiki['Unit']=Kx(
 
 	detail('数量级',Table([ZLR('数量级 中文 梵语 英文（美） 英文（英）')],[
 		['10^{-24}','[幺]','涅盘寂静','',''],

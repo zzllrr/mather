@@ -1,38 +1,30 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-
-var wikis=ZLR('Number Vector Matrix Analytic Limit Differential Integral').concat('Formal Power Series')
-	.concat(ZLR('Function Algebra Logic Set Relation Geometry Graph'));//determinant recursive
-/* 目录结构首字母大写，底层条目小写（若底层条目首字母大写，说明需要用父名和空格与其结合，组成查询键）
-		
-	注意：JS文件名，使用首字母大写，空格用下划线代替
-		  JS里面的键，多个单词，使用全称（常有空格），且单词首字母大写；单个词，小写
-*/
-
-explores['wiki']={
+wikis={
+	'index':['Number','Vector','Matrix','Analytic','Limit','Differential','Integral','Formal Power Series','Function','Algebra','Logic','Set','Relation','Geometry','Graph'],
 	'Number':[
-		'unit',
-		'number',
+		'Unit',
+		'Number',
 		{'Integer':[
-			'integer',
+			'Integer',
 			'Type',
-			'divide',
+			'Divide',
 			'Fermat Number',
 		]},
 		{'Prime':[
-			'prime',
+			'Prime',
 			'Type',
 			'Structure',
 			'Prime Mersenne Number',
 			
 		]},
-		'algebraic',
-		'complex',
+		'Algebraic',
+		'Transcendental',
+		'Complex',
 		{'Sequence':[
 			'Rational',
 			'Sum',
@@ -42,8 +34,8 @@ explores['wiki']={
 		]},
 	],
 	'Vector':[
-		'vector',
-		'tensor',
+		'Vector',
+		'Tensor',
 	],
 	'Matrix':[
 		'Type',
@@ -51,31 +43,31 @@ explores['wiki']={
 		'Binary Operation',
 		'Binary Relation',
 		'Matrix Factorization',
-		'determinant',
+		'Determinant',
 		
 	],
 	
 	'Analytic':[
-		'polynomial',
-		'fraction',
-		'radical',
+		'Polynomial',
+		'Fraction',
+		'Radical',
 		'Infinite Series',
 		
 	],
 	
 
 	'Limit':[
-		'limit'
+		'Limit'
 	],
 
 	
 
 	'Differential':[
-		'differential',
+		'Differential',
 	],
 
 	'Integral':[
-		'integral',
+		'Integral',
 	],
 	
 	'Formal Power Series':[
@@ -83,44 +75,46 @@ explores['wiki']={
 	],
 	
 	'Function':[
-		'function',
+		'Function',
+		'Recursive',
 	],
 	
 	'Algebra':[
-		'algebra',
-		'group',
-		'ring',
-		'lattice',
+		'Algebra',
+		'Group',
+		'Ring',
+		'Lattice',
 	],
 	
 	'Logic':[
-		'logic',
+		'Logic',
 	],
 	
 	'Set':[
-		'set'
+		'Set'
 	],
 
 	'Relation':[
 		'Type',
-		'equivalence',
+		'Compatible',
+		'Equivalence',
 		'Partial Order',
 	],
 	
 
 	'Geometry':[
-		'point',
-		'line',
-		'angle',
-		'plane',
-		'solid',
+		'Point',
+		'Line',
+		'Angle',
+		'Plane',
+		'Solid',
 	],
 	'Graph':[
 		'Type',
 		'Unary Operation',
 		'Binary Operation',
 		'Binary Relation',
-		'path',
+		'Path',
 	]
 
 };

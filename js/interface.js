@@ -3,19 +3,20 @@
  * zzllrr@gmail
  * Released under MIT License
  
-
  
- 文件夹（名称小写）：
+文件夹（名称小写）：
+文件名（英文名称，标点符号统一转成下划线）
+	一般是小写
+	wiki\ show\ topic\ 中的文件名，大写
 
-  
+
+
+
  实体对象obj: （底层开发用）数学实体对象（数据结构、一元运算（属性、方法、变换）、多元运算）
  	每个对象对应一个js文件
  
  界面层interface: （界面设计用）
  	每个功能模块对应一个js文件
- 
-
- 
  
  
  
@@ -51,9 +52,10 @@
   		教学互动（课堂测验、抢答）
   		语音播放
   		VCR视频片段
-  		AR/VR
+  		AR
+  		VR
 
-探索explore: 
+
 
 	百科wiki: （研究用、教师用、科普用）数学知识概念库（数学对象介绍，定义、性质、定理）
 	  	【标准、内容】每个对象对应一个js文件
@@ -115,17 +117,7 @@
 				ref.js
 		 		有数学内容的其它链接库
 
-关于about: 
- 	【标准、内容】
 
- 		version.js 版本说明、已知错误、使用问题和解决指南、项目进度（用户用）
- 		whitepaper.js 小乐数学白皮书（协议）（数学支持者用）
- 		API.js	API接口索引（底层开发用）
- 		donate.js 捐赠接口（用户用）
-
-
-单数名对象，存储执行函数或字符串结果
-复数名对象，存储目录结构
 
 */
 
@@ -145,13 +137,7 @@ $.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键
 lang['zh_tw']=JSON.parse(zh2big(JSON.stringify(lang['zh_cn'])));
 if(!i18n){i18n=lang[H_o().lang||'zh_cn']}
 
-var solves={},solve={}, graphics={},graphic={}, shows={}, show={},oH,OHthen={},
-	
-//wikis,topics={},pitfalls={},unsolveds={},refers=ZLR('activity org edu fan pub mooc ppt exam hardware software ref'),
-abouts=ZLR('version whitepaper API donate'),about={},
-explores={},explore={},
-	
-wiki={},course={},drill={},topic={},pitfall={},unsolved={},refer={},
+var oH,navhead={},navheadThen={},
 
 
 subject0='11 14 17 21 24 27 31 34 37 41 44 47 51 54 57 61 64 67 71 74 77 81 84 87 99',
@@ -174,7 +160,25 @@ subjects={
 	74:zlrA('74',seqA(10,15,'',5).concat(99))
 },
 
-courses=ZLR(subject0), drills=ZLR(subject0),
+solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
+solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
+solveThen={}, graphicThen={}, showThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
+/*
+	
+
+
+单数名k，存储执行函数( 供Go按钮调用,例如solve ) 或字符串结果(例如navhead)
+复数名ks，存储目录结构，默认第一个键值index存储一级目录索引
+单数名kThen, 界面工具加载后的执行函数
+
+键有歧义时，用路径URI
+
+
+tooltip[tool].k，存储提示工具栏	键使用路径URI
+
+*/
+
+
 /*
 ,mathmlAttrs={
 	'msup':{'superscriptshift':'[length]'},

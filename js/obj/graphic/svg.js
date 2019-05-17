@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -30,8 +29,10 @@ var plot={
 		}
 		return '<defs>'+str+'</defs>'
 	},
-	shape:function(id,type,content,attrs,style,translateA){
-consolelog(attrs);
+
+	shape:function(id,type,content,attrs,style,translateA){//id,type,content,attrs,style,translateA
+consolelog(id,type,content);
+consolelog(attrs,style,translateA);
 		var typ=type, attr=attr2jSon(attrs||''), arrow='trig diamond square circle', ems=ZLR(' v '+zlr2(arrow,'Hollow')+' '+zlr2(arrow,'Solid')), trA=translateA, tra='', t0='', tP=typ=='textPath';
 
 
@@ -116,7 +117,8 @@ consolelog(trA);
 				t0=XML.wrapE('defs','<path id='+attr.pathid+' d="'+attr.d+'" />');
 			}
 		}
-		return t0+'<'+typ+' id="'+id+'" '+jSon2attr(attr)+tra+(style?' style="'+style+'"':'')+'>'+(tP?'<'+type+' xlink:href="#'+(attr.href||attr.pathid)+'">':'')+(content||'')+(tP?'</'+type+'>':'')+'</'+typ+'>'+(/textarea|svg|^g$/.test(typ)?'':plot.defs(id));
+		return t0+'<'+typ+' id="'+id+'" '+jSon2attr(attr)+tra+(style?' style="'+style+'"':'')+'>'+(tP?'<'+type+' xlink:href="#'+(attr.href||attr.pathid)+'">':'')+
+			(content||'')+(tP?'</'+type+'>':'')+'</'+typ+'>'+(/textarea|svg|^g$/.test(typ)?'':plot.defs(id));
 	},
 	shapeWHD:function(obj){	//外围宽、高、直径 中心点坐标
 		var BCR=$(obj)[0].getBoundingClientRect(),w=BCR.width,h=BCR.height, sw=+($(obj).attr('stroke-width')||1);
@@ -1192,6 +1194,7 @@ consolelog(xy,irx,iry);
 	
 	},
 	plot:function(id,v){
+consolelog(id,v);
 		$('#oHTML').append(v); //jQuery不支持大写节点
 		//$('#oHTML').children().last()[0].outerHTML=v;
 		//consolelog($('#oHTML').children().last()[0].outerHTML);

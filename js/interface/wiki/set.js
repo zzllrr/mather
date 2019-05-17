@@ -1,12 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['set']=Kx(
-
+wiki['Set']=Kx(
 
 detail('集合（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['补集\n',khrA(['C(A)']),

@@ -1,13 +1,12 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
 
 
-OHthen['Voice']=function(){
+showThen['Voice']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
 		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone">'+strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),

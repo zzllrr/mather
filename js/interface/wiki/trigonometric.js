@@ -1,14 +1,11 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['trigonometric']=Kx(
+wiki['Trigonometric']=Kx(
 
-
-	
 detail('三角函数 Trigonometric',Table([ZLR('函数 定义域 值域 周期 奇偶 对称 单调 凹凸')],[
 	ZLR('\\sin x____ℝ____[-1,1]____2π____奇____'+piece(['对称轴 x =kπ+'+frac('π',2,''),'对称中心 x = kπ'])+'____'+piece([['↗',
 		lrp('[','2kπ-'+frac('π',2,'')+', 2kπ+'+frac('π',2,''),']','')],['↘',

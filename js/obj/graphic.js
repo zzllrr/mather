@@ -28,6 +28,7 @@ var Graphic={
 	},
 	drawSVG:function(graphType,v,ID,DOM){
 		var g=graphType,d;
+consolelog('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
@@ -72,12 +73,30 @@ consolelog(D.html());
 						
 						
 					}else{//svg
-						var x='plot.',gA=g.split('/'),gl=gA.slice(-1)[0];
+						var x='plot.',gA=g.split('/'),gl=gA.slice(-1)[0], ivil=ivi.split(' ').length;
 						if(/^[a-z]+\(/.test(ivi)){
 							x+=ivi
 						
 						}else{				
 							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
+								var egs=$('.inputTip[data-uri*="Plane Coordinate System"] .eg');
+								
+								if(/^(Ellipse|Circle|Polygon|Arc)$/.test(gl)){
+									gl=gl.toLowerCase()
+								}else if(gl=='Rectangle'){
+									gl='rect'
+								}else if(gl=='Regular Polygon'){
+									gl='Polygon'
+								}else if(gl=='Semi Circle'){
+									gl='Arc';
+									
+									if(g.indexOf('/Shape/')>0){
+										egs=$('.inputTip[data-uri*="Plane Coordinate System/Shape"] .eg')
+									}
+									
+								}
+								
+								
 								x+="shape('','"+gl+"','','";
 								if(/path/i.test(gl)){
 								
@@ -87,11 +106,17 @@ consolelog(D.html());
 								
 								}else{
 							
+									var egi=egs.filter('[data-eg*="\''+gl+'\'"]');
+
+									var eg=split(egi.attr('data-eg')||'',/[a-z\d]+=/g);
 							
-									var eg=split($('.inputTip[data-tool*="Plane Coordinate System"]').find('.eg[data-eg*="\''+gl+'\'"]').attr('data-eg')||'',/[a-z\d]+=/g);
-							
-							console.log('eg=',eg);
-									x+=snake([eg[0],(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
+							console.log(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
+									if(eg[0].length==1 && / /.test(ivi)){
+										ivi='"'+ivi+'"';
+										x+=eg[0]+ivi;
+									}else{
+										x+=snake([eg[0].slice(0,ivil),(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
+									}
 								}
 								
 								x+="')";

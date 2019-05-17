@@ -1,9 +1,8 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
+refers={index:ZLR('Book Magazine Contest Activity Prize Mooc Academy University Organization Fan Software Hardware Ref')
 
-var refers=ZLR('activity org edu fan pub mooc ppt exam hardware software ref');
-explores['refer']=refers;
+};

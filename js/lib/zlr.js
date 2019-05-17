@@ -90,7 +90,8 @@ function consolelog(){
 		console.log.apply(null,arguments)
 	}
 }
-function gM(msg,str,o){var M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
+function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)},msg)}
+	var M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
 	if(!x && chrome.i18n){
 		x=chrome.i18n.getMessage(msg, str)
 	}
@@ -273,6 +274,7 @@ var HOM={
 var strop='</option><option value=', strchkbx0='<input type=checkbox ', strbtn='<input type=button value="', btnGo=strbtn+'GO" class=vipurl />',
 num=function(x,ma){return '<input type=number value='+x+' min=0 '+(ma?'max= '+ma:'')+'/>'},
 imgSRC='<img src="img/', prog=imgSRC+'loading.gif" width=16 class=prog />', chked=' checked', seled=' selected',
+meter=function(i,low,optimum,high){return '<meter min=0 max=100'+(low || low===0?' low='+low:'')+(optimum || optimum===0?' optimum='+optimum:'')+(high || high===0?' high='+high:'')+' value='+i+' />'},
 bgfrom='-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto='), to(', grad=function(t){
 	//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
 	return '-webkit-linear-gradient(top, white, '+t+' 20%, '+t+' 80%, white)'},

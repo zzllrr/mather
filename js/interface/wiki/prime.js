@@ -1,12 +1,11 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
 
-wiki['prime']=Kx(
+wiki['Prime']=Kx(
 
 detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质')],[
 	['素数____质数____Prime','只能被1和自身整除','P_n \\\\ p_n',

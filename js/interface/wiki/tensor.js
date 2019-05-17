@@ -1,12 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['tensor']=Kx(
-
+wiki['Tensor']=Kx(
 
 detail('张量',Table([ZLR('名称 记法 定义 性质')],[
 	['(真)标量____Scalar','','','空间反演下不改变符号'],

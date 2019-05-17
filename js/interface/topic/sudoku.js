@@ -1,108 +1,99 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-topic['sudoku']='';
+topic['Sudoku']='';
 
-$(function(){
-	if(!$('.detail_last.seled[data-i=sudoku]').length){return}
-	
-	$('head').append(XML.wrapE('style',
-	`.sudoku td:not(.red){
-		color:white
-	}
-	.sudoku td:not(.bdr){
-		border-right: outset gainsboro 1px;
-	}
-	.sudoku td:not(.bdl){
-		border-left: outset gainsboro 1px;
-	}
-	.sudoku td:not(.bdt){
-		border-top: outset gainsboro 1px;
-	}
-	.sudoku td:first-child{
-		border-left: outset black 1px;
-	}
-	.sudoku td:not(.bdb){
-		border-bottom: outset gainsboro 1px;
-	}
-	.sudoku .red{
-	  text-shadow: gray 1px 1px 2px;
+tooltip.topic['Game/Sudoku']=XML.wrapE('style',
+		`.sudoku td:not(.red){
+			color:white
+		}
+		.sudoku td:not(.bdr){
+			border-right: outset gainsboro 1px;
+		}
+		.sudoku td:not(.bdl){
+			border-left: outset gainsboro 1px;
+		}
+		.sudoku td:not(.bdt){
+			border-top: outset gainsboro 1px;
+		}
+		.sudoku td:first-child{
+			border-left: outset black 1px;
+		}
+		.sudoku td:not(.bdb){
+			border-bottom: outset gainsboro 1px;
+		}
+		.sudoku .red{
+		  text-shadow: gray 1px 1px 2px;
+		  -webkit-text-stroke: 1px red;
+		}
+
+
+	  /*
+	  text-shadow: black 1px 1px 2px,pink -1px 1px 2px,gray 1px -1px 2px,white -1px -1px 2px;
+	   -webkit-text-fill-color: transparent;
 	  -webkit-text-stroke: 1px red;
-	}
+	  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));  
+	  
+	    background:-webkit-linear-gradient(left,#f00,#ff0 25%,#0f0 40%,#0ff 55%,#00f 70%,#f00);
+	  -webkit-background-clip:text;
+	  */
+		.sudoku td:not(.red){
+		    text-shadow: black 1px 1px 2px;
+		}
 
 
-  /*
-  text-shadow: black 1px 1px 2px,pink -1px 1px 2px,gray 1px -1px 2px,white -1px -1px 2px;
-   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px red;
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));  
-  
-    background:-webkit-linear-gradient(left,#f00,#ff0 25%,#0f0 40%,#0ff 55%,#00f 70%,#f00);
-  -webkit-background-clip:text;
-  */
-	.sudoku td:not(.red){
-	    text-shadow: black 1px 1px 2px;
-	}
+		.sudoku td:before,.sudoku td:after{
+		    color: white;
+		    text-shadow: black 1px 1px 1px;
+		 	position: absolute;
+		}
+		.sudokuks:before{
+		    content: attr(data-ks);
+		    font-size: 10px;
+		    margin: -4px -12px;
+		}
+		.sudoku{
+			font-size:30px;
+			margin:25px;
+			border:6px outset;
+			border-spacing:0;
+			border-collapse: separate;
+			text-align:center;
+			float:left;
+			border: 6px outset;
+		  	border-radius: 10px;
+		}
 
 
-	.sudoku td:before,.sudoku td:after{
-	    color: white;
-	    text-shadow: black 1px 1px 1px;
-	 	position: absolute;
-	}
-	.sudokuks:before{
-	    content: attr(data-ks);
-	    font-size: 10px;
-	    margin: -4px -12px;
-	}
-	.sudoku{
-		font-size:30px;
-		margin:25px;
-		border:6px outset;
-		border-spacing:0;
-		border-collapse: separate;
-		text-align:center;
-		float:left;
-		border: 6px outset;
-	  	border-radius: 10px;
-	}
+		.sudoku td:not([class]){
+			opacity:0
+		}
+		.sudokuAppend{
+			opaicty:.7;
+			background: rgba(154, 205, 50,.5);
+		}
 
+		.sudoku td{
+			width: 40px;
+			height:40px;
+			border-radius: 5px;
+		}
 
-	.sudoku td:not([class]){
-		opacity:0
-	}
-	.sudokuAppend{
-		opaicty:.7;
-		background: rgba(154, 205, 50,.5);
-	}
-
-	.sudoku td{
-		width: 40px;
-		height:40px;
-		border-radius: 5px;
-	}
-
-	#sudokuTable{
-		zoom:.7
-	}`
-));
-	
-	var i0=$('#input0'),i1=$('#input1'),v=i0.val().trim(), oH=$('#oHTML').empty();
-
-	$('#wiki').append(DC+'form data-tool="">'+DC+'sudokuForm><table id=sudokuTable class=sudoku><tbody>'+'xxyxxyxxx'.replace(/x/g,'<tr>001001000</tr>').replace(/y/g,'<tr>223223222</tr>')
+		#sudokuTable{
+			zoom:.7
+		}`
+	)+DCtv('sudokuForm','<table id=sudokuTable class=sudoku><tbody>'+'xxyxxyxxx'.replace(/x/g,'<tr>001001000</tr>').replace(/y/g,'<tr>223223222</tr>')
 			.replace(/\d/g,function(t){return '<td class="red'+['',' bdr',' bdb',' bdb bdr'][+t]+'" contenteditable=true></td>'})+
 		'</tbody></table><table id=sudokuValue><tbody><tr><td>阶数'+zlr3('<label><input type=radio name=sudokuPls ','checked=true@/>9x9 />6x6 />8x6','</label>','').replace(/@/g,' ')+
 		'</td><td></td><td>'+strbtn+'区域重选" id=sudokuRepick />'+strbtn+'数字重填" id=sudokuNew />'+strbtn+'OK" id=formsOK /></td></tr>'+
 		zlr3('<tr><td><label><input@type=radio@name=sudokuType@/>','基本数字CHK0EDs1=\n 不规则宫区域CHE0CKp1=p\n 额外区域CHE1CKa1= 相邻连续CHE1CKs1cont=\n 相邻连续2MCHE1CKs1cont2M= '+
 			'单格数比>CHE1CKs1comp> 单格数比=CHE1CKs1comp= 单格数比<CHE1CKs1comp< 数和（杀手）CHE1CKs1sum= 数和数比>CHE1CKs1sumcomp> 数和数比=CHE1CKs1sumcomp= 数和数比<CHE1CKs1sumcomp< 数积CHE1CKs1prod= 额外条件CHE1CKs1.',
-		'</td></tr>').replace(/@/g,' ').replace('/>基本数字','checked />基本数字').replace(/CHK(\d)ED/g,'</label></td><td>'+strchkbx0+'class=input$1 checked /></td><td contenteditable=true>').replace(/CHE(\d)CK/g,'</label></td><td>'+strchkbx0+'class=input$1 /></td><td contenteditable=true>')+'</tbody></table>'+dc+dc+dc);
-
-	$('#input0Tip').html(DCtv('inputTip data-tool="数独',detail('数独类型',['s已知数(sudoku)，p宫分块号(palace，支持4种字符参数pdfs，分别表示宫型、对角、扁型、高型)'].concat(
-	concat(ZLR('标准 拼图（锯齿） 重叠2 重叠3 重叠5 拼图重叠 对角线 额外区域 摩天楼'),Arrf(function(x){return sceg(x,0)},[
+		'</td></tr>').replace(/@/g,' ').replace('/>基本数字','checked />基本数字').replace(/CHK(\d)ED/g,'</label></td><td>'+strchkbx0+'class=input$1 checked /></td><td contenteditable=true>').replace(/CHE(\d)CK/g,'</label></td><td>'+strchkbx0+'class=input$1 /></td><td contenteditable=true>')+'</tbody></table>')+
+	DCtv('inputTip data-tool="数独',detail('数独类型',['s已知数(sudoku)，p宫分块号(palace，支持4种字符参数pdfs，分别表示宫型、对角、扁型、高型)'].concat(
+		concat(ZLR('标准 拼图（锯齿） 重叠2 重叠3 重叠5 拼图重叠 对角线 额外区域 摩天楼'),Arrf(function(x){return sceg(x,0)},[
 			's1=@4_231_76_@___46_3_5@6____91__@34____82_@___8_4___@_81____96@__36_____@1_4_87___@_27_536_4@p1=p',
 			's1=@_9__65_8_@78___4_52@_________@_5_____1_@___5398__@_6_____7_@_________@93_2___45@_1_75__2_@@p1=@111222233@111442233@111442233@554444233@555466663@755566688@777566888@777999998@779999888',
 			's1=@_3____27_@________9@_6____1__@__7__8_6_@__5_6___1@________2@5__6__3__@____5____@___1____5@p1=p@@s2=@___6____1@_3__7__8_@____5_6__@4________@_15__6__3@______5__@_____1___@__4______@9__38_7__@p2=p',
@@ -114,9 +105,9 @@ $(function(){
 			's1=@_52_1____@______721@_7_2_4___@6_____1_5@___1_9___@2_5_____7@___8_5_7_@764______@____7_31_@p1=p',
 
 			's1=@3_5__8_9_@_____9___@29_1_____@9_______1@_3_95____@________9@1_92_____@____93___@6_3_1_95_@p1=p'
-		]))).join(br).replace(/@/g,'\n').replace(/_/g,' '))));
-			
-	$('#input1Tip').html(DCtv('inputTip data-tool="数独',detail('条件',['sisj表示交集：重叠处的索引（区域左上角单元格行列号，从1开始计数，注意ij先后表示绘表先后）及偏移量（交叉处的行列数）',
+		]))).join(br).replace(/@/g,'\n').replace(/_/g,' ')));
+
+tooltip.topic['Game/Sudoku Condition']=DCtv('inputTip data-tool="数独',detail('条件',['sisj表示交集：重叠处的索引（区域左上角单元格行列号，从1开始计数，注意ij先后表示绘表先后）及偏移量（交叉处的行列数）',
 		'重叠2'+sceg('s1s2=31 13,77'),
 		'重叠3'+sceg('s1s2=44 11,66@s2s3=44 11,66').replace(/@/g,'\n'),
 		'重叠5'+sceg('s1s3=77 11,33@s2s3=71 17,33@s3s4=71 17,33@s3s5=77 11,33'.replace(/@/g,'\n'),10),
@@ -139,23 +130,32 @@ $(function(){
 				
 		'额外区域（局部不重复）'+sceg('p1=14 23 24 32,58 67 68 76'),
 		'额外条件'+sceg('s1.23 32in13579')
-		].join(br))));
-			
+		].join(br)));
 
+topicThen['Game/Sudoku']=function(){
+	$('.inputTip[data-uri="Game/Sudoku"]').attr('open','open');
+	$('#iTextFold:contains(unfold_more)').click()
+};
 
-	$('#formsOK').on('click',function(){
+$(function(){
+
+	$('#input0Tip').on('click','#formsOK',function(){
 		var i0=$('#input0'),i1=$('#input1');
-		$('.form:visible').find('.input0:checked').each(function(){
+		$('.sudokuForm').find('.input0:checked').each(function(){
 			var t=$(this).parent().next().text();
 			i0.val(function(i,v){return (v=='\n'?'':v+'\n')+t})
 		});
-		$('.form:visible').find('.input1:checked').each(function(){
+		$('.sudokuForm').find('.input1:checked').each(function(){
 			var t=$(this).parent().next().text();
 			i1.val(function(i,v){return (v=='\n'?'':v+'\n')+t})
 		});
 	});
 
 	$('#go').on('click',function(){
+		//if($('#explore').prop('checked') && $('.ground0 .level.seled[data-i=sudoku]').length){
+		if($('#sudokuTable').length){
+			
+		var i0=$('#input0'),i1=$('#input1'),v=i0.val().trim();
 		var dmid='outTbl'+(new Date()).getTime()+(Math.random()+'').substr(2), endn=1, colorA=H5Color('dark,red,black,crimson,maroon,firebrick,deep,midnight,fuchsia'),colori,sdata='';
 		var sepf=function(s,noexpandOpr){//连续数字缩写34~54 → 完整形式 34 44,44 54
 			var seqS=function(t){
@@ -1000,9 +1000,9 @@ document.getElementsByTagName('body')[0].appendChild(img);
 		$('#oHTML .sudoku').each(function(){
 			f($(this))
 		});
-		$('#bar').click();
 
 
+		}
 	});
 
 

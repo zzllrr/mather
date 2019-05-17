@@ -1,13 +1,12 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
 
 
-OHthen['Video']=function(){
+showThen['Video']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your Audio/Video URL')+'"></textarea>'+
 		detail(SCtv('VideoTool','<input type="file" accept="video/*" capture="camcorder">'+strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')

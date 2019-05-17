@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['integer']=Kx(
+wiki['Integer']=Kx(
 detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['数根\ndigital root','dr(n)',khrA(['反复求各位数之和，直至结果是个位数','dr(n)=1+((n-1) \\mod 9)',piece([[0,'当n=0时'],[9,'当n≠0且'+kmod('n',0,9)],['n \\mod 9','其余情况']])]),
 		ul([kbrA(['dr(n)=0 ⇔ n=0','dr(n)>0 ⇔ n>0','dr(n)=n ⇔ n是1位数','dr(n) < n ⇔ n≥10','dr(-n) = -dr(n)']),

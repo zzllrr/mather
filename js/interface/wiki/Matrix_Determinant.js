@@ -1,10 +1,9 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
-wiki['determinant']=
+wiki['Determinant']=
 detail('行列式公式',Table([ZLR('行列式 形式 值 例子')],[
 
 	ZLR('范德蒙'+br+'Vandermonde____'+zdet(['1 1 1 ⋯ 1','a_1 a_2 a_3 ⋯ a_n','a_1^2 a_2^2 a_3^2 ⋯ a_n^2','⋮ ⋮ ⋮ ⋱ ⋮','a_1^{n-1} a_2^{n-1} a_3^{n-1} ⋯ a_n^{n-1}'],4)+'____'+

@@ -74,11 +74,37 @@ lang['zh_cn']={
 
 // 人和组织
 	'Person':'人物',
+	'User':'用户',
+	'Student':'学生',
+	'Parent':'父母',
+	'Teacher':'老师',
+	'Enthusiast':'爱好者',
+	'Geek':'极客',
+	'Researcher':'科研工作者',
+	'Educator':'教育工作者',
+	'Scholar':'学者',
+	'Philosopher':'哲学家',
+	'Artist':'艺术家',
+	'Mathematician':'数学家',
+	'Engineer':'工程师',
+	'Publisher':'出版工作者',
+	'Amateur':'业余者',
+	
+	'Backer':'资助者',
+	'Sponsor':'赞助者',
+	'Contributor':'贡献者',
+	'Dedicator':'奉献者',
+	'Volunteer':'志愿者',
+	'Worker':'工作者',
+	'Supporter':'支持者',
+	'Public':'公众',
+	'Company':'公司',
+	
 	'zzllrr':'小乐',
 	'zzllrr Mather':'小乐数学',
 	'Mather':'数学者',
 	'Organism':'有机体',
-	'Contributor':'贡献者',
+
 	'Payee':'收款人',
 
 	'3rd-party':'第三方',
@@ -91,7 +117,15 @@ lang['zh_cn']={
 	'Library':'库',
 	'File':'文件',
 	'Engine':'引擎',
-	
+	'Subproject':'子项目',
+	'Application':'应用',
+	'by-product':'副产品',
+	'Goal':'目标',
+	'Software':'软件',
+	'Hardware':'硬件',
+
+
+
 	'Wiki':'百科',
 	'Drill':'题库',
 	'Course':'课程',
@@ -126,7 +160,11 @@ lang['zh_cn']={
 	'Gadget':'部件',
 	'Show':'演示',
 	'Doodle':'涂鸦',
+	'Compression':'压缩',
 	
+	'Keyword':'关键词',
+
+
 // 助词	或 词根
 	'and':'和',
 	'or':'或',
@@ -135,7 +173,10 @@ lang['zh_cn']={
 	'Co':'互',
 	'By':'按',
 	'Semi':'半',
-		
+	'Sub':'子',
+	'Quasi':'准',
+	'Multi':'多',
+	
 // measure
 
 // 空间
@@ -151,8 +192,8 @@ lang['zh_cn']={
 
 	'Pitch':'音调',
 
-	'Font':'字体',
-	'Language':'语言',
+	'Progress':'进度',
+
 
 	'Color':'颜色',
 	'Colors':'颜色',
@@ -180,30 +221,51 @@ lang['zh_cn']={
 	'Expression':'表达式',
 	'Unit':'单位',
 	'Value':'值',
+	'Information':'信息',
+	'Font':'字体',
+	'Language':'语言',
 
+	'Difficulty':'困难',
+	'Eagerness':'热切程度',
 
 // 自由描述
 	'Name':'名称',
 	'Summary':'简介',
 	'Description':'描述',
 	'Definition':'定义',
+	'Property':'性质',
+	'Notation':'记法',
+	'Theorem':'定理',
+	'Axiom':'公理',
+	'Lemma':'引理',
+	'Inference':'推论',
+	'Hypothesis':'猜想',
+	'Suppose':'假设',
+	
 	'Rule':'法则',
 	'Aims':'宗旨',
 	'Vision':'愿景',
 	'Protocol':'协议',
 	'Whitepaper':'白皮书',
+	'Copyright':'版权',
+
 	'Topic':'课题',
 	'Consensus':'共识',
 	'Cooperation':'合作',
 	'Condition':'条件',
 	'Concept':'概念',
+	'Technology':'技术',
+	'Thought':'思想',
 	
-	// adj
+	
+// adj
+	
 	'Random':'随机',
 	'Default':'默认',
 	
+	'Typical':'典型',
 	'Elementary':'初等',
-	
+	'Key':'关键',
 	'Horizontal':'水平',
 	'Vertical':'垂直',
 	'Center':'居中',
@@ -215,11 +277,45 @@ lang['zh_cn']={
 		
 	'Unsolved':'未解',
 
+	'Systematized':'系统化',
+	'Semantical':'语义化',
+	'Structural':'结构化',
+	'Organized':'组织化',
+	'Stable':'稳定的',
+	'Portable':'便携的',
+	'Eco-Friendly':'环保的',
+	'Efficient':'高效的',
+	'Intelligent':'智能',
+	'Automatic':'自动化的',
+	'Flexible':'灵活的',
+	'Agile':'敏捷的',
+	'Compact':'紧凑的',
+	'Extendable':'可扩展的',
+	'Customizable':'可定制的',
+	'Convenient':'方便的',
+	'Handy':'便利的',
+	'Easy':'容易的',
+	'Free':'免费的',
+	'Layered':'分层的',
+	'Hierarchical':'等级的',
+	'Practical':'实用的',
+	'Unambiguous':'无歧义的',
+	'Functional':'功能性的',
+	'Reusable':'可重用的',
+	'Inspiring':'启发性的',
+	'Detailed':'详细的',
+	'Stepwise':'提供步骤的',
+	'Interpretable':'可解释的',
+	'Multipath':'多途径的',
+	'Timely':'及时',
+	
 	'Offline':'离线',
+	'Local':'本地',
 	'Localized':'本地化',
 	'Online Connection':'联网',
 	'Energy Consumption Minimization':'能耗最小化',
 	'Open Access':'开放获取',
+
 
 	// action
 
@@ -265,6 +361,8 @@ lang['zh_cn']={
 	'Output':'输出',
 	'Refer':'参考',
 	
+	'i18n':'国际化',//	'Internationalization':'国际化',
+	'i10n':'本土化',	//Localization 
 
 	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
 	'input your Audio/Video URL':'输入你的音视频地址',

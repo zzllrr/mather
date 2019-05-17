@@ -28,10 +28,7 @@
 	border-color:gainsboro
 }
 
-
-
-
-.inputTip,.subtools, #outputOpt{
+.inputTip,.subtools, #outputOpt,#nav{
 	font-size:12px
 }
 .subtools summary{
@@ -88,7 +85,7 @@ sup,sub,.small{
 .hmulti {
     overflow: auto;
 }
-#zMather select:not(#explores){
+#zMather select{
 	border-style:none none solid none;
 	border-width:1px;
 }
@@ -123,20 +120,10 @@ sup,sub,.small{
     z-index: 20001;
 }
 
-.fdetail:hover summary{
-	color:white;
-	background:black;
-}
 
-.task:not(.seled),.taskname{
+.fdetail:hover summary,.task,.taskname{
 	color:white;
-	background:gray;
 }
-.task.seled{
-	color:white;
-	background:limegreen;
-}
-
 .taskname{
 	font-size:10px;
 	border-radius:15px;
@@ -169,22 +156,17 @@ summary,#menu{
 	border: solid black 1px;
 }
 
-
 .bdr{
 	border-right: outset black 1px;
 }
-
 
 .bdl{
 	border-left: outset black 1px;
 }
 
-
 .bdt{
 	border-top: outset black 1px;
 }
-
-
 
 .inblk:not(.notm),.vam{
 	vertical-align: middle;
@@ -269,10 +251,6 @@ li,#wiki{
     content: "】";
     margin-right: 2px;
 }
-
-
-
-
 
 
 .wiki:not(.bd0){
@@ -383,9 +361,7 @@ input[type=text],#wiki>span,.brad{
 .subtools details[open]{
 	border: solid 1px;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover){
-	background: rgba(162,195,97,.1);
-}
+
 .opa0{
 	opacity:0;
 	cursor:default
@@ -411,17 +387,11 @@ input[type=text],#wiki>span,.brad{
 	padding:5px;
 	display: inline-block;
     margin-right: 10px;
-
-}
-
-#explores{
-    height: 30px;
-    padding-left: 10px;
-    vertical-align: top;
 }
 
 #search{
     height: 30px;
+    width:60%;
     padding-left:10px;
     border-style: none none solid none;
     border-width: 1px;
@@ -429,9 +399,6 @@ input[type=text],#wiki>span,.brad{
 }
 #search:hover{
     border-color:transparent;
-}
-
-#search:hover{
 	background: rgba(50, 205, 50, 0.2);
 }
 
@@ -439,13 +406,9 @@ input[type=text],#wiki>span,.brad{
     margin-bottom: 100px;
 }
 
-
-
 #numStart{
 	max-width:45px;
 }
-
-
 
 #input0,#input1,#input2{
 	min-width:25%;
@@ -507,13 +470,13 @@ code,pre,#outputOpt{
 	bottom:0;
 }
 
-#zMather{
-
+#iContent{
 	border-bottom: dashed 1px gainsboro;
 }
 #oHTML{
 	position: relative;
 	padding-left:20px;
+	padding-top:10px;
 }
 #oHTML > div.abs{
 	position:absolute;
@@ -545,12 +508,8 @@ code,pre,#outputOpt{
 	resize: none;
 	overflow:hidden;
 }
-.eg,.windex,#logo,#night,.Clear,.task,th,[name=tool] + span{
+.eg,.windex,.Clear,.task,th{
 	cursor: pointer;
-}
-
-textarea{
-	background: transparent;
 }
 
 
@@ -577,18 +536,16 @@ summary ~ details{
 	z-index:-1;
 }
 
-#logo{
-	background: black;
+#navhead span{
     color: white;
-    padding: 2px;
+    padding: 2px 4px;
+    margin:2px;
     border-radius: 0 5px;
-}
-.level.seled, [name=tool]:checked + span{
-	background:limegreen;
+    cursor: pointer;
 }
 
-.level,[name=tool]:checked + span{
-	padding:2px 10px;
+.level,[name=tool] + span{
+	padding:2px 4px;
 	margin:2px;
 	color:white;
 	border-radius:5px;
@@ -600,32 +557,77 @@ summary ~ details{
 .level:not(.seled):not(:hover){
 	opacity:.5
 }
-#solveGround .level:not(.seled){
-	background:lightslategray;
+
+.subhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
+	background:black;
 }
-#subject .ground0 .level:not(.seled){
-	background:darkblue;
+.task:not(.seled),.taskname{
+	background:gray;
 }
 #subject .ground1 .level:not(.seled){
 	background:darkgray;
 }
-#graphicGround .level:not(.seled){
+
+#solveGround .level:not(.seled),#solve+span:hover{
+	background:blue;
+}
+
+#graphicGround .level:not(.seled),#graphic+span:hover{
 	background:hotpink;
 }
 
-
-#showGround .level:not(.seled){
+#showGround .level:not(.seled),#show+span:hover{
 	background:blueviolet;
 }
 
-#exploreGround .level:not(.seled){
-	background:seagreen;
+#wikiGround .level:not(.seled),#wiki+span:hover{
+	background:#993366;
 }
 
-#aboutGround .level:not(.seled){
+#courseGround .level:not(.seled),#course+span:hover{
+	background:#996633;
+}
+
+#drillGround .level:not(.seled),#drill+span:hover{
+	background:#CCCC66;
+}
+
+#topicGround .level:not(.seled),#topic+span:hover{
+	background:#009933;
+}
+
+#pitfallGround .level:not(.seled),#pitfall+span:hover{
+	background:#CC3366;
+}
+
+#unsolvedGround .level:not(.seled),#unsolved+span:hover{
+	background:#663300;
+}
+
+#thoughtGround .level:not(.seled),#thought+span:hover{
+	background:#6699CC;
+}
+
+#referGround .level:not(.seled),#refer+span:hover{
 	background:darkred;
 }
 
+.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled{
+	background:limegreen;
+}
+[name=tool]:checked + span{
+	border-radius: 0 5px;
+}
+#subject .ground0 .level:not(.seled){
+	background:darkblue;
+}
+
+textarea{
+	background:transparent;
+}
+.wiki > tbody > tr:nth-child(odd):not(:hover){
+	background: rgba(162,195,97,.1);
+}
 
 
 .audioPlay, .mediaPlay {
@@ -770,7 +772,7 @@ img{
 #menu{
 	margin-bottom:5px;
 }
-#menu .toggle[title]{
+#menu .toggle[title],#nav{
 	padding: 4px;
 }
 input[type="number"]{
@@ -804,8 +806,4 @@ input[len="2"]{
 }
 .multinput{
 	-webkit-appearance:radio
-}
-
-[name=tool]{
-	-webkit-appearance:none
 }

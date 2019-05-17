@@ -1,12 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['vector']=Kx(
-
+wiki['Vector']=Kx(
 
 detail('向量（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['模','|a|',kroot('(a,a)'),''],

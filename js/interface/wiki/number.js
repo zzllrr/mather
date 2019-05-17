@@ -1,11 +1,10 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-wiki['number']=Kx(
+wiki['Number']=Kx(
 
 detail('乘积尾数（个位数）',Table([['a尾数','a^{4n}尾数','a^{4n+1}尾数','a^{4n+2}尾数（例如平方尾数）','a^{4n+3}尾数（例如立方尾数）','因子分解']],[
 	ZLR('0 0 0 0 0 0×0⋯9，2×5，4×5，6×5，8×5'),
