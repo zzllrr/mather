@@ -272,7 +272,7 @@ $(function(){
 
 				}
 			}
-			S.unshift(x+' 中'+r+'+'+r1+'='+R+'红'+(b?' + 蓝':'')+' 共计 '+nadd(P)+'元')
+			S.unshift(x+' 中'+r+'+'+r1+'='+R+'红'+(b?' + 蓝':'')+' 共计 '+plus(P)+'元')
 			return S.join('\n')
 		
 		};

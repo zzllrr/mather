@@ -86,7 +86,6 @@ graphics={
 		]},
 		{'flowchart':''},
 	],
-	'Doodle':[],
 };
 
 

@@ -225,7 +225,7 @@ $(function(){
 	});
 //OtherOpts
 
-	$('#OtherOpts').html(Arrf(function(y){return '<div>'+Arrf(function(x){return '<label><input type=checkbox id='+x+'on />'+gM(x.replace(/([^i])s$/,'$1'))+'</label>'},ZLR(y)).join('')+dc},[
+	$('#OtherOpts').html(Arrf(function(y){return '<div>'+Arrf(function(x){return '<label><input type=checkbox id='+x+'on />'+gM(x=='Medians'?'Median Line':x.replace(/([^i])s$/,'$1'))+'</label>'},ZLR(y)).join('')+dc},[
 		'CircumRectangle CircumCircle Incircle',
 		'backvisi Diagonal Diameter '+zlr2('Centroid Orthocenter Incenter Circumcenter Vertex','Line'),
 		'Medians MidPointLine OppositeMidPointLine',
@@ -541,22 +541,12 @@ $(function(){
 
 	toggleSvg();
 	$('#svgShape svg[id]').hover(function(){
-		var id=this.id, t,h=gM('hotkey')+' ';
-		if(/Pointer/.test(id)){t=h+'P'}
-		if(/^Eraser/.test(id)){t=gM('Del')+' | '+h+'Delete(D)'}
-		if(/noteEraser/.test(id)){t=gM('Del')+' | '+h+'Shift+Delete(D)'}
-		if(/allEraser/.test(id)){t=gM('BGC')}
+		var me=$(this),id=this.id, h=gM('hotkey')+' ', met=me.attr('tip'), meh=me.attr('hotkey'),
+			t=met||meh?gM(met||id)+(meh?' | '+h+meh:''):'';
 		
-		if(id=='Crop'){t=gM('Crop')+' | '+h+'C'}
-		if(id=='Text'){t=gM(id)+' | '+h+'T'}
-		if(id=='Line'){t=h+'L'}
-		if(id=='ArectNote'){t=h+'N'}
-		if(id=='ARect'){t=h+'R'}
-		if(id=='Copy'){t=gM(id)+' | '+h+'Ctrl+V'}
-		if(/^scr/.test(id)){t=gM(id.substr(3))}
 		if(t){
 			$('#tileTool').attr('tip',t);
-			toolTip(t);
+			//toolTip(t);
 		}
 		},function(){
 			var c=$('#caps'),w=c.width(),h=c.height(),wh=w+'x'+h;

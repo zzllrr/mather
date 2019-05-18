@@ -40,7 +40,8 @@ lang['zh_cn']={
 
 	'nodesXY':'笛卡尔节点',
 	'nodesPolar':'极坐标节点',
-
+	'MidPointLine':'中点连线',
+	'MidPointLineon':'中点连线',
 	'sbson':'字符',
 	'funcson':'函数',
 	'strucon':'结构',
@@ -151,6 +152,7 @@ lang['zh_cn']={
 	'Text':'文本',
 	'Image':'图片',
 	'Mic':'麦克风',
+	'Calculator':'计算器',
 	'Camera':'摄像头',
 	'Video':'视频',
 	'Voice':'语音',
@@ -161,9 +163,12 @@ lang['zh_cn']={
 	'Show':'演示',
 	'Doodle':'涂鸦',
 	'Compression':'压缩',
+	'Note':'注释',
 	
 	'Keyword':'关键词',
-
+	'Layer':'层',
+	'Pointer':'指针',
+	'Eraser':'橡皮擦',
 
 // 助词	或 词根
 	'and':'和',
@@ -322,6 +327,7 @@ lang['zh_cn']={
 	
 	'Solve':'解题',
 	'Computation':'计算',
+	
 	'Calculate':'计算',
 	'Operation':'运算',
 	'Explore':'探索',
@@ -340,10 +346,14 @@ lang['zh_cn']={
 	'Translate':'平移',
 	'Rotate':'旋转',
 	'Display':'显示',
+	'Toggle':'切换',
+	'Collapse':'折叠',
 	'Hide':'隐藏',
 	'Blur':'模糊',
 	'Fill':'填充',
 	'Stroke':'描边',
+
+
 
 	'Edit':'编辑',
 	'Replace':'替换',
@@ -479,6 +489,7 @@ lang['zh_cn']={
 	'Vertex Line':'顶点连线',
 	'Bisector':'平分线',
 	'Midline':'中位线',
+	'Median':'中位数',
 	'Median Line':'中线',
 	'Altitude':'高',
 	'MidPoint Line':'中点连线',
@@ -621,7 +632,7 @@ lang['zh_cn']={
 	'Concave':'凹',
 	'Circum':'外接',
 	'Isosceles':'等腰',
-	'Radial':'圆形',
+	'Radial':'径向',
 	'Straight':'直',
 	
 	'Polar':'极',

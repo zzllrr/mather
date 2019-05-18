@@ -422,18 +422,22 @@
 </div>
 </div>
 
-	<div id=panel>
+<div id=panel>
 		<div id=menu>
 			<span id=bar>&nbsp;</span>
-			<i class=mi id=zMatherOn>keyboard_arrow_up</i>
-			<i class=mi id=svgs title="Gadget">layers</i>
-			<i class=mi id=zzllrrCanvas title="Canvas">wallpaper</i>
-			<i class=mi id=bg title="bg">photo_size_select_actual</i>
-			<i class=mi id=grid title="Grid">grid_on</i>
-			<i class=mi id=shape title="Shape">panorama_fish_eye</i>
-			<i class=mi id=text title="Text">title</i>
-			<i class=mi id=clear title="Clear">backspace</i>
-			<i class=mi id=ani title="Animation">movie</i>
+			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
+		
+			<i class=mi id=svgs tip="Gadget" hotkey="Esc">layers</i>
+			<i class=mi id=zzllrrCanvas tip="Canvas">wallpaper</i>
+			<i class=mi id=bg tip="bg">photo_size_select_actual</i>
+			<i class=mi id=grid tip="Grid">grid_on</i>
+			<i class=mi id=shape tip="Shape">panorama_fish_eye</i>
+			<i class=mi id=text tip="Text">title</i>
+			<i class=mi id=clear tip="Clear">backspace</i>
+			<!--  
+			<i class=mi id=ani tip="Animation">movie</i>
+			
+			-->
 			</div>
 		<div for=bg>
 			<div><span class=mi-span id=bggrad mi=gradient>BGC</span>
@@ -442,8 +446,8 @@
 						<div class=fill>
 							<label hidden><i18>Fill</i18><input type=checkbox class=fillon checked=checked /></label>
 							<input type=color value="#eeeeee" class=color />
-							<label><i18>Gradient</i18><input type=checkbox class=gradon /></label>
-							<i18>Gradient Color</i18><input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />
+							<label><i18>Gradient</i18><input type=checkbox class=gradon /></label><br />
+							<i18>Gradient Color</i18><input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor /><br />
 							<i18>Linear / Radial</i18><input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />
 						</div>
 					</span>
@@ -733,16 +737,14 @@
                 <div id=svgShape>
 	            	<div id=svgTool>
 	            		
-						<svg id=Pointer><path d="M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z" fill=yellow /></svg>
-						<svg id=Copy><circle r=1 cx=8 cy=8 /><circle r=1 cx=8 cy=22 /><circle r=1 cx=22 cy=8 /><circle r=1 cx=22 cy=22 /></svg>
-						<svg id=Eraser><path d="M10 20 L20 10 M10 10 L20 20" /><circle r=10 cx=15 cy=15 /></svg>
-						<svg id=noteEraser><path d="M10 20 L20 10 M10 10 L20 20" /><rect x=5 y=7 width=20 height=16 /></svg>
-						<svg id=Crop><path d="M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18" /></svg>
-						<svg id=allEraser><rect x=5 y=7 width=20 height=16 stroke=white fill=white /></svg>
-						<svg id=LayerToggle>
-							<path d="M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" />
-							<circle r="3" cx="15" cy="12" stroke="white" fill="none"></circle>
-							<ellipse rx="4" ry="3" cx="15" cy="12" stroke="white" fill="none"></ellipse>
+						<svg id=Pointer hotkey="P"><path d="M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z" fill=yellow /></svg>
+						<svg id=Copy hotkey="Ctrl+V"><circle r=1 cx=8 cy=8 /><circle r=1 cx=8 cy=22 /><circle r=1 cx=22 cy=8 /><circle r=1 cx=22 cy=22 /></svg>
+						<svg id=Eraser hotkey="Delete(D)"><path d="M10 20 L20 10 M10 10 L20 20" /><circle r=10 cx=15 cy=15 /></svg>
+						<svg id=noteEraser tip="Del Layer" hotkey="Shift+Delete(D)"><path d="M10 20 L20 10 M10 10 L20 20" /><rect x=5 y=7 width=20 height=16 /></svg>
+						<svg id=Crop hotkey="C"><path d="M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18" /></svg>
+						<svg id=allEraser tip="BGC"><rect x=5 y=7 width=20 height=16 stroke=white fill=white /></svg>
+						<svg id=LayerToggle hotkey="V">
+							<path d="M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1" />
 						</svg>
 
 
@@ -899,7 +901,7 @@
 	                        	</div>
 	                        	</div>
 
-	                    	<div><span id=night> ☽ </span>
+	                    	<div>
 	                    		<span id=WH> </span>
 	                    		<span id=Angle> </span>
 	                    		<label><input type=checkbox id=cssClip /></label></div>
@@ -928,8 +930,8 @@
 
                 <div>
 					<svg id=Freelin><path d="M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2" /></svg>
-					<svg id=Text><text x=5 y=25 font-size=28 fill=white>A</text></svg>
-                	<svg id=ArectNote><path d="M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z" /></svg>
+					<svg id=Text hotkey="T"><text x=5 y=25 font-size=28 fill=white>A</text></svg>
+                	<svg id=ArectNote tip="Note" hotkey="N"><path d="M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z" /></svg>
                     <svg id=LrectNote><path d="M8 20 L7 25 13 20 H25 V5 H5 V20 H8z" /></svg>
 					<svg id=ellipseNote><path d="M8 18 L7 25 13 20 A10 8 0 1 0 8 18z" /></svg>
 					<svg id=Grid><rect x=5 y=7 width=20 height=16 />
@@ -944,7 +946,7 @@
 					<svg id=LRect><rect x=5 y=7 width=20 height=16 /></svg>
 					<svg id=LRectSq><rect x=5 y=5 width=20 height=20 /></svg>
 
-					<svg id=ARect><rect x=5 y=6 rx=5 ry=5 width=20 height=18 /></svg>
+					<svg id=ARect tip="Round Corner" hotkey="R"><rect x=5 y=6 rx=5 ry=5 width=20 height=18 /></svg>
 					<svg id=ARectSq><rect x=5 y=5 rx=5 ry=5 width=20 height=20 /></svg>
 
                     <svg id=Ellipse><ellipse rx=12 ry=10 cx=15 cy=15 /></svg>
@@ -1013,7 +1015,7 @@
 
 					<div>
 
-						<svg id=Line><defs>
+						<svg id=Line hotkey="L"><defs>
 							<marker id=ArwE0Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
 								<path d="" /></marker>
 							<marker id=ArwS0Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>

@@ -390,6 +390,12 @@ $(function(){
 
 		toolTip(this.title);
 
+	}).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
+		var me=$(this),hk=me.attr('hotkey')||'';
+
+		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
+
+
 	}).on('click','.eg', function(e){
 
 		var me=$(this),t=me.attr('data-eg').replace(/&&/g,'\n'),shft=e.shiftKey,
@@ -910,7 +916,11 @@ consolelog('最终A = ',A);
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(id=='zzllrrCanvas'){
-			me.css('display','inline-block').nextAll().removeClass('toggle').css('display',tog?'inline-block':'none');
+			//me.css('display','inline-block').nextAll().removeClass('toggle').css('display',tog?'inline-block':'none');
+			
+			me.nextAll().removeClass('toggle').toggle(tog);
+			
+			
 
 			pa.nextAll().hide();
 

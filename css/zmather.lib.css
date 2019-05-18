@@ -391,7 +391,7 @@ input[type=text],#wiki>span,.brad{
 
 #search{
     height: 30px;
-    width:60%;
+    width:30%;
     padding-left:10px;
     border-style: none none solid none;
     border-width: 1px;
@@ -477,6 +477,7 @@ code,pre,#outputOpt{
 	position: relative;
 	padding-left:20px;
 	padding-top:10px;
+	overflow:auto;
 }
 #oHTML > div.abs{
 	position:absolute;
@@ -775,6 +776,12 @@ img{
 #menu .toggle[title],#nav{
 	padding: 4px;
 }
+
+#menu .toggle{
+	background:yellow
+}
+
+
 input[type="number"]{
 	width: 40px;
 }
@@ -782,15 +789,19 @@ input[len="2"]{
 	width: 80px;
 }
 
-
+#nav{
+	max-width:75%
+}
 .mi-span{
 	cursor:pointer;
 }
+/*
 #menu .toggle:after{
 	content:attr(title);
 	padding:2px;
 	font-family: cursive;
 }
+*/
 #panel div > .mi-span.toggle + span{
 	font-family: cursive;
 }
