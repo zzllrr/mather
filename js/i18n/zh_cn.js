@@ -33,6 +33,10 @@ lang['zh_cn']={
 
 	'dropShadow':'阴影',
 	
+	'attr':'属性',
+	
+	
+	
 	'Lang':'语言',
 	'Del':'删除',
 	'lineSplit':'分行',
@@ -138,6 +142,7 @@ lang['zh_cn']={
 	'Sudoku':'数独',
 
 
+	'Node':'节点',
 	'Dash':'虚线',
 	'Arrow':'箭头',
 	'Round Corner':'圆角',
@@ -153,6 +158,7 @@ lang['zh_cn']={
 	'Image':'图片',
 	'Mic':'麦克风',
 	'Calculator':'计算器',
+	'Reader':'阅读器',
 	'Camera':'摄像头',
 	'Video':'视频',
 	'Voice':'语音',
@@ -476,7 +482,8 @@ lang['zh_cn']={
 	'Rhombus':'菱形',
 	'Trapezoid':'梯形',
 	
-
+	'Parabola':'抛物线',
+	'Hyperbola':'双曲线',
 
 	'Circle':'圆',
 	'Ellipse':'椭圆',

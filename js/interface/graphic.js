@@ -5,21 +5,21 @@
  */
  
 graphics={
-	index:['Plane Coordinate System','Space Coordinate System','Surface','Solid','81','Statistics','Project','Doodle'],
+	index:['Plane Coordinate System','Space Coordinate System','Surface','Solid','81','Statistics','Project'],
 	'Plane Coordinate System':[
 		
 		{'Curve':[
 			{'Arc':''},
 			{'Semi Circle':''},
-			{'Straight Line':''},
 			{'Line Segment':''},
 			{'Polyline':''},
-			{'LineHV':''},
+			{'lineHV':''},
 			{'Bezier':''},
 			{'Vector':''},
 			{'Path':''},
 			{'Algebraic Curve':[
-				'Parabola'
+				'Parabola',
+				'Hyperbola',
 			]},
 		]},
 		{'Shape':[
@@ -45,7 +45,7 @@ graphics={
 				'Point','Grid Point','Scatter'
 			]},'Axis','Grid'
 		]},
-		{'Text':''}
+		{'Text':['Text','Text Path']}
 	],
 	
 
@@ -71,10 +71,12 @@ graphics={
 	],
 	'81':[
 		{'Relation':[
-			//"hasse“[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]]",
-			//"venn"
 			{'hasse':''},
 			{'venn':''},
+			{'pie':''},
+			{'tree':''},
+			
+					
 		]},
 	],
 	'Statistics':[
@@ -92,7 +94,9 @@ graphics={
 
 tooltip.graphic={
 
-	'Plane Coordinate System/Shape':['shape(id,type,content,attrs,style,translateA)',[
+	'Plane Coordinate System/Shape':[
+		'shape(id,type,content,attrs,style,translateA)',
+		[
 			gM('Ellipse')+': ellipse【rx ry cx cy fill】',
 		sceg("shape('','ellipse','','rx=40 ry=30 cx=60 cy=50 fill=red')"),
 
@@ -111,10 +115,10 @@ tooltip.graphic={
 		sceg("shape('','Square','','x=40 y=30 width=160 rx=20 ry=20')"),
 
 			gM('Polygon')+': polygon【points】',
-		sceg("shape('','polygon','','points=\"50 60 150 120 130 80\"')"),
+		sceg("shape('','polygon','','points=\"50 60 150 20 130 80 70 80\"')"),
 
 			gM('Regular Polygon')+': 【r cx cy width a n】',
-		sceg("shape('','Polygon','','cx=150 cy=200 width=50 n=9 fill=green')"),
+		sceg("shape('','Polygon','','cx=150 cy=100 width=50 n=9 fill=green')"),
 	
 		sceg("shape('','Polygon','','r=150 cx=150 cy=200 a=90')"),
 			
@@ -167,12 +171,12 @@ tooltip.graphic={
 
 	'Plane Coordinate System/Shape/Polygon':[
 		'【points】',
-		sceg('50 60 150 120 130 80',20)
+		sceg('50 60 150 20 130 80 70 80',20)
 		].join(br),
 
 	'Plane Coordinate System/Shape/Regular Polygon':[
 		'【r cx cy width a n】',
-		sceg('150 200 50 9',20)
+		sceg('150 100 50 9',20)
 		].join(br),
 
 
@@ -185,13 +189,13 @@ tooltip.graphic={
 				gM('Semi Circle')+': Arc【x1 y1 x2 y2 c[clockwise:↻1|↺0] end mid start】',
 		sceg("shape('test','Arc','','x1=30 y1=150 x2=200 y2=150 c=1')"),
 					
-				gM('Line')+': line【x1 y1 x2 y2 end mid start】',
+				gM('Line Segment')+': line【x1 y1 x2 y2 end mid start】',
 		sceg("shape('test','line','','x1=100 y1=50 x2=160 y2=100 end=∧ mid=∧ start=∧')"),
 					
 				'折线polyline【points】',
 		sceg("shape('test','polyline','','points=\"100 100 150 130 180 70\"')"),
 
-				'_横竖折线lineHV【hv横竖位移序列 r拐角半径】',
+				'横竖折线lineHV【hv横竖位移序列 r拐角半径】',
 		sceg("shape('test','lineHV','','hv=V80H100V120 r=4')"),
 
 		].join(br),
@@ -210,46 +214,192 @@ tooltip.graphic={
 		].join(br),
 
 
+	'Plane Coordinate System/Curve/Line Segment':[
+		'【x1 y1 x2 y2 end mid start】',
+		sceg('100 50 160 100'),					
+		].join(br),
+
+	'Plane Coordinate System/Curve/lineHV':[
+		'【hv r】',
+		sceg('V80H100V120 4',20)
+		].join(br),
+
+
+	'Plane Coordinate System/Curve/Polyline':[
+		'【points】',
+		sceg('100 100 150 130 180 70',20)
+		].join(br),
 
 
 
+	'Plane Coordinate System/Text':[
+		gM('Text')+' text【x y dx dy rotate】',
+		sceg("shape('','text','O','x=90 y=112 rotate=20')"),
+		
+		gM('Text Path')+' textPath【d href pathid】',
+		sceg("shape('','textPath','路径文本','d="+'"M20 20 L120 102"'+" pathid=path1')"),
+		
+		].join(br),
+
+	'Plane Coordinate System/Text/Text':[
+		"【'text' x y rotate dx dy】",
+		sceg("'O' 90 112 20"),
+		].join(br),
+		
+	'Plane Coordinate System/Text/Text Path':[
+		
+		'textPath【d href pathid】',
+		sceg("'路径文本' 'M20 20 L120 102' path1"),
+		].join(br),
 
 
-	'Plane Coordinate System/Text':	detail('文本text【Text】【x y dx dy rotate】 路径文本textPath【Text】【d href pathid】',Arrf(sceg,
-		["shape('','text','O','x=90 y=112 rotate=20')",
-		"shape('','textPath','路径文本','d="+'"M20 20 L120 102"'+" pathid=path1')"
-		]).join(br)),
 
-
-
-
-
-	/*[
-		{'Cartesian':[
-			{'Point':[
-				'Point','Grid Point','Scatter'
-			]},'Axis','Grid'
+	'Plane Coordinate System/nodesXY':[
+		detail('nodesXY(id,types,texts,relations,aligns,translates,nodeMargin,nodeXYs,nodeAttr,nodeStyle,specialNodes)',[
 			
+		detail("types： 'nodeType lineType arrowType'",[
+			detail(gM('nodeType')+': nodeType',[
+				gM('Shape'),
+			 	'rect (+Square) ellipse circle line polyline polygon (+Polygon正多边形) path',
+				'在relations中，还支持circle|ellipse[01逆顺时针][旋转度数][lrbt相对方向]'
+			].join(br)),
+
+			detail(gM('lineType')+': lineType',[
+				'solid dashed dotted bold'
+			].join(br)),
+
+			detail(gM('arrowType')+': arrowType',[
 			
-		]},
-		{'Polar Coordinate':[
-			{'Point':[
-				'Point','Grid Point','Scatter'
-			]},'Axis','Grid'
-		]},
-		{
-		{'Shape':[
-			{'Curve':[
-				{'Algebraic Curve':[
-					'Parabola'
-				]},'Arc','Straight Line','Line Segment','Polyline','LineHV','Bezier','Vector',
-			]},
+				'尾,中,首: trigSolid trigHollow'
+			].join(br)),
+		].join(br))+
+		
+		
+		
+		detail("texts: 节点文本、关系文本",[
+			'n：',
+				'[["a b c","a","1"],["a b c","a","1"]] 二维 ["a","b"] 一维',
+			'r: []',
+			'na: '+gM('Node Text Attr'),
+			'ra: '+gM('Relation Text Attr'),
+			'nt: '+gM('Node Text Offset')+'[行,列,dx,dy]',
+			'rt: '+gM('Relation Text Offset')+'[行,列,dx,dy]',
+		].join(br))+
+		
+		
+		detail("relations：[[[1,2],[4,5]],[[3,4],[4,5]]]",[
+			'关系集[索引1,索引2,types,attr,join,style]',
 			
-			'Square','Rectangle','Circle','Ellipse','Semi Circle','Polygon','Regular Polygon','Path'
-		]},			
-	],
+				'连线风格join:[hcv][hcv]水平 中心 垂直平移',
+				
+		].join(br))+
+		detail("aligns:'lcra [hcv]+ [psme]+'",[
+			
+			'lcra节点水平对齐',
+			 '[hcv]+关系线中点对齐风格',
+			 '[psmehv]节点文本位置',
+			 '[psmehva]关系线文本位置：',
+			 '沿路径|从中心开始|中心|到中心结束|横排|竖排|自动决定横竖',
+			 '节点分布：居左 居中（默认） 居右',
+			 '自动根据相邻节点的相对位置，与父节点坐标分散对齐',
+			 '关系线连接时，选择哪个方向的最近中点对齐：水平 中心 垂直',
+			 '节点文本位置：',
+			 '关系文本位置：',
+		].join(br))+
+		
+		detail("translates:[] node nodeT line lineT g",`
+		`)+
+		
+		detail("nodeMargin:'60 140'",[
+		 	'节点中心之间的水平、竖直间距（节点中心之间的间距, 多行用,隔开）',
+		 	'如果是数组，则表示每一层的间距',
+		].join(br))+
+		
+		detail("nodeXYs 节点中心坐标矩阵",[
+			'（除椭圆、圆、正多边形能直接使用之外，都需要换算）',
+			'节点中心坐标集',
+		].join(br))+
+		
+		detail("nodeAttr",[
+			'属性中的某些坐标信息将被忽略，',
+			'坐标通过（aligns 和 nodeMargin）',
+			'或者 nodeXYs来计算确定',
+		].join(br))+
+		
+		detail("nodeStyle 节点样式",`
+		`)+
+		
+		detail("specialNodes",[
+			'部分节点特殊处理',
+			'[[1,2,type,attr,style,dx偏移,dy偏移],[3,2,type,attr,style,dx偏移,dy偏移]]'
+		
+		].join(br))
+		
+		].join(br)),
+		
+		detail(gM('Node'),[
+		
+			sceg("nodesXY('','',{n:[[1,2,3],['a','b','c']],r:['关系1','关系2']},[[[1,1],[2,2]],[[1,2],[2,3]]],'  s s','','60 80',[0,0,0,0,0,0,0,0,10,20],'r=2 fill=white')",20),
+			gM('Text'),
+			sceg("nodesXY('','',{n:[1,2,3,4,5],nt:[[1,200,300],[2,220,320],[3,230,350],[4,240,370],[5,250,380]]},'','','','','','r=0')",20),
+		
+		].join(br)),
+		
+		
+		detail(gM('Coordinate Axis'),[
+		
+			sceg("nodesXY('axis1','line',{n:[0,1,2,3,4,5]},[[1,6]],'',[0,0,0,10,0,0,0,0,3,305],'60','','x1=0 x2=0 y1=-10 y2=0 fill=white')",20),
+			sceg("nodesXY('axis2','line',{n:[[5],[4],[3],[2],[1],['']]},[[[1,1],[6,1]]],'  s s',[0,0,5,3,0,0,0,0,0,10],'60','','x1=0 x2=5 y1=0 y2=0 fill=white')",20),
+			sceg("nodesXY('axis3','  trigSolid',{n:[['y'],['','O','x'],['']]},[[[3,1],[1,1]],[[2,1],[2,3]]],'  s s',[0,0,4,10,0,0,0,0,0,20],'180','','r=0')",20),
 	
-*/
+		].join(br)),
+		
+		
+		detail('线框图',[
+			'【圆角矩形线框图】',
+			sceg("nodesXY('','rect solid trigSolid',[['v₂','v₄','v₅'],['v₁','v₃']],[[[2,1],[1,1]],[[2,1],[1,2]],[[2,1],[1,3]],[[2,2],[1,3]],[[1,1],[1,2]]],'','','180 190','','x=-30 y=-23 width=60 height=46 fill=white rx=20 ry=20')",20),
+			'【组织架构图】',
+			sceg("nodesXY('','rect solid trigSolid',[['董事长'],['总经理'],['总经办'],['运营中心','用户体验中心'],['项目一部','项目二部','渠道商务部','客服部','财务部','技术开发部','测试部','运维部']],[[[1,1],[2,1]],[[2,1],[3,1],'lineHV','hv=H100V'],[[2,1],[4,1],'lineHV','hv=V60H-125V'],[[2,1],[4,2],'lineHV','hv=V60H125V'],[[2,1],[5,5]],[[2,1],[5,6],'lineHV','hv=V115H50V'],[[4,1],[5,1],'lineHV','hv=V25H-75V'],[[4,1],[5,2],'lineHV','hv=V25H-25V'],[[4,1],[5,3],'lineHV','hv=V25H25V'],[[4,1],[5,4],'lineHV','hv=V25H75V'],[[4,2],[5,7],'lineHV','hv=V25H-25V'],[[4,2],[5,8],'lineHV','hv=V25H25V']],'  a','','',[[[250,50]],[[250,130]],[[350,170]],[[[125,375],220]],[[[50,100,150,200,250,300,350,400],300]]],'x=-30 y=-15 width=60 height=30 fill=white rx=10 ry=10','',[[4,1,'','width=120 x=-60'],[4,2,'','width=100 x=-50'],[5,[1,2,3,4,5,6,7,8],'','width=30 height=80 x=-15 y=-40']])",20),
+	
+		].join(br)),
+		
+		
+		detail('有特殊节点的图',[	
+	
+			sceg("nodesXY('','',[['v₂','v₄','v₅'],['v₁','v₃']],[[[2,1],[1,1]],[[2,1],[1,2]],[[2,1],[1,3]],[[2,2],[1,3]],[[1,1],[1,2],'line dotted trigSolid']],'  s s','','60 80','','r=2 fill=white','',[[1,1,'circle','r=2 fill=black']])",20),
+	
+		].join(br)),
+		
+		
+		detail('有向节点图',[	
+			sceg("nodesXY('','  trigSolid',[['v₂','v₄','v₅'],['v₁','v₃']],[[[2,1],[1,1]],[[2,1],[1,2]],[[2,1],[1,3]],[[2,2],[1,3]],[[2,2],[2,2],'circle00b solid trigSolid','rx=20 ry=20'],[[2,2],[1,2],'path solid trigSolid','d=M0,0A60,60,0,0,0,-40,-60']],'  s s','','80 60','','r=2 fill=white')",20),
+			sceg("nodesXY('','  trigSolid',[['等价'],['相容','拟序'],['循环','对称','自反','传递','反对称','反自反','完全','非空子集有最小元'],['偏序'],['线序(全序，简单序，链)'],['良序']],[[[1,1],[2,1]],[[1,1],[3,1],'line dotted trigSolid'],[[1,1],[3,3],'line dotted trigSolid'],[[1,1],[3,4]],[[2,2],[3,4]],[[2,2],[3,5]],[[2,2],[3,6]],[[2,1],[3,2]],[[2,1],[3,3]],[[4,1],[3,3]],[[4,1],[3,4]],[[4,1],[3,5]],[[5,1],[4,1]],[[5,1],[3,7]],[[6,1],[5,1]],[[6,1],[3,8]],],'  s s',[0,0,2,0,0,0,0,0,0,20],'60 80','','r=2','',[[1,1,'','cx=-90'],[2,1,'','cx=-90'],[2,2,'','cx=-30']])",20),
+		
+		].join(br)),
+		
+		
+		detail(gM('Tree'),[
+		
+			sceg("nodesXY('tree','',{n:[[0],[1,2,3],['a','b','c','d','e','f']],r:['关系1','关系2']},[[[1,1],[[2,1],[2,2],[2,3]]],[[2,1],[[3,1],[3,2],[3,3]]],[[2,2],[[3,4],[3,5],[3,6]]]],'a  s s','','60 20,60 80,20 90','','r=2 fill=white')",20),
+			sceg("nodesXY('tree','',{n:[[27],[16,11],[7,9,5,6],[3,4],[2,1]]},[[[1,1],[[2,1],[2,2]]],[[2,1],[[3,1],[3,2]]],[[2,2],[[3,3],[3,4]]],[[3,1],[[4,1],[4,2]]],[[4,1],[[5,1],[5,2]]]],'a  s s','','10 20,50 40,30 40,20 40,20 40','','r=2 fill=white')",20),
+
+		
+		].join(br)),
+		
+		].join(br),
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	'81/Relation':[
 		detail('【哈斯图】hasse(id,nA,rA,translates)',[
@@ -268,14 +418,26 @@ tooltip.graphic={
 			sceg("venn('venn_5',['','','','',''],'',[0,-1/5,-2/5,-3/5,-4/5],[[40,1/5,5]],[[40,110]])"),
 		].join(br)),	
 	
+		detail('【饼图/环形图】pie(id,nA,ratio,RA0,radius,translates)',[
+			sceg("pie('pie1',['China','US','RU','JP','Other'],[25,20,30,15],[0,0],[110,0,70,100])",20),
+		].join(br)),
+
+
+		detail('【树形图】tree(id,types,json,aligns,translates,nodeXYs,nodeAttr,nodeStyle,specialNodes)',[
+
+		].join(br)),
+	
+	
+	
+	
 	].join(br),
 
-	'81/Relation/hasse':[del('hasse(id,')+scRed('nA,rA')+del(',translates)'),
+	'81/Relation/hasse':['nA,rA',
 		sceg("[[24],[8,12],[4,6],[2,3],[1]],[[[1,1],[2,1]],[[1,1],[2,2]],[[2,1],[3,1]],[[2,2],[3,1]],[[2,2],[3,2]],[[3,1],[4,1]],[[3,2],[4,1]],[[3,2],[4,2]],[[4,1],[5,1]],[[4,2],[5,1]]]",20),
 		sceg("[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]]")
 	].join(br),
 	
-	'81/Relation/venn':[del('venn(id,')+scRed('texts,relations,rotate,RA,radiusA')+del(',translates)'),
+	'81/Relation/venn':['texts,relations,rotate,RA,radiusA',
 		sceg("{n:['A','B'],r:['A∩B']},[[1,2,,'stroke=none']],[0],[[50,0,2]],[[70]]",20),
 		sceg("{n:['A','B','C','A∩B∩C'],r:['A∩B','A∩C','B∩C']},[[1,2,,'stroke=none'],[1,3,,'stroke=none'],[2,3,,'stroke=none']],[0],[[60,1/4,3],[0,0]],[[70],[70],[70],[0]]",20),
 		sceg("{n:{n:['A','B','C'],r:['A∩B','A∩C']},[[1,2,,'stroke=none'],[1,3,,'stroke=none']],[0,1/8,-1/8],[[70,0,3]],[[100],[60,80],[60,80]]",20),
@@ -285,6 +447,22 @@ tooltip.graphic={
 	].join(br),
 
 
+	'81/Relation/tree':['nA,rA',
+		sceg("[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]]")
+	].join(br),
+	
+
+	'81/Relation/pie':['nA,ratio,RA0,radius',
+	
+		'nA: 节点文本',
+		'ratio: [3.4,4,7,1,9] 省略%',
+		'RA0: 第1个pie的圆心极坐标[r,A]',
+		'radius: [大圆半径,小圆半径,百分比文本半径,描述文本半径]',
+		sceg("['China','US','RU','JP','Other'],[25,20,30,15],[0,0],[110,0,70,100]",20),
+
+		
+	].join(br),
+	
 /*
 
 

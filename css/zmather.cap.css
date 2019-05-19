@@ -21,7 +21,7 @@
 
 #path_CapScr{width:55%}
 
-#copyDir,#eraserDir {font-size:18px}
+#copyDir,#eraserDir,#svgTEXT select,#svgTool textarea{font-size:18px}
 #svgTool > div{padding:5px}
 #Weib{margin:5px}
 #fontCSS span{margin:10px}

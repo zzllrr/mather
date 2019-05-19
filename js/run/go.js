@@ -41,8 +41,25 @@ $(function(){
 					});
 				}while($('#oHTML text').filter(function(){return /\$.+\$/.test($(this).text())}).length)
 				
+				
+				
+				oH.children().children('svg').each(function(){
+					var zi=[],Z,me=$(this);
+					$('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
+					Z=max(zi)+1;
+					me.clone().appendTo('#Caps');
+					$('#Caps').find('#'+this.id).attr({'id':'graphic'+Time.now5()+(Math.random()+'').substr(2)})
+					.css({'position':'absolute', 'z-index':Z,'top':$('#Caps').position().top,'height':me.height()})
+					//L.drawShapeNow='';
+				});
+				
+				
+				$('#Pointer').click();
+				//oH.empty();
+				toolTip(gM('copied2CanvasTip'));
 				*/
 			}
+			
 		}
 		if(tool=='show'){
 			var subtool=$('#showGround .ground0 .level_last.seled').attr('data-i');

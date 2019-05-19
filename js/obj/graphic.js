@@ -27,13 +27,13 @@ var Graphic={
 		return d;
 	},
 	drawSVG:function(graphType,v,ID,DOM){
-		var g=graphType,d;
-consolelog('g=',g);
+		var g=graphType,gl=g.replace(/.+[/]/,''),d;
+console.log('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
 		}else if(/flowchart/.test(g)){
-			d=Graphic.parse(g,v,ID,DOM);
+			d=Graphic.parse(gl,v,ID,DOM);
 			var id=ID||$(DOM).attr('id')||$(DOM).attr('id',(new Date()).getTime()+(Math.random()+'').substr(2)).attr('id');
 			d.drawSVG(id,{'scale':1});
 
@@ -74,19 +74,25 @@ consolelog(D.html());
 						
 					}else{//svg
 						var x='plot.',gA=g.split('/'),gl=gA.slice(-1)[0], ivil=ivi.split(' ').length;
-						if(/^[a-z]+\(/.test(ivi)){
+						if(/^[a-z]+\(/i.test(ivi)){
 							x+=ivi
 						
 						}else{				
 							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
 								var egs=$('.inputTip[data-uri*="Plane Coordinate System"] .eg');
 								
-								if(/^(Ellipse|Circle|Polygon|Arc)$/.test(gl)){
+								if(/^(Ellipse|Circle|Polygon|Polyline|Arc)$/.test(gl)){
 									gl=gl.toLowerCase()
+									
 								}else if(gl=='Rectangle'){
 									gl='rect'
+									
+								}else if(gl=='Line Segment'){
+									gl='line'
+									
 								}else if(gl=='Regular Polygon'){
 									gl='Polygon'
+									
 								}else if(gl=='Semi Circle'){
 									gl='Arc';
 									
@@ -96,7 +102,7 @@ consolelog(D.html());
 									
 								}
 								
-								
+					console.log('gl=',gl);			
 								x+="shape('','"+gl+"','','";
 								if(/path/i.test(gl)){
 								
@@ -147,7 +153,8 @@ console.log(x);
 				}
 			}
 			var id='graphic'+(new Date().getTime());
-			plot.plot(id,'<div id='+id+'>'+plot.shape(id+'_svg','svg',str)+dc);
+			//plot.plot(id,'<div id='+id+'>'+plot.shape(id+'_svg','svg',str)+dc);
+			plot.plot(id,plot.shape(id+'_svg','svg',str));
 
 			
 		}

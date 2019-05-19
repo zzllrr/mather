@@ -565,126 +565,7 @@ consolelog('最终A = ',A);
 			if(B){B()}
 		}
 
-/*
-	}).on('click','.ground .ground0 .level',function(){
 
-		var me=$(this),mei=me.attr('data-i'),p=me.parents('.ground'),v=p.attr('id').split('Ground')[0],fm=furi(me);
-		me.parent().nextAll().add('#oHTML').empty();
-		
-		if(me.is('.seled')){
-			me.removeClass('seled');
-			$('#input0Tip .inputTip[data-uri^="'+fm+'"]').remove();
-			$('#input1Tip .inputTip[data-uri^="'+fm+'"]').remove();
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var A=eval(v+'s')[mei],str='';
-			consolelog(v,mei,A);
-
-			if(!A){
-
-				import(`./${v}/${mei}.js`)
-				  .then(module => {
-				    module.ui();
-				  })
-				
-
-			if(isStr(A)){
-				p.find('.ground1').html(A);
-			
-				var B=eval(v+'Then')[mei];
-				if(B){B()}
-			}else{
-			
-			
-				for(var i=0,l=A.length;i<l;i++){
-					if(isStr(A[i])){
-						str+=jdetail(A[i])
-					}else{
-						$.each(A[i], function(k,v){
-							str+=jdetail(k);
-						});
-					}
-				}
-				
-				p.find('.ground1').html(str)
-			}
-
-
-		}
-
-	}).on('click','.ground .ground1 .level',function(){
-
-		var me=$(this),mei=me.attr('data-i'),p=me.parents('.ground'),v=p.attr('id').split('Ground')[0],fm=furi(me);
-		var v0=p.find('.ground0 .seled').attr('data-i'), i=me.index();
-		me.parent().nextAll().add('#oHTML').empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-			$('#input0Tip .inputTip[data-uri^="'+fm+'"]').remove();
-			$('#input1Tip .inputTip[data-uri^="'+fm+'"]').remove();
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var ev=eval(v),o=ev[v0],str='';
-			if(isStr(o)){
-				//OH(ev[mei] || ev[v0+' '+mei] || ev[mei+' '+v0]);
-				OH(ev[mei] || ev[fm]);
-				
-				var eT=eval(v+'Then'),B=eT[mei]||eT[fm];
-				if(B){B()}
-				
-			}else{
-				var A;
-				$.each(o, function(x,a){
-					A=a;
-				});
-
-				for(var i=0,l=A.length;i<l;i++){
-					if(isStr(A[i])){
-						str+=jdetail(A[i])
-					}else{
-						$.each(A[i], function(k,v){
-							str+=jdetail(k);
-						});
-					}
-				}
-				p.find('.ground2').html(str)
-
-			}
-
-		}
-
-	}).on('click','.ground .ground2 .level',function(){
-
-		var me=$(this),mei=me.attr('data-i'),p=me.parents('.ground'),v=p.attr('id').split('Ground')[0],fm=furi(me);
-		var v0=p.find('.ground0 .seled').attr('data-i'), i=me.index(),g1=p.find('.ground1 .seled'),v1=g1.index(),v1i=g1.attr('data-i');
-		me.parent().nextAll().add('#oHTML').empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-			$('#input0Tip .inputTip[data-uri^="'+fm+'"]').remove();
-			$('#input1Tip .inputTip[data-uri^="'+fm+'"]').remove();
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			consolelog(v,v0,v1,i);
-			var ev=eval(v), o=ev[v0][v1],str='';
-			$.each(o, function(x,a){
-				o=a[i];
-			});
-
-			if(isStr(o)){
-				consolelog(v1, mei);
-				//OH(ev[mei] || ev[v1i+' '+mei] || ev[mei+' '+v1i]);
-				OH(ev[mei] || ev[fm]);
-				var eT=eval(v+'Then'),B=eT[mei]||eT[fm];
-				if(B){B()}
-
-			}else{
-				consolelog(v,o);
-				OH(Arrf(function(x){return ev[x] || ev[mei+' '+x] || ev[x+' '+mei]},o))
-
-			}
-
-		}
-
-*/
 	}).on('click','.tasknameOff', function(){
 		var me=$(this),p=me.parent(),pp=p.parent(),t=p.text();
 		if(!p.siblings().length){
@@ -854,7 +735,7 @@ consolelog('最终A = ',A);
 
 			$('#Pointer').click();
 			toolTip(gM('copied2CanvasTip'));
-			Scroll('scrollB');
+			//Scroll('scrollB');
 		}
 		
 	}).on('mouseover','.katex, svg[id]',function(e){
@@ -1061,6 +942,9 @@ var toolSwitch=function(x){
 	if(!/^solve|graphic|show|course|drill/.test(x)){
 		
 		$('#iTextFold:contains(unfold_less)').click();
+	}else{
+		$('#iTextFold:contains(unfold_more)').click();
+		
 	}
 	
 	if(x=='graphic'){

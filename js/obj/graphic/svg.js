@@ -1217,7 +1217,7 @@ consolelog(id,v);
 				consolelog(w,h);
 				dm.attr({width:w,height:h});
 			}
-		},300);
+		},100);
 	},
 	plotOpen:function(id,v){//新窗口绘图
 		if(graphic){
