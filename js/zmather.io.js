@@ -1530,7 +1530,7 @@ consolelog(tl,t);
 consolelog(tl,t);
 	}
 		
-		
+/*
 	var iT=$('#input0Tip [data-tool="帮助"]'),smry='<summary>帮助</summary>';
 	if(!iT.length){
 		$('#input0Tip').append('<details class=inputTip data-tool="帮助">'+smry+'</details>');
@@ -1544,6 +1544,7 @@ consolelog(tl,t);
 	}else if(iTyp=='JS'){
 		iT.html(smry+fun2str(t)).attr('open',true);
 	}
+*/
 	var i=$('#'+textareaId), iv=i.val(), sS=i[0].selectionStart, sE=i[0].selectionEnd;
 	if(shft && sS!=sE){// fix bug of shift on textarea 
 		sS=sE

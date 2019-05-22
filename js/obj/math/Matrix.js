@@ -828,7 +828,8 @@ consolelog('矩阵 opr1 ',op,A,p);
 				
 			*/
 			var s=Arrf(square,A);//ArrfcA([plus,square],A);square不支持数组导致异常？
-			return p==2?plus(s,1):sqrt(plus(s),1)
+			//return p==2?plus(s,1):sqrt(plus(s),1)
+			return p==2?plus(s):sqrt(plus(s))
 		}
 		if(op=='单位化1'){/*A是一维数组（行向量）1表示是1维数组，而不是矩阵 
 			参数p=2指定除以自身内积（模平方）而不是模

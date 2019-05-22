@@ -24,7 +24,7 @@ solve[2110]=function(){
 			rS=rS.concat(concat(strA,
 				Arrf(function(t){
 					var A=PfS(t), B=PtS(A), C=f(A);
-					return ' = '+ B +(B==C?'':' = '+C)
+					return ' = '+ B +(!C || B==C?'':' = '+C)
 			},VA)));
 			
 		}
@@ -119,10 +119,98 @@ solve[2110]=function(){
 	}
 
 
+	if(/Vector/.test(t)){
+
+		if(sel('Row Vector')){
+			rS=rS.concat(concat(strB,
+				Arrf(function(t){
+					var A=MfS(t,'v');
+					return ' = '+Mtrx.toStr(A,'v')
+			},VA)));
+		}
+		if(sel('Column Vector')){
+			rS=rS.concat(concat(strB,
+				Arrf(function(t){
+					var A=MfS(t,'v');
+					return ' = '+Mtrx.toStr(A,'v')+'^T'
+			},VA)));
+		}
+
+		if(sel('|\\vec{a}|')){
+			rS=rS.concat(concat('|',strB,
+				Arrf(function(t){
+					var A=MfS(t,'v');
+					return '| = '+Mfn.toStr(Mtrx.opr1('向量模1',A))
+			},VA)));
+		}
+		if(sel('|\\vec{a}|^2')){
+			rS=rS.concat(concat('|',strB,
+				Arrf(function(t){
+					var A=MfS(t,'v');
+					return '|^2 = '+Mfn.toStr(Mtrx.opr1('向量模1',A,2))
+			},VA)));
+		}
+
+		if(sel('\\frac{\\vec{a}}{|\\vec{a}|}')){
+
+			rS=rS.concat(Arrf(function(t,i){
+				var A=MfS(t,'v'), C=Mtrx.opr1('单位化1',A);
+				return frac(strB[i],'|'+strB[i]+'|','')+' = '+Mtrx.toStr(C)
+			},VA));
+
+		}
+		if(sel('α‧β') || sel('(α,β)')){
+			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=Mtrx.opr2('内积',A,B);
+			rS=rS.concat(
+				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
+				'α‧β = (α,β) = '+C
+			);
+		}
+		if(sel('向量夹角')){
+			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=Mtrx.opr2('内积',A,B),
+				a=Mtrx.opr1('向量模1',A), b=Mtrx.opr1('向量模1',B), ab=Times([a,b]), c=divide([C,times([a,b])]);
+			console.log(a,b,ab);
+			rS=rS.concat(
+				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
+				'|α|='+Mfn.toStr(a)+', |β|='+Mfn.toStr(b)+', (α,β) = '+C,
+				'\\cosθ='+frac('(α,β)','|α||β|','')+'='+frac(C,ab.toStr(1),'')+'='+Mfn.toStr(c),
+				'则θ= °'
+				
+			);
+		}
+		if(sel('α×β')){
+			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v');
+			rS=rS.concat(
+				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
+				'α×β = '
+			);
+		}
+		if(sel('混合积')){
+			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=MfS(VA[2],'v');
+			rS=rS.concat(
+				'a='+Mtrx.toStr(A,'v')+'^T, b='+Mtrx.toStr(B,'v')+'^T, c='+Mtrx.toStr(C,'v')+'^T',
+				'a⋅(b×c) = '
+			);
+		}
+		if(sel('双重矢性积')){
+			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=MfS(VA[2],'v');
+			rS=rS.concat(
+				'a='+Mtrx.toStr(A,'v')+'^T, b='+Mtrx.toStr(B,'v')+'^T, c='+Mtrx.toStr(C,'v')+'^T',
+				'a×(b×c) = '
+			);
+		}
+	}
+
+
+
+
 	if(/Matrix/.test(t)){
 /*
 [λ-3 1 3 -1;1 λ-3 -1 3;-3 1 λ+3 -1;1 -3 -1 λ+3]&j4+=i1	
 */
+	
+//Display
+
 		if(sel('A')){
 			rS=rS.concat(concat(strA,
 				Arrf(function(t){
@@ -151,72 +239,45 @@ solve[2110]=function(){
 			},VA)));
 		}
 
-		if(sel('Row Vector')){
-			rS=rS.concat(concat(strB,
-				Arrf(function(t){
-					var A=MfS(t,'v');
-					return ' = '+Mtrx.toStr(A,'v')
-			},VA)));
-		}
-		if(sel('Column Vector')){
-			rS=rS.concat(concat(strB,
-				Arrf(function(t){
-					var A=MfS(t,'v');
-					return ' = '+Mtrx.toStr(A,'v')+'^T'
-			},VA)));
-		}
 
-		if(sel('|\\vec{a}|')){
-			rS=rS.concat(concat('|',strB,
-				Arrf(function(t){
-					var A=MfS(t,'v');
-					return '| = '+Mtrx.opr1('向量模1',A)
-			},VA)));
-		}
-		if(sel('|\\vec{a}|^2')){
-			rS=rS.concat(concat('|',strB,
-				Arrf(function(t){
-					var A=MfS(t,'v');
-					return '|^2 = '+Mtrx.opr1('向量模1',A,2)
-			},VA)));
-		}
+//Unary Operation
 
-		if(sel('\\frac{\\vec{a}}{|\\vec{a}|}')){
+		if(sel('Normalize','Gram-Schmidt')){
 
-			rS=rS.concat(Arrf(function(t,i){
-				var A=MfS(t,'v'), C=Mtrx.opr1('单位化1',A);
-				return frac(strB[i],'|'+strB[i]+'|','')+' = '+Mtrx.toStr(C)
+			rS=rS.concat(Arrf(function(t){
+				var M=MfS(t), A=Mtrx.opr1('单位化',M);
+					
+				return kmtrx(A)
 			},VA));
 
 		}
-		if(sel('α‧β') || sel('(α,β)')){
-			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=Mtrx.opr2('内积',A,B);
-			rS=rS.concat(
-				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
-				'α‧β = (α,β) = '+C
-			);
-		}
-		if(sel('向量夹角')){
-			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v'), C=Mtrx.opr2('内积',A,B),
-				a=Mtrx.opr1('向量模1',A), b=Mtrx.opr1('向量模1',B), ab=times([a,b]), c=divide([C,ab]);
-			rS=rS.concat(
-				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
-				'|α|='+a+', |β|='+b+', (α,β) = '+C,
-				'cosθ='+frac('(α,β)','|α||β|','')+'='+frac(C,ab,'')+'='+c,
-				'则θ= °'
-				
-			);
-		}
-		if(sel('α×β')){
-			var A=MfS(VA[0],'v'), B=MfS(VA[1],'v');
-			rS=rS.concat(
-				'α='+Mtrx.toStr(A,'v')+'^T, β='+Mtrx.toStr(B,'v')+'^T',
-				'α×β = '
-			);
+
+		if(sel('Orthogonalize','Gram-Schmidt') || sel('Gram-Schmidt','Gram-Schmidt')){
+
+			rS=rS.concat(Arrf(function(t){
+				var M=MfS(t), A=Mtrx.opr1('正交化',M, sel('Gram-Schmidt','Gram-Schmidt'));
+
+				return A[1]
+			},VA));
+
 		}
 
 
+		if(sel('Boolean')){
+			rS=rS.concat(
+				Arrf(function(t){
+					return kmtrx(Mtrx.opr1('bool',MfS(t)))
+			},VA));
+		}
 
+		if(sel('-Boolean')){
+			rS=rS.concat(
+				Arrf(function(t){
+					return kmtrx(Mtrx.opr1('-',MfS(t),'bool'))
+			},VA));
+		}
+		
+		
 
 		if(sel('A^T')){
 			rS=rS.concat(concat(strA,copyA('^T = ',n),
@@ -237,26 +298,6 @@ solve[2110]=function(){
 					return '='+kmtrx(Mtrx.opr1('-',MfS(t)))
 				},VA))
 			);
-		}
-
-		if(sel('Normalize','Gram-Schmidt')){
-
-			rS=rS.concat(Arrf(function(t){
-				var M=MfS(t), A=Mtrx.opr1('单位化',M);
-					
-				return kmtrx(A)
-			},VA));
-
-		}
-
-		if(sel('Orthogonalize','Gram-Schmidt') || sel('Gram-Schmidt','Gram-Schmidt')){
-
-			rS=rS.concat(Arrf(function(t){
-				var M=MfS(t), A=Mtrx.opr1('正交化',M, sel('Gram-Schmidt','Gram-Schmidt'));
-
-				return A[1]
-			},VA));
-
 		}
 
 
@@ -313,19 +354,7 @@ solve[2110]=function(){
 		}
 
 
-		if(sel('Boolean')){
-			rS=rS.concat(
-				Arrf(function(t){
-					return kmtrx(Mtrx.opr1('bool',MfS(t)))
-			},VA));
-		}
-
-		if(sel('-Boolean')){
-			rS=rS.concat(
-				Arrf(function(t){
-					return kmtrx(Mtrx.opr1('-',MfS(t),'bool'))
-			},VA));
-		}
+// Matrix & Number
 
 
 		if(sel('数加')){//矩阵&数字
@@ -375,216 +404,7 @@ solve[2110]=function(){
 
 
 
-
-
-		if(sel('点乘')){
-			rS.push(kmtrx(
-				Arrf(function(x,y){
-					return Mtrx.opr2('.*',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('点除')){
-			rS.push(kmtrx(
-				Arrf(function(x,y){
-					return Mtrx.opr2('./',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('点幂')){
-			rS.push(kmtrx(
-				Arrf(function(x,y){
-					return Mtrx.opr2('.^',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-
-
-
-		if(sel('A⊕B')){
-			rS.push(kmtrx(
-				Arrf(function(x,y){
-					return Mtrx.opr2('⊕',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('A⊗B')){
-			rS.push(kmtrx(Mtrx.opr2.apply(null,['⊗'].concat(Arrf(MfS,VA))))
-			);
-		}
-		if(sel('A∔B')){
-			rS.push(kmtrx(Mtrx.opr2.apply(null,['∔'].concat(Arrf(MfS,VA))))
-			);
-		}
-
-		if(sel('布尔并∨')){
-
-			rS.push((n<5?strA.join('\\bigvee '):sum('i',1,'n','M_i',3,''))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('b∨',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('布尔交∧')){
-
-			rS.push((n<5?strA.join('\\bigwedge '):prod('i',1,'n','M_i',4,''))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('b∧',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('布尔积⊙')){
-
-			rS.push((n<5?strA.join('\\bigodot '):prod('i',1,'n','M_i',7,''))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('b⊙',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-
-		if(sel('A+B')){
-			rS.push((n<5?strA.join('+'):sum('i',1,'n','M_i','',''))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('+',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('A-B')){
-			rS.push((n<5?strA.join('-'):'M_1-M_2-⋯-M_'+n)+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('-',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2')));
-		}
-		if(sel('AB')){
-			rS.push((n<5?strA.join(''):prod('i',1,'n','M_i','',''))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('BA')){
-			rS.push((n<5?strA.reverse().join(''):prod('i','n',1,'M_i','',''))+'='+kmtrx(
-				Arrf(function(y,x){
-						return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-		if(sel('A^TA')){
-			rS=rS.concat(concat(strA,copyA('^T',n),strA,copyA('=',n),
-				Arrf(function(t){
-					var M=MfS(t);
-					return kmtrx(Mtrx.opr2('*',Mtrx.opr1('T',M),M))
-			},VA)));
-		}
-		if(sel('AA^T')){
-			rS=rS.concat(concat(strA,strA,copyA('^T',n),copyA('=',n),
-				Arrf(function(t){
-					var M=MfS(t);
-					return kmtrx(Mtrx.opr2('*',M,Mtrx.opr1('T',M)))
-			},VA)));
-		}
-		if(sel('A^TB')){
-			var AT=Mtrx.opr1('T',MfS(VA[0])), B=MfS(VA[1]), C=Mtrx.opr2('*',AT,B);
-			rS.push('A^T = '+kmtrx(AT), 'B = '+kmtrx(B), 'A^TB = '+kmtrx(C))
-		}
-		if(sel('AB^T')){
-			var BT=Mtrx.opr1('T',MfS(VA[1])), A=MfS(VA[0]), C=Mtrx.opr2('*',A,BT);
-			rS.push('A = '+kmtrx(A), 'B^T = '+kmtrx(BT), 'AB^T = '+kmtrx(C))
-		}
-		if(sel('A^TB^T')){
-			var AT=Mtrx.opr1('T',MfS(VA[0])),BT=Mtrx.opr1('T',MfS(VA[1])),C=Mtrx.opr2('*',AT,BT);
-			rS.push('A^T = '+kmtrx(AT),'B^T = '+kmtrx(BT), 'A^TB^T = '+kmtrx(C))
-		}
-		if(sel('ABA^T')){
-			var A=MfS(VA[0]),AT=Mtrx.opr1('T',A),B=MfS(VA[1]),C=Mtrx.opr2('*',A,B,AT);
-			rS.push('A = '+kmtrx(A), 'B = '+kmtrx(B), 'A^T = '+kmtrx(AT), 'ABA^T = '+kmtrx(C))
-		}
-		if(sel('A^TBA')){
-			var A=MfS(VA[0]),AT=Mtrx.opr1('T',A),B=MfS(VA[1]),C=Mtrx.opr2('*',AT,B,A);
-			rS.push('A^T = '+kmtrx(AT), 'B = '+kmtrx(B), 'A = '+kmtrx(A), 'A^TBA ='+kmtrx(C))
-		}
-		if(sel('(AB)^T')){
-			var A=MfS(VA[0]),B=MfS(VA[1]),C=Mtrx.opr2('*',A,B),CT=Mtrx.opr1('T',C);
-			rS.push('A = '+kmtrx(A), 'B = '+kmtrx(B), 'AB = '+kmtrx(C), '(AB)^T = '+kmtrx(CT))
-		}
-		
-		if(sel('BAB^T')){
-			var A=MfS(VA[0]),B=MfS(VA[1]),BT=Mtrx.opr1('T',B),BA=Mtrx.opr2('*',B,A), C=Mtrx.opr2('*',BA,BT);
-			rS.push('A = '+kmtrx(A),'B = '+kmtrx(B), 'BA = '+kmtrx(BA), 'BAB^T = '+kmtrx(C))
-		}
-		
-		if(sel('B^TAB')){
-			var A=MfS(VA[0]),B=MfS(VA[1]),BT=Mtrx.opr1('T',B),AB=Mtrx.opr2('*',A,B), C=Mtrx.opr2('*',BT,AB);
-			rS.push('A = '+kmtrx(A),'B = '+kmtrx(B), 'AB = '+kmtrx(AB), 'B^TAB = '+kmtrx(C))
-		}
-		
-		
-		if(sel('A^n')){//矩阵&乘幂
-			rS=rS.concat(
-				Arrf(function(t){
-					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
-					return Arrf(function(k){
-							return kmtrx(M)+sup(k,'')+'='+kmtrx(Mtrx.opr1('^',M,k))
-						},seqsA(ij)).join('\\\\ ')
-				},VA)
-			);
-		}
-		if(sel('A^2')){//矩阵&乘幂2
-			rS=rS.concat(
-				Arrf(function(t){
-					var M=MfS(t);
-					return kmtrx(M)+'^2='+kmtrx(Mtrx.opr1('^',M,2))
-				},VA)
-			);
-		}
-		
-		if(sel('布尔幂')){//布尔矩阵&乘幂
-			rS=rS.concat(
-				Arrf(function(t){
-					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
-					return kxA(Arrf(function(k){
-							return kmtrx(M)+sup(k,'')+'='+kmtrx(Mtrx.opr1('b^',M,k))
-						},seqsA(ij)))
-				},VA)
-			);
-		}
-		if(sel('布尔可达矩阵')){//布尔矩阵
-			rS=rS.concat(
-				Arrf(function(t){
-					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
-
-					var Bn=Mtrx.opr1('b可达',M);
-					return '可达矩阵 (I+A)'+sup(Bn[1],'')+'='+kmtrx(Bn[0])
-
-				},VA)
-			);
-		}
-		
-		
-		
-		
-		if(sel('\\exp')){
-			rS=rS.concat(concat(copyA('exp(',n),strA,
-				Arrf(function(t){
-					var As=Mtrx.opr1('exp',MfS(t)),s=['I'];
-					for(var i=1;i<As.length;i++){
-						s.push(frac(1,i+'!','')+kmtrx(As[i]));
-					}
-					
-					return ')='+s.join('+')+'\\\\ ='+kmtrx(As[0])
-				},VA))
-			);
-		}
-		if(sel('Kronecker Power')){
-			rS.push((n<5?strA.join(''):Opr('i',1,'n','M_i','^'))+'='+kmtrx(
-				Arrf(function(x,y){
-						return Mtrx.opr2('^',typeof x=='string'?MfS(x):x,MfS(y))
-				},VA,'cp2'))
-			);
-		}
-
-
-
+// Elementary Transformation
 		if(sel('化上三角（行变换）')){
 			rS=rS.concat(Arrf(function(t){
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'iU=', M=MfS(t), A=Mtrx.opr1('PTs',M,ij);
@@ -658,117 +478,7 @@ solve[2110]=function(){
 		}
 
 
-
-
-		if(sel('矩阵→二次型')){//对称矩阵S(;) 得到相应的二次型
-			rS=rS.concat(Arrf(function(t){
-				var t0=t.replace(/&.+/,''),M=MfS(t0), m=M.length,A=[];//m=Math.floor(Math.sqrt(M.length*2)),A=[];
-				if(m!=M[0].length){
-					M=MfS('S('+t0+')');
-					m=M.length;
-				}
-				for(var i=0;i<m;i++){
-					A.push(times([M[i][i],'x_'+(i+1)+'^2']));
-				}
-				for(var i=0;i<m;i++){
-					for(var j=i+1;j<m;j++){
-						A.push(times([2,M[i][j],'x_'+(i+1)+'x_'+(j+1)]));
-					}
-				}
-				
-				return kmtrx(M)+', 对应二次型：\\\\ '+plus(A,1)
-			},VA));
-		}
-		if(sel('二次型→矩阵')){//S2(;)分别填写二次型中系数：x1² x2² x3² x4² x1x2 x1x3 x2x3，(n(n+1)/2个元素)得到相应的矩阵
-			rS=rS.concat(Arrf(function(t){
-				var t0=t.replace(/&.+/,''),tA;
-				if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
-					var MC=MfS('QF('+t0+')','co');
-					M=MC[0];
-					tA=MC[1];
-				}else if(/^S2/.test(t0)){
-					tA=t0.replace(/^S2\(|\)$/g,'').split(/[ ,;]/g);
-					M=MfS(t0);
-				}else{
-					tA=t0.split(/[ ,;]/g);
-					M=MfS('S2('+t0+')');
-				}
-				
-				var m=M.length,A=[];
-				for(var i=0;i<m;i++){
-					consolelog(tA[i],'x_'+(i+1)+'^2');
-					A.push(times([tA[i],'x_'+(i+1)+'^2']));
-				}
-				consolelog(A.join(' ; ; '));
-				
-				for(var i=0;i<m;i++){
-					for(var j=i+1;j<m;j++){
-						/*	(m-1)+(m-2)+...+(m-1-i+1)+m = (m-1+m-i)*i/2+m
-							*/
-							consolelog(tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1));
-						
-						A.push(times([tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1)]));//(m-1+m-i-2)*i/2+m-1+(j-i)
-					}
-				}
-				
-				consolelog(A.join(' ; ; '));
-				return '二次型'+plus(A,1)+', 对应系数矩阵：\\\\ '+kmtrx(M)
-			},VA));
-		}
-
-
-		if(sel('二次型化标准型（配方法）')){//填写二次型：x1² x2² x3² x4² x1x2 x1x3 x2x3，(n(n+1)/2个元素)代数和
-			/*
-				
-			f(x_1,x_2,x_3)
-=2x_1^2-3x_2^2+x_3^2+4x_1x_2-6x_1x_3-4x_2x_3
-=(x_3-(3x_1+2x_2))^2-(3x_1+2x_2)^2+2x_1^2-3x_2^2+4x_1x_2
-=(x_3-(3x_1+2x_2))^2-7x_1^2-7x_2^2-8x_1x_2
-=(x_3-(3x_1+2x_2))^2-7(x_1+(4/7)x_2)^2-(33/7)x_2^2
-
-
-https://zhidao.baidu.com/question/750762700228964772.html	
-				
-			*/
-			rS=rS.concat(Arrf(function(t){
-				var t0=t.replace(/&.+/,''),tA;
-				if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
-					var MC=MfS('QF('+t0+')','co');
-					M=MC[0];
-					tA=MC[1];
-				}else if(/^S2/.test(t0)){
-					tA=t0.replace(/^S2\(|\)$/g,'').split(/[ ,;]/g);
-					M=MfS(t0);
-				}else{
-					tA=t0.split(/[ ,;]/g);
-					M=MfS('S2('+t0+')');
-				}
-				
-				var m=M.length,A=[];
-				for(var i=0;i<m;i++){
-					A.push(times([tA[i],'x_'+(i+1)+'^2']));
-				}
-				for(var i=0;i<m;i++){
-					for(var j=i+1;j<m;j++){
-						/*	(m-1)+(m-2)+...+(m-1-i+1)+m = (m-1+m-i)*i/2+m
-							*/
-						A.push(times([tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1)]));//(m-1+m-i-2)*i/2+m-1+(j-i)
-					}
-				}
-				return '二次型'+plus(A,1)+', 对应系数矩阵：\\\\ '+kmtrx(M)
-			},VA));
-		}
-
-
-
-
-		if(sel('二次型求秩')){//分别填写二次型中系数：x1² x2² x3² x1x2 x1x3 x2x3，(n(n+1)/2个元素)得到相应的矩阵
-			rS=rS.concat(Arrf(function(t){
-				var t0=t.replace(/&.+/,''),M=MfS(/^S2/.test(t0)?t0:'S2('+t0+')'), R=Mtrx.opr1('rankPTs',M,'iE=');
-				return '二次型系数矩阵：\\\\ '+R[1]
-			},VA));
-		}
-		
+//Inverse
 
 		if(sel('A^{-1}')){
 			//求逆方法题型 http://jpkc.nwpu.edu.cn/jp2005/26/bjjc/xj/zsyd2-55.htm 
@@ -813,7 +523,7 @@ https://zhidao.baidu.com/question/750762700228964772.html
 		if(sel('f(A)=A^2+bA+cI=0求逆')){//b,c&k&E   f(A)=A²+bA+cI=0 证明A+kI，并求逆 (A+kI)(A+(b-k)I)=(k(b-k)-c)I  逆(A+(b-k)I)/(k(b-k)-c) = (A+(b-k)I)/-f(-k)
 			rS=rS.concat(
 				Arrf(function(t){
-					var pA=t.split('&'),ij=pA[1]||'0', M=pA[0].split(','), E=pA.length<3?'I':'E';
+					var pA=t.split('&'),ij=pA[1]||'0', M=pA[0].split(/[, ;]/g), E=pA.length<3?'I':'E';
 
 					return Arrf(function(k){
 						var b_k=minus([M[0],k]), _f_k=minus([times([k,b_k]),M[1]]), _1_f_k=divide([1,_f_k]),f=function(x){
@@ -833,164 +543,12 @@ https://zhidao.baidu.com/question/750762700228964772.html
 		}
 
 
-		if(sel('A^{-1}B')){//	A\B 前2行是矩阵A、B，第3行，是参数
-			rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[0]),MfS(VA[1])]]),VA[2]||'iS=')[1])
-		}
-		if(sel('BA^{-1}')){//	B/A 前2行是矩阵A、B，第3行，是参数
-			rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[0])],[MfS(VA[1])]]),VA[2]||'jS=')[1])
-		}
-
-		if(sel('AB^{-1}')){//	A/B 前2行是矩阵A、B，第3行，是参数
-			rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[1]),MfS(VA[0])]]),VA[2]||'jS=')[1])
-		}
-		if(sel('B^{-1}A')){//	/BA 前2行是矩阵A、B，第3行，是参数
-			rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[1])],[MfS(VA[0])]]),VA[2]||'iS=')[1])
-		}
-
-		if(sel('P^{-1}AP')){//第1行P		第2行A		第3行变换参数
-			var P=MfS(VA[0]),A=MfS(VA[1]), P_A=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,A]]),VA[2]||'iS='),
-				P_A0=P_A[0][0],m=P_A0.length,n=P_A0[0].length,P_1A=subMtrx(P_A0,1,m,m+1,n),
-				P_1AP=Mtrx.opr2('*',P_1A,P);
-			rS.push('P='+kmtrx(P)+'，A='+kmtrx(A),'使用初等行变换来求P^{-1}A',P_A[1],'P^{-1}AP='+kmtrx(P_1AP))
-		}
-		if(sel('PAP^{-1}')){//第1行P		第2行A		第3行变换参数
-			var P=MfS(VA[0]),A=MfS(VA[1]), PA=Mtrx.opr2('*',P,A),
-				PAP_=Mtrx.opr1('invrPTs',Mtrx.build.B([[P],[PA]]),VA[2]||'jS=');
-			rS.push('P='+kmtrx(P)+', A='+kmtrx(A)+', PA='+kmtrx(PA),'使用初等列变换来求PAP^{-1}',PAP_[1])
-		}
-
-
-
-		if(sel('α^Tβ求幂') || sel('αβ^T求幂')){//2×n矩阵[α;β] & 幂   //A=αTβ或αβT
-			
-
-			rS=rS.concat(
-				Arrf(function(t){
-					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t),
-						ATB=sel('αTβ求幂'),atb=ATB?'α^Tβ':'αβ^T',at=ATB?'α^T':'α',bt=ATB?'β':'β^T',
-						n=M[0].length,ij_1=minus([ij,1]),aT=Mtrx.opr1('T',[M[0]]),bT=Mtrx.opr1('T',[M[1]]),aTb=Mtrx.opr2('*',aT,[M[1]]),
-						A0=kmtrx([M[0]]),A1=kmtrx([M[1]]), B0=kmtrx(aT),B1=kmtrx(bT),abT=Mtrx.opr2('*',[M[0]],bT),A=Mtrx.opr2('^',abT,ij_1);//这里用变量A表示一阶矩阵βαT的幂
-
-					return Eq(['A',atb,kmtrx(aTb)])+'\\\\ '+
-						bt+at+'='+abT[0][0]+'\\\\ '+
-						Eq(['A^{'+ij+'}','('+atb+')^{'+ij+'}',
-								at+'('+bt+at+')^{'+ij_1+'}'+bt,
-								at+pow([abT[0][0],ij_1])+bt,
-								times([A[0][0],atb],1),
-								times([A[0][0],'A'],1),
-								kmtrx(Mtrx.opr2('*',aT,A,[M[1]]))]);
-				},VA)
-			);
-		}
-
-
-		if(sel('T分解求幂')){//矩阵A & a（分解因子）& 幂
-			
-		/*
-			T分解（不唯一）：适合行(列)间成比例（或相等）的矩阵分解 
-				(a b c)T * (i j k) = 
-				ai aj ak
-				bi bj bk
-				ci cj ck
-				
-				行间相同时，得到 (1 1 1)T * (i j k)
-				列间相同时，得到 (a b c)T * (1 1 1)
-			
-			
-		*/
-			rS=rS.concat(
-				Arrf(function(t){
-					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', Ma=t.split('&')[1], a=/&/.test(Ma)?Ma.replace(/.+&/,''):'1',M=MfS(Ma),
-						n=M.length,ij_1=minus([ij,1]),
-						B=Mtrx.opr1('分解',M,'T',a), B0=kmtrx(B[0]),B1=kmtrx(B[1]),B1B0=Mtrx.opr2('*',B[1],B[0]),A=Mtrx.opr2('^',B1B0,ij_1);
-					return Eq([kmtrx(M)+sup(ij,''),
-							lrp('',B0+' '+B1,'','')+sup(ij,''),
-							B0+' '+lrp('',B1+' '+B0,'','')+sup(ij_1,'')+B1,
-							B0+' '+kmtrx(B1B0)+sup(ij_1,'')+B1,
-							B0+' '+A+' '+B1,
-							kmtrx(Mtrx.opr2('*',B[0],A,B[1]))
-						]);
-				},VA)
-			);
-		}
-
-		if(sel('对角化求幂')){//矩阵A&幂&特征值
-			rS=rS.concat(
-				Arrf(function(t){
-					var ij=t.split('&'), n=ij[1]||'1', A=MfS(ij[0]), m=A.length, T=Mtrx.opr1('特征向量',A,ij[2]?ij[2].split(','):'',1), P=T[0], isDiagable=P[0].length==m, rs=[];
-					rs.push(T[1]);
-					if(!isDiagable){/*不可对角化
-					
-						设上三角矩阵A特征值为k(n重), B是上三角，且主对角线元素都为0
-						A=B+kI
-						
-						B^n=0（猜想是，但未搜索文献证明）
-						B^n=C_n^iA^(n-i)(-k)^i=A^n+nA^(n-1)(-k)+...+(-k)^nE
-						A^m=C_m^1B^(m-1)k + C_m^2B^(m-2)k^2 + C_m^3B^(m-3)k^3 + ... + C_m^(m-1)Bk^(m-1) + k^mI
-						
-						*/
-						var A2=Mtrx.opr2('^',A,2), A3=Mtrx.opr2('*',A2,A), A3is0=Mtrx.is.b1['0'](A3), A4=A3is0?A3:Mtrx.opr2('*',A3,A);
-						rs.push('A^2='+kmtrx(A2),'A^3='+kmtrx(A3));
-						rs.push();
-						
-						
-						
-						
-					}else{
-						var	D=kxf('diag')+kfraczp(''+T[2]),P=T[0],
-							dn=Arrf(function(t){return pow([t,n])},T[2]),
-							Dn=Mtrx.build.D(dn),DneqD=T[2].join()==dn.join();
-
-						if(DneqD){
-							
-							
-						}else{
-							var DnP_1s=Mtrx.opr1('invrPTs',Mtrx.build.B([[P],[Dn]]),'jS='),
-							DnP_1=subMtrx(DnP_1s[0][0],m+1,m*2,1,m),
-							PDnP_1=Mtrx.opr2('*',P,DnP_1);
-							
-						}
-
-						rs.push('A = PΛP^{-1}，则',
-							Eq(['A^{'+n+'}', '(PΛP^{-1})^{'+n+'}', 'PΛ(P^{-1}P)Λ(P^{-1}P)Λ⋯ΛP^{-1}', 'PΛ^{'+n+'}P^{-1}',
-							'P'+(DneqD?'Λ':kxf('diag')+kfraczp(''+Mtrx.opr1('取',Dn,'D')))+'P^{-1}',
-							DneqD?'A':kmtrx(PDnP_1)]));
-						
-						if(!DneqD){
-							rs.push('使用初等列变换来求Λ^{'+n+'}P^{-1}',DnP_1s[1]);
-						}
-					}
-					return rs.join(kbr2)
-				},VA));
-		}
-		if(sel('对角化求幂PA=ΛP')){//第1行 矩阵P   第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式
-			var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),
-				P_1=Mtrx.opr1('inv',P),	Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P_1,Dp,P);
-			rS.push('A = P^{-1}ΛP', Eq(['则A'+sup(ij,''), '(P^{-1}ΛP)'+sup(ij,''), 'P^{-1}Λ(PP^{-1})Λ(PP^{-1})Λ⋯ΛP', 'P^{-1}Λ'+sup(ij,'')+'P',
-				kmtrx(P_1)+' '+kmtrx(Dp)+' '+kmtrx(P), kmtrx(R)]));
-		}
-		if(sel('对角化求幂AP=PΛ')){//第1行 矩阵P 	第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式f(A) 或者 f(x)
-			var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),Ds=Mtrx.opr1('取',D,'D'), m=Ds.length, B=Mtrx.opr1('invPTs',P,'iS='),
-				P_1=subMtrx(B[0][0],1,m,m+1),Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P,Dp,P_1);//P_1=Mtrx.opr1('inv',P)
-			rS.push('A = PΛP^{-1}','求P的逆矩阵',B[1], Eq(['则A'+sup(ij,''), '(PΛP^{-1})'+sup(ij,''), 'PΛ(P^{-1}P)Λ(P^{-1}P)Λ⋯ΛP^{-1}', 'PΛ'+sup(ij,'')+'P^{-1}',
-				kmtrx(P)+' '+kmtrx(Dp)+' '+kmtrx(P_1), kmtrx(R)]));
-			if(VA[3]){
-				var D2=Mtrx.build.D(Arrf(f, Ds)), fA=Mtrx.opr2('*',P,D2,P_1);
-				
-				rS.push('f(A)=Pdiag('+zlrA3('f(',Ds,')')+')'+'P^{-1}=', kmtrx(P)+' '+kmtrx(D2)+' '+kmtrx(P_1), kmtrx(fA))
-			}
-		}
 
 
 
 
 
-
-
-
-
-
-
+// Determinant
 
 		if(sel('|A|','Determinant')){
 			rS=rS.concat(Arrf(function(t){
@@ -1044,14 +602,14 @@ https://zhidao.baidu.com/question/750762700228964772.html
 				return A[1]
 			},VA))
 		}
-		if(sel('对角线法则求行列式')){
+		if(sel('对角线法则')){
 			rS=rS.concat(Arrf(function(t){
 				//var ij='S;=', M=MfS(t), A=Mtrx.opr1('detPTs',M,ij);
 				var M=MfS(t), A=Mtrx.opr1('detSar',M,1);
 				return A[1]
 			},VA))
 		}
-		if(sel('分块矩阵求行列式')){
+		if(sel('Block Matrix')){
 			rS=rS.concat(Arrf(function(t){
 				//var ij='S;=', M=MfS(t), A=Mtrx.opr1('detPTs',M,ij);
 				var M=MfS(t), A=Mtrx.opr1('detPart',M);
@@ -1185,7 +743,9 @@ https://zhidao.baidu.com/question/750762700228964772.html
 			},VA))
 		}
 		
-		if(sel('顺序主子式')){//参数指定k阶
+//Minor
+
+		if(sel('Leading Principle Minor')){//参数指定k阶
 			rS=rS.concat(
 				Arrf(function(t){
 					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
@@ -1195,7 +755,7 @@ https://zhidao.baidu.com/question/750762700228964772.html
 				},VA)
 			);
 		}
-		if(sel('顺序主子式判断正定')){
+		if(sel('判断正定')){
 			rS=rS.concat(
 				Arrf(function(t){
 					var M=MfS(t),MA=[];
@@ -1208,16 +768,28 @@ https://zhidao.baidu.com/question/750762700228964772.html
 			);
 		}
 		
-
-
-
-		if(sel('Eigen Matrix')){
-			rS=rS.concat(concat(copyA('λI-',n),strA,
-				Arrf(function(t){
-					return '='+kmtrx(Mtrx.opr1('特征矩阵',MfS(t)))
-			},VA)));
-
+		if(sel('行列式因子')){
+			
 		}
+		if(sel('不变因子')){
+			
+		}
+		if(sel('最小多项式')){
+			
+		}
+		if(sel('初等因子')){
+			
+		}
+
+
+
+
+
+
+//Eigen Value
+		
+		
+
 		if(sel('Eigen Polynomial')){
 
 		}
@@ -1228,6 +800,10 @@ https://zhidao.baidu.com/question/750762700228964772.html
 				return A[1]
 			},VA));
 		}
+		if(sel('Singular Polynomial')){
+
+		}
+		
 		if(sel('Eigen Vector')){//矩阵&特征值1,2...
 			rS=rS.concat(Arrf(function(t){
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'', M=MfS(t), A=Mtrx.opr1('特征向量',M,ij, 1);
@@ -1293,10 +869,17 @@ console.log('单位化？',oi,m,Q);
 			},VA));
 
 		}
+		
+		if(sel('Eigen Matrix')){
+			rS=rS.concat(concat(copyA('λI-',n),strA,
+				Arrf(function(t){
+					return '='+kmtrx(Mtrx.opr1('特征矩阵',MfS(t)))
+			},VA)));
+
+		}
 
 
-
-
+//Matrix Factorization
 		if(sel('分解为初等矩阵的乘积')){
 			
 			rS=rS.concat(Arrf(function(t){
@@ -1307,9 +890,403 @@ console.log('单位化？',oi,m,Q);
 			},VA));
 		}
 
+		if(sel('SVD')){
+			
+			rS=rS.concat(Arrf(function(t){
+				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'', M=MfS(t), m=M.length, A=Mtrx.opr1('分解',M,'ps',1),A1=A[1],l=A1.length;
+
+				return A1
+
+			},VA));
+		}
+
+
+//Power
+
+
+		if(sel('A^2')){//矩阵&乘幂2
+			rS=rS.concat(
+				Arrf(function(t){
+					var M=MfS(t);
+					return kmtrx(M)+'^2='+kmtrx(Mtrx.opr1('^',M,2))
+				},VA)
+			);
+		}
+
+		if(sel('A^n')){//矩阵&乘幂
+			rS=rS.concat(
+				Arrf(function(t){
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
+					return Arrf(function(k){
+							return kmtrx(M)+sup(k,'')+'='+kmtrx(Mtrx.opr1('^',M,k))
+						},seqsA(ij)).join('\\\\ ')
+				},VA)
+			);
+		}
+
+		if(sel('Boolean Power')){//布尔矩阵&乘幂
+			rS=rS.concat(
+				Arrf(function(t){
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
+					return kxA(Arrf(function(k){
+							return kmtrx(M)+sup(k,'')+'='+kmtrx(Mtrx.opr1('b^',M,k))
+						},seqsA(ij)))
+				},VA)
+			);
+		}
+		if(sel('布尔可达矩阵')){//布尔矩阵
+			rS=rS.concat(
+				Arrf(function(t){
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
+
+					var Bn=Mtrx.opr1('b可达',M);
+					return '可达矩阵 (I+A)'+sup(Bn[1],'')+'='+kmtrx(Bn[0])
+
+				},VA)
+			);
+		}
+		
+
+		if(sel('α^Tβ求幂') || sel('αβ^T求幂')){//2×n矩阵[α;β] & 幂   //A=αTβ或αβT
+			
+
+			rS=rS.concat(
+				Arrf(function(t){
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t),
+						ATB=sel('αTβ求幂'),atb=ATB?'α^Tβ':'αβ^T',at=ATB?'α^T':'α',bt=ATB?'β':'β^T',
+						n=M[0].length,ij_1=minus([ij,1]),aT=Mtrx.opr1('T',[M[0]]),bT=Mtrx.opr1('T',[M[1]]),aTb=Mtrx.opr2('*',aT,[M[1]]),
+						A0=kmtrx([M[0]]),A1=kmtrx([M[1]]), B0=kmtrx(aT),B1=kmtrx(bT),abT=Mtrx.opr2('*',[M[0]],bT),A=Mtrx.opr2('^',abT,ij_1);//这里用变量A表示一阶矩阵βαT的幂
+
+					return Eq(['A',atb,kmtrx(aTb)])+'\\\\ '+
+						bt+at+'='+abT[0][0]+'\\\\ '+
+						Eq(['A^{'+ij+'}','('+atb+')^{'+ij+'}',
+								at+'('+bt+at+')^{'+ij_1+'}'+bt,
+								at+pow([abT[0][0],ij_1])+bt,
+								times([A[0][0],atb],1),
+								times([A[0][0],'A'],1),
+								kmtrx(Mtrx.opr2('*',aT,A,[M[1]]))]);
+				},VA)
+			);
+		}
+
+
+		if(sel('T分解求幂')){//矩阵A & a（分解因子）& 幂
+			
+		/*
+			T分解（不唯一）：适合行(列)间成比例（或相等）的矩阵分解 
+				(a b c)T * (i j k) = 
+				ai aj ak
+				bi bj bk
+				ci cj ck
+				
+				行间相同时，得到 (1 1 1)T * (i j k)
+				列间相同时，得到 (a b c)T * (1 1 1)
+			
+			
+		*/
+			rS=rS.concat(
+				Arrf(function(t){
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', Ma=t.split('&')[1], a=/&/.test(Ma)?Ma.replace(/.+&/,''):'1',M=MfS(Ma),
+						n=M.length,ij_1=minus([ij,1]),
+						B=Mtrx.opr1('分解',M,'T',a), B0=kmtrx(B[0]),B1=kmtrx(B[1]),B1B0=Mtrx.opr2('*',B[1],B[0]),A=Mtrx.opr2('^',B1B0,ij_1);
+					return Eq([kmtrx(M)+sup(ij,''),
+							lrp('',B0+' '+B1,'','')+sup(ij,''),
+							B0+' '+lrp('',B1+' '+B0,'','')+sup(ij_1,'')+B1,
+							B0+' '+kmtrx(B1B0)+sup(ij_1,'')+B1,
+							B0+' '+A+' '+B1,
+							kmtrx(Mtrx.opr2('*',B[0],A,B[1]))
+						]);
+				},VA)
+			);
+		}
+
+		if(sel('对角化求幂')){//矩阵A&幂&特征值
+			rS=rS.concat(
+				Arrf(function(t){
+					var ij=t.split('&'), n=ij[1]||'1', A=MfS(ij[0]), m=A.length, T=Mtrx.opr1('特征向量',A,ij[2]?ij[2].split(','):'',1), P=T[0], isDiagable=P[0].length==m, rs=[];
+					rs.push(T[1]);
+					if(!isDiagable){/*不可对角化
+					
+						设上三角矩阵A特征值为k(n重), B是上三角，且主对角线元素都为0
+						A=B+kI
+						
+						B^n=0（猜想是，但未搜索文献证明）
+						B^n=C_n^iA^(n-i)(-k)^i=A^n+nA^(n-1)(-k)+...+(-k)^nE
+						A^m=C_m^1B^(m-1)k + C_m^2B^(m-2)k^2 + C_m^3B^(m-3)k^3 + ... + C_m^(m-1)Bk^(m-1) + k^mI
+						
+						*/
+						var A2=Mtrx.opr2('^',A,2), A3=Mtrx.opr2('*',A2,A), A3is0=Mtrx.is.b1['0'](A3), A4=A3is0?A3:Mtrx.opr2('*',A3,A);
+						rs.push('A^2='+kmtrx(A2),'A^3='+kmtrx(A3));
+						rs.push();
+						
+						
+						
+						
+					}else{
+						var	D=kxf('diag')+kfraczp(''+T[2]),P=T[0],
+							dn=Arrf(function(t){return pow([t,n])},T[2]),
+							Dn=Mtrx.build.D(dn),DneqD=T[2].join()==dn.join();
+
+						if(DneqD){
+							
+							
+						}else{
+							var DnP_1s=Mtrx.opr1('invrPTs',Mtrx.build.B([[P],[Dn]]),'jS='),
+							DnP_1=subMtrx(DnP_1s[0][0],m+1,m*2,1,m),
+							PDnP_1=Mtrx.opr2('*',P,DnP_1);
+							
+						}
+
+						rs.push('A = PΛP^{-1}，则',
+							Eq(['A^{'+n+'}', '(PΛP^{-1})^{'+n+'}', 'PΛ(P^{-1}P)Λ(P^{-1}P)Λ⋯ΛP^{-1}', 'PΛ^{'+n+'}P^{-1}',
+							'P'+(DneqD?'Λ':kxf('diag')+kfraczp(''+Mtrx.opr1('取',Dn,'D')))+'P^{-1}',
+							DneqD?'A':kmtrx(PDnP_1)]));
+						
+						if(!DneqD){
+							rs.push('使用初等列变换来求Λ^{'+n+'}P^{-1}',DnP_1s[1]);
+						}
+					}
+					return rs.join(kbr2)
+				},VA));
+		}
+		if(sel('对角化求幂PA=ΛP')){//第1行 矩阵P   第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式
+			var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),
+				P_1=Mtrx.opr1('inv',P),	Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P_1,Dp,P);
+			rS.push('A = P^{-1}ΛP', Eq(['则A'+sup(ij,''), '(P^{-1}ΛP)'+sup(ij,''), 'P^{-1}Λ(PP^{-1})Λ(PP^{-1})Λ⋯ΛP', 'P^{-1}Λ'+sup(ij,'')+'P',
+				kmtrx(P_1)+' '+kmtrx(Dp)+' '+kmtrx(P), kmtrx(R)]));
+		}
+		if(sel('对角化求幂AP=PΛ')){//第1行 矩阵P 	第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式f(A) 或者 f(x)
+			var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),Ds=Mtrx.opr1('取',D,'D'), m=Ds.length, B=Mtrx.opr1('invPTs',P,'iS='),
+				P_1=subMtrx(B[0][0],1,m,m+1),Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P,Dp,P_1);//P_1=Mtrx.opr1('inv',P)
+			rS.push('A = PΛP^{-1}','求P的逆矩阵',B[1], Eq(['则A'+sup(ij,''), '(PΛP^{-1})'+sup(ij,''), 'PΛ(P^{-1}P)Λ(P^{-1}P)Λ⋯ΛP^{-1}', 'PΛ'+sup(ij,'')+'P^{-1}',
+				kmtrx(P)+' '+kmtrx(Dp)+' '+kmtrx(P_1), kmtrx(R)]));
+			if(VA[3]){
+				var D2=Mtrx.build.D(Arrf(f, Ds)), fA=Mtrx.opr2('*',P,D2,P_1);
+				
+				rS.push('f(A)=Pdiag('+zlrA3('f(',Ds,')')+')'+'P^{-1}=', kmtrx(P)+' '+kmtrx(D2)+' '+kmtrx(P_1), kmtrx(fA))
+			}
+		}
+
+
+
+
+//Multiary Operation
+
+
+
+
+
+		if(sel('点乘')){
+			rS.push(kmtrx(
+				Arrf(function(x,y){
+					return Mtrx.opr2('.*',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('点除')){
+			rS.push(kmtrx(
+				Arrf(function(x,y){
+					return Mtrx.opr2('./',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('点幂')){
+			rS.push(kmtrx(
+				Arrf(function(x,y){
+					return Mtrx.opr2('.^',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+
+
+
+		if(sel('A⊕B')){
+			rS.push(kmtrx(
+				Arrf(function(x,y){
+					return Mtrx.opr2('⊕',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('A⊗B')){
+			rS.push(kmtrx(Mtrx.opr2.apply(null,['⊗'].concat(Arrf(MfS,VA))))
+			);
+		}
+		if(sel('Kronecker Power')){
+			rS.push((n<5?strA.join(''):Opr('i',1,'n','M_i','^'))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('^',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
 
 
 		
+
+		if(sel('并∨','Boolean')){
+
+			rS.push((n<5?strA.join('\\bigvee '):sum('i',1,'n','M_i',3,''))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('b∨',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('交∧','Boolean')){
+
+			rS.push((n<5?strA.join('\\bigwedge '):prod('i',1,'n','M_i',4,''))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('b∧',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('积⊙','Boolean')){
+
+			rS.push((n<5?strA.join('\\bigodot '):prod('i',1,'n','M_i',7,''))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('b⊙',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+
+		if(sel('A+B')){
+			rS.push((n<5?strA.join('+'):sum('i',1,'n','M_i','',''))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('+',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('A-B')){
+			rS.push((n<5?strA.join('-'):'M_1-M_2-⋯-M_'+n)+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('-',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2')));
+		}
+
+		if(sel('A∔B')){
+			rS.push(kmtrx(Mtrx.opr2.apply(null,['∔'].concat(Arrf(MfS,VA))))
+			);
+		}
+		
+		
+		if(sel('AB')){
+			rS.push((n<5?strA.join(''):prod('i',1,'n','M_i','',''))+'='+kmtrx(
+				Arrf(function(x,y){
+						return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		if(sel('BA')){
+			rS.push((n<5?strA.reverse().join(''):prod('i','n',1,'M_i','',''))+'='+kmtrx(
+				Arrf(function(y,x){
+						return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
+				},VA,'cp2'))
+			);
+		}
+		
+		if(sel('\\exp')){
+			rS=rS.concat(concat(copyA('exp(',n),strA,
+				Arrf(function(t){
+					var As=Mtrx.opr1('exp',MfS(t)),s=['I'];
+					for(var i=1;i<As.length;i++){
+						s.push(frac(1,i+'!','')+kmtrx(As[i]));
+					}
+					
+					return ')='+s.join('+')+'\\\\ ='+kmtrx(As[0])
+				},VA))
+			);
+		}
+
+
+		
+		
+		if(sel('A^TA')){
+			rS=rS.concat(concat(strA,copyA('^T',n),strA,copyA('=',n),
+				Arrf(function(t){
+					var M=MfS(t);
+					return kmtrx(Mtrx.opr2('*',Mtrx.opr1('T',M),M))
+			},VA)));
+		}
+		if(sel('AA^T')){
+			rS=rS.concat(concat(strA,strA,copyA('^T',n),copyA('=',n),
+				Arrf(function(t){
+					var M=MfS(t);
+					return kmtrx(Mtrx.opr2('*',M,Mtrx.opr1('T',M)))
+			},VA)));
+		}
+		if(sel('A^TB')){
+			var AT=Mtrx.opr1('T',MfS(VA[0])), B=MfS(VA[1]), C=Mtrx.opr2('*',AT,B);
+			rS.push('A^T = '+kmtrx(AT), 'B = '+kmtrx(B), 'A^TB = '+kmtrx(C))
+		}
+		if(sel('AB^T')){
+			var BT=Mtrx.opr1('T',MfS(VA[1])), A=MfS(VA[0]), C=Mtrx.opr2('*',A,BT);
+			rS.push('A = '+kmtrx(A), 'B^T = '+kmtrx(BT), 'AB^T = '+kmtrx(C))
+		}
+		if(sel('A^TB^T')){
+			var AT=Mtrx.opr1('T',MfS(VA[0])),BT=Mtrx.opr1('T',MfS(VA[1])),C=Mtrx.opr2('*',AT,BT);
+			rS.push('A^T = '+kmtrx(AT),'B^T = '+kmtrx(BT), 'A^TB^T = '+kmtrx(C))
+		}
+		if(sel('B^TA^T=(AB)^T')){
+			var A=MfS(VA[0]),B=MfS(VA[1]),C=Mtrx.opr2('*',A,B),CT=Mtrx.opr1('T',C);
+			rS.push('A = '+kmtrx(A), 'B = '+kmtrx(B), 'AB = '+kmtrx(C), '(AB)^T = '+kmtrx(CT))
+		}
+		
+		
+		if(sel('ABA^T')){
+			var A=MfS(VA[0]),AT=Mtrx.opr1('T',A),B=MfS(VA[1]),C=Mtrx.opr2('*',A,B,AT);
+			rS.push('A = '+kmtrx(A), 'B = '+kmtrx(B), 'A^T = '+kmtrx(AT), 'ABA^T = '+kmtrx(C))
+		}
+		if(sel('A^TBA')){
+			var A=MfS(VA[0]),AT=Mtrx.opr1('T',A),B=MfS(VA[1]),C=Mtrx.opr2('*',AT,B,A);
+			rS.push('A^T = '+kmtrx(AT), 'B = '+kmtrx(B), 'A = '+kmtrx(A), 'A^TBA ='+kmtrx(C))
+		}
+
+		if(sel('BAB^T')){
+			var A=MfS(VA[0]),B=MfS(VA[1]),BT=Mtrx.opr1('T',B),BA=Mtrx.opr2('*',B,A), C=Mtrx.opr2('*',BA,BT);
+			rS.push('A = '+kmtrx(A),'B = '+kmtrx(B), 'BA = '+kmtrx(BA), 'BAB^T = '+kmtrx(C))
+		}
+		
+		if(sel('B^TAB')){
+			var A=MfS(VA[0]),B=MfS(VA[1]),BT=Mtrx.opr1('T',B),AB=Mtrx.opr2('*',A,B), C=Mtrx.opr2('*',BT,AB);
+			rS.push('A = '+kmtrx(A),'B = '+kmtrx(B), 'AB = '+kmtrx(AB), 'B^TAB = '+kmtrx(C))
+		}
+		
+		
+
+
+
+
+		if(sel('A^{-1}B')){//	A\B 前2行是矩阵A、B，第3行，是参数
+			rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[0]),MfS(VA[1])]]),VA[2]||'iS=')[1])
+		}
+		if(sel('BA^{-1}')){//	B/A 前2行是矩阵A、B，第3行，是参数
+			rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[0])],[MfS(VA[1])]]),VA[2]||'jS=')[1])
+		}
+
+		if(sel('AB^{-1}')){//	A/B 前2行是矩阵A、B，第3行，是参数
+			rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[1]),MfS(VA[0])]]),VA[2]||'jS=')[1])
+		}
+		if(sel('B^{-1}A')){//	/BA 前2行是矩阵A、B，第3行，是参数
+			rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[1])],[MfS(VA[0])]]),VA[2]||'iS=')[1])
+		}
+
+
+		if(sel('P^{-1}AP')){//第1行P		第2行A		第3行变换参数
+			var P=MfS(VA[0]),A=MfS(VA[1]), P_A=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,A]]),VA[2]||'iS='),
+				P_A0=P_A[0][0],m=P_A0.length,n=P_A0[0].length,P_1A=subMtrx(P_A0,1,m,m+1,n),
+				P_1AP=Mtrx.opr2('*',P_1A,P);
+			rS.push('P='+kmtrx(P)+'，A='+kmtrx(A),'使用初等行变换来求P^{-1}A',P_A[1],'P^{-1}AP='+kmtrx(P_1AP))
+		}
+		if(sel('PAP^{-1}')){//第1行P		第2行A		第3行变换参数
+			var P=MfS(VA[0]),A=MfS(VA[1]), PA=Mtrx.opr2('*',P,A),
+				PAP_=Mtrx.opr1('invrPTs',Mtrx.build.B([[P],[PA]]),VA[2]||'jS=');
+			rS.push('P='+kmtrx(P)+', A='+kmtrx(A)+', PA='+kmtrx(PA),'使用初等列变换来求PAP^{-1}',PAP_[1])
+		}
+
+
+
+
+
+
+//Equation
 		if(sel('AX=0')){
 			if(/=/.test(v)){
 				VA=[v];
@@ -1474,7 +1451,7 @@ consolelog(X,aA,eaA);
 		}
 
 
-		if(sel("Cramer Rule")){//增广矩阵 & 变换参数数组[可选，每个行列式的求解命令用@隔开] & 变量风格
+		if(sel('Cramer Rule')){//增广矩阵 & 变换参数数组[可选，每个行列式的求解命令用@隔开] & 变量风格
 			rS=rS.concat(Arrf(function(t){
 				var ts=t.split('&'),hasP=/&/.test(t), xi=hasP?t.replace(/.+&/,''):'x1', M=MfS(t), p=ts.length>2?ts[1].split('@'):[],
 					A=Mtrx.opr1('Cramer',M,p,xi);
@@ -1541,6 +1518,141 @@ y=x+特解
 
 
 
+//Form
+
+		if(sel('Smith Normal Form')){
+			
+		}
+		if(sel('Jordan Normal Form')){
+			
+		}
+
+
+
+
+
+
+
+//Quadric Form
+
+		if(sel('矩阵→二次型')){//对称矩阵S(;) 得到相应的二次型
+			rS=rS.concat(Arrf(function(t){
+				var t0=t.replace(/&.+/,''),M=MfS(t0), m=M.length,A=[];//m=Math.floor(Math.sqrt(M.length*2)),A=[];
+				if(m!=M[0].length){
+					M=MfS('S('+t0+')');
+					m=M.length;
+				}
+				for(var i=0;i<m;i++){
+					A.push(times([M[i][i],'x_'+(i+1)+'^2']));
+				}
+				for(var i=0;i<m;i++){
+					for(var j=i+1;j<m;j++){
+						A.push(times([2,M[i][j],'x_'+(i+1)+'x_'+(j+1)]));
+					}
+				}
+				
+				return kmtrx(M)+', 对应二次型：\\\\ '+plus(A,1)
+			},VA));
+		}
+		if(sel('Quadric Form → Matrix')){//S2(;)分别填写二次型中系数：x1² x2² x3² x4² x1x2 x1x3 x2x3，(n(n+1)/2个元素)得到相应的矩阵
+			rS=rS.concat(Arrf(function(t){
+				var t0=t.replace(/&.+/,''),tA;
+				if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
+					var MC=MfS('QF('+t0+')','co');
+					M=MC[0];
+					tA=MC[1];
+				}else if(/^S2/.test(t0)){
+					tA=t0.replace(/^S2\(|\)$/g,'').split(/[ ,;]/g);
+					M=MfS(t0);
+				}else{
+					tA=t0.split(/[ ,;]/g);
+					M=MfS('S2('+t0+')');
+				}
+				
+				var m=M.length,A=[];
+				for(var i=0;i<m;i++){
+					consolelog(tA[i],'x_'+(i+1)+'^2');
+					A.push(times([tA[i],'x_'+(i+1)+'^2']));
+				}
+				consolelog(A.join(' ; ; '));
+				
+				for(var i=0;i<m;i++){
+					for(var j=i+1;j<m;j++){
+						/*	(m-1)+(m-2)+...+(m-1-i+1)+m = (m-1+m-i)*i/2+m
+							*/
+							consolelog(tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1));
+						
+						A.push(times([tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1)]));//(m-1+m-i-2)*i/2+m-1+(j-i)
+					}
+				}
+				
+				consolelog(A.join(' ; ; '));
+				return '二次型'+plus(A,1)+', 对应系数矩阵：\\\\ '+kmtrx(M)
+			},VA));
+		}
+
+
+		if(sel('二次型化标准型（配方法）')){//填写二次型：x1² x2² x3² x4² x1x2 x1x3 x2x3，(n(n+1)/2个元素)代数和
+			/*
+				
+			f(x_1,x_2,x_3)
+=2x_1^2-3x_2^2+x_3^2+4x_1x_2-6x_1x_3-4x_2x_3
+=(x_3-(3x_1+2x_2))^2-(3x_1+2x_2)^2+2x_1^2-3x_2^2+4x_1x_2
+=(x_3-(3x_1+2x_2))^2-7x_1^2-7x_2^2-8x_1x_2
+=(x_3-(3x_1+2x_2))^2-7(x_1+(4/7)x_2)^2-(33/7)x_2^2
+
+
+https://zhidao.baidu.com/question/750762700228964772.html	
+				
+			*/
+			rS=rS.concat(Arrf(function(t){
+				var t0=t.replace(/&.+/,''),tA;
+				if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
+					var MC=MfS('QF('+t0+')','co');
+					M=MC[0];
+					tA=MC[1];
+				}else if(/^S2/.test(t0)){
+					tA=t0.replace(/^S2\(|\)$/g,'').split(/[ ,;]/g);
+					M=MfS(t0);
+				}else{
+					tA=t0.split(/[ ,;]/g);
+					M=MfS('S2('+t0+')');
+				}
+				
+				var m=M.length,A=[];
+				for(var i=0;i<m;i++){
+					A.push(times([tA[i],'x_'+(i+1)+'^2']));
+				}
+				for(var i=0;i<m;i++){
+					for(var j=i+1;j<m;j++){
+						/*	(m-1)+(m-2)+...+(m-1-i+1)+m = (m-1+m-i)*i/2+m
+							*/
+						A.push(times([tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1)]));//(m-1+m-i-2)*i/2+m-1+(j-i)
+					}
+				}
+				return '二次型'+plus(A,1)+', 对应系数矩阵：\\\\ '+kmtrx(M)
+			},VA));
+		}
+
+
+		if(sel('二次型化标准型（合同变换）')){//
+
+		}
+
+		if(sel('二次型求秩')){//分别填写二次型中系数：x1² x2² x3² x1x2 x1x3 x2x3，(n(n+1)/2个元素)得到相应的矩阵
+			rS=rS.concat(Arrf(function(t){
+				var t0=t.replace(/&.+/,''),M=MfS(/^S2/.test(t0)?t0:'S2('+t0+')'), R=Mtrx.opr1('rankPTs',M,'iE=');
+				return '二次型系数矩阵：\\\\ '+R[1]
+			},VA));
+		}
+
+		if(sel('二次型正定')){//
+
+		}
+
+
+
+//Base
 
 
 		if(sel('基[ⅠⅡ]，过渡矩阵P，坐标[xy]，求基[ⅡⅠ]、坐标[yx]【β=αP，X=PY】')){//第1行：基&[12]	第2行：P	第3行：坐标&[xy] xy标明坐标是x，还是y
@@ -1755,10 +1867,23 @@ y=x+特解
 		}
 
 
+//Linear Space
+		if(sel('Dimension')){//
 
 
+		}
+		if(sel('零度')){//
 
 
+		}
+		if(sel('Kernel')){//
+
+
+		}
+		if(sel('Range')){//
+
+
+		}
 	}
 
 

@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -1327,8 +1326,11 @@ consolelog(' - 只剩一个负项  ',t)
 	
 	},
 	toStr:function(A, latex, p){/*A → 数学表达式str (unicode Math)		latex指定返回LaTeX格式	p指定是否添加括号
-		
+			如果A本身就是字符串，则认为是数学表达式，转成LaTeX输出
 		*/
+		if(isStr(A)){
+			return Mfn.fromStr(A).toStr(1)
+		}
 		var A0=A[0];
 		var f=function(x0,nop){//参数nop，指定不保留括号
 			var x=x0;
@@ -1670,6 +1672,11 @@ consolelog(of);
 		}
 
 		if(op=='≈'){//直接求出最终近似解，返回整数、小数或复小数形式		参数sim指定小数位数精度
+			if(of=='num'){
+				return A.toStr()
+			}
+			
+			
 			
 			
 		}
@@ -2330,11 +2337,20 @@ consolelog('ov = ',ov);
 			
 			if(of=='tds' || of=='times'){// 乘除式化简
 				
-consolelog('化简 ',of,'ov = ',ov.join(' ;; '));
+consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
 				if(of=='tds' && ov[0].length+ov[1].length==3 && ov[0][0]=='÷' && A[1][ov[1][0]].f=='num' && A[1][ov[1][1]].f=='num'){// 是分数
 					consolelog(A[1][ov[1][0]].c, A[1][ov[1][1]].c);
 					return Mfn.fromStr(FracReduct([A[1][ov[1][0]].c, A[1][ov[1][1]].c]))
 				}
+
+				if(of=='tds' && ov[0].length==1 && /[×÷]/.test(ov[0][0]) &&
+					A[1][ov[1][0]].f=='√' && A[1][ov[1][1]].f=='√' && 
+					A[1][A[1][ov[1][0]].c].f=='num' && A[1][A[1][ov[1][1]].c].f=='num'){// 是两个根数
+					consolelog(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c);
+					return Sqrt(fracOpr(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c),1)
+
+				}
+
 
 				if(of=='times'){
 					ov=[copyA('×',ov.length-1),ov];
@@ -3848,7 +3864,6 @@ consolelog(A,!notlatex);
 
 
 //字符串输出
-
 },plus=function(A,latex){
 	
 	return Mfn.oprs('+',A,1).toStr(latex)

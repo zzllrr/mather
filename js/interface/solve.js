@@ -3,6 +3,10 @@
  * zzllrr@gmail
  * Released under MIT License
  */
+
+tooltip.solve={};
+
+
 $(function(){
 	var sbj0=$('#subject0'),sbj1=$('#subject1'),sbj2=$('#subject2');
 	sbj0.on('change', function(){//改变sbj2
@@ -91,120 +95,6 @@ $(function(){
 		}
 	});
 
-
-	$('body').on('click','#solveGround .task', function(e){
-		var me=$(this).toggleClass('seled'),se=me.is('.seled'),eg=me.attr('data-eg'), shft=e.shiftKey;
-		if(se && shft){
-			$('#input0').val(function(i,v){return (v.trim()?v.trim()+'\n':'')+(eg||$('#input0Tip .eg').attr('data-eg')||'')})
-			
-			
-		}
-
-		L.subtool=[$('#subject0').val(),$('#subject1').val(),$('#subject2 :selected').index(),
-			$('#solveGround .ground0 .level.seled').index(),$('#solveGround .ground1 .level.seled').index(),$('#solveGround .ground2 .level.seled').index(),
-			$('#solveGround .task.seled').index()].join('.').replace(/,-1.+/,'');
-	});
-/*
-	}).on('click','#solveGround .ground0 .level',function(){
-
-
-		var v0=$('#subject0').val(),v1=$('#subject1').val(),v2=$('#subject2').val(),me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		
-		if(me.is('.seled')){
-			me.removeClass('seled');
-			
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=solves[v1||v0].sbj2[v2][i],str='', str2='';
-			consolelog(o);
-			$.each(o, function(x,A){
-				consolelog(A);
-				if(isStr(A[0])){
-					$('#solveGround .tasks').html(jdetail(A,'','task'))
-					
-				}else{
-					
-					for(var i=0,l=A.length;i<l;i++){
-						if(isStr(A[i])){
-							str2+=jdetail(A[i],'','task')
-							
-						}else{
-							$.each(A[i], function(k,v){
-								str+=jdetail(k);
-							});
-						}
-					}
-					$('#solveGround .ground1').html(str);
-					$('#solveGround .tasks').html(str2);
-				}
-			});
-
-		}
-
-	}).on('click','#solveGround .ground1 .level',function(){
-
-
-		var v0=$('#subject0').val(),v1=$('#subject1').val(),v2=$('#subject2').val(),g0i=$('#solveGround .ground0 .seled').index(), me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=solves[v1||v0].sbj2[v2][g0i],str='',str2='';
-			$.each(o, function(x,A){
-				o=A[i];
-			});
-			consolelog(o);
-			$.each(o, function(x,A){
-				if(isStr(A[0])){
-					$('#solveGround .tasks').html(jdetail(A,'','task'))
-					
-				}else{
-					
-					for(var i=0,l=A.length;i<l;i++){
-						if(isStr(A[i])){
-							str2+=jdetail(A[i],'','task')
-							
-						}else{
-							$.each(A[i], function(k,v){
-								str+=jdetail(k);
-							});
-						}
-
-					}
-					$('#solveGround .ground2').html(str);
-					$('#solveGround .tasks').html(str2);
-				}
-			});
-
-		}
-
-	}).on('click','#solveGround .ground2 .level',function(){
-
-
-		var v0=$('#subject0').val(),v1=$('#subject1').val(),v2=$('#subject2').val(),g0i=$('#solveGround .ground0 .seled').index(),g1i=$('#solveGround .ground1 .seled').index(), me=$(this),mei=me.attr('data-i'),i=me.index();
-		me.parent().nextAll().empty();
-		if(me.is('.seled')){
-			me.removeClass('seled');
-		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var o=solves[v1||v0].sbj2[v2][g0i],str='';
-			$.each(o, function(x,A){
-				o=A[g1i];
-			});
-			$.each(o, function(x,A){
-				o=A[i];
-			});
-			$.each(o, function(x,A){
-				$('#solveGround .tasks').html(jdetail(A,'','task'))
-			});
-
-		}
-		
-	});
-
-*/
 
 
 	var uo=H_o(sch);

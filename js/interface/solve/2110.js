@@ -4,12 +4,12 @@
  * Released under MIT License
  */
 
-solves[2110]={sbj2s:['Matrix','Permutation',
+solves[2110]={sbj2s:['Matrix','Permutation','Vector',
 	], sbj2:{
 
 	'Permutation':[
 		{'Display':[
-			'$σ$—Permutation'
+			'$σ$—Permutation“12354'
 		]},
 		{'Unary Operation':[
 			'Inversion Number',
@@ -21,30 +21,50 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 		]},
 		
 		{'Multiary Operation':[
-			'$στ$“1243\n13254',
-			'$τσ$“1243\n13254',
+			'$στ$—一行一个“1243\n13254',
+			'$τσ$—一行一个“1243\n13254',
 			'$σ^n$…'+gM('Permutation')+'&'+gM('Power')+'n—Power“1243&6',
 			'奇偶排列求ij…置换（含ij未知数）&奇1偶2“12ij5&2'
 		]},
 	],
 
 
-	'Matrix':[
+	'Vector':[
 		{'Display':[
-			'$A$…[1 2;3 4]—Matrix',
-			'$|A|$…[1 2;3 4]—Determinant',
-			'Block…A&准对角阵D3_4_2;副准对角阵C1_2\nr2平均分为2行;r2c2平均分为2行或2列“[1 2 3 4;0 5 6 7;0 8 9 10;0 11 12 13]&D1',
-			'表示成三元组“[x y;0 z]',
 			'Row Vector“1 2 3',
 			'Column Vector“1 2 3',
 		]},
+		{'Unary Operation':[
+			'$|\\vec{a}|$—Vector Norm“1 2 3',
+			'$|\\vec{a}|^2$—Vector Norm Sq“1 2 3',
+			'$\\frac{\\vec{a}}{|\\vec{a}|}$—Normalize“1 2 3'
+		]},
+		
+		{'Multiary Operation':[
+
+			'$α‧β$…α\nβ—Vector Inner Product',
+			'向量夹角…α\nβ',
+			'$α×β$…α\nβ—Vector Cross Product',
+			'混合积…a\nb\nc',
+			'双重矢性积…a\nb\nc'
+
+		]},
+	],
+
+
+
+
+	'Matrix':[
+		{'Display':[
+			'$A$—Matrix',
+			'$|A|$—Determinant',
+			'Block…A&准对角阵D3_4_2\n副准对角阵C1_2\nr2平均分为2行\nr2c2平均分为2行或2列“[1 2 3 4;0 5 6 7;0 8 9 10;0 11 12 13]&D1',
+			'表示成三元组“[x y;0 z]',
+
+		]},
 		
 		{'Unary Operation':[
-			{'Vector':[
-				'$|\\vec{a}|$—Vector Norm“1 2 3',
-				'$|\\vec{a}|^2$“1 2 3',
-				'$\\frac{\\vec{a}}{|\\vec{a}|}$—Normalize“1 2 3'
-			]},
+
 			{'Gram-Schmidt':[
 				'Normalize',
 				'Orthogonalize',
@@ -58,7 +78,7 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 			
 			'$A^T$—Transpose','$A^H$—Hermitian','$-A$',
 
-			'$A_{ij}$…A&索引\n一阶i1,j2（或缩写为1,2）\n多阶i1,i2,j1,j2\ni1（按第1行）\nj1（按第1列）\n多个用;分开—Algebraic Cofactor',
+			'$A_{ij}$…A&索引\n一阶i1,j2（或缩写为1,2）\n多阶i1,i2,j1,j2\ni1（按第1行）\nj1（按第1列）\n多个用;分开—Algebraic Cofactor“1234&i1',
 			'$A^*$—Adjoint Matrix',
 			"$$kxf('r')$(A)$—Rank",
 			"$$kxf('tr')$(A)$—Trace",
@@ -72,11 +92,19 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 
 
 		{'Elementary Transformation':[
-			'化上三角（行变换）','化下三角（列变换）',
-			'化行阶梯','化列阶梯',
-			'化最简行…行变换化成特殊的上三角、行阶梯','化最简列…列变换化成特殊的下三角、列阶梯',
-			'化标准型','对角化求合同矩阵',
-			'求极大线性无关组并表示其余向量…矩阵&k（后k个向量用βi表示）“[1 2 3;4 5 7;3 8 10]&1'
+			'化上三角（行变换）',
+			'化下三角（列变换）',
+			
+			'化行阶梯',
+			'化列阶梯',
+			
+			'化最简行…行变换化成特殊的上三角、行阶梯',
+			'化最简列…列变换化成特殊的下三角、列阶梯',
+			
+			'化标准型','初等变换化标准型',
+				
+			'对角化求合同矩阵',
+			'求极大线性无关组并表示其余向量…矩阵&k\n（后k个向量用βi表示）“[1 2 3;4 5 7;3 8 10]&1'
 		]},
 		
 
@@ -85,24 +113,24 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 			'$A^{-1}$—Inverse',
 			'伴随矩阵求逆',
 			'分块矩阵求逆…A&分块命令\n只支持2×2分块，且是准对角矩阵或副准对角阵',
-			'$f(A)=A^2+bA+cI=0求逆$…b,c&k&E'
+			'$f(A)=A^2+bA+cI=0求逆$…b,c&k&E\n参数E，表示用字母E表示单位矩阵（默认是用字母I）“-3,2&4'
 		]},
 
 
 		{'Determinant':[
 			'$|A|$…det(A)—Determinant',
-			'$|kA|$…|A|,Order,n,k',
-			'$|AP|$…P&|A|',
+			'$|kA|$…|A|,Order,n,k“-2 3 5 4',
+			'$|AP|$…P&|A|“1234&2456',
 			
 			'By Definition',
-			'代数余子式之和…A&i4&-1,1,-1,1',
+			'代数余子式之和…A&i4&系数“1234&i2&-1,1',
 			'Laplace Expansion',
 			'对角线法则',
 			'Block Matrix',
 			'拆列',
 
-			'$|a(bA)^{-1}+c(dA)^*|$…|A|,n&a,b,c,d',
-			'$|a(bA)^{-1}+c(dA)^*+eE+fA|$…特,征,值&a,b,c,d,e,f',
+			'$|a(bA)^{-1}+c(dA)^*|$…|A|,n&a,b,c,d“10,3&-1,2,3,4',
+			'$|a(bA)^{-1}+c(dA)^*+eE+fA|$…特,征,值&a,b,c,d,e,f“1,2,3&1,2,3,4,5',
 			
 			
 			'$a_{ij}=A_{ij}$—Matrix Order','',
@@ -111,29 +139,30 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 		]},
 		
 		{'Minor':[
-			'顺序主子式','顺序主子式判断正定',
+			'Leading Principle Minor','判断正定',
 			'行列式因子','不变因子','最小多项式','初等因子',
-			"$$kxf('Smith')$标准型$","$$kxf('Jordan')$标准型$"
+
 		]},
 
 
 
 		{'Eigen Value':[
-			{'Eigen Value':['Eigen Value…A&'+gM('Eigen Value'),'Singular Value']},
-			{'Polynomial':['Eigen Polynomial']},
 			{'Eigen Vector':[
 				'Eigen Vector…A&'+gM('Eigen Value'),
 				'Eigen Vector Orthogonalize',
 				'Eigen Vector Gram-Schmidt',
 				'Eigen Matrix'
-			]}
+			]},
+			'Eigen Polynomial',
+			'Eigen Value…A&'+gM('Eigen Value'),
+			'Singular Value'
 				
 		]},
 
 
 		{'Matrix Factorization':[
 			'分解为初等矩阵的乘积…矩阵&初等矩阵个数',
-			"$$kxf('SVD')$$"
+			'SVD'
 		]},
 
 
@@ -158,19 +187,18 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 
 
 		{'Multiary Operation':[
-			{'Vector':[
-				'$α‧β$…α\nβ—Vector Inner Product',
-				'向量夹角…α\nβ',
-				'$α×β$…α\nβ—Vector Cross Product',
-				'混合积…a\nb\nc',
-				'双重矢性积…a\nb\nc'
-			]},
+
 			{'Dot':['点乘','点除','点幂']},
 			{'Kronecker':['$A⊕B$','$A⊗B$','Kronecker Power']},
 
-			{'Boolean':['$布尔并∨$','$布尔交∧$','$布尔积⊙$']},
+			{'Boolean':['$并∨$','$交∧$','$积⊙$']},
 
-			{'Transpose':['$A^TA$','$AA^T$','$A^TB$','$AB^T$','$A^TB^T$','$(AB)^T$','$BAB^T$','$B^TAB$']},
+			{'Transpose':['$A^TA$','$AA^T$',
+				'$A^TB$','$AB^T$',
+				'$A^TB^T$','$B^TA^T=(AB)^T$',
+				
+				'$ABA^T$','$A^TBA$',
+				'$BAB^T$','$B^TAB$']},
 
 			{'Division':[
 				'$A^{-1}B$…A\nB\n变换参数—左除A\B',
@@ -182,14 +210,14 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 				'$PAP^{-1}$…P\nA\n变换参数',
 			]},
 
-			'$A+B$','$A-B$',
+			'$A+B$','$A-B$','$A∔B$—Direct Sum',
 
 			'$AB$','$BA$','$\\exp$',
-			'$A∔B$—Direct Sum',
+
 			
-			'多项式…A&表达式',
-			'计算器…表达式\nA=赋值\nB=赋值',
-			'计算器步骤…表达式\nA=赋值\nB=赋值'
+			'Polynomial…A&表达式',
+			'Calculator…表达式\nA=赋值\nB=赋值',
+			'Calculator by Step…表达式\nA=赋值\nB=赋值'
 			
 			
 			]},
@@ -199,8 +227,8 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 		{'Equation':[
 
 			{'Matrix Equation':[
-				'$AX=aA+bX$…A&a,b&[XB]',
-				'$XA=aA+bX$…A&a,b&[XB]',
+				'$AX=aA+bX$…A&a,b&[XB]“1234&3,-1&B',
+				'$XA=aA+bX$…A&a,b&[XB]“1234&2,3&B',
 				'$AX=B$…A\nB\n变换参数',
 				'$XA=B$…A\nB\n变换参数',
 				'$AXB=C$…A\nB\nC\n行变换参数\n列变换参数',
@@ -211,15 +239,23 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 			]},
 			'$AX=0$',
 			'$AX=b$—Input Augmented Matrix',
-			"Cramer Rule—Augmented Matrix&变换参数1@变换参数2&未知数风格x1[a][x]",
+			'Cramer Rule—Augmented Matrix&变换参数1@变换参数2&未知数风格x1[a][x]',
 			
-			'$P^{-1}AP=B求P$…A\nB',
+			'$P^{-1}AP=B求P$…A\nB“1234\n2751',
+		]},
+
+
+
+
+
+		{'Form':[
+			'Smith Normal Form','Jordan Normal Form'
 		]},
 
 
 		{'Quadric Form':[
-			'矩阵→二次型…S(只填元素)',
-			'二次型→矩阵…S2(只需填写里面的值)',
+			'Matrix → Quadric Form…S(只填元素)',
+			'Quadric Form → Matrix…S2(只需填写里面的值)',
 			
 			'二次型化标准型（配方法）',
 			'二次型化标准型（合同变换）',
@@ -252,15 +288,17 @@ solves[2110]={sbj2s:['Matrix','Permutation',
 				'$基[ⅠⅡ]，坐标xy，求过渡矩阵、基[ⅡⅠ]【β=αP，X=PY】$…第1行：基&[12]\n第2行：坐标x\n第3行：坐标y',
 				'$基[ⅠⅡ]，y=Mx，求过渡矩阵、基[ⅡⅠ]【β=αP，X=PY】$…第1行：基&[12]\n第2行：M',
 			]},
-			{'求度量矩阵':[
+			{'度量矩阵':[
 			
-				'$基，坐标xy，求度量矩阵M、内积【M=αTα，(a,b)=x^TMy】$…第1行：基\n第2行：坐标x\n第3行：坐标y'
+				'$基，坐标xy，求度量矩阵M、内积【M=αTα，(a,b)=x^TMy】$…第1行：基\n第2行：坐标x\n第3行：坐标y',
+				'度量矩阵，求一组标准正交基、过渡矩阵、坐标'
+				
 			]},
 				
 				
 		]},
 
-		{'Linear Space':['维度','零度','核','值域']},
+		{'Linear Space':['Dimension','零度','Kernel','Range']},
 
 
 	]

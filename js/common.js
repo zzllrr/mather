@@ -263,7 +263,8 @@ $(function(){
 			}
 		}
 
-	}).on('click','th:not(:has(.oClear))',function(){
+//	}).on('click','th:not(:has(.oClear))',function(){
+	}).on('click','th:has(.oLaTeX), .wiki th',function(){
 		var me=$(this), i=me.index();
 		if(me.is('.katexed')){
 		//	me.text(me.find('.katex-mathml annotation').text());
@@ -382,7 +383,8 @@ $(function(){
 		var me=$(this);
 		toolTip(me.attr('data-tip')+' | '+gM('taskTip'));
 
-	}).on('mouseover', 'th:not(:has(.oClear))',function(e){
+//	}).on('mouseover', 'th:not(:has(.oClear))',function(e){
+	}).on('mouseover', 'th.oLaTeX',function(e){
 		var me=$(this);
 		toolTip(gM('thTip'));
 
@@ -455,10 +457,11 @@ $(function(){
 		}
 
 
-	}).on('click','.ground .level',function(){
+	}).on('click','.ground .level,.task',function(e){
 
-		var me=$(this),mei=me.attr('data-i'),pa=me.parent(),p=pa.parents('.ground'),
-		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{}, issolve=tool=='solve';
+		var me=$(this),mei=me.attr('data-i'),eg=me.attr('data-eg'),tip=me.attr('data-tip'),mtool=me.attr('data-tool'), shft=e.shiftKey,
+		pa=me.parent(),p=pa.parents('.ground'),
+		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{}, issolve=tool=='solve', istask=me.is('.task');
 
 		pa.nextAll().add('#oHTML').empty();
 		
@@ -467,15 +470,18 @@ $(function(){
 			$('.inputTip[data-uri^="'+muri+'"]').remove();
 			
 		}else{
-			me.addClass('seled').siblings().removeClass('seled');
-			var v=issolve?$('#subject2').val():'',fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length;
+			me.addClass('seled');
+			if(!istask){
+				me.siblings().removeClass('seled');
+			}
+			var fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length,v=issolve?$('#subject2').val():'';
 
 
-			var tip=tooltip[v],tipOpr=tooltip[v+' Operation'],str='',str2='',
+			var ttip=tooltip[v],tipOpr=tooltip[v+' Operation'],str='',str2='',
 			ev=eval(tool), evs=eval(tool+'s'), eT=eval(tool+'Then');
 			
-			if(tip && $('#input0Tip .inputTip[data-tool="'+v+'"]').length<1){
-				$('#input0Tip').append(detail(gM(v), tip, '', 'class=inputTip data-tool="'+v+'"'));
+			if(ttip && $('#input0Tip .inputTip[data-tool="'+v+'"]').length<1){
+				$('#input0Tip').append(detail(gM(v), ttip, '', 'class=inputTip data-tool="'+v+'"'));
 				if(tipOpr){
 					$('#input0Tip').append(detail(gM(v+' Operation'), tipOpr, '', 'class=inputTip data-tool="'+v+'"'));
 				}
@@ -503,10 +509,11 @@ consolelog('路径',fm);
 			}
 
 
+consolelog('uri = ',muri);
 
 			var A=evs[fm[0][0]];
 			
-			if(A){
+			if(A && !istask){
 consolelog('A = ',A);
 				if(isStr(A)){
 
@@ -518,7 +525,7 @@ consolelog('A = ',A);
 						if(isObj(A)){
 							A=A[fm[0][1]]
 						}
-						
+consolelog('此时A = ',A);
 						if(lvl==3){
 							A=A[fm[1][2]];
 							if(isObj(A)){
@@ -539,8 +546,16 @@ consolelog('最终A = ',A);
 								
 							}else{
 								$.each(A[i], function(k,v){
-									if(issolve && !isArr(v)){
-										str2+=jdetail(k,'','task')
+									consolelog('A[i]=',k,v);
+									if(issolve && (!isArr(v) || lvl==3)){
+										if(isArr(v)){
+											str2+=jdetail(A[i],'','task')
+										}else{
+											str2+=jdetail(k,'','task')
+										}
+									
+									}else if(lvl==3){
+										str+=jdetail(k,'','task')
 									}else{
 										str+=jdetail(k)
 									}
@@ -563,6 +578,19 @@ consolelog('最终A = ',A);
 
 			var B=eT[muri];
 			if(B){B()}
+			
+			
+			if(shft){//(v.trim()?v.trim()+'\n':'')+
+				$('#input0').val(eg||$('#input0Tip .eg').not('.eg2').attr('data-eg')||'');
+			}
+			
+			if(issolve && istask && eg && $('#input0Tip .inputTip[data-uri="'+muri+'"]').length<1){
+				var hasC=me.children('.katex').length;
+				$('#input0Tip').append(detail(hasC?me.html():tip, 
+					(hasC && mtool!=tip?tip+br:'')+(me.attr('title')?me.attr('title').replace(/\n/g,br)+br:'')+sceg(eg),
+					 1, 'class=inputTip data-uri="'+muri+'" data-tool="'+fm[0].slice(-1).join('')+'"'));
+			}
+			
 		}
 
 

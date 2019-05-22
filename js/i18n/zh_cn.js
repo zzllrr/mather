@@ -34,8 +34,8 @@ lang['zh_cn']={
 	'dropShadow':'阴影',
 	
 	'attr':'属性',
-	
-	
+	'Sq':'平方',
+	'Cb':'立方',
 	
 	'Lang':'语言',
 	'Del':'删除',
@@ -158,6 +158,9 @@ lang['zh_cn']={
 	'Image':'图片',
 	'Mic':'麦克风',
 	'Calculator':'计算器',
+
+	'Translator':'翻译',
+	
 	'Reader':'阅读器',
 	'Camera':'摄像头',
 	'Video':'视频',
@@ -238,6 +241,7 @@ lang['zh_cn']={
 
 	'Difficulty':'困难',
 	'Eagerness':'热切程度',
+	'Step':'步',
 
 // 自由描述
 	'Name':'名称',
@@ -267,7 +271,7 @@ lang['zh_cn']={
 	'Concept':'概念',
 	'Technology':'技术',
 	'Thought':'思想',
-	
+	'Proof':'证明',
 	
 // adj
 	
@@ -287,6 +291,8 @@ lang['zh_cn']={
 	'Symmetric':'对称',
 		
 	'Unsolved':'未解',
+	'Open':'开放',
+	'Compatible':'相容',
 
 	'Systematized':'系统化',
 	'Semantical':'语义化',
@@ -297,12 +303,12 @@ lang['zh_cn']={
 	'Eco-Friendly':'环保的',
 	'Efficient':'高效的',
 	'Intelligent':'智能',
-	'Automatic':'自动化的',
+	'Automatic':'自动化',
 	'Flexible':'灵活的',
 	'Agile':'敏捷的',
 	'Compact':'紧凑的',
-	'Extendable':'可扩展的',
-	'Customizable':'可定制的',
+	'Extendable':'可扩展',
+	'Customizable':'可定制',
 	'Convenient':'方便的',
 	'Handy':'便利的',
 	'Easy':'容易的',
@@ -327,20 +333,25 @@ lang['zh_cn']={
 	'Energy Consumption Minimization':'能耗最小化',
 	'Open Access':'开放获取',
 
+	'Symbolic':'符号',
+	'Numeral':'数值',
+	'Numerical':'数值',
+
 
 	// action
 
 	
 	'Solve':'解题',
 	'Computation':'计算',
-	
-	'Calculate':'计算',
+	'Calculation':'计算',
+
 	'Operation':'运算',
 	'Explore':'探索',
 	'Search':'搜索',
 	'Contact':'联系',
 	'Donate':'捐赠',
-		
+	
+	
 	'Align':'对齐',
 	'Overlap':'重叠',
 	'Clip':'裁剪',
@@ -380,6 +391,10 @@ lang['zh_cn']={
 	'i18n':'国际化',//	'Internationalization':'国际化',
 	'i10n':'本土化',	//Localization 
 
+	'Reasoning':'推理',
+	'Programming':'编程',
+	'AI':'人工智能',
+
 	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
 	'input your Audio/Video URL':'输入你的音视频地址',
 
@@ -395,6 +410,8 @@ lang['zh_cn']={
 	'Amicable Numbers':'亲和数',
 
 	'Form':'型',
+	'Normal Form':'标准型',
+
 	'Integer':'整数',
 	'Fraction':'分数',
 	'Decimal':'小数',
@@ -417,6 +434,7 @@ lang['zh_cn']={
 	'Square Matrix':'方阵',
 
 	'Space':'空间',
+	'Kernel':'核',
 
 	'Permutation':'置换',
 	'Relation':'关系',
@@ -428,6 +446,7 @@ lang['zh_cn']={
 	'Geometry':'几何',
 	'Graph':'图',
 
+	
 	'Set':'集合',
 	'Group':'群',
 	'Ring':'环',
@@ -548,6 +567,10 @@ lang['zh_cn']={
 	'Cofactor':'余子式',
 	'Minor':'子式',
 	
+	'Leading Principle Minor':'顺序主子式',
+		
+		
+	'Dimension':'维度',
 	// 几何
 	
 	'Diameter':'直径',

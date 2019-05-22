@@ -3,7 +3,12 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-
+/*
+	[$katex$]…[title]—[data-tip]“[data-eg]
+	gM…gM—“
+	Greatest Common Divisor…a b c—GCD“18 27
+	
+*/
 solves[2199]={sbj2s:['Number','Sequence'],sbj2:{
 
 	'Number':[

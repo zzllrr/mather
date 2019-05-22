@@ -74,7 +74,7 @@ solve[2199]=function(){
 		if(sel('弧度→角度°')){//小数（分数）&是否有π
 			rS=rS.concat(Arrf(function(t){
 				var v=t.split(/&/),v0=n2frac(v[0]),v1=v[1],r=times([v0,v1?180:'900000000/15707963'],1),r1=Frac.opr1(',',r,6);
-				return '弧度'+kfrac(v0)+(v1?'π':'')+' = '+r+'°'+(/\..{6,}/.test(r1)?' ≈ '+r1+'°':'')
+				return '弧度'+kfrac(v0)+(v1?'π':'')+' = {'+r+'}^°'+(/\..{6,}/.test(r1)?' ≈ {'+r1+'}^°':'')
 					
 			
 			},VA));
@@ -83,7 +83,7 @@ solve[2199]=function(){
 		if(sel('角度°→弧度')){//小数&是否返回π
 			rS=rS.concat(Arrf(function(t){
 				var v=t.split(/&/),v0=n2frac(v[0]),v1=v[1],r=divide([v0,v1?180:'15707963/900000000'],1);
-				return '角度'+kfrac(v0)+'° = '+r+(v1?'π':'')
+				return '角度{'+kfrac(v0)+'}^° = '+r+(v1?'π':'')
 			
 			},VA));
 			
