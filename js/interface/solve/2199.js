@@ -119,15 +119,15 @@ solves[2199]={sbj2s:['Number','Sequence'],sbj2:{
 				]},
 				
 				{'Multiary Operation':[
-					{'四则运算':['$+$…加','$-$…减','$×$…乘','$÷$…除']},
-					{'Expression':['浮点计算器','计算器','计算器步骤']},
+					{'四则':['$+$…Plus','$-$…Minus','$×$…Times','$÷$…Divide']},
+					{'Calculator':['Numerical Calculator JS Native','Numerical Calculator','Symbolic Calculator']},
 				]},
 			]},
 	
 			{'Complex':[
 				{'形式转换':['代数形式','三角形式','指数形式']},
 				{'多元运算':[
-					{'四则运算':['$+$…加','$-$…减','$×$…乘','$÷$…除']},
+					{'四则':['$+$…加','$-$…减','$×$…乘','$÷$…除']},
 				]}
 			]},
 		]},
@@ -186,3 +186,13 @@ solves[2199]={sbj2s:['Number','Sequence'],sbj2:{
 	],
 
 }};
+
+tooltip.solve['Number/Classification/Real/Multiary Operation/Numerical Calculator JS Native']=XML.wrapE('style',
+		``
+	)+'';
+
+
+solveThen['Number/Classification/Real/Multiary Operation/Numerical Calculator JS Native']=function(){
+	$('.inputTip[data-uri*="Numerical Calculator JS Native"]').attr('open','open');
+	$('#iTextFold:contains(unfold_more)').click()
+};

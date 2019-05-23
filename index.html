@@ -344,7 +344,7 @@
 	        
 	        <textarea id=input0 class=floatl></textarea>
 	        <div id=input0Tool class="floatl opac">
-	            <input type=button class=Clear id=iClear value=⌫ title="Ctrl + E" />
+	            <input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
 	            <i class=mi id=navHide>keyboard_arrow_up</i>
 	            <input type=button class="Clear rotate180" id=tClear value=⌫ />
 	            <br />
@@ -406,7 +406,7 @@
 
 	            </span>
 	            
-	        <input type=button id=go value="  GO  " title="Ctrl + Enter" />
+	        <input type=button id=go value="  GO  " hotkey="Ctrl + Enter" />
 	        
 
 	        <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
@@ -428,7 +428,7 @@
 			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
 
 
-			<i class=mi id=calculator tip="Calculator">iso</i>
+			<i class=mi id=calculator tip="Calculator" hidden>iso</i>
 			
 
 			<i class=mi id=svgs tip="Gadget" hotkey="Esc">layers</i>
@@ -738,6 +738,37 @@
 
 		</div>
 		
+		<div id=Calculator for=calculator>
+		
+			
+			<div class=floatr>
+				<div class=calcType>
+					
+					</div>
+				<div class=calcIn>
+					<textarea id=calc0 class=floatl></textarea>
+					<div id=calc0Tool class="floatl opac">
+			            <input type=button class=Clear id=calc0Clear value=⌫ hotkey="Ctrl + E" />
+			            <i class=mi id=calc0Copy>content_copy</i>
+			            <input type=button class="Clear rotate180" id=calc0tClear value=⌫ />
+						<br />
+						<input type=button id=calc0Adv />
+		            </div>
+	        
+			        <div id=calc0Tip class=floatl></div>
+			        <div class=clear></div>
+						</div>
+				<div class=calcTool>
+					
+					</div>
+				<div class=calcOut>
+					
+					</div>
+					</div>
+			<div class=floatr id=calcCat></div>
+			<div class=clear></div>
+			</div>
+		
 		
 		<div id=tileTool for=svgs class=cap>
 
@@ -940,7 +971,7 @@
 
                 <div>
 					<svg id=Freelin><path d="M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2" /></svg>
-					<svg id=Text hotkey="T"><text x=5 y=25 font-size=28 fill=white>A</text></svg>
+					<svg id=Text hotkey="A"><text x=5 y=25 font-size=28 fill=white>A</text></svg>
                 	<svg id=ArectNote tip="Note" hotkey="N"><path d="M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z" /></svg>
                     <svg id=LrectNote><path d="M8 20 L7 25 13 20 H25 V5 H5 V20 H8z" /></svg>
 					<svg id=ellipseNote><path d="M8 18 L7 25 13 20 A10 8 0 1 0 8 18z" /></svg>

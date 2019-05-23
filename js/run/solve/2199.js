@@ -1403,15 +1403,23 @@ a b c d
 		}
 
 
-
-		if(sel('浮点计算器')){
+		if(sel('Numerical Calculator JS Native')){
 			rS=rS.concat(
 				Arrf(function(s){
 					var t=opreplace(s).replace(/÷/g,'/'),ass=/[ &,].+=/.test(t),V=t.split(/[ &,]/);
 					return t+' ≈ '
 			},VA));
 		}
-		if(sel('计算器')){
+		
+		if(sel('Numerical Calculator')){
+			rS=rS.concat(
+				Arrf(function(s){
+					var t=opreplace(s).replace(/÷/g,'/'),ass=/[ &,].+=/.test(t),V=t.split(/[ &,]/);
+					return t+' ≈ '
+			},VA));
+		}
+		if(sel('Symbolic Calculator')){
+			//十二分之五加十四分之三加十二分之一
 			rS=rS.concat(
 			Arrf(function(s){
 					//var t=opreplace(s).replace(/÷/g,'/'),ass=/ .+=/.test(t),V=t.split(' ');
@@ -1419,14 +1427,7 @@ a b c d
 					return t+' = '
 			},VA));
 		}
-		if(sel('计算器步骤')){
-			//十二分之五加十四分之三加十二分之一
-			rS=rS.concat(
-			Arrf(function(s){
-					var t=opreplace(s).replace(/÷/g,'/'),ass=/ .+=/.test(t),V=t.split(' ');
-					return t+' = '
-			},VA));
-		}
+
 		
 		
 		

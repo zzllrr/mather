@@ -341,6 +341,30 @@ tooltip={
 
 };
 
-
-
-
+var calcCat={
+	'Number':[
+		'Real',
+		'Complex',
+	],
+	'Matrix':[
+		'Real',
+		'Complex',
+	],
+	'Series':[
+	],
+	'Function':[
+		
+	],
+	'Proposition':[
+		
+	],
+	'Permutation':[
+		
+	],
+	'Relation':[
+		
+	],
+	'Set':[
+		
+	]
+};

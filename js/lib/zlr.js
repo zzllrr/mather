@@ -118,7 +118,7 @@ function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)
 		}
 		hanziRe.lastIndex=0;
 		if(hanziRe.test(x)){
-			x=x.replace(/ /g,'')
+			x=x.replace(/. ./g, function(x){return /[a-z] [a-z]/i.test(x)?x:x.replace(/ /,'')})
 		}
 	}
 	if(!x && /-/.test(msg)){

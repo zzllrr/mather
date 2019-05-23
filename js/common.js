@@ -32,6 +32,12 @@ $(function(){
 	$('#toolnav').append(Arrf(function(i){
 		return '<label><input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc+'</label>'
 	},toolnames).join(''));
+		
+	
+	$('#calcType').append(Arrf(function(i,v){
+		return SCtv('calcType" data-calctype="'+i,gM(['JS Native','Numerical','Symbolic'][v]))
+	},ZLR('numjsntv num sym')).join(''));
+		
 	$('#subject').after(Arrf(function(i){
 		return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
 	},toolnames).join(''));
@@ -66,8 +72,9 @@ $(function(){
 	$('span[for]').hide();
 
 
+	$('#calc0Adv').val(gM('Advanced'));
 	$(':button').not('[value]').val(function(){return gM(this.id)});
-	$('.Clear').attr('title',gM('Clear'));
+	$('.Clear').attr('title',gM('Clear')).attr('tip',gM('Clear'));
 	$('#displayOverCanvas').attr('title',gM('copy2Canvas'));
 	
 	$('#night').on('click',function(){
@@ -241,8 +248,12 @@ $(function(){
 		if(/^(input|textarea)$/.test(node)){
 			if(ctrl){
 				if(k==13){
-					
-					$('#go').click();
+					if(/^input[01]/.test(id)){
+						$('#go').click();
+					}
+					if(id=='TextLaTeX'){
+						$('#GOlatex').click();
+					}
 				}
 				if(k==83){
 
@@ -840,12 +851,20 @@ consolelog('最终A = ',A);
 			$('.on').prop('checked',false);
 			
 		}else{
-			 if(id=='svgs'){
+			if(/^svgs|calculator$/.test(id)){
+
 				$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
-			
-				Scroll('scrollB');
-			}else{
+				if(tog){
+					$('#zMatherOn:contains(up)').click();
+				}else{
+					$('#zMatherOn:contains(down)').click();
+				}
 				
+				
+				$('#oHTML').toggle(!tog);
+				//Scroll('scrollB');
+			}else{
+				$('#oHTML').show();
 			}
 			me.siblings('.toggle:not(#zzllrrCanvas)').removeClass('toggle');
 			pa.nextAll('[for='+id+']').toggle(tog);
@@ -977,7 +996,7 @@ var toolSwitch=function(x){
 	
 	if(x=='graphic'){
 		$('#display.seled').click();
-		$('#svgs').not('.toggle').click();
+	//	$('#svgs').not('.toggle').click();
 	}
 	if($(G).children().eq(0).html()==''){
 		$(G).find('.ground0').html(

@@ -331,13 +331,14 @@ $(function(){
 
 
 	$('.Grad').on('click',function(){
-		var me=$(this),c=me.prop('checked'),mpn=me.parent().nextAll();
+		var me=$(this),c=me.prop('checked'),mp=me.parent(),mpn=mp.nextAll();
 		mpn.toggle(c);
 		if(c){
 			var GradType=me.parent().next().find(':radio:checked').val();
 			mpn.filter('.Radial').toggle(GradType=='Radial');
 			mpn.filter('.Linear').toggle(GradType!='Radial');
 		}
+		mp.prev('summary').toggleClass('seled',c);
 		if(mpn.filter('#sgcs').length){
 			if(typeof drawobj!='undefined' && typeof drawobj.repaint =='function'){
 				drawobj.repaint();
@@ -586,7 +587,7 @@ $(function(){
 				if(k==86){drawCopy()}
 			}else{
 
-				if(k==72){api('ofhotkey')}
+		//if(k==72){api('ofhotkey')}
 				if(k==13){drawEnd(e)}
 				if(k==27){
 					if($('#svgs').length){
@@ -615,7 +616,7 @@ $(function(){
 					if(k==76){$('#Line').click()}
 					if(k==78){$('#ArectNote').click()}
 					if(k==82){$('#ARect').click()}
-					$('#svgPg1').mouseover();
+	
 				}
 				if(k==67){
 					$('#Crop').click();
@@ -624,6 +625,8 @@ $(function(){
 						CapsTip();
 					}
 				}
+				
+				if(k==86){$('#LayerToggle').click()}
 			}
 		}
 	}).on('dblclick',function(e){drawEnd(e)}).on('keyup','.soleTxt',function(e){

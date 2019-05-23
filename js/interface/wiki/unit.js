@@ -164,7 +164,7 @@ detail('角 Angle',Table([ZLR('中文 英文 符号 表达式（用基本单位�
 	ZLR('分____minute of arc\narcmin\namin\nam____′\nMOA____'+frac('π',10800,'')+'rad____1′= 60″','','____'),
 	ZLR('角密耳____milliradian____mil\nMRAD____'+frac(1,1000,'')+'rad____','','____'),
 	ZLR('梯度（计算器）____gradian\ngrad\ngon____g____'+frac('π',200,'')+'rad____1g = 54′','','____'),
-	ZLR('度____degree of arc\narc degree\narcdegree\ndeg____°____'+frac('π',180)+'rad____1°= 60′','','____'),
+	ZLR('度____degree of arc\narc degree\narcdegree\ndeg____°____'+frac('π',180,'')+'rad____1°= 60′','','____'),
 	ZLR('直角____right angle____∟____'+frac('π',2,'')+'rad____1∟ = 90°= 100g','','____'),
 	ZLR('圈____turn\nround angle____tr\npla____2πrad____1tr = 4∟ = 360°= 400g','','____'),
 ],'wiki').replace(/\n/g,br)),

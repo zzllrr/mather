@@ -414,6 +414,11 @@ input[type=text],#wiki>span,.brad{
 	min-width:25%;
 }
 
+#calc0{
+	min-width:200px;
+	min-height:50px;
+}
+
 #input0Tip,#input1Tip{
 	max-width:74%;
 /*	overflow-x:hidden; */
@@ -772,6 +777,9 @@ img{
 }
 #menu{
 	margin-bottom:5px;
+    float: right;
+    padding-right: 5px;
+
 }
 #menu .toggle[title],#nav{
 	padding: 4px;

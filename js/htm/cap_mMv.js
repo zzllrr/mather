@@ -584,12 +584,12 @@ function mMv(e,repaint){
 
 					if(wh){
 						wn=c; hn=r;
-						c=Math.floor((w-d0*2-tickH)/c);
-						r=Math.floor((h-d0*2-tickH)/r);
+						c=Math.floor((w-d0*2-tickH*2)/c);
+						r=Math.floor((h-d0*2-tickH*2)/r);
 					}
 
 				}else{
-					var wn=parseInt((w-d0*2-tickH*2)/c), hn=parseInt((h-d0*2-tickH*2)/r);
+					var wn=Math.floor((w-d0*2-tickH*2)/c), hn=Math.floor((h-d0*2-tickH*2)/r);
 				}
 				if(!(c>0 && r>0 && wn>0 && hn>0)){
 					return

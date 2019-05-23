@@ -61,7 +61,7 @@
 	background: rgba(162,195,97,.1);
 }
 
-span.seled{
+.seled:not(div){
 	border-color:gray;
 	background: yellow;
 }

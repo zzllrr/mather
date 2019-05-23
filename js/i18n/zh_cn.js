@@ -277,7 +277,9 @@ lang['zh_cn']={
 	
 	'Random':'随机',
 	'Default':'默认',
+	'Advanced':'高级',
 	
+	'Native':'原生',
 	'Typical':'典型',
 	'Elementary':'初等',
 	'Key':'关键',
