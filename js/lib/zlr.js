@@ -2464,6 +2464,18 @@ function ubb2html(t0, webview){
 	t=t.replace(/\[email=[^\]]*?\].*?\[\/email\]/gi, function(w){return a0+'mailto:'+w.split(']')[0].split('=')[1]+'">'+w.replace(r0,'')+a1});
 	return t;
 }
+
+function md2html(str,sep){
+	var f=function(x){
+		if(/^#/.test(x)){
+			
+		}
+	};
+	return Arrf(f,str.split('\n')).join(sep===undefined?br:sep)
+	
+	
+}
+
 function xhrcb(src,cb){
 	//cb(length,type)
 	var xhr=new XMLHttpRequest();

@@ -21,10 +21,12 @@ navhead['project']=
 
 	Table([gM(['Key Technology','Progress'])],
 	[
+		[gM('Text Editor'),meter(8)],
 		[gM('Offline Translator'),meter(5)],
 		[gM('Semantical Compression'),meter(8)],
 		[gM('Symbolic Calculation'),meter(10)],
 		[gM('Numerical Calculation'),meter(5)],
+		[gM('Sound Synthesis'),meter(3)],
 		[gM('Animation Programming'),meter(0)],
 		[gM('Automatic Reasoning'),meter(0)],
 		[gM('Automatic Proof'),meter(0)],

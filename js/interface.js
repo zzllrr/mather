@@ -338,7 +338,10 @@ tooltip={
 		)).join(br),
 
 
-
+	'MarkDown':[
+		gM('Head')+' H1~H6 '+Arrf(sceg,['# ','## ','### ','#### ','##### ','###### ']),
+		
+	].join(br)
 };
 
 var calcCat={
@@ -349,11 +352,12 @@ var calcCat={
 	'Matrix':[
 		'Real',
 		'Complex',
+		'Boolean',
 	],
 	'Series':[
 	],
-	'Function':[
-		
+	'Analytic Function':[
+
 	],
 	'Proposition':[
 		

@@ -414,11 +414,6 @@ input[type=text],#wiki>span,.brad{
 	min-width:25%;
 }
 
-#calc0{
-	min-width:200px;
-	min-height:50px;
-}
-
 #input0Tip,#input1Tip{
 	max-width:74%;
 /*	overflow-x:hidden; */
@@ -641,14 +636,16 @@ textarea{
     font-size: medium;
 }
 
-#bar .toolTip{
+
+.toolTip{
 	padding:0 5px;
 	opacity:0;
-	animation: inf01 3s 1 ease-out;
 	background:limegreen;
 	color:white;
-	
     border-radius:5px 0;
+}
+#bar .toolTip{
+	animation: inf01 3s 1 ease-out;
 }
 @keyframes inf01 {
 	from {opacity:0}
@@ -658,6 +655,10 @@ textarea{
 	to {opacity:0}
 }
 
+#toolTipBox .toolTip{
+	animation: inf01 4s 1 ease-out;
+	position:fixed;
+}
 
 .editorText {width:20%;height:60px}
 

@@ -50,6 +50,8 @@ $(function(){
 			$('#navbody').show();
 			if(shft){
 				window.open('index.html');
+			}else{
+				OH('');
 			}
 		}else{
 			if(se){
@@ -399,6 +401,21 @@ $(function(){
 		var me=$(this);
 		toolTip(gM('thTip'));
 
+
+	}).on('mouseover', '#input0Type',function(e){
+
+		toolTip({'LaTeX':gM('Formula Snippet'),
+			'Ascii_Math':'ASCII '+gM('Character'),
+			'Unicode_Math':'Unicode '+gM('Character'),
+			'JS':'JavaScript '+gM('Snippet'),
+			'MarkDown':'MarkDown '+gM('Snippet'),
+			'HTML':'HTML '+gM('Snippet'),
+			'Presentation_MathML':gM('Presentation Markup')+' MathML '+gM('Snippet'),
+			'Content_MathML':gM('Content Markup')+' MathML '+gM('Snippet'),
+			
+		}[$(this).val()],this);
+
+
 	}).on('mouseover', '#displayOverCanvas',function(e){
 
 		toolTip(this.title);
@@ -735,10 +752,10 @@ consolelog('最终A = ',A);
 //	$('#input2Tip').html('<details class=inputTip data-tool="绘图"><summary>绘图</summary>'+API([{'Canvas':'draw'},{'SVG':'plot'}])+'</details>');
 	
 
-	$('#input0Type').html(Options(ZLR('LaTeX Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
+	$('#input0Type').html(Options(ZLR('LaTeX Ascii_Math Unicode_Math MarkDown JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
 		var t=$(this).val()[0], iT=$('#input0Tip [data-tool="API"]');
 		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
-			[[0,2,4], [0,2,3,4,5], [0,1,3,4,5], [0], [0], [0,2,3,5], [0,2,3,4]]['LAUJHPC'.indexOf(t)])
+			[[0,2,4], [0,2,3,4,5], [0,1,3,4,5], [0],[0],[0], [0,2,3,5], [0,2,3,4]]['LAUJMHPC'.indexOf(t)])
 		));
 		if(t=='J'){
 			if(!iT.length){
@@ -1018,11 +1035,13 @@ function dayOrNight(){
 }
 
 var preDisplay=function(){
-	var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),w=$('#input0Preview');
+	var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),vA=v.split('\n'),w=$('#input0Preview');
 
 	if(i==o && o!='H'){
 		w.add('#latexDisplayTool').hide();
+		
 	}else if(i=='L' && o=='P'){
+		
 		katex.render(kx(sub2n(v,1)), w[0], {
 		    throwOnError: false,
 		    displayMode: true
@@ -1032,23 +1051,27 @@ var preDisplay=function(){
 	}else if(o=='H'){
 		w.add('#latexDisplayTool').show();
 		if(i=='H'){
-			w.html(v)
+			w.html(v);
+			
 		}else if(i=='U'){
-			var l=$('summary:contains(显示) ~ .seled').length;
+			var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
 			if(l){
-				$('summary:contains(显示) + .task').click();
-				$('#go').click();
+			//	Dp.next().find('.task').click();
+			//	$('#go').click();
 			}else{
 				w.html(asc2unicode(v).split('\n').join(br));
 			}
 			
+		}else if(i=='M'){
+			w.html(v);
+			
 		}else if(i=='J'){
 			try{
-				w.html(eval(v))
+				w.html(Arrf(eval,vA).join(br))
 			}catch(e){
 				w.html(v)
 			}
-		}else if(i=='L'){//LaTex
+		}else if(i=='L'){//LaTeX
 			katex.render(kx(sub2n(v,1)), w[0], {
 			    throwOnError: false,
 			    displayMode: true
@@ -1133,8 +1156,17 @@ function OverCanvas(t){
 	$('#GOlatex').click();
 	$('#Pointer').click();
 }
-function toolTip(t){
-	$('#bar').html(SCtv('toolTip',t));
+function toolTip(s,obj){
+	$('.toolTip').remove();
+	if(obj){
+		var $o=$(obj),p=$o.position(),t=p.top,l=p.left,w=$o.width(),h=$o.height(),W=scrollW(),H=scrollH();
+		$('#toolTipBox').html(DCtv('toolTip" style="top:'+(t+h>H-100?t-h-150:t)+'px;left:'+(l+w>W-100?l-w-150:l+w+5)+'px',s));
+	}else{
+		$('#bar').html(SCtv('toolTip',s));
+	}
+	setTimeout(function(){
+		$('.toolTip').remove();
+	},4000);
 }
 function furi(o){
 	var g=o.parents('.ground');

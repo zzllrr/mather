@@ -158,13 +158,20 @@ lang['zh_cn']={
 	'Image':'图片',
 	'Mic':'麦克风',
 	'Calculator':'计算器',
+	'Editor':'编辑器',
 
 	'Translator':'翻译',
 	
 	'Reader':'阅读器',
 	'Camera':'摄像头',
 	'Video':'视频',
-	'Voice':'语音',
+	
+	'Sound':'声音',
+	'Speech':'语音',
+	'Voice':'嗓音',
+	'Music':'音乐',
+	'Noise':'噪音',
+
 	'Action':'动作',
 	'Scene':'场景',
 	'Animation':'动画',
@@ -172,7 +179,9 @@ lang['zh_cn']={
 	'Show':'演示',
 	'Doodle':'涂鸦',
 	'Compression':'压缩',
+	'Synthesis':'合成',
 	'Note':'注释',
+	'Environment':'环境',
 	
 	'Keyword':'关键词',
 	'Layer':'层',
@@ -232,7 +241,7 @@ lang['zh_cn']={
 	'Parameter':'参数',
 	'Structure':'结构',
 	'Hotkey':'快捷键',
-	'Expression':'表达式',
+
 	'Unit':'单位',
 	'Value':'值',
 	'Information':'信息',
@@ -243,6 +252,8 @@ lang['zh_cn']={
 	'Eagerness':'热切程度',
 	'Step':'步',
 
+	'Reusability':'复用性',
+	
 // 自由描述
 	'Name':'名称',
 	'Summary':'简介',
@@ -256,6 +267,29 @@ lang['zh_cn']={
 	'Inference':'推论',
 	'Hypothesis':'猜想',
 	'Suppose':'假设',
+	
+	'Expression':'表达式',
+	'Formula':'公式',
+	'Formulae':'公式',
+	'Formulas':'公式',
+	'Code':'代码',
+	'Snippet':'片段',
+	'Character':'字符',
+	'Content':'内容',
+	'Contents':'目录',
+
+	'Presentation Markup':'表现型标记',
+	'Content Markup':'内容型标记',
+	'Markup':'标记',
+
+	'Object':'对象',
+	'Entity':'实体',
+	
+	'Closure':'闭包',
+	'Computing Power':'计算能力',
+	'Synergy':'协同能力',
+	
+
 	
 	'Rule':'法则',
 	'Aims':'宗旨',
@@ -279,6 +313,8 @@ lang['zh_cn']={
 	'Default':'默认',
 	'Advanced':'高级',
 	
+	'Blended':'混合',
+	'Mixed':'混合',
 	'Native':'原生',
 	'Typical':'典型',
 	'Elementary':'初等',
@@ -296,10 +332,20 @@ lang['zh_cn']={
 	'Open':'开放',
 	'Compatible':'相容',
 
+	'High':'高',
+	'Low':'低',
+	'Long':'长',
+	'Short':'短',
+
 	'Systematized':'系统化',
 	'Semantical':'语义化',
 	'Structural':'结构化',
 	'Organized':'组织化',
+		
+	'Organic':'有机的',
+	'Self-improvement':'自我完善的',
+	'Self-consistent':'自洽的',
+
 	'Stable':'稳定的',
 	'Portable':'便携的',
 	'Eco-Friendly':'环保的',
@@ -327,7 +373,10 @@ lang['zh_cn']={
 	'Interpretable':'可解释的',
 	'Multipath':'多途径的',
 	'Timely':'及时',
-	
+	'Non-discriminatory':'无歧视',
+	'Kind':'友善的',
+	'Pally':'亲密的',
+		
 	'Offline':'离线',
 	'Local':'本地',
 	'Localized':'本地化',
@@ -427,7 +476,10 @@ lang['zh_cn']={
 	'Inequation':'不等式',
 	'Analytic':'解析式',
 	'Limit':'极限',
-	
+
+
+	'Derivative':'导数',
+	'Partial Derivative':'偏导数',
 	
 	'Vector':'向量',
 	'Tensor':'张量',
