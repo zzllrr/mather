@@ -25,7 +25,7 @@ $(function(){
 	$('#logo').addClass('seled').text(gM('zzllrr Mather')).before('<i id=night class=mi>brightness_3</i>').after(
 		Arrf(function(i){
 			return SCtv('subhead" id="'+i,+gM(i))
-		},ZLR('whitepaper protocol API project donate about')).join('')
+		},ZLR('whitepaper protocol hotkey API project donate about')).join('')
 	);
 	
 	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought refer');
@@ -175,7 +175,12 @@ $(function(){
 
 
 	$('#iClear').on('click',function(){
-		$('#input0').val('');
+		if($('#input0').val()==''){
+			$('#displayOff').click();
+		}else{
+			$('#input0').val('');
+			$('#input0Preview').empty();
+		}
 	});
 	$('#iClear2').on('click',function(){
 		$('#input2').val('');
@@ -184,7 +189,14 @@ $(function(){
 		$('#input1').val('');
 	});
 	$('#tClear').on('click',function(){
-		$('#input0Tip').empty();
+		var t=$('.iTextLaTeXon .seled');
+		if(t.length){
+			t.click();
+		}else if($('#input0Tip .inputTip').length>1){
+			$('#input0Tip .inputTip').last().prevAll().remove()
+		}else{
+			$('#input0Tip').empty();
+		}
 	});
 
 	$('#iTextFold').on('click',function(){
@@ -193,7 +205,9 @@ $(function(){
 				$('#iTextOpt').prevAll().hide();
 				
 				$('#go').prevAll().hide();
-					
+				
+				$(this).addClass('seled');
+
 				return 'unfold_more'
 			}
 			$('#iTextMain').show();
@@ -203,6 +217,8 @@ $(function(){
 			if($('#display').is('.seled')){
 				$('#latexDisplayTool').show();
 			}
+			$(this).removeClass('seled');
+
 			return 'unfold_less'
 		})
 	});
@@ -214,7 +230,10 @@ $(function(){
 
 	$('#navHide').on('click',function(){
 		$('#nav').toggle();
-		$(this).text(function(i,v){return 'keyboard_arrow_'+(/up/.test(v)?'down':'up')});
+		$(this).text(function(i,v){var u=/up/.test(v);
+			$(this).toggleClass('seled',u);
+			return 'keyboard_arrow_'+(u?'down':'up')
+		});
 	});
 
 
@@ -227,24 +246,41 @@ $(function(){
 
 //输出编辑
 	$('#displayOff').on('click',function(){
+		$('#display.seled').removeClass('seled');
 		$('#input0Preview, #latexDisplayTool').hide();
 	});
 
 
 	
 	$('body').on('keydown',function(e){
-		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, node=act.tagName.toLowerCase(), id=$(act).attr('id');
+		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
+		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id');
 //console.log(k,node);
 
-		if(node=='input' && (k==13 || k==79)){
+		if(node=='input' && k==13){
 			if(id=='input0'){
 				$('#go').click();
 			}
 			return
 
 		}
-		if(node=='textarea' && ctrl){
-			if(k==69){act.value='';return false}
+		if(node=='textarea'){
+			if(ctrl && k==69){act.value='';return false}
+			if(k==9 && !alt){
+			
+				var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS;
+				consolelog(A);
+				if(shft){
+					A[1]=A[1].replace(/^\t/,'').replace(/\n\t/g,'\n');
+				}else{
+					A[1]='\t'+A[1].replace(/\n/g,'\n\t');
+					t++;
+				}
+				me.val(A.join(''));
+				act.selectionStart=t;
+				act.selectionEnd=t;
+				return false
+			}
 		}
 
 		if(/^(input|textarea)$/.test(node)){
@@ -264,7 +300,7 @@ $(function(){
 			}
 			if(shft){
 				if(k==13){
-					preDisplay();
+					$('#display').click();
 				}	
 			}
 		}
@@ -396,7 +432,7 @@ $(function(){
 		var me=$(this);
 		toolTip(me.attr('data-tip')+' | '+gM('taskTip'));
 
-//	}).on('mouseover', 'th:not(:has(.oClear))',function(e){
+
 	}).on('mouseover', 'th.oLaTeX',function(e){
 		var me=$(this);
 		toolTip(gM('thTip'));
@@ -413,7 +449,7 @@ $(function(){
 			'Presentation_MathML':gM('Presentation Markup')+' MathML '+gM('Snippet'),
 			'Content_MathML':gM('Content Markup')+' MathML '+gM('Snippet'),
 			
-		}[$(this).val()],this);
+		}[$(this).val()]);
 
 
 	}).on('mouseover', '#displayOverCanvas',function(e){
@@ -692,13 +728,18 @@ consolelog('最终A = ',A);
 
 
 	$('#zMatherOn').on('click',function(){
-	//	preDisplay();
-	//	OH($('#input0Preview').html());
+		var me=$(this);
 		$('#zMather').toggle();
-		$('#zzllrrCanvas.toggle').click();
-		$(this).text(function(i,v){return /up/.test(v)?'keyboard_arrow_down':'keyboard_arrow_up'})
+		//me.nextAll('.toggle').click();
+		me.text(function(i,v){return /up/.test(v)?'keyboard_arrow_down':'keyboard_arrow_up'});
+		
 
 	});
+	
+	$('#downloadPreview').on('click',function(){
+		saveText($('#input0Preview').html(),gM('zzllrr Mather')+Time.now()+'.html')
+	});
+
 
 	$('#lineSplit').on('click',function(){
 		var t=$('[name=tool]:checked').val();
@@ -752,19 +793,29 @@ consolelog('最终A = ',A);
 //	$('#input2Tip').html('<details class=inputTip data-tool="绘图"><summary>绘图</summary>'+API([{'Canvas':'draw'},{'SVG':'plot'}])+'</details>');
 	
 
-	$('#input0Type').html(Options(ZLR('LaTeX Ascii_Math Unicode_Math MarkDown JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
-		var t=$(this).val()[0], iT=$('#input0Tip [data-tool="API"]');
+	$('#input0Type').html(Options(ZLR('LaTeX MarkDown Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
+		var v=$(this).val(),t=v[0], iT=$('#input0Tip [data-tool="API"]'), it=$('#input0Tip [data-tool="'+v+'"]');
 		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
-			[[0,2,4], [0,2,3,4,5], [0,1,3,4,5], [0],[0],[0], [0,2,3,5], [0,2,3,4]]['LAUJMHPC'.indexOf(t)])
+			[[0,2,4],[0], [0,2,3,4,5], [0,1,3,4,5], [0],[0], [0,2,3,5], [0,2,3,4]]['LMAUJHPC'.indexOf(t)])
 		));
 		if(t=='J'){
 			if(!iT.length){
-				$('#input0Tip').append('<details class=inputTip data-tool="API"><summary>API+</summary>'+API(tooltip.API)+'</details>')	//tooltip.API
+				$('#input0Tip').append(detail('API',API(tooltip.API),'','class=inputTip data-tool="API"'));
+
 			}else{
 				iT.show();
 			}
+		}else if(t=='M'){
+			if(it.length){
+			
+			}else{
+				$('#input0Tip').append(detail(v,tooltip.MarkDown,'','class=inputTip data-tool="API"'));
+			}
 		}else{
 			iT.hide();
+		}
+		if($('#display.seled').length){
+			preDisplay();		
 		}
 	});
 	$('#output0Type').html(Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')));
@@ -868,7 +919,7 @@ consolelog('最终A = ',A);
 			$('.on').prop('checked',false);
 			
 		}else{
-			if(/^svgs|calculator$/.test(id)){
+			if(/^svgs$/.test(id)){
 
 				$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
 				if(tog){
@@ -1063,7 +1114,7 @@ var preDisplay=function(){
 			}
 			
 		}else if(i=='M'){
-			w.html(v);
+			w.html(md2html(v));
 			
 		}else if(i=='J'){
 			try{
@@ -1156,17 +1207,8 @@ function OverCanvas(t){
 	$('#GOlatex').click();
 	$('#Pointer').click();
 }
-function toolTip(s,obj){
-	$('.toolTip').remove();
-	if(obj){
-		var $o=$(obj),p=$o.position(),t=p.top,l=p.left,w=$o.width(),h=$o.height(),W=scrollW(),H=scrollH();
-		$('#toolTipBox').html(DCtv('toolTip" style="top:'+(t+h>H-100?t-h-150:t)+'px;left:'+(l+w>W-100?l-w-150:l+w+5)+'px',s));
-	}else{
-		$('#bar').html(SCtv('toolTip',s));
-	}
-	setTimeout(function(){
-		$('.toolTip').remove();
-	},4000);
+function toolTip(s){
+	$('#bar').html(SCtv('toolTip',s));
 }
 function furi(o){
 	var g=o.parents('.ground');

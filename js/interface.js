@@ -339,8 +339,60 @@ tooltip={
 
 
 	'MarkDown':[
-		gM('Head')+' H1~H6 '+Arrf(sceg,['# ','## ','### ','#### ','##### ','###### ']),
-		
+	gM('H1')+' H1~H3 '+Arrf(sceg,['# ','## ','### ']),
+
+	'H4~H6 '+Arrf(sceg,['#### ','##### ','###### ']),
+
+	[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('* ABC *'),sceg('_ ABC _')].join(''),
+	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('** ABC **')].join(''),
+	
+	[XML.wrapE('b',XML.wrapE('i',gM('Bold Italic'))),sceg('*** ABC ***')].join(''),
+	
+	[XML.wrapE('del',gM('Strikeline')),sceg('~~ ABC ~~')].join(''),
+	[XML.wrapE('mark',gM('Highlight')),sceg('== ABC ==')].join(''),
+	[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ ABC __')].join(''), 
+	
+	[gM('Horizontal Line'),sceg('---\n')].join(''), 
+	
+	[gM('Code Block'),sceg('``` ABC ```')].join(''),
+	
+	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')].join(''),
+
+	[gM('Inline Quote'),sceg('` ABC `')].join(''),
+	
+	[scHotk('Ctrl + K'),SCtv('underline',gM('href')),sceg('['+gM('Text')+'](http:// "'+gM('Title')+'")')].join(''),
+
+
+	[gM('href Definition'),sceg('[id]:http://www.abc.com "'+gM('Title')+'"')].join(''),	
+	[gM('href ID'),sceg('['+gM('Title')+'][id]')].join(''),
+	
+	[gM('href'),sceg('<http://www.abc.com>'),sceg('<info@abc.com>')].join(''),
+	
+	[gM('Image'),sceg('![Alt '+gM('Text')+'](http:// "'+gM('Title')+'")')].join(''),
+	[gM('Image ID'),sceg('![Alt '+gM('Text')+'][id]')].join(''),
+
+
+	[gM('Contents'),sceg('[TOC]')].join(''),
+
+	[gM('Unordered List'),sceg('- ')].join(''),
+	[gM('Ordered List'),sceg('1. ')].join(''),
+	[gM('Todo List'),sceg('-[]'),sceg('-[x]')].join(''),
+
+	[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',20),
+		sceg('A|B\n--|--\n|1|2',20)].join(''),
+
+	[gM('Table Align'),
+		sceg('|A|B|C|\n|:--|:--:|--:|\n|1|2|3|',20),
+	].join(''),
+
+	[gM('Math Formula')+' LaTeX',sceg('$x^2=4$')].join(''),
+	[gM('Math Formula')+' ID',sceg('$x^2=4$#'+gM('Formula')+'1#')].join(''),
+	[gM('Math Formula Link'),sceg('$@'+gM('Formula')+'1@$')].join(''),
+
+	['JS eval '+gM('Code Result'),sceg('$$2+3$$')].join(''),
+	
+
+	
 	].join(br)
 };
 

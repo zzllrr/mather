@@ -278,6 +278,7 @@
 
     <script src="js/interface/navhead/whitepaper.js"></script>
     <script src="js/interface/navhead/protocol.js"></script>
+    <script src="js/interface/navhead/hotkey.js"></script>
     <script src="js/interface/navhead/API.js"></script>
     <script src="js/interface/navhead/project.js"></script>
     <script src="js/interface/navhead/donate.js"></script>
@@ -335,21 +336,18 @@
 </div>
 <div id=iContent class=pd2>
 	<div id=iText>
-	    <div id=sbs hidden class=iTextLaTeX></div>
-	    <div id=funcs hidden class=iTextLaTeX></div>
-	    <div id=struc hidden class=iTextLaTeX></div>
 
 
-	    <div id=iTextMain><div id=input0Preview contentEditable=true class="floatl pd10" hidden></div>
+	    <div id=iTextMain><div id=input0Preview contentEditable=true class="pd10" hidden></div>
 	        
-	        <textarea id=input0 class=floatl></textarea>
-	        <div id=input0Tool class="floatl opac">
+	        <textarea id=input0></textarea>
+	        <div id=input0Tool class="opac">
 	            <input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
 	            <i class=mi id=navHide>keyboard_arrow_up</i>
 	            <input type=button class="Clear rotate180" id=tClear value=⌫ />
 	            <br />
 	            
-		        <span class=opac>
+		        <span class="opac iTextLaTeXon">
 		            
 		            <input type=button id=sbson class=tool />
 		            <br />
@@ -368,19 +366,26 @@
 	            <input id=Condon class="tool" type=button />
 	            </div>
 	        
-	        <div id=input0Tip class=floatl></div>
+	        <div id=iTextLaTeXBox>
+	  			<div id=sbs hidden class=iTextLaTeX></div>
+	 		    <div id=funcs hidden class=iTextLaTeX></div>
+	  			<div id=struc hidden class=iTextLaTeX></div>
+	  			</div>
+
+	        <div id=input0Tip></div>
+
 	        <div class=clear></div></div>
 
 
 	    <div hidden id=Cond>
-	        <div class=floatl id=input1Preview></div>
-	        <textarea id=input1 class=floatl></textarea>
-	        <div id=input1Tool class="floatl opac">
+	        <div id=input1Preview></div>
+	        <textarea id=input1></textarea>
+	        <div id=input1Tool class="opac">
 	            <div><input type=button class=Clear id=cClear value=⌫ hidden /></div>
 
 
 	            </div>
-	        <div id=input1Tip class=floatl></div>
+	        <div id=input1Tip></div>
 	        <div class=clear></div></div>
 	        
 	        
@@ -392,6 +397,7 @@
 		        <input type=button class="Clear rotate90" id=displayOff value=⌫ />
 
 	      		<i class=mi id=displayOverCanvas>arrow_downward</i>
+	      		<i class=mi id=downloadPreview tip="Download HTML File">file_download</i>
 				</span>
 			
 	        <span class=opac>
@@ -427,9 +433,9 @@
 			<span id=bar>&nbsp;</span>
 			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
 
-			<i class=mi id=svgs tip="Gadget" hotkey="Esc">layers</i>
+			<i class=mi id=svgs tip="SVG Gadget" hotkey="Esc">layers</i>
 
-			<i class=mi id=zzllrrCanvas tip="Canvas">wallpaper</i>
+			<i class=mi id=zzllrrCanvas tip="Background Canvas">wallpaper</i>
 			<i class=mi id=bg tip="bg">photo_size_select_actual</i>
 			<i class=mi id=grid tip="Grid">grid_on</i>
 			<i class=mi id=shape tip="Shape">panorama_fish_eye</i>
@@ -1500,8 +1506,7 @@
     	<canvas id=caps hidden></canvas>
 		<img id=capsimg>
 		</div>
-    <div id=toolTipBox>
-		</div>
+
 
 </div>
 

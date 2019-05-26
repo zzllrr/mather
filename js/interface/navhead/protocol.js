@@ -11,7 +11,7 @@ var protocol_keywords={
 	'Consensus & Cooperation':['Kind','Pally']
 };
 navhead['protocol']=XML.wrapE('h3',gM('Mather Protocol'))+
-ol(Arrf(function(i){return gM(i)+SCtv('floatr',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' readonly /> '+gM(x))},protocol_keywords[i]).join(''))},[
+ol(Arrf(function(i){return gM(i)+SCtv('floatr',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
 	'Organism',
 	'Offline Computation & Online Connection',
 	'Energy Consumption Minimization',

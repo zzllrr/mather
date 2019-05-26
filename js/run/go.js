@@ -10,7 +10,7 @@ $(function(){
 	$('#go').on('click',function(){
 		var tool=$('[name=tool]:checked').val(), sbj0v=+$('#subject0').val(), sbj1v=+$('#subject1').val(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
 		
-
+		$('#svgs.toggle').click();
 		if(tool=='solve'){
 			oH.empty();
 			solve[sbj1v||sbj0v]();
@@ -79,8 +79,13 @@ $(function(){
 				    module.go();
 				  })
 				  */
-		
-		setTimeout(dayOrNight,200)
+		setTimeout(function(){
+			dayOrNight();
+		},200);
+		setTimeout(function(){
+			Scroll('scrollB');
+			$('#zMatherHide').click();
+		},400);
 	});
 
 });

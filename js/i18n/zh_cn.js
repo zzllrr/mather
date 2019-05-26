@@ -8,12 +8,13 @@ lang['zh_cn']={
 	
 
 //non-standard key for Interface
-
+	' ':'',
 	'fonT':'字体',
 	'bW':'边宽',
 	'Bw':'边宽',
 	'W':'宽',
 	'H':'高',
+	'H1':'一级标题',
 	'Fgc':'前景色',
 	'bg':'背景',
 	'BGC':'背景色',
@@ -129,13 +130,14 @@ lang['zh_cn']={
 	'Software':'软件',
 	'Hardware':'硬件',
 
-
+	'Textarea':'文本框',
 
 	'Wiki':'百科',
 	'Drill':'题库',
 	'Course':'课程',
 
 	'Pitfall':'陷阱',
+	'Todo':'待办',
 
 	'Statistics':'统计',
 	'Lottery':'彩票',
@@ -183,10 +185,26 @@ lang['zh_cn']={
 	'Note':'注释',
 	'Environment':'环境',
 	
+	'Result':'结果',
+	'Title':'标题',
+	'Background':'背景',
+	
 	'Keyword':'关键词',
 	'Layer':'层',
 	'Pointer':'指针',
 	'Eraser':'橡皮擦',
+	'Tab':'制表符',
+	'Indent':'缩进',
+	'List':'列表',
+	'Table':'表格',
+	'Ordered':'有序',
+	'Unordered':'无序',
+
+	'Superscript':'上标',
+	'Subscript':'下标',
+	'Prefix':'前缀',
+	'Suffix':'后缀',
+	'Infix':'中缀',
 
 // 助词	或 词根
 	'and':'和',
@@ -307,7 +325,7 @@ lang['zh_cn']={
 	'Thought':'思想',
 	'Proof':'证明',
 	
-// adj
+// adj.	prep.
 	
 	'Random':'随机',
 	'Default':'默认',
@@ -336,7 +354,29 @@ lang['zh_cn']={
 	'Low':'低',
 	'Long':'长',
 	'Short':'短',
-
+	
+	'Up':'上',
+	'Down':'下',
+	'Left':'左',
+	'Right':'右',
+	
+	'Bold':'加粗',
+	'Italic':'斜体',
+	'Underline':'下划线',
+	'Strikeline':'删除线',
+	'Highlight':'高亮',
+	
+	'ul':'无序列表',
+	'ol':'有序列表',
+	'Block':'块',
+	'Inline':'行内',
+	'Quote':'引用',
+	'Blockquote':'块引用',
+	
+	'Checkbox':'勾选框',
+	
+	'All':'全部',
+	
 	'Systematized':'系统化',
 	'Semantical':'语义化',
 	'Structural':'结构化',
@@ -391,7 +431,8 @@ lang['zh_cn']={
 
 	// action
 
-	
+	'Download':'下载',
+	'Upload':'上传',
 	'Solve':'解题',
 	'Computation':'计算',
 	'Calculation':'计算',
@@ -407,11 +448,12 @@ lang['zh_cn']={
 	'Overlap':'重叠',
 	'Clip':'裁剪',
 	'Crop':'裁剪',
-	'Cut':'剪切',
+
 	'Offset':'偏移',
 	'Scale':'缩放',
 	'Skew':'扭曲',
-	'Translate':'平移',
+	'Translate':'翻译',
+	'Translate.Math':'平移',
 	'Rotate':'旋转',
 	'Display':'显示',
 	'Toggle':'切换',
@@ -420,24 +462,42 @@ lang['zh_cn']={
 	'Blur':'模糊',
 	'Fill':'填充',
 	'Stroke':'描边',
+	'Move':'移动',
 
-
-
+	'Move Left':'左移',
+	'Move Right':'右移',
+	'Move Up':'上移',
+	'Move Down':'下移',
+	
+	'Increase':'增加',
+	'Decrease':'减少',
+	
+	'Select':'选择',
+	
+	
 	'Edit':'编辑',
 	'Replace':'替换',
 	'Copy':'复制',
+	'Cut':'剪切',
 	'Delete':'删除',
 	'Clear':'清除',
 	'Refresh':'刷新',
 	'Paste':'粘贴',
+	'Redo':'重做',
+	'Undo':'撤销',
 	'Record':'录制',
 	'Play':'播放',
 	'Pause':'暂停',
 	'Stop':'停止',
+	'Save':'保存',
+	'SaveAs':'另存',
 
 	'Input':'输入',
 	'Output':'输出',
 	'Refer':'参考',
+	'Link':'链',
+	'href':'超链接',
+	
 	
 	'i18n':'国际化',//	'Internationalization':'国际化',
 	'i10n':'本土化',	//Localization 

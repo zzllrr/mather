@@ -107,7 +107,7 @@ tooltip.topic['Game/Sudoku']=XML.wrapE('style',
 			's1=@3_5__8_9_@_____9___@29_1_____@9_______1@_3_95____@________9@1_92_____@____93___@6_3_1_95_@p1=p'
 		]))).join(br).replace(/@/g,'\n').replace(/_/g,' ')));
 
-tooltip.topic['Game/Sudoku Condition']=DCtv('inputTip data-tool="数独',detail('条件',['sisj表示交集：重叠处的索引（区域左上角单元格行列号，从1开始计数，注意ij先后表示绘表先后）及偏移量（交叉处的行列数）',
+tooltip.topic['Game/Sudoku Condition']=['sisj表示交集：重叠处的索引（区域左上角单元格行列号，从1开始计数，注意ij先后表示绘表先后）及偏移量（交叉处的行列数）',
 		'重叠2'+sceg('s1s2=31 13,77'),
 		'重叠3'+sceg('s1s2=44 11,66@s2s3=44 11,66').replace(/@/g,'\n'),
 		'重叠5'+sceg('s1s3=77 11,33@s2s3=71 17,33@s3s4=71 17,33@s3s5=77 11,33'.replace(/@/g,'\n'),10),
@@ -130,9 +130,10 @@ tooltip.topic['Game/Sudoku Condition']=DCtv('inputTip data-tool="数独',detail(
 				
 		'额外区域（局部不重复）'+sceg('p1=14 23 24 32,58 67 68 76'),
 		'额外条件'+sceg('s1.23 32in13579')
-		].join(br)));
+		].join(br);
 
 topicThen['Game/Sudoku']=function(){
+	$('#display.seled,.iTextLaTeXon .tool.seled').click();
 	$('.inputTip[data-uri="Game/Sudoku"]').attr('open','open');
 	$('#iTextFold:contains(unfold_more)').click()
 };

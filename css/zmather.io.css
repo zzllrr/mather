@@ -1,10 +1,17 @@
 
 .Symboli .td:not(:hover),.Symboli td:not(:hover){
-	color:limegreen
+	color:blue
 }
 
 .Fn .td{
 	font-size:12px
+}
+
+
+#iTextLaTeXBox{
+	position: relative;
+    z-index: 30000;
+
 }
 
 .sbsTbl .td{
@@ -25,7 +32,7 @@
 
 
 .sbsTbl .td:hover, .sbsTbl td:hover{
-    background: green;
+    background: blue;
     color: white;
 }
 

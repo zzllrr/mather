@@ -115,6 +115,7 @@ $(function(){
 
 
 	//html
+	$('#translate').text(function(i,v){return gM(this.id+'.Math')});
 	$('.Char').text(gM('Char'));
 	
 	$('#Sides').before(gM('Sides')+'× ');

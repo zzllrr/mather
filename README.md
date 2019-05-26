@@ -33,6 +33,7 @@ Make mathematics easier to learn, practice, teach, study, appreciate, play, show
 
 让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。
 
+[TOC]
 
 ## Preface 前言
 
