@@ -2499,7 +2499,7 @@ function linear2nest(Arr){//平面线性二维数组[[相对层级,内容]+] 转
 }
 
 function md2html(str,sep){
-	var codeblockA=[], headA=[],toc=[],
+	var codeblockA=[], headA=[],listA=[],listOU={},
 		lnk={},mlnk={},s='\n'+str;
 	
 	//https://www.cnblogs.com/rossoneri/p/4446440.html
@@ -2561,12 +2561,66 @@ function md2html(str,sep){
 		})
 	}
 	
+
+	if(/\n\s*([\-\*\+]|\d+\.) .+/.test(s)){
+		var fou=function(str){
+			var listA=[],ouA=[];
+			var st=str.replace(/\n\s*([\-\*\+]|\d+\.) .+/g,function(x){var t=x.trim(), n=x.split(/[\-\*\+]|\d+\./)[0].length-1, ht=t.replace(/([\-\*\+]|\d+\.) /,'');
+				listA.push([n,ht]);
+				var oui='uo'[+/^\d/.test(t[0])]+'l';
+				ouA.push(oui);
+				return '\n<'+oui+'li'+n+'>'+(listA.length-1)
+
+		
+			});
+	
+			while(/\n<[uo]lli\d+>\d+\n(?!<[uo]lli\d+>\d+)/.test(st)){
+				st=st.replace(/\n<[uo]lli\d+>\d+\n.+/,function(x){
+					var xA=x.trim().split('\n');
+					if(/<[uo]lli\d+>\d+/.test(xA[1])){
+						return '\n'+xA.join('#\n')
+					}else{
+						listA[+xA[0].split('>')[1]][1]+='\n'+xA[1]
+						return '\n'+xA[0]
+					}
+				})
+			}
+			st=st.replace(/(\n<[uo]lli\d+>\d+)#/g,'$1');
+			var ne=linear2nest(listA);
+
+			var f=function(x){
+				if(isArr(x)){
+					var s=listA[x[0]][1],x1=x.slice(1);
+					return s+(x.length>1?(ouA[x[0]]=='ul'?ul:ol)(Arrf(f,x1)):'');
+				}else{
+					return headA[x][1]
+				}
+			};
+
+			return ol(Arrf(f,ne));
+
+		};
+		s=s.replace(/(\n\s*([\-\*\+]|\d+\.) .+)+/g,function(x){
+			return fou(x)
+		});
+	};
+
+	
 	
 	s=s.replace(/\n(-{3,}|\*{3,}|_{3,})\n/g,'\n<hr />\n')
 	
 	.replace(/\n#+ .+/g,function(x){var t=x.trim(), n=t.split(' ')[0].length, ht=t.replace(/^#+ | #+$/g,'');
 		headA.push([n,ht]);
-		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>\n'})
+		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>'
+	})
+	
+	.replace(/(\n\s*([\-\*\+]|\d+\.) .+\n)+/g,function(x){
+		return fou(x.trim())
+	})
+	
+
+	
+	
 	
 	.replace(/\*{3}[^\*].+[^\\]\*{3}/g,function(x){
 		return '<b><i>'+x.replace(/^...|...$/g,'').trim()+'</i></b>'
@@ -2609,7 +2663,7 @@ function md2html(str,sep){
 	})
 	
 	.replace(/\[.+\]\(.+\)/g,function(x){
-		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=/.+:\/\//.test(u)?href:inhref;
+		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=uriRe.test(u)?href:inhref;
 		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/.+ /,'').replace(/^"|"$/g,''):'')
 	})
 
@@ -2623,13 +2677,13 @@ function md2html(str,sep){
 		return href('mailto:'+t,t)
 	})
 	.replace(/<[^>\s]+[:\/\.\?\&][^>\s]+>/g,function(x){
-		var t=x.replace(/^.|.$/g,''),hf=/.+:\/\//.test(t)?href:inhref;
+		var t=x.replace(/^.|.$/g,''),hf=uriRe.test(t)?href:inhref;
 		return hf(t)
 	})
 	.replace(/\[.+\] *\[[^\s\]]+\]/g,function(x){
 		var t=x.replace(/^.|.$/g,'').split(/\] *\[/), lnkt=lnk[t[1]];
 		if(lnkt){
-			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,''):'',hf=/.+:\/\//.test(u)?href:inhref;
+			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,''):'',hf=uriRe.test(u)?href:inhref;
 			return hf(u,t[0],tt)
 			
 		}else{
@@ -2666,7 +2720,7 @@ function md2html(str,sep){
 		});
 	}
 	
-	return s.trim().replace(/\n/g,sep===undefined?br:sep)
+	return s.replace(/^\n+/,'').replace(/\n+$/,'\n').replace(/\n/g,sep===undefined?br:sep)
 
 	
 	

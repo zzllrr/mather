@@ -366,8 +366,8 @@ tooltip={
 		
 		detail(gM('Table'),[
 
-			[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',20),
-				sceg('A|B\n--|--\n|1|2',20)].join(''),
+			[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',10),
+				sceg('A|B\n--|--\n|1|2',10)].join(''),
 
 			[gM('Table Align'),
 				sceg('|A|B|C|\n|:--|:--:|--:|\n|1|2|3|',20),
@@ -377,7 +377,7 @@ tooltip={
 		
 		detail(gM('List'),[
 
-			[gM('Unordered List'),sceg('- ')].join(''),
+			[gM('Unordered List'),Arrf(sceg,['- ','* ','+ '])].join(''),
 			[gM('Ordered List'),sceg('1. ')].join(''),
 			[gM('Todo List'),sceg('-[]'),sceg('-[x]')].join(''),
 
@@ -399,8 +399,9 @@ tooltip={
 		detail(gM('Structure'),[
 
 
-			gM('H1')+' H1~H3 '+Arrf(sceg,['# ','## ','### ']),
-			'H4~H6 '+Arrf(sceg,['#### ','##### ','###### ']),
+			'H1'+Arrf(sceg,['# '+gM('H1')]),
+			'H2~H4'+Arrf(sceg,['## ','### ','#### ']),
+			'H5~H6 '+Arrf(sceg,['##### ','###### ']),
 			[gM('Contents'),Arrf(sceg,['[TOC]','[UTOC]'])].join(''),
 	
 			[gM('Horizontal Line'),sceg('---\n')].join(''),

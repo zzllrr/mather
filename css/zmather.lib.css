@@ -631,7 +631,7 @@ summary ~ details{
 textarea{
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover){
+.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
 	background: rgba(162,195,97,.1);
 }
 
