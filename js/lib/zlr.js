@@ -331,6 +331,7 @@ fdetail=function(f,A){return DCtv('fdetail',eval('(function'+f+')("'+(''+A[0]).r
 	strbtn+gM('Parameter')+'" class="katexv1" />')},
 mark=function(v,t){return '<mark title='+(t||'API')+'>'+v+'</mark>'},del=function(s){return XML.wrapE('del',s)},
 href=function(url,text,title){return '<a href="'+url+'" target="_blank" '+(title?'title="'+title+'" ':'')+'rel="noopener noreferrer">'+(text||url)+'</a>'},
+inhref=function(url,text,title){return '<a href="'+url+'" '+(title?'title="'+title+'" ':'')+'>'+(text||url)+'</a>'},
 ol=function(A,c,start){return '<ol class="alignl '+(c!=null?c:'')+'"'+(start!=null?' start='+start:'')+'>'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ol>'}, kol=function(A,c,start){return ol(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),c,start)},
 ul=function(A,c){return '<ul class="alignl '+(c!=null?c:'')+'">'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ul>'}, kul=function(A,c){return ul(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),c)},
 dl=function(A,B,c){return '<dl class="alignl '+(c!=null?c:'')+'">'+concat(Arrf(function(t){return XML.wrapE('dt',t)},A),Arrf(function(t){return XML.wrapE('dd',t)},B)).join('')+'</dl>'}, kdl=function(A,B,c){return dl(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),B,c)},
@@ -2472,14 +2473,39 @@ function ubb2html(t0, webview){
 	return t;
 }
 
+function linear2nest(Arr){//平面线性二维数组[[相对层级,内容]+] 转成 立体嵌套对象[[索引,子对象数组[[索引,子对象数组[索引,索引]],[索引]]]+]
+	var A=Arrf(function(i,ii){return i.concat(ii)},Arr);//第三列添加自然索引（以0开始计数）
+	var f=function(a){
+		var al=a.length, m=min(Arri(a,0)),B=[],C=[];
+		for(var i=0;i<al;i++){
+			if(!i || a[i][0]==m){
+				B.push([a[i]])
+			}else{
+				B[B.length-1].push(a[i])
+			}
+		}
+		consolelog('B=',B.join(' ; '));
+		for(var i=0,l=B.length;i<l;i++){
+			consolelog(B[i][0][2],C.join(' ；'));
+			if(B[i].length>1){
+				C.push([B[i][0][2]].concat(f(B[i].slice(1))));
+			}else{
+				C.push(B[i][0][2])
+			}
+		}
+		return C
+	};
+	return f(A)
+}
+
 function md2html(str,sep){
-	var codeblockA=[], headA=[],
+	var codeblockA=[], headA=[],toc=[],
 		lnk={},mlnk={},s='\n'+str;
 	
 	//https://www.cnblogs.com/rossoneri/p/4446440.html
 	while(/\n\[.+\]:.+/.test(s)){
 		s=s.replace(/\n\[.+\]:.+/,function(x){
-			lnk[x.split(']:')[0]]=x.replace(/\n\[.+\]:/,'').trim();
+			lnk[x.split(']:')[0].substr(2)]=x.replace(/\n\[.+\]:/,'').trim();
 			return ''
 		});
 	
@@ -2540,7 +2566,7 @@ function md2html(str,sep){
 	
 	.replace(/\n#+ .+/g,function(x){var t=x.trim(), n=t.split(' ')[0].length, ht=t.replace(/^#+ | #+$/g,'');
 		headA.push([n,ht]);
-		return '\n'+XML.wrapE('h'+n,ht)+'\n'})
+		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>\n'})
 	
 	.replace(/\*{3}[^\*].+[^\\]\*{3}/g,function(x){
 		return '<b><i>'+x.replace(/^...|...$/g,'').trim()+'</i></b>'
@@ -2578,39 +2604,62 @@ function md2html(str,sep){
 
 
 	.replace(/\!\[.+\]\(.+\)/g,function(x){
-		var t=x.replace(/\!\[.+\]/,'').replace(/^.|.$/g,'');	
-		return '<img src="'+t.split(' ')[0]+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/.+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
+		var t=x.replace(/\!\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0];
+		return '<img src="'+u+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/.+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
 	})
 	
 	.replace(/\[.+\]\(.+\)/g,function(x){
-		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,'');	
-		return href(t.split(' ')[0], x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/.+ /,'').replace(/^"|"$/g,''):'')
-	});
+		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=/.+:\/\//.test(u)?href:inhref;
+		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/.+ /,'').replace(/^"|"$/g,''):'')
+	})
 
 
-	s=s.replace(/\n(<h\d>)/g,'$1').replace(/(<\/h\d>)\n/g,'$1').replace(/(<hr \/>)\n/g,'$1')
+	.replace(/\n+(<h\d+[> ])/g,'$1').replace(/(<\/h\d+>)\n+/g,'$1').replace(/(<hr \/>)\n/g,'$1')
 	.replace(/\n?(<.?blockquote>)\n?/g,'$1')
-	
-	
-	
-	
+
+
 	.replace(/<\S+@\S+\.\>/g,function(x){
 		var t=x.replace(/^.|.$/g,'');
 		return href('mailto:'+t,t)
 	})
 	.replace(/<[^>\s]+[:\/\.\?\&][^>\s]+>/g,function(x){
-		var t=x.replace(/^.|.$/g,'');
-		return href(t)
+		var t=x.replace(/^.|.$/g,''),hf=/.+:\/\//.test(t)?href:inhref;
+		return hf(t)
+	})
+	.replace(/\[.+\] *\[[^\s\]]+\]/g,function(x){
+		var t=x.replace(/^.|.$/g,'').split(/\] *\[/), lnkt=lnk[t[1]];
+		if(lnkt){
+			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,''):'',hf=/.+:\/\//.test(u)?href:inhref;
+			return hf(u,t[0],tt)
+			
+		}else{
+			consolelog(lnk,t[1]);
+			return x.replace(/\] *\[/,']?[')
+		}
+
 	})
 	.replace(/\\([^\\])/g,'$1');
 	
-	
-	
-	if(/\[TOC\]/.test(s) && headA.length){
-		
-	
-	
+
+
+	if(/\[U?TOC\]/.test(s) && headA.length){
+		var ne=linear2nest(headA);
+		consolelog(headA,ne);
+		var f=function(x,u){
+			if(isArr(x)){
+				var s=headA[x[0]][1],x1=x.slice(1);
+				return inhref('#TOChi'+x[0],s)+(x.length>1?(u?ul:ol)(Arrf(function(y){return f(y,u)},x1)):'');
+			}else{
+				return inhref('#TOChi'+x,headA[x][1])
+			}
+		};
+
+		s=s.replace(/\[TOC\]/g,ol(Arrf(f,ne)));
+		s=s.replace(/\[UTOC\]/g,ul(Arrf(function(y){return f(y,1)},ne)));
 	}
+	
+
+	
 	if(codeblockA.length){
 		s=s.replace(/<codeblockquote>\d+<.codeblockquote>/g,function(x){
 			return XML.wrapE('pre',XML.wrapE('code',XML.encode(codeblockA[+x.replace(/\D/g,'')])))

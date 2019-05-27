@@ -17,7 +17,10 @@ qrs={
 if(H_o().lang !=L.lang){
 	i18n=lang[H_o().lang||L.lang||'zh_cn']
 }
-
+var csslib={
+	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">'
+	
+};
 $(function(){
 
 	oH=$('#oHTML');
@@ -444,7 +447,7 @@ $(function(){
 			'Ascii_Math':'ASCII '+gM('Character'),
 			'Unicode_Math':'Unicode '+gM('Character'),
 			'JS':'JavaScript '+gM('Snippet'),
-			'MarkDown':'MarkDown '+gM('Snippet'),
+			'Markdown':'Markdown '+gM('Snippet'),
 			'HTML':'HTML '+gM('Snippet'),
 			'Presentation_MathML':gM('Presentation Markup')+' MathML '+gM('Snippet'),
 			'Content_MathML':gM('Content Markup')+' MathML '+gM('Snippet'),
@@ -737,7 +740,9 @@ consolelog('最终A = ',A);
 	});
 	
 	$('#downloadPreview').on('click',function(){
-		saveText($('#input0Preview').html(),gM('zzllrr Mather')+Time.now()+'.html')
+		saveText(csslib.katex+$('#input0Preview').html(),
+			gM('zzllrr Mather')+Time.now()+'.html'
+		)
 	});
 
 
@@ -793,7 +798,7 @@ consolelog('最终A = ',A);
 //	$('#input2Tip').html('<details class=inputTip data-tool="绘图"><summary>绘图</summary>'+API([{'Canvas':'draw'},{'SVG':'plot'}])+'</details>');
 	
 
-	$('#input0Type').html(Options(ZLR('LaTeX MarkDown Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
+	$('#input0Type').html(Options(ZLR('LaTeX Markdown Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
 		var v=$(this).val(),t=v[0], iT=$('#input0Tip [data-tool="API"]'), it=$('#input0Tip [data-tool="'+v+'"]');
 		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
 			[[0,2,4],[0], [0,2,3,4,5], [0,1,3,4,5], [0],[0], [0,2,3,5], [0,2,3,4]]['LMAUJHPC'.indexOf(t)])
@@ -809,7 +814,7 @@ consolelog('最终A = ',A);
 			if(it.length){
 			
 			}else{
-				$('#input0Tip').append(detail(v,tooltip.MarkDown,'','class=inputTip data-tool="API"'));
+				$('#input0Tip').append(detail(v,tooltip.Markdown,'','class=inputTip data-tool="API"'));
 			}
 		}else{
 			iT.hide();

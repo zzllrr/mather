@@ -235,7 +235,7 @@ lang['zh_cn']={
 
 	'Progress':'进度',
 
-
+	'Style':'样式',
 	'Color':'颜色',
 	'Colors':'颜色',
 	'Gradient':'渐变',
@@ -372,7 +372,7 @@ lang['zh_cn']={
 	'Inline':'行内',
 	'Quote':'引用',
 	'Blockquote':'块引用',
-	
+	'Reference':'引用',
 	'Checkbox':'勾选框',
 	
 	'All':'全部',
