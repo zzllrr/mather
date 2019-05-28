@@ -182,7 +182,7 @@ tooltip['API']=[
 			{'序列':'seqA seqsA cartestian cartt carttNext carttPrev'},
 			{'增删':'uniPush Uniq'},
 			{'提取':'Arri ArrI subMtrx'},
-			{'运算':'Arrf Arrfc ArrfcA Arr1 Arr_1'},
+			{'运算':'Arrf Arrfc ArrfcA Arr1 Arr_1 tableT'},
 			{'拼接':'zlrA zlrA2 zlrA3 snake'},
 			{'输出字符串':'zlr zlr2 zlr3 ZLR3'},
 			{'排序':'sortBy sort2'},
@@ -209,7 +209,6 @@ tooltip['API']=[
 			{'随机':'Random'},
 			{'统计':'max min countA CntN Cnt'},
 			{'差分':'diff antidiff'},
-			{'JS原生':'Math'},
 		]},
 
 	]},
@@ -310,9 +309,11 @@ tooltip['Math obj (Native JS)']=[
 		
 ],
 	//jdetail(tooltip['Math obj (Native JS)'])+
-navhead['API']=API(tooltip['API'])+br+detail(gM('3rd-party'),
+navhead['API']=[API(tooltip['API']), detail(gM('3rd-party'),
 	detail(href('./js/lib','Javascript'),
 		ul(ZLR(zlr2('Base64 jQuery katex qrcode zlr echarts raphael flowchart effects','.js'))),1)+
 	detail(href('./css/fonts','Fonts'),
 		ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
-,1);
+,1), href('./js',gM('All JS')),
+	href('./css',gM('All CSS')),
+].join(br);

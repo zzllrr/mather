@@ -1406,8 +1406,8 @@ a b c d
 		if(sel('Numerical Calculator JS Native')){
 			rS=rS.concat(
 				Arrf(function(s){
-					var t=opreplace(s).replace(/÷/g,'/'),ass=/[ &,].+=/.test(t),V=t.split(/[ &,]/);
-					return t+' ≈ '
+					var t=eval(s);
+					return s+' ≈ '+t
 			},VA));
 		}
 		

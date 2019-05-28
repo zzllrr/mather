@@ -34,15 +34,13 @@ Table('',[
 ])+'<h3>MarkDown</h3>'+
 
 Table('',[
-	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('** ABC **')],
-	[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('* ABC *')],
-	[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('++ ABC ++')], 
+	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')],
+	[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('*ABC*')],
+	[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__')], 
 	[scHotk('Ctrl + K'),SCtv('underline',gM('href')),sceg('['+gM('Title')+'](http://)')],
 
-	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')+' / '+sceg('``` ABC ```')],
-
-
-
+	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
+	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
 ])+'<h3>'+gM('Gadget')+'</h3>'+
 

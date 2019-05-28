@@ -388,6 +388,24 @@ input[type=text],#wiki>span,.brad{
 .pd10{
 	padding:10px
 }
+.mg10{
+	margin:10px
+}
+.mg20{
+	margin:20px
+}
+.mgr10{
+	margin-right:10px
+}
+.mgr20{
+	margin-right:20px
+}
+.mgl10{
+	margin-left:10px
+}
+.mgl20{
+	margin-left:20px
+}
 .subtools details{
 	padding:5px;
 	display: inline-block;
@@ -474,7 +492,12 @@ code,pre,#outputOpt{
 .fixb{
 	bottom:0;
 }
-
+.inputTip[open] > summary{
+    border-bottom: dashed gainsboro;
+}
+.inputTip details[open] > summary{
+	background:gainsboro;
+}
 #iContent{
 	border-bottom: dashed 1px gainsboro;
 }

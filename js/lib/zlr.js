@@ -675,7 +675,8 @@ Table=function(thead,t,bd,tbodyClass){	//bd 指定边框风格（或其他class�
 			
 			TBr2	行平均分两块
 			TBc2	列平均分两块
-			TBr2c2  十字分隔 【注意r2、c2是或关系】
+			TBr2c2  十字分隔 
+				注意 r2、c2是或关系
 
 			
 			TBD3_4_2		主对角阵分块（仅方阵）
@@ -688,7 +689,8 @@ Table=function(thead,t,bd,tbodyClass){	//bd 指定边框风格（或其他class�
 			TBI2J2 第2行或第2列加边框
 			TBI2_4J2_3 第2、4行或第2、3列加边框
 
-			TB[i2][j3][lrbt]		部分单元格边框【注意i、j小写是且关系，大写是或】
+			TB[i2][j3][lrbt]		部分单元格边框
+				注意i、j小写是且关系，大写是或
 					[lrbt] 默认全选
 				TBi2j3lr 第2行且第3列加左右边框
 				TBj3r
@@ -2555,17 +2557,18 @@ function md2html(str,sep){
 //	}
 	
 	
-	while(/\n>+ /.test(s)){
+	while(/\n> +./.test(s)){
 		s=s.replace(/\n> +.+(\n> +.+)*/,function(x){
-			return XML.wrapE('blockquote',x.replace(/\n> +/g,'\n'))
+			return XML.wrapE('blockquote',x.replace(/\n> +/g,'\n').replace(/^\n/,''))
 		})
 	}
 	
 
-	if(/\n\s*([\-\*\+]|\d+\.) .+/.test(s)){
+	if(/\n[ \t]*([\-\*\+]|\d+\.) .+/.test(s)){//ol ul
 		var fou=function(str){
+			consolelog('fou',str);
 			var listA=[],ouA=[];
-			var st=str.replace(/\n\s*([\-\*\+]|\d+\.) .+/g,function(x){var t=x.trim(), n=x.split(/[\-\*\+]|\d+\./)[0].length-1, ht=t.replace(/([\-\*\+]|\d+\.) /,'');
+			var st=str.replace(/\n[ \t]*([\-\*\+]|\d+\.) .+/g,function(x){var t=x.trim(), n=x.split(/[\-\*\+]|\d+\./)[0].length-1, ht=t.replace(/([\-\*\+]|\d+\.) */,'');
 				listA.push([n,ht]);
 				var oui='uo'[+/^\d/.test(t[0])]+'l';
 				ouA.push(oui);
@@ -2573,7 +2576,7 @@ function md2html(str,sep){
 
 		
 			});
-	
+	consolelog('st',st);
 			while(/\n<[uo]lli\d+>\d+\n(?!<[uo]lli\d+>\d+)/.test(st)){
 				st=st.replace(/\n<[uo]lli\d+>\d+\n.+/,function(x){
 					var xA=x.trim().split('\n');
@@ -2585,57 +2588,65 @@ function md2html(str,sep){
 					}
 				})
 			}
+			
+	consolelog('st2',st);
 			st=st.replace(/(\n<[uo]lli\d+>\d+)#/g,'$1');
 			var ne=linear2nest(listA);
-
-			var f=function(x){
+	consolelog('ne',ne);
+	
+	consolelog('listA',listA);
+	
+	consolelog('ouA',ouA);
+	
+			var g=function(x){
+				return x.replace(/^\[ \]/,strchkbx0+'disabled />').replace(/^\[x\]/i,strchkbx0+'disabled'+chked+' />')
+			},f=function(x){
 				if(isArr(x)){
-					var s=listA[x[0]][1],x1=x.slice(1);
-					return s+(x.length>1?(ouA[x[0]]=='ul'?ul:ol)(Arrf(f,x1)):'');
+					consolelog('x[0]= ',x[0]);
+					var s=g(listA[x[0]][1]),x1=x.slice(1);
+					
+					return s+(x.length>1?(ouA[x[0]+1]=='ul'?ul:ol)(Arrf(f,x1)):'');
 				}else{
-					return headA[x][1]
+					return g(listA[x][1])
 				}
 			};
 
-			return ol(Arrf(f,ne));
+			return (ouA[0]=='ul'?ul:ol)(Arrf(f,ne));
 
 		};
-		s=s.replace(/(\n\s*([\-\*\+]|\d+\.) .+)+/g,function(x){
-			return fou(x)
+		s=s.replace(/(\n[ \t]*([\-\*\+]|\d+\.) .+)+/g,function(x){
+			return '\n'+fou(x)
 		});
 	};
 
+	if(/-:?\|:?-/.test(s)){
+		//Table表格处理、 脚注处理
+		
+		
+	}
 	
 	
-	s=s.replace(/\n(-{3,}|\*{3,}|_{3,})\n/g,'\n<hr />\n')
+	s=s.replace(/\n(-{3,}|\*{3,}|_{3,})\n/g,'\n<hr />\n').replace(/\n(-{3,}|\*{3,}|_{3,})$/g,'\n<hr />')
 	
 	.replace(/\n#+ .+/g,function(x){var t=x.trim(), n=t.split(' ')[0].length, ht=t.replace(/^#+ | #+$/g,'');
 		headA.push([n,ht]);
 		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>'
 	})
 	
-	.replace(/(\n\s*([\-\*\+]|\d+\.) .+\n)+/g,function(x){
-		return fou(x.trim())
-	})
-	
-
-	
-	
-	
-	.replace(/\*{3}[^\*].+[^\\]\*{3}/g,function(x){
+	.replace(/\*{3}[^\*].*[^\\]\*{3}/g,function(x){
 		return '<b><i>'+x.replace(/^...|...$/g,'').trim()+'</i></b>'
 	})
 	
-	.replace(/\*{2}[^\*].+[^\\]\*{2}/g,function(x){
+	.replace(/\*{2}[^\*].*[^\\]\*{2}/g,function(x){
 		return '<b>'+x.replace(/^..|..$/g,'').trim()+'</b>'
 	})	//strong
 	
-	.replace(/\*[^\*]+[^\\\*]\*/g,function(x){
+	.replace(/\*[^\\\* ][^\\\*]*\*/g,function(x){
 		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
 	})	//em
 	
 	//.replace(/\+\+.+[^\\]\+\+/g,function(x){
-	.replace(/__.+[^\\]__/g,function(x){
+	.replace(/__[^ ].*[^\\]__/g,function(x){
 		return scib(x.replace(/^..|..$/g,'').trim())
 	})	//underline
 	
@@ -2659,16 +2670,18 @@ function md2html(str,sep){
 
 	.replace(/\!\[.+\]\(.+\)/g,function(x){
 		var t=x.replace(/\!\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0];
-		return '<img src="'+u+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/.+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
+		return '<img src="'+u+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/[^ ]+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
 	})
 	
 	.replace(/\[.+\]\(.+\)/g,function(x){
 		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=uriRe.test(u)?href:inhref;
-		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/.+ /,'').replace(/^"|"$/g,''):'')
+		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/[^ ]+ /,'').replace(/^"|"$/g,''):'')
 	})
 
 
-	.replace(/\n+(<h\d+[> ])/g,'$1').replace(/(<\/h\d+>)\n+/g,'$1').replace(/(<hr \/>)\n/g,'$1')
+	.replace(/\n+(<h\d+[> ])/g,'$1').replace(/(<\/h\d+>)\n+/g,'$1')
+	.replace(/(<\/[ou]l>)\n+/g,'$1')
+	.replace(/\n*(<hr \/>)\n*/g,'$1')
 	.replace(/\n?(<.?blockquote>)\n?/g,'$1')
 
 

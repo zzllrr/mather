@@ -214,7 +214,7 @@ $(function(){
 				return 'unfold_more'
 			}
 			$('#iTextMain').show();
-			$('#input0Tool .seled').removeClass('seled');
+			$('#input0Tool .seled').not('#navHide').removeClass('seled');
 
 			$('#go').prev().show();
 			if($('#display').is('.seled')){
@@ -257,7 +257,7 @@ $(function(){
 	
 	$('body').on('keydown',function(e){
 		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
-		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id');
+		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id')||'';
 //console.log(k,node);
 
 		if(node=='input' && k==13){
@@ -269,9 +269,9 @@ $(function(){
 		}
 		if(node=='textarea'){
 			if(ctrl && k==69){act.value='';return false}
+			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS;
 			if(k==9 && !alt){
 			
-				var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS;
 				consolelog(A);
 				if(shft){
 					A[1]=A[1].replace(/^\t/,'').replace(/\n\t/g,'\n');
@@ -284,6 +284,65 @@ $(function(){
 				act.selectionEnd=t;
 				return false
 			}
+			
+			consolelog(k);
+			if(ctrl && id=='input0' && [73,66,85,81,75].indexOf(k)>-1){
+				console.log(sS,iv,sE);
+				if(k==73){
+					if(sS==sE){
+						A[1]='**';
+					}else{
+						A[1]='*'+A[1]+'*'
+					}
+					t++
+				}
+				if(k==66){
+					if(sS==sE){
+						A[1]='** **'
+					}else{
+						A[1]='**'+A[1]+'**'
+					}
+					t+=2
+				}
+				if(k==85){
+					if(sS==sE){
+						A[1]='__ __'
+					}else{
+						A[1]='__'+A[1]+'__'
+					}
+					t+=2;
+					
+				}
+				if(k==81){
+					if(sS==sE){
+						A[1]='\n> '
+					}else{
+						A[1]='\n> '+A[1]
+					}
+					t+=3
+				}
+				
+				if(k==75){
+					if(sS==sE){
+						A[1]='[](http:// '+gM('Title')+')';
+						t++;
+					}else{
+						A[1]='['+A[1]+'](http:// '+gM('Title')+')'
+						t+=10+A[1].length;
+					}
+				}
+				
+				me.val(A.join(''));
+				act.selectionStart=t;
+				act.selectionEnd=t;
+				
+				if(k==85){
+					return false
+				}
+
+			}
+			
+			
 		}
 
 		if(/^(input|textarea)$/.test(node)){
@@ -296,7 +355,7 @@ $(function(){
 						$('#GOlatex').click();
 					}
 				}
-				if(k==83){
+				if(k==83){//s
 
 					return false
 				}
@@ -311,7 +370,7 @@ $(function(){
 		if(alt){
 			if(k==50 || k==98){
 				var t=getSelection().toString();
-				if(t){saveText(t, gM('zname')+'_'+Time.now()+'.txt')}
+				if(t){saveText(t, gM('zzllrr Mather')+'_'+Time.now()+'.txt')}
 			}
 		}
 
@@ -530,7 +589,9 @@ $(function(){
 		pa=me.parent(),p=pa.parents('.ground'),
 		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{}, issolve=tool=='solve', istask=me.is('.task');
 
-		pa.nextAll().add('#oHTML').empty();
+		if(!istask){
+			pa.nextAll().add('#oHTML').empty();
+		}
 		
 		if(me.is('.seled')){
 			me.removeClass('seled');

@@ -340,19 +340,19 @@ tooltip={
 
 	'Markdown':[
 		detail(gM('Style'),[
-			[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('* ABC *'),sceg('_ ABC _')].join(''),
-			[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('** ABC **')].join(''),
+			[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('*ABC*'),sceg('_ABC_')].join(''),
+			[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')].join(''),
 			
-			[XML.wrapE('b',XML.wrapE('i',gM('Bold Italic'))),sceg('*** ABC ***')].join(''),
+			[XML.wrapE('b',XML.wrapE('i',gM('Bold Italic'))),sceg('***ABC***')].join(''),
 			
-			[XML.wrapE('del',gM('Strikeline')),sceg('~~ ABC ~~')].join(''),
-			[XML.wrapE('mark',gM('Highlight')),sceg('== ABC ==')].join(''),
-			[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ ABC __')].join(''), 
+			[XML.wrapE('del',gM('Strikeline')),sceg('~~ABC~~')].join(''),
+			[XML.wrapE('mark',gM('Highlight')),sceg('==ABC==')].join(''),
+			[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__')].join(''), 
 				
 	
-			[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')].join(''),
+			[scHotk('Ctrl + Q'),gM('Blockquote'),Arrf(sceg,['> ABC','\n> A\n> > B\n> > > C'])].join(''),
 
-			[gM('Inline Quote'),sceg('` ABC `')].join(''),
+			[gM('Inline Quote'),sceg('`ABC`')].join(''),
 	
 		].join(br))+
 		
@@ -364,24 +364,30 @@ tooltip={
 
 		].join(br))+
 		
-		detail(gM('Table'),[
 
-			[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',10),
-				sceg('A|B\n--|--\n|1|2',10)].join(''),
-
-			[gM('Table Align'),
-				sceg('|A|B|C|\n|:--|:--:|--:|\n|1|2|3|',20),
-			].join(''),
-				
-		].join(br))+
 		
 		detail(gM('List'),[
 
-			[gM('Unordered List'),Arrf(sceg,['- ','* ','+ '])].join(''),
-			[gM('Ordered List'),sceg('1. ')].join(''),
-			[gM('Todo List'),sceg('-[]'),sceg('-[x]')].join(''),
+			[gM('Unordered List'),Arrf(sceg,['- ','* ','+ ','- 1\n- 2\n- 3'])].join(''),
+			[gM('Ordered List'),Arrf(sceg,['1. ','1. \n2. \n3. '])].join(''),
+			[gM('Todo List'),Arrf(sceg,['- [ ]','- [x]','- [x]\n- [ ]\n- [ ]'])].join(''),
 
-				
+			[gM('Compound'),sceg(`
+1. 1
+2. 2
+3. 3
+ - 3.1
+ - 3.2
+  + 3.21
+  + 3.22
+ - 30.3
+4. 40
+
+Todo
+- [x]1
+- [ ]2
+- [ ]3
+`,10)].join(''),
 		].join(br))+
 		
 		detail(gM('href'),[
@@ -392,10 +398,28 @@ tooltip={
 			[gM('href Definition'),sceg('[id]:http://www.abc.com "'+gM('Title')+'"')].join(''),	
 			[gM('href ID'),sceg('['+gM('Text')+'][id]')].join(''),
 			
+			[gM('Foot Note'),sceg('[^id]')].join(''),
+			[gM('Foot Note')+' '+gM('Definition'),sceg('[^id]: ')].join(''),
+				
 			[gM('href'),sceg('<http://www.abc.com>'),sceg('<info@abc.com>')].join(''),
 			
 		].join(br))+
-			
+
+
+		detail(gM('Table'),[
+
+			[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',10),
+				sceg('A|B\n--|--\n1|2',10)].join(''),
+				
+			[gM('Double Table Head'),sceg('|A|B|C|\n|D|E|F|\n|--|--|--|\n|1|2|3|',10)].join(''),
+
+			[gM('Table Align'),
+				sceg('|A|B|C|\n|:--|:--:|--:|\n|1|2|3|',20),
+			].join(''),
+				
+		].join(br))+
+
+
 		detail(gM('Structure'),[
 
 

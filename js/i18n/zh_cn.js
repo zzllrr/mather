@@ -73,6 +73,7 @@ lang['zh_cn']={
 	'International Standard Open-Sourced Math Tool Program by Experts':'国际通用标准的专家级开源数学工具项目',
 	'Customized Math Tool Program based on Mather by zzllrr':'小乐基于Mather个性化开发的数学工具项目',
 	'Customized Math Tool Program based on Mather by someone':'某人基于Mather个性化开发的数学工具项目',
+	'Unless Otherwise Stated':'如无特殊说明',
 // standard 
 
 
@@ -81,6 +82,8 @@ lang['zh_cn']={
 // 人和组织
 	'Person':'人物',
 	'User':'用户',
+	
+	
 	'Student':'学生',
 	'Parent':'父母',
 	'Teacher':'老师',
@@ -93,8 +96,13 @@ lang['zh_cn']={
 	'Artist':'艺术家',
 	'Mathematician':'数学家',
 	'Engineer':'工程师',
+	
 	'Publisher':'出版工作者',
+	'Legal Worker':'法律工作者',
+	
 	'Amateur':'业余者',
+	
+	'Participant':'参与者',
 	
 	'Backer':'资助者',
 	'Sponsor':'赞助者',
@@ -114,6 +122,7 @@ lang['zh_cn']={
 	'Payee':'收款人',
 
 	'3rd-party':'第三方',
+	'third-party':'第三方',
 	
 	'WeChat':'微信公众号',
 
@@ -143,7 +152,12 @@ lang['zh_cn']={
 	'Lottery':'彩票',
 	'Sudoku':'数独',
 
-
+	'Head':'头',
+	'Body':'正文',
+	'Foot':'尾',
+	'Foot Note':'脚注',
+	'End Note':'尾注',
+		
 	'Node':'节点',
 	'Dash':'虚线',
 	'Arrow':'箭头',
@@ -217,6 +231,7 @@ lang['zh_cn']={
 	'Sub':'子',
 	'Quasi':'准',
 	'Multi':'多',
+	'Except':'除了',
 	
 // measure
 
@@ -315,7 +330,12 @@ lang['zh_cn']={
 	'Protocol':'协议',
 	'Whitepaper':'白皮书',
 	'Copyright':'版权',
-
+	'Licence':'许可证',
+	'Privacy':'隐私',
+	'Policies':'政策',
+	'Terms':'条款',
+	
+	'Creative Commons':'知识共享',
 	'Topic':'课题',
 	'Consensus':'共识',
 	'Cooperation':'合作',
@@ -327,13 +347,22 @@ lang['zh_cn']={
 	
 // adj.	prep.
 	
+	'Double':'双',
+	'Triple':'三',
 	'Random':'随机',
 	'Default':'默认',
 	'Advanced':'高级',
 	
 	'Blended':'混合',
 	'Mixed':'混合',
+	'Compound':'复合',
+	
+	'Source':'源',
 	'Native':'原生',
+	'Static':'静态',
+	'Dynamic':'动态',
+
+
 	'Typical':'典型',
 	'Elementary':'初等',
 	'Key':'关键',

@@ -8,28 +8,47 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	build:{
 		JS:function(t){//JS中的数学常数或函数，得到小数
 /*
-	Math.hypot() 函数返回它的所有参数的平方和的平方根
-	Math.fround(x) 指定的数字转换为离它最近的单精度浮点数形式.
-	Math.sign() 函数用来判断一个数字的符号, 是正数, 负数, 还是零.
-	Math.exp() 函数返回 Eⁿ, 其中 ⁿ 是该函数的参数, E 是自然对数的底数 2.718281828459045
-	Math.expm1() 函数返回 Eⁿ - 1, 其中 ⁿ 是该函数的参数, E 是自然对数的底数 2.718281828459045
-	Math.log() 函数返回参数的自然对数 (底为 E), ln(x).
-	Math.log1p() 函数返回一个数字加1后的自然对数 (底为 E), ln(x+1).
-	Math.log10()
-	Math.log2()
+数学函数（共34个）
 
-Math.atan2(y,x) 接受两个参数
+指数、对数	["exp", "expm1", "log", "log1p", "log10", "log2"]
+	其中exp(x) 表示 e^x
+	expm1(x) 表示e^x-1
+	log(x) 表示ln x
+	log1p(x) 表示ln (x+1)
+	
 
-["asin", "acos", "atan", "sin", "cos", "tan", "asinh", "acosh", "atanh", "sinh", "cosh", "tanh", "sqrt", "cbrt", "abs", "floor", "ceil", "trunc", "exp", "log", "sign"]
+（反）三角函数 	["asin", "acos", "atan", "atan2", "sin", "cos", "tan"]
+	其中atan2(y,x) 接受两个参数
+	
+（反）双曲函数	["asinh", "acosh", "atanh", "sinh", "cosh", "tanh"]
 
-	Math.E
-	Math.LN10
-	Math.LN2
-	Math.LOG10E
-	Math.LOG2E
-	Math.PI
-	Math.SQRT1_2
-	Math.SQRT2
+近似、截取	["floor", "ceil", "trunc", "round", "fround", "clz32", "imul"]
+	其中trunc(x) 截去小数部分，得到整数部分
+	round(x) 四舍五入后的整数
+	fround(x) 取与x最近的单精度浮点数
+	clz32(x) 表示Count Leading Zeroes 32，取x转成二进制32位无符号整形数字开头0的个数
+	imul(x,y) 表示两个整数按照类C语言的32位整数乘法运算结果
+	
+正负数	["sign", "abs"]
+
+幂、开方	["sqrt", "cbrt", "hypot"]
+	其中hypot() 函数返回它的所有参数的平方和的平方根
+
+
+
+统计	["max", "min"]
+
+随机	["random"]
+
+常数（共8个）
+	E		e 欧拉Euler自然常数
+	LN10	ln 10
+	LN2	ln 2
+	LOG10E	log_{10}e
+	LOG2E	log_{2}e
+	PI		π
+	SQRT1_2	√2 /2
+	SQRT2      √2
 */
 			return Math[t]
 		},
@@ -640,7 +659,8 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 
 			√∛∜ 									变成@	#（无参函数）
 
-原子类（原子、伪原子）：@ $【括号、小数（百分数）、后缀】、@ &（有参函数）、纯数字、单个字母(拉丁、希腊)
+原子类（原子、伪原子）：@ $ 括号、小数（百分数）、后缀
+						、@ &（有参函数）、纯数字、单个字母(拉丁、希腊)
 
 			原子^原子					指数函数		@	&（有参函数）
 
@@ -4146,17 +4166,17 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 											   
 		b1+m1(t1+m2t2) ≡ b3 mod m3	    	t2 ≡ ((b3-b1)/m1-t1)/m2 mod m3		= ((b3-b1)-m1t1)/m1m2 mod m3
 		b1+m1t1+m1m2t2 ≡ b3 mod m3			   ≡ (b3-b2)/m1m2 + d2 mod m3		其中分数d2=((b2-b1)/m1-t1)/m2
-		【b2+s2m2】+m1m2t2 ≡ b3 mod m3？？	其中s2=(b1+m1t1-b2)/m2
-											   ≡ (b3-(b1+m1t1))/m1m2 mod m3	【选这种形式表示】
+		b2+s2m2 +m1m2t2 ≡ b3 mod m3？？	其中s2=(b1+m1t1-b2)/m2
+											   ≡ (b3-(b1+m1t1))/m1m2 mod m3	选这种形式表示
 											   ≡ (b3-b1)/m1m2 - t1/m2 mod m3
 											   
 											   
 		b1+m1(t1+m2(t2+m3t3) ≡ b4 mod m4    t3 ≡ (((b4-b1)/m1-t1)/m2-t2)/m3 mod m4
 		b1+m1t1+m1m2t2+m1m2m3t3 ≡ b4 mod m4	≡ ((b4-b1)/m1m2 -t1/m2 -t2)/m3 mod m4
-		【b3+s3m3】+m1m2m3t3 ≡ b4 mod m4？？
+		b3+s3m3 +m1m2m3t3 ≡ b4 mod m4？？
 											   ≡ (b4-b3)/m1m2m3 + d3 mod m4		其中分数d3=(((b3-b1)/m1-t1)/m2-t2)/m3
 											   
-											   ≡ (b4-(b1+m1t1+m1m2t2))/m1m2m3 mod m4【选这种形式表示】
+											   ≡ (b4-(b1+m1t1+m1m2t2))/m1m2m3 mod m4	选这种形式表示
 											   ≡ (b4-b1)/m1m2m3 -t1/m2m3 -t2/m3  mod m4
 
 		*/
