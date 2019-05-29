@@ -239,6 +239,6 @@ lang['en']={
 		'This is a Demo version, which has only partial function.<br />'+
 		'Defects and mistakes are unavoidable due to limited personal abilities and time.<br />If there is a browser dead loop, just close the web page directly.<br />'+
 		'Before the release of the stable version, its kernel, interface, and functionality may be restructed and iterated for many times.',
-	'VisionTip':'Promote more math, science and technology, education, engineering, humanities workers and enthusiasts to join the Global Open Source Math Tool Project called Mather',
+	'VisionTip':'Promote more math, science and technology, education, engineering, humanities workers and enthusiasts<br /> to join the Global Open Source Math Tool Project called Mather',
 	'AimsTip':'Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.',
 };

@@ -5,12 +5,12 @@
  */
 var protocol_keywords={
 	'Organism':ZLR('Structural Organized Organic Self-improvement Self-consistent'),
-	'Offline Computation & Online Connection':['Mathematical Closure','Synergy','API'],
+	'Offline Computation & Online Connection':['Mathematical Closure','Interoperability','Synergy','API'],
 	'Energy Consumption Minimization':['Compact','High Reusability','Eco-Friendly'],
 	'Open Access':['Open','Free','CC'],
-	'Consensus & Cooperation':['Kind','Pally']
+	'Consensus & Cooperation':['Kind','Pally','Peace-loving','Non-discriminatory']
 };
-navhead['protocol']=XML.wrapE('h3',gM('Mather Protocol'))+
+navhead['protocol']=XML.wrapE('h3',gM('Mather Protocol')+' V0.1')+
 ol(Arrf(function(i){return gM(i)+SCtv('floatr mgr20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
 	'Organism',
 	'Offline Computation & Online Connection',

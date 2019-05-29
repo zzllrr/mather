@@ -309,11 +309,14 @@ tooltip['Math obj (Native JS)']=[
 		
 ],
 	//jdetail(tooltip['Math obj (Native JS)'])+
-navhead['API']=[API(tooltip['API']), detail(gM('3rd-party'),
+navhead['API']=[[href('./js','JS'),
+	href('./css',gM('CSS')),
+	href('./js/i18n',gM('i18n')),
+	].join(' | '),
+	API(tooltip['API']), detail(gM('3rd-party'),
 	detail(href('./js/lib','Javascript'),
 		ul(ZLR(zlr2('Base64 jQuery katex qrcode zlr echarts raphael flowchart effects','.js'))),1)+
 	detail(href('./css/fonts','Fonts'),
 		ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
-,1), href('./js',gM('All JS')),
-	href('./css',gM('All CSS')),
+,1), 
 ].join(br);

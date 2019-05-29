@@ -113,6 +113,9 @@ lang['zh_cn']={
 	'Supporter':'支持者',
 	'Public':'公众',
 	'Company':'公司',
+		
+	'Institution':'机构',
+	'Organization':'组织',
 	
 	'zzllrr':'小乐',
 	'zzllrr Mather':'小乐数学',
@@ -139,7 +142,9 @@ lang['zh_cn']={
 	'Software':'软件',
 	'Hardware':'硬件',
 
+	'Scope':'范围',
 	'Textarea':'文本框',
+	'Computer':'计算机',
 
 	'Wiki':'百科',
 	'Drill':'题库',
@@ -170,6 +175,7 @@ lang['zh_cn']={
 
 	'Canvas':'画布',
 	'Graphic':'作图',
+	'Graphics':'图形',
 	'Text':'文本',
 	'Image':'图片',
 	'Mic':'麦克风',
@@ -182,6 +188,7 @@ lang['zh_cn']={
 	'Camera':'摄像头',
 	'Video':'视频',
 	
+	'Audio':'音频',
 	'Sound':'声音',
 	'Speech':'语音',
 	'Voice':'嗓音',
@@ -301,6 +308,14 @@ lang['zh_cn']={
 	'Hypothesis':'猜想',
 	'Suppose':'假设',
 	
+	
+	'Glossary':'词汇表',
+	'Corpus':'语料',
+	'Grammar':'语法',
+	'Context':'语境',
+	'Linguistics':'语言学',
+	
+	
 	'Expression':'表达式',
 	'Formula':'公式',
 	'Formulae':'公式',
@@ -311,6 +326,7 @@ lang['zh_cn']={
 	'Content':'内容',
 	'Contents':'目录',
 
+	'Support':'支持',
 	'Presentation Markup':'表现型标记',
 	'Content Markup':'内容型标记',
 	'Markup':'标记',
@@ -353,16 +369,18 @@ lang['zh_cn']={
 	'Default':'默认',
 	'Advanced':'高级',
 	
+	'Core':'核心',
 	'Blended':'混合',
 	'Mixed':'混合',
 	'Compound':'复合',
 	
+	'Related':'相关',
 	'Source':'源',
 	'Native':'原生',
 	'Static':'静态',
 	'Dynamic':'动态',
 
-
+	'Universal':'普适',
 	'Typical':'典型',
 	'Elementary':'初等',
 	'Key':'关键',
@@ -414,7 +432,9 @@ lang['zh_cn']={
 	'Organic':'有机的',
 	'Self-improvement':'自我完善的',
 	'Self-consistent':'自洽的',
-
+		
+	'Legal':'合法的',
+		
 	'Stable':'稳定的',
 	'Portable':'便携的',
 	'Eco-Friendly':'环保的',
@@ -445,6 +465,7 @@ lang['zh_cn']={
 	'Non-discriminatory':'无歧视',
 	'Kind':'友善的',
 	'Pally':'亲密的',
+	'Peace-loving':'爱好和平的',
 		
 	'Offline':'离线',
 	'Local':'本地',
@@ -465,6 +486,15 @@ lang['zh_cn']={
 	'Solve':'解题',
 	'Computation':'计算',
 	'Calculation':'计算',
+	'Decomposition':'分解',
+	'Emotionalization':'情感化',
+	'Parameterization':'参数化',
+	'Functionalization':'函数化',
+	'Visualization':'可视化',
+	'Decentralization':'去中心化',
+	
+	'Integration':'整合',
+	'Standardization':'标准化',
 
 	'Operation':'运算',
 	'Explore':'探索',
@@ -472,7 +502,8 @@ lang['zh_cn']={
 	'Contact':'联系',
 	'Donate':'捐赠',
 	
-	
+	'Interoperability':'互操作',
+		
 	'Align':'对齐',
 	'Overlap':'重叠',
 	'Clip':'裁剪',
@@ -533,6 +564,7 @@ lang['zh_cn']={
 
 	'Reasoning':'推理',
 	'Programming':'编程',
+	'Programmatic':'程序化',
 	'AI':'人工智能',
 
 	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
@@ -603,8 +635,8 @@ lang['zh_cn']={
 		
 	'Dot':'点',
 	
-	'System':'系',
-	
+	'System.Math':'系',
+	'System':'系统',
 	// 几何
 	
 	'Point':'点',
@@ -1026,7 +1058,7 @@ lang['zh_cn']={
 		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的部分解题，<br />'+
 		'因个人能力和精力有限，缺陷和错误难以避免（如有浏览器假死情况，直接关闭网页即可）<br />'+
 		'在正式版本发布之前，内核、界面、功能可能还需经历数次重构和迭代，因此一切仅供参考。',
-	'VisionTip':'推动更多的数学、科技、教育、工程、人文工作者、爱好者加入全球开源工具项目：Mather（暂译为数学者），更专业化地普及、研究、发展数学',
+	'VisionTip':'推动更多的数学、科学、教育、技术、工程、人文、互联网、物联网工作者，<br />加入全球开源工具项目：Mather（暂译为数学者），更专业化地普及、研究、发展数学。',
 	'AimsTip':'让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。',
 
 };

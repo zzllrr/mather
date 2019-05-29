@@ -374,69 +374,75 @@ $(function(){
 			}
 		}
 
-//	}).on('click','th:not(:has(.oClear))',function(){
-	}).on('click','th:has(.oLaTeX), .wiki th',function(){
+//	}).on('click','th:has(.oLaTeX), .wiki th',function(){
+	}).on('click','th',function(){
+		
 		var me=$(this), i=me.index();
-		if(me.is('.katexed')){
-		//	me.text(me.find('.katex-mathml annotation').text());
-			
-			me.removeClass('katexed').parent().parent().next().children().each(function(){
-				var td=$(this).children().eq(i),c=td.children('.katex0');
-				if(c.length){
-					td.find('.katex0').each(function(){
+		if(me.find('.oLaTeX').length || me.parents('.wiki').length){
+			if(me.is('.katexed')){
+			//	me.text(me.find('.katex-mathml annotation').text());
+				
+				me.removeClass('katexed').parent().parent().next().children().each(function(){
+					var td=$(this).children().eq(i),c=td.children('.katex0');
+					if(c.length){
+						td.find('.katex0').each(function(){
+							$(this).text(XML.decode($(this).find('.katex-mathml annotation').text()))
+						});
+					}else{
+						td.text(XML.decode(td.find('.katex-mathml annotation').text()))
+					}
+				});
+				if(me.children('.katex-display').length){
+
+					me.text(XML.decode(me.find('.katex-mathml annotation').text()))
+				}else{
+					me.find('.katex0').each(function(){
 						$(this).text(XML.decode($(this).find('.katex-mathml annotation').text()))
 					});
-				}else{
-					td.text(XML.decode(td.find('.katex-mathml annotation').text()))
 				}
-			});
-			if(me.children('.katex-display').length){
+				
 
-				me.text(XML.decode(me.find('.katex-mathml annotation').text()))
+				
 			}else{
-				me.find('.katex0').each(function(){
-					$(this).text(XML.decode($(this).find('.katex-mathml annotation').text()))
+				me.addClass('katexed').parent().parent().next().children().each(function(){
+					var td=$(this).children().eq(i),c=td.children();
+					if(c.length && c.not('br').length){// if(c.length && !(c.length==1 && c.is('br'))) 此处用于fix浏览器bug： contentEditable 复制粘贴文字时，会被chrome默认在td里面底部添加一个br
+						td.find('.katex0').each(function(){
+							var t=$(this).text();
+							katex.render(kx(t), this, {
+							    throwOnError: true,
+							    displayMode: $(this).is('div'),
+							});
+						});
+					}else if(!c.length){
+						var t=td.text()
+						katex.render(kx(t), td[0], {
+						    throwOnError: true,
+						    displayMode: $(this).is('div'),
+						});
+					}
 				});
-			}
-			
-
-			
-		}else{
-			me.addClass('katexed').parent().parent().next().children().each(function(){
-				var td=$(this).children().eq(i),c=td.children();
-				if(c.length && c.not('br').length){// if(c.length && !(c.length==1 && c.is('br'))) 此处用于fix浏览器bug： contentEditable 复制粘贴文字时，会被chrome默认在td里面底部添加一个br
-					td.find('.katex0').each(function(){
+				if(me.children().length){
+					me.find('.katex0').each(function(){
 						var t=$(this).text();
 						katex.render(kx(t), this, {
 						    throwOnError: true,
 						    displayMode: $(this).is('div'),
 						});
 					});
-				}else if(!c.length){
-					var t=td.text()
-					katex.render(kx(t), td[0], {
-					    throwOnError: true,
-					    displayMode: $(this).is('div'),
-					});
-				}
-			});
-			if(me.children().length){
-				me.find('.katex0').each(function(){
-					var t=$(this).text();
+				}else{
+					var t=me.text()
 					katex.render(kx(t), this, {
 					    throwOnError: true,
-					    displayMode: $(this).is('div'),
+					    displayMode: true,
 					});
-				});
-			}else{
-				var t=me.text()
-				katex.render(kx(t), this, {
-				    throwOnError: true,
-				    displayMode: true,
-				});
+				}
 			}
+		}else{
+			me.parent().parent().next().toggle();
+			
 		}
-		
+			
 	}).on('click','.katexvreplace',function(){
 		var me=$(this), r=me.prev().val().trim(), k=me.prevAll('.katexv');
 		if(r){

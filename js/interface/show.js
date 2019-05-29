@@ -3,6 +3,6 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-shows={index:ZLR('Voice Video 2D 3D VR AR')
+shows={index:ZLR('Speech Sound Music Animation Video 2D 3D VR AR')
 
 };
