@@ -72,3 +72,27 @@
 	border-color:gray;
 	background: yellow;
 }
+
+.bdb{
+	border-bottom: outset black 1px;
+}
+
+blockquote{
+    padding-left: 10px;
+    border-left: solid 6px blue;
+    margin-left: 0px;
+}
+
+.eg:hover{
+	text-decoration: underline;
+}
+.eg{
+	cursor: pointer;
+}
+.eg,.obj{
+	background:silver;
+	padding:2px 5px;
+	font-size:14px;
+	color: black;
+	border-radius: 5px;
+}

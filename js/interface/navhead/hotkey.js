@@ -42,7 +42,7 @@ Table('',[
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
 	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
-])+'<h3>'+gM('Gadget')+'</h3>'+
+])+'<h3>'+gM('SVG Gadget')+'</h3>'+
 
 Table('',[
 	[scHotk('Ctrl + C'),gM('Copy'),

@@ -17,10 +17,7 @@ qrs={
 if(H_o().lang !=L.lang){
 	i18n=lang[H_o().lang||L.lang||'zh_cn']
 }
-var csslib={
-	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">'
-	
-};
+
 $(function(){
 
 	oH=$('#oHTML');
@@ -269,7 +266,7 @@ $(function(){
 		}
 		if(node=='textarea'){
 			if(ctrl && k==69){act.value='';return false}
-			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS;
+			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS, iT=$('#input0Type').val();
 			if(k==9 && !alt){
 			
 				consolelog(A);
@@ -286,8 +283,8 @@ $(function(){
 			}
 			
 			consolelog(k);
-			if(ctrl && id=='input0' && [73,66,85,81,75].indexOf(k)>-1){
-				console.log(sS,iv,sE);
+			if(ctrl && iT=='Markdown' && id=='input0' && [73,66,85,81,75].indexOf(k)>-1){
+				consolelog(sS,iv,sE);
 				if(k==73){
 					if(sS==sE){
 						A[1]='**';
@@ -754,7 +751,7 @@ consolelog('最终A = ',A);
 
 		if(id=='display'){
 			var v=$('#input0').val().trim();
-			if(se && v){
+			if(se){// && v
 				preDisplay();
 			}else{
 				$('#displayOff').click()
@@ -806,10 +803,35 @@ consolelog('最终A = ',A);
 
 	});
 	
-	$('#downloadPreview').on('click',function(){
-		saveText(csslib.katex+$('#input0Preview').html(),
-			gM('zzllrr Mather')+Time.now()+'.html'
-		)
+	$('#downloadPreview').on('click',function(e){
+		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey,
+			v0=$('#input0').val(),v1=$('#input0Preview').html(),
+			tp0=$('#input0Type').val().toLowerCase(),
+			tp=$('#output0Type').val().toLowerCase(),
+			ismd=/markdown/.test(tp0), isjs=/js/.test(tp0), ishtml=/html/.test(tp0), issvg=/svg/.test(tp0),isxml=/xml/.test(tp0), ismathml=/mathml/.test(tp0);
+		if(shft){
+			if(ishtml){
+				v0=csslib.katex+v0;
+			}
+			if(ismathml){
+				//v0='<math xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink'">'+v0+'</math>';
+				v0='<math xmlns="'+xmml+'">'+v0+'</math>';
+			}
+			if(isxml){
+				v0='<?xml version="1.0" encoding="UTF-8"?>'+v0;
+			}
+
+			if(issvg){
+				v0=svgAs('#input0Preview svg');
+			}
+			saveText(v0,
+				gM('zzllrr Mather')+Time.now()+'.'+ZLR('md js html svg xml mathml txt')[[ismd,isjs,ishtml,issvg,isxml,ismathml,true].indexOf(true)]
+			)
+		}else{
+			saveText(csslib.katex+v1,
+				gM('zzllrr Mather')+Time.now()+'.html'
+			)
+		}
 	});
 
 
@@ -848,12 +870,7 @@ consolelog('最终A = ',A);
 		L.input0=v;
 		
 		if(l0!=v.trim() && $('#display').is('.seled') && v.trim()){
-			/*
-			katex.render(kx(sub2n(v,1)), $('#oHTML')[0], {
-			    throwOnError: false,
-			    displayMode: true
-			});
-			*/
+
 			preDisplay();
 		}
 	});
@@ -865,14 +882,19 @@ consolelog('最终A = ',A);
 //	$('#input2Tip').html('<details class=inputTip data-tool="绘图"><summary>绘图</summary>'+API([{'Canvas':'draw'},{'SVG':'plot'}])+'</details>');
 	
 
-	$('#input0Type').html(Options(ZLR('LaTeX Markdown Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML'))).on('change', function(){
+	$('#input0Type').html(Options(ZLR('LaTeX Markdown Ascii_Math Unicode_Math JS HTML Presentation_MathML Content_MathML SVG')))	//Canvas
+	.on('change', function(){
 		var v=$(this).val(),t=v[0], iT=$('#input0Tip [data-tool="API"]'), it=$('#input0Tip [data-tool="'+v+'"]');
+		if(v=='Canvas'){
+			t='V';
+		}
 		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
-			[[0,2,4],[0], [0,2,3,4,5], [0,1,3,4,5], [0],[0], [0,2,3,5], [0,2,3,4]]['LMAUJHPC'.indexOf(t)])
+			[[0,2,4],[0], [0,2,3,4,5], [0,1,3,4,5], [0],[0], [0,2,3,5], [0,2,3,4],[0],[0]]['LMAUJHPCSV'.indexOf(t)])
 		));
 		if(t=='J'){
 			if(!iT.length){
-				$('#input0Tip').append(detail('API',API(tooltip.API),'','class=inputTip data-tool="API"'));
+				//$('#input0Tip').append(detail('API',API(tooltip.API),'','class=inputTip data-tool="API"'));
+				
 
 			}else{
 				iT.show();
@@ -881,7 +903,7 @@ consolelog('最终A = ',A);
 			if(it.length){
 			
 			}else{
-				$('#input0Tip').append(detail(v,tooltip.Markdown,'','class=inputTip data-tool="API"'));
+				$('#input0Tip').append(detail(v,tooltip.Markdown,'','class=inputTip data-tool="Markdown"'));
 			}
 		}else{
 			iT.hide();
@@ -1158,7 +1180,10 @@ function dayOrNight(){
 }
 
 var preDisplay=function(){
-	var i=$('#input0Type').val()[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),vA=v.split('\n'),w=$('#input0Preview');
+	var iv=$('#input0Type').val(),i=iv[0],o=$('#output0Type').val()[0],v=$('#input0').val().trim(),vA=v.split('\n'),w=$('#input0Preview');
+	if(iv=='Canvas'){
+		i='V'
+	}
 
 	if(i==o && o!='H'){
 		w.add('#latexDisplayTool').hide();
@@ -1199,6 +1224,14 @@ var preDisplay=function(){
 			    throwOnError: false,
 			    displayMode: true
 			});
+				
+		}else if(i=='S'){//SVG
+			
+			w.html('<svg xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink+'" version="1.1">'+v+'</svg>');
+			
+		}else if(i=='V'){//Canvas
+			
+			eval(v);
 		}
 	}
 },rng2=function(t,neg){

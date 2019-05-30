@@ -1706,6 +1706,7 @@ $(function(){
 	
 // LaTeX支持
 //SBS
+
 	var str='<table class=sbsTbl>',str2='</table><table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
 

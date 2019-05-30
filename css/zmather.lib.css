@@ -69,13 +69,7 @@ sup,sub,.small{
 .chosen{
 	background-image: -webkit-linear-gradient(top, white, silver 20%, silver 80%, white);
 }
-.eg,.obj{
-	background:silver;
-	padding:2px 5px;
-	font-size:14px;
-	color: black;
-	border-radius: 5px;
-}
+
 
 
 #oHTML tr:hover{
@@ -510,9 +504,6 @@ code,pre,#outputOpt{
 #oHTML > div.abs{
 	position:absolute;
 }
-.eg:hover{
-	text-decoration: underline;
-}
 
 
 
@@ -520,14 +511,14 @@ code,pre,#outputOpt{
 	counter-reset:cnt1 0
 }
 #input1Tip .eg:before{
-	content: "例" counter(cnt1) "：";
+	content: "#" counter(cnt1) " ";
 	counter-increment: cnt1;
 }
 #input0Tip{
 	counter-reset:cnt0 0
 }
 #input0Tip .eg:not(.eg2):before{
-	content: "例" counter(cnt0) "：";
+	content: "#" counter(cnt0) " ";
 	counter-increment: cnt0;
 	color: white;
 }
@@ -537,7 +528,7 @@ code,pre,#outputOpt{
 	resize: none;
 	overflow:hidden;
 }
-.eg,.windex,.Clear,.task,th{
+.windex,.Clear,.task,th{
 	cursor: pointer;
 }
 
@@ -689,11 +680,7 @@ textarea{
 	to {opacity:0}
 }
 
-blockquote{
-    padding-left: 10px;
-    border-left: solid 6px blue;
-    margin-left: 0px;
-}
+
 
 .editorText {width:20%;height:60px}
 

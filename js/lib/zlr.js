@@ -57,6 +57,9 @@ fontHan='{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microso
 		aB.html(html||'');
 		return Engin
 	}
+}, csslib={
+	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">'
+	
 };
 
 
@@ -2502,12 +2505,16 @@ function linear2nest(Arr){//平面线性二维数组[[相对层级,内容]+] 转
 
 function md2html(str,sep){
 	var codeblockA=[], headA=[],listA=[],listOU={},
-		lnk={},mlnk={},s='\n'+str;
+		lnk={},footlnk={},footlnkA=[],mlnk={},s='\n'+str;
 	
-	//https://www.cnblogs.com/rossoneri/p/4446440.html
-	while(/\n\[.+\]:.+/.test(s)){
-		s=s.replace(/\n\[.+\]:.+/,function(x){
-			lnk[x.split(']:')[0].substr(2)]=x.replace(/\n\[.+\]:/,'').trim();
+	while(/\n\[[^\]]+\]:.+/.test(s)){
+		s=s.replace(/\n\[[^\]]+\]:.+/,function(x){
+			var k=x.split(']:')[0].substr(2), v=x.replace(/\n\[[^\]]+\]:/,'').replace(/ +/g,' ').trim(), isfoot=/^\^/.test(k);
+			if(isfoot){
+				footlnk[k.substr(1)]=v
+			}else{
+				lnk[k]=v;
+			}
 			return ''
 		});
 	
@@ -2621,7 +2628,9 @@ function md2html(str,sep){
 
 	if(/-:?\|:?-/.test(s)){
 		//Table表格处理、 脚注处理
-		
+		var ftb=function(x){
+			
+		};
 		
 	}
 	
@@ -2645,7 +2654,7 @@ function md2html(str,sep){
 		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
 	})	//em
 	
-	//.replace(/\+\+.+[^\\]\+\+/g,function(x){
+
 	.replace(/__[^ ].*[^\\]__/g,function(x){
 		return scib(x.replace(/^..|..$/g,'').trim())
 	})	//underline
@@ -2668,12 +2677,12 @@ function md2html(str,sep){
 	})
 
 
-	.replace(/\!\[.+\]\(.+\)/g,function(x){
+	.replace(/\!\[[^\]]+\]\(.+\)/g,function(x){
 		var t=x.replace(/\!\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0];
 		return '<img src="'+u+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/[^ ]+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
 	})
 	
-	.replace(/\[.+\]\(.+\)/g,function(x){
+	.replace(/\[[^\]\^]+\]\(.+\)/g,function(x){
 		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=uriRe.test(u)?href:inhref;
 		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/[^ ]+ /,'').replace(/^"|"$/g,''):'')
 	})
@@ -2693,17 +2702,36 @@ function md2html(str,sep){
 		var t=x.replace(/^.|.$/g,''),hf=uriRe.test(t)?href:inhref;
 		return hf(t)
 	})
-	.replace(/\[.+\] *\[[^\s\]]+\]/g,function(x){
+	.replace(/\[[^\]\^]+\] *\[[^\s\]\^]+\]/g,function(x){
 		var t=x.replace(/^.|.$/g,'').split(/\] *\[/), lnkt=lnk[t[1]];
+		consolelog(t,lnk);
+		consolelog(t[1],lnkt);
 		if(lnkt){
-			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,''):'',hf=uriRe.test(u)?href:inhref;
+			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,'').replace(/"/g,''):'',hf=uriRe.test(u)?href:inhref;
 			return hf(u,t[0],tt)
 			
 		}else{
 			consolelog(lnk,t[1]);
 			return x.replace(/\] *\[/,']?[')
 		}
-
+	})
+	.replace(/\[\^[^\]]+\]/g,function(x){
+		var t=x.replace(/^..|.$/g,''), lnkt=footlnk[t];
+		consolelog(x,t);
+		consolelog(footlnk,lnkt);
+		
+		if(lnkt){
+			var ki=footlnkA.indexOf(t);
+		consolelog(footlnkA,ki);
+			if(ki<0){
+				ki=footlnkA.length;
+				footlnkA.push(t);
+			}
+			return sup(inhref('#TOFNi'+ki,(ki+1),lnkt))
+			
+		}else{
+			return x
+		}
 	})
 	.replace(/\\([^\\])/g,'$1');
 	
@@ -2733,6 +2761,9 @@ function md2html(str,sep){
 		});
 	}
 	
+	if(footlnkA.length){
+		s+=ol(Arrf(function(x,i){return SCtv('TOFN" id="TOFNi'+i,footlnk[x])},footlnkA))
+	}
 	return s.replace(/^\n+/,'').replace(/\n+$/,'\n').replace(/\n/g,sep===undefined?br:sep)
 
 	
