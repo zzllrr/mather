@@ -96,6 +96,7 @@ var Base64 = {
 		return unescape((t||'').replace(/&#x/g,'%u').replace(/\\u/g,'%u').replace(/;/g,''));
 	}
 }, XML={
+	head:'<?xml version="1.0" encoding="UTF-8"?>',
 	encode:function(t, no_nbsp){
 		var x=(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&apos;').replace(/"/g,'&quot;');
 		return no_nbsp?x:x.replace(/ /g,'&nbsp;');

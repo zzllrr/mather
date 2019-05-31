@@ -58,8 +58,24 @@ fontHan='{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microso
 		return Engin
 	}
 }, csslib={
-	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">'
-	
+	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">',
+	'markdown':XML.wrapE('style',`
+blockquote{
+    padding:0 10px;
+    border-left: solid 6px #ff5400;
+    margin-left: 0px;
+    background-color: rgba(242,97,9,.1);
+    border-radius: 10px;
+}
+.bdb{
+    border-bottom: outset black 1px;
+}
+code, pre{
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding:2px
+}
+	`),
 };
 
 
@@ -2173,6 +2189,20 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	var f=function(i){return i?'<option value="'+i+'"'+(selev && i==selev?seled:'')+'>'+i+'</option>':''};
 	return Arrf(f,A)
+		
+}, OptGrps=function(A){//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
+	var s='';
+	for(var i=0,l=A.length;i<l;i++){
+		var a=A[i];
+		$.each(a,function(x,v){
+			s+='<optgroup label="'+x+'">'+(isStr(v)?Arrf(function(k){return '<option value="'+k+'">'+k+'</option>'},
+			ZLR(v)):Arrf(function(j){
+				return '<option value="'+(j.v||j.t)+'"'+(j.s?seled:'')+'>'+(j.t||j.v)+'</option>'
+			},v)).join('')+'</optgroup>'
+		});
+	}
+	return s
+	
 }, entity=ZLR('scr fr opf bar acute caron grave dot uml ring circ tilde breve'), printF={
 	'table':function(tbl,separateStyle,blankStyle){
 		var t=[];

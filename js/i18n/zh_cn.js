@@ -57,6 +57,7 @@ lang['zh_cn']={
 	'struconTip':"@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
 	'taskTip':"@{clickWithShift}则自动输入示例命令",
 	'copyTip':"@{clickWithShift}@{copy2Canvas}",
+	'saveTip':"@{clickWithShift}则保存纯文本文件",
 	'copy2Canvas':'复制到画布上方',
 	'clickWithShift':'点击并按住Shift键，',
 	'notLaTeX':'，而不是LaTeX格式',

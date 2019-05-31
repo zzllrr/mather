@@ -208,13 +208,6 @@ li,#wiki{
 
 
 
-
-.bdb{
-	border-bottom: outset black 1px;
-}
-
-
-
 .bdt[data-mt]:before{
     content: attr(data-mt);
     margin-top: -40px;
@@ -441,7 +434,7 @@ input[type=text],#wiki>span,.brad{
 	min-height:160px;
 	background:rgba(50, 205, 50, 0.5);
 }
-code,pre,#outputOpt{
+#outputOpt{
 	background: rgba(0,0,0,0.1);
 	border-radius:5px;
 }

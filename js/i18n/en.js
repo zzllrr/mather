@@ -34,6 +34,7 @@ lang['en']={
 	'struconTip':"@{clickWithShift}get JS code@{notLaTeX}",
 	'taskTip':"@{clickWithShift}input the default expression",
 	'copyTip':"@{clickWithShift}@{copy2Canvas}",
+	'saveTip':"@{clickWithShift}download txt",
 	
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',

@@ -113,7 +113,7 @@ tooltip['API']=[
 			{'格式化':'html2txt html2html altTxt Engin txt2A blking ubb2html md2html'},
 			{'元素':[
 				{'过渡':'br hr prog'},
-				{'结构':'SCtv DCtv itv detail ol ul dl Options subReg tmb Table'},
+				{'结构':'SCtv DCtv itv detail ol ul dl Options OptGrps subReg tmb Table'},
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num txa mark del href scHotk q_key sceg sceg2 zMath'},
 			]},
@@ -315,7 +315,7 @@ navhead['API']=[[href('./js','JS'),
 	].join(' | '),
 	API(tooltip['API']), detail(gM('3rd-party'),
 	detail(href('./js/lib','Javascript'),
-		ul(ZLR(zlr2('Base64 jQuery katex qrcode zlr echarts raphael flowchart effects','.js'))),1)+
+		ul(ZLR(zlr2('Base64 jQuery katex qrcode zlr echarts raphael flowchart effects js-yaml','.js'))),1)+
 	detail(href('./css/fonts','Fonts'),
 		ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 ,1), 
