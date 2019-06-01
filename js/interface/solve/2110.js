@@ -58,7 +58,7 @@ solves[2110]={sbj2s:['Matrix','Permutation','Vector',
 		{'Display':[
 			'$A$—Matrix',
 			'$|A|$—Determinant',
-			'Block…A&准对角阵D3_4_2\n副准对角阵C1_2\nr2平均分为2行\nr2c2平均分为2行或2列“[1 2 3 4;0 5 6 7;0 8 9 10;0 11 12 13]&D1',
+			'Block…A&准对角阵D3_4_2\n副准对角阵C1_2\nr2平均分为2行\nr2c2平均分为2行或2列—Block“[1 2 3 4;0 5 6 7;0 8 9 10;0 11 12 13]&D1',
 			'表示成三元组“[x y;0 z]',
 
 		]},

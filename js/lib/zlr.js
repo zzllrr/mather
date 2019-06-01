@@ -2535,7 +2535,9 @@ function linear2nest(Arr){//平面线性二维数组[[相对层级,内容]+] 转
 
 function md2html(str,sep){
 	var codeblockA=[], headA=[],listA=[],listOU={},
-		lnk={},footlnk={},footlnkA=[],mlnk={},s='\n'+str;
+		lnk={},footlnk={},footlnkA=[],
+		mlnk={},mA=[],mlnkA=[],
+		s='\n'+str;
 	
 	while(/\n\[[^\]]+\]:.+/.test(s)){
 		s=s.replace(/\n\[[^\]]+\]:.+/,function(x){
@@ -2570,18 +2572,27 @@ function md2html(str,sep){
 		s=s.replace(/\$[^\$]+\$#.+#/,function(x){
 			var k=x.substr(1).split('$')[0],t=x.replace(/\$[^\$]+\$/,'').replace(/^.|.$/g,''),z=zx(k);
 			mlnk[t]=z;
-			return z
+			mlnkA.push(z);
+			mA.push(k);
+			return 'katex#'+(mlnkA.length-1)+'#' //z
 		});
 	}
 	while(/\$@[^\$]+@\$/.test(s)){
 		s=s.replace(/\$@[^\$]+@\$/,function(x){
 			var t=x.replace(/^..|..$/g,'');
-			return mlnk[t]
+			return 'katex#'+mlnkA.indexOf(mlnk[t])+'#' //mlnk[t]
 		});
 	}
 	while(/\$[^\$]+\$/.test(s)){
 		s=s.replace(/\$[^\$]+\$/,function(x){
-			return zx(x.replace(/^.|.$/g,''));
+			var k=x.replace(/^.|.$/g,''),z=zx(k), i=mA.indexOf(k);
+			if(i<0){
+				i=mA.length;
+				mlnkA.push(z);
+				mA.push(k);
+				
+			}
+			return 'katex#'+i+'#'  //z
 		});
 	}
 	
@@ -2672,37 +2683,37 @@ function md2html(str,sep){
 		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>'
 	})
 	
-	.replace(/\*{3}[^\*].*[^\\]\*{3}/g,function(x){
+	.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g,function(x){
 		return '<b><i>'+x.replace(/^...|...$/g,'').trim()+'</i></b>'
 	})
 	
-	.replace(/\*{2}[^\*].*[^\\]\*{2}/g,function(x){
+	.replace(/\*{2}[^\*\n].*[^\\\n]\*{2}/g,function(x){
 		return '<b>'+x.replace(/^..|..$/g,'').trim()+'</b>'
 	})	//strong
 	
-	.replace(/\*[^\\\* ][^\\\*]*\*/g,function(x){
+	.replace(/\*[^\\\* \n][^\\\*\n]*\*/g,function(x){
 		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
 	})	//em
 	
 
-	.replace(/__[^ ].*[^\\]__/g,function(x){
+	.replace(/__[^ \n].*[^\\\n]__/g,function(x){
 		return scib(x.replace(/^..|..$/g,'').trim())
 	})	//underline
 	
-	.replace(/_[^\\\_]+_/g,function(x){
+	.replace(/_[^\\\_\n]+_/g,function(x){
 		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
 	})	//em 2
 	
 	
-	.replace(/~~.+[^\\]~~/g,function(x){
+	.replace(/~~.+[^\\\n]~~/g,function(x){
 		return '<del>'+x.replace(/^..|..$/g,'').trim()+'</del>'
 	})
 
-	.replace(/==.+[^\\]==/g,function(x){
+	.replace(/==.+[^\\\n]==/g,function(x){
 		return '<mark>'+x.replace(/^..|..$/g,'').trim()+'</mark>'
 	})
 
-	.replace(/`[^`\\]+`/g,function(x){
+	.replace(/`[^`\\\n]+`/g,function(x){
 		return '<q>'+x.replace(/^.|.$/g,'').trim()+'</q>'
 	})
 
@@ -2768,7 +2779,7 @@ function md2html(str,sep){
 
 
 	if(/\[U?TOC\]/.test(s) && headA.length){
-		var ne=linear2nest(headA);
+		var ne=linear2nest(headA),toc='<h2 id=TOCcontents>'+gM('Contents')+'</h2>';
 		consolelog(headA,ne);
 		var f=function(x,u){
 			if(isArr(x)){
@@ -2779,8 +2790,8 @@ function md2html(str,sep){
 			}
 		};
 
-		s=s.replace(/\[TOC\]/g,ol(Arrf(f,ne)));
-		s=s.replace(/\[UTOC\]/g,ul(Arrf(function(y){return f(y,1)},ne)));
+		s=s.replace(/\[TOC\]/g,toc+ol(Arrf(f,ne)));
+		s=s.replace(/\[UTOC\]/g,toc+ul(Arrf(function(y){return f(y,1)},ne)));
 	}
 	
 
@@ -2794,6 +2805,33 @@ function md2html(str,sep){
 	if(footlnkA.length){
 		s+=ol(Arrf(function(x,i){return SCtv('TOFN" id="TOFNi'+i,footlnk[x])},footlnkA))
 	}
+	
+	if(mA.length){
+		var kA=[];
+		s=s.replace(/\n*katex#\d#\n*/g,function(x){
+			var i=+x.replace(/\D/g,''), isblk=/\n$/.test(x);
+			if(isblk){
+				var k=kA.indexOf(i);
+				if(k<0){
+					kA.push(i);
+					k=kA.length;
+				}else{
+					k++;
+					
+				}
+
+				var v=zx(mA[i],{"displayMode":true}); //mlnkA[i];
+
+				return '<table width="100%"><tbody><tr><td width="95%">'+v+'</td><td align=right>('+k+')</td></tr></tbody></table>'
+				
+			}else{
+				return x.replace(/[^\n]+/,mlnkA[i])
+			}
+		
+		}); 
+	}
+	
+	
 	return s.replace(/^\n+/,'').replace(/\n+$/,'\n').replace(/\n/g,sep===undefined?br:sep)
 
 	

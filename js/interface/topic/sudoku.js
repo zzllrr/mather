@@ -85,14 +85,13 @@ tooltip.topic['Game/Sudoku']=XML.wrapE('style',
 		#sudokuTable{
 			zoom:.7
 		}`
-	)+DCtv('sudokuForm','<table id=sudokuTable class=sudoku><tbody>'+'xxyxxyxxx'.replace(/x/g,'<tr>001001000</tr>').replace(/y/g,'<tr>223223222</tr>')
+	)+detail('阶数'+zlr3('<label><input type=radio name=sudokuPls ','checked=true@/>9x9 />6x6 />8x6','</label>','').replace(/@/g,' '),DCtv('sudokuForm','<table id=sudokuTable class=sudoku><tbody>'+'xxyxxyxxx'.replace(/x/g,'<tr>001001000</tr>').replace(/y/g,'<tr>223223222</tr>')
 			.replace(/\d/g,function(t){return '<td class="red'+['',' bdr',' bdb',' bdb bdr'][+t]+'" contenteditable=true></td>'})+
-		'</tbody></table><table id=sudokuValue><tbody><tr><td>阶数'+zlr3('<label><input type=radio name=sudokuPls ','checked=true@/>9x9 />6x6 />8x6','</label>','').replace(/@/g,' ')+
-		'</td><td></td><td>'+strbtn+'区域重选" id=sudokuRepick />'+strbtn+'数字重填" id=sudokuNew />'+strbtn+'OK" id=formsOK /></td></tr>'+
+		'</tbody></table><table id=sudokuValue><tbody><tr><td>'+strbtn+'区域重选" id=sudokuRepick />'+strbtn+'数字重填" id=sudokuNew />'+strbtn+'OK" id=formsOK /></td></tr>'+
 		zlr3('<tr><td><label><input@type=radio@name=sudokuType@/>','基本数字CHK0EDs1=\n 不规则宫区域CHE0CKp1=p\n 额外区域CHE1CKa1= 相邻连续CHE1CKs1cont=\n 相邻连续2MCHE1CKs1cont2M= '+
 			'单格数比>CHE1CKs1comp> 单格数比=CHE1CKs1comp= 单格数比<CHE1CKs1comp< 数和（杀手）CHE1CKs1sum= 数和数比>CHE1CKs1sumcomp> 数和数比=CHE1CKs1sumcomp= 数和数比<CHE1CKs1sumcomp< 数积CHE1CKs1prod= 额外条件CHE1CKs1.',
-		'</td></tr>').replace(/@/g,' ').replace('/>基本数字','checked />基本数字').replace(/CHK(\d)ED/g,'</label></td><td>'+strchkbx0+'class=input$1 checked /></td><td contenteditable=true>').replace(/CHE(\d)CK/g,'</label></td><td>'+strchkbx0+'class=input$1 /></td><td contenteditable=true>')+'</tbody></table>')+
-	DCtv('inputTip data-tool="数独',detail('数独类型',['s已知数(sudoku)，p宫分块号(palace，支持4种字符参数pdfs，分别表示宫型、对角、扁型、高型)'].concat(
+		'</td></tr>').replace(/@/g,' ').replace('/>基本数字','checked />基本数字').replace(/CHK(\d)ED/g,'</label></td><td>'+strchkbx0+'class=input$1 checked /></td><td contenteditable=true>').replace(/CHE(\d)CK/g,'</label></td><td>'+strchkbx0+'class=input$1 /></td><td contenteditable=true>')+'</tbody></table>'),1)+
+	detail('数独类型',['s已知数(sudoku)，p宫分块号(palace，支持4种字符参数pdfs，分别表示宫型、对角、扁型、高型)'].concat(
 		concat(ZLR('标准 拼图（锯齿） 重叠2 重叠3 重叠5 拼图重叠 对角线 额外区域 摩天楼'),Arrf(function(x){return sceg(x,0)},[
 			's1=@4_231_76_@___46_3_5@6____91__@34____82_@___8_4___@_81____96@__36_____@1_4_87___@_27_536_4@p1=p',
 			's1=@_9__65_8_@78___4_52@_________@_5_____1_@___5398__@_6_____7_@_________@93_2___45@_1_75__2_@@p1=@111222233@111442233@111442233@554444233@555466663@755566688@777566888@777999998@779999888',
@@ -105,7 +104,7 @@ tooltip.topic['Game/Sudoku']=XML.wrapE('style',
 			's1=@_52_1____@______721@_7_2_4___@6_____1_5@___1_9___@2_5_____7@___8_5_7_@764______@____7_31_@p1=p',
 
 			's1=@3_5__8_9_@_____9___@29_1_____@9_______1@_3_95____@________9@1_92_____@____93___@6_3_1_95_@p1=p'
-		]))).join(br).replace(/@/g,'\n').replace(/_/g,' ')));
+		]))).join(br).replace(/@/g,'\n').replace(/_/g,' '));
 
 tooltip.topic['Game/Sudoku Condition']=['sisj表示交集：重叠处的索引（区域左上角单元格行列号，从1开始计数，注意ij先后表示绘表先后）及偏移量（交叉处的行列数）',
 		'重叠2'+sceg('s1s2=31 13,77'),

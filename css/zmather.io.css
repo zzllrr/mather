@@ -11,8 +11,9 @@
 #iTextLaTeXBox{
 	position: relative;
     z-index: 30000;
-
+	margin-top: 28px;
 }
+
 
 .sbsTbl .td{
 	float:left;

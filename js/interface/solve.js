@@ -122,7 +122,7 @@ $(function(){
 			var x=$('#solveGround .tasks').children().eq(+ls[6]).click();
 		}
 
-		$('#input0').val(L.input0||'1234');
+
 	}
 
 });

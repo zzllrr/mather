@@ -155,6 +155,8 @@ lang['zh_cn']={
 	'Todo':'待办',
 
 	'Statistics':'统计',
+	'Game':'游戏',
+	
 	'Lottery':'彩票',
 	'Sudoku':'数独',
 

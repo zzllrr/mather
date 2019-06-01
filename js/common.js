@@ -193,7 +193,7 @@ $(function(){
 		if(t.length){
 			t.click();
 		}else if($('#input0Tip > .inputTip').length>1){
-			$('#input0Tip .inputTip').last().prevAll().remove()
+			$('#input0Tip > .inputTip').last().prevAll().remove()
 		}else{
 			$('#input0Tip').empty();
 		}
@@ -258,9 +258,10 @@ $(function(){
 //console.log(k,node);
 
 		if(node=='input' && k==13){
-			if(id=='input0'){
+			/*if(id=='input0'){
 				$('#go').click();
 			}
+			*/
 			return
 
 		}
@@ -862,14 +863,15 @@ consolelog('最终A = ',A);
 
 	$('#input0').on('click',function(){//.on('mouseover', function(){this.focus()})
 		$('#input1').removeClass('seled');
-		$(this).addClass('.seled');
-		L.input0=$(this).val();
+		$(this).addClass('seled');
+		var p=$('#input0Type').val();
+		L[p]=$(this).val();
 		
 	}).on('change keyup mouseover',function(){//mouseout 
-		var v=$(this).val(), l0=(L.input0||'').trim();
-		L.input0=v;
+		var v=$(this).val(),p=$('#input0Type').val(), l0=(L[p]||'').trim(),vt=v.trim();
+		L[p]=v;
 		
-		if(l0!=v.trim() && $('#display').is('.seled') && v.trim()){
+		if(l0!=vt && $('#display').is('.seled') && vt){
 
 			preDisplay();
 		}
@@ -877,9 +879,9 @@ consolelog('最终A = ',A);
 	
 	$('#input1').on('click',function(){
 		$('#input0').removeClass('seled');
-		$(this).addClass('.seled');
+		$(this).addClass('seled');
 	});
-//	$('#input2Tip').html('<details class=inputTip data-tool="绘图"><summary>绘图</summary>'+API([{'Canvas':'draw'},{'SVG':'plot'}])+'</details>');
+
 	
 
 	$('#input0Type').html(OptGrps([{'Math':'LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML'},
@@ -888,23 +890,19 @@ consolelog('最终A = ',A);
 		{'Data':'TXT TSV CSV XML YAML JSON'}
 	]))
 	.on('change', function(){
-		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]');
+		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]'), tv=tooltip[v];
 
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
 		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
 			i<0?[[0]]:[[0,2,4],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
 		));
-		if(v=='JS'){
-
-		}else if(v=='Markdown'){
-			if(it.length){
-			
-			}else{
-				$('#input0Tip').append(detail(v,tooltip.Markdown,'','class=inputTip data-tool="Markdown"'));
-			}
-		}else{
+		$('.inputTypeTip').remove();
+		if(tv && it.length<1){
+			$('#input0Tip').append(detail(v,tv,'','class="inputTip inputTypeTip" data-tool='+v));
 
 		}
+		
+		$('#input0').val(L[v]||'');
 		if($('#display.seled').length){
 			preDisplay()
 		}
@@ -1140,6 +1138,7 @@ consolelog('最终A = ',A);
 	var u='index.html?topic=wiki&s0='+fn0($('#subject2 .seled').val()||$('#subject2 .tool').val()||'数');
 
 	*/
+	$('#input0Type').change();
 	
 });
 
@@ -1329,6 +1328,9 @@ function OverCanvas(t){
 }
 function toolTip(s){
 	$('#bar').html(SCtv('toolTip',s));
+	setTimeout(function(){
+		$('#bar').empty();
+	},3000)
 }
 function furi(o){
 	var g=o.parents('.ground');
