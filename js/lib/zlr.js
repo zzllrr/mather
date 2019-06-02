@@ -114,7 +114,7 @@ function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)
 	if(!x && chrome.i18n){
 		x=chrome.i18n.getMessage(msg, str)
 	}
-	if(!x && /[a-z][A-Z]/.test(msg)){
+	if(!x && /^[a-z]+[A-Z][a-z]*$/.test(msg)){
 		x=gM(msg.replace(/([a-z])([A-Z])/g,'$1 $2'),str,o)
 	}
 	if(!x && / & /.test(msg)){
@@ -681,15 +681,18 @@ EqA=function(A,lr,splitter){/* 对齐方程组(不等式组)
 },
 Table=function(thead,t,bd,tbodyClass){	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
 	/*
-		bd：表格class（控制表格外边框）
+		bd：表格class（控制表格边框 或 水平对齐）
 		
 			bd0 无边框（默认）
 			
+			TBalignl (默认)
+			TBalignc_3_5
+			TBalignr_2
 			
 			
 			TBtimes （群、九九）乘法表：首行bdb 首列bdr
-			TBr 全部行
-			TBc 全部列
+			TBr 全部行(不含最后一行)
+			TBc 全部列(不含最后一列)
 			TBrc 所有单元格
 			
 			TBr2	行平均分两块
@@ -788,15 +791,15 @@ bds 指定线条风格
 				if(bd){
 					if(/TBrc/.test(bd)){
 						c+='bdl bdr bdb bdt'
-					}else if(/TBr?c(?!\d)/.test(bd)){
-						c+='bdr '
+					}else if(/TBc(?!\d)/.test(bd)){
+						c+=(j==0?'':'bdl ')+(j==m-1?'':'bdr ');
 					}else if(/TBr(?!\d)/.test(bd)){
-						c+='bdb '
+						c+=(i==0?'':'bdt ')+(i==n-1?'':'bdb ');
 					}
 
 					if(/TBtimes/.test(bd)){
 						if(!i){c+='bdb '}
-						if(!j){c+='bdr'}
+						if(!j){c+='bdr '}
 					}
 					
 					if(/TB(r\d+)?c\d+/.test(bd) && j==m/+bd.match(/TB(r\d+)?c\d+/)[0].split('c')[1]-1){
@@ -828,12 +831,27 @@ bds 指定线条风格
 							}
 						}
 					}
+					
+					
+					if(/TBalign[cr]($| )/.test(bd)){
+						c+=' align'+bd.replace(/ TBalign.\d+(_\d+)*/g,'').split('align')[1]
+					}else{
+						var cc=bd.match(new RegExp('align.(\\d+_)*'+(j+1)+'(?!\\d)'));
+						if(cc){
+						
+							c+=' '+cc[0].substr(0,6)
+						}
+	
+					}
 
 				}
 				//console.log(Ai[j]);
-				ri.push('<td class="'+(c?zlr2(c,bds||''):'bd0')+(edi?'" contenteditable="true':'')+'">'+(Ai[j]==undefined?'':Ai[j])+'</td>')
+				ri.push('<td class="'+(c?zlr2(c,bds||'').trim():'bd0')+(edi?'" contenteditable="true':'')+'">'+(Ai[j]==undefined?'':Ai[j])+'</td>')
 			}
-			r.push(XML.wrapE('tr',(colh?'<th'+(i?' class=bdl':'')+'>'+(colh[i]==undefined?'':colh[i])+'</th>':'')+ri.join('')))
+			r.push(XML.wrapE('tr',(colh?'<th class="bdr bdt'+
+				(/TBr?c/.test(bd)||(new RegExp('I(\\d+_)*'+(i+1),'')).test(bd)?' bdl bdb':'')+
+
+				'">'+(colh[i]==undefined?'':colh[i])+'</th>':'')+ri.join('')))
 		}
 		return /scroll/.test(bd)?DCtv('scroll',a+r.join('')+b):a+r.join('')+b
 	},
@@ -2537,7 +2555,7 @@ function md2html(str,sep){
 	var codeblockA=[], headA=[],listA=[],listOU={},
 		lnk={},footlnk={},footlnkA=[],
 		mlnk={},mA=[],mlnkA=[],
-		s='\n'+str;
+		s='\n'+str+'\n';
 	
 	while(/\n\[[^\]]+\]:.+/.test(s)){
 		s=s.replace(/\n\[[^\]]+\]:.+/,function(x){
@@ -2667,12 +2685,47 @@ function md2html(str,sep){
 		});
 	};
 
-	if(/-:?\|:?-/.test(s)){
-		//Table表格处理、 脚注处理
+	if(/-+:?\|:?-+/.test(s)){
+		//Table
 		var ftb=function(x){
+			var sep,sepi,A=Arrf(function(t,i){
+				if(!/[^-\|:]/.test(t)){
+					sep=t;
+					sepi=i;
+				}
+				return t.replace(/^\||\|$/g,'').split('|')
+			},x.replace(/\n$/,'').split('\n')),
+			sepA=sep.replace(/^\||\|$/g,'').split('|'), cols=sepA.length;
+			consolelog(sep,A.slice(0,sepi));
+			var c='';
+			if(/^\|.+\|$/.test(sep)){
+				c='TBrc'
+			}else if(/^\|/.test(sep)){
+				c='TBc'
+			}else if(/\|$/.test(sep)){
+				
+			}else{
+				c='TBr'
+			}
 			
+			if(/:/.test(sep)){
+			
+				c+=' '+Arrf(function(k,j){
+					var a='l';
+					if(/^:.+:$/.test(k)){
+						a='c'
+					}else if(/:$/.test(k)){
+						a='r'
+					}
+					return 'TBalign'+a+(j+1)
+				},sepA).join(' ')
+
+			}
+			
+			
+			return Table(A.slice(0,sepi),A.slice(sepi+1,A.length),c)
 		};
-		
+		s=s.replace(/(.+\n)*\|?:?-+:?(\|:?-+:?)+.+(\n.+)*\n/g,ftb);
 	}
 	
 	
@@ -2803,7 +2856,8 @@ function md2html(str,sep){
 	}
 	
 	if(footlnkA.length){
-		s+=ol(Arrf(function(x,i){return SCtv('TOFN" id="TOFNi'+i,footlnk[x])},footlnkA))
+	
+		s+='\n'+Arrf(function(x,i){return '['+(i+1)+'] '+footlnk[x]},footlnkA).join('\n')
 	}
 	
 	if(mA.length){
@@ -2830,12 +2884,10 @@ function md2html(str,sep){
 		
 		}); 
 	}
-	
+	consolelog(s);
 	
 	return s.replace(/^\n+/,'').replace(/\n+$/,'\n').replace(/\n/g,sep===undefined?br:sep)
 
-	
-	
 }
 
 function xhrcb(src,cb){

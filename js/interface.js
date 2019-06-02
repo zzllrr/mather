@@ -337,7 +337,27 @@ tooltip={
 			ZLR('∼ ∘ ^ ∩ ∪ -')
 		)).join(br),
 
-
+	'Canvas':[
+	
+		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial','Canvas API'),
+		detail(gM('Initialize'),[
+			sceg(`
+$('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
+var ican=$('#ican'),ict=ican[0].getContext('2d');
+`,0),
+		].join(br)),
+		
+		detail(gM('Rectangle')+' (x,y,width,height)',[
+			sceg(`
+ict.fillRect(10, 20, 200, 150);
+ict.strokeRect(10, 20, 200, 150);
+ict.clearRect(10, 20, 200, 150);
+`,0),
+		].join(br)),	
+		
+	
+	].join(br),
+	
 	'Markdown':[
 		detail(gM('Style'),[
 			[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('*ABC*'),sceg('_ABC_')].join(''),
@@ -408,14 +428,52 @@ Todo
 
 		detail(gM('Table'),[
 
-			[gM('Table'),sceg('|A|B|C|\n|--|--|--|\n|1|2|3|',10),
-				sceg('A|B\n--|--\n1|2',10)].join(''),
+			[gM('Table'),sceg('A|B|C\n--|--|--\n1|2|3\n',5),
+				sceg('|A|B|\n|--|--|\n1|2\n',5)].join(''),
 				
-			[gM('Double Table Head'),sceg('|A|B|C|\n|D|E|F|\n|--|--|--|\n|1|2|3|',10)].join(''),
+			[gM('Double Table Head'),sceg(`
+A|B|C|D
+E|F|G
+|--|--|--|
+1|2|3
+4|5|6
+7|8|9
+`,0),
 
-			[gM('Table Align'),
-				sceg('|A|B|C|\n|:--|:--:|--:|\n|1|2|3|',20),
-			].join(''),
+sceg(`
+A|B|C|D
+E|F|G
+--|--|--
+1|2|3
+4|5|6
+7|8|9
+`,0),
+
+sceg(`
+A|B|C|D
+E|F|G
+|--|--|--
+1|2|3
+4|5|6
+7|8|9
+`,0),
+
+sceg(`
+A|B|C|D
+E|F|G
+--|--|--|
+1|2|3
+4|5|6
+7|8|9
+`,0),
+].join(''),
+
+			[gM('Table Align'),sceg(`
+|A111|B222|C333|
+|:--|:--:|--:|
+|1|2|3|
+`,0)
+].join(''),
 				
 		].join(br))+
 
@@ -449,9 +507,6 @@ Todo
 	
 
 		].join(br))
-
-
-
 
 
 	

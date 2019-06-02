@@ -267,7 +267,8 @@ $(function(){
 		}
 		if(node=='textarea'){
 			if(ctrl && k==69){act.value='';return false}
-			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS, iT=$('#input0Type').val();
+			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,
+			A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS, iT=$('#input0Type').val();
 			if(k==9 && !alt){
 			
 				consolelog(A);
@@ -549,21 +550,29 @@ $(function(){
 			if(td.length){
 				i.click();
 				td.click();
+				return
 			}else{
 				if(/\.\d/.test(t)){
 					t=t.replace(/\.(\d+)/,'[$1]')
 				}
 				
-				var sS=i[0].selectionStart, sE=i[0].selectionEnd;
-				i.val(iv.substr(0,sS)+t+(sE==iv.length?'':iv.substr(sE)));
-				var s2=sS+t.length;
-				i.focus();
-				i[0].selectionStart=s2;
-				i[0].selectionEnd=s2;
+
 			}
+		}else if(i1 && iv && !shft){
+			
 		}else{
-			i.val((i1 && iv && !shft?iv+'\n':'')+t.replace(/^.\d+：/,''));
+			i.val(t);
+			return
+		
 		}
+		
+		var sS=i[0].selectionStart, sE=i[0].selectionEnd;
+		i.val(iv.substr(0,sS)+t+(sE==iv.length?'':iv.substr(sE)));
+		var s2=sS+t.length;
+		i.focus();
+		i[0].selectionStart=s2;
+		i[0].selectionEnd=s2;
+		
 
 	}).on('click','[name=tool]',function(){
 		var x=this.id;
