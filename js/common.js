@@ -489,7 +489,11 @@ $(function(){
 
 
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){
-		sbsTbltd(this,e,'input'+$('#input1.seled').length,$('#input0Type').val());
+		var p=$('#input0Type').val();
+		if(/Canvas|JS|HTML/.test(p)){
+			p='LaTeX';
+		}
+		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
 		var me=$(this);

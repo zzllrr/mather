@@ -343,18 +343,264 @@ tooltip={
 		detail(gM('Initialize'),[
 			sceg(`
 $('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-var ican=$('#ican'),ict=ican[0].getContext('2d');
+var ican=$('#ican'),ct=ican[0].getContext('2d');
 `,0),
 		].join(br)),
 		
-		detail(gM('Rectangle')+' (x,y,width,height)',[
-			sceg(`
-ict.fillRect(10, 20, 200, 150);
-ict.strokeRect(10, 20, 200, 150);
-ict.clearRect(10, 20, 200, 150);
-`,0),
-		].join(br)),	
+		detail(gM('Rectangle')+' ***Rect(x,y,width,height)',[
+	
+			gM('Stroke')+sceg('ct.strokeRect(10, 20, 200, 150);',13),
+			
+			gM('Fill')+sceg('ct.fillRect(10, 20, 200, 150);',12),
+			
+			gM('Clear')+sceg('ct.clearRect(10, 20, 200, 150);',12),
+
+		].join(br)),
 		
+
+		detail(gM('Style')+' ***Style=color|pattern|gradient',[
+
+			gM('Stroke')+sceg('ct.strokeStyle="rgba(0, 0, 200, 0.5);',14),
+					
+			gM('Fill')+sceg('ct.fillStyle="rgba(0, 0, 200, 0.5)";',12),
+
+			detail(gM('Line Style'),[
+				gM('Width')+sceg('ct.lineWidth=4;'),
+				sceg("ct.lineCap='butt';")+'|round|square',
+				sceg("ct.lineJoin='miter';")+'|round|bevel',
+				sceg('ct.miterLimit=10.0;'),
+				
+				detail(gM('Dash'),[
+					sceg('ct.setLineDash([1,2]);'),
+					sceg('ct.lineDashOffset=3;'),
+					sceg('var dashA=ct.getLineDash();'),
+					
+				].join(br)),
+				
+			].join(br)),
+			
+			gM('Opacity')+sceg('ct.globalAlpha=0.5'),
+
+			detail(gM('Gradient'),[
+				gM('Linear')+'(x1,y1,x2,y2)'+sceg('var lg=ct.createLinearGradient(0,0,150,150);'),
+				
+				gM('Radial')+'(x1,y1,r1,x2,y2,r2)'+sceg('var rg=ct.createRadialGradient(75,75,0,75,75,100);'),
+				
+				detail('addColorStop(0~1,color)',[
+					sceg("lg.addColorStop(0,'green');"),
+					sceg("lg.addColorStop(0.5,'white');"),
+					sceg("lg.addColorStop(1,'red');"),
+				].join(br))
+				
+			].join(br)),
+			
+			detail(gM('Pattern')+' createPattern(image, repeatType)',[
+				'repeatType=repeat|repeat-x|repeat-y|no-repeat',
+				
+				sceg(`
+  	var img = new Image();
+  	img.src = 'img/ZIL.png';
+	img.onload = function() {
+    	var ptn = ct.createPattern(img, 'repeat');
+    	ct.fillStyle = ptn;
+   		ct.fillRect(0, 0, 150, 150);
+
+	}				
+				
+				`,0)
+				
+			].join(br)),		
+			
+			detail(gM('shadow')+' *Offset[XY], *Blur, *Color',[
+sceg(`			
+	ct.shadowOffsetX = 2;
+  	ct.shadowOffsetY = 2;
+  	ct.shadowBlur = 2;
+  	ct.shadowColor = 'rgba(0, 0, 0, 0.5)';
+`,0)				
+			].join(br))
+		].join(br)),
+
+
+		detail(gM('Text'),[
+			gM('Font')+sceg("ct.font='48px serif';"),
+			gM('Align')+sceg("ct.textAlign='start';")+'end|left|right|center',
+			
+			gM('Base Line')+sceg("ct.textBaseline='alphabetic';")+'top|hanging|middle|ideographic|bottom',
+			
+			gM('Direction')+sceg("ct.direction='ltr';")+'rtl',
+			
+			
+			'fillText(text, x, y [, maxWidth])',
+			sceg("ct.fillText('Hello Mather', 10, 50);"),
+			
+			'strokeText(text, x, y [, maxWidth])',
+			sceg("ct.strokeText('Hello Mather', 10, 50);"),
+		
+			gM('Measure')+sceg(`
+			var t=ct.measureText('foo');
+			t.width;
+			`,0)
+		].join(br)),
+
+		detail(gM('Path'),[
+			gM('Begin')+sceg('ct.beginPath();'),
+			
+			gM('Move to')+' moveTo(x,y)'+sceg('ct.moveTo(125,125);'),
+
+			gM('Line')+' lineTo(x,y)'+sceg('ct.lineTo(155,150);'),
+			
+			
+			gM('Rectangle')+' rect(x,y,width,height)'+sceg('ct.rect(55,50,100,200);'),			
+			
+			gM('arc')+' arc(x,y,radius,startAngle('+gM('rad')+'),endAngle('+gM('rad')+'),anticlockwise)',
+			sceg('ct.arc(50, 50, 100, 100, 0, Math.PI/180*45,1)',6),
+			
+			gM('arc To')+' arcTo(x1,y1,x2,y2,radius)',
+			sceg('ct.arcTo(50, 50, 100, 100, 80)',8),
+			
+			gM('Quadratic Bezier')+' quadraticCurveTo(cp1x, cp1y, x, y)',
+			
+			sceg('ct.quadraticCurveTo(60,120,65,100);',19),
+			
+			gM('Bezier')+'bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)',
+			
+			sceg('ct.bezierCurveTo(85,25,75,37,75,40);',16),
+			
+			
+	
+					
+			gM('Stroke')+sceg('ct.stroke();'),
+			detail(gM('Fill')+sceg('ct.fill();'),[
+				gM('Rule'),
+				sceg("ct.fill('nonzero')"),
+				sceg("ct.fill('evenodd')"),
+			
+			
+			].join(br)),
+			
+			gM('Clip')+sceg('ct.clip();'),
+			
+
+			gM('Close')+sceg('ct.closePath();'),
+			
+			
+			'Path2D()',
+			sceg('var P1=new Path2D();'),
+			gM('Clone')+sceg('var P2=new Path2D(P1);'),
+			gM('SVG Path')+'d('+gM('String')+')'+sceg('var P3=new Path2D("M10 10 h 80 v 80 h -80 Z");'),
+			
+			'Path2D.addPath(path [, transform])',
+			
+
+		].join(br)),
+		
+		
+		detail(gM('Draw Image'),[
+			'drawImage(image, x, y)',
+			sceg('ct.drawImage(img, 0, 0);'),
+			
+			'drawImage(image, x, y, width, height)',
+			sceg('ct.drawImage(img, 0, 0, 100, 200);'),
+			
+			'drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)',
+			sceg('ct.drawImage(img, 0, 0, 100,100, 20,20, 80, 80);'),
+		
+		
+		].join(br)),
+		
+
+		detail(gM('Transform'),[
+			'translate(x, y)',
+			sceg('ct.translate(100,100);'),
+			
+			'rotate(angle('+gM('rad')+'))',
+			sceg('ct.rotate(45);'),
+			
+			'scale(x,y)',
+			sceg('ct.scale(1.2,0.5)'),
+			
+			
+			detail(gM('Matrix'),[
+				'transform(scaleX, skewX, skewY, scaleY, dx, dy)',
+				'setTransform(scaleX, skewX, skewY,scaleY, dx, dy)',
+				gM('Transformation Matrix')+zx("$zmtrx([['scaleX','skewY','dx'],['skewX','scaleY','dy',[0,0,1]]])$"),
+				sceg('ct.setTransform(1, 0, 0, 1, 0, 0);'),
+			].join(br)),
+		].join(br)),
+		
+		
+		detail(gM('Composite'),[
+			'globalCompositeOperation=type',
+			'[source|destination]-[over|atop|in|out]',
+			'lighter copy xor multiply screen overlay darken lighten',
+			 'difference exclusion hue saturation color luminosity',
+			'color-[dodge|burn]',
+			'[hard|soft]-light',
+			sceg("ct.globalCompositeOperation='source-over';",0),
+		
+		].join(br)),
+		
+		
+		
+		detail(gM('Animation'),[
+		
+		
+		
+			'requestAnimationFrame(function)',
+		].join(br)),
+		
+		
+		detail(gM('Image Data'),[
+			gM('Creat')+' createImageData(width, height)|(imgData)',
+			sceg('var imgD = ctx.createImageData(100, 100);'),
+			sceg('var imgD2 = ctx.createImageData(imgD1);'),
+			
+			gM('Get')+' getImageData(left, top, width, height)',
+			sceg('var imgD = ctx.getImageData(100,100, 150,200);'),
+			
+			gM('Put')+' putImageData(imgData, dx, dy)',
+			
+			sceg('ct.putImageData(imgD, 0, 0);'),
+				
+				
+		].join(br)),
+		
+		
+		detail(gM('Option'),[
+			gM('Smooth')+sceg('ct.imageSmoothingEnabled=true'),
+		
+			gM('Region')+sceg(`
+ct.beginPath();
+ct.arc(70, 80, 10, 0, 2 * Math.PI, false);
+ct.fill();
+ct.addHitRegion({id: "circle"});
+
+$('#ican').on("mousemove", function(e){
+  if(e.region) {
+    alert("hit region: " + e.region);
+  }
+});
+`,0),
+].join(br)),
+		
+		detail(gM('Save'),[
+			sceg('ct.save();'),
+			sceg('ct.restore();'),
+			
+			detail('canvas',[
+				detail('toDataURL()',[
+					sceg("var u=$('#ican')[0].toDataURL('image/png');"),
+					sceg("var u=$('#ican')[0].toDataURL('image/jpeg',0.5);"),
+				].join(br)),
+				detail('toBlob(callback, type, encoderOptions)',[
+					sceg("var b=$('#ican')[0].toBlob(callback, type, encoderOptions);",0)
+				].join(br))
+			].join(br)),
+			
+			
+		
+		].join(br)),
 	
 	].join(br),
 	

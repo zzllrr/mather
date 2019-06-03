@@ -410,6 +410,12 @@ lang['zh_cn']={
 	'Left':'左',
 	'Right':'右',
 	
+	'Clockwise':'顺时针',
+	'Anticlockwise':'逆时针',
+	
+	'rad':'弧度',
+	'degree':'角度',
+	
 	'Bold':'加粗',
 	'Italic':'斜体',
 	'Underline':'下划线',
@@ -480,7 +486,7 @@ lang['zh_cn']={
 	'Symbolic':'符号',
 	'Numeral':'数值',
 	'Numerical':'数值',
-
+	'String':'字符串',
 
 	// action
 
@@ -499,6 +505,7 @@ lang['zh_cn']={
 	'Integration':'整合',
 	'Standardization':'标准化',
 
+	'Initialize':'初始化',
 	'Operation':'运算',
 	'Explore':'探索',
 	'Search':'搜索',
@@ -541,6 +548,7 @@ lang['zh_cn']={
 	'Edit':'编辑',
 	'Replace':'替换',
 	'Copy':'复制',
+	'Clone':'克隆',
 	'Cut':'剪切',
 	'Delete':'删除',
 	'Clear':'清除',
@@ -832,6 +840,7 @@ lang['zh_cn']={
 	
 	'Quadratic':'二次',
 	'Quadric':'二次',
+	'Cubic':'三次',
 	
 	//几何
 	
