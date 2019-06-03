@@ -394,7 +394,7 @@ var ican=$('#ican'),ct=ican[0].getContext('2d');
 				
 			].join(br)),
 			
-			detail(gM('Pattern')+' createPattern(image, repeatType)',[
+			detail(gM('Pattern.v')+' createPattern(image, repeatType)',[
 				'repeatType=repeat|repeat-x|repeat-y|no-repeat',
 				
 				sceg(`
@@ -496,7 +496,7 @@ sceg(`
 		].join(br)),
 		
 		
-		detail(gM('Draw Image'),[
+		detail(gM('Image'),[
 			'drawImage(image, x, y)',
 			sceg('ct.drawImage(img, 0, 0);'),
 			
@@ -576,7 +576,7 @@ ct.arc(70, 80, 10, 0, 2 * Math.PI, false);
 ct.fill();
 ct.addHitRegion({id: "circle"});
 
-$('#ican').on("mousemove", function(e){
+$(ct.canvas).on("mousemove", function(e){
   if(e.region) {
     alert("hit region: " + e.region);
   }
@@ -590,11 +590,11 @@ $('#ican').on("mousemove", function(e){
 			
 			detail('canvas',[
 				detail('toDataURL()',[
-					sceg("var u=$('#ican')[0].toDataURL('image/png');"),
-					sceg("var u=$('#ican')[0].toDataURL('image/jpeg',0.5);"),
+					sceg("var u=ct.canvas.toDataURL('image/png');"),
+					sceg("var u=ct.canvas.toDataURL('image/jpeg',0.5);"),
 				].join(br)),
 				detail('toBlob(callback, type, encoderOptions)',[
-					sceg("var b=$('#ican')[0].toBlob(callback, type, encoderOptions);",0)
+					sceg("var b=ct.canvas.toBlob(callback, type, encoderOptions);",0)
 				].join(br))
 			].join(br)),
 			

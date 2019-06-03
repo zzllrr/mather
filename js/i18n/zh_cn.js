@@ -475,7 +475,8 @@ lang['zh_cn']={
 	'Kind':'友善的',
 	'Pally':'亲密的',
 	'Peace-loving':'爱好和平的',
-		
+	
+	'Smooth':'平滑',
 	'Offline':'离线',
 	'Local':'本地',
 	'Localized':'本地化',
@@ -487,9 +488,25 @@ lang['zh_cn']={
 	'Numeral':'数值',
 	'Numerical':'数值',
 	'String':'字符串',
-
+	'Region':'区域',
+	'Data':'数据',
+	'Opacity':'透明度',
+	'Pattern':'模式',
+	'Pattern.v':'图案',
+	'Width':'宽',
+	'Height':'高',
+	'Shadow':'阴影',
+	'Direction':'方向',
+	'Option':'选项',
+	
 	// action
 
+	'Measure':'测量',
+	'Get':'获取',
+	'Create':'创建',
+	'Put':'放置',
+	'Composite':'复合',
+	'Draw':'画',
 	'Download':'下载',
 	'Upload':'上传',
 	'Solve':'解题',
