@@ -1,16 +1,20 @@
 /*
- * zzllrr lib for ZIG
+ * zzllrr lib
  * Copyright by zzllrr. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
 
-var H='http://',Hs='https://', w3c='www.w3.org/', xmlns=H+w3c+'2000/svg', xhtml=H+w3c+'1999/xhtml', xmlnsxlink=H+w3c+'1999/xlink',logon=false;
-var imgPreReg='((file:[/]|https?:|ftp:)[/]|data:image)[/].+',
+var H='http://',Hs='https://', w3c='www.w3.org/', xmlns=H+w3c+'2000/svg', xhtml=H+w3c+'1999/xhtml', xmlnsxlink=H+w3c+'1999/xlink', xmml=H+w3c+'1998/Math/MathML',
+logon=false, i18n=typeof lang =='undefined'?'':lang[H_o().lang||'zh_cn']||'';
+var uri='^(blob|file|ftp|https?):.+', uriRe=new RegExp(uri,'i'), dataRe=/^data:.+[/].+;.+/,
+	imgPreReg='(blob|data|file|ftp|https?):.+',
 	imgPre=new RegExp(imgPreReg,'gi'), imgPreRe=new RegExp('^'+imgPreReg,'gi'),
 
-	hanziCoreRe=/[\u4E00-\u9FA5\uFF00-\uFFFF]/g, hanziRe=/[^\x00-\xff]/g,//含中文标点
-	enPunc=/[,\.\?!\/\-_:;'"\(\)\[\]\{\}]/g,hanziPunc=/[，。？！—：；‘’“”（）【】]/g, punc=/[,\.\?!\/\-_:;'"\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
+	hanziCoreRe=/[\u4E00-\u9FA5\uFF00-\uFFFF]/g, hanziRe=/[^\x00-\xff]/g,//含中文标点	注意使用test时，正则有全局g时，需重置hanziRe.lastIndex=0
+	enPunc=/[,\.\?!\/\-_:;'"\(\)\[\]\{\}]/g, enPhrase=/^[a-z]+ [a-z ]+$/i,
+	hanziPunc=/[，。？！—：；‘’“”（）【】]/g,
+	punc=/[,\.\?!\/\-_:;'"\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
 	fontReData=/^data.+font[/].{40,}/i, imgPreReData=/^data.+image\/.{40,}/gi, txtPreReData=/^data.+text\/plain/gi,
 fontHan='{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microsoft Yahei","微软正黑体":"Microsoft JhengHei","楷体":"KaiTi","新宋体":"NSimSun","仿宋":"FangSong"},"OS X":{"苹方":"PingFang SC","$黑体":"STHeiti","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","冬青黑体简":"Hiragino Sans GB","兰亭黑-简":"Lantinghei SC","翩翩体-简":"Hanzipen SC","手札体-简":"Hannotate SC","宋体-简":"Songti SC","娃娃体-简":"Wawati SC","魏碑-简":"Weibei SC","行楷-简":"Xingkai SC","雅痞-简":"Yapi SC","圆体-简":"Yuanti SC"},"office":{"幼圆":"YouYuan","隶书":"LiSu","$细黑":"STXihei","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$彩云":"STCaiyun","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","@舒体":"FZShuTi","@姚体":"FZYaoti"},"open":{"思源黑体":"Source Han Sans CN","思源宋体":"Source Han Serif SC","文泉驿微米黑":"WenQuanYi Micro Hei"},"hanyi":{"!旗黑":"HYQihei 40S","!旗黑":"HYQihei 50S","!旗黑":"HYQihei 60S","!大宋简":"HYDaSongJ","!楷体":"HYKaiti","!家书简":"HYJiaShuJ","!PP体简":"HYPPTiJ","!乐喵体简":"HYLeMiaoTi","!小麦体":"HYXiaoMaiTiJ","!程行体":"HYChengXingJ","!黑荔枝":"HYHeiLiZhiTiJ","!雅酷黑W":"HYYaKuHeiW","!大黑简":"HYDaHeiJ","!尚魏手书W":"HYShangWeiShouShuW"},"fangzheng":{"@粗雅宋#":"FZYaSongS-B-GB","@报宋#":"FZBaoSong-Z04S","@粗圆#":"FZCuYuan-M03S","@大标宋#":"FZDaBiaoSong-B06S","@大黑#":"FZDaHei-B02S","@仿宋#":"FZFangSong-Z02S","@黑体#":"FZHei-B01S","@琥珀#":"FZHuPo-M04S","@楷体#":"FZKai-Z03S","@隶变#":"FZLiBian-S02S","@隶书#":"FZLiShu-S01S","@美黑#":"FZMeiHei-M07S","@书宋#":"FZShuSong-Z01S","@舒体#":"FZShuTi-S05S","@水柱#":"FZShuiZhu-M08S","@宋黑#":"FZSongHei-B07S","@宋三#":"FZSong","@魏碑#":"FZWeiBei-S03S","@细等线#":"FZXiDengXian-Z06S","@细黑一#":"FZXiHei I-Z08S","@细圆#":"FZXiYuan-M01S","@小标宋#":"FZXiaoBiaoSong-B05S","@行楷#":"FZXingKai-S04S","@姚体#":"FZYaoTi-M06S","@中等线#":"FZZhongDengXian-Z07S","@准圆#":"FZZhunYuan-M02S","@综艺#":"FZZongYi-M05S","@彩云#":"FZCaiYun-M09S","@隶二#":"FZLiShu II-S06S","@康体#":"FZKangTi-S07S","@超粗黑#":"FZChaoCuHei-M10S","@新报宋#":"FZNew BaoSong-Z12S","@新舒体#":"FZNew ShuTi-S08S","@黄草#":"FZHuangCao-S09S","@少儿#":"FZShaoEr-M11S","@稚艺#":"FZZhiYi-M12S","@细珊瑚#":"FZXiShanHu-M13S","@粗宋#":"FZCuSong-B09S","@平和#":"FZPingHe-S11S","@华隶#":"FZHuaLi-M14S","@瘦金书#":"FZShouJinShu-S10S","@细倩#":"FZXiQian-M15S","@中倩#":"FZZhongQian-M16S","@粗倩#":"FZCuQian-M17S","@胖娃#":"FZPangWa-M18S","@宋一#":"FZSongYi-Z13S","@剪纸#":"FZJianZhi-M23S","@流行体#":"FZLiuXingTi-M26S","@祥隶#":"FZXiangLi-S17S","@粗活意#":"FZCuHuoYi-M25S","@胖头鱼#":"FZPangTouYu-M24S","@卡通#":"FZKaTong-M19S","@艺黑#":"FZYiHei-M20S","@水黑#":"FZShuiHei-M21S","@古隶#":"FZGuLi-S12S","@幼线#":"FZYouXian-Z09S","@启体#":"FZQiTi-S14S","@小篆体":"FZXiaoZhuanTi-S13T","@硬笔楷书#":"FZYingBiKaiShu-S15S","@毡笔黑#":"FZZhanBiHei-M22S","@硬笔行书#":"FZYingBiXingShu-S16S"}}'.replace(/!/g,'汉仪').replace(/@/g,'方正').replace(/#/g,'简体').replace(/\$/g,'华文'),
 
@@ -18,10 +22,61 @@ fontHan='{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microso
 	cssImgReg='url\\([\'"]?[^\\\'"\\)\\s]+[\'"]?\\)', cssImgRe=new RegExp(cssImgReg,'gi'), textCssImgRe=new RegExp('([\\s:,]|^)'+cssImgReg,'gi'),
 
 	imgReg='(bmp|gif|ico|jpeg|jpg|apng|png|svg|webp)',
-	hrefImgRe=new RegExp('/\\S*\\.'+imgReg+'[\\?\\&]*.*','i'), textImgRe=new RegExp('(file:[/]|https?:|ftp:)[/]{2}[^/][^\'"\\s\\(\\)]*\\.'+imgReg,'gi'),
+	hrefImgRe=new RegExp('/\\S*\\.'+imgReg+'[\\?\\&]*.*','i'), textImgRe=new RegExp('(file|ftp|https?):[/]+[^\'"\\s\\(\\)]*\\.'+imgReg,'gi'),
 	digiReg=/^\d+(\.\d)?$/,
 	regReg=function(t){return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}]/g,'\\$&')}
-;
+,Engin={
+	bd:function(html, u){
+		var bd=$(XML.wrapE('div', (html||'')));
+
+		bd.find(zlr2('img :image','[src]',',')).each(function(){
+			var me=$(this), s0=me.attr('file')||me.attr('data-original')||me.attr('src'), s=H_a(s0, u);
+			if(s!=s0){me.attr('src', s)}
+		});
+
+		bd.find('form').attr('method','');
+		bd.find(':button, :submit').attr('disabled','disabled');
+		var ZBD='#ZBD'+Time.now5()+' ';
+		bd.attr('id', 'ZBD').find('style').html(function(i, v){
+			return ZBD+v.trim().replace(/[\},(\*\/)][\n\s]+/g, '$&'+ZBD).trim();
+		});
+
+		bd.find(zlr3('[on','click load',']',',')).removeAttr(zlr('on','click load'));
+		bd.find(zlr3('a[href','^="javascript:" ="#"',']',',')).removeAttr('href');
+		bd.find('a[href]').not('[href^="#"]').attr('target','_blank').not(zlr3('[href^=','http "mailto:"',']',',')).attr('href', function(i,v){return H_a(v,u)});
+
+		bd.find('object').has('embed[src]').each(function(){
+			var em=$(this).find('embed[src]'), src=em.attr('src'), wd=em.attr('width'), ht=em.attr('height');
+			$(this).replaceWith('<iframe src="'+src+'" style="width:'+(wd||500)+'px;height:'+(ht||400)+'px" >');
+		});
+
+		return bd;
+	},
+
+	bdLoadHtml:function(html, aB){
+		aB.html(html||'');
+		return Engin
+	}
+}, csslib={
+	'katex':'<link rel="stylesheet" href="'+Hs+'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">',
+	'markdown':XML.wrapE('style',`
+blockquote{
+    padding:0 10px;
+    border-left: solid 6px #ff5400;
+    margin-left: 0px;
+    background-color: rgba(242,97,9,.1);
+    border-radius: 10px;
+}
+.bdb{
+    border-bottom: outset black 1px;
+}
+code, pre{
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding:2px
+}
+	`),
+};
 
 
 $.expr[':'].bottom = function(obj){return $(obj).css('position') == 'fixed' && $(obj).css('bottom') == '0px' };
@@ -29,7 +84,7 @@ $.expr[':'].top = function(obj){return $(obj).css('position') == 'fixed' && $(ob
 $.expr[':'].left = function(obj){return $(obj).css('position') == 'fixed' && $(obj).css('left') == '0px' };
 $.expr[':'].right = function(obj){return $(obj).css('position') == 'fixed' && $(obj).css('right') == '0px' };
 
-$.expr[':'].fixed = function(obj){return $(obj).css('position') == 'fixed'};
+$.expr[':'].fixed = function(obj){return $(obj).length?$(obj).css('position') == 'fixed':false};
 $.expr[':'].abs = function(obj){return $(obj).css('position') == 'absolute'};
 
 $.expr[':'].encoded = function(obj){return /:?encoded/i.test($(obj)[0].localName)};
@@ -38,6 +93,10 @@ $.expr[':'].range = function(obj){return $(obj).attr('type') == 'range'};
 $.expr[':'].color = function(obj){return $(obj).attr('type') == 'color'};
 $.expr[':'].date = function(obj){return $(obj).attr('type') == 'date'};
 $.expr[':'].time = function(obj){return $(obj).attr('type') == 'time'};
+
+$.expr[':'].search = function(obj){return $(obj).attr('type') == 'search'};
+$.expr[':'].commentRss = function(obj){return /commentRss/i.test($(obj)[0].localName)};
+$.expr[':'].creator = function(obj){return $(obj)[0].localName == 'creator'};
 
 $.fn.extend({
   twinkle: function() {
@@ -50,7 +109,153 @@ function consolelog(){
 		console.log.apply(null,arguments)
 	}
 }
-function gM(msg,str) {return msg}
+function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)},msg)}
+	var M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
+	if(!x && chrome.i18n){
+		x=chrome.i18n.getMessage(msg, str)
+	}
+	if(!x && /^[a-z]+[A-Z][a-z]*$/.test(msg)){
+		x=gM(msg.replace(/([a-z])([A-Z])/g,'$1 $2'),str,o)
+	}
+	if(!x && / & /.test(msg)){
+		x=Arrf(function(t){return gM(t,str,o)}, msg.split(' & ')).join(' & ');
+		hanziRe.lastIndex=0;
+		if(hanziRe.test(x)){
+			x=x.replace(/ & /g,'与')
+		}
+	}
+	if(!x && /[^ ]&[^ ]/.test(msg)){
+		x=Arrf(function(t){return gM(t,str,o)}, msg.split('&')).join('&');
+	}
+	
+	if(!x && / /.test(msg)){
+		if(msg==' '){
+			return ''		
+		}
+		var msg0=msg.replace(/ .+/,''),msg1=msg.replace(/[^ ]+ /,'');
+		if(O[msg1]){
+			x=gM(msg0,str,o)+' '+gM(msg1,str,o)
+		}else{
+			x=Arrf(function(t){return gM(t,str,o)}, msg.split(' ')).join(' ');
+		}
+		hanziRe.lastIndex=0;
+		if(hanziRe.test(x)){
+			x=x.replace(/. ./g, function(x){return /[a-z] [a-z]/i.test(x)?x:x.replace(/ /,'')})
+		}
+	}
+	if(!x && /-/.test(msg)){
+		x=Arrf(function(t){return gM(t,str,o)}, msg.split('-')).join('-');
+	}
+
+	if(!x && /\./.test(msg)){
+
+		return msg.split('.')[0]		
+	}
+	
+	return x || M
+}
+
+function fMatrixPly(A,B){
+	var n=A.length, m=1, C=new Array(n);
+	if(B[0] instanceof Array){m=B[0].length}
+	for(var i=0;i<n;i++){
+		C[i]=new Array(m);
+		for(var j=0;j<m;j++){
+			var s=0;
+			for(var k=0;k<n;k++){
+				s+=A[i][k]*(m<2?B[k]:B[k][j]);
+			}
+			C[i][j]=s;
+		}
+	}
+	return C;
+}
+function fMatrix(fltr, a0){
+	var MA=new Array(5), a=a0, CA=[.2126, .7152, .0722];
+	for(var i=0;i<5;i++){
+		MA[i]=new Array(5);
+		for(var j=0;j<5;j++){
+			MA[i][j]=j==i?1:0;
+		}
+	}
+
+	if(fltr=='hue'){a=a%360}
+
+	if(fltr=='opa' && a!=1){
+		MA[3][3]=a;
+	}
+	if(fltr=='contra' && a!=1){
+		for(var i=0;i<3;i++){
+			MA[i][i]=a;
+			MA[i][4]=Math.round((1-a)*25500/2)/100;
+		}
+	}
+	if(fltr=='bright' && a!=1){
+		for(var i=0;i<3;i++){
+			MA[i][i]=a;
+		}
+	}
+	if(fltr=='sat' && a!=1){
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				MA[i][j]=Math.round(((j==i?a:0)+CA[j]*(1-a))*100)/100;
+			}
+		}
+	}
+	if(fltr=='gray' && a){
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				MA[i][j]=Math.round(((j==i?1-a:0)+a/3)*100)/100;
+			}
+		}
+	}
+	if(fltr=='sepia' && a){
+		CA=[[.393, .769, .189], [.349, .686, .168], [.272, .534, .131]];
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				MA[i][j]=Math.round(((j==i?1-a:0)+CA[i][j]*a)*100)/100;
+			}
+		}
+	}
+	if(fltr=='inv' && a){
+		for(var i=0;i<3;i++){
+			MA[i][i]=1-a*2;
+			MA[i][4]=Math.round(a*25500)/100;
+		}
+	}
+	if(fltr=='hue' && a){
+		var S=Math.sin(Math.PI*a/180), C=Math.cos(Math.PI*a/180);
+		/*
+		A0=[C0*(1-hueS)+(1-C0)*hueC, C1*(1-hueC-hueS), C2*(1-hueC)+(1-C2)*hueS];
+		A1=[C0*(1-hueC)+ 0.143*hueS, C1+(1-C1)*hueC+ 0.14*hueS, C2*(1-hueC)- 0.283*hueS];
+		A2=[C0*(1-hueC)-(1-C0)*hueS, C1*(1-hueC+hueS), C2*(1+hueS)+(1-C2)*hueC];
+CA=[.2126, .7152, .0722]
+		// C0=.213, C1=.715, C2=.0722
+		A0=[C0*(1-hueC-hueS)+hueC, C1*(1-hueC-hueS), C2*(1-hueC-hueS)+hueS];
+		A1=[C0*(1-hueC)+ 0.143*hueS, C1*(1-hueC)+hueC+ 0.14*hueS, C2*(1-hueC)- 0.283*hueS];
+		A2=[C0*(1-hueC+hueS)-hueS, C1*(1-hueC+hueS), C2*(1-hueC+hueS)+hueC];
+
+		A0=[C0*(1-C-S)+C, C1*(1-C-S), C2*(1-C-S)+S];
+		A1=[C0*(1-C)+ 0.143*S, C1*(1-C)+C+ 0.14*S, C2*(1-C)- 0.283*S];
+		A2=[C0*(1-C+S)-S, C1*(1-C+S), C2*(1-C+S)+C];
+
+		A0=[C0*(1-C-S)    +C,       C1*(1-C-S),            C2*(1-C-S)     +S];
+		A1=[C0*(1-C)      +0.143*S, C1*(1-C)   +C+ 0.14*S, C2*(1-C)       -0.283*S];
+		A2=[C0*(1-C+S)    -S,       C1*(1-C+S),            C2*(1-C+S)     +C];
+
+*/
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				MA[i][j]=Math.round(((j==i?C:0)+CA[j]*(1-C+S*(i-1))+S*[.143,.14,-.283,-1,0,1][i==2?j:(i*j==0 && i+j==2?3+j:4)])*100)/100;
+			}
+		}
+
+	}
+	if(fltr=='blur'){
+
+	}
+	return MA;
+}
 
 var H5Colors='aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow,yellowgreen';
 function H5Color(neg,pos){
@@ -80,41 +285,160 @@ function H5Color(neg,pos){
 	}
 	return A
 }
-var ZRL='aphanomkkjgledipighdfjnilhfenpam', ZRC='jobnmmcljcfepgnecadofbjdklkibgei', ZIG='gfjhimhkjmipphnaminnnnjpnlneeplk', ZIL='bedbigoemkinkepgmcmgnapjcahnedmn',ZAin1='alhfmphdglcigimlmnkemofpdhfaloep', webStore=H+'chrome.google.com/webstore/detail/', CN='', isCN=false,isCNzh=false;
+var ZRL='aphanomkkjgledipighdfjnilhfenpam', ZRC='jobnmmcljcfepgnecadofbjdklkibgei', ZIG='gfjhimhkjmipphnaminnnnjpnlneeplk', ZIL='bedbigoemkinkepgmcmgnapjcahnedmn',ZAin1='alhfmphdglcigimlmnkemofpdhfaloep',ZIV='minhgcmabmapnkcoddbbeclkmpnandhp', webStore=Hs+'chrome.google.com/webstore/detail/', CN='', isCN=false,isCNzh=false;
 
 if(gM('@@ui_locale').slice(0,2)=='zh'){isCN=true;isCNzh=gM('@@ui_locale')=='zh_CN'; CN='?hl=zh_cn'}
 var HOM={
 	'ZIG':webStore+ZIG+CN,
 	'ZIL':webStore+ZIL+CN,
+	'ZIB':Hs+'blog.sina.com.cn/zzllrrimager',
+	'ZIV':webStore+ZIV+CN,
 	'ZRL':webStore+ZRL+CN,
 	'ZRC':webStore+ZRC+CN,
 	'ZAin1':webStore+ZAin1+CN,
 	'Z':webStore.replace('detail','search')+'zzllrr',
-	'ZQR':H+'site.douban.com/127068/',
-	'ZIGPic':H+'img3.douban.com/view/photo/photo/public/p1376698902.jpg'
+	'ZQR':Hs+'site.douban.com/127068/',
+	'ZIGPic':Hs+'img3.douban.com/view/photo/photo/public/p1376698902.jpg',
+	'ZRPic':Hs+'img5.douban.com/view/photo/photo/public/p1990186399.jpg'
 };
 
-var strop='</option><option value=', strchkbx0='<input type=checkbox ', strbtn='<input type=button value="', btnGo=strbtn+'GO" class=vipurl />',num=function(x){return '<input type=number value='+x+' min=0 />'},
+var strop='</option><option value=', strchkbx0='<input type=checkbox ', strbtn='<input type=button value="', btnGo=strbtn+'GO" class=vipurl />',
+num=function(x,ma){return '<input type=number value='+x+' min=0 '+(ma?'max= '+ma:'')+'/>'},
 imgSRC='<img src="img/', prog=imgSRC+'loading.gif" width=16 class=prog />', chked=' checked', seled=' selected',
+meter=function(i,low,optimum,high){return '<meter min=0 max=100'+(low || low===0?' low='+low:'')+(optimum || optimum===0?' optimum='+optimum:'')+(high || high===0?' high='+high:'')+' value='+i+' />'},
 bgfrom='-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto='), to(', grad=function(t){
 	//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
-	return '-webkit-linear-gradient(top, white, '+t+' 20%, '+t+' 80%, white)'
-},
-SC='<span class=', sc='</span>', sC=sc+SC, SCtv=function(t,v){return SC+'"'+t+'">'+(v||'')+sc},itv=function(t,v){return '<i class="mi '+t+'">'+(v||'')+'</i>'},
-DC='<div class=', dc='</div>', dC=dc+DC, DCtv=function(t,v){return DC+'"'+t+'">'+(v||'')+dc},br='<br/>',hr='<hr/>',
-detail=function(s,v,o){var t=XML.wrapE('details',XML.wrapE('summary',s)+v);return o?t.replace('>',' open>'):t},
-mark=function(v,t){return '<mark title='+(t||'API')+'>'+v+'</mark>'},del=function(s){return XML.wrapE('del',s)},
-href=function(url,title){return '<a href="'+url+'" target="_blank" rel="noopener noreferrer">'+(title||url)+'</a>'},
-ol=function(A,c,start){return '<ol class="alignl '+(c!=null?c:'')+'"'+(start!=null?' start='+start:'')+'>'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ol>'},
-ul=function(A,c){return '<ul class="alignl '+(c!=null?c:'')+'">'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ul>'},
-dl=function(A,B,c){return '<dl class="alignl '+(c!=null?c:'')+'">'+concat(Arrf(function(t){return XML.wrapE('dt',t)},A),Arrf(function(t){return XML.wrapE('dd',t)},B)).join('')+'</dl>'},
+	return '-webkit-linear-gradient(top, white, '+t+' 20%, '+t+' 80%, white)'},
+fcb=function(c,b,t){return '\\fcolorbox{'+c+'}{'+(b||'transparent')+'}{'+t+'}'},
+txa=function(t,c){return '<textarea'+(c?' class="'+c+'"':'')+'>'+t+'</textarea>'},
+SC='<span class=', sc='</span>', sC=sc+SC, SCtv=function(t,v){return SC+'"'+t+'">'+(v||'')+sc},
+itv=function(t,v){return '<i class="mi '+t+'">'+(v||'')+'</i>'},
+DC='<div class=', dc='</div>', dC=dc+DC, DCtv=function(t,v){return DC+'"'+t+'">'+(v||'')+dc},
+br='<br/>',hr='<hr/>', kbr='\\\\ ',kbr2='\\\\ ~ \\\\ ~',
+kbrA=function(A){return Arrf(function(x){return '$'+x+'$'},A).join(br)}, 
+khrA=function(A){return Arrf(function(x){return '$'+x+'$'},A).join(hr)},
+detail=function(s,v,o,c){return '<details'+(o?' open':'')+(c?' '+c:'')+'><summary>'+s+'</summary>'+v+'</details>'},
+zdetail=function(s,v,notsk,notvk,notEdit,o){return detail(notsk?s:ksc(s), notvk?v:kdc(v)+(notEdit?'':
+	detail(gM('Edit')+strbtn+gM('Default')+'" class="katexv0" />',
+	txa(v,'katexv" data-katex="'+v)+br+'<input type=text class=katexvrule />'+strbtn+gM('Replace')+'" class="katexvreplace" />'+strbtn+'GO" class="katexvgo" />')),o)},
+kdetail=function(s,v,notsk,notvk){return zdetail(s,v,notsk,notvk,1)},
 
-sup=function(v){return XML.wrapE('sup',v)}, sub=function(v){return XML.wrapE('sub',v)},
-msub=function(m,v,r2l){var s=SCtv('inblk',v!=null?m:m[0]);return SCtv('scbox',(r2l?'':s)+XML.wrapE('sub',v!=null?v:m.substr(1))+(r2l?s:''))},
-msup=function(m,v,r2l){var s=SCtv('inblk',v!=null?m:m[0]);return SCtv('scbox',(r2l?'':s)+XML.wrapE('sup',v!=null?v:m.substr(1))+(r2l?s:''))},
-msups=function(A){return Arrf(msup,A,'-cp2')},msubs=function(A){return Arrf(msub,A,'-cp2')},
-subsup=function(b,t){return SCtv('scbox',SCtv('inblk alignl',sub(t)+br+sup(b)))},
-msubsup=function(m,b,t,r2l){var s=SCtv('inblk',b?m:m[0]);return SCtv('scbox',(r2l?'':s)+SCtv('inblk alignl',sub(t)+br+sup(b||m.substr(1)))+(r2l?s:''))},
+jdetail=function(A,i18nObj,subTool){var f=function(t,subtool){
+	if(isStr(t)){var tool=t.replace(/[…—“][\S\s]+/,''),ts=t.split('…'),
+		title=ts.length>1?ts[1].replace(/[—“].+[\s\S]*/,''):'',
+		tip=(t.split('—')[1]||'').replace(/“.+[\s\S]*/,''), 
+		eg=t.split('“')[1]||'';
+
+		var m=/^[-a-z &→]+$/i.test(tool)?gM(tool):tool, ft=fnv0(tool);
+		return subtool=='task'?SCtv('task" data-tool="'+ft
+			+'" title="'+gM(title)
+			+'" data-tip="'+(tip?gM(tip):ft)
+			+'" data-eg="'+eg,
+			/^\$.+\$$/.test(m)?zx(fnv0(m)):m):SCtv('level '+(subtool||'')+'" data-i="'+tool,gM(tool,'',i18nObj))
+	} 
+	if(isArr(t)){
+		return Arrf(function(x){return f(x,subtool)},t).join('')
+	}
+	if(isObj(t)){var y='';$.each(t,function(i,v){
+		y+=detail(gM(i,'',i18nObj),f(v,subtool),'','data-i="'+i+'"')
+	}); return y}
+};return Arrf(function(x){return f(x,subTool)},A).join('')
+},
+
+fdetail=function(f,A){return DCtv('fdetail',eval('(function'+f+')("'+(''+A[0]).replace(/,/g,'","')+'")')+
+	'<input type=text class=katexf data-katexf="'+f+'" placeholder="'+A.join(';')+'" value="'+A[0]+'" />'+
+	strbtn+gM('Parameter')+'" class="katexv1" />')},
+mark=function(v,t){return '<mark title='+(t||'API')+'>'+v+'</mark>'},del=function(s){return XML.wrapE('del',s)},
+href=function(url,text,title){return '<a href="'+url+'" target="_blank" '+(title?'title="'+title+'" ':'')+'rel="noopener noreferrer">'+(text||url)+'</a>'},
+inhref=function(url,text,title){return '<a href="'+url+'" '+(title?'title="'+title+'" ':'')+'>'+(text||url)+'</a>'},
+ol=function(A,c,start){return '<ol class="alignl '+(c!=null?c:'')+'"'+(start!=null?' start='+start:'')+'>'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ol>'}, kol=function(A,c,start){return ol(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),c,start)},
+ul=function(A,c){return '<ul class="alignl '+(c!=null?c:'')+'">'+Arrf(function(t){return XML.wrapE('li',t)},A).join('')+'</ul>'}, kul=function(A,c){return ul(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),c)},
+dl=function(A,B,c){return '<dl class="alignl '+(c!=null?c:'')+'">'+concat(Arrf(function(t){return XML.wrapE('dt',t)},A),Arrf(function(t){return XML.wrapE('dd',t)},B)).join('')+'</dl>'}, kdl=function(A,B,c){return dl(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),B,c)},
+
+$A=function(A){return Arrf(function(x){return x instanceof Array? $A(x):(x||x===0?'$'+x+'$':'')},A)},
+$B=function(A,esc){return Arrf(function(x){return x instanceof Array? $B(x,esc):(esc?(''+x).replace(/[\{\}]/g,'\\$&'):(x||x===0?'{'+x+'}':''))},A)}, 
+
+Kx=function(t){return t.replace(/\$\$[^\$]+\$\$/g,function(x){return kdc(x.substr(2,x.length-4))}).replace(/\$[^\$]+\$/g,function(x){return ksc(x.substr(1,x.length-2))})},
+KxA=function(A){return Table([[SCtv('oLaTeX','LaTeX'),SCtv('Clear oClear','⌫')]],[[Kx(A.join(kbr2))]],'edit')},
+kx=function(t){var s=re((''+t).replace(/−/g,'-').replace(/​/g,'').replace(/[ ]/g,' ')
+	.replace(/\$[^\$]+\$/g,function(x){return eval(x.replace(/\$/g,''))}))
+
+//	.replace(/≠/g,'=\\not\\mathrlap{}').replace(/≢/g,'≡\\not\\mathrlap{}')
+				// fix latex ≠ bug
+//	.replace(/\\not([^\\ ])/g,function(x){return '$1\\not\\mathrlap{}'})		// fix latex ≠ bug V0.10.0
+
+	.replace(/≢/g,'\\not \\mathrlap{} \\negthickspace \\negthickspace ≡')	// fix latex ≢ bug	V0.10.1				katex bug:	table元素中使用katex，不等号会错位	字体显示≢会丢失 删除线
+	.replace(/FUNC([A-Za-z]+)/g,'\\mathrm{$1}');
+
+
+
+
+	if(!/\\text\{.*\}/.test(s)){
+		s=s.replace(/[\u4E00-\u9FA5\uFF00-\uFFFF]+/g,'\\text{$&}')	//[^\x00-\xff]
+		.replace(/[，、；。：⋰？！～“”‘’《》【】（）｛｝⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳]+/g,'\\text{$&}')
+	}
+	if(enPhrase.test(s)){//纯英文字母，且有空格
+		return '\\text{'+s+'}'
+	}
+	/*
+	if(!/\\text\{.*\}/.test(s)){
+		hanziRe.lastIndex=0;
+		if(hanziRe.test(s)){// 汉字
+			return s.replace(/[^\x00-\xff]+/g,'\\text{$&}')
+			//return '\\text{'+s+'}'
+		}
+	}
+	
+	\text{∏} error
+	*/
+	return s
+
+
+}, 
+kxf=function(t,v){return '\\text{'+t+'}'+(v?zp(v):'')},//不使用mathrm，因为它忽略空格
+kxA=function(A,b){return b?'\\begin{array}{}'+Arrf(function(x){return x instanceof Array?x.join(' & '):x},A).join('\\\\ ')+' \\end{array}':A.join('\\\\ ')},
+kxc=function(t,p,pfx){var c=(''+t).charCodeAt(0),g='ΑΒΓΔΕϜΦΗΙ΢ΚΛΜΝΟΡΠΘΣΤΥΞΩΧΨΖ'[c>90?c-97:c-65],a='ℵℶℷℸ'[c>90?c-97:c-65];
+	return p=='a'?a:(p=='g'?(c>90?g.toLowerCase():g):'\\'+(pfx===undefined?'math'+(p||'bb'):pfx+(pfx==='text' && p===''?'':p||'bf'))+'{'+t+'}')},/*
+		math: bb bf	   cal frak it rm scr sf
+		text: '' bf             it rm     sf normal tt
+		'' : Bbb bf 	   frak	it rm     sf		tt bm bold boldsymbol
+*/
+kos=function(t){return /x/.test(t)?t:(['xleftarrow','xleftrightarrow','xrightarrow','xLeftarrow','xLeftrightarrow','xRightarrow','xlongequal',
+	'xhookleftarrow','xhookrightarrow','xtwoheadleftarrow','xtwoheadrightarrow','xleftharpoonup','xrightharpoonup','xleftharpoondown','xrightharpoondown',
+	'xleftrightharpoons','xrightleftharpoons','xtofrom','xfromto','xmapsfrom','xmapsto'
+	]['←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄⇆↤↦'.indexOf(t||'=')]||t)},
+
+kxo=function(t,p,t2){return '\\'+['overline','overleftarrow','overleftrightarrow','overrightarrow','overlinesegment','overleftharpoon','overrightharpoon','Overleftarrow','Overrightarrow',
+	'overbrace','overgroup','widehat','widetilde','widecheck','xlongequal']['-←↔→I↼⇀⇐⇒{(<~>='.indexOf(p||'-')]
+	+(p=='='?'['+t+']{'+(t2||'')+'}':'{'+(t||'')+'}')+(p=='{' && t2?'^{\\text{'+t2+'}}':'')},
+kxu=function(t,p,t2){return '\\'+(['underline','underleftarrow','underleftrightarrow','underrightarrow','underlinesegment','underleftharpoon','underrightharpoon','Underleftarrow','Underrightarrow',
+	'underbrace','undergroup','uhat','utilde','ucheck','xlongequal']['-←↔→I↼⇀⇐⇒{(<~>='.indexOf((p||'-').replace('_','-'))])
+	+(p=='=' && t2?'['+t2+']':'{'+(t||'')+'}')+(p=='{' && t2?'_{\\text{'+t2+'}}':'')},
+kancel=function(t,p){return '\\'+(p=='-'?'sout':(p||'')+'cancel')+'{'+t+'}'},
+
+boxed=function(t){return '\\boxed{'+t+'}'}, hp=function(t){return '\\hphantom{'+(t||0)+'}'},
+kbox=function(t,p,pfx){return boxed(kxc(t,p||'bf',pfx||'text'))}, 
+	
+ksc=function(t){return SCtv('katex0',t)},kdc=function(t){return DCtv('katex0',t)},
+ksz=function(t,n){return '\\'+['tiny','scriptsize','footnotesize','small','normalsize','large','Large','LARGE','huge','Huge'][(n||0)+4]+' '+t},
+
+
+kroot=function(t,n){return root(t,n||'','','')}, 
+kfrac=function(t,p,tiny){if(t instanceof Array){return frac(t[0],t[1],tiny||'')}
+	if(p){return (''+t).replace(/(\d+|[a-zα-ω])\/(\d+|[a-zα-ω])/ig, function(x){return kfrac(x,'',tiny||'')})}
+	return /\//.test(t)?(t[0]=='-'?'-':'')+frac(t.split('/')[0].replace('-',''),t.split('/')[1],tiny||''):t},
+kfraczp=function(t,tiny,T){return kfrac(zp(t)+(T?'^{'+T+'}':''),1,tiny||'')},
+kxAfrac=function(A,p){return Arrf(function(x){return kfrac(x,1)}, A).join(kbr2)}, 
+
+
+sup=function(v,zM){return arguments.length==2?'^{'+v+'}':XML.wrapE('sup',v)}, sub=function(v,zM){return arguments.length==2?'_{'+v+'}':XML.wrapE('sub',v)},
+msub=function(m,v,r2l,zM){var s=SCtv('inblk',v!=null?m:m[0]),M=((''+m).length==1?m:'{'+m+'}');return arguments.length==4?(r2l?'':M)+'_{'+v+'}'+(r2l?M:''):SCtv('scbox',(r2l?'':s)+XML.wrapE('sub',v!=null?v:m.substr(1))+(r2l?s:''))},
+msup=function(m,v,r2l,zM){var s=SCtv('inblk',v!=null?m:m[0]),M=((''+m).length==1?m:'{'+m+'}');return arguments.length==4?(r2l?'':M)+'^{'+v+'}'+(r2l?M:''):SCtv('scbox',(r2l?'':s)+XML.wrapE('sup',v!=null?v:m.substr(1))+(r2l?s:''))},
+msups=function(A,zM){return Arrf(arguments.length==2?function(a,b){return ((''+a).length==1?a:'{'+a+'}')+'^'+((''+b).length==1?b:'{'+b+'}')}:msup,A,'-cp2')},
+msubs=function(A,zM){return Arrf(arguments.length==2?function(a,b){return ((''+a).length==1?a:'{'+a+'}')+'_'+((''+b).length==1?b:'{'+b+'}')}:msub,A,'-cp2')},
+ksups=function(a,n){return msups(copyA(a,n),'')},ksubs=function(a,n){return msubs(copyA(a,n),'')},
+subsup=function(b,t,zM){return arguments.length==3?'_'+((''+b).length==1?b:'{'+b+'}')+'^'+((''+t).length==1?t:'{'+t+'}'):SCtv('scbox',SCtv('inblk alignl',sub(t)+br+sup(b)))},
+msubsup=function(m,b,t,r2l,zM){var s=SCtv('inblk',b?m:m[0]),M=((''+m).length==1?m:'{'+m+'}'),B=((''+b).length==1?b:'{'+b+'}');return arguments.length==5?(r2l?'':M)+'_'+B+'^{'+t+'}'+(r2l?M:''):SCtv('scbox',(r2l?'':s)+SCtv('inblk alignl',sub(t)+br+sup(b||m.substr(1)))+(r2l?s:''))},
 Msubsup=function(M,b,t){var s=SCtv('inblk large',M);return SCtv('scbox',s+SCtv('inblk alignl',sub(t)+br+sup(b==null?'':b)))},
 
 subReg=function(v,b,u){var t=u?v.replace(u,function(t){return sup(t)}):v; return b?t.replace(b,function(t){return sub(t)}):t},
@@ -125,21 +449,42 @@ scit=function(v){return SCtv('bdt inblk notm',v)},scib=function(v){return SCtv('
 scbt=function(v,brad){return SCtv('bdb bdt'+(arguments.length>1?' brad':''),v)},sclr=function(v){return SCtv('bdl bdr'+(arguments.length>1?' brad':''),v)},//参数brad 是border radius
 scbox=function(v,b){return SCtv('bdl bdr bdb bdt scbox '+(b||''),v)},scblr=function(v,b){return SCtv('bdl bdr bdb scbox inblk'+(b||''),v)},sctlr=function(v,b){return SCtv('bdl bdr bdt scbox inblk'+(b||''),v)},
 tmb=function(t,m,b,v){return SCtv('inblk alignc',sub(t)+br+m+br+sup(b))+sci(v)},//tmb=function(t,m,b,v){return SCtv('inblk alignc',SCtv('small',t)+DCtv('large',m)+SCtv('vat small',b))+sci(v)},
-lim=function(n,x,v,ud){var x0=(x==null?'':''+x).replace(/[\+-]$/,''),lr=/[\+-]$/.test(x) && !/^[\+-]/.test(x)?x.substr(-1):''; return SCtv('inblk alignc',(ud=='u'?scit('lim'):(ud=='d'?scib('lim'):'lim'))+br+sup(n+'→'+(x0||(/^[\+-]$/.test(x)?x:'')+'∞')+(lr?sup(lr):'')))+(v||'')},
-sum=function(i,b,t,v,p){return SCtv('inblk alignc',sub(t=='+'?'∞':t)+br+'∑∪'[p||0]+br+sup(i?i+'='+b:b))+sci(v)},
-prod=function(i,b,t,v,p){return SCtv('inblk alignc',sub(t=='+'?'∞':t)+br+'∏∩×∐∧'[p||0]+br+sup(i?i+'='+b:b))+sci(v)},
-intl=function(v,b,t,d,p){return Msubsup('∫∬∭∮∯∰∱∲∳'[p||0],b==null?'':b,(/[\+\-]/.test(t)?t+'∞':t)||(b==null?'':'+∞'))+v+'d'+(d||'x')},
+lim=function(n,x,v,ud,zM){var x0=(x==null?'':''+x).replace(/[\+-]$/,''),lr=/[\+-]$/.test(x) && !/^[\+-]/.test(x)?x.substr(-1):'', t5=arguments.length>=5,
+	ntox0='{'+n+' \\to '+(x0||(/^[\+-]$/.test(x)?x:'')+'∞')+(lr?'^'+lr:'') +'}'; //ud=u(p) d(own) s(up) i(nf) ''
+	return t5?(/[ud]/.test(ud)?'\\underset'+[ntox0+'{\\','line{\\lim}}\\,'].join(ud=='u'?'over':'under'):'\\lim'+(/[si]/.test(ud)?(ud=='s'?'sup':'inf'):'')+
+		'\\limits_'+ntox0)+v:SCtv('inblk alignc',(ud=='u'?scit('lim'):(ud=='d'?scib('lim'):'lim'))+br+sup(n+'→'+(x0||(/^[\+-]$/.test(x)?x:'')+'∞')+(lr?sup(lr):'')))+(v||'')},
 
-madd=function(A){return A.join('+')},mminus=function(A){return A.join('-')},mtimes=function(A){return A.join('⋅')},mtimes2=function(A){return A.join('×')},mdivide=function(A){return A.join('÷')},
-mfrac=function(A){return Arrf(frac,A,'-cp2')},mfracs=function(A,b,infMid,infEnd,ops){//连分式 b0+a0/(b1+a1/(b2+a2/...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++
-	var An=A.length,B=[].concat(b),Bn=b.length,t='';//Bn比An大1，否则如相等，则最外层分式之前无内容
+sum=function(i,b,t,v,p,zM){return arguments.length>=6?'\\'+(!zM?'display':'text')+'style{\\'+['sum','bigcup','mathop{+}','bigvee','sup','max','bigoplus'][p||0]+(!zM?'\\limits':'')+
+	'_{'+(i?i+'='+b:(b instanceof Array?'\\tiny\\begin{matrix} '+ b.join('\\\\ ')+' \\end{matrix}':(b=='-'?b+'∞':b)))+'}'+(t?'^{'+(t=='+'?'∞':t)+'}':'')+
+	v+'}':SCtv('inblk alignc',sub(t=='+'?'∞':t)+br+['∑','∪','+','⋁','sup','max','⊕'][p||0]+br+sup(i?i+'='+b:b))+sci(v)},
+	
+prod=function(i,b,t,v,p,zM){return arguments.length>=6?'\\'+(!zM?'display':'text')+'style{\\'+['prod','bigcap','mathop{×}','coprod','bigwedge','inf','min','bigodot','bigotimes'][p||0]+(!zM?'\\limits':'')+
+	'_{'+(i?i+'='+b:(b instanceof Array?'\\tiny\\begin{matrix} '+ b.join('\\\\ ')+' \\end{matrix}':(b=='-'?b+'∞':b)))+'}'+(t?'^{'+(t=='+'?'∞':t)+'}':'')+
+	v+'}':SCtv('inblk alignc',sub(t=='+'?'∞':t)+br+['∏','∩','×','∐','∧','inf','min','⊙','⊗'][p||0]+br+sup(i?i+'='+b:b))+sci(v)},
+	
+intl=function(v,b,t,d,p,zM){return arguments.length>=6?'\\'+(!zM?'display':'text')+'style{\\'+['int','iint','iiint','oint','oiint','oiiint','int\\cdots\\int'][p||0]+(!zM?'\\nolimits':'')+
+	'_{'+((b=='-'?b+'∞':b)||'')+'}'+(t?'^{'+(t=='+'?t+'∞':t)+'}':'')+v+'\\,\\mathrm{d}{'+(d||'x')+'}}':Msubsup('∫∬∭∮∯∰∱∲∳'[p||0],b==null?'':b,(/[\+\-]/.test(t)?t+'∞':t)||(b==null?'':'+∞'))+v+'d'+(d||'x')},
+
+difn=function(f,x,p,g){var d='\\'+(p?'partial':'mathrm{d}')+' ',dg=g?'^{'+g+'}':'';return '\\frac{'+d+dg+(f||'')+'}{'+d+(x||'x')+dg+'}'},
+
+Opr=function(i,b,t,v,p){return '\\mathop{'+p+'}\\limits'+'_{'+(i?i+'='+b:b)+'}'+(t?'^{'+(t=='+'?'∞':t)+'}':'')+(v||'')},
+/* katex 不支持 ⋰ ∱∲∳ \idotsint 多重积分 ∫⋅⋅⋅∫ 与MathJax区别
+
+ http://www.cnblogs.com/suerchen/p/4833381.html
+ https://katex.org/docs/supported.html
+ https://www.cnblogs.com/Coolxxx/p/5982439.html
+ */
+
+mfrac=function(A,zM){return Arrf(zM?function(a,b){return '\\'+(zM||'')+'frac {\\displaystyle '+a+'}{\\displaystyle '+b+'}'}:frac,A,'-cp2')},
+mfracs=function(A,b,infMid,infEnd,ops,zM){//连分式 b0+a0/(b1+a1/(b2+a2/...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++
+	var An=A.length,B=[].concat(b),Bn=b.length,t='',a6=arguments.length>=6;//Bn比An大1，否则如相等，则最外层分式之前无内容
 	if(Bn==An){
 		B=[''].concat(b);
 		Bn++;
 	}
 	if(Bn==2){
 		var op=/^..$/.test(ops)?ops[0]:(ops||'+').substr(-1);
-		return B[0]+(infMid?op+'⋯':'')+op+frac(A[0],B[1]+(infEnd?op+'⋱':''))
+		return B[0]+(infMid?op+'⋯':'')+op+(a6?frac(A[0],B[1]+(infEnd?op+'⋱':''), zM||''):frac(A[0],B[1]+(infEnd?op+'⋱':'')))
 	}else{
 		var ops2=ops||'+',op=ops2;
 		if(op=='+--' || op=='-++'){
@@ -149,35 +494,43 @@ mfrac=function(A){return Arrf(frac,A,'-cp2')},mfracs=function(A,b,infMid,infEnd,
 			op=op[0];
 			ops=ops[1]+op;
 		}
-		return (B[0]!==''?B[0]+op:'')+frac(A[0],mfracs(A.slice(1),B.slice(1),infMid,infEnd,ops))
-	}
-},
-mroot=function(A){return Arrf(root,A,'-cp2')},mroots=function(A,B,infMid,infEnd,ops,Aisindex){//连根式 b0+a0√(b1+a1√(b2+a2√...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++	Aisindex指定数组A是根次，而不是倍数
-	var An=A.length,Bn=B.length,t='';//Bn比An大1
-	if(Bn==2){
-		var op=/^..$/.test(ops)?ops[0]:(ops||'+').substr(-1);
-		return B[0]+(infMid?op+'⋯':'')+op+(An && !Aisindex?A[0]:'')+root(B[1]+(infEnd?op+'⋯':''),(An && Aisindex?A[0]:''))
-	}else{
-		var ops2=ops||'+',op=ops2;
-		if(op=='+--' || op=='-++'){
-			op=op[0];
-			ops=ops[1];
-		}else if(op=='+-' || op=='-+'){
-			op=op[0];
-			ops=ops[1]+op;
-		}
-		return B[0]+op+(An && !Aisindex?A[0]:'')+root(mroots(A.slice(1),B.slice(1),infMid,infEnd,ops,Aisindex),(An && Aisindex?A[0]:''))
+		return (B[0]!==''?B[0]+op:'')+(a6?frac(A[0],mfracs(A.slice(1),B.slice(1),infMid,infEnd,ops,''), zM||''):frac(A[0],mfracs(A.slice(1),B.slice(1),infMid,infEnd,ops)))
 	}
 },
 
+mroots=function(A,B,infMid,infEnd,ops,Aisindex,zM){//连根式 b0+a0√(b1+a1√(b2+a2√...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++	Aisindex指定数组A是根次，而不是倍数
+	var An=A.length,Bn=B.length,t='',a7=arguments.length==7;//Bn比An大1
+	if(Bn==2){
+		var op=/^..$/.test(ops)?ops[0]:(ops||'+').substr(-1);
+		return B[0]+(infMid?op+'⋯':'')+op+(An && !Aisindex?A[0]:'')+(a7?kroot:root)(B[1]+(infEnd?op+'⋯':''),(An && Aisindex?A[0]:''))
+	}else{
+		var ops2=ops||'+',op=ops2;
+		if(op=='+--' || op=='-++'){
+			op=op[0];
+			ops=ops[1];
+		}else if(op=='+-' || op=='-+'){
+			op=op[0];
+			ops=ops[1]+op;
+		}
+		return (B[0]+op=='+'?'':B[0]+op)+(An && !Aisindex?A[0]:'')+(a7?kroot:root)(a7?mroots(A.slice(1),B.slice(1),infMid,infEnd,ops,Aisindex,''):mroots(A.slice(1),B.slice(1),infMid,infEnd,ops,Aisindex),(An && Aisindex?A[0]:''))
+	}
+},
+
+re=function(t){
+	return (''+t).replace(/>=/g,'≥').replace(/<=/g,'≤').replace(/=\//g,'≠').replace(/-=/g,'≡').replace(/≡\//g,'≢')
+	.replace(/←→|<->/g,'↔').replace(/->/g,'→').replace(/-</g,'←').replace(/↔\//g,'↮').replace(/→\//g,'↛').replace(/←\//g,'↚')
+	.replace(/<=>/g,'⇔').replace(/=>/g,'⇒').replace(/=</g,'⇐').replace(/⇔\//g,'⇎').replace(/⇒\//g,'⇏').replace(/⇐\//g,'⇍')
+},
 rel=function(A,rA,style){//通用模板
 	var l=A.length, r=style?br:' ',s='';
 	Arrf(function(t,i){if(i){s+=r+rA[i-1]+' '+t}else{s=t}},A)
 	return s
 },
-mod=function(a,b,m,neg,pow){return (isArr(a)?a.join('≡'):a)+(neg?'≢':'≡')+b+' ('+(pow?'pow':'mod')+' '+m+')'},
+binom=function(n,m,p){return p=='C'?'C_{'+n+'}^{'+m+'}':(p=='c'?'{'+n+' \\choose '+m+'}':'\\'+(p||'')+'binom{'+n+'}{'+m+'}')},//p=t d '' c (for choose)
+mod=function(a,b,m,neg,pow,zM){var a6=arguments.length==6,M=(''+m).length==1?m:'{'+m+'}';return (isArr(a)?a.join('≡'):a)+(neg?(a6?kx('≢'):'≢'):'≡')+b+(a6?(pow?' ~ (\\mathrm{pow} ~ '+M+')':'\\pmod '+M):' ('+(pow?'pow':'mod')+' '+m+')')},	//'\\not\\equiv '
+kmod=function(a,b,m,neg,pow){return mod(a,b,m,neg,pow,'')},
 imply=function(A,b,single,neg,inv,style){var isA=isArr(A), s=inv?(single?'←':'⇐'):(single?'→':'⇒'), l=A.length, r=style?br:' ';return (isArr(A)?A.slice(0, l-1).join(r+s+' '):A)+r+(neg?(inv?(single?'↚':'⇍'):(single?'↛':'⇏')):s)+' '+(isA?A[l-1]:b)},
-eqv=function(A,b,n,neg,style){/*
+eqv=function(A,b,n,neg,style,m){/*
 	equivalent等价关系
 	n是符号编号
 	0 =
@@ -192,15 +545,21 @@ eqv=function(A,b,n,neg,style){/*
 	9 
 	10 
 	
+	参数 b 当A非数组时有用，A=b
 	参数 style指定换行（否则默认是空格）
+	参数 m 指定当n=3时 (mod m)
+	
+	
 */
 	var c=['=↔⇔≡~≈≋≃≅','≠↮⇎≢≁≉ ≄≇'],isA=isArr(A), s=c[0][n||0], l=A.length, r=style?br:' ';
-	return (isA?A.slice(0, l-1).join(r+s+' '):A)+r+(neg?c[1][n||0]:s)+' '+(isA?A[l-1]:b)
+	return (isA?A.slice(0, l-1).join(r+s+' '):A)+r+(neg?c[1][n||0]:s)+' '+(isA?A[l-1]:b)+(n==3 && m?' (mod '+m+')':'')
 },
-eq0=function(A,n){/*
+eq0=function(A,n,m){/*
 	等于0
+	
+	参数n指定等号样式，当n=3时，m是mod m
 */
-	return eqv(isArr(A)?[].concat(A,0):[A,0],'',n)
+	return eqv(isArr(A)?[].concat(A,0):[A,0],'',n)+(n==3?' \\pmod {'+m+'}':'')	//' (mod '+m+')'
 },
 lt=function(A,b,nm,style){/*
 	nm是数组[连续的符号编号, 类别序号]
@@ -232,64 +591,114 @@ gt=function(A,b,nm,style){/*
 
 },
 
-eq=function(t,m,b){return SCtv('inblk pd10 alignc',SCtv('small pd10', t||'')+DCtv(m||'eq')+SCtv('small',b||''))},
+
+eq=function(t,m,b){var k=kos(m);return (t||b)?'\\'+k+(b?'['+b+']':'')+'{'+(t||'')+'}':(/x/.test(k)?'\\'+k:k)},
+eqM=function(A,m){return A.join(eq('','','\\mod '+m))},
 Eq=function(A,noteA,style,eqClass){
 	/*
-	A 等值
+	A 等值	数组元素，如也是数组，则在等号两侧
 	noteA 备注
-	eqClass 连接符（默认是等号eq）
-
 	style 指定排版风格
-		line 排成一行
-		br 简单换行（默认）
-		table 等号对齐，都在第2列；注释都在第4列
-		
-		eq 等号上备注
+		line 排成一行；注释都在等号上
 
-	注意，A比noteA的length大1，存储原式
+		br 换行；等号对齐（默认，仅每行第1个=）；注释都在等号上
+		table 换行；等号对齐（都在第2列）；注释都在第4列
+		
+	eqClass 连接符（默认是等号eq）	= ≡ 支持数组(与noteA一一对应),表示依次使用不同连接符号
+
+
 	*/
-	var n=A.length, a=[], sty=style||'br',isline=/line/.test(sty), isbr=/br/.test(sty), istb=/table/.test(sty), eqC=eqClass||'';
-	for(var i=0;i<n-1;i++){
-		var nAi=noteA?(noteA[i]||''):'',ai='', isA=nAi instanceof Array;
-		if(isbr || isline){
-			if(i==0){
-				ai=A[0]+(isline?' ':'');
-			}
-			if(eqC && eqC!='eq' || !eqC && nAi){
-				ai+=(isA?eq(nAi[0],eqC,nAi[1]||''):eq(nAi,eqC))+A[i+1]
-			}else{
-				ai+='= '+A[i+1]+' '+nAi
-			}
+	
+
+	
+	var n=A.length, a=[], sty=style||'br', isbr=sty=='br',isline=sty=='line', istable=sty=='table',
+		eqC=eqClass||'', iseqCA=eqClass instanceof Array, isA0=A[0] instanceof Array;
+	for(var i=0;i<n;i++){
+		var Ai=A[i], isA=Ai instanceof Array, nAi=noteA && (i || isA0 || isline)?(noteA[!isA0 && !isline?i-1:i]||''):'',
+			eqCi=(iseqCA?eqC[(i || isA0 || isline) && !isA0 && !isline?i-1:i]:(eqC||'='))||'',
+			ai='', isnA=nAi instanceof Array;
+		if(isbr){
+		//	console.log(isnA?nAi.join(';;;;;;'):nAi);
+			ai=i ||isA0 ?(isA?Ai:['',Ai]).join(' & '+ (!(isnA||nAi)?(eqCi||'='):eq((isnA?nAi[0]:nAi),(eqCi),(isnA?nAi[1]:'')||''))):' & ~ \\quad '+Ai
 		}
-		if(istb){
-			if(eqC){
-				ai=[i==0?A[0]:'',isA?eq(nAi[0],eqC,nAi[1]||''):eq(nAi,eqC),A[i+1]];
-			}else{
-				ai=[i==0?A[0]:'','=',A[i+1],nAi];
-			}
-			
-	//console.log(ai);
+		if(istable){
+			ai=i ||isA0 ?(isA?Ai:['',Ai]).join(' & '+ eqCi)+(nAi?' & '+nAi:''):' & ~ \\quad '+Ai
 		}
-		a.push(isbr?DCtv('inblk pd10',ai):ai)
+		if(isline){
+			ai=Ai+(i==n-1?'':(!(isnA||nAi)?eqCi:eq((isnA?nAi[0]:nAi),eqCi,(isnA?nAi[1]:nAi)||'')))
+		}
+		a.push(ai)
 	}
-	return istb?Table('',a,'alignl'):a.join('')
+	return isline?a.join(' '):'\\begin{aligned}'+a.join(' \\\\ ')+' \\end{aligned}'
+},
+EqA=function(A,lr,splitter){/* 对齐方程组(不等式组)
+	A是二维数组(已按对齐要求分割),或者一维数组(方程的数组,需按splitter分割)
+	lr 指定大括号0{ 1} 2{} 3''
+	splitter是对齐标志(正则表达式) 默认按多元一次线性方程(或不等式)组	split('123x+4y=23',/[a-z≤≥<>=≠≡≢]/g)
+		
+	*/
+	var s0='\\left'+['\\{','','\\{',''][+lr||0], s1='\\right'+['.','\\}','\\}',''][+lr||0], sp=splitter||/[a-z≤≥<>=≠≡≢]/g, isDim2=A[0] instanceof Array,c=0, B=[].concat(A);
+	if(isDim2){
+		c=A[0].length;
+	}else{
+		var spA=A.join('').replace(/[^a-z]/g,'').split('').sort().join('').replace(/(.)\1+/g,'$1').split('').concat('=');	//Arrf(String.fromCharCode,seqA(97,26))
+		c=spA.length;
+		Arrf(function(x,i){
+			consolelog(x,i,kx(x));
+			B[i]=split(kx(x),sp,1);
+			if(B[i][0].length!=c){
+				for(var j=0;j<c-1;j++){
+					if(B[i][0].indexOf(spA[j])<0){
+						if(j){
+							B[i][0].splice(j,0,'');//插入
+							B[i][1].splice(j,0,'');
+						}else{
+							B[i][0].unshift('');
+							B[i][1].unshift('');
+						}
+					}
+				}
+			}
+			var C=[];
+			for(var j=0;j<c*2+1;j++){
+				C.push(B[i][1-j%2][Math.floor(j/2)])
+			}
+			B[i]=C;
+		},B);
+		c*=2;
+
+	}
+	return s0+'\\begin{alignedat}{'+c+'}'+Arrf(function(x){return x.join(' & ')},B).join(kbr)+'\\end{alignedat}'+s1
+/*
+   10&x &  +3 &y & =& 0\\
+   3&x & + 12 &  y & =&1 0 \\
+   & &   18&y & =& 40 \\
+
+   10&x &  & & =& 230\\
+*/
+
+	
 },
 Table=function(thead,t,bd,tbodyClass){	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
 	/*
-		bd：表格class（控制表格外边框）
+		bd：表格class（控制表格边框 或 水平对齐）
 		
 			bd0 无边框（默认）
 			
+			TBalignl (默认)
+			TBalignc_3_5
+			TBalignr_2
 			
 			
 			TBtimes （群、九九）乘法表：首行bdb 首列bdr
-			TBr 全部行
-			TBc 全部列
+			TBr 全部行(不含最后一行)
+			TBc 全部列(不含最后一列)
 			TBrc 所有单元格
 			
 			TBr2	行平均分两块
 			TBc2	列平均分两块
-			TBr2c2  十字分隔 【注意r2、c2是或关系】
+			TBr2c2  十字分隔 
+				注意 r2、c2是或关系
 
 			
 			TBD3_4_2		主对角阵分块（仅方阵）
@@ -302,7 +711,8 @@ Table=function(thead,t,bd,tbodyClass){	//bd 指定边框风格（或其他class�
 			TBI2J2 第2行或第2列加边框
 			TBI2_4J2_3 第2、4行或第2、3列加边框
 
-			TB[i2][j3][lrbt]		部分单元格边框【注意i、j小写是且关系，大写是或】
+			TB[i2][j3][lrbt]		部分单元格边框
+				注意i、j小写是且关系，大写是或
 					[lrbt] 默认全选
 				TBi2j3lr 第2行且第3列加左右边框
 				TBj3r
@@ -326,7 +736,7 @@ bds 指定线条风格
 	//console.log(t);
 
 
-		var th='',b='</tbody></table>',colh='',
+		var th='',b='</tbody></table>',colh='',edi=/edit/.test(bd),
 			bds=/dash|dot|dou|set|ridge|solid/.test(bd)?bd.match(/solid|dash|dot|double|groove|inset|outset|ridge/g).join(' '):'',
 			r=[],isA=t instanceof Array,A=isA?t:t.split('\n'),n=A.length,m=(isA?A[0]:A[0].split('\t')).length;
 		
@@ -338,8 +748,8 @@ bds 指定线条风格
 					break;
 				}
 				var thi='<tr>',hdi=thead[i];
-				for(var j=0;j<m;j++){
-					thi+='<th class=bds>'+hdi[j]+'</th>';
+				for(var j=0,l=Math.max(m+(thn>1?1:0), isArr(hdi)?hdi.length:1);j<l;j++){
+					thi+='<th class=bds>'+hdi[j]+'</th>';//thi+='<th'+(j?' class=bdl':'')+'>'+hdi[j]+'</th>'
 				}
 				thi+='</tr>';
 				th+=thi;
@@ -381,15 +791,15 @@ bds 指定线条风格
 				if(bd){
 					if(/TBrc/.test(bd)){
 						c+='bdl bdr bdb bdt'
-					}else if(/TBr?c(?!\d)/.test(bd)){
-						c+='bdr '
+					}else if(/TBc(?!\d)/.test(bd)){
+						c+=(j==0?'':'bdl ')+(j==m-1?'':'bdr ');
 					}else if(/TBr(?!\d)/.test(bd)){
-						c+='bdb '
+						c+=(i==0?'':'bdt ')+(i==n-1?'':'bdb ');
 					}
 
 					if(/TBtimes/.test(bd)){
 						if(!i){c+='bdb '}
-						if(!j){c+='bdr'}
+						if(!j){c+='bdr '}
 					}
 					
 					if(/TB(r\d+)?c\d+/.test(bd) && j==m/+bd.match(/TB(r\d+)?c\d+/)[0].split('c')[1]-1){
@@ -421,43 +831,168 @@ bds 指定线条风格
 							}
 						}
 					}
+					
+					
+					if(/TBalign[cr]($| )/.test(bd)){
+						c+=' align'+bd.replace(/ TBalign.\d+(_\d+)*/g,'').split('align')[1]
+					}else{
+						var cc=bd.match(new RegExp('align.(\\d+_)*'+(j+1)+'(?!\\d)'));
+						if(cc){
+						
+							c+=' '+cc[0].substr(0,6)
+						}
+	
+					}
 
 				}
 				//console.log(Ai[j]);
-				ri.push('<td class="'+(c?zlr2(c,bds||''):'bd0')+'">'+Ai[j]+'</td>')
+				ri.push('<td class="'+(c?zlr2(c,bds||'').trim():'bd0')+(edi?'" contenteditable="true':'')+'">'+(Ai[j]==undefined?'':Ai[j])+'</td>')
 			}
-			r.push(XML.wrapE('tr',(colh?'<th>'+colh[i]+'</th>':'')+ri.join('')))
+			r.push(XML.wrapE('tr',(colh?'<th class="bdr bdt'+
+				(/TBr?c/.test(bd)||(new RegExp('I(\\d+_)*'+(i+1),'')).test(bd)?' bdl bdb':'')+
+
+				'">'+(colh[i]==undefined?'':colh[i])+'</th>':'')+ri.join('')))
 		}
 		return /scroll/.test(bd)?DCtv('scroll',a+r.join('')+b):a+r.join('')+b
 	},
-mtrx=function(v,lr,lcr){return SCtv('mtrx'+(lr||'')+' inblk align'+(lcr||lr||'c'), v instanceof Array?Table('',v):v)},
-det=function(A){return SCtv('bdl bdr inblk alignc',Table('',A))},
-lp=function(l,v){var t=arguments.length==1; return (!t && !l?'':SCtv('inblk xxlarge', t?'{':l))+SCtv('inblk alignl', t?l:v)},
-rp=function(v,r){return SCtv('inblk alignr',v)+(r===''?'':SCtv('inblk xxlarge', r||'}'))},
-lrp=function(l,v,r){var t=arguments.length==1; return SCtv('inblk xxlarge', t?'(':l)+sci(t?l:v)+SCtv('inblk xxlarge', t?')':r)},
-frac=function(t,b){var nob=b==undefined;return SCtv('inblk alignc',SCtv('alignc',nob?t[0]:t)+DCtv('fracline')+SCtv('alignc',nob?t[1]:b))},
-root=function(t,n,s){return SCtv('rootleft inblk notm" data-size="'+(s||1),DCtv('rootleftline" data-index="'+
+mtrx=function(v,lr,lcr,spacing,parts){/* 参数 lr, lcr，
+		在latex下 用于设置括号类型：
+matrix命令下	p() b[] B{} v|| V‖‖ 
+array命令下		()	[]	\{\}	||	\|
+		在html下 用于控制左右对齐
+		
+	parts 参数，控制分块
+		参考Table的部分TB命令 + 列虚、实线':|' + 行虚、实线'._'
+								无行分块时，列线默认都用虚线
+								无列分块时，行线默认都用实线
+								行列都有分块，行列线默认都是虚线
+		rc 全部行列
+		r全部行
+		c全部列
+		r3c2	均分
+		I2_5J3_7	指定行列 (编号从1开始)
+		[C]D3_4_2	[副]主对角阵	(仅方阵)
+	
+	*/
+	var al=arguments.length, r=v.length, c=(v[0] instanceof Array ?v[0]:'1').length,I=[],J=[],A;
+	if(parts){
+		consolelog(parts);
+		A=Arrf(function(t){return t instanceof Array ?t.join(' & '):t},v);
+		if(/I/.test(parts)){
+			I=Arrf(Number,parts.match(/I\d+(_\d+)*/g)[0].substr(1).split('_'));
+		}
+		if(/J/.test(parts)){
+			J=Arrf(Number,parts.match(/J\d+(_\d+)*/g)[0].substr(1).split('_'));
+		}
+		if(/r/.test(parts)){
+			if(/r\d/.test(parts)){
+				var t=+parts.match(/r\d+/g)[0].substr(1);
+				I=I.concat(seqA(r/t,t-1,'',r/t))
+			}else{
+				I=seqA(1,r)
+			}
+		}
+		if(/c/.test(parts)){
+			if(/c\d/.test(parts)){
+				var t=+parts.match(/c\d+/g)[0].substr(1);
+				J=J.concat(seqA(c/t,t,'',c/t))
+			}else{
+				J=seqA(1,c)
+			}
+		}
+		if(/[CD]/.test(parts)){// bug 0 1 0 0 0 0 1 0 0 0 0 1 a b c d&CD3_1
+			var D=antidiff(Arrf(Number,parts.match(/[CD]+\d+(_\d+)*/g)[0].replace(/[CD]/g,'').split('_'))),D2=[].concat(D);
+			Arrf(function(t){uniPush(D,t,1)},I);
+			Arrf(function(t){uniPush(D2,t,1)},J);
+			I=D;
+			if(/C/.test(parts)){
+				var s=D.slice(-1)[0];
+				consolelog(s);
+				J=Arrf(function(x){return s-x},D2).reverse();
+				J=J.slice(1).concat(s);
+			}else{
+				J=D2;
+			}
+			consolelog(J);
+		}
+		var ls=parts.split(' '),hline=ls[2]||(J.length?'.':'_'),vline=ls[1]||(I.length<1 || I.length*J.length?':':'|');
+		
+			
+		if(J.length){
+		//	console.log('J=',J);
+			if(J.slice(-1)[0]!=c){
+				J.push(c);
+			}
+			J=Arrf(function(t){return 'c'.repeat(t)},diff(J));
+			J=concat(J.slice(0,J.length-1),vline).join('')+J.slice(-1)[0];
+		}else{
+			J='c'.repeat(c);
+		}
+		
+		if(I.slice(-1)[0]==r){
+			I.pop();
+		}
+		
+		
+	//	Arrf(function(t){A[t]='\\hline '+A[t]},I);
+
+		Arrf(function(t,i){A[t]='\\h'+((hline[i]||hline[0])=='.'?'dash':'')+'line '+A[t]},I);
+	//	console.log(J);
+		return '\\left'+(lr||'[')+' \\begin{array}{'+J+'}'+
+			A.join(' \\\\'+(!spacing?' ':'['+spacing+'pt]'))+
+			' \\end{array}'+' \\right'+(lcr||']')
+
+	}
+
+	return al>3?'\\begin{'+(lr=='.'?'':(lr||'b'))+'matrix}'+Arrf(function(x){return x instanceof Array? x.join(' & '):x},v).join(' \\\\'+(!spacing?' ':'['+spacing+'pt]'))+' \\end{'+(lcr=='.'?'':(lcr||'b'))+
+		'matrix}':SCtv('mtrx'+(lr||'')+' inblk align'+(lcr||lr||'c'), v instanceof Array?Table('',v):v)},
+zmtrx=function(A,spacing,parts){return mtrx(A,'','',spacing,parts)},
+kmtrx=function(A,fracOff,parts){var t=mtrx((Mfn?Arrf(function(a){return isArr(a)?Arrf(function(x){return Mfn.fromStr(x).toStr(1)},a):Mfn.fromStr(a).toStr(1)},A):A),'','',/frac/.test(A)||!fracOff && /\//.test(A)?5:'',parts);return fracOff?t:kfrac(t,1,'t')},
+		
+zstrx=function(t,p){return Arrf(function(x){return ZLR(x,'',p==undefined?' ':'')},t.split(';'))},
+zarray=function(A,spacing,parts){return mtrx(A,'.','.',spacing,parts)},
+tableT=function(A){
+	var B=[],m=A.length,n=A[0].length;
+	for(var j=0;j<n;j++){
+		B.push([]);
+		for(var i=0;i<m;i++){
+			B[j].push(A[i][j])
+		}
+	}
+	return B
+},
+ztable=function(A,nobox,spacing){var t=mtrx(A,'.','.',spacing||'','rc  _');return nobox?t:boxed(t)},
+det=function(A,spacing,tiny){var al=arguments.length;return al>=2?'\\begin{vmatrix}'+Arrf(function(x){return kfrac(x.join(' & '),1,tiny||'')},A).join(' \\\\'+(!spacing?' ':'['+spacing+'pt]'))+'\\end{vmatrix}':SCtv('bdl bdr inblk alignc',Table('',A))},
+zdet=function(A,spacing){return det(Arrf(ZLR,A),spacing)},
+kdet=function(A,fracOff){return det(A,/frac/.test(A)||!fracOff && /\//.test(A)?5:'',fracOff?'':'t')},
+
+lp=function(l,v,zM){var t=arguments.length==1,t3=arguments.length>=3; return zM?'\\left'+(l||'\\{')+v+'\\right.': (!t && !l?'':SCtv('inblk xxlarge', t?'{':l))+SCtv('inblk alignl', t?l:v)},
+rp=function(v,r,zM){return arguments.length==3?'\\left.'+v+'\\right'+(r||'\\{'):SCtv('inblk alignr',v)+(r===''?'':SCtv('inblk xxlarge', r||'}'))},
+lrp=function(l,v,r,zM){var t=arguments.length==1,t4=arguments.length>=4; return t4?(l||'\\'+(zM||'bigg')+'l(')+v+(r||'\\'+(zM||'bigg')+'r)'):SCtv('inblk xxlarge', t?'(':l)+sci(t?l:v)+SCtv('inblk xxlarge', t?')':r)},
+lrpfrac=function(a,b,l,r){return lrp(l||'',frac(a,b,'d'),r||'','')}, genfrac=function(a,b,l,r,size,linethick){return '\\genfrac'+(l||'(')+(r||')')+'{'+(linethick===undefined?'':linethick+'pt')+'}{'+(size||0)+'}{'+a+'}{'+b+'}'}, 
+zp=function(v,c,l,r){if(v===''){return ''} var A=['(',')','[',']','|','/','\\{','\\}','\\|','\\langle','\\rangle','\\backslash','\\lfloor','\\rfloor','\\lceil','\\rceil','\\uparrow','\\updownarrow','\\downarrow','\\Uparrow','\\Updownarrow','\\Downarrow'],
+	t='()[]|/{}‖<>\\⌊⌋⌈⌉↑↕↓⇑⇕⇓';
+	return lrp('\\left'+(c?(A[t.indexOf(c[0])]||c[0]):(l||'('))+' ',v,'\\right'+(c?(A[t.indexOf(c[1]||c[0])]||c[0]):(r||')'))+' ','')},
+pp=function(v,c,l,r){if(v===''){return ''} return (c?c[0]:(l||'('))+v+(c?c[1]:(r||')'))},
+frac=function(t,b,zM){var nob=b==undefined,t3=arguments.length>=3;return t3?'\\'+(/^[td]$/.test(zM)?zM:'')+'frac{'+(zM=='t'?'':'\\displaystyle{}')+(zM=='p'?'\\partial ':'')+t+'}{'+(zM=='t'?'':'\\displaystyle{}')+(zM=='p'?'\\partial ':'')+b+'}':SCtv('inblk alignc',SCtv('alignc',nob?t[0]:t)+DCtv('fracline')+SCtv('alignc',nob?t[1]:b))},
+				
+root=function(t,n,s,zM){return arguments.length>=4?'\\sqrt'+(n && +n!=2?'['+n+']':'')+'{'+t+'}':SCtv('rootleft inblk notm" data-size="'+(s||1),DCtv('rootleftline" data-index="'+
 	(n && !/^[234]$/.test(n)?n:''))+
-	SCtv('symbol',/^[34]$/.test(n)?'∛∜'[+n-3]:'√'))+sci(DCtv('fracline')+t)},//root=function(t,n,s){return sci(n?sup(n):'')+SCtv('rootleft" data-size="'+(s||1),'√')+SCtv('bdt',sci(t))}
-//OH(root(frac(root('3+x',3),3),3))
-sceg=function(v){return SCtv('eg',v)},sceg2=function(v){return SCtv('eg eg2',v)};
+	SCtv('symbol',/^[34]$/.test(n)?'∛∜'[+n-3]:'√'))+sci(DCtv('fracline')+t)},
+
+piece=function(A,r){return arguments.length>=2?mtrx(A,['\\{','.','\\{'][+r],(+r?'\\}':'.'),'',' '):'\\begin{cases} '+(A[0] instanceof Array?Arrf(function(a){return a[0]+(a[1]?' & '+a[1]:'')},A):A).join(' \\\\ ')+' \\end{cases}'},
+
+
+
+sceg=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
+sceg2=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
+
+zMath=function(v){return SCtv('zMath" title="'+v,v)};
 
 
 
 var FNS={
-	'weixin':' weixin.ico',
-	'tsina':'sinaweibo Weibo.ico 1133462976',
-	'tqq':' tqq.gif 801404261',
-	't163':' t163.gif 78JugW1nGMG47X1z',
-	'douban':'douban Douban.ico 0dd41f9f32ae2c80297c5edd980a8580',
-	'renren':' renren.ico aeaed3d9245b449094eb8d7fe0691713',
-	'baidu':'baidu Baidu.ico',
-	'fb':'facebook Facebook.png 227606350619834',
-	'twitter':'twitter Twitter.gif',
-	'googleplus':'google_plusone_share g+.ico',
-	'gmail':'gmail Gmail.ico',
-	'translate':'googletranslate lang.ico',
-	'more':'addthis Share.ico'
+	'share':'addthis Share.ico'
 },Random=function(n,digits){//从1～n中随机选1个数字		指定digits，则随机给出一个n位10进制数（文本形式）
 	if(digits){
 		var s=''+Math.round(Math.random()*(10-1)+1);
@@ -467,15 +1002,22 @@ var FNS={
 		return s
 	}
 	return Math.round(Math.random()*(n-1)+1)
+},RandomColor=function(i){
+	var c='#'+('00000'+Math.floor(Math.random()*Math.pow(16,6)).toString(16)).substr(-6);
+	if(i>1){
+		return [c].concat(RandomColor(i-1))
+	}else{
+		return c
+	}
 
 },jSoff=JSON.stringify;
 
 function zlr(pre,s,sep){var t=(sep===undefined?' ':sep)+pre;return pre+s.split(' ').join(t)}
-function zlr2(s,sur,sep){var t=sur+(sep===undefined?' ':sep);return s.split(' ').join(t)+sur}
-function zlr3(pre,s,sur,sep){return zlr(pre,zlr2(s,sur),sep)}
+function zlr2(s,suf,sep){var t=suf+(sep===undefined?' ':sep);return s.split(' ').join(t)+suf}
+function zlr3(pre,s,suf,sep){return zlr(pre,zlr2(s,suf),sep)}
 function zlrA(pre,A){return Arrf(function(t){return pre+t},A)}
-function zlrA2(A,sur){return Arrf(function(t){return t+sur},A)}
-function zlrA3(pre,A,sur){return Arrf(function(t){return pre+t+sur},A)}
+function zlrA2(A,suf){return Arrf(function(t){return t+suf},A)}
+function zlrA3(pre,A,suf){return Arrf(function(t){return pre+t+suf},A)}
 
 
 function ZLR(s0,s1,s){
@@ -501,11 +1043,11 @@ function copyA(s,n){
 	return a;
 }
 
-function ZLR3(preA,sA,surA,sep){//拼接字符串
-	var n=sA.length,s='',PA=preA instanceof Array, SA=surA instanceof Array,sp=sep===undefined?',':sep;
+function ZLR3(preA,sA,sufA,sep){//拼接字符串
+	var n=sA.length,s='',PA=preA instanceof Array, SA=sufA instanceof Array,sp=sep===undefined?',':sep;
 
 	for(var i=0;i<n;i++){
-		s+=(sA[i]==='⋯'?'⋯':(PA?preA[i]:preA)+sA[i]+(SA?surA[i]:surA))+sp;
+		s+=(sA[i]==='⋯'?'⋯':(PA?preA[i]:preA)+sA[i]+(SA?sufA[i]:sufA))+sp;
 	}
 	return s.substr(0,s.length-sp.length)
 }
@@ -543,6 +1085,7 @@ function Cnt(n,n2,m,m2){
 }
 
 
+function spanRed(t){return SC+'red>'+t+sc}
 function spanHotk(t){return SC+'hotk>'+t+sc}
 
 function q_key(s,a,ins,noAppend,hotk){
@@ -553,10 +1096,11 @@ function q_key(s,a,ins,noAppend,hotk){
 
 
 
-function scrollH(){return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)}
+function scrollH(){return Math.max(document.body?document.body.scrollHeight:1, document.documentElement.scrollHeight)}
 //document.body.scrollHeight = $('body').height() = document.body.clientHeight > document.documentElement.scrollHeight
 
-function scrollW(){return $('body').width() || document.documentElement.scrollWidth}
+function scrollW(){return Math.max(document.body?document.body.scrollWidth:1, document.documentElement.scrollWidth)}
+//return $('body').width() || document.documentElement.scrollWidth
 //console.log(document.body.scrollWidth , $('body').width() , document.body.clientWidth ,document.documentElement.scrollWidth)
 
 
@@ -593,6 +1137,33 @@ function Node(node){
 	});
 	return t;
 }
+function uniPush(A,x,ord){//ord指定按序插入：0不考虑原数组是否升序降序 1：已知A升序 -1：已知A降序
+	if(A.indexOf(x)<0){
+		if(ord){
+			var j=0;
+			if(ord==1){
+				for(var i=A.length-1;i--;i>-1){
+					if(A[i]<x){
+						A.splice(i,0,x);
+						return x
+					}
+				}
+				A.unshift(x)
+			}else{
+				for(var i=A.length-1;i--;i>-1){
+					if(A[i]>x){
+						A.splice(i,0,x);
+						return x
+					}
+				}
+				A.unshift(x)
+			}
+			
+		}else{
+			A.push(x)
+		}
+	}
+}
 function attr2dataset(t){
 	return t.replace(/data-(.+)/,'dataset.$1').replace(/-[^-]+/g,function(a){return a.substr(1,1).toUpperCase()+a.substr(2)})
 }
@@ -600,12 +1171,21 @@ function urlArr(jQExp,attr,attr2){
 	var jQ=jQExp||'a[href]:has(img)', t=[], a,s;
 	Node(jQ).each(function(){
 		if(attr){
-			s=eval('this.'+attr2dataset(attr))
+			if(attr=='style'){
+				s=$(this).attr(attr)||'';
+			}else{
+				s=eval('this.'+attr2dataset(attr))||''
+			}
 		}else{
 			s=this.href
 		}
 		if(attr2){
-			a=eval('this.'+attr2dataset(attr2)).trim()+'\t'
+			if(attr2=='style'){
+				a=$(this).attr(attr2)||'';
+			}else{
+				a=(eval('this.'+attr2dataset(attr2))||'').trim()
+			}
+			a+='\t';
 		}else{
 			a=''
 		}
@@ -640,6 +1220,22 @@ function tableArr(jQExp,type){//type=str/arr/csv
 }
 
 function isArr(obj,dim) {return obj instanceof Array && (dim?obj[0] instanceof Array:1)} //Object.prototype.toString.call(obj) === '[object Array]'} //x instanceof Array
+function isStr(o) {return typeof o == 'string'}
+function isObj(o) {return typeof o == 'object'}
+function isVar(o) {return /^[a-zα-ω]$/i.test(o)}
+
+function hasVar(o) {
+	if(isArr(o)){
+		for(var i=0;i<o.length;i++){
+			if(hasVar(o[i])){
+				return true
+			}
+		}
+		return false
+	}
+	return /[a-zα-ω]/i.test(o)
+}
+
 
 function fn0(k){return encodeURIComponent(k)}
 function fn1(k){return decodeURIComponent(k)}
@@ -651,29 +1247,28 @@ function fnd(k){return k.replace(/ /g,'_')}
 function fne(k){return escape(k.replace(/ /g,'-'))}
 function fnt(k){return escape(H_d(k))}
 function fnx(k){return k.replace(/^<!\[CDATA\[|\]{2}>$/g,'') }
-function fns(webid, url, title, smry, pic){
-	var arr=(FNS[webid]||'').split(' '), p=pic?'&pic='+pic:'', str, k, web=webid, jia=isCN || !arr[0];
-	if(webid=='more'){web=''}else{web='&'+(jia?'webid='+web:'s='+arr[0])}
+function fnr(k){return k.replace(/\\/g,'\\\\')}
+function fnq(k){return k.replace(/"/g,'&#34;')}
+function fnv0(k){return k.replace(/^\$|\$$/g,'')}
+function fnv(k){return k.replace(/\$[^\$]+\$/g,function(t){return eval(fnv0(t))})}
 
-	if(jia){
-		if(arr.length>2){k='&appkey='+arr[2]}else{k=''}
-		if(webid=='tsina'){k+='&ralateuid=2356984903'}
-		str='jiathis.com/send/?uid=1515817'+ k+p +'&summary';
-	}else{
-		if(webid=='twitter'){web += '&via=zzllrrImager'}
-		str='addthis.com/bookmark.php?pubid=ra-4eeb29d528c674a8&description';
-	}
+
+function fns(webid, url, title, smry, pic){
+	var arr=(FNS[webid]||'').split(' '), p=pic?'&pic='+pic:'', str, k, web=webid;
+	if(webid=='share'){web=''}
+	str='addthis.com/bookmark.php?pubid=ra-4eeb29d528c674a8&description';
+
 	return H+'www.'+ str +'='+ fn0(smry) + web +'&url='+ url +'&title='+ fn0(title);
 }
-function fnq(k,w,d){
-	var t=[
-		H+'s.jiathis.com/qrcode.php?url=',
-		Hs+'chart.googleapis.com/chart?chs='+(w||150)+'x'+(w||150)+'&cht=qr&chl=',
-		Hs+'api.qrserver.com/v1/create-qr-code/?size='+(w||150)+'x'+(w||150)+'&data=',
-		H+'www.qrstuff.com/generate.generate?preview=1&type=URL&url=',
-		H+'www.qr-code-generator.com/phpqrcode/getCode.php?cht=qr&chl=',
-		H+'qrfree.kaywa.com/?l=1&s=8&d='];
-	return t[d||0]+fn0(k)
+
+
+function dataURItoBlob(dataURI){
+    var byteStr = atob(dataURI.split(',')[1]);
+    var array=[];
+    for(var i=0;i<byteStr.length;i++){
+        array.push(byteStr.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
 }
 
 function H_u(t){return (t||'').replace(/[\?&]utm_.+=.*&utm_.+=.*&utm_.+=[^#]*/,'')}
@@ -701,7 +1296,13 @@ function H_a(u,base){
 	}
 	var t=(u||'').replace(/chrome-extension:\/\/[^\/]+/,'').replace(/\n/g,'').trim();
 	if(!t){return ""}
-	if(imgPreReData.test(t)||/^(file|chrome):[/]{2}/.test(t)){return t.replace(/\s/g,'')}
+
+	if(/^file/.test(b) && /^\/[A-Z]:\//i.test(u)){
+		return 'file://'+u
+	}
+
+	imgPreReData.lastIndex=0;
+	if(imgPreReData.test(t)||/^(blob|chrome|file):[/]{2}/.test(t)){return t.replace(/\s/g,'')}
 	if(/^\?/.test(t)){return b.replace(/\?.+/,t)}
 
 	var src = t.replace(/[/\\]{2,}/g,'//');
@@ -729,6 +1330,21 @@ function H_a(u,base){
 	return src;
 }
 
+function H_o(u){
+
+    var url = u || window.location.href;
+    var search = url.substring(url.lastIndexOf('?') + 1);
+    var obj = {};
+    var reg = /([^?&=]+)=([^?&=]*)/g;
+    search.replace(reg, function (rs, $1, $2) {
+        var name = fn1($1);
+        var val = ''+fn1($2);
+        obj[name] = val;
+        return rs;
+    });
+    return obj;
+}
+
 function html2txt(h){return $('<b>'+h+'</b>').text().trim()}
 function html2html(h){return $('<div>'+h+dc).html().trim()}
 
@@ -736,10 +1352,14 @@ function saveText(t,filename){
 	var mime='text/plain';
 	saveAs('data:'+mime+';charset=utf-8;base64,' + Base64.encode(t), filename)
 }
-function saveAs(Url,filename){
+function saveAs(Url,filename,referer){
 	var blob=new Blob([''], {type:'application/octet-stream'}),u=URL||webkitURL;
     var url = u.createObjectURL(blob);
     var a = document.createElementNS(xhtml,'a');
+    if(referer){
+    	console.log(referer);
+    	a.Referer=referer
+    }
     a.href = Url;
     a.download = filename;
     var e = document.createEvent('MouseEvents');
@@ -757,8 +1377,8 @@ var svgf={
 			return '<path d="'+d+'" stroke="white" fill="none"></path>'
 		},text:function(i,t){
 			return '<text y="'+(t?t[0]:22)+'" x="'+(t?t[1]:6)+'" font-size="'+(t?t[2]:16)+'" fill="white">'+i+'</text>'
-		},rect:function(i,j,k){
-			return '<rect x="'+i+'" y="'+j+'" width="'+k+'" height="'+k+'" stroke="white" fill="none"></rect>'
+		},rect:function(i,j,k,l){
+			return '<rect x="'+i+'" y="'+j+'" width="'+k+'" height="'+(l||k)+'" stroke="white" fill="none"></rect>'
 		},circle:function(cx,cy,r){
 			return '<circle r="'+r+'" cx="'+cx+'" cy="'+cy+'" stroke="white" fill="none"></circle>'
 		},line:function(a,b,c,d){
@@ -775,6 +1395,7 @@ var svgf={
 		,qrcd:svgf.rect(8,8,5)+svgf.rect(18,8,5)+svgf.rect(8,18,5)
 		,memo:svgf.circle(15,16,8)+svgf.path('M10 14 L14 20 20 10 M10 5 A6 6 0 0 0 5 10Z M20 5 A6 6 0 0 1 25 10Z')
 		,text:svgf.path('M 7 6 H 23 V 16 A 10 10 0 0 1 13 26 H 7 V7 M10 12 H20 M10 17 H17 M10 22 H14')
+		,cap:svgf.rect(5,8,20,14)
 
 	},
 Time={
@@ -843,6 +1464,19 @@ Time={
 				.replace(/q/g, Math.ceil(MM/3)).replace(/O{3}/g, (d1+'').split(' ')[1]);
 		}
 		return d1
+	},
+	week: function(t,deltaDays){var d=new Date();
+
+		d.setTime(Date.parse(t||d)+(deltaDays||0)*3600*24*1000);
+
+		var y=d.getFullYear(),
+		days=Math.floor((d-Date.parse(y+'-1-1'))/1000/3600/24),
+		days2018=Math.floor((d-Date.parse('2018-1-1'))/1000/3600/24),
+		A=[(days2018 % 7)+1, Math.floor(days/7), (days%7)+1];
+		if(A[0]<0){
+			A[0]+=7
+		}
+		return A.concat([y,d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds(),d.getMilliseconds()])
 	},
 	reg: function(t){
 		var o={
@@ -1100,7 +1734,7 @@ function urlTran(urls){
 }
 
 function hex2rgba(h,a,arr){
-	var Arr=[parseInt(h.substr(1,2),16),parseInt(h.substr(3,2),16),parseInt(h.substr(5,2),16),Number(a)];
+	var Arr=[parseInt(h.substr(1,2),16),parseInt(h.substr(3,2),16),parseInt(h.substr(5,2),16), isNaN(+a)?1:+a];
 	if(arr){return Arr}
 	return 'RGBA('+Arr.join(',')+')';
 }
@@ -1111,6 +1745,7 @@ function bodyFocus(){
 	$('body')[0].tabIndex=0;
 	$('body').focus();
 }
+function imgdatasrc(src,u){return src?'<img data-src="'+H_a(src,u||'')+'" />':''}
 var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，则新建tr、td，扩充为大表
 	var p=obj.parent(), pi=p.index(), pp=p.parent(), ppc=pp.children(), ppcl=ppc.length, tr=ppc.eq(pi+r), i=obj.index(),pcl=p.children().length;
 	if(build){
@@ -1142,9 +1777,15 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 	testAjax2:function(t){$.ajax({type:'get', url:'', success:function(d){console.log($(d).find('').text())}})}
 }, fCC=function(A){return String.fromCharCode.apply(null,A)
 }, seqA=function(start,n,type,step){//序列: 初始值，个数n，类型，步长	参数 n小于0时，逆序
-	var isBig=typeof start=='bigint', t=[],y=type||'arith',p=step==undefined?(isBig?1n:1):step, N=Math.abs(n);
+	/*
+	var isBig=typeof start=='bigint', t=[],y=type||'arith',p=step==undefined?(isBig?1n:1):step, N=n>=0?n:-n;
 	for(var i=(isBig?0n:0);i<N;i++){
-		t.push(y=='arith'?start+i*p:(y=='geo'?start*(p**i):''));	//Math.pow(p,i)
+		
+	*/
+	
+	var t=[],y=type||'arith',p=step==undefined?1:step, N=n>=0?n:-n;
+	for(var i=0;i<N;i++){
+		t.push(y=='arith'?start+i*p:(y=='geo'?start*Math.pow(p,i):''));	//Math.pow(p,i)	**
 	}
 	if(n<0){
 		t.reverse();
@@ -1156,6 +1797,9 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 		.replace(/[A-z]~[A-z]/g, function(t){var tA=t.split('~'),t0=tA[0].charCodeAt(0),t1=tA[1].charCodeAt(0);return fCC(seqA(t0,t1-t0+1)).split('').join()})
 		.split(',')
 	return t
+}, diff=function(a){var A=[].concat(a);Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);return A //差分运算
+}, antidiff=function(a){var A=[].concat(a);Arrf(function(t,i){if(i){A[i]=t+A[i-1]}},A);return A //		累计求和（逆差分运算）
+
 }, Arri=function(A,i){//提取矩阵第i列（从0开始编号）	负数表示从最后1列往前
 	var t=[];
 	for(var j=0;j<A.length;j++){t.push(A[j][i<0?A[j].length+i:i])}
@@ -1195,7 +1839,7 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 			if(ty=='arr'){//映射数组
 				if(i==1){t=[]}
 				//t.push(f(ar[i]))
-				if(f.length>1 && !f.name){/*匿名函数第2个参数是索引值i（从1开始计数）
+				if(f.length>1 && !f.name){/*匿名函数第2个参数是索引值i（此时从1开始计数）
 					
 					
 					
@@ -1206,6 +1850,10 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 					
 					但可以用toString区分 function abc()	/^function \(/.test(f.toString())
 					用window[函数名]，区分是否全局函数
+
+
+var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[i]=t+A[i-1]}},A);A		累计求和（逆差分运算）
+var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A	差分运算
 
 					*/
 
@@ -1220,10 +1868,15 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 				t+=f(ar[i])
 			}else if(ty=='cp1'){/*一元迭代(递归)，返回数组（每次迭代都有步骤记录，此时数组A是形式需要：只需要满足迭代次数等于A.length）
 				典型例子：
-					等差数列	Arrf(function(t){return tn+2n},[0].concat(Array(10)),'cp1')
-					等比数列 	Arrf(function(t){return tn*2n},[1].concat(Array(10)),'cp1')
-					Fibonacci 斐波那契数列 Arri(Arrf(function(t){return !t?[0n,1n]:[t[1],t[0]+t[1]]},Array(10),'cp1'),1)
+					等差数列（过程）		Arrf(function(t){return tn+2n},[0].concat(Array(10)),'cp1')
+					等比数列 （过程）	Arrf(function(t){return tn*2n},[1].concat(Array(10)),'cp1')
+					Fibonacci 斐波那契数列（过程） Arri(Arrf(function(t){return !t?[0n,1n]:[t[1],t[0]+t[1]]},Array(10),'cp1'),1)
 					阶乘数列	Arri(Arrf(function(t){return !t?[1n,1n]:[t[0]+1n,(t[0]+1n)*t[1]]},Array(10),'cp1'),1)
+等差前n项和（过程） Arrf(function(t){return !t?[1]:t.concat(t[t.length-1]+5)},Array(10),'cp1')
+
+高阶差分（过程）		Arrf(diff,[[2,4,5,8,10]].concat(Array(10)),'cp1')
+高阶逆差分（过程） Arrf(antidiff,[[2,4,5,8,10]].concat(Array(10)),'cp1')
+
 
 				*/
 				if(i==1){t=[f(ar[i])]}else{
@@ -1235,6 +1888,10 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 					阶乘 Arrf(function(s,t){return s*t},seqA(1,7),'cp2')
 					gcd
 					lcm
+
+等差前n项和 Arrf(function(t){return !t?[1]:t.concat(t[t.length-1]+5)},Array(10),'cp2')
+高阶逆差分 Arrf(antidiff,[[2,4,5,8,10]].concat(Array(10)),'cp2')
+高阶差分 Arrf(diff,[[2,4,5,8,10]].concat(Array(10)),'cp2')
 				*/
 				if(i==1){t=ar[i];continue}else{
 					t=f(t,ar[i])
@@ -1282,9 +1939,9 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 }, Arr_1=function(A){//数组每个元素都减1
 	return Arrf(function(t){return t-1},A)
 }, max=function(A){
-	return Arrf(Math.max,A,'cp2')
+	return Arrf(Math.max,Arrf(function(x){return x||0},A),'cp2')
 }, min=function(A){
-	return Arrf(Math.min,A,'cp2')
+	return Arrf(Math.min,Arrf(function(x){return x||0},A),'cp2')
 
 },cartestian=function(A,typ){//笛卡尔乘积 序列化	typ指定括号类型，用于字符串输出括号风格
 	var t=[A.slice(0)],n=A.length, tmp=new Array(n), tp=typ||'()';
@@ -1301,25 +1958,38 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 		AA[i].t='Set_Cartesian_'+tp;
 	}
 	return t
-},countA=function(A,noParse){/*对数组中元素进行计数		参数noParse 指定不强制转换成同一类型（例如字符串与数字），进行判断相同
-	
-	返回二维数组：去重数组，相应重数数组。
+
+},countA=function(A,noParse,index){/*对数组中元素进行计数		参数noParse 指定不强制转换成同一类型（例如字符串与数字），进行判断相同
+		参数index指定，同时返回原索引(第一次出现)
+	返回二维数组：去重数组，相应重数数组, 索引数组（如指定index参数）。
 	
 	*/
-	var a=[],b=[];
+	var a=[],b=[],x=[];
 	for(var i=0,l=A.length;i<l;i++){
 		var c=noParse?A[i]:''+A[i];//默认强制转换成字符串比较相同
 		if(a.indexOf(c)<0){
 			a.push(c);
 			b.push(1);
+			if(index){
+				x.push(i);
+			}
 		}else{
 			//b[b.length-1]++;
 			b[a.indexOf(c)]++;
 		}
 	}
-	return [a,b]
+	return index?[a,b,x]:[a,b]
+
 },concat=function(){//数组中元素分别字符串拼接，得到新数组
-	var ar=arguments, arl=ar.length, n=ar[0].length,t=[];
+	var ar=arguments, arl=ar.length, n=1,t=[];
+	for(var i=0;i<arl;i++){
+		var ai=ar[i];
+		if(isArr(ai)){
+			n=ai.length;
+			break;
+		}
+	}
+	
 	for(var j=0;j<n;j++){
 		var s='';
 		for(var i=0;i<arl;i++){
@@ -1334,9 +2004,40 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 	return t
 },cartt=function(A){//笛卡尔乘积 序列化后拼接为字符串数组
 	return Arrf(function(t){return t.join('')},cartestian(A))
-},split=function(t,r){/*字符串t，按(中缀)正则split分成两个数组
+
+},carttNext=function(A,Al){/*笛卡尔乘积 求下一个索引数组，并赋值给A		如果成功返回1；如果下一个不存在，则返回0
+	参数A是当前索引数组，Al是各分量的索引区间长度，构成的数组
+	*/
+	var l=A.length;
+	for(var i=l-1;i>=0;i--){
+		if(A[i]<Al[i]-1){
+			A[i]++;
+			for(var j=i+1;j<l;j++){
+				A[j]=0;
+			}
+			return 1
+		}
+	}
+	return 0
+},carttPrev=function(A,Al){/*笛卡尔乘积 求上一个索引数组，并赋值给A		如果成功返回1；如果上一个不存在，则返回0
+	参数A是当前索引数组，Al是各分量的索引区间长度，构成的数组
+	*/
+	var l=A.length;
+	for(var i=l-1;i>=0;i--){
+		if(A[i]){
+			A[i]--;
+			for(var j=i+1;j<l;j++){
+				A[j]=Al[j]-1;
+			}
+			return 1
+		}
+	}
+	return 0
+	
+	
+},split=function(t,r,noshift){/*字符串t，按(中缀)正则split分成两个数组 A[匹配到的分隔符数组A[0], 被分割后得到的数组A[1]]
 	如果不匹配返回字符串本身
-	如果首项为空，shift一下
+	如果A[1]首项为空，shift一下（未指定noshift的默认情况下）
 	*/
 	var re,si=[0],ops=[],A=[];
 	r.lastIndex=0;
@@ -1355,11 +2056,15 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 		while((re = r.exec(t)) != null){
 			ops.push(re[0]);
 			si.push(re.index+re[0].length);//存储下一个表达式截取起始位置
-//			console.log('si',si.join(' , '));
+		//console.log('si',si,' ; ','ops',ops,' ; ','A',A.length,A);
 			A.push(t.substring(si.slice(-2)[0],re.index));
+	//	console.log('A',A.length,A);
 		}
 		A.push(t.substr(si.slice(-1)[0]));
-		if(A[0]==''){
+		
+	//	console.log('A',A.length,A);
+		
+		if(!noshift && A[0]==''){
 			A.shift();
 			A[0]=ops[0]+A[0];
 			ops.shift();
@@ -1367,6 +2072,128 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 		return [ops,A]
 	}
 	return t
+}, snake=function(AB){//蛇形拼接两数组，过滤掉空字符串	主要用于处理split后的数组
+	var A=[],n=AB[1].length;
+	for(var j=0;j<n;j++){
+		for(var i=1;i>=0;i--){
+			if(AB[i][j] || AB[i][j]===0){
+				A.push(AB[i][j])
+			}
+		}
+	}
+	return A
+
+
+
+//下列涉及排序、去重
+
+},Uniq=function(s){//字符或数字（数组，逗号隔开）去重，结果会自动排序
+	return (s.split(',').sort().join(',')+',').replace(/(.+,)\1+/g,'$1').replace(/,$/,'')
+
+}, sortBy={
+	numInt:function(a,b){var r=(BigInt(a)-BigInt(b)).toString();return /^-/.test(r)?-1:(/^0$/.test(r)?0:1)},	//大整数数字大小排序
+	num:function(a,b){var r=minus?minus([a,b]):a-b;return /-/.test(r)?-1:(/^0$/.test(r)?0:1)},	//普通数字大小排序
+	abs:function(a,b){var t=Math.abs(+a)-Math.abs(+b);return t||(+a)-(+b)},	//数字绝对值大小排序
+	len:function(x,y){//按长度排序 长度相同时
+		var a=''+x,b=''+y;
+		return a.length-b.length
+	},
+	lenchr:function(x,y){//按长度及字母排序
+		var a=''+x,b=''+y,l=a.length-b.length;
+
+		if(l){
+			return l
+		}
+		return a-b
+	},
+	chr:function(x,y){//按字母排序	也就是默认的Array.sort()
+		var a=''+x,b=''+y;
+		return a-b
+	},
+
+	chrlen:function(x,y){//按字母及长度排序	
+		var a=''+x,b=''+y;
+
+		if(a==b){return 0}
+		var la=a.length,lb=b.length,m=Math.min(la,lb);
+
+		for(var i=0;i<m;i++){
+			var t=a[i].charCodeAt(0)-b[i].charCodeAt(0);
+			if(t){
+				return Math.sign(t)
+			}
+		}
+		return la-lb
+	},
+	chrnum:function(a,b){ //数字排在字母后，同含字母，按未知数排序；同为数字，比较数字大小
+		if(/^\d+$/.test(a)){
+			if(/^\d+$/.test(b)){
+				return sortBy.num(a,b)
+			}
+			return 1
+		}
+		return sortBy.kxyz(a,b)
+		
+	},
+	kxyz:function(a,b){//按未知数排序
+		var A1=(''+a).replace(/[^a-zα-ω]/ig,''), B1=(''+b).replace(/[^a-zα-ω]/ig,'');
+		return sortBy.chr(A1,B1)
+	},
+	monomial:function(a,b){//按单项式幂次降序
+		
+		var A1=Polynomial.opr1('^',a),B1=Polynomial.opr1('^',b);
+		if(A1==B1){
+			return sortBy.kxyz(a,b)
+		}else{
+			return A1-B1
+		}
+	}
+
+},sort2=function(A,sortBys,cols,addNumCol,addValue){/*二维数组排序（表格排序）
+	参数
+	sortBys	规则数组 指定各列排序规则
+		如果不是数组，则所有参与排序的列cols，都按此规则排序
+		如果为空，则
+			有理数字按sortBy.num
+			其它按sortBy.chr
+			
+	cols 	指定参与排序的列索引数组（索引从0开始编号）
+		不指定，则只按第1列排序
+		
+	addNumCol	指定添加1列，标出原来的序号（从1开始编号）
+	addValue	指定添加1列，标出排序值0,1	相等的为0，严格大小的为1
+	*/
+	var cA=cols||[0], sA=isArr(sortBys)?sortBys:copyA(sortBys?sortBys:(/[^\d\/\.,-]/.test(A.toString())?sortBy.chr:sortBy.num), cols?cols.length:1);
+	
+//	console.log(arguments);
+//	console.log(sA);
+	if(addNumCol){
+		Arrf(function(a,i){a.push(i+1)}, A);
+	}
+	if(addValue){
+		Arrf(function(a){a.push(1)}, A);
+	}
+//	console.log(sA);
+	var n=A[0].length;
+	A.sort(function(a,b){
+		for(var i in cA){
+	//		console.log(cA[i], sA[cA[i]]);
+		//	var j=cA[i],sj=sA[j],aj=a[j],bj=b[j],r=sj(aj,bj);
+			var j=cA[i],sj=sA[i],aj=a[j],bj=b[j],r=sj(aj,bj);
+			if(r){
+				return r
+			}
+		}
+		if(addValue){//需要捕捉相等值
+			a[n-1]=0;
+			b[n-1]=0;
+		}
+		return 0
+	});
+
+
+
+
 }, Latin=function(t,caps){
 	var f=function(i){var s=html2txt('&'+String.fromCharCode(i)+t+';'); if(/;/.test(s)){s=''} return s};
 	return Arrf(f,seqA(65+32*(+!caps),26))
@@ -1380,7 +2207,21 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 	}
 	var f=function(i){return i?'<option value="'+i+'"'+(selev && i==selev?seled:'')+'>'+i+'</option>':''};
 	return Arrf(f,A)
-}, entity=ZLR('scr fr grave acute circ tilde uml ring opf'), printF={
+		
+}, OptGrps=function(A){//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
+	var s='';
+	for(var i=0,l=A.length;i<l;i++){
+		var a=A[i];
+		$.each(a,function(x,v){
+			s+='<optgroup label="'+x+'">'+(isStr(v)?Arrf(function(k){return '<option value="'+k+'">'+k+'</option>'},
+			ZLR(v)):Arrf(function(j){
+				return '<option value="'+(j.v||j.t)+'"'+(j.s?seled:'')+'>'+(j.t||j.v)+'</option>'
+			},v)).join('')+'</optgroup>'
+		});
+	}
+	return s
+	
+}, entity=ZLR('scr fr opf bar acute caron grave dot uml ring circ tilde breve'), printF={
 	'table':function(tbl,separateStyle,blankStyle){
 		var t=[];
 		$(tbl).children().each(function(){
@@ -1433,3 +2274,688 @@ var OffSet=function(obj,r,c,build){//表格单元格偏移，如果找不到，�
 
     return getFontData(df).join('') !== getFontData(f).join('');
 };
+
+
+
+function cell2rows(t,colA,sepA,blanklines){//单元格拆为多行	colA：需要拆行的列号数组(列号从0开始)  sepA：相应拆行标识符	blanklines间隔空行数
+	var A=Arrf(function(x){return x.split('\t')},t.split('\n')),l=blanklines;
+//console.log(colA,sepA);
+	for(var i=0;i<A.length;i++){
+//console.log('a= '+A[i],A);
+		var a=A[i], m=a.length, b=Arrf(function(x,j){return x.split(sepA[j])},ArrI(a,colA)), n=max(Arrf(function(x){return x.length},b));
+//console.log('b= '+b,n);
+		if(n>1){
+			Arrf(function(x,j){a[x]=b[j][0]},colA);
+			
+			for(var ii=0;ii<n;ii++){
+				var B=copyA('',m);
+				Arrf(function(x,j){
+					B[x]=b[j][ii+1]||'';
+				},colA);
+				A.splice(i+ii+1,0,B);
+			}
+			i+=n;
+		}
+		if(l && i && i+1<A.length){//首行（标题）不间隔空行
+			for(var ii=0;ii<l;ii++){
+				A.splice(i+1,0,copyA('',m));
+			}
+			i+=l;
+		}
+	}
+	return Arrf(function(s){return s.join('\t')},A).join('\n')
+	
+}
+
+function cell2cols(t,colA,sepA,fixedA){//单元格拆为多列	colA：需要拆列的列号数组(列号从0开始)  sepA：相应拆列标识符	fixedA各拆列数目
+	var A=Arrf(function(x){return x.split('\t')},t.split('\n')),B=fixedA;
+	
+	if(!B){
+		B=Arrf(function(x,j){return max(Arrf(function(y){return y.split(sepA[j]).length},Arri(A,x)))},colA);
+	}
+	
+	for(var i=0;i<A.length;i++){
+		for(var ii=0;ii<colA.length;ii++){
+			var j=colA[ii], a=A[i][j].split(sepA[ii]);
+			A[i][j]=a.concat(copyA('',B[ii]-a.length)).join('\t')
+		}
+	}
+	return Arrf(function(s){return s.join('\t')},A).join('\n')
+	
+}
+
+
+
+
+function n2Zh(m,big,currency){//数字转中文	[数字, 大小写, 货币单位]
+	var AB=(''+m).split('.'),A=AB[0].replace(/^-/g,''),B=AB.length==2?AB[1]:'',SN=big?"零壹贰叁肆伍陆柒捌玖拾佰仟萬亿兆":"〇一二三四五六七八九十百千万亿兆",K=SN.substr(10,6),S='';
+	for(var i=0;i<A.length;i++){
+		var j=Math.floor(i/4),k=i%4,n=A[A.length-i-1],t=n.replace(/\d/,function(s){return SN[s]});
+		S=(n=='0'?(k>0 && A[A.length-i]!='0'?t:''):(n=='1' && k==1 && i==A.length-1?'':t)+(k>0?K[k-1]:''))+(j>0 && k==0?K[j+2]:'')+S
+	}
+	if(currency){
+		if(A.length && !/^0+$/.test(A)){
+			S+='元圆'[big?1:0]+(B && /[1-9]/.test(B)?'':'整')
+		}
+	}else if(B){
+		S+='点'
+	}
+	K='角分厘毫丝忽';
+	for(var i=0;i<B.length;i++){
+		var n=B[i],t=n.replace(/\d/,function(s){return SN[s]});
+		if(currency){
+			S+=n=='0'?(B[i+1] && B[i+1]!='0'?t:''):t+(i<5?K[i]:'')
+		}else{
+			S+=t
+		}
+	}
+	if(/^点/.test(S)){
+		S='零'+S
+	}
+	if(/^-/.test(m)){
+		S='负'+S
+	}
+	if(currency){
+		S=S.replace(/^〇/,'')
+	}
+	if(/[%‰‱]$/.test(S)){S='百千万'['%‰‱'.indexOf(S.substr(-1))]+'分之'+S.substr(0,S.length-1)}
+	return S
+
+}
+function Zh2n(s){//中文字符转成数字 只做简单替换处理
+	return (s+'').replace(/[零壹贰叁肆伍陆柒捌玖]/gi,function(t){return '零壹贰叁肆伍陆柒捌玖'.indexOf(t)})
+			.replace(/[〇一二三四五六七八九]/gi,function(t){return '〇一二三四五六七八九'.indexOf(t)})
+			.replace(/[０１２３４５６７８９]/gi,function(t){return '０１２３４５６７８９'.indexOf(t)})
+			.replace(/[oO点两俩／拾佰仟萬]/g,function(t){return '00.22/十百千万'['oO点两俩／拾佰仟萬'.indexOf(t)]})
+			.replace(/^[百千万]/g,function(t){return 1+ZLR(0,'百千万'.indexOf(t)+2)})
+			.replace(/[十百千万]$/g,function(t){return ZLR(0,'十百千万'.indexOf(t)+1)}).replace(/亿$/,'00000000').replace(/兆$/,'000000')
+			.replace(/[百千万]\D/g,function(t){return ZLR(0,'百千万'.indexOf(t[0])+2)+t.substr(1)})
+			.replace(/[百千万](.)/g,'$1')
+			.replace(/([1-9])十([1-9])/g,'$1$2')
+			.replace(/([1-9])[十]/,'$10')
+			.replace(/[十]([1-9])/,'1$1')
+			.replace(/[十]/,'10')
+			.replace(/(.+)分之(.+)/g,'$2/$1').replace(/／/g,'/')
+}
+
+function nTrim(n){//去除小数点后尾0
+	return (''+n).replace(/(\..*[1-9])0+$/,'$1').replace(/\.0+$/,'')
+}
+function wrapTrim(n){//去除首尾括号
+	return (''+n).replace(/^\(|\)$/g,'')
+}
+
+function sbc2dbc(str){
+    var result = "";
+    var len = str.length;
+    for(var i=0;i<len;i++)
+    {
+        var cCode = str.charCodeAt(i);
+        //全角与半角相差（除空格外）：65248(十进制)
+        cCode = (cCode>=0x0021 && cCode<=0x007E)?(cCode + 65248) : cCode;
+        //处理空格
+        cCode = (cCode==0x0020)?0x03000:cCode;
+        result += String.fromCharCode(cCode);
+    }
+    return result;
+}
+
+function dbc2sbc(str){
+    var result = "";
+    var len = str.length;
+    for(var i=0;i<len;i++)
+    {
+        var cCode = str.charCodeAt(i);
+        //全角与半角相差（除空格外）：65248（十进制）
+        cCode = (cCode>=0xFF01 && cCode<=0xFF5E)?(cCode - 65248) : cCode;
+        //处理空格
+        cCode = (cCode==0x03000)?0x0020:cCode;
+        result += String.fromCharCode(cCode);
+    }
+    return result;
+}
+function zh2big(s,big2zh){
+	var zh_s = '皑蔼碍爱翱袄奥坝罢摆败颁办绊帮绑镑谤剥饱宝报鲍辈贝钡狈备惫绷笔毕毙闭边编贬变辩辫鳖瘪濒滨宾摈饼拨钵铂驳卜补参蚕残惭惨灿苍舱仓沧厕侧册测层诧搀掺蝉馋谗缠铲产阐颤场尝长偿肠厂畅钞车彻尘陈衬撑称惩诚骋痴迟驰耻齿炽冲虫宠畴踌筹绸丑橱厨锄雏础储触处传疮闯创锤纯绰辞词赐聪葱囱从丛凑窜错达带贷担单郸掸胆惮诞弹当挡党荡档捣岛祷导盗灯邓敌涤递缔点垫电淀钓调迭谍叠钉顶锭订东动栋冻斗犊独读赌镀锻断缎兑队对吨顿钝夺鹅额讹恶饿儿尔饵贰发罚阀珐矾钒烦范贩饭访纺飞废费纷坟奋愤粪丰枫锋风疯冯缝讽凤肤辐抚辅赋复负讣妇缚该钙盖干赶秆赣冈刚钢纲岗皋镐搁鸽阁铬个给龚宫巩贡钩沟构购够蛊顾剐关观馆惯贯广规硅归龟闺轨诡柜贵刽辊滚锅国过骇韩汉阂鹤贺横轰鸿红后壶护沪户哗华画划话怀坏欢环还缓换唤痪焕涣黄谎挥辉毁贿秽会烩汇讳诲绘荤浑伙获货祸击机积饥讥鸡绩缉极辑级挤几蓟剂济计记际继纪夹荚颊贾钾价驾歼监坚笺间艰缄茧检碱硷拣捡简俭减荐槛鉴践贱见键舰剑饯渐溅涧浆蒋桨奖讲酱胶浇骄娇搅铰矫侥脚饺缴绞轿较秸阶节茎惊经颈静镜径痉竞净纠厩旧驹举据锯惧剧鹃绢杰洁结诫届紧锦仅谨进晋烬尽劲荆觉决诀绝钧军骏开凯颗壳课垦恳抠库裤夸块侩宽矿旷况亏岿窥馈溃扩阔蜡腊莱来赖蓝栏拦篮阑兰澜谰揽览懒缆烂滥捞劳涝乐镭垒类泪篱离里鲤礼丽厉励砾历历沥隶俩联莲连镰怜涟帘敛脸链恋炼练粮凉两辆谅疗辽镣猎临邻鳞凛赁龄铃凌灵岭领馏刘龙聋咙笼垄拢陇楼娄搂篓芦卢颅庐炉掳卤虏鲁赂禄录陆驴吕铝侣屡缕虑滤绿峦挛孪滦乱抡轮伦仑沦纶论萝罗逻锣箩骡骆络妈玛码蚂马骂吗买麦卖迈脉瞒馒蛮满谩猫锚铆贸么霉没镁门闷们锰梦谜弥觅绵缅庙灭悯闽鸣铭谬谋亩钠纳难挠脑恼闹你馁腻撵捻酿鸟聂啮镊镍柠狞宁拧泞钮纽脓浓农疟诺欧鸥殴呕沤盘庞国爱赔喷鹏骗飘频贫苹凭评泼颇扑铺朴谱脐齐骑岂启气弃讫牵扦钎铅迁签签谦钱钳潜浅谴堑枪呛墙蔷强抢锹桥乔侨翘窍窃钦亲轻氢倾顷请庆琼穷趋区躯驱龋颧权劝却鹊让饶扰绕热韧认纫荣绒软锐闰润洒萨鳃赛伞丧骚扫涩杀纱筛晒闪陕赡缮伤赏烧绍赊摄慑设绅审婶肾渗声绳胜圣师狮湿诗尸时蚀实识驶势释饰视试适寿兽枢输书赎属术树竖数帅双谁税顺说硕烁丝饲耸怂颂讼诵擞苏诉肃虽绥岁孙损笋缩琐锁獭挞台抬摊贪瘫滩坛谭谈叹汤烫涛绦腾誊锑题体屉条贴铁厅听烃铜统头图涂团颓蜕脱鸵驮驼椭洼袜弯湾顽万网韦违围为潍维苇伟伪纬谓卫温闻纹稳问瓮挝蜗涡窝呜钨乌诬无芜吴坞雾务误锡牺袭习铣戏细虾辖峡侠狭厦锨鲜纤咸贤衔闲显险现献县馅羡宪线厢镶乡详响项萧销晓啸蝎协挟携胁谐写泻谢锌衅兴汹锈绣虚嘘须许绪续轩悬选癣绚学勋询寻驯训讯逊压鸦鸭哑亚讶阉烟盐严颜阎艳厌砚彦谚验鸯杨扬疡阳痒养样瑶摇尧遥窑谣药爷页业叶一医铱颐遗仪彝蚁艺亿忆义诣议谊译异绎荫阴银饮隐樱婴鹰应缨莹萤营荧蝇颖哟拥佣痈踊咏涌优忧邮铀犹游诱舆鱼渔娱与屿语吁御狱誉预驭鸳渊辕园员圆缘远愿约跃钥岳粤悦阅云郧匀陨运蕴酝晕韵杂灾载攒暂赞赃脏凿枣灶责择则泽贼赠扎札轧铡闸诈斋债毡盏斩辗崭栈战绽张涨帐账胀赵蛰辙锗这贞针侦诊镇阵挣睁狰帧郑证织职执纸挚掷帜质钟终种肿众诌轴皱昼骤猪诸诛烛瞩嘱贮铸筑驻专砖转赚桩庄装妆壮状锥赘坠缀谆浊兹资渍踪综总纵邹诅组钻致钟么为只凶准启板里雳余链泄';
+	var zh_t = '皚藹礙愛翺襖奧壩罷擺敗頒辦絆幫綁鎊謗剝飽寶報鮑輩貝鋇狽備憊繃筆畢斃閉邊編貶變辯辮鼈癟瀕濱賓擯餅撥缽鉑駁蔔補參蠶殘慚慘燦蒼艙倉滄廁側冊測層詫攙摻蟬饞讒纏鏟産闡顫場嘗長償腸廠暢鈔車徹塵陳襯撐稱懲誠騁癡遲馳恥齒熾沖蟲寵疇躊籌綢醜櫥廚鋤雛礎儲觸處傳瘡闖創錘純綽辭詞賜聰蔥囪從叢湊竄錯達帶貸擔單鄲撣膽憚誕彈當擋黨蕩檔搗島禱導盜燈鄧敵滌遞締點墊電澱釣調叠諜疊釘頂錠訂東動棟凍鬥犢獨讀賭鍍鍛斷緞兌隊對噸頓鈍奪鵝額訛惡餓兒爾餌貳發罰閥琺礬釩煩範販飯訪紡飛廢費紛墳奮憤糞豐楓鋒風瘋馮縫諷鳳膚輻撫輔賦複負訃婦縛該鈣蓋幹趕稈贛岡剛鋼綱崗臯鎬擱鴿閣鉻個給龔宮鞏貢鈎溝構購夠蠱顧剮關觀館慣貫廣規矽歸龜閨軌詭櫃貴劊輥滾鍋國過駭韓漢閡鶴賀橫轟鴻紅後壺護滬戶嘩華畫劃話懷壞歡環還緩換喚瘓煥渙黃謊揮輝毀賄穢會燴彙諱誨繪葷渾夥獲貨禍擊機積饑譏雞績緝極輯級擠幾薊劑濟計記際繼紀夾莢頰賈鉀價駕殲監堅箋間艱緘繭檢堿鹼揀撿簡儉減薦檻鑒踐賤見鍵艦劍餞漸濺澗漿蔣槳獎講醬膠澆驕嬌攪鉸矯僥腳餃繳絞轎較稭階節莖驚經頸靜鏡徑痙競淨糾廄舊駒舉據鋸懼劇鵑絹傑潔結誡屆緊錦僅謹進晉燼盡勁荊覺決訣絕鈞軍駿開凱顆殼課墾懇摳庫褲誇塊儈寬礦曠況虧巋窺饋潰擴闊蠟臘萊來賴藍欄攔籃闌蘭瀾讕攬覽懶纜爛濫撈勞澇樂鐳壘類淚籬離裏鯉禮麗厲勵礫曆歷瀝隸倆聯蓮連鐮憐漣簾斂臉鏈戀煉練糧涼兩輛諒療遼鐐獵臨鄰鱗凜賃齡鈴淩靈嶺領餾劉龍聾嚨籠壟攏隴樓婁摟簍蘆盧顱廬爐擄鹵虜魯賂祿錄陸驢呂鋁侶屢縷慮濾綠巒攣孿灤亂掄輪倫侖淪綸論蘿羅邏鑼籮騾駱絡媽瑪碼螞馬罵嗎買麥賣邁脈瞞饅蠻滿謾貓錨鉚貿麽黴沒鎂門悶們錳夢謎彌覓綿緬廟滅憫閩鳴銘謬謀畝鈉納難撓腦惱鬧妳餒膩攆撚釀鳥聶齧鑷鎳檸獰甯擰濘鈕紐膿濃農瘧諾歐鷗毆嘔漚盤龐國愛賠噴鵬騙飄頻貧蘋憑評潑頗撲鋪樸譜臍齊騎豈啓氣棄訖牽扡釺鉛遷簽籤謙錢鉗潛淺譴塹槍嗆牆薔強搶鍬橋喬僑翹竅竊欽親輕氫傾頃請慶瓊窮趨區軀驅齲顴權勸卻鵲讓饒擾繞熱韌認紉榮絨軟銳閏潤灑薩鰓賽傘喪騷掃澀殺紗篩曬閃陝贍繕傷賞燒紹賒攝懾設紳審嬸腎滲聲繩勝聖師獅濕詩屍時蝕實識駛勢釋飾視試適壽獸樞輸書贖屬術樹豎數帥雙誰稅順說碩爍絲飼聳慫頌訟誦擻蘇訴肅雖綏歲孫損筍縮瑣鎖獺撻臺擡攤貪癱灘壇譚談歎湯燙濤縧騰謄銻題體屜條貼鐵廳聽烴銅統頭圖塗團頹蛻脫鴕馱駝橢窪襪彎灣頑萬網韋違圍爲濰維葦偉僞緯謂衛溫聞紋穩問甕撾蝸渦窩嗚鎢烏誣無蕪吳塢霧務誤錫犧襲習銑戲細蝦轄峽俠狹廈鍁鮮纖鹹賢銜閑顯險現獻縣餡羨憲線廂鑲鄉詳響項蕭銷曉嘯蠍協挾攜脅諧寫瀉謝鋅釁興洶鏽繡虛噓須許緒續軒懸選癬絢學勳詢尋馴訓訊遜壓鴉鴨啞亞訝閹煙鹽嚴顔閻豔厭硯彥諺驗鴦楊揚瘍陽癢養樣瑤搖堯遙窯謠藥爺頁業葉壹醫銥頤遺儀彜蟻藝億憶義詣議誼譯異繹蔭陰銀飲隱櫻嬰鷹應纓瑩螢營熒蠅穎喲擁傭癰踴詠湧優憂郵鈾猶遊誘輿魚漁娛與嶼語籲禦獄譽預馭鴛淵轅園員圓緣遠願約躍鑰嶽粵悅閱雲鄖勻隕運蘊醞暈韻雜災載攢暫贊贓髒鑿棗竈責擇則澤賊贈紮劄軋鍘閘詐齋債氈盞斬輾嶄棧戰綻張漲帳賬脹趙蟄轍鍺這貞針偵診鎮陣掙睜猙幀鄭證織職執紙摯擲幟質鍾終種腫衆謅軸皺晝驟豬諸誅燭矚囑貯鑄築駐專磚轉賺樁莊裝妝壯狀錐贅墜綴諄濁茲資漬蹤綜總縱鄒詛組鑽緻鐘麼為隻兇準啟闆裡靂餘鍊洩';
+	return s.replace(hanziRe,function(t){return (big2zh?zh_s[zh_t.indexOf(t)]:zh_t[zh_s.indexOf(t)])||t})
+}
+
+function txt2audio(t,spd,pit,per,lan,eng){/*spd=[0~9] pit=[0~9] per=[0~4]
+
+	5 Google https://translate.google.com/translate_tts?ie=UTF-8&q=%E4%B8%BA%E4%BB%80%E4%B9%88&tl=zh-CN&total=1&idx=0&textlen=3&tk=469016.95129&client=t&prev=input
+		https://translate.google.com/translate_tts?ie=UTF-8&q=%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%9C%A8%E8%BF%99%E9%87%8C&tl=zh-CN&total=1&idx=0&textlen=7&tk=957539.575458&client=t&prev=input
+		tk不正确无法使用
+		
+		需另外使用chrome tts API
+		
+	*/
+	if(!eng){//0 百度	yuyin.baidu.com/docs/tts/136
+		return Hs+'tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&pdt=311&spd='+(spd||6)+'&pit='+(pit||5)+'&per='+(per||0)+'&tex='+fn0(t)
+	}
+	if(eng==1){//1 搜狗
+		return H+'fanyi.sogou.com/reventondc/microsoftGetSpeakFile?from=translateweb&spokenDialect='+['zh-CHS','zh-CHT','zh-CHT','en','en'][+lan]+'&text='+fn0(t)
+	}
+	if(eng==2){//2 腾讯
+		return H+'audiodetect.browser.qq.com:8080/tts?platform=PC_Website&language='+(+(+lan>2))+'&text='+fn0(t)+'&guid='//+L.audioEngine2TK;// 从翻译页面获取cookie值 $.cookie("fy_guid")
+	}
+	if(eng==3){//3 Bing
+		return Hs+'www.bing.com/translator/api/language/Speak?locale='+['zh-CN','zh-HK','zh-TW','en-US','en-GB'][+lan]+'&gender='+(['male','female'][+per]||'male')+'&media=audio/mp3&text='+fn0(t)
+	}
+	if(eng==4){//4 有道
+		return H+'tts.youdao.com/fanyivoice?le=eng&word='+fn0(t)//+'&keyfrom=fanyi%2Eweb%2Eindex	只能读英语
+	}
+	if(eng==5){//5 Google
+		return ''
+	}
+}
+function txt2A(t){
+	var splitA=function(A,k){
+		var B=[].concat(A);
+		for(var i=0;i<B.length;i++){
+			var s=B[i].trim(), sA=s.split(k), sAl=sA.length;
+			if(sAl>2 || sAl==2 && sA[0].trim()!='' && sA[1].trim()!=''){
+				for(var j=0;j<sAl-1;j++){
+					sA[j]+=k
+				}
+				B=B.slice(0,i).concat(sA, B.slice(i+1));
+			}
+		}
+		return B
+	},A=t.split(/\n/g), kA=['。','. ','? ','？','！','! ','；',';','，',', '];
+	for(var i=0;i<kA.length;i++){
+		A=splitA(A,kA[i]);
+	}
+	
+	return A.filter(function(v,i){return v.trim()!=''})
+}
+function ubb2html(t0, webview){
+
+	var t=t0, a0='<a target="_blank" href="', a1='</a>', r0=/^[^\]]+\]|\[[^\[]+\]$/g;
+	var tA=ZLR('b bold i italic u h\\w sub sup center cite code dfn em kbd samp strong var big del mark pre strike ul ol p q s wbr list \\* quote');
+
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\[\\/?'+tA[i]+'\\]','gi'), function(w){return w.replace('[','<').replace(']','>').replace(/list|\*/g,'li').replace('quote','q').replace('bold','b').replace('italic','i')});
+	}
+
+	tA=ZLR('red green blue white purple yellow violet brown black pink orange gold #\\w*');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\[\\/?'+tA[i]+'\\]','gi'), function(w){return w.substr(1,1)=='/'?'</font>':w.replace('['+tA[i]+']','<font color='+tA[i]+'>')});
+	}
+
+	tA=ZLR('img image');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<img src="'+w.replace(r0,'')+'" />'});
+	}
+
+	tA=ZLR('url download ref refer');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return a0+w.replace(r0,'')+'">'+w.replace(r0,'')+a1});
+		t=t.replace(new RegExp('\\['+tA[i]+'=[^\\]]*?\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return a0+w.split(']')[0].split('=')[1]+'">'+w.replace(r0,'')+a1});
+	}
+
+	tA=ZLR('fly move');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<marquee direction=right behavior=scroll scrollamount=10 scrolldelay=200>'+w.replace(r0,'')+'</marquee>'});
+	}
+
+	tA=ZLR('left right');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<p align='+w.split(']')[0].substr(1)+'>'+w.replace(r0,'')+'</p>'});
+	}
+
+	tA=ZLR('color size font');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'=[^\\]]*?\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<font '+w.split(']')[0].substr(1).replace(/^font/i,'face')+'>'+w.replace(r0,'')+'</font>'});
+	}
+
+	tA=ZLR('align');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'=[^\\]]*?\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<p '+w.split(']')[0].substr(1)+'>'+w.replace(r0,'')+'</p>'});
+	}
+
+	tA=ZLR('rm mp dir qt');
+	for(var i=tA.length-1;i>-1;i--){
+		t=t.replace(new RegExp('\\['+tA[i]+'=[^\\]]*?\\].*?\\[\\/'+tA[i]+'\\]','gi'), function(w){return '<video controls=controls width='+w.split(']')[0].split('=')[1].replace(',',' height=')+' src="'+w.replace(r0,'')+'">'+w.replace(r0,'')+'</video>'});
+	}
+
+	t=t.replace(/\[list=[^\]]*?\].*?\[\/list\]/gi, function(w){return '<ol type='+w.split(']')[0].split('=')[1]+'>'+w.replace(r0,'')+'</ol>'});
+	t=t.replace(/\[w\].*?\[\/w\]/gi, function(w){var w0=w.substr(3, w.length-7), wb=webview?'webview':'iframe';
+		return '<'+wb+' src="'+u+'" style="width:98%;height:500px" />'});
+	t=t.replace(/\[email\].*?\[\/email\]/gi, function(w){return a0+'mailto:'+w.replace(r0,'')+'">'+w.replace(r0,'')+a1});
+	t=t.replace(/\[email=[^\]]*?\].*?\[\/email\]/gi, function(w){return a0+'mailto:'+w.split(']')[0].split('=')[1]+'">'+w.replace(r0,'')+a1});
+	return t;
+}
+
+function linear2nest(Arr){//平面线性二维数组[[相对层级,内容]+] 转成 立体嵌套对象[[索引,子对象数组[[索引,子对象数组[索引,索引]],[索引]]]+]
+	var A=Arrf(function(i,ii){return i.concat(ii)},Arr);//第三列添加自然索引（以0开始计数）
+	var f=function(a){
+		var al=a.length, m=min(Arri(a,0)),B=[],C=[];
+		for(var i=0;i<al;i++){
+			if(!i || a[i][0]==m){
+				B.push([a[i]])
+			}else{
+				B[B.length-1].push(a[i])
+			}
+		}
+		consolelog('B=',B.join(' ; '));
+		for(var i=0,l=B.length;i<l;i++){
+			consolelog(B[i][0][2],C.join(' ；'));
+			if(B[i].length>1){
+				C.push([B[i][0][2]].concat(f(B[i].slice(1))));
+			}else{
+				C.push(B[i][0][2])
+			}
+		}
+		return C
+	};
+	return f(A)
+}
+
+function md2html(str,sep){
+	var codeblockA=[], headA=[],listA=[],listOU={},
+		lnk={},footlnk={},footlnkA=[],
+		mlnk={},mA=[],mlnkA=[],
+		s='\n'+str+'\n';
+	
+	while(/\n\[[^\]]+\]:.+/.test(s)){
+		s=s.replace(/\n\[[^\]]+\]:.+/,function(x){
+			var k=x.split(']:')[0].substr(2), v=x.replace(/\n\[[^\]]+\]:/,'').replace(/ +/g,' ').trim(), isfoot=/^\^/.test(k);
+			if(isfoot){
+				footlnk[k.substr(1)]=v
+			}else{
+				lnk[k]=v;
+			}
+			return ''
+		});
+	
+	}
+
+
+	while(/```[^`]+```/.test(s)){
+		s=s.replace(/```[^`]+```/,function(t){codeblockA.push(t.replace(/`/g,''));
+			return '<codeblockquote>'+(codeblockA.length-1)+'</codeblockquote>'});
+	}
+
+	while(/\$\$[\s\S]+\$\$/.test(s)){
+		s=s.replace(/\$\$[^\$]+\$\$/,function(x){
+			var t=x.replace(/^..|..$/g,'');
+			return eval(t)
+		});
+	
+	}
+	
+	
+	
+	while(/\$[^\$]+\$#.+#/.test(s)){
+		s=s.replace(/\$[^\$]+\$#.+#/,function(x){
+			var k=x.substr(1).split('$')[0],t=x.replace(/\$[^\$]+\$/,'').replace(/^.|.$/g,''),z=zx(k);
+			mlnk[t]=z;
+			mlnkA.push(z);
+			mA.push(k);
+			return 'katex#'+(mlnkA.length-1)+'#' //z
+		});
+	}
+	while(/\$@[^\$]+@\$/.test(s)){
+		s=s.replace(/\$@[^\$]+@\$/,function(x){
+			var t=x.replace(/^..|..$/g,'');
+			return 'katex#'+mlnkA.indexOf(mlnk[t])+'#' //mlnk[t]
+		});
+	}
+	while(/\$[^\$]+\$/.test(s)){
+		s=s.replace(/\$[^\$]+\$/,function(x){
+			var k=x.replace(/^.|.$/g,''),z=zx(k), i=mA.indexOf(k);
+			if(i<0){
+				i=mA.length;
+				mlnkA.push(z);
+				mA.push(k);
+				
+			}
+			return 'katex#'+i+'#'  //z
+		});
+	}
+	
+	
+	
+
+	// while(/\n( {4}|\t)/.test(s)){
+	//	s=s.replace(/(\n {4}|\n\t).+(\1.+)*/,function(t){A.push(t.replace(/\n {4}|\n\t/g,''));
+	//		return '<mdblockquote>'+(A.length-1)+'</mdblockquote>'});
+//	}
+	
+	
+	while(/\n> +./.test(s)){
+		s=s.replace(/\n> +.+(\n> +.+)*/,function(x){
+			return XML.wrapE('blockquote',x.replace(/\n> +/g,'\n').replace(/^\n/,''))
+		})
+	}
+	
+
+	if(/\n[ \t]*([\-\*\+]|\d+\.) .+/.test(s)){//ol ul
+		var fou=function(str){
+			consolelog('fou',str);
+			var listA=[],ouA=[];
+			var st=str.replace(/\n[ \t]*([\-\*\+]|\d+\.) .+/g,function(x){var t=x.trim(), n=x.split(/[\-\*\+]|\d+\./)[0].length-1, ht=t.replace(/([\-\*\+]|\d+\.) */,'');
+				listA.push([n,ht]);
+				var oui='uo'[+/^\d/.test(t[0])]+'l';
+				ouA.push(oui);
+				return '\n<'+oui+'li'+n+'>'+(listA.length-1)
+
+		
+			});
+	consolelog('st',st);
+			while(/\n<[uo]lli\d+>\d+\n(?!<[uo]lli\d+>\d+)/.test(st)){
+				st=st.replace(/\n<[uo]lli\d+>\d+\n.+/,function(x){
+					var xA=x.trim().split('\n');
+					if(/<[uo]lli\d+>\d+/.test(xA[1])){
+						return '\n'+xA.join('#\n')
+					}else{
+						listA[+xA[0].split('>')[1]][1]+='\n'+xA[1]
+						return '\n'+xA[0]
+					}
+				})
+			}
+			
+	consolelog('st2',st);
+			st=st.replace(/(\n<[uo]lli\d+>\d+)#/g,'$1');
+			var ne=linear2nest(listA);
+	consolelog('ne',ne);
+	
+	consolelog('listA',listA);
+	
+	consolelog('ouA',ouA);
+	
+			var g=function(x){
+				return x.replace(/^\[ \]/,strchkbx0+'disabled />').replace(/^\[x\]/i,strchkbx0+'disabled'+chked+' />')
+			},f=function(x){
+				if(isArr(x)){
+					consolelog('x[0]= ',x[0]);
+					var s=g(listA[x[0]][1]),x1=x.slice(1);
+					
+					return s+(x.length>1?(ouA[x[0]+1]=='ul'?ul:ol)(Arrf(f,x1)):'');
+				}else{
+					return g(listA[x][1])
+				}
+			};
+
+			return (ouA[0]=='ul'?ul:ol)(Arrf(f,ne));
+
+		};
+		s=s.replace(/(\n[ \t]*([\-\*\+]|\d+\.) .+)+/g,function(x){
+			return '\n'+fou(x)
+		});
+	};
+
+	if(/-+:?\|:?-+/.test(s)){
+		//Table
+		var ftb=function(x){
+			var sep,sepi,A=Arrf(function(t,i){
+				if(!/[^-\|:]/.test(t)){
+					sep=t;
+					sepi=i;
+				}
+				return t.replace(/^\||\|$/g,'').split('|')
+			},x.replace(/\n$/,'').split('\n')),
+			sepA=sep.replace(/^\||\|$/g,'').split('|'), cols=sepA.length;
+			consolelog(sep,A.slice(0,sepi));
+			var c='';
+			if(/^\|.+\|$/.test(sep)){
+				c='TBrc'
+			}else if(/^\|/.test(sep)){
+				c='TBc'
+			}else if(/\|$/.test(sep)){
+				
+			}else{
+				c='TBr'
+			}
+			
+			if(/:/.test(sep)){
+			
+				c+=' '+Arrf(function(k,j){
+					var a='l';
+					if(/^:.+:$/.test(k)){
+						a='c'
+					}else if(/:$/.test(k)){
+						a='r'
+					}
+					return 'TBalign'+a+(j+1)
+				},sepA).join(' ')
+
+			}
+			
+			
+			return Table(A.slice(0,sepi),A.slice(sepi+1,A.length),c)
+		};
+		s=s.replace(/(.+\n)*\|?:?-+:?(\|:?-+:?)+.+(\n.+)*\n/g,ftb);
+	}
+	
+	
+	s=s.replace(/\n(-{3,}|\*{3,}|_{3,})\n/g,'\n<hr />\n').replace(/\n(-{3,}|\*{3,}|_{3,})$/g,'\n<hr />')
+	
+	.replace(/\n#+ .+/g,function(x){var t=x.trim(), n=t.split(' ')[0].length, ht=t.replace(/^#+ | #+$/g,'');
+		headA.push([n,ht]);
+		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>'
+	})
+	
+	.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g,function(x){
+		return '<b><i>'+x.replace(/^...|...$/g,'').trim()+'</i></b>'
+	})
+	
+	.replace(/\*{2}[^\*\n].*[^\\\n]\*{2}/g,function(x){
+		return '<b>'+x.replace(/^..|..$/g,'').trim()+'</b>'
+	})	//strong
+	
+	.replace(/\*[^\\\* \n][^\\\*\n]*\*/g,function(x){
+		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
+	})	//em
+	
+
+	.replace(/__[^ \n].*[^\\\n]__/g,function(x){
+		return scib(x.replace(/^..|..$/g,'').trim())
+	})	//underline
+	
+	.replace(/_[^\\\_\n]+_/g,function(x){
+		return '<i>'+x.replace(/^.|.$/g,'').trim()+'</i>'
+	})	//em 2
+	
+	
+	.replace(/~~.+[^\\\n]~~/g,function(x){
+		return '<del>'+x.replace(/^..|..$/g,'').trim()+'</del>'
+	})
+
+	.replace(/==.+[^\\\n]==/g,function(x){
+		return '<mark>'+x.replace(/^..|..$/g,'').trim()+'</mark>'
+	})
+
+	.replace(/`[^`\\\n]+`/g,function(x){
+		return '<q>'+x.replace(/^.|.$/g,'').trim()+'</q>'
+	})
+
+
+	.replace(/\!\[[^\]]+\]\(.+\)/g,function(x){
+		var t=x.replace(/\!\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0];
+		return '<img src="'+u+'" alt="'+x.split('(')[0].replace(/^..|.$/g,'')+'"'+(/ /.test(t)?' title="'+t.replace(/[^ ]+ /,'').replace(/^"|"$/g,'')+'"':'')+' />';
+	})
+	
+	.replace(/\[[^\]\^]+\]\(.+\)/g,function(x){
+		var t=x.replace(/\[.+\]/,'').replace(/^.|.$/g,''),u=t.split(' ')[0],hf=uriRe.test(u)?href:inhref;
+		return hf(u, x.split('(')[0].replace(/^.|.$/g,''), / /.test(t)?t.replace(/[^ ]+ /,'').replace(/^"|"$/g,''):'')
+	})
+
+
+	.replace(/\n+(<h\d+[> ])/g,'$1').replace(/(<\/h\d+>)\n+/g,'$1')
+	.replace(/(<\/[ou]l>)\n+/g,'$1')
+	.replace(/\n*(<hr \/>)\n*/g,'$1')
+	.replace(/\n?(<.?blockquote>)\n?/g,'$1')
+
+
+	.replace(/<\S+@\S+\.\>/g,function(x){
+		var t=x.replace(/^.|.$/g,'');
+		return href('mailto:'+t,t)
+	})
+	.replace(/<[^>\s]+[:\/\.\?\&][^>\s]+>/g,function(x){
+		var t=x.replace(/^.|.$/g,''),hf=uriRe.test(t)?href:inhref;
+		return hf(t)
+	})
+	.replace(/\[[^\]\^]+\] *\[[^\s\]\^]+\]/g,function(x){
+		var t=x.replace(/^.|.$/g,'').split(/\] *\[/), lnkt=lnk[t[1]];
+		consolelog(t,lnk);
+		consolelog(t[1],lnkt);
+		if(lnkt){
+			var u=lnkt.split(' ')[0],tt=/ /.test(lnkt)?lnkt.replace(/\S+ /,'').replace(/"/g,''):'',hf=uriRe.test(u)?href:inhref;
+			return hf(u,t[0],tt)
+			
+		}else{
+			consolelog(lnk,t[1]);
+			return x.replace(/\] *\[/,']?[')
+		}
+	})
+	.replace(/\[\^[^\]]+\]/g,function(x){
+		var t=x.replace(/^..|.$/g,''), lnkt=footlnk[t];
+		consolelog(x,t);
+		consolelog(footlnk,lnkt);
+		
+		if(lnkt){
+			var ki=footlnkA.indexOf(t);
+		consolelog(footlnkA,ki);
+			if(ki<0){
+				ki=footlnkA.length;
+				footlnkA.push(t);
+			}
+			return sup(inhref('#TOFNi'+ki,(ki+1),lnkt))
+			
+		}else{
+			return x
+		}
+	})
+	.replace(/\\([^\\])/g,'$1');
+	
+
+
+	if(/\[U?TOC\]/.test(s) && headA.length){
+		var ne=linear2nest(headA),toc='<h2 id=TOCcontents>'+gM('Contents')+'</h2>';
+		consolelog(headA,ne);
+		var f=function(x,u){
+			if(isArr(x)){
+				var s=headA[x[0]][1],x1=x.slice(1);
+				return inhref('#TOChi'+x[0],s)+(x.length>1?(u?ul:ol)(Arrf(function(y){return f(y,u)},x1)):'');
+			}else{
+				return inhref('#TOChi'+x,headA[x][1])
+			}
+		};
+
+		s=s.replace(/\[TOC\]/g,toc+ol(Arrf(f,ne)));
+		s=s.replace(/\[UTOC\]/g,toc+ul(Arrf(function(y){return f(y,1)},ne)));
+	}
+	
+
+	
+	if(codeblockA.length){
+		s=s.replace(/<codeblockquote>\d+<.codeblockquote>/g,function(x){
+			return XML.wrapE('pre',XML.wrapE('code',XML.encode(codeblockA[+x.replace(/\D/g,'')])))
+		});
+	}
+	
+	if(footlnkA.length){
+	
+		s+='\n'+Arrf(function(x,i){return '['+(i+1)+'] '+footlnk[x]},footlnkA).join('\n')
+	}
+	
+	if(mA.length){
+		var kA=[];
+		s=s.replace(/\n*katex#\d#\n*/g,function(x){
+			var i=+x.replace(/\D/g,''), isblk=/\n$/.test(x);
+			if(isblk){
+				var k=kA.indexOf(i);
+				if(k<0){
+					kA.push(i);
+					k=kA.length;
+				}else{
+					k++;
+					
+				}
+
+				var v=zx(mA[i],{"displayMode":true}); //mlnkA[i];
+
+				return '<table width="100%"><tbody><tr><td width="95%">'+v+'</td><td align=right>('+k+')</td></tr></tbody></table>'
+				
+			}else{
+				return x.replace(/[^\n]+/,mlnkA[i])
+			}
+		
+		}); 
+	}
+	consolelog(s);
+	
+	return s.replace(/^\n+/,'').replace(/\n+$/,'\n').replace(/\n/g,sep===undefined?br:sep)
+
+}
+
+function xhrcb(src,cb){
+	//cb(length,type)
+	var xhr=new XMLHttpRequest();
+	xhr.open('HEAD', src, true);
+	xhr.onerror = function(){
+		xhr.abort();
+	};
+	xhr.onreadystatechange = function(){
+	  if(xhr.readyState==4){
+		if(xhr.status==200 || xhr.status==206){
+			var s=xhr.getResponseHeader('Content-Length')||0,t=(xhr.getResponseHeader('Content-Type')||'').replace(/image[/]/,'').replace('x-icon','ico').replace(/[;\+].*/,'');
+			cb(s,t);
+			//console.log(xhr.getAllResponseHeaders());
+			
+		}
+	  }
+	};
+	xhr.send();
+}
+
+
+function picSrcNameExt(tSrc){
+	imgPreReData.lastIndex=0;
+	if(imgPreReData.test(tSrc)){
+		var psrc = unescape(tSrc);
+		var pname = psrc.replace(/[;,].*/,'');
+		var pext = pname.split('/')[1].toLowerCase().replace('x-icon','ico').replace('+xml','');
+		pname=pname.replace(/[:\/]/g,'_');
+	}else{
+		var psrc = unescape(tSrc).replace(/z@z@l@l@r@r/g,'%');
+		var pname = psrc.replace(/[\?#].+$/g,'').replace(/.+[/]/,'');
+		try{
+			pname=decodeURIComponent(pname);
+		} catch(e) {
+			console.log(pname);
+			 console.log(e);
+		}
+		var pext = pname.replace(/.+\./, '').replace(/\&.+$/,'');
+		if(/x-oss-process.+format,/.test(psrc)){
+			pext = psrc.split(/.+format,/)[0].split('/')[0]
+		}
+	}
+	return [psrc,pname,pext]
+}
+function blking(t, Neg){
+	var s=t, arr;
+	//s=s.replace(/<script[^>]*>[\D\d]*<[/]script>/gi,'');
+	arr=s.split(/<\/script>/gi);
+	for(var i in arr){
+		arr[i]=arr[i].split(/<script/gi)[0];
+	}
+	s=arr.join('');
+
+	arr=s.split(/<\/style>/gi);
+	for(var i in arr){
+		arr[i]=arr[i].split(/<style/gi)[0];
+	}
+	s=arr.join('');
+	return s;
+}
+function textareaAdd(str,obj){
+	var O=$(obj),ov=O.val(), sS=O[0].selectionStart, sE=O[0].selectionEnd,
+		v=ov.substr(0,sS)+(str||'')+(sE==ov.length?'':ov.substr(sE));
+	O.val(v);
+	var t=sS+(str||'').length;
+	O.focus();
+	O[0].selectionStart=t;
+	O[0].selectionEnd=t;
+}

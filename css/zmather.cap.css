@@ -1,0 +1,143 @@
+#svgTextDetails, #svgTextN, .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
+#SvgOpt img, #COLOR img{vertical-align:middle}
+#fontCSS span{font-size:16px}
+
+#caps{
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
+
+#tileToolCap img{
+    width: 16px;
+}
+
+#tileToolCap svg[id]{width:30px;height:30px}
+
+#tileFontCenter{width:40px}
+
+#strkDash{width:78px}
+#font{width:100px}
+
+#path_CapScr{width:55%}
+
+#copyDir,#eraserDir,#svgTEXT select,#svgTool textarea{font-size:18px}
+#svgTool > div{padding:5px}
+#Weib{margin:5px}
+#fontCSS span{margin:10px}
+
+#svgShape, #svgCssTransform > div{margin:10px 0;border-radius: 5px;}
+
+#fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
+
+#fontCSS span,#tileToolCap svg,#night{cursor:pointer}
+#tileTool{
+	border-left: dashed white 1px;
+	text-align:center;
+	right:12px;
+	position:fixed;
+	overflow-x:hidden;
+	user-select: none;
+	top:30px;
+
+}
+
+#svgShape svg{border-radius:5px}
+#tileToolCap,svg:hover,.caplatex:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+
+
+#tileTool:not([for]):after{
+	position: fixed;
+	font-weight: bold;
+	color: yellow;
+	text-shadow:3px 3px 5px rgba(0, 0, 0, .5);
+
+	content:attr(tip);
+	top:0;
+	right:12px;
+	height:20px;
+	z-index: 1;
+}
+#Caps textarea:hover{resize:auto;overflow:auto}
+#Caps textarea{resize:none; overflow:hidden; background-color:transparent}
+
+
+#svgTool textarea{color:white}
+
+#capctxTXT div,#fxTXT div{
+	max-height:100px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align: left;
+}
+
+#fxTXT,#capctxTXT{
+	background:#eee;
+}
+
+#tileBacks{
+    text-align: left;
+    padding-left: 20px;
+}
+
+
+#svgTEXTLaTeX{
+	position: fixed;
+    right: 25%;
+    z-index: 400000;
+    top: 0;
+    
+   
+}
+
+#Tile > table td{padding:0}
+
+#Tile table {
+    border-spacing: 0;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+input[type=number] {
+    width: 50px;
+}
+input:not([readonly]), select{
+    vertical-align: middle;
+}
+#COLOR summary input[readonly] {
+    margin: 2px;
+    width: 16px;
+}
+#color1{background:skyblue}
+#color2{background:pink}
+#color3{background:black}
+#color4{background:firebrick}
+
+#CssRotate6 img {
+    margin: 0 2px;
+}
+
+.blur{filter:blur(1px)}
+.bright{filter:brightness(50%)}
+.contrast{filter: contrast(150%)}
+.dropShadow{filter: drop-shadow(-2px -2px 2px rgba(0, 0, 0, 0.5))}
+.grayscale{filter: grayscale(80%)}
+.sepia{filter: sepia(100%)}
+.invert{filter: invert(100%)}
+.hueRotate{filter:hue-rotate(180deg)}
+.saturate{filter: saturate(100%)}
+.scale{transform: scale(1.2,1); padding-right:2px}
+.skew{transform: skew(12deg)}
+.clip{clip:rect(0,12px,12px,0)}
+
+.flipy,#flipy{transform:rotateY(180deg)}
+.flipx,#flipx{transform:rotateX(180deg)}
+.rotate3,#rotate3{transform:rotate(-90deg)}
+.rotate2,#rotate2{transform:rotate(180deg)}
+.rotate1,#rotate1{transform:rotate(90deg)}
+
+.small{transform:scale(.9)}
+
+#TextLaTeX{background-color:rgba(50, 205, 50,0.5);color:black}

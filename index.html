@@ -9,19 +9,23 @@
 
     <link rel="stylesheet" href="css/zmather.io.css" />
 
-    <link rel="stylesheet" href="css/zmatherlib.css" />
-
+    <link rel="stylesheet" href="css/zmather.lib.css" />
+	
+	<link rel="stylesheet" href="css/zmather.cap.css" />
 
 <!-- 引用第三方库 -->
     <script src="js/lib/jQuery.js"></script>
     <script src="js/lib/Base64.js"></script> <!-- 增加了XML的解析功能-->
+	<script src="js/lib/effects.js"></script> <!-- JS特效-->
     <script src="js/lib/katex.js"></script>
 
     <script src="js/lib/qrcode.js"></script>
     
     <script src="js/lib/raphael.js"></script>
     <script src="js/lib/flowchart.js"></script>
+    <script src="js/lib/echarts.js"></script>
 
+    <script src="js/lib/js-yaml.js"></script>
 
     <script src="js/i18n/en.js"></script>
     <script src="js/i18n/zh_cn.js"></script>
@@ -69,200 +73,204 @@
 
 <!-- 界面数据层 -->
 
+    <script src="js/interface/solve.js"></script>
+
+    <script src="js/interface/solve/2110.js"></script>
+    <script src="js/interface/solve/2199.js"></script>
+    <script src="js/interface/solve/3430.js"></script>
+    <script src="js/interface/solve/81.js"></script>
 
 
+    <script src="js/interface/graphic.js"></script>
+    <script src="js/interface/graphic/echarts.js"></script>
 
 
-	<script src="js/interface/solve/2110.js"></script>
-	<script src="js/interface/solve/2199.js"></script>
-	<script src="js/interface/solve/3430.js"></script>
-	<script src="js/interface/solve/81.js"></script>
+    <script src="js/interface/show.js"></script>
 
 
-    <script src="js/interface/graphic/canvas.js"></script>
-    <script src="js/interface/graphic/svg.js"></script>
+    <script src="js/interface/show/Speech.js"></script>
+    <script src="js/interface/show/Video.js"></script>
+    
+    <script src="js/interface/show/2D.js"></script>
+    <script src="js/interface/show/3D.js"></script>
+    
+    <script src="js/interface/show/VR.js"></script>
+    <script src="js/interface/show/AR.js"></script>
 
-    <script src="js/interface/graphic/shape.js"></script>
-    <script src="js/interface/graphic/hasse.js"></script>
-    <script src="js/interface/graphic/flowchart.js"></script>
-
-
-
-
-	<script src="js/interface/show/Voice.js"></script>
-	<script src="js/interface/show/Video.js"></script>
-	
-	<script src="js/interface/show/2D.js"></script>
-	<script src="js/interface/show/3D.js"></script>
-	
-	<script src="js/interface/show/VR.js"></script>
-	<script src="js/interface/show/AR.js"></script>
-
-
-
-	<script src="js/interface/wiki/algebra.js"></script>
-	<script src="js/interface/wiki/Algebra_Group.js"></script>
-	<script src="js/interface/wiki/Algebra_Ring.js"></script>
-	<script src="js/interface/wiki/Algebra_Lattice.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/algebraic.js"></script>
-	<script src="js/interface/wiki/analytic.js"></script>
-	<script src="js/interface/wiki/complex.js"></script>
-	<script src="js/interface/wiki/differential.js"></script>
-	<script src="js/interface/wiki/Formal_Power_Series.js"></script>
-	<script src="js/interface/wiki/fraction.js"></script>
-	<script src="js/interface/wiki/function.js"></script>
-	
-	
-	<script src="js/interface/wiki/Geometry_Point.js"></script>
-	<script src="js/interface/wiki/Geometry_Line.js"></script>
-	<script src="js/interface/wiki/Geometry_Angle.js"></script>
-	<script src="js/interface/wiki/Geometry_Plane.js"></script>
-	<script src="js/interface/wiki/Geometry_Solid.js"></script>
-	
-
-	<script src="js/interface/wiki/Graph_Type.js"></script>
-	<script src="js/interface/wiki/Graph_Unary_Operation.js"></script>
-	<script src="js/interface/wiki/Graph_Binary_Operation.js"></script>
-	<script src="js/interface/wiki/Graph_Binary_Relation.js"></script>
-	<script src="js/interface/wiki/Graph_Path.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/hyperbolic.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/Infinite_Series.js"></script>
-	
-	
-	<script src="js/interface/wiki/integer.js"></script>
-	<script src="js/interface/wiki/Integer_Divide.js"></script>
-	<script src="js/interface/wiki/Integer_Fermat_Number.js"></script>
-	<script src="js/interface/wiki/Integer_Type.js"></script>
-	<script src="js/interface/wiki/integral.js"></script>
-	
-	<script src="js/interface/wiki/limit.js"></script>
-	<script src="js/interface/wiki/logic.js"></script>
-	
-	
-
-
-	<script src="js/interface/wiki/Matrix_Type.js"></script>
-	<script src="js/interface/wiki/Matrix_Unary_Operation.js"></script>
-	<script src="js/interface/wiki/Matrix_Binary_Operation.js"></script>
-	<script src="js/interface/wiki/Matrix_Binary_Relation.js"></script>
-	<script src="js/interface/wiki/Matrix_Determinant.js"></script>
-	<script src="js/interface/wiki/Matrix_Factorization.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/number.js"></script>
-	<script src="js/interface/wiki/polynomial.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/prime.js"></script>
-	<script src="js/interface/wiki/Prime_Mersenne_Number.js"></script>
-	<script src="js/interface/wiki/Prime_Structure.js"></script>
-	<script src="js/interface/wiki/Prime_Type.js"></script>
-	
-	
-	<script src="js/interface/wiki/radical.js"></script>
-	<script src="js/interface/wiki/recursive.js"></script>
-
-
-
-
-
-	<script src="js/interface/wiki/Relation_Type.js"></script>
-	<script src="js/interface/wiki/Relation_Equivalence.js"></script>
-	<script src="js/interface/wiki/Relation_Compatible.js"></script>
-	<script src="js/interface/wiki/Relation_Partial_Order.js"></script>
-
-
-	<script src="js/interface/wiki/Sequence_Rational.js"></script>
-	<script src="js/interface/wiki/Sequence_Combination.js"></script>
-	<script src="js/interface/wiki/Sequence_Sum.js"></script>
-	<script src="js/interface/wiki/Sequence_Amicable_Numbers.js"></script>
-	
-	
-	
-	<script src="js/interface/wiki/set.js"></script>
-	<script src="js/interface/wiki/tensor.js"></script>
-	<script src="js/interface/wiki/trigonometric.js"></script>
-	<script src="js/interface/wiki/unit.js"></script>
-	<script src="js/interface/wiki/vector.js"></script>
 
 
 
     <script src="js/interface/wiki.js"></script>
 
+    <script src="js/interface/wiki/Algebra.js"></script>
+    <script src="js/interface/wiki/Algebra_Group.js"></script>
+    <script src="js/interface/wiki/Algebra_Ring.js"></script>
+    <script src="js/interface/wiki/Algebra_Lattice.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Algebraic.js"></script>
+    <script src="js/interface/wiki/Analytic.js"></script>
+    <script src="js/interface/wiki/Complex.js"></script>
+
+
+    <script src="js/interface/wiki/Differential.js"></script>
+    <script src="js/interface/wiki/Formal_Power_Series.js"></script>
+    <script src="js/interface/wiki/Fraction.js"></script>
+    <script src="js/interface/wiki/Function.js"></script>
+    
+    
+    <script src="js/interface/wiki/Geometry_Point.js"></script>
+    <script src="js/interface/wiki/Geometry_Line.js"></script>
+    <script src="js/interface/wiki/Geometry_Angle.js"></script>
+    <script src="js/interface/wiki/Geometry_Plane.js"></script>
+    <script src="js/interface/wiki/Geometry_Solid.js"></script>
+    
+
+    <script src="js/interface/wiki/Graph_Type.js"></script>
+    <script src="js/interface/wiki/Graph_Unary_Operation.js"></script>
+    <script src="js/interface/wiki/Graph_Binary_Operation.js"></script>
+    <script src="js/interface/wiki/Graph_Binary_Relation.js"></script>
+    <script src="js/interface/wiki/Graph_Path.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Hyperbolic.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Infinite_Series.js"></script>
+    
+    
+    <script src="js/interface/wiki/Integer.js"></script>
+    <script src="js/interface/wiki/Integer_Divide.js"></script>
+    <script src="js/interface/wiki/Integer_Fermat_Number.js"></script>
+    <script src="js/interface/wiki/Integer_Type.js"></script>
+    <script src="js/interface/wiki/Integral.js"></script>
+    
+    <script src="js/interface/wiki/Limit.js"></script>
+    <script src="js/interface/wiki/Logic.js"></script>
+    
+    
+
+
+    <script src="js/interface/wiki/Matrix_Type.js"></script>
+    <script src="js/interface/wiki/Matrix_Unary_Operation.js"></script>
+    <script src="js/interface/wiki/Matrix_Binary_Operation.js"></script>
+    <script src="js/interface/wiki/Matrix_Binary_Relation.js"></script>
+    <script src="js/interface/wiki/Matrix_Determinant.js"></script>
+    <script src="js/interface/wiki/Matrix_Factorization.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Number.js"></script>
+    <script src="js/interface/wiki/Polynomial.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Prime.js"></script>
+    <script src="js/interface/wiki/Prime_Mersenne_Number.js"></script>
+    <script src="js/interface/wiki/Prime_Structure.js"></script>
+    <script src="js/interface/wiki/Prime_Type.js"></script>
+    
+    
+    <script src="js/interface/wiki/Radical.js"></script>
+    <script src="js/interface/wiki/Recursive.js"></script>
 
 
 
+
+
+    <script src="js/interface/wiki/Relation_Type.js"></script>
+    <script src="js/interface/wiki/Relation_Equivalence.js"></script>
+    <script src="js/interface/wiki/Relation_Compatible.js"></script>
+    <script src="js/interface/wiki/Relation_Partial_Order.js"></script>
+
+
+    <script src="js/interface/wiki/Sequence_Rational.js"></script>
+    <script src="js/interface/wiki/Sequence_Combination.js"></script>
+    <script src="js/interface/wiki/Sequence_Sum.js"></script>
+    <script src="js/interface/wiki/Sequence_Amicable_Numbers.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/Set.js"></script>
+    
+    <script src="js/interface/wiki/Transcendental.js"></script>
+    <script src="js/interface/wiki/Tensor.js"></script>
+    <script src="js/interface/wiki/Trigonometric.js"></script>
+    <script src="js/interface/wiki/Unit.js"></script>
+    <script src="js/interface/wiki/Vector.js"></script>
+
+
+
+
+
+
+
+    <script src="js/interface/course.js"></script>
 <!--
 
-	<script src="js/interface/course/2110.js"></script>
+    <script src="js/interface/course/2110.js"></script>
 
 -->
-    <script src="js/interface/course.js"></script>
 
 
 
 
-
-	<script src="js/interface/drill/2110.js"></script>
 
     <script src="js/interface/drill.js"></script>
+    <script src="js/interface/drill/2110.js"></script>
 
 
-
-
-
-	<script src="js/interface/topic/lottery.js"></script>
-
-	<script src="js/interface/topic/sudoku.js"></script>
 
 
 
 
     <script src="js/interface/topic.js"></script>
+    <script src="js/interface/topic/Lottery.js"></script>
+
+    <script src="js/interface/topic/Sudoku.js"></script>
 
 
-<!--
-	<script src="js/interface/pitfall/ .js"></script>
-	
--->
+
+
+
+
     <script src="js/interface/pitfall.js"></script>
+<!--
+    <script src="js/interface/pitfall/ .js"></script>
+    
+-->
 
 
 
 
-
-
-	<script src="js/interface/unsolved/3n_1.js"></script>
-
-	<script src="js/interface/unsolved/transcendental.js"></script>
 
     <script src="js/interface/unsolved.js"></script>
 
+    <script src="js/interface/unsolved/3n_1.js"></script>
 
 
+
+
+
+
+
+
+    <script src="js/interface/refer.js"></script>
 <!--
-	<script src="js/interface/refer/activity.js"></script>
-	<script src="js/interface/refer/org.js"></script>
-	<script src="js/interface/refer/edu.js"></script>
-	<script src="js/interface/refer/fan.js"></script>
-	<script src="js/interface/refer/pub.js"></script>
-	<script src="js/interface/refer/mooc.js"></script>
-	<script src="js/interface/refer/ppt.js"></script>
-	<script src="js/interface/refer/exam.js"></script>
-	<script src="js/interface/refer/hardware.js"></script>
-	<script src="js/interface/refer/software.js"></script>
-	<script src="js/interface/refer/ref.js"></script>
+    <script src="js/interface/refer/activity.js"></script>
+    <script src="js/interface/refer/org.js"></script>
+    <script src="js/interface/refer/edu.js"></script>
+    <script src="js/interface/refer/fan.js"></script>
+    <script src="js/interface/refer/pub.js"></script>
+    <script src="js/interface/refer/mooc.js"></script>
+    <script src="js/interface/refer/ppt.js"></script>
+    <script src="js/interface/refer/exam.js"></script>
+    <script src="js/interface/refer/hardware.js"></script>
+    <script src="js/interface/refer/software.js"></script>
+    <script src="js/interface/refer/ref.js"></script>
 
 
 
@@ -270,195 +278,1236 @@
 -->
 
 
-    <script src="js/interface/refer.js"></script>
+    <script src="js/interface/navhead/whitepaper.js"></script>
+    <script src="js/interface/navhead/protocol.js"></script>
+    <script src="js/interface/navhead/hotkey.js"></script>
+    <script src="js/interface/navhead/API.js"></script>
+    <script src="js/interface/navhead/project.js"></script>
+    <script src="js/interface/navhead/donate.js"></script>
+    <script src="js/interface/navhead/about.js"></script>
 
 
 
 
-
-
-	<script src="js/interface/about/version.js"></script>
-	<script src="js/interface/about/whitepaper.js"></script>
-
-	<script src="js/interface/about/donate.js"></script>
-	<script src="js/interface/about/API.js"></script>
-
-
-
-<!-- 界面逻辑层封装 -->
-    <script src="js/interface/graphic.js"></script>
-    <script src="js/interface/solve.js"></script>
-    <script src="js/interface/show.js"></script>
-    <script src="js/interface/explore.js"></script>
-    <script src="js/interface/about.js"></script>
 
 
 
 <!-- 业务逻辑层 -->
 
 
-	<script src="js/run/solve/2110.js"></script>
-	<script src="js/run/solve/2199.js"></script>
-	<script src="js/run/solve/3430.js"></script>
-	<script src="js/run/solve/81.js"></script>
+    <script src="js/run/solve/2110.js"></script>
+    <script src="js/run/solve/2199.js"></script>
+    <script src="js/run/solve/3430.js"></script>
+    <script src="js/run/solve/81.js"></script>
 
 
 
 <!-- 业务封装层 -->
 
-	<script src="js/run/go.js"></script>
+    <script src="js/run/go.js"></script>
 
-
-
-
+	<script src="js/htm/cap.js"></script>
+	<script src="js/htm/cap_mDn.js"></script>
+	<script src="js/htm/cap_mMv.js"></script>
+	<script src="js/htm/cap_mUp.js"></script>
 
 </head>
 <body>
 <div id=zMather>
-<div class="opac pd2"><span id=logo></span>
-    <label><input type=radio name=tool value=solve id=solve /></label>
-    <label><input type=radio name=tool value=graphic id=graphic /></label>
-    <label><input type=radio name=tool value=show id=show /></label>
-    <label><input type=radio name=tool value=explore id=explore /></label>
-    <label><input type=radio name=tool value=about id=about /></label>
+<div id=nav>
+	<div id=navhead class=opac><span id=logo class=subhead></span>
+	    <select id=lang></select>
+	            </div>
+	<div id=navbody>
+		<div id=toolnav class="opac pd2"></div>
 
-	<select id=lang></select>
-			</div>
-
-<details id=subject><summary class=opac>
-	<select id=subject0></select>
-	<select id=subject1 hidden></select>
-	<select id=subject2 hidden></select>
-	</summary>
-	<div class=ground0></div>
-	<div class=ground1></div>
-			</details>
-
-<div id=solveGround class=ground>
-	<div class=ground0></div>
-	<div class=ground1></div>
-	<div class=ground2></div>
-	<div class=tasks></div>
+		<details id=subject><summary class=opac>
+		    <select id=subject0></select>
+		    <select id=subject1 hidden></select>
+		    <select id=subject2 hidden></select>
+		    </summary>
+		    <div class=ground0></div>
+		    <div class=ground1></div>
+		            </details>
+		            
+		<details id=searchTool><summary><input type=search id=search />
+		    </summary>
+		            </details>
+		            
+	</div>
 </div>
-
-<div id=graphicGround class=ground>
-	<div class=ground0></div>
-	<div class=ground1></div>
-	<div class=ground2></div>
-	<div class=tasks></div>
-</div>
-
-<div id=showGround class=ground>
-	<div class=ground0></div>
-	<div class=ground1></div>
-	<div class=ground2></div>
-	<div class=tasks></div>
-</div>
-
-<div id=exploreGround class=ground>
-	<div class="opac">
-		<select id=explores></select>
-		
-    	<input type=search id=search size=60 /></div>
-	<div class=ground0></div>
-	<div class=ground1></div>
-	<div class=ground2></div>
-	<div class=tasks></div>
-</div>
-
-<div id=aboutGround class=ground>
-	<div class=ground0></div>
-	<div class=ground1></div>
-	<div class=ground2></div>
-	<div class=tasks></div>
-
-</div>
-
-<div id=iContent>
-<div id=iText>
-    <div id=sbs hidden class=iTextLaTeX></div>
-    <div id=funcs hidden class=iTextLaTeX></div>
-    <div id=struc hidden class=iTextLaTeX></div>
+<div id=iContent class=pd2>
+	<div id=iText>
 
 
-    <div><div id=input0Preview contentEditable=true class="floatl pd10" hidden></div>
-        
-        <textarea id=input0 class=floatl></textarea>
-        <div id=input0Tool class="floatl opac">
-        	<input type=button class=Clear id=iClear value=⌫ />
-        	<br />
-			<input id=lineSplit type=button />
-			<br />
-			<input id=lineMerge type=button />
-			<br />
-			<input id=Condon class=tool type=button />
-        	</div>
-        
-        <div id=input0Tip class=floatl></div>
-        <div class=clear></div></div>
-
-
-    <div hidden id=Cond>
-        <div class=floatl id=input1Preview></div>
-        <textarea id=input1 class=floatl></textarea>
-        <div id=input1Tool class="floatl opac">
-     	    <div><input type=button class=Clear id=cClear value=⌫ hidden /></div>
-
-
-        	</div>
-        <div id=input1Tip class=floatl></div>
-        <div class=clear></div></div>
-        
-        
-
-
-    <div id=iTextOpt class="pd2">
-		<div hidden><input type="file" accept="image/*" multiple="multiple" id=upimg /></div>
-		<div hidden><input type="file" accept="image/*" capture="camera"></div>
-
-		<div hidden><input type="file" accept="video/*" capture="camcorder"></div>
-
-		<div hidden><input type="file" accept="audio/*" capture="microphone"></div>
-		
-		<input type=button class="Clear rotate90" id=displayOff value=⌫ hidden />
-        <input type=button id=go value="  GO  " />
-        
-	    <span class=opac>
+	    <div id=iTextMain><div id=input0Preview contentEditable=true class="pd10" hidden></div>
 	        
-	        <input type=button id=sbson class=tool />
-	        <input type=button id=funcson class=tool />
-	        <input type=button id=strucon class=tool />
+	        <textarea id=input0></textarea>
+	        <div id=input0Tool class="opac">
+	            <input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
+	            <i class=mi id=navHide>keyboard_arrow_up</i>
+	            <input type=button class="Clear rotate180" id=tClear value=⌫ />
+	            <br />
+	            
+		        <span class="opac iTextLaTeXon">
+		            
+		            <input type=button id=sbson class=tool />
+		            <br />
+			        <input type=button id=funcson class=tool />
+		            <br />
+			        <input type=button id=strucon class=tool />
+		            <br />
+		            </span>
+	            <input type="file" accept="image/*" capture="camera" hidden />
+	            <input type="file" accept="image/*" multiple="multiple" hidden />
 
-	        <select id=input0Type></select>
+	            <input id=lineSplit type=button />
+	            <br />
+	            <input id=lineMerge type=button />
+	            <br />
+	            <input id=Condon class="tool" type=button />
+	            </div>
 	        
-			<input id=FullScreen type=button />
-	        <input type=button id=display />
-	        
-	        <select id=output0Type></select>
+	        <div id=iTextLaTeXBox>
+	  			<div id=sbs hidden class=iTextLaTeX></div>
+	 		    <div id=funcs hidden class=iTextLaTeX></div>
+	  			<div id=struc hidden class=iTextLaTeX></div>
+	  			</div>
 
+	        <div id=input0Tip></div>
+
+	        <div class=clear></div></div>
+
+
+	    <div hidden id=Cond>
+	        <div id=input1Preview></div>
+	        <textarea id=input1></textarea>
+	        <div id=input1Tool class="opac">
+	            <div><input type=button class=Clear id=cClear value=⌫ hidden /></div>
+
+
+	            </div>
+	        <div id=input1Tip></div>
+	        <div class=clear></div></div>
+	        
+	        
+
+
+	    <div id=iTextOpt class="pd2">
+
+	        <span id=latexDisplayTool hidden>
+		        <input type=button class="Clear rotate90" id=displayOff value=⌫ />
+
+	      		<i class=mi id=displayOverCanvas>arrow_downward</i>
+	      		<i class=mi id=downloadPreview tip="Download HTML File | saveTip">file_download</i>
+				</span>
 			
+	        <span class=opac>
 
-	        </span>
-	    <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ hidden />
-        
-        
-        
-        
+	            <select id=input0Type></select>
+	            
+	        	<input type=button id=display class="tool seled" />
+	            
+	            <select id=output0Type></select>
+
+	            
+
+	            </span>
+	            
+	        <input type=button id=go value="  GO  " hotkey="Ctrl + Enter" />
+	        
+
+	        <input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
+	        <i class=mi id=iTextFold>unfold_less</i>
+	        <i class=mi id=zMatherHide>keyboard_arrow_up</i>
+	        
+	        
+	        </div>
+
+
+	</div>
+
+</div>
+</div>
+
+<div id=panel>
+		<div id=menu>
+			<span id=bar>&nbsp;</span>
+			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
+
+			<i class=mi id=svgs tip="SVG Gadget" hotkey="Esc">layers</i>
+
+			<i class=mi id=zzllrrCanvas tip="Background Canvas">wallpaper</i>
+			<i class=mi id=bg tip="bg">photo_size_select_actual</i>
+			<i class=mi id=grid tip="Grid">grid_on</i>
+			<i class=mi id=shape tip="Shape">panorama_fish_eye</i>
+			<i class=mi id=text tip="Text">title</i>
+			<i class=mi id=clear tip="Clear">backspace</i>
+			<!--  
+			<i class=mi id=ani tip="Animation">movie</i>
+			
+			-->
+
+					
+			
+			</div>
+		<div for=bg>
+			<div><span class=mi-span id=bggrad mi=gradient>BGC</span>
+				<span for=bggrad><label><input type=checkbox id=bggradOn class=on /></label>
+					<span for=bggradOn>
+						<div class=fill>
+							<label hidden><i18>Fill</i18><input type=checkbox class=fillon checked=checked /></label>
+							<input type=color value="#eeeeee" class=color />
+							<label><i18>Gradient</i18><input type=checkbox class=gradon /></label><br />
+							<i18>Gradient Color</i18><input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor /><br />
+							<i18>Linear / Radial</i18><input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />
+						</div>
+					</span>
+				</span></div>
+			<div><span class=mi-span id=bgimg mi=landscape>Image</span>
+				<span for=bgimg><label><input type=checkbox id=bgimgOn class=on /></label>
+					<span for=bgimgOn>
+						<div class=multi>
+							<div><i18>Image URL</i18><input type=url class=imgurl placeholder="" /></div>
+							<div><i18>Cut Position and Size</i18><input type=text class=poswh placeholder="sx,sy,swidth,sheight" /></div>
+							<div><i18>Paste Position and Size</i18><input type=text class=poswh placeholder="x,y,width,height" /></div>
+							<div><i class="mi Add">add</i><i class="mi Del">clear</i></div>
+							
+						</div>
+					</span>
+				</span></div>
+
+		</div>
+		<div for=grid>
+			<div><span class=mi-span id=orig mi=filter_tilt_shift>Origin</span>
+				<span><label>x=<input type=number value=600 id=Ox min=0 /></label>
+						<label>y=<input type=number value=400 id=Oy min=0 /></label></span>
+			</div>
+			<div><span class=mi-span id=dot mi=radio_button_checked>Point</span>
+				<span for=dot><label><input type=checkbox id=dotOn class=on /></label>
+
+					<span for=dotOn>
+						<div class=multi>
+							<div><span><i18>Coordinate</i18><input type=text class=pos placeholder="20 20,30 30" /></span>
+								<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
+								<i class="mi Add">add</i><i class="mi Del">clear</i>
+							</div>
+						</div>
+					</span>
+				</span></div>
+
+			<div><span class=mi-span id=axis mi=add_circle_outline>Axis</span>
+				<span for=axis><label><input type=checkbox id=axisOn class=on /></label>
+					<span for=axisOn>
+						<span><i18>Range</i18><input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" /></span>
+						<div><i18>Arrow</i18>分类（左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】）<input type=text value="0101" id=axisArrowType placeholder="0101" /></div>
+						<div><i18>Arrow</i18>参数（侧翼点长,宽;箭尾点偏移）<input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" /></div>
+						<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
+					</span>
+				</span></div>
+			<div><span class=mi-span id=tick mi=graphic_eq>Tick</span>
+				<span for=tick><label><input type=checkbox id=tickOn class=on /></label>
+					<span for=tickOn>
+						<span><i18>Range</i18><input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" /></span>
+						<div class=multi>
+							<div><span><i18>Tick Length</i18>（负号表示负轴方向）<input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 /></span>
+								<span><i18>Spacing</i18><input type=text value=20 class=tickSpacing placeholder="20,20" size=10 /></span>
+								<span><i18>Color</i18><input type=color value="#000000" class=color /></span>
+								<i class="mi Add">add</i><i class="mi Del">clear</i>
+							</div>
+						</div>
+
+					</span>
+				</span></div>
+			<div><span class=mi-span id=gridCross mi=border_all>Cartesian Grid</span>
+				<span for=gridCross><label><input type=checkbox id=gridCrossOn class=on /></label>
+					<span for=gridCrossOn>
+						<span class=orig>
+							<span><i18>Range</i18><input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" /></span>
+							<label><i18>Origin</i18><input type=checkbox id=gridCrossOrigOn class=on /></label>
+							<span for=gridCrossOrigOn>
+								<label>x=<input type=number value=600 class=Ox min=0 /></label>
+								<label>y=<input type=number value=400 class=Oy min=0 /></label></span>
+							
+						</span>
+						<div class=primary>
+							<span><i18>Primary Grid Spacing</i18><input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 /></span>
+							<span><i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 /></span>
+							<span><i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color /></span>
+						</div>
+						<div class=secondary>
+							<span><i18>Secondary Grid Spacing</i18><input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 /></span>
+							<span><i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
+							<span><i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color /></span>
+						</div>
+					</span>
+				</span></div>
+
+			<div><span class=mi-span id=gridPolar mi=location_searching>Polar Grid</span>
+				<span for=gridPolar><label><input type=checkbox id=gridPolarOn class=on /></label>
+					<span for=gridPolarOn>
+						<span class=orig>
+							<span><i18>Range Radii</i18><input type=number value=0 id=gridPolarRange min=0 /></span>
+							<label><i18>Origin</i18><input type=checkbox id=gridPolarOrigOn class=on /></label>
+							<span for=gridPolarOrigOn>
+								<label>x=<input type=number value=600 class=Ox min=0 /></label>
+								<label>y=<input type=number value=400 class=Oy min=0 /></label></span>
+						</span>
+						<div class=primary>
+							<span><i18>Primary Grid Spacing</i18> r <input type=number value=200 id=gridPolarxSpacing min=0 /></span>
+							<span><i18>Primary Grid</i18>角等分线数<input type=number value=1 id=gridPolaryNum min=0 /></span>
+							<span><i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 /></span>
+							<span><i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color /></span>
+						
+						</div>
+						<div class=secondary>
+							<span><i18>Secondary Grid Spacing</i18> r <input type=number value=0 id=gridPolar2xSpacing min=0 /></span>
+							<span><i18>Secondary Grid</i18>角等分线数<input type=number value=0 id=gridPolar2yNum min=0 /></span>
+							<span><i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5 size=10 /></span>
+							
+							<span><i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color /></span>
+						</div>
+					</span>
+				</span>
+			</div>
+		</div>
+		<div for=shape>
+
+
+
+			<div><span class=mi-span id=circle mi=radio_button_unchecked>Circle</span>
+				<span for=circle><label><input type=checkbox id=circleOn class=on /></label>
+					<span for=circleOn>
+						<div class=multi>
+							<div><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 200,300 300" /></div>
+							<div><i18>Radii</i18><input type=text class=rad placeholder="15,10" /></div>
+
+						</div>
+					</span>
+				</span></div>
+
+			<div><span class=mi-span id=ellipse mi=vignette>Ellipse</span>
+				<span for=ellipse><label><input type=checkbox id=ellipseOn class=on /></label>
+					<span for=ellipseOn>
+						<div class=multi>
+							<div><input type=checkbox class=multinput checked=checked />
+								<span><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Radii</i18>（半长轴,半短轴,半焦距 3选2）<input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" /></span>
+								<span><i18>Rotate</i18>°<input type=text class=rot placeholder="45,-30" /></span>
+							</div>
+							<div><input type=checkbox class=multinput />
+								<span><i18>Foci Coordinate</i18><input type=text class=pos placeholder="300 400,380 400;" /></span>
+								<span><i18>Radii</i18>（半长轴,半短轴 2选1）<input type=text class=rad placeholder="ra50;rb30" /></span>
+							</div>
+							<div><input type=checkbox class=multinput />
+								<span><i18>Vertex Coordinate</i18><input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 /></span>
+							</div>
+							<div><input type=checkbox class=multinput />
+								<span><i18>CircumRectangle</i18> <i18>Vertex Coordinate</i18><input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 /></span>
+							</div>
+
+						</div>
+					</span>
+				</span></div>
+
+
+			<div><span class=mi-span id=rect mi=crop_landscape>Rectangle</span>
+				<span for=rect><label><input type=checkbox id=rectOn class=on /></label>
+					<span for=rectOn>
+						<div class=multi>
+							<div><i18>Vertex Coordinate</i18>（左上）<input type=text class=pos placeholder="200 400;" size=50 /></div>
+							<div><i18>Length Width</i18><input type=text class=rad placeholder="300 200;" /></div>
+
+
+						</div>
+					</span>
+				</span></div>
+
+			<div><span class=mi-span id=line mi=power_input>Polyline Polygon</span>
+				<span for=line><label><input type=checkbox id=lineOn class=on /></label>
+					<span for=lineOn>
+						<div class=multi>
+							<div><i18>Vertex Coordinate</i18>（或斜°长）<input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 /></div>
+							<div><i18>Round Corner Radii</i18><input type=text class=rad2 placeholder="0,10" /></div>
+							<div><label><i18>Closed</i18> (<i18>Polygon</i18>) <input type=checkbox class=close /></label></div>
+
+						</div>
+
+					</span>
+				</span></div>
+
+
+			<div><span class=mi-span id=isogon mi=brightness_low>Regular Polygon</span>
+				<span for=isogon><label><input type=checkbox id=isogonOn class=on /></label>
+					<span for=isogonOn>
+						<div class=multi>
+							<div><input type=checkbox class=multinput checked=checked />
+								<span><i18>Centroid Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Radii</i18><input type=text class=rad placeholder="50;" /></span>
+								<span><i18>Rotate</i18>°（起始半径偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
+							</div>
+							<div><input type=checkbox class=multinput />
+								<span>起点<i18>Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+								<span><i18>Side Length</i18><input type=text class=rad placeholder="50;" /></span>
+								<span><i18>Rotate</i18>°（起始边偏移x轴）<input type=text class=rot placeholder="45,-30" /></span>
+								<label><i18>Counterclockwise</i18>（方向）<input type=checkbox class=dir checked=checked /></label>
+							</div>
+
+							<div><i18>Round Corner Radii</i18><input type=text class=rad2 placeholder="0,0,5;10;" /></div>
+							<div><i18>Sides</i18><input type=text class=line placeholder="3,4,5" value=3 /></div>
+
+						</div>
+					</span>
+				</span></div>
+
+
+			<div><span class=mi-span id=bezier mi=all_inclusive>Bezier Curve</span>
+				<span for=bezier><label><input type=checkbox id=bezierOn class=on /></label>
+					<span for=bezierOn>
+						<div class=multi>
+							<div><i18>Point Coordinate</i18>（起点,控制点1、2;终点）<input type=text class=pos placeholder="20 20,30 50;80 60" size=50 /></div>
+							<div><label><i18>Closed</i18><input type=checkbox class=close /></label></div>
+
+						</div>
+
+					</span>
+				</span></div>
+			<div><span class=mi-span id=path mi=gesture>Curve</span>
+				<span for=path><label><input type=checkbox id=pathOn class=on /></label>
+					<span for=pathOn>
+						<div class=multi>
+							<div>SVG命令（MLHVAQC）<input type=text class=svg placeholder="M20 20L30 50" size=50 /></div>
+							<div><label><i18>Closed</i18><input type=checkbox class=close /></label></div>
+
+						</div>
+
+					</span>
+				</span></div>
+		</div>
+		<div for=text>
+
+			<div><span class=mi-span id=txt mi=text_format>Text</span>
+				<span for=txt><label><input type=checkbox id=txtOn class=on /></label>
+
+					<span for=txtOn>
+						<div class=multi>
+							<span><i18>Coordinate</i18><input type=text class=pos placeholder="200 400;" /></span>
+							<input type=text class=value size=80 />
+							<div><label><i18>Font</i18> <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" /></label>
+							</div>
+
+						</div>
+					</span>
+				</span></div>
+
+		</div>
+		<div for=ani>
+			<div id=aniControl>
+				<i class=mi id=aniPlay title="Play">play_arrow</i>
+				<i class=mi id=aniStop title="Stop">stop</i>
+				<i class=mi id=aniShot title="取景">camera_alt</i>
+				<i class=mi id=aniClear title="Clear">close</i>
+				<i class=mi id=aniInput title="Import">file_upload</i>
+				<i class=mi id=aniOutput title="Export">file_download</i>
+
+				</div>
+			<div><span class=mi-span id=scene mi=stay_current_landscape>Scene</span>
+				<span for=scene><label><input type=checkbox id=sceneOn class=on /></label>
+
+					<span for=sceneOn>
+						<div class=multi>
+							<span><i18>Time</i18>（ms）<input type=text class=times size=80 placeholder="0 1500" /></span>
+							<div>Frame <textarea class=json placeholder="每一场初始静态化数据"></textarea>
+							</div>
+
+						</div>
+					</span>
+				</span></div>
+
+			<div><span class=mi-span id=act mi=directions_run>Action</span>
+				<span for=act><label><input type=checkbox id=actOn class=on /></label>
+
+					<span for=actOn>
+						<div class=multi>
+							<span><i18>Time</i18>（ms）<input type=text class=times size=80 placeholder="0 1000" /></span>
+							<div>JS <textarea class=js placeholder="动作指令JS代码"></textarea>
+							</div>
+
+						</div>
+					</span>
+				</span></div>
+
+
+		</div>
+		
+
+		
+		
+		<div id=tileTool for=svgs class=cap>
+
+
+			<div id=tileToolCap>
+
+                <div id=svgShape>
+	            	<div id=svgTool>
+	            		
+						<svg id=Pointer hotkey="P"><path d="M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z" fill=yellow /></svg>
+						<svg id=Copy hotkey="Ctrl+V"><circle r=1 cx=8 cy=8 /><circle r=1 cx=8 cy=22 /><circle r=1 cx=22 cy=8 /><circle r=1 cx=22 cy=22 /></svg>
+						<svg id=Eraser hotkey="Delete(D)"><path d="M10 20 L20 10 M10 10 L20 20" /><circle r=10 cx=15 cy=15 /></svg>
+						<svg id=noteEraser tip="Del Layer" hotkey="Shift+Delete(D)"><path d="M10 20 L20 10 M10 10 L20 20" /><rect x=5 y=7 width=20 height=16 /></svg>
+						<svg id=Crop hotkey="C"><path d="M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18" /></svg>
+						<svg id=allEraser tip="BGC"><rect x=5 y=7 width=20 height=16 stroke=white fill=white /></svg>
+						<svg id=LayerToggle hotkey="V">
+							<path d="M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1" />
+						</svg>
+
+
+		                <div id=scrWH>
+		                	
+		                	<span id=W></span><input type=number id=scrW title=px min=1 />
+		                    <span id=H></span><input type=number id=scrH title=px min=1 />
+		                    </div>
+
+		                <div id=copyOpt>
+		                	<p><select id=copyDir multiple=multiple class=hmulti size=1 title=Ctrl></select>
+		                		</p>
+		                	<p>
+		                		<span>×</span><input type=number id=copyn min=1 value=1 />
+		                		<label id=margin><input type=checkbox checked=checked />
+		                			<input type=number id=copyMargin title=px value=10 /></label>
+		                		<label id=copyTileOn hidden><input type=checkbox id=copyTile /></label>
+		                		</p>
+		                	
+		                	<p>
+		                		<label><input type=checkbox id=Transform /></label>
+		                		</p>
+		                	
+		                	
+		                    </div>
+
+		                <div id=eraserOpt>
+		                	<p><select id=eraserDir multiple=multiple class=hmulti size=1 title=Ctrl></select>
+		                		</p>
+	                	
+		                    </div>
+
+						<div id=svgTextDetail>
+							<textarea id=svgTextDetails></textarea>
+							</div>
+
+		                <div id=svgSel>
+							<details id=svgTEXT>
+								<summary>
+									<select id=svgText>
+				                        <option value=0></option>
+				                        <option value=1>❶⓪①⑴‰</option>
+				                        <option value=2>㈠㊀㋋㏫㊣</option>
+				                        <option value=3>ⅠⅡⅰⅱΑα</option>
+				                        <option value=4>⒜ⒶⓐAa</option>
+				                        <option value=5>©®℉￠￥</option>
+				                        <option value=6>！：［｛</option>
+				                        <option value=7>←↕↙↶↺⇐</option>
+				                        <option value=8>∀∋∑∞∭⊆⋰</option>
+				                        <option value=9>■□▲●◐◑◢◣</option>
+				                        <option value=10>☀☑✔✿♞♣♬</option>
+				                        </select>
+				                    <select id=svgTextN></select>
+				                    <select id=svgTextM></select>
+				                </summary>
+								<textarea id=svgTexts placeholder="My Clipboard"></textarea>
+							</details>
+							
+
+							<details id=svgTEXTLaTeX><summary>
+								<input type=button value="LaTeX" id=GOlatex />
+								<input type=button id=clrLaTeX /></summary>
+								<textarea id=TextLaTeX></textarea>
+
+								</details>
+
+							
+		                    <select id=strkFill>
+		                        <option value=0>□</option>
+		                        <option value=1>▣</option>
+		                        <option value=2>■</option></select>
+
+
+
+		                    <select id=svgArwE></select>
+		                    <select id=svgArwS></select>
+		                    <select id=svgLine></select>
+
+		                    <select id=strkLnJoin>
+		                        <option value=round>﹙</option>
+		                        <option value=miter>﹤</option>
+		                        <option value=bevel>﹝</option></select>
+		                    <select id=strkLnCap>
+		                        <option value=butt>[</option>
+		                        <option value=round>(</option>
+		                        <option value=square>▌</option></select>
+
+							</div>
+
+
+						
+						<div id=SvgOpt>
+		                    <details id=Font hidden>
+		                    	<summary>
+			                        <span id=FontSize></span><input type=number id=fontSize min=12 value=24 title=px />
+		                    	    <input type=range id=tileFontCenter min=0 max=2 step=1 value=0 />
+		                        </summary>
+
+								<div id=fontCSS>
+		                        	<span class=bold title=B></span>
+		                            <span class=italic title=I></span>
+		                            <span class=underline></span>
+		                            <span class=overline></span>
+		                            <span class=through></span>
+			                    </div>
+		                    	<div><span id=fonT></span>
+		                    		<input type=text id=font list=CSS_fontfamily /></div>
+		                    	
+		                    	
+		                    	</details>
+							<div id=Dash hidden>
+								<span id=dash></span><input type=text id=strkDash />
+								<span id=offset></span><input type=number id=strkDashOffset min=0 value=1 /></div>
+		                
+
+
+	                        <details><summary><label id=SIDES><input type=number id=Sides min=3 value=5 /></label>
+	                        	<span id=bW></span><input type=number id=strkW min=0 value=4 title=px />
+								<span id=bWR></span><input type=number id=strkR min=0 value=0 title=px hidden />
+								<span id=bWRy>, </span><input type=number id=strkRy min=0 value=10 title=px hidden />
+								</summary>
+								
+								<div id=OtherOpts class=lightgray></div>
+								
+	                        	</details>
+	                        
+	                        
+	                        
+	                        <div id=MarginCopyOpt class=lightgray>
+	                        
+	                        	<label hidden><input type=radio name=MarginCopyOpt value=nest />
+	                        		×
+	                        		<input type=number id=nestNum min=1 value=2 />
+	                        		</label>
+	                        	
+	                        	<label><input type=radio name=MarginCopyOpt value=w /></label>
+	                        	
+	                        	<label><input type=radio name=MarginCopyOpt value=copy checked=checked /></label>
+
+
+		                        <input type=number id=copyNum min=1 value=10 hidden />
+		                        
+
+
+	                        	<div id=gridOpt hidden>
+	                        		<input type=number id=gridR min=1 value=3 /><span id=gridN>×</span>
+	                        		<input type=number id=gridC min=1 value=3 />
+	                        	</div>
+								
+		                        
+		                        <div id=MarginCopyH hidden><input type=number id=MarginCopyh min=1 value=10 /></div>
+	                        	<div id=nestOpt hidden>
+	                        		
+	                        	</div>
+	                        	</div>
+
+	                    	<div>
+	                    		<span id=WH> </span>
+	                    		<span id=Angle> </span>
+	                    		<label><input type=checkbox id=cssClip /></label></div>
+	                    	
+
+				            <div id=CssClip hidden><img class=clip><span id=clip></span>
+				            	<span>↦</span><input type=number id=cssClipL min=0 value=0 />
+				            	<span>↤</span><input type=number id=cssClipR min=0 value=100 /><br />
+				            	<span>↧</span><input type=number id=cssClipT min=0 value=0 />
+				            	<span>↥</span><input type=number id=cssClipB min=0 value=100 />
+				            	</div>
+
+							<div id=fxTXT hidden><textarea id=fxTxt placeholder="Condition;Ox,Oy,x0,x1,y0,y1;color;opacity"></textarea>
+								<details><summary><input type=button value="f(x,y)" id=GOfx /><input type=button class=clrCanvas /></summary></details>
+								</div>
+							<div id=capctxTXT hidden><textarea id=capctxTxt></textarea>
+								<details><summary><input type=button value="JS" id=GOcapctx /><select id=effects></select><input type=button class=clrCanvas /></summary></details>
+								</div>
+
+
+		              	</div>
+
+	                 </div>
+
+
+
+                <div>
+					<svg id=Freelin><path d="M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2" /></svg>
+					<svg id=Text hotkey="A"><text x=5 y=25 font-size=28 fill=white>A</text></svg>
+                	<svg id=ArectNote tip="Note" hotkey="N"><path d="M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z" /></svg>
+                    <svg id=LrectNote><path d="M8 20 L7 25 13 20 H25 V5 H5 V20 H8z" /></svg>
+					<svg id=ellipseNote><path d="M8 18 L7 25 13 20 A10 8 0 1 0 8 18z" /></svg>
+					<svg id=Grid><rect x=5 y=7 width=20 height=16 />
+								<line x1=15 y1=7 x2=15 y2=23 />
+								<line x1=5 y1=15 x2=25 y2=15 />
+								</svg>
+
+					</div>
+
+
+                <div>
+					<svg id=LRect><rect x=5 y=7 width=20 height=16 /></svg>
+					<svg id=LRectSq><rect x=5 y=5 width=20 height=20 /></svg>
+
+					<svg id=ARect tip="Round Corner" hotkey="R"><rect x=5 y=6 rx=5 ry=5 width=20 height=18 /></svg>
+					<svg id=ARectSq><rect x=5 y=5 rx=5 ry=5 width=20 height=20 /></svg>
+
+                    <svg id=Ellipse><ellipse rx=12 ry=10 cx=15 cy=15 /></svg>
+					<svg id=EllipseSq><circle r=10 cx=15 cy=15 /></svg>
+				</div>
+
+
+
+
+		
+
+
+				<div>
+
+					<svg id=diagon><polygon points="7,15 15,5 23,15 15,25" /></svg>
+					<svg id=diagonSq><polygon points="5,15 15,5 25,15 15,25" /></svg>
+
+					<svg id=SLNoteRnd><path d="M11 7 L5 13 V23 H25 V7 z" /></svg>
+                    <svg id=SANoteRnd><path d="M12 7 A7 7 0 0 0 5 14 V23 H25 V7 z" /></svg>
+
+					<svg id=DLNoteRnd><path d="M11 7 L5 13 V23 H25 V13 L19 7 z" /></svg>
+					<svg id=DANoteRnd><path d="M12 7 A7 7 0 0 0 5 14 V23 H25 V14 A7 7 0 0 0 18 7 z" /></svg>
+
+
+
+					</div>
+
+
+
+				<div>
+
+
+
+                    <svg id=dartNote><path d="M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z" /></svg>
+
+                    <svg id=SdartNoteM><path d="M5 7 V23 H17 L25 15 17 7 H5 z" /></svg>
+                    
+					<svg id=SdartNoteF><path d="M5 7 L13 15 5 23 H25 V7 z" /></svg>
+					
+					<svg id=Sarrow><path d="M5 11 V19 H15 V25 L25 15 15 5 V11 H5z" /></svg>
+					<svg id=Darrow><path d="M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z" /></svg>
+					<svg id=Xarrow><path d="M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z" /></svg>
+					
+					
+					</div>
+
+
+
+				<div>
+					<svg id=Quo><path d="M5 12 A2 2 0 0 0 7 15 H13 A2 2 0 0 1 15 18 2 2 0 0 1 17 15 H23 A2 2 0 0 0 25 12" /></svg>
+
+					<svg id=Polylin><path d="M6 24 L13 9 17 21 24 6" /></svg>
+
+					<svg id=PolyGon><path d="M5 20 L20 25 25 10 15 5z" /></svg>
+
+
+					<svg id=HeartNote><path d="M15 8 C15 7 14 5 10 5 C4 5 4 10 4 10 C4 16 8 20 15 24 C22 20 26 16 26 12 C26 12 26 5 20 5 C17 5 15 7 15 8z" /></svg>
+					
+					<svg id=PentagonX><polygon points="15,0 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12" /></svg>
+					
+					<svg id=Regulargon><path d="M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26" /></svg>
+
+
+					</div>
+                <div id=svgLines>
+
+					<div>
+
+						<svg id=Line hotkey="L"><defs>
+							<marker id=ArwE0Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="" /></marker>
+							<marker id=ArwS0Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="" /></marker>
+
+							<marker id=ArwE1Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M1 1 L9 5 1 9" /></marker>
+							<marker id=ArwS1Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M9 1 L1 5 9 9" /></marker>
+
+							<marker id=ArwE2Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M1 1 L9 5 1 9z" /></marker>
+							<marker id=ArwS2Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M9 1 L1 5 9 9z" /></marker>
+
+							<marker id=ArwE3Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M0 5 L5 1 10 5 5 9z" /></marker>
+							<marker id=ArwS3Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M0 5 L5 1 10 5 5 9z" /></marker>
+
+							<marker id=ArwE4Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M2 2 L2 8 8 8 8 2z" /></marker>
+							<marker id=ArwS4Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<path d="M2 2 L2 8 8 8 8 2z" /></marker>
+
+							<marker id=ArwE5Line refX=8 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<circle r=4 cx=5 cy=5 /></marker>
+							<marker id=ArwS5Line refX=2 viewBox="0 0 10 10" refY=5 markerWidth=4 markerHeight=4>
+								<circle r=4 cx=5 cy=5 /></marker>
+
+							</defs>
+							<line x1=11 y1=24 x2=19 y2=6 marker-end="url(#ArwE6Line)" /></svg>
+
+						<svg id=LineSq><line x1=6 y1=24 x2=24 y2=6 /></svg>
+
+	                    <svg id=line1tick><path d="M4 16 H26 M15 16 V11 M4 16 H26" /></svg>
+	                    <svg id=line2tick><path d="M9 4 V21 M9 15 H5 M15 21 V25 M9 21 H26" /></svg>
+
+						<svg id=linecurveH><path d="M5 20 Q15 5 25 20" /></svg>
+						<svg id=linecurveV><path d="M20 5 Q5 15 20 25" /></svg>
+					</div>
+
+					<div>
+
+
+
+						<svg id=SLlineH><path d="M6 6 V24 H20" /></svg>
+						<svg id=SLlineSqH><path d="M6 6 V24 H24" /></svg>
+
+						<svg id=SAlineH><path d="M6 6 V20 A4 4 0 0 0 10 24 H20" /></svg>
+						<svg id=SAlineSqH><path d="M6 6 V20 A4 4 0 0 0 10 24 H24" /></svg>
+						
+						<svg id=linearcH><path d="M6 10 A18 5 0 1 1 6 20" /></svg>
+						<svg id=linearcV><path d="M10 24 A5 18 0 1 1 20 24" /></svg>
+
+					</div>
+
+
+					<div>
+
+						<svg id=ZLlineV><path d="M6 6 V15 H24 V24" /></svg>
+						<svg id=ZAlineV><path d="M6 6 V11 A4 4 0 0 0 10 15 H20 A4 4 0 0 1 24 19 V24" /></svg>
+
+
+						<svg id=ZLlineH><path d="M6 6 H15 V24 H24" /></svg>
+						<svg id=ZAlineH><path d="M6 6 H11 A4 4 0 0 1 15 10 V20 A4 4 0 0 0 19 24 H24" /></svg>
+						
+
+						<svg id=linearc><path d="M6 22 A22 12 0 0 1 24 8" /></svg>
+						
+						<svg id=linearcSq><path d="M10 5 A10 10 0 0 1 10 25" /></svg>
+					</div>
+
+					<div>
+
+						<svg id=LineCross><line x1=6 y1=15 x2=24 y2=15 /><line x1=15 y1=10 x2=15 y2=20 /></svg>
+						<svg id=LineSqCross><line x1=3 y1=15 x2=27 y2=15 /><line x1=15 y1=3 x2=15 y2=27 /></svg>
+						
+						<svg id=DLlineH><path d="M24 10 H6 V20 H24" /></svg>
+						<svg id=DLlineSqH><path d="M24 6 H6 V24 H24" /></svg>
+
+						<svg id=DAlineH><path d="M24 10 H10 A4 4 0 0 0 6 14 V16 A4 4 0 0 0 10 20 H24" /></svg>
+						<svg id=DAlineSqH><path d="M24 6 H10 A4 4 0 0 0 6 10 V20 A4 4 0 0 0 10 24 H24" /></svg>
+
+                    </div>
+                    
+                    <div>
+						<svg id=LineX><line x1=6 y1=20 x2=24 y2=10 /><line x1=6 y1=10 x2=24 y2=20 /></svg>
+						<svg id=LineSqX><line x1=5 y1=25 x2=25 y2=5 /><line x1=5 y1=5 x2=25 y2=25 /></svg>
+						
+						<svg id=DLlineV><path d="M10 24 V6 H20 V24" /></svg>
+						<svg id=DLlineSqV><path d="M6 24 V6 H24 V24" /></svg>
+						
+						<svg id=DAlineV><path d="M10 24 V10 A4 4 0 0 1 14 6 H16 A4 4 0 0 1 20 10 V24" /></svg>
+						<svg id=DAlineSqV><path d="M6 24 V10 A4 4 0 0 1 10 6 H20 A4 4 0 0 1 24 10 V24" /></svg>
+
+
+                    </div>
+
+
+					<div>
+						<svg id=Line3TH><line x1=5 y1=15 x2=5 y2=8 /><line x1=5 y1=15 x2=5 y2=22 /><line x1=5 y1=15 x2=25 y2=15 /></svg>
+						<svg id=Line3TV><line x1=15 y1=8 x2=3 y2=8 /><line x1=15 y1=8 x2=27 y2=8 /><line x1=15 y1=8 x2=15 y2=22 /></svg>
+						
+						<svg id=Line3Y><line x1=15 y1=15 x2=8 y2=2 /><line x1=15 y1=15 x2=22 y2=2 /><line x1=15 y1=15 x2=15 y2=25 /></svg>
+						<svg id=Line3YEqui><line x1=15 y1=15 x2=3.7 y2=21.5 /><line x1=15 y1=15 x2=26.3 y2=21.5 /><line x1=15 y1=15 x2=15 y2=2 /></svg>
+						
+						<svg id=Line3YRight><line x1=15 y1=15 x2=28 y2=15 /><line x1=15 y1=15 x2=15 y2=6 /><line x1=15 y1=15 x2=6 y2=24 /></svg>
+						<svg id=Line3YRightSq><line x1=15 y1=15 x2=28 y2=15 /><line x1=15 y1=15 x2=15 y2=2 /><line x1=15 y1=15 x2=6 y2=24 /></svg>
+
+					</div>
+
+
+
+
+					<div>
+						<svg id=lineangleH><path d="M28 22 H4 L28 10" /></svg>
+						<svg id=lineangleV><path d="M11 25 V5 L20 25" /></svg>
+
+						<svg id=lineIsoH><path d="M24 6 L6 15 24 24" /></svg>
+						<svg id=lineIsoV><path d="M6 24 L15 6 24 24" /></svg>
+						
+
+						<svg id=Line3EH><line x1=2 y1=15 x2=28 y2=15 /><line x1=2 y1=15 x2=28 y2=5 /><line x1=2 y1=15 x2=28 y2=25 /></svg>
+						<svg id=Line3EV><line x1=15 y1=2 x2=15 y2=28 /><line x1=15 y1=2 x2=5 y2=28 /><line x1=15 y1=2 x2=25 y2=28 /></svg>
+						
+					</div>
+
+					<div>
+						<svg id=lineangle30><path d="M25 24 L7 24 25 14" /><text x=2 y=15 font-size=10>30°</text></svg>
+						<svg id=lineangle45><path d="M25 24 L7 24 25 6" /><text x=2 y=15 font-size=10>45°</text></svg>
+						<svg id=lineangle60><path d="M24 24 L6 24 16 6" /><text x=14 y=20 font-size=10>60°</text></svg>
+						<svg id=lineangle120><text x=2 y=20 font-size=12>120°</text></svg>
+						<svg id=lineangle135><text x=2 y=20 font-size=12>135°</text></svg>
+						<svg id=lineangle150><text x=2 y=20 font-size=12>150°</text></svg>
+
+					</div>
+
+
+
+					<div>
+						<svg id=lineIso30><path d="M25 15 L7 20 25 25" /><text x=2 y=15 font-size=10>30°</text></svg>
+						<svg id=lineIso45><path d="M25 10 L7 17.5 25 25" /><text x=2 y=14 font-size=10>45°</text></svg>
+						<svg id=lineIso60><path d="M22 4.6 L4 15 22 25.4" /><text x=14 y=19 font-size=10>60°</text></svg>
+						
+						<svg id=lineIso120><text x=2 y=20 font-size=12>120°</text></svg>
+						<svg id=lineIso135><text x=2 y=20 font-size=12>135°</text></svg>
+						<svg id=lineIso150><text x=2 y=20 font-size=12>150°</text></svg>
+					</div>
+
+
+                </div>
+
+
+
+
+
+				<div>
+
+					<svg id=MoonNote><path d="M5 20 A11 11 0 0 1 25 20 z" /></svg>
+					<svg id=MoonNoteEqui><path d="M5 20 A10 10 0 0 1 25 20 z" /></svg>
+					
+					<svg id=LfanNoteV><path d="M15 20 L25 10 A15 15 0 0 0 5 10 z" /></svg>
+					<svg id=LfanNoteH><path d="M20 15 L10 25 A15 15 0 0 1 10 5 z" /></svg>
+
+
+                    <svg id=AfanNoteV><path d="M10 22 A13 13 0 0 1 20 22 L27 12 A15 15 0 0 0 3 12 z" /></svg>
+                    <svg id=AfanNoteH><path d="M22 10 A13 13 0 0 0 22 20 L12 27 A15 15 0 0 1 12 3 z" /></svg>
+
+				</div>
+
+
+
+				<div>
+					<svg id=TriangonIsoV><polygon points="8,25 15,5 22,25" /></svg>
+					<svg id=TriangonIsoH><polygon points="5,22 25,15 5,8" /></svg>
+					
+					<svg id=TriangonIso30><text x=5 y=20 font-size=12>30°</text></svg>
+					
+					<svg id=TriangonIsoEqui><polygon points="4,25 15,5 26,25" /></svg>
+
+					<svg id=TriangonIso120><text x=2 y=20 font-size=12>120°</text></svg>
+
+					<svg id=TriangonIso150><text x=2 y=20 font-size=12>150°</text></svg>
+
+				</div>
+				<div>
+
+					
+                    <svg id=TriangonRighttH><polygon points="7,5 7,25 23,25" /></svg>
+                    <svg id=TriangonRighttV><polygon points="7,5 23,5 23,25" /></svg>
+                    
+					<svg id=TriangonRightt15><text x=5 y=20 font-size=12>15°</text></svg>
+					<svg id=TriangonRightt30><text x=5 y=20 font-size=12>30°</text></svg>
+					
+					<svg id=TriangonRighttEqui><polygon points="5,5 5,25 25,25" /></svg>
+                    
+					<svg id=TriangonH><polygon points="8,25 12,5 22,25" /></svg>
+				</div>
+
+				<div>
+
+					
+					<svg id=TriangonRightxH><polygon points="5,20 25,20 20,11" /></svg>
+					<svg id=TriangonRightxV><polygon points="10,5 10,25 19,20" /></svg>
+					
+					<svg id=TriangonRightx15><text x=5 y=20 font-size=12>15°</text></svg>
+					<svg id=TriangonRightx30><text x=5 y=20 font-size=12>30°</text></svg>
+
+					<svg id=TriangonRightxEqui><polygon points="2,21 28,22 15,8" /></svg>
+
+					<svg id=TriangonV><polygon points="5,22 25,18 5,8" /></svg>
+                 </div>
+
+
+
+
+				<div>
+
+					<svg id=LStarNote><path d="M7 15 A8 10 0 0 1 15 25 8 10 0 0 1 23 15 8 10 0 0 1 15 5 8 10 0 0 1 7 15 z" /></svg>
+					<svg id=LStarNoteSq><path d="M5 15 A10 10 0 0 1 15 25 10 10 0 0 1 25 15 10 10 0 0 1 15 5 10 10 0 0 1 5 15 z" /></svg>
+					<svg id=AStarNote><path d="M8 15 L13 17 15 25 17 17 22 15 17 13 15 5 13 13 z" /></svg>
+					<svg id=AStarNoteSq><path d="M5 15 L13 17 15 25 17 17 25 15 17 13 15 5 13 13 z" /></svg>
+					
+
+					</div>
+
+
+
+				<div>
+
+                    <svg id=LIGonRndT><path d="M5 18 H12 V23 H18 V18 H25 V12 H18 V7 H12 V12 H5 z" /></svg>
+					<svg id=LIGonRndSqT><path d="M6 18 H12 V24 H18 V18 H24 V12 H18 V6 H12 V12 H6 z" /></svg>
+
+
+                    <svg id=AIGonRndT><path d="M8 12 A3 3 0 0 0 8 18 H12 V20 A3 3 0 0 0 18 20 V18 H22 A3 3 0 0 0 22 12 H18 V10 A3 3 0 0 0 12 10 V12 z" /></svg>
+					<svg id=AIGonRndSqT><path d="M8 12 A3 3 0 0 0 8 18 H12 V22 A3 3 0 0 0 18 22 V18 H22 A3 3 0 0 0 22 12 H18 V8 A3 3 0 0 0 12 8 V12 z" /></svg>
+
+                    <svg id=LOGonRnd><path d="M5 18 H10 V23 H20 V18 H25 V12 H20 V7 H10 V12 H5 z" /></svg>
+					<svg id=LOGonRndSq><path d="M5 20 H10 V25 H20 V20 H25 V10 H20 V5 H10 V10 H5 z" /></svg>
+                 </div>
+
+				 <div>
+					<svg id=LIGonRndX><path d="M5 11 L10 15 5 19 8 23 15 18 22 23 25 19 20 15 25 11 22 7 15 12 8 7 z" /></svg>
+					<svg id=LIGonRndSqX><path d="M5 10 L10 15 5 20 10 25 15 20 20 25 25 20 20 15 25 10 20 5 15 10 10 5 z" /></svg>
+					<svg id=AIGonRndSqX><path d="M5 10 L10 15 5 20 A3.5 3.5 0 0 0 10 25 L 15 20 20 25 A3.5 3.5 0 0 0 25 20 L 20 15 25 10 A3.5 3.5 0 0 0 20 5 L 15 10 10 5 A3.5 3.5 0 0 0 5 10z" /></svg>
+					
+					<svg id=DdartNoteF><path d="M5 10 L10 15 5 20 H25 L20 15 25 10 H5 z" /></svg>
+
+					<svg id=QIGonRnd><path d="M5 11 Q10 15 5 19 L8 23 Q15 18 22 23 L25 19 Q20 15 25 11 L22 7 Q15 12 8 7z" /></svg>
+					<svg id=QIGonRndSq><path d="M5 10 Q10 15 5 20 L10 25 Q15 20 20 25 L25 20 Q20 15 25 10 L20 5 Q15 10 10 5z" /></svg>
+
+
+
+                    </div>
+
+				<div>
+
+
+					<svg id=DdartNoteM><path d="M10 9 L5 15 10 21 H20 L25 15 20 9 z" /></svg>
+					
+					<svg id=LGonRnd><path d="M3 18 L8 23 H22 L27 18 V12 L22 7 H8 L3 12 z" /></svg>
+					<svg id=AGonRnd><path d="M5 18 A5 5 0 0 1 10 23 H20 A5 5 0 0 1 25 18 V12 A5 5 0 0 1 20 7 H10 A5 5 0 0 1 5 12 z" /></svg>
+					<svg id=AGonRndSq><path d="M5 20 A5 5 0 0 1 10 25 H20 A5 5 0 0 1 25 20 V10 A5 5 0 0 1 20 5 H10 A5 5 0 0 1 5 10 z" /></svg>
+
+                    <svg id=AOGonRnd><path d="M5 18 H10 V23 Q15 20 20 23 V18 H25 Q22 15 25 12 H20 V7 Q15 9 10 7 V12 H5 Q7 15 5 18z" /></svg>
+					<svg id=AOGonRndSq><path d="M5 20 H10 V25 Q15 22 20 25 V20 H25 Q22 15 25 10 H20 V5 Q15 7 10 5 V10 H5 Q7 15 5 20 z" /></svg>
+
+					</div>
+
+
+
+				 <div>
+
+
+                    <svg id=Paralgon><polygon points="5,25 18,25 25,5 12,5" /></svg>
+					<svg id=TrapegonIso><polygon points="10,5 20,5 25,25 5,25" /></svg>
+					<svg id=TrapegonRight><polygon points="5,5 5,25 25,25 15,5" /></svg>
+
+
+					
+					<svg id=PentagonT><polygon points="15,2 27,12 23,26 7,26 3,12" /></svg>
+
+					<svg id=LGonRndSq><path d="M3 15 L9 26 H21 L27 15 21 4 H9 z" /></svg>
+
+				</div>
+
+
+                <div>
+					<svg id=CurveDbl><path d="M5 15 Q10 7 15 15 20 7 25 15" /></svg>
+					<svg id=SCurveWav><path d="M5 15 Q10 5 15 15 T 25 15" /></svg>
+					<svg id=DCurveWav><path d="M5 15 Q10 5 15 15 T 25 15 M5 15 Q10 25 15 15 T 25 15" /></svg>
+
+					<svg id=StriLinWav><path d="M4 21 L10 10 15 20 20 10 26 21" /></svg>
+					<svg id=DtriLinWav><path d="M5 21 L15 9 25 21 M25 9 L15 21 5 9" /></svg>
+
+                    <svg id=rectLinWav><path d="M5 22 V10 H10 V21 H15 V10 H20 V21 H25" /></svg>
+				</div>
+
+                <div>
+				    <svg id=SLinWavH><path d="M5 21 L25 9 M15 15 H22 M5 21 H12" /></svg>
+                    <svg id=SLinWavV><path d="M5 21 L25 9 M15 15 V20 M25 9 V14" /></svg>
+                    <svg id=DLinWavH><path d="M5 21 L25 9 M8 15 H22" /></svg>
+                    <svg id=DLinWavV><path d="M5 21 L25 9 M15 10 V20" /></svg>
+
+					<svg id=ShvLinWav><path d="M7 23 V18 H13 V13 H19 V8 H25" /></svg>
+
+                    <svg id=DhvLinWav><path d="M7 23 V18 H13 V13 H19 V8 H25 M7 23 H13 V18  H19 V13 H25 V8" /></svg>
+
+                </div>
+
+                <div>
+
+
+					<svg id=LinWavX><path d="M5 21 L25 9 M5 15 L15 21 M15 9 L25 15" /></svg>
+
+                    <svg id=LinWavT><path d="M4 15 H26 M10 10 V20 M20 10 V20" /></svg>
+
+
+					<svg id=LatticeInner><path d="M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4" /></svg>
+					<svg id=Lattice><path d="M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4 M4 4 H26 V26 H4 V4" /></svg>
+
+					</div>
+
+
+				 <div>
+
+                    <svg id=cuboid><path d="M3 13 V23 H20 V13 H3 M3 13 L10 8 H27 L20 13 M20 23 L27 18 V8" stroke-linejoin="round" /><path class=dash d="M10 8 V18 H27 M10 18 L3 23" stroke-dasharray="3,1" /></svg>
+					<svg id=cuboidSq><path d="M4 11 V26 H19 V11 H4 M4 11 L11 5 H26 L19 11 M19 26 L26 20 V5" stroke-linejoin="round" /><path class=dash d="M11 5 V20 H26 M11 20 L4 26" stroke-dasharray="3,1" /></svg>
+
+
+					<svg id=Ellipsoid><ellipse rx="12" ry="10" cx="15" cy="15" /><path d="M15 5 A2 5 0 0 0 15 25 M3 15 A12 2 0 0 0 27 15" /><path class=dash d="M15 5 A2 5 0 0 1 15 25 M3 15 A12 2 0 0 1 27 15" stroke-dasharray="3,1" /></svg>
+					<svg id=EllipsoidSq><circle r=10 cx=15 cy=15 /><path d="M15 5 A1 5 0 0 0 15 25 M5 15 A5 1 0 0 0 25 15" /><path class=dash d="M15 5 A1 5 0 0 1 15 25 M5 15 A5 1 0 0 1 25 15" stroke-dasharray="3,1" /></svg>
+					</div>
+
+				 <div>
+
+					
+					<svg id=cylinderoidV><ellipse rx="10" ry="4" cx="15" cy="6" /><path d="M5 6 V22 A5 2 0 0 0 25 22 V6" /><path class=dash d="M5 22 A5 2 0 0 1 25 22" stroke-dasharray="3,1" /></svg>
+					<svg id=cylinderoidH><ellipse rx="4" ry="10" cx="24" cy="15" /><path d="M23 5 H7 A2 5 0 0 0 7 25 H23" /><path class=dash d="M7 5 A2 5 0 0 1 7 25" stroke-dasharray="3,1" /></svg>
+					<svg id=conoidOV><path d="M15 2 L5 22 A5 2 0 0 0 25 22 L15 2" /><path class=dash d="M5 22 A5 2 0 0 1 25 22" stroke-dasharray="3,1" /></svg>
+					<svg id=conoidOH><path d="M2 15 L22 5 A2 5 0 0 1 22 25 L2 15" /><path class=dash d="M22 5 A2 5 0 0 0 22 25" stroke-dasharray="3,1" /></svg>
+					<svg id=conoidIV><path d="M15 2 L5 22 A5 2 0 0 1 25 22 L15 2" /><path d="M5 22 A5 2 0 0 0 25 22" /></svg>
+					<svg id=conoidIH><path d="M2 15 L22 5 A2 5 0 0 0 22 25 L2 15" /><path d="M22 5 A2 5 0 0 1 22 25" /></svg>
+				</div>
+
+				 <div>
+					<svg id=fx><text x=9 y=22 font-size=24 fill=white>ƒ</text></svg>
+					<svg id=capctx><text x=4 y=24 font-size=22 fill=white>JS</text></svg>
+				</div>
+						</div>
+
+
+
+                <div id=svgTog>
+					<svg id=svgPg1><text x=2 y=24 font-size=24 fill=yellow transform="translate(7,-3)">○</text></svg>
+					<svg id=svgPg2><text x=2 y=24 font-size=22 fill=white transform="translate(7,-3)">-</text></svg>
+					<svg id=svgPg3><text x=2 y=24 font-size=22 fill=white transform="translate(7,-3)">-</text></svg>
+					<svg id=svgPg4><text x=2 y=24 font-size=22 fill=white transform="translate(7,-3)">-</text></svg>
+					<svg id=svgPg5><text x=2 y=24 font-size=22 fill=white transform="translate(7,-3)">-</text></svg>
+					</div>
+
+
+
+
+
+
+                    <details id=svgCssTransform>
+						<summary><span id=transform></span>
+							<span>
+								<span title=px>x <input type=number id=cssX min=0 value=0 /></span>
+		                    	<span title=px>y <input type=number id=cssY min=0 value=0 /></span>
+		                    	<span title="z-index">z <input type=number id=cssZ value=0 /></span>
+	                    	</span>
+
+							</summary>
+						<div id=CssTransform class=lightgray>
+							<div id=CssTransOpt hidden class=lightgray>
+								<div><span id=perspec></span><input type=number id=cssPerspec min=0 value=0 title=px />
+									<span id=perspecOrig></span><input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" /></div>
+								<div><label><span id=tranStyle></span><input type=checkbox id=cssTranStyle /></label>
+									<span id=transOrig></span><input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" /></div>
+								<div><label><span id=backVisi></span><input type=checkbox id=cssBackVisi checked /></label></div>
+							</div>
+							<div>
+								<label><input type=checkbox id=cssMatrix /><span id=matrix></span><span>(2D/3D)</span></label>
+								<span id=cssTransOpt></span>
+								</div>
+							<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" /></div>
+		                    <div id=CssScale><img class=scale><span id=scale></span>
+		                    	<span>x</span><input type=number id=cssScaleX min=0 step=".1" value=1 />
+		                    	<span>y</span><input type=number id=cssScaleY min=0 step=".1" value=1 />
+		                    	<span>z</span><input type=number id=cssScaleZ min=0 step=".1" value=1 /></div>
+
+		                    <div id=CssSkew><img class=skew><span id=skew></span>
+		                    	<span>x</span><input type=number id=cssSkewX value=0 title=deg />
+		                    	<span>y</span><input type=number id=cssSkewY value=0 title=deg /></div>
+
+		                    <div id=CssTranslate><img class=translate><span id=translate></span>
+		                    	<span>x</span><input type=number id=cssTranslateX min=0 value=0 />
+		                    	<span>y</span><input type=number id=cssTranslateY min=0 value=0 />
+		                    	<span>z</span><input type=number id=cssTranslateZ min=0 value=0 /></div>
+
+		                    <div id=CssRotate>
+
+
+			                    <div id=CssRotate3><label><input type=radio value=cssRotateXYZ checked />
+			                    	<img class=rotate1><span id=rotate></span>
+			                    		<span>x</span><input type=number id=cssRotateX value=0 title=deg step=15 />
+				                    	<span>y</span><input type=number id=cssRotateY value=0 title=deg step=15 />
+				                    	<span>z</span><input type=number id=cssRotateZ value=0 title=deg step=15 />
+
+				                    <div id=CssRotate6><img id=flipy><img id=flipx><img id=flip0><img id=rotate1><img id=rotate2><img id=rotate3></div></label>
+			                    </div>
+
+
+			                    <div id=CssRotate3d><label><input type=radio value=cssRotate3d />
+			                    	<img class=rotate1><span id=Rotate></span><span>3D</span><input type=text id=cssRotate3d placeholder="x,y,z,angle" /></label></div>
+			                </div>
+			                
+						</div>
+
+
+
+                    </details>
+
+                <details id=COLOR>
+                    <summary>
+                        <input type=text id=color0 title="Snow" />
+                        <input type=text id=color1 title="Blue Sky" />
+                        <input type=text id=color2 title="Pink Girl" />
+                        <input type=text id=color3 title="Black Rhythm" />
+                        <input type=text id=color4 title="Red Charm" />
+                        <input type=text id=color5 title="Random" value="??" />
+                        
+		                <label><input type=checkbox id=RandomColorson checked=checked /></label>
+                        </summary>
+	                    <div id=Color></div>
+						<details id=CssFilter>
+		                	<summary id=CssOpa><img class=btn1><span id=opa></span><input type=range id=cssOpa min=0 max=1 step=".1" value=1 /></summary>
+		                    
+		                    <div id=CssContrast><img class=contrast><span id=contrast></span><input type=range id=cssContrast max=2 min=0 step=".1" value=1 /></div>
+		                    <div id=CssBright><img class=bright><span id=bright></span><input type=range id=cssBright min=0 max=2 step=".1" value=1 /></div>
+		                    <div id=CssSaturate><img class=saturate><span id=saturate></span><input type=range id=cssSaturate min=0 max=20 step=".1" value=1 /></div>
+
+		                    <div id=CssGrayscale><img class=grayscale><span id=grayscale></span><input type=range id=cssGrayscale min=0 max=1 step=".1" value=0 /></div>
+		                    <div id=CssSepia><img class=sepia><span id=sepia></span><input type=range id=cssSepia min=0 max=1 step=".1" value=0 /></div>
+		                    <div id=CssInvert><img class=invert><span id=invert></span><input type=range id=cssInvert min=0 max=1 step=".1" value=0 /></div>
+		                    <div id=CssHueRotate><img class=hueRotate><span id=hueRotate></span><input type=range id=cssHueRotate min=0 value=0 title=deg max=360 /></div>
+		                    <div id=CssBlur><img class=blur><span id=blur></span><input type=range id=cssBlur min=0 value=0 title=px /></div>
+
+		                    <div id=CssDropShadow><img class=dropShadow><label><span id=dropShadow></span><input type=checkbox id=cssDropShadow /></label>
+		                    	<div hidden id=CssDropshadow><span>x</span><input type=number id=cssDropShadowX value=2 title=px />
+			                    	<span>y</span><input type=number id=cssDropShadowY value=2 title=px />
+			                    	<span id=bLur></span><input type=number id=cssDropShadowBlur min=0 value=2 title=px />
+			                    	<div><input type=color id=cssDropShadowColor value="#000000" /><input type=range id=cssDropShadowOpac min=0 max=1 step=".1" value=.5 /></div>
+								</div>
+		                    </div>
+		                </details>
+                        	</details>
+
+						
+				</div>
+
         </div>
+		
+		
+		<div for=clear>
+			</div>
+	</div>
 
-
-</div>
-
-</div>
-</div>
-
-
-<div id=bar>&nbsp;</div>
 <div id=oContent>
 
-    <canvas id=cvsbg hidden></canvas>
-
-    <div id=oHTML class=pd10></div>
+    <div id=oHTML></div>
+    <div id=Caps>
+    	<canvas id=caps hidden></canvas>
+		<img id=capsimg>
+		</div>
 
 
 </div>

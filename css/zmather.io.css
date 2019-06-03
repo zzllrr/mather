@@ -1,0 +1,105 @@
+
+.Symboli .td:not(:hover),.Symboli td:not(:hover){
+	color:blue
+}
+
+.Fn .td{
+	font-size:12px
+}
+
+
+#iTextLaTeXBox{
+	position: relative;
+    z-index: 30000;
+	margin-top: 28px;
+}
+
+
+.sbsTbl .td{
+	float:left;
+	padding:2px 10px;
+	margin:2px;
+	overflow:hidden;
+}
+
+
+.sbsTbl td{
+	font: normal 1em KaTeX_Main,Times New Roman,serif;
+}
+
+.Symboli_ {
+    background-color: palegoldenrod;
+}
+
+
+.sbsTbl .td:hover, .sbsTbl td:hover{
+    background: blue;
+    color: white;
+}
+
+.sbsiTbl .td:not(.seled),.sbsiTbl td:not(.seled){
+	border-color:transparent
+}
+
+.sbsTbl .td:empty{
+	display:none
+}
+.sbsTbl .td, .sbsTbl td:not(:empty){
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sbsTbl .td:not(:empty):active,.sbsTbl td:not(:empty):active{
+	border-color:gray
+}
+
+
+.sbsTbl .td:not(:empty){
+	min-width:25px;
+}
+#sbs td:not(:empty){
+	min-width:30px;
+	font-size: 22px;
+}
+
+.sbsTbl:not(.sbsiTbl) tr:nth-child(odd), .Symboli:not(.Symboli_){
+	background: rgba(162,195,97,.1);
+}
+
+.seled:not(div){
+	border-color:gray;
+	background: yellow;
+}
+
+.bdb{
+	border-bottom: outset black 1px;
+}
+
+blockquote{
+    padding:0 10px;
+    border-left: solid 6px #ff5400;
+    margin-left: 0px;
+    background-color: rgba(242,97,9,.1);
+    border-radius: 10px;
+}
+code, pre{
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding:2px
+}
+.eg:hover{
+	text-decoration: underline;
+}
+.eg{
+	cursor: pointer;
+}
+.eg,.obj{
+	background:silver;
+	padding:2px 5px;
+	font-size:14px;
+	color: black;
+	border-radius: 5px;
+}
