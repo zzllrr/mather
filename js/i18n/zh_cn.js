@@ -498,13 +498,23 @@ lang['zh_cn']={
 	'Shadow':'阴影',
 	'Direction':'方向',
 	'Option':'选项',
-	
+	'Method':'方法',
+	'Attribute':'属性',
 	// action
 
+	'Focus':'聚焦',
+	'Begin':'开始',
+	'End':'结束',
+	'Start':'开始',
+	'Finish':'完成',
+	
+	'Filter':'过滤',
+	'Filter.v':'滤镜',
 	'Measure':'测量',
 	'Get':'获取',
 	'Create':'创建',
 	'Put':'放置',
+	'Close':'闭合',
 	'Composite':'复合',
 	'Draw':'画',
 	'Download':'下载',
