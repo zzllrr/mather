@@ -410,6 +410,12 @@ lang['zh_cn']={
 	'Left':'左',
 	'Right':'右',
 	
+	'Clockwise':'顺时针',
+	'Anticlockwise':'逆时针',
+	
+	'rad':'弧度',
+	'degree':'角度',
+	
 	'Bold':'加粗',
 	'Italic':'斜体',
 	'Underline':'下划线',
@@ -469,7 +475,8 @@ lang['zh_cn']={
 	'Kind':'友善的',
 	'Pally':'亲密的',
 	'Peace-loving':'爱好和平的',
-		
+	
+	'Smooth':'平滑',
 	'Offline':'离线',
 	'Local':'本地',
 	'Localized':'本地化',
@@ -480,10 +487,36 @@ lang['zh_cn']={
 	'Symbolic':'符号',
 	'Numeral':'数值',
 	'Numerical':'数值',
-
-
+	'String':'字符串',
+	'Region':'区域',
+	'Data':'数据',
+	'Opacity':'透明度',
+	'Pattern':'模式',
+	'Pattern.v':'图案',
+	'Width':'宽',
+	'Height':'高',
+	'Shadow':'阴影',
+	'Direction':'方向',
+	'Option':'选项',
+	'Method':'方法',
+	'Attribute':'属性',
 	// action
 
+	'Focus':'聚焦',
+	'Begin':'开始',
+	'End':'结束',
+	'Start':'开始',
+	'Finish':'完成',
+	
+	'Filter':'过滤',
+	'Filter.v':'滤镜',
+	'Measure':'测量',
+	'Get':'获取',
+	'Create':'创建',
+	'Put':'放置',
+	'Close':'闭合',
+	'Composite':'复合',
+	'Draw':'画',
 	'Download':'下载',
 	'Upload':'上传',
 	'Solve':'解题',
@@ -499,6 +532,7 @@ lang['zh_cn']={
 	'Integration':'整合',
 	'Standardization':'标准化',
 
+	'Initialize':'初始化',
 	'Operation':'运算',
 	'Explore':'探索',
 	'Search':'搜索',
@@ -541,6 +575,7 @@ lang['zh_cn']={
 	'Edit':'编辑',
 	'Replace':'替换',
 	'Copy':'复制',
+	'Clone':'克隆',
 	'Cut':'剪切',
 	'Delete':'删除',
 	'Clear':'清除',
@@ -832,6 +867,7 @@ lang['zh_cn']={
 	
 	'Quadratic':'二次',
 	'Quadric':'二次',
+	'Cubic':'三次',
 	
 	//几何
 	

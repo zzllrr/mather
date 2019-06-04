@@ -489,7 +489,11 @@ $(function(){
 
 
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){
-		sbsTbltd(this,e,'input'+$('#input1.seled').length,$('#input0Type').val());
+		var p=$('#input0Type').val();
+		if(/Canvas|JS|HTML/.test(p)){
+			p='LaTeX';
+		}
+		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
 		var me=$(this);
@@ -531,8 +535,13 @@ $(function(){
 
 	}).on('click','.eg', function(e){
 
-		var me=$(this),t=me.attr('data-eg').replace(/&&/g,'\n'),shft=e.shiftKey,
-		i1=me.parents('.inputTip').parent().attr('id');
+		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey,
+		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js');
+		if(isjs){
+			t+=';\n'
+		}else{
+			t=t.replace(/&&/g,'\n')
+		}
 		if(!i1){
 			toolTip('<input type=text value="'+t+'" />');
 			$('#bar input').select();
@@ -544,6 +553,7 @@ $(function(){
 		
 		i1=i1.replace(/\D/g,'');
 		var is2=me.is('.eg2'),i=$('#input'+i1),iv=i.val();
+
 		
 		if(is2){
 			var td=$('#sbsTbl td').filter(function(){return $(this).text()==t}).eq(0);
@@ -551,9 +561,9 @@ $(function(){
 				i.click();
 				td.click();
 				return
-			}else{
+			}else if(!isjs){
 				if(/\.\d/.test(t)){
-					t=t.replace(/\.(\d+)/,'[$1]')
+					t=t.replace(/\.(\d+)/,'[$1]')	//这里要确认.何时需要替换为[]?
 				}
 				
 
@@ -562,6 +572,7 @@ $(function(){
 			
 		}else{
 			i.val(t);
+			preDisplay();
 			return
 		
 		}
@@ -572,7 +583,7 @@ $(function(){
 		i.focus();
 		i[0].selectionStart=s2;
 		i[0].selectionEnd=s2;
-		
+		preDisplay();
 
 	}).on('click','[name=tool]',function(){
 		var x=this.id;

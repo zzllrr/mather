@@ -986,6 +986,7 @@ piece=function(A,r){return arguments.length>=2?mtrx(A,['\\{','.','\\{'][+r],(+r?
 
 sceg=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
 sceg2=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
+scegj=function(s,substr,c){var v=XML.encode(''+s);return SCtv('eg js'+(c?' '+c:'')+'" data-eg="'+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
 
 zMath=function(v){return SCtv('zMath" title="'+v,v)};
 

@@ -343,18 +343,311 @@ tooltip={
 		detail(gM('Initialize'),[
 			sceg(`
 $('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-var ican=$('#ican'),ict=ican[0].getContext('2d');
+var ican=$('#ican'),ct=ican[0].getContext('2d');
 `,0),
 		].join(br)),
 		
-		detail(gM('Rectangle')+' (x,y,width,height)',[
-			sceg(`
-ict.fillRect(10, 20, 200, 150);
-ict.strokeRect(10, 20, 200, 150);
-ict.clearRect(10, 20, 200, 150);
-`,0),
-		].join(br)),	
+		detail(gM('Rectangle'),[
+			'***Rect(x,y,width,height)',
+			gM('Stroke')+scegj('ct.strokeRect(10, 20, 200, 150)',13),
+			
+			gM('Fill')+scegj('ct.fillRect(10, 20, 200, 150)',11),
+			
+			gM('Clear')+scegj('ct.clearRect(10, 20, 200, 150)',12),
+
+		].join(br)),
 		
+
+		detail(gM('Style'),[
+			'***Style=color|pattern|gradient',
+			gM('Stroke')+scegj("ct.strokeStyle='rgba(0, 0, 200, 0.5)'",14),
+					
+			gM('Fill')+scegj("ct.fillStyle='rgba(0, 0, 200, 0.5)'",12),
+
+			detail(gM('Line Style'),[
+				gM('Width')+scegj('ct.lineWidth=4'),
+				scegj("ct.lineCap='butt'")+'|round|square',
+				scegj("ct.lineJoin='miter'")+'|round|bevel',
+				scegj('ct.miterLimit=10.0'),
+				
+				detail(gM('Dash'),[
+					scegj('ct.setLineDash([1,2])'),
+					scegj('ct.lineDashOffset=3'),
+					scegj('var dashA=ct.getLineDash()'),
+					
+				].join(br)),
+				
+			].join(br)),
+			
+			gM('Opacity')+scegj('ct.globalAlpha=0.5'),
+
+			detail(gM('Gradient'),[
+				gM('Linear')+'(x1,y1,x2,y2)',scegj('var lg=ct.createLinearGradient(0,0,150,150)',30),
+				
+				gM('Radial')+'(x1,y1,r1,x2,y2,r2)',scegj('var rg=ct.createRadialGradient(75,75,0,75,75,100)',30),
+				
+				detail('addColorStop(0~1,color)',[
+					scegj("lg.addColorStop(0,'green')"),
+					scegj("lg.addColorStop(0.5,'white')"),
+					scegj("lg.addColorStop(1,'red')"),
+				].join(br))
+				
+			].join(br)),
+			
+			
+			detail(gM('Filter.v'),[
+				detail(gM('String'),Arrf(sceg2,[
+					'url()',
+					'blur(5px)',
+					'brightness(0.5)',
+					'contrast(0.5)',
+					'grayscale(0.5)',
+					'invert(0.5)',
+					'opacity(0.5)',
+					'saturate(0.5)',
+					'sepia(0.5)',
+					'hue-rotate(180)',
+				]).concat('drop-shadow(<offset-x>, <offset-y>, <blur-radius>, <spread-radius>, <color>)',
+					sceg2('drop-shadow(2px,2px,5,-3,black)')
+				).join(br)),
+				scegj("ct.filter='blur(5px)'"),
+			].join(br)),
+			
+			detail(gM('Pattern.v')+' createPattern(image, repeatType)',[
+				'repeatType=repeat|repeat-x|repeat-y|no-repeat',
+
+				scegj(`
+var img=new Image()
+img.src='img/ZIL.png';
+img.onload=function(){
+	var ptn =ct.createPattern(img,'repeat')
+	ct.fillStyle=ptn;
+	ct.fillRect(0,0,150,150)
+
+}
+`,0)
+
+			].join(br)),
+			
+			detail(gM('shadow')+' *Offset[XY], *Blur, *Color',[
+scegj(`			
+	ct.shadowOffsetX = 2;
+  	ct.shadowOffsetY = 2;
+  	ct.shadowBlur = 2;
+  	ct.shadowColor = 'rgba(0, 0, 0, 0.5)'
+`,0)				
+			].join(br))
+		].join(br)),
+
+
+		detail(gM('Text'),[
+			gM('Font')+scegj("ct.font='48px serif'"),
+			gM('Align')+scegj("ct.textAlign='start'")+'end|left|right|center',
+			
+			gM('Base Line')+scegj("ct.textBaseline='alphabetic'")+'top|hanging|middle|ideographic|bottom',
+			
+			gM('Direction')+scegj("ct.direction='ltr'")+'rtl',
+			
+			
+			'fillText(text, x, y [, maxWidth])',
+			scegj("ct.fillText('Hello Mather', 10, 50)"),
+			
+			'strokeText(text, x, y [, maxWidth])',
+			scegj("ct.strokeText('Hello Mather', 10, 50)"),
+		
+			gM('Measure')+scegj(`
+				var t=ct.measureText('foo');
+				t.width
+			`,0)
+		].join(br)),
+
+		detail(gM('Begin Path'),[
+			gM('Begin')+scegj('ct.beginPath()'),
+			
+			gM('Move')+' moveTo(x,y)'+scegj('ct.moveTo(125,125)',9),
+
+			detail('Path2D()',[
+				scegj('var P1=new Path2D()'),
+				gM('Clone')+scegj('var P2=new Path2D(P1)'),
+				gM('SVG Path')+'d('+gM('String')+')'+scegj("var P3=new Path2D('M10 10 h 80 v 80 h -80 Z')",17),
+				
+				'Path2D.addPath(path [, transform])',
+			].join(br))
+
+		].join(br)),
+		
+		
+		detail(gM('Path Shape'),[
+
+			gM('Line')+' lineTo(x,y)'+scegj('ct.lineTo(155,150)',9),
+			
+			
+			gM('Rectangle')+' rect(x,y,width,height)',
+				scegj('ct.rect(55,50,100,200)',7),
+				
+			gM('Ellipse')+' ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)',
+				scegj('ct.ellipse(100, 100, 50, 75, 45 * Math.PI/180, 0, 2 * Math.PI)',10),	
+			
+			gM('arc')+' arc(x,y,radius,startAngle('+gM('rad')+'),endAngle('+gM('rad')+'),anticlockwise)',
+			scegj('ct.arc(50, 50, 100, 100, 0, Math.PI/180*45,1)',6),
+			
+			gM('arc')+' arcTo(x1,y1,x2,y2,radius)',
+			scegj('ct.arcTo(50, 50, 100, 100, 80)',8),
+			
+			gM('Quadratic Bezier')+' quadraticCurveTo(cp1x, cp1y, x, y)',
+			
+			scegj('ct.quadraticCurveTo(60,120,65,100)',19),
+			
+			gM('Bezier')+'bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)',
+			
+			scegj('ct.bezierCurveTo(85,25,75,37,75,40)',16),
+			
+		
+		].join(br)),
+		
+		detail(gM('End Path'),[
+
+			gM('Close')+scegj('ct.closePath()'),
+
+			gM('Stroke')+scegj('ct.stroke()'),
+			gM('Fill')+scegj('ct.fill()'),
+			detail(gM('Fill Method'),[
+				scegj("ct.fill('nonzero')"),
+				scegj("ct.fill('evenodd')"),
+			].join(br)),
+			
+			gM('Clip')+scegj('ct.clip()'),
+
+
+		].join(br)),
+		
+		detail(gM('Image'),[
+			'drawImage(image, x, y)',
+			scegj('ct.drawImage(img, 0, 0)'),
+			
+			'drawImage(image, x, y, width, height)',
+			scegj('ct.drawImage(img, 0, 0, 100, 200)'),
+			
+			'drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)',
+			scegj('ct.drawImage(img, 0, 0, 100,100, 20,20, 80, 80)'),
+		
+		
+		].join(br)),
+		
+
+		detail(gM('Transform'),[
+			'translate(x, y)',
+			scegj('ct.translate(100,100)'),
+			
+			'rotate(angle('+gM('rad')+'))',
+			scegj('ct.rotate(45 * Math.PI / 180)'),
+			
+			'scale(x,y)',
+			scegj('ct.scale(1.2,0.5)'),
+			
+			
+			detail(gM('Matrix'),[
+				'transform(scaleX, skewX, skewY, scaleY, dx, dy)',
+				'setTransform(scaleX, skewX, skewY,scaleY, dx, dy)',
+				gM('Transformation Matrix')+zx("$zmtrx([['scaleX','skewY','dx'],['skewX','scaleY','dy',[0,0,1]]])$"),
+				scegj('ct.setTransform(1, 0, 0, 1, 0, 0)'),
+			].join(br)),
+		].join(br)),
+		
+
+		detail(gM('Animation'),[
+		
+
+			sceg('requestAnimationFrame(function)'),
+		].join(br)),
+		
+		
+		detail(gM('Image Data'),[
+			gM('Create')+' createImageData(width, height)|(imgData)',
+			scegj('var imgD = ctx.createImageData(100, 100)'),
+			scegj('var imgD2 = ctx.createImageData(imgD1)'),
+			
+			gM('Get')+' getImageData(left, top, width, height)',
+			scegj('var imgD = ctx.getImageData(100,100, 150,200)'),
+			
+			gM('Put')+' putImageData(imgData, dx, dy)',
+			
+			scegj('ct.putImageData(imgD, 0, 0)'),
+				
+				
+		].join(br)),
+		
+		
+		detail(gM('Option'),[
+			detail(gM('Smooth'),[
+				scegj('ct.imageSmoothingEnabled=true'),
+				scegj("ct.imageSmoothingQuality='low'")+'|high',
+			].join(br)),
+			
+			detail(gM('Point'),[
+				detail(gM('Path'),[
+					'(x, y)',
+					'(x, y, fillRule)',
+					'(path, x, y)',
+					'(path, x, y, fillRule)',
+					scegj('var b=ct.isPointInPath(10,10)'),
+					].join(br)),
+				
+				detail(gM('Stroke'),[
+					'(x, y)',
+					'(path, x, y)',
+					scegj('var b=ct.isPointInStroke(10,10)'),
+					].join(br)),
+			].join(br)),
+			
+			
+			gM('Region')+scegj(`
+ct.beginPath();
+ct.arc(70, 80, 10, 0, 2 * Math.PI, false);
+ct.fill();
+ct.addHitRegion({id: "circle"});
+
+$(ct.canvas).on("mousemove", function(e){
+  if(e.region) {
+    console.log("hit region:" + e.region);
+  }
+})
+`,0),
+			gM('Focus')+scegj('ct.drawFocusIfNeeded(element)')+'|(Path2D, element)',
+	
+			gM('Attribute')+scegj('ct.getContextAttributes()'),
+				
+		
+			detail(gM('Composite'),[
+				'globalCompositeOperation=type',
+				'[source|destination]-[over|atop|in|out]',
+				'[hard|soft]-light',
+				'color-[dodge|burn]',
+				'lighter copy xor multiply','screen overlay darken lighten',
+				'difference exclusion hue','saturation color luminosity',
+
+				scegj("ct.globalCompositeOperation='source-over'",0),
+			
+			].join(br)),
+].join(br)),
+		
+		detail(gM('Save'),[
+			scegj('ct.save()'),
+			scegj('ct.restore()'),
+			
+			detail('canvas',[
+				detail('toDataURL()',[
+					scegj("var u=ct.canvas.toDataURL('image/png')"),
+					scegj("var u=ct.canvas.toDataURL('image/jpeg',0.5)"),
+				].join(br)),
+				detail('toBlob(callback, type, encoderOptions)',[
+					scegj("var b=ct.canvas.toBlob(callback, type, encoderOptions)",0)
+				].join(br))
+			].join(br)),
+			
+			
+		
+		].join(br)),
 	
 	].join(br),
 	
