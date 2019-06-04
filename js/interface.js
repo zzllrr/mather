@@ -340,10 +340,12 @@ tooltip={
 	'Canvas':[
 	
 		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial','Canvas API'),
+		
+	detail('2D',[	
 		detail(gM('Initialize'),[
-			sceg(`
+			scegj(`
 $('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-var ican=$('#ican'),ct=ican[0].getContext('2d');
+var ican=$('#ican'),ct=ican[0].getContext('2d')
 `,0),
 		].join(br)),
 		
@@ -555,11 +557,17 @@ scegj(`
 		].join(br)),
 		
 
-		detail(gM('Animation'),[
+		detail(gM('2D Animation'),[
 		
 
 			sceg('requestAnimationFrame(function)'),
+			
+			
+			
 		].join(br)),
+		
+
+
 		
 		
 		detail(gM('Image Data'),[
@@ -642,14 +650,46 @@ $(ct.canvas).on("mousemove", function(e){
 				].join(br)),
 				detail('toBlob(callback, type, encoderOptions)',[
 					scegj("var b=ct.canvas.toBlob(callback, type, encoderOptions)",0)
-				].join(br))
+				].join(br)),
+				
+				detail('OffscreenCanvas(x,y)',[
+					scegj(`
+var one=$('#caps')[0].getContext('bitmaprenderer'); 
+var two=$('#ican')[0].getContext('bitmaprenderer'); 
+var os = new OffscreenCanvas(256, 256);
+var gl = os.getContext('webgl');
+var b1 = offscreen.transferToImageBitmap();
+one.transferImageBitmap(b1);
+var b2 = offscreen.transferToImageBitmap();
+two.transferImageBitmap(b2);
+					
+`,0),
+					
+				].join(br)),
 			].join(br)),
 			
 			
 		
 		].join(br)),
 	
-	].join(br),
+	].join(br)),
+	
+	detail('3D',[
+		detail(gM('3D Animation'),[
+		
+			detail(gM('Initialize'),[
+			scegj(`
+$('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
+var ican=$('#ican'),gl=ican[0].getContext('webgl');
+`,0),
+			
+			].join(br))
+			
+		].join(br)),
+	
+	
+	].join(br)),
+	].join(''),
 	
 	'Markdown':[
 		detail(gM('Style'),[

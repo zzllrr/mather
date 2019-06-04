@@ -114,7 +114,7 @@ function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)
 	if(!x && chrome.i18n){
 		x=chrome.i18n.getMessage(msg, str)
 	}
-	if(!x && /^[a-z]+[A-Z][a-z]*$/.test(msg)){
+	if(!x && /[a-z]+[A-Z][a-z]*$/.test(msg)){
 		x=gM(msg.replace(/([a-z])([A-Z])/g,'$1 $2'),str,o)
 	}
 	if(!x && / & /.test(msg)){

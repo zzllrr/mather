@@ -1289,7 +1289,7 @@ SBS={
 },SBSFn=[],
 
 //下列涉及LaTeX
-zx=function(t,o){return katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{}).replace(/\n/g,'')},
+zx=function(t,o){return katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{}).replace(/\n/g,' ')},
 zxdet=function(A,spacing){return zx(zdet(A,spacing))},
 zxmtrx=function(A,spacing,parts){return zx(zmtrx(A,spacing,parts))},
 zxul=function(A){return zx(piece(Arrf(ZLR,A)))},
