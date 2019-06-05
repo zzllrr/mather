@@ -51,22 +51,22 @@ lang['zh_cn']={
 	'funcson':'函数',
 	'strucon':'结构',
 	'Condon':'条件',
-	'thTip':'点击表头，可以显示/编辑LaTeX',
-	'sbsonTip':'@{clickWithShift}则得到Unicode字符@{notLaTeX}',
-	'funcsonTip':"@{clickWithShift}则函数后面不自动加(括号)",
-	'struconTip':"@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
-	'taskTip':"@{clickWithShift}则自动输入示例命令",
-	'copyTip':"@{clickWithShift}@{copy2Canvas}",
-	'saveTip':"@{clickWithShift}则保存纯文本文件",
+	'thtip':'点击表头，可以显示/编辑LaTeX',
+	'sbsontip':'@{clickWithShift}则得到Unicode字符@{notLaTeX}',
+	'funcsontip':"@{clickWithShift}则函数后面不自动加(括号)",
+	'strucontip':"@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
+	'tasktip':"@{clickWithShift}则自动输入示例命令",
+	'copytip':"@{clickWithShift}@{copy2Canvas}",
+	'savetip':"@{clickWithShift}则保存纯文本文件",
 	'copy2Canvas':'复制到画布上方',
 	'clickWithShift':'点击并按住Shift键，',
 	'notLaTeX':'，而不是LaTeX格式',
 
-	'donaTip':'需要您的支持！',
-	'donaTip0':'千里之行，始于足下<br />万年之兴，基于数学',
+	'donatip':'需要您的支持！',
+	'donatip0':'千里之行，始于足下<br />万年之兴，基于数学',
 	'Accnum':'收款账号',
-	'copiedTip':'已粘贴到剪贴板',
-	'copied2CanvasTip':'已复制到画布',
+	'copiedtip':'已粘贴到剪贴板',
+	'copied2Canvastip':'已复制到画布',
 
 
 		
@@ -1093,12 +1093,12 @@ lang['zh_cn']={
 	"99":"其它学科",
 		
 	
-	'SummaryTip':'小乐数学zzllrr Mather，是小乐原创开源实现的一款跨平台可离线运行并满足多用户背景、多场景需要的数学软件。<br />'+
+	'Summarytip':'小乐数学zzllrr Mather，是小乐原创开源实现的一款跨平台可离线运行并满足多用户背景、多场景需要的数学软件。<br />'+
 		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的部分解题，<br />'+
 		'因个人能力和精力有限，缺陷和错误难以避免（如有浏览器假死情况，直接关闭网页即可）<br />'+
 		'在正式版本发布之前，内核、界面、功能可能还需经历数次重构和迭代，因此一切仅供参考。',
-	'VisionTip':'推动更多的数学、科学、教育、技术、工程、人文、互联网、物联网工作者，<br />加入全球开源工具项目：Mather（暂译为数学者），更专业化地普及、研究、发展数学。',
-	'AimsTip':'让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。',
+	'Visiontip':'推动更多的数学、科学、教育、技术、工程、人文、互联网、物联网工作者，<br />加入全球开源工具项目：Mather（暂译为数学者），更专业化地普及、研究、发展数学。',
+	'Aimstip':'让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。',
 
 };
 

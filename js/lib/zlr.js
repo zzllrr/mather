@@ -2577,10 +2577,18 @@ function md2html(str,sep){
 			return '<codeblockquote>'+(codeblockA.length-1)+'</codeblockquote>'});
 	}
 
-	while(/\$\$[\s\S]+\$\$/.test(s)){
+	while(/\$\$[\s\S]+\$\$/.test(s)){//JS 	$$2+3$$	$$1+2+3$$	$$zx(f)$$
 		s=s.replace(/\$\$[^\$]+\$\$/,function(x){
+			
 			var t=x.replace(/^..|..$/g,'');
+			/*
 			return eval(t)
+			*/
+			try{
+				return '$'+eval(t)+'$'
+			} catch(e) {
+				return t
+			}
 		});
 	
 	}
@@ -2615,14 +2623,7 @@ function md2html(str,sep){
 		});
 	}
 	
-	
-	
 
-	// while(/\n( {4}|\t)/.test(s)){
-	//	s=s.replace(/(\n {4}|\n\t).+(\1.+)*/,function(t){A.push(t.replace(/\n {4}|\n\t/g,''));
-	//		return '<mdblockquote>'+(A.length-1)+'</mdblockquote>'});
-//	}
-	
 	
 	while(/\n> +./.test(s)){
 		s=s.replace(/\n> +.+(\n> +.+)*/,function(x){
@@ -2864,7 +2865,7 @@ function md2html(str,sep){
 	if(mA.length){
 		var kA=[];
 		s=s.replace(/\n*katex#\d#\n*/g,function(x){
-			var i=+x.replace(/\D/g,''), isblk=/\n$/.test(x);
+			var i=+x.replace(/\D/g,''), isblk=/^\n/.test(x) && /\n$/.test(x);
 			if(isblk){
 				var k=kA.indexOf(i);
 				if(k<0){

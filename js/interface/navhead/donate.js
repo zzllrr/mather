@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-navhead['donate']=DCtv('alignc',XML.wrapE('h3', gM('donaTip0'))+DCtv('donaTip',gM('zzllrr Mather')+' '+gM('donaTip'))+
+navhead['donate']=DCtv('alignc',XML.wrapE('h3', gM('donatip0'))+DCtv('donatip',gM('zzllrr Mather')+' '+gM('donatip'))+
 	`<div id=donaCN>
 		<div id=donaQR>
 			<div class=via>

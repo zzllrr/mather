@@ -104,7 +104,7 @@ $(function(){
 
 	$('.mi[title]').attr('title',function(i,v){return gM(v)});
 	
-	$('#iTextOpt .tool,#input0Tool .tool').not('#display').attr('title',function(){return gM(this.id+'Tip')});
+	$('#iTextOpt .tool,#input0Tool .tool').not('#display').attr('title',function(){return gM(this.id+'tip')});
 
 
 	$('.mi-span,i18').text(function(i,v){return gM(v)});
@@ -239,7 +239,7 @@ $(function(){
 
 	$('#displayOverCanvas').on('click',function(){
 		OverCanvas($('#input0').val());
-		toolTip(gM('copiedTip'));
+		toolTip(gM('copiedtip'));
 	});
 
 
@@ -491,7 +491,7 @@ $(function(){
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){
 		var p=$('#input0Type').val();
 		if(/Canvas|JS|HTML/.test(p)){
-			p='LaTeX';
+			p='JS';
 		}
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
@@ -501,12 +501,12 @@ $(function(){
 
 	}).on('mouseover', '.task',function(e){
 		var me=$(this);
-		toolTip(me.attr('data-tip')+' | '+gM('taskTip'));
+		toolTip(me.attr('data-tip')+' | '+gM('tasktip'));
 
 
 	}).on('mouseover', 'th.oLaTeX',function(e){
 		var me=$(this);
-		toolTip(gM('thTip'));
+		toolTip(gM('thtip'));
 
 
 	}).on('mouseover', '#input0Type',function(e){
@@ -547,7 +547,7 @@ $(function(){
 			$('#bar input').select();
 			document.execCommand('copy', false, null);
 			$('#bar input').remove();
-			toolTip(gM('copiedTip'));
+			toolTip(gM('copiedtip'));
 			return
 		}
 		
@@ -572,7 +572,9 @@ $(function(){
 			
 		}else{
 			i.val(t);
-			preDisplay();
+			if($('#display.seled').length){
+				preDisplay()
+			}
 			return
 		
 		}
@@ -583,7 +585,10 @@ $(function(){
 		i.focus();
 		i[0].selectionStart=s2;
 		i[0].selectionEnd=s2;
-		preDisplay();
+		
+		if($('#display.seled').length){
+			preDisplay()
+		}
 
 	}).on('click','[name=tool]',function(){
 		var x=this.id;
@@ -860,7 +865,9 @@ consolelog('最终A = ',A);
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
-			preDisplay();
+			if($('#display.seled').length){
+				preDisplay()
+			}
 		}
 		if(t=='graphic'){
 			$('#input0').val(function(i,v){return v.replace(/&&/g,'\n')});
@@ -871,7 +878,9 @@ consolelog('最终A = ',A);
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'').replace(/\\\\/g,'')});
-			preDisplay();
+			if($('#display.seled').length){
+				preDisplay()
+			}
 		}
 		if(t=='graphic'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'&&')});
@@ -938,7 +947,7 @@ consolelog('最终A = ',A);
 		var shft=e.shiftKey;
 		if(shft){
 			OverCanvas($(this).find('annotation').eq(0).text());
-			toolTip(gM('copied2CanvasTip'));
+			toolTip(gM('copied2Canvastip'));
 			Scroll('scrollB');
 		}
 		
@@ -954,12 +963,12 @@ consolelog('最终A = ',A);
 			//L.drawShapeNow='';
 
 			$('#Pointer').click();
-			toolTip(gM('copied2CanvasTip'));
+			toolTip(gM('copied2Canvastip'));
 			//Scroll('scrollB');
 		}
 		
 	}).on('mouseover','.katex, svg[id]',function(e){
-		toolTip(gM('copyTip'))
+		toolTip(gM('copytip'))
 		
 	})
 

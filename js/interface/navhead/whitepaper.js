@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 navhead['whitepaper']=
-	Arrf(function(x){return XML.wrapE('h3',gM(x))+XML.wrapE('p',gM(x+'Tip'))},
+	Arrf(function(x){return XML.wrapE('h3',gM(x))+XML.wrapE('p',gM(x+'tip'))},
 		ZLR('Aims')).join('')+
 	
 	XML.wrapE('h3',gM('User')+' '+gM('or')+' '+gM('Participant'))+
@@ -12,7 +12,7 @@ navhead['whitepaper']=
 		['✔'.repeat(14).split('')],'TBrc','alignc')+
 
 
-	XML.wrapE('h3',gM('Vision'))+XML.wrapE('p',gM('VisionTip'))+
+	XML.wrapE('h3',gM('Vision'))+XML.wrapE('p',gM('Visiontip'))+
 		
 	Table([[gM('Program'),gM('Localized Name'),gM('Vision')]],
 		[['Mather',gM('Mather'),gM('International Standard Open-Sourced Math Tool Program by Experts')],['.','.','.','.'],

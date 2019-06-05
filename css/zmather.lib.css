@@ -23,7 +23,20 @@
 	opacity:0
 }
 
-
+@media print{
+  
+  
+  section {page-break-before: always;}
+  h1 {page-break-after: always;}
+  p {page-break-inside: avoid;}
+  
+  #panel, #input0Preview ~ *,#iTextMain ~ *{
+  	display:none
+  }
+  #iTextMain{
+  	padding:1in
+  }
+}
 .wiki,.wiki > tbody > tr > td{
 	border-color:gainsboro
 }

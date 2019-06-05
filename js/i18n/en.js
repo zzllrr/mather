@@ -28,24 +28,24 @@ lang['en']={
 	'funcson':'Function',
 	'strucon':'Structure',
 	'Condon':'Condition',
-	'thTip':'Click table heads to display/edit LaTeX',
-	'sbsonTip':'@{clickWithShift}get Unicode char@{notLaTeX}',
-	'funcsonTip':"@{clickWithShift}get function name without () followed",
-	'struconTip':"@{clickWithShift}get JS code@{notLaTeX}",
-	'taskTip':"@{clickWithShift}input the default expression",
-	'copyTip':"@{clickWithShift}@{copy2Canvas}",
-	'saveTip':"@{clickWithShift}download txt",
+	'thtip':'Click table heads to display/edit LaTeX',
+	'sbsontip':'@{clickWithShift}get Unicode char@{notLaTeX}',
+	'funcsontip':"@{clickWithShift}get function name without () followed",
+	'strucontip':"@{clickWithShift}get JS code@{notLaTeX}",
+	'tasktip':"@{clickWithShift}input the default expression",
+	'copytip':"@{clickWithShift}@{copy2Canvas}",
+	'savetip':"@{clickWithShift}download txt",
 	
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
 	'notLaTeX':' instead of LaTeX code',
 	
 	
-	'donaTip':'needs your help!',
-	'donaTip0':'Anything immortal has an intrinsic nature of Mathematics.',
+	'donatip':'needs your help!',
+	'donatip0':'Anything immortal has an intrinsic nature of Mathematics.',
 	'Accnum':'Account Number',
-	'copiedTip':'Copied to the clipboard',
-	'copied2CanvasTip':'Copied to the Canvas',
+	'copiedtip':'Copied to the clipboard',
+	'copied2Canvastip':'Copied to the Canvas',
 	
 	
 	
@@ -236,10 +236,10 @@ lang['en']={
 	"84": "Fuzzy @0",
 	"87": "Applied @0",
 	"99": "Other disciplines",
-	'SummaryTip':'zzllrr Mather, created and open-sourced by zzllrr, is a handy mathematical software, which can run offline and meet the needs of multi-background users and under multi-scenes.<br />'+
+	'Summarytip':'zzllrr Mather, created and open-sourced by zzllrr, is a handy mathematical software, which can run offline and meet the needs of multi-background users and under multi-scenes.<br />'+
 		'This is a Demo version, which has only partial function.<br />'+
 		'Defects and mistakes are unavoidable due to limited personal abilities and time.<br />If there is a browser dead loop, just close the web page directly.<br />'+
 		'Before the release of the stable version, its kernel, interface, and functionality may be restructed and iterated for many times.',
-	'VisionTip':'Promote more math, science and technology, education, engineering, humanities workers and enthusiasts<br /> to join the Global Open Source Math Tool Project called Mather',
-	'AimsTip':'Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.',
+	'Visiontip':'Promote more math, science and technology, education, engineering, humanities workers and enthusiasts<br /> to join the Global Open Source Math Tool Project called Mather',
+	'Aimstip':'Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.',
 };

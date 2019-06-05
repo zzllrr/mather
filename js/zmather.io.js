@@ -1609,10 +1609,11 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		}
 		
 	}else if(st){//结构
+		var tl=td.attr('title');
+		t=tl;
+
 		if(iTyp=='LaTeX'){
-			
-			var tl=td.attr('title');
-			t=tl;
+
 
 			if(t){
 				if(t.indexOf('$')>-1){
@@ -1644,6 +1645,22 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			}else{
 				
 			}
+		}else if(t.indexOf('$')>-1){
+			if(iTyp=='Markdown'){
+				if(shft){
+					t='\n$$zx('+t.replace(/\$/g,'')+')$$\n';
+				}else{
+					t='$'+eval(t.replace(/\$/g,''))+'$'
+				}
+			}else if(iTyp=='JS'){
+				
+				t=t.replace(/\$/g,'');
+				
+			}
+			
+		}else{
+			
+			
 		}
 
 		

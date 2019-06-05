@@ -345,8 +345,7 @@ tooltip={
 		detail(gM('Initialize'),[
 			scegj(`
 $('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-var ican=$('#ican'),ct=ican[0].getContext('2d')
-`,0),
+var ican=$('#ican'),ct=ican[0].getContext('2d')`,0),
 		].join(br)),
 		
 		detail(gM('Rectangle'),[
