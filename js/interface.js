@@ -470,7 +470,7 @@ scegj(`
 			detail('Path2D()',[
 				scegj('var P1=new Path2D()'),
 				gM('Clone')+scegj('var P2=new Path2D(P1)'),
-				gM('SVG Path')+'d('+gM('String')+')'+scegj("var P3=new Path2D('M10 10 h 80 v 80 h -80 Z')",17),
+				gM('SVG Path')+'d('+gM('String')+')'+scegj("var P3=new Path2D('M10 10 h 80 v 80 h -80 Z')",15),
 				
 				'Path2D.addPath(path [, transform])',
 			].join(br))

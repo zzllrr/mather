@@ -198,6 +198,7 @@ lang['zh_cn']={
 	'Music':'音乐',
 	'Noise':'噪音',
 
+	'Effects':'特效',
 	'Action':'动作',
 	'Scene':'场景',
 	'Animation':'动画',

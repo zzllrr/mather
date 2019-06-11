@@ -68,11 +68,15 @@ Table('',[
 	
 	[scHotk('Shift + D / Delete'),gM('Delete All'),
 	scHotk('R'),gM('Round Corner')+gM(' ')+gM('Rectangle'),
-	scHotk('Esc'),gM('Toggle Gadget'),
+	'','',
 	scHotk('↓'),gM('Move Down')
 	],
 	
-
+	[scHotk('Shift + Esc'),gM('Hide'),
+	scHotk('Esc'),gM('Toggle Gadget'),
+	'','',
+	'',''
+	],
 
 
 ]);

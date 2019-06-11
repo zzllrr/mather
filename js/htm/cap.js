@@ -44,6 +44,7 @@ $(function(){
 	//attr
 	$('#allEraser ~ div,#svgTog ~ *, #svgLines div:gt(0), #svgLines ~ div').hide();
 
+	$('#svgTog').attr('title',gM('Hide')+' | '+gM('hotkey')+': Shift + Esc');
 	$('#Tile :button[title]').attr('title',function(i,v){return gM('hotkey')+': '+v});
 	$('#font').attr('placeholder',gM('font'));
 	$('#CssRotate6 img').attr('title',function(){return gM(this.id)});
@@ -132,85 +133,12 @@ $(function(){
 	
 	$('#copyMargin').before(gM('Margin'));
 
-	$('#effects').html(Options(ZLR('effects snow')).join('')).on('change',function(){var v=$(this).val();if(v!='effects'){eval(v+'()')}});
-	$('#GOcapctx').parent().after('<div>'+Arrf(function(x){return '<p class=JS>'+x+';</p>'},[
-
-		'ct.beginPath()',
-
-		'ct.moveTo(0,0)',
-		'ct.lineTo(300,150)',
-		'ct.arcTo(x1,y1,x2,y2,r)',
-		'ct.quadraticCurveTo(cpx,cpy,x,y)',
-		'ct.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)',
+	$('#effects').html(Options(ZLR('effects snow Pythagorean_Tree ring')).join('')).on('change',function(){var v=$(this).val();if(v!='effects'){eval(v+'()');
+		$(this).val('effects');
+		$('#tileTool').hide();
+	}}).children().eq(0).text(gM('Effects'));
 		
-		
-		'ct.lineWidth=6',
-		'ct.lineCap="butt|round|square',
-		'ct.lineJoin="miter|bevel|round"',
-		'ct.miterLimit=10',
-
-		'ct.rect(x,y,w,h)',
-		'ct.arc(x,y,r,sAngle,eAngle,counterclockwise)',
-		
-		'ct.closePath()',
-
-		'ct.stroke()',
-		'ct.fill()',
-
-		
-		'var g=ct.createLinearGradient(x0,y0,x1,y1)',
-		'var g=ct.createRadialGradient(x0,y0,r0,x1,y1,r1)',
-		'g.addColorStop(0,"black")',
-		'g.addColorStop(0.5,"red")',
-		'g.addColorStop(1,"white")',
-		'g=ct.createPattern(image,"repeat|repeat-x|repeat-y|no-repeat")',
-		'ct.fillStyle=g',
-		'ct.fillRect(x,y,w,h)',
-		'ct.strokeStyle="red"',
-		'ct.strokeRect(x,y,w,h)',
-		'ct.clearRect(x,y,w,h)',
-		'ct.clip()',
-
-
-		'ct.font="italic 40px Arial"',
-		'ct.textAlign="start|center|end|left|right"',
-		'ct.textBaseline="alphabetic|top|hanging|middle|ideographic|bottom"',
-		'ct.fillText(text,x,y,maxWidth)',
-		'ct.strokeText(text,x,y,maxWidth)',
-		'if(ct.measureText(text).width==20){ }',
-		
-		'ct.scale(x,y)',
-		'ct.rotate(angle)',
-		'ct.translate(x,y)',
-		'ct.transform(scaleX,skewX,skewY,scaleY,translateX,translateY)',
-		'ct.setTransform(scaleX,skewX,skewY,scaleY,translateX,translateY)',
-		
-		
-		'ct.shadowColor="#000000"',
-		'ct.shadowBlur=20',
-		'ct.shadowOffsetX=20',
-		'ct.shadowOffsetY=20',
-		
-		'ct.globalAlpha=0.2',
-		'ct.globalCompositeOperation="(source|destination)-(over|atop|in|out)|lighter|copy|xor"',
-		'var D=ct.createImageData(w,h)',
-		'var D=ct.createImageData(D)',
-		'var D=ct.getImageData(x,y,w,h)',
-		'D.width|height|data.length',
-		'ct.putImageData(D,x,y,_x,_y,_W,_H)',
-		
-		
-		
-		'if(ct.isPointInPath(x,y)){ }',
-		'ct.save()',
-		'ct.restore()',
-		'ct.createEvent()',
-		'ct.getContext()',
-		'ct.toDataURL()',
-		
-		
-		
-	]).join('')+dc);
+	$('#GOcapctx').parent().after(tooltip.Canvas);
 
 	$('#GOfx').parent().after('<div>'+Arrf(function(x){return '<p class=JS>'+x+';</p>'},[
 
@@ -271,6 +199,13 @@ $(function(){
 
 
 	$('.clrCanvas').on('click',function(){
+		var ts=(L.timeids||'').trim();
+		if(ts){
+			Arrfc([clearInterval,Number],ZLR(L.timeids));
+		
+		}
+		$('#Caps > .effects').remove();
+		$('#caps ~ canvas').remove();
 		if(typeof drawobj!='undefined' && typeof drawobj.repaint =='function'){
 			drawobj.repaint();
 		}else{
@@ -478,7 +413,11 @@ $(function(){
 				}
 				if(scr){$('#Pointer').click()}
 			}
-			if(note){drawClr()}
+			if(note){
+				drawClr();
+				$('.clrCanvas').click();
+				
+			}
 			
 			if(/LayerToggle/.test(id)){
 				$('#capsimg ~ *').toggle();
@@ -562,14 +501,14 @@ $(function(){
 	var t=zlr('#url','Img Cap',',')+',#Caps textarea, .urlImg';
 
 	$('body').on('keydown',function(e){
-		var k=e.keyCode, act=document.activeElement, acti=act.tagName.toLowerCase(),isTxt=acti=='textarea';
+		var k=e.keyCode, act=document.activeElement, acti=act.tagName.toLowerCase(),shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey, isTxt=acti=='textarea';
 
-		if(e.ctrlKey){
+		if(ctrl){
 
 				drawEnd(e);
 
 		}
-		if(isTxt && e.ctrlKey){
+		if(isTxt && ctrl){
 
 			if(k==66){$('#fontCSS .bold').click()}
 			if(k==73){$('#fontCSS .italic').click()}
@@ -583,7 +522,7 @@ $(function(){
 			}
 		}
 		if(acti=='body'){
-			if(e.ctrlKey){
+			if(ctrl){
 				if(k==67){L.drawCopy=L.drawShapeNow}
 				if(k==86){drawCopy()}
 			}else{
@@ -591,13 +530,13 @@ $(function(){
 		//if(k==72){api('ofhotkey')}
 				if(k==13){drawEnd(e)}
 				if(k==27){
-					if($('#svgs').length){
-						$('#svgs').click()
+
+					if($('#svgs').length && !shft){
+						$('#svgs').click();
 					}else{
 						$('#tileTool').fadeToggle()
 					}
-				
-				
+					return false
 				}
 
 
