@@ -160,6 +160,23 @@ subjects={
 	74:zlrA('74',seqA(10,15,'',5).concat(99))
 },
 
+concept0='Number Sequence Polynomial Vector Tensor Matrix Permutation Relation Function Proposition Logic Algebra Set Geometry Graph',
+concepts={
+	'Number':ZLR('Positive Natural Prime Rational Irrational Radical Transcendental Real Imaginary Complex'),
+	'Sequence':ZLR('Arithmetic Geometric Harmonic'),
+	'Algebra':ZLR('Group Ring Field Lattice'),
+	
+	'Relation':['Equivalence','Partial Order','Cover','Chain'],
+	
+	'Geometry':ZLR('Shape Surface Solid')
+},
+
+question0='Equation Inequation Limit',
+questions={
+	
+},
+
+
 solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
 solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
 solveThen={}, graphicThen={}, showThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
@@ -336,6 +353,16 @@ tooltip={
 	"Relation Operation":concat(ZLR('逆 合成 幂 交 并 补'),Arrf(sceg2,
 			ZLR('∼ ∘ ^ ∩ ∪ -')
 		)).join(br),
+
+
+
+
+
+
+
+
+
+
 
 	'Canvas':[
 	
@@ -689,7 +716,101 @@ var ican=$('#ican'),gl=ican[0].getContext('webgl');
 	
 	].join(br)),
 	].join(''),
+
+
+
+
+
+
+
+
+
+
+	'Math Function (Native JS)':[
+		
+	{'Constant 常数':[
+		{'e (Euler number)':'Math.E'},
+		{'ln 2':'Math.LN2'},
+		{'ln 10':'Math.LN10'},
+		{'log₂e':'Math.LOG2E'},
+		{'lg 2 = log₁₀2':'Math.LOG10E'},
+		{'π':'Math.PI'},
+		{'√2/2':'Math.SQRT1_2'},
+		{'√2':'Math.SQRT2'},
+	]},
+	{'Function 函数':[
+		{'|x|':'Math.abs'},
+		{'sgn x':'Math.sign'},
+
+		{'√x':'Math.sqrt'},
+		{'∛x':'Math.cbrt'},
+		{'√(x^2+y^2+⋅⋅⋅)':'Math.hypot'},
+
+		{'x^y':'Math.pow'},
+		{'e^x':'Math.exp'},
+		{'e^x-1':'Math.expm1'},
+
+
+			
+		{'ln x':'Math.log'},
+		{'ln(x+1)':'Math.log1p'},
+
+		{'log₂x':'Math.log2'},
+		{'lg x = log₁₀x':'Math.log10'},
+
+
+		
+		{'sin x':'Math.sin'},
+		{'cos x':'Math.cos'},
+		{'tan x':'Math.tan'},
+
+		
+		{'arcsin x':'Math.asin'},
+		{'arccos x':'Math.acos'},
+		{'arctan x':'Math.atan'},
+		{'arctan(y/x)':'Math.atan2'},
+
+
+		{'sh x':'Math.sinh'},
+		{'ch x':'Math.cosh'},
+		{'th x':'Math.tanh'},
+
+		{'sh⁻¹x':'Math.asinh'},
+		{'ch⁻¹x':'Math.acosh'},
+		{'th⁻¹':'Math.atanh'},
+
+
+
+		{'⌊x⌋':'Math.floor'},
+		{'⌈x⌉':'Math.ceil'},
+		{'round':'Math.round'},
+		{'float round':'Math.fround'},
+		{'x-[x]':'Math.trunc'},
+
 	
+
+		{'max(x,y,⋅⋅⋅)':'Math.max'},
+		{'min(x,y,⋅⋅⋅)':'Math.min'},
+
+		{'Count Leading Zeroes(32-bit int)':'Math.clz32'},
+		{'multiplication(32-bit int)':'Math.imul'},
+
+		{'Random Decimal [0,1]':'Math.random'},
+
+
+	]},
+
+],
+
+
+
+
+
+
+
+
+
+
 	'Markdown':[
 		detail(gM('Style'),[
 			[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('*ABC*'),sceg('_ABC_')].join(''),
@@ -821,12 +942,12 @@ E|F|G
 			[gM('Horizontal Line'),sceg('---\n')].join(''),
 		].join(br))+
 			
-		detail(gM('Math'),[
+		detail(gM('Math Formula'),[
 		
 
-			[gM('Math Formula')+' LaTeX',sceg('$x^2=4$')].join(''),
-			[gM('Math Formula')+' ID',sceg('$x^2=4$#'+gM('Formula')+'1#')].join(''),
-			[gM('Math Formula Reference'),sceg('$@'+gM('Formula')+'1@$')].join(''),
+			['LaTeX',sceg('$x^2=4$')].join(''),
+			['ID',sceg('$x^2=4$#'+gM('Formula')+'1#')].join(''),
+			[gM('Reference'),sceg('$@'+gM('Formula')+'1@$')].join(''),
 
 		].join(br))+
 	
@@ -845,31 +966,24 @@ E|F|G
 	].join(br)
 };
 
-var calcCat={
-	'Number':[
-		'Real',
-		'Complex',
-	],
-	'Matrix':[
-		'Real',
-		'Complex',
-		'Boolean',
-	],
-	'Series':[
-	],
-	'Analytic Function':[
 
-	],
-	'Proposition':[
-		
-	],
-	'Permutation':[
-		
-	],
-	'Relation':[
-		
-	],
-	'Set':[
-		
-	]
-};
+function sel(uriA,x,p,pp,ppp){
+	var ux=(p?(pp?(ppp?ppp+'/':'')+pp+'/':'')+p+'/':'')+x;
+	for(var i=0,l=uriA.length;i<l;i++){
+		var u=uriA[i];
+		if(ux==u || u.indexOf(ux)>=0){
+			return 1
+		}
+	}
+	return 0
+}
+
+function questionA(){
+	var A=[];
+	$('#solveGround .task.seled').each(function(){
+		A.push(furi($(this))[0].join('/'))
+	});
+	return A
+}
+
+

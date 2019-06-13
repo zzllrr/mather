@@ -75,11 +75,13 @@ graphics={
 			{'venn':''},
 			{'pie':''},
 			{'tree':''},
-			
-					
+
 		]},
 	],
 	'Statistics':[
+		'bar','line','pie'
+	],
+	'Fractal':[
 		'bar','line','pie'
 	],
 	'Project':[

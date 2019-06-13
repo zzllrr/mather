@@ -98,11 +98,11 @@ var Base64 = {
 }, XML={
 	head:'<?xml version="1.0" encoding="UTF-8"?>',
 	encode:function(t, no_nbsp){
-		var x=(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&apos;').replace(/"/g,'&quot;');
+		var x=(''+(t||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&apos;').replace(/"/g,'&quot;');
 		return no_nbsp?x:x.replace(/ /g,'&nbsp;');
 	},
 	decode:function(t){
-		return (t||'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&apos;/g,"'").replace(/&quot;/g,'"').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&');
+		return (''+(t||'')).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&apos;/g,"'").replace(/&quot;/g,'"').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&');
 	},
 	wrapE:function(e,t){
 		return '<'+e+'>'+(t===0?t:t||'')+'</'+e+'>';

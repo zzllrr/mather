@@ -61,9 +61,6 @@
 #Caps textarea:hover{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
-
-#svgTool textarea{color:white}
-
 #capctxTXT div,#fxTXT div{
 	max-height:100px;
 	overflow-x: hidden;

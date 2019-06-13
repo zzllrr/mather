@@ -8,19 +8,18 @@ $(function(){
 
 
 	$('#go').on('click',function(){
-		var tool=$('[name=tool]:checked').val(), sbj0v=+$('#subject0').val(), sbj1v=+$('#subject1').val(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
+		var tool=$('[name=tool]:checked').val(), o=$('#subject2').val().toLowerCase(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
 		
 		$('#svgs.toggle').click();
 		if(tool=='solve'){
-			oH.empty();
-			solve[sbj1v||sbj0v]();
+			OH(KxA(solve[o](i0v,questionA())));
 			
 			setTimeout(function(){
-				oH.find('.oLaTeX').eq(0).click();
+				$('#oHTML').find('.oLaTeX').eq(0).click();
 			},300);
 		}
 		if(tool=='graphic'){
-			oH.empty();
+			$('#oHTML').empty();
 			var dmid='outPlot'+(new Date()).getTime()+(Math.random()+'').substr(2), gs=$('#graphicGround .task.seled');
 			if(gs.length<1){
 				gs=$('#graphicGround .level.seled').last();
@@ -43,7 +42,7 @@ $(function(){
 				
 				
 				
-				oH.children().children('svg').each(function(){
+				$('#oHTML').children().children('svg').each(function(){
 					var zi=[],Z,me=$(this);
 					$('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
 					Z=max(zi)+1;
@@ -55,7 +54,7 @@ $(function(){
 				
 				
 				$('#Pointer').click();
-				//oH.empty();
+				//$('#oHTML').empty();
 				toolTip(gM('copied2CanvasTip'));
 				*/
 			}

@@ -110,7 +110,8 @@ tooltip['API']=[
 		]},
 	
 		{'HTML':[
-			{'格式化':'html2txt html2html altTxt Engin txt2A blking ubb2html md2html'},
+			{'格式化':'html2txt html2html altTxt txt2A blking ubb2html md2html'},
+			{'Engin':'Engin'},
 			{'元素':[
 				{'过渡':'br hr prog'},
 				{'结构':'SCtv DCtv itv detail ol ul dl Options OptGrps subReg tmb Table'},
@@ -138,7 +139,7 @@ tooltip['API']=[
 				{'结构':'ksc kdc zdetail kdetail fdetail kol kul kdl Kx KxA kxA'},
 				{'用途':''},
 			]},
-			{'规范化':'kx'},
+			{'规范化':'kx encodeLatex'},
 			{'运算符':'kos'},
 			{'标记符':'kxo kxu kancel'},
 			{'括符':'$A $B boxed kbox hp lrpfrac genfrac zp pp'},
@@ -258,65 +259,30 @@ tooltip['API']=[
 
 ];
 
-tooltip['Math obj (Native JS)']=[
-	{'Constant 常数':[
-		'E: 2.718281828459045',
-		'LN2: 0.6931471805599453',
-		'LN10: 2.302585092994046',
-		'LOG2E: 1.4426950408889634',
-		'LOG10E: 0.4342944819032518',
-		'PI: 3.141592653589793',
-		'SQRT1_2: 0.7071067811865476',
-		'SQRT2: 1.4142135623730951'
-	]},
-	{'Function 函数':[
-		'abs()',
-		'acos()',
-		'acosh()',
-		'asin()',
-		'asinh()',
-		'atan()',
-		'atan2()',
-		'atanh()',
-		'cbrt()',
-		'ceil()',
-		'clz32()',
-		'cos()',
-		'cosh()',
-		'exp()',
-		'expm1()',
-		'floor()',
-		'fround()',
-		'hypot()',
-		'imul()',
-		'log()',
-		'log1p()',
-		'log2()',
-		'log10()',
-		'max()',
-		'min()',
-		'pow()',
-		'random()',
-		'round()',
-		'sign()',
-		'sin()',
-		'sinh()',
-		'sqrt()',
-		'tan()',
-		'tanh()',
-		'trunc()'
-	]},
-		
-],
-	//jdetail(tooltip['Math obj (Native JS)'])+
-navhead['API']=[[href('./js','JS'),
-	href('./css',gM('CSS')),
-	href('./js/i18n',gM('i18n')),
+navhead['API']=[
+	[	href('./js','JS'),
+		href('./css',gM('CSS')),
+		href('./js/i18n',gM('i18n')),
 	].join(' | '),
-	API(tooltip['API']), detail(gM('3rd-party'),
-	detail(href('./js/lib','Javascript'),
-		ul(ZLR(zlr2('base64 jquery katex qrcode zlr echarts raphael flowchart effects js-yaml','.js'))),1)+
-	detail(href('./css/fonts','Fonts'),
-		ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
+	detail(gM('Native Math Function')+' (JavaScript)',
+		API(tooltip['Math Function (Native JS)']),
+	),
+	API(tooltip['API']),
+	detail(gM('3rd-party'),
+		detail(href('./js/lib','Javascript'),
+			ul(ZLR(zlr2('base64 jquery katex qrcode zlr echarts raphael flowchart effects js-yaml terrain','.js'))),1)+
+		detail(href('./css/fonts','Fonts'),
+			ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 ,1), 
+].join(br);
+
+
+tooltip['JS']=[
+	detail(gM('Native Math Function')+' (JavaScript)',
+		API(tooltip['Math Function (Native JS)']),
+	),
+	detail(gM('Array Function'), API(tooltip['API'][1]['zlr.js'][9]['数组'])),
+	detail(gM('Calculation'), API(tooltip['API'][1]['zlr.js'][12]['计算'])),
+	detail(gM('All API'),API(tooltip['API'])),
+	
 ].join(br);

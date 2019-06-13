@@ -16,15 +16,10 @@
 <!-- 引用第三方库 -->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
-	<script src="js/lib/effects.js"></script> <!-- js特效-->
+
     <script src="js/lib/katex.js"></script>
 
-    <script src="js/lib/qrcode.js"></script>
-    
-    <script src="js/lib/raphael.js"></script>
-    <script src="js/lib/flowchart.js"></script>
     <script src="js/lib/echarts.js"></script>
-
     <script src="js/lib/js-yaml.js"></script>
 
     <script src="js/i18n/en.js"></script>
@@ -45,7 +40,7 @@
 
     <script src="js/interface.js"></script>
     
-    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 
 
 
@@ -71,256 +66,23 @@
 
 
 
-<!-- 界面数据层 -->
-
-    <script src="js/interface/solve.js"></script>
-
-    <script src="js/interface/solve/2110.js"></script>
-    <script src="js/interface/solve/2199.js"></script>
-    <script src="js/interface/solve/3430.js"></script>
-    <script src="js/interface/solve/81.js"></script>
-
-
-    <script src="js/interface/graphic.js"></script>
-    <script src="js/interface/graphic/echarts.js"></script>
-
-
-    <script src="js/interface/show.js"></script>
-
-
-    <script src="js/interface/show/speech.js"></script>
-    <script src="js/interface/show/video.js"></script>
-    
-    <script src="js/interface/show/2d.js"></script>
-    <script src="js/interface/show/3d.js"></script>
-    
-    <script src="js/interface/show/vr.js"></script>
-    <script src="js/interface/show/ar.js"></script>
-
-
-
-
-    <script src="js/interface/wiki.js"></script>
-
-    <script src="js/interface/wiki/algebra.js"></script>
-    <script src="js/interface/wiki/algebra_group.js"></script>
-    <script src="js/interface/wiki/algebra_ring.js"></script>
-    <script src="js/interface/wiki/algebra_lattice.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/algebraic.js"></script>
-    <script src="js/interface/wiki/analytic.js"></script>
-    <script src="js/interface/wiki/complex.js"></script>
-
-
-    <script src="js/interface/wiki/differential.js"></script>
-    <script src="js/interface/wiki/formal_power_series.js"></script>
-    <script src="js/interface/wiki/fraction.js"></script>
-    <script src="js/interface/wiki/function.js"></script>
-    
-    
-    <script src="js/interface/wiki/geometry_point.js"></script>
-    <script src="js/interface/wiki/geometry_line.js"></script>
-    <script src="js/interface/wiki/geometry_angle.js"></script>
-    <script src="js/interface/wiki/geometry_plane.js"></script>
-    <script src="js/interface/wiki/geometry_solid.js"></script>
-    
-
-    <script src="js/interface/wiki/graph_type.js"></script>
-    <script src="js/interface/wiki/graph_unary_operation.js"></script>
-    <script src="js/interface/wiki/graph_binary_operation.js"></script>
-    <script src="js/interface/wiki/graph_binary_relation.js"></script>
-    <script src="js/interface/wiki/graph_path.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/hyperbolic.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/infinite_series.js"></script>
-    
-    
-    <script src="js/interface/wiki/integer.js"></script>
-    <script src="js/interface/wiki/integer_divide.js"></script>
-    <script src="js/interface/wiki/integer_fermat_number.js"></script>
-    <script src="js/interface/wiki/integer_type.js"></script>
-    <script src="js/interface/wiki/integral.js"></script>
-    
-    <script src="js/interface/wiki/limit.js"></script>
-    <script src="js/interface/wiki/logic.js"></script>
-    
-    
-
-
-    <script src="js/interface/wiki/matrix_type.js"></script>
-    <script src="js/interface/wiki/matrix_unary_operation.js"></script>
-    <script src="js/interface/wiki/matrix_binary_operation.js"></script>
-    <script src="js/interface/wiki/matrix_binary_relation.js"></script>
-    <script src="js/interface/wiki/matrix_determinant.js"></script>
-    <script src="js/interface/wiki/matrix_factorization.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/number.js"></script>
-    <script src="js/interface/wiki/polynomial.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/prime.js"></script>
-    <script src="js/interface/wiki/prime_mersenne_number.js"></script>
-    <script src="js/interface/wiki/prime_structure.js"></script>
-    <script src="js/interface/wiki/prime_type.js"></script>
-    
-    
-    <script src="js/interface/wiki/radical.js"></script>
-    <script src="js/interface/wiki/recursive.js"></script>
-
-
-
-
-
-    <script src="js/interface/wiki/relation_type.js"></script>
-    <script src="js/interface/wiki/relation_equivalence.js"></script>
-    <script src="js/interface/wiki/relation_compatible.js"></script>
-    <script src="js/interface/wiki/relation_partial_order.js"></script>
-
-
-    <script src="js/interface/wiki/sequence_rational.js"></script>
-    <script src="js/interface/wiki/sequence_combination.js"></script>
-    <script src="js/interface/wiki/sequence_sum.js"></script>
-    <script src="js/interface/wiki/sequence_amicable_numbers.js"></script>
-    
-    
-    
-    <script src="js/interface/wiki/set.js"></script>
-    
-    <script src="js/interface/wiki/transcendental.js"></script>
-    <script src="js/interface/wiki/tensor.js"></script>
-    <script src="js/interface/wiki/trigonometric.js"></script>
-    <script src="js/interface/wiki/unit.js"></script>
-    <script src="js/interface/wiki/vector.js"></script>
-
-
-
-
-
-
-
-    <script src="js/interface/course.js"></script>
-<!--
-
-    <script src="js/interface/course/2110.js"></script>
-
--->
-
-
-
-
-
-    <script src="js/interface/drill.js"></script>
-    <script src="js/interface/drill/2110.js"></script>
-
-
-
-
-
-
-    <script src="js/interface/topic.js"></script>
-    <script src="js/interface/topic/lottery.js"></script>
-
-    <script src="js/interface/topic/sudoku.js"></script>
-
-
-
-
-
-
-    <script src="js/interface/pitfall.js"></script>
-<!--
-    <script src="js/interface/pitfall/ .js"></script>
-    
--->
-
-
-
-
-
-    <script src="js/interface/unsolved.js"></script>
-
-    <script src="js/interface/unsolved/3n_1.js"></script>
-
-
-
-
-
-
-
-
-    <script src="js/interface/refer.js"></script>
-<!--
-    <script src="js/interface/refer/activity.js"></script>
-    <script src="js/interface/refer/org.js"></script>
-    <script src="js/interface/refer/edu.js"></script>
-    <script src="js/interface/refer/fan.js"></script>
-    <script src="js/interface/refer/pub.js"></script>
-    <script src="js/interface/refer/mooc.js"></script>
-    <script src="js/interface/refer/ppt.js"></script>
-    <script src="js/interface/refer/exam.js"></script>
-    <script src="js/interface/refer/hardware.js"></script>
-    <script src="js/interface/refer/software.js"></script>
-    <script src="js/interface/refer/ref.js"></script>
-
-
-
-
--->
-
-
-    <script src="js/interface/navhead/whitepaper.js"></script>
-    <script src="js/interface/navhead/protocol.js"></script>
-    <script src="js/interface/navhead/hotkey.js"></script>
-    <script src="js/interface/navhead/api.js"></script>
-    <script src="js/interface/navhead/project.js"></script>
-    <script src="js/interface/navhead/donate.js"></script>
-    <script src="js/interface/navhead/about.js"></script>
-
-
-
-
-
-
-
-<!-- 业务逻辑层 -->
-
-
-    <script src="js/run/solve/2110.js"></script>
-    <script src="js/run/solve/2199.js"></script>
-    <script src="js/run/solve/3430.js"></script>
-    <script src="js/run/solve/81.js"></script>
-
-
-
-<!-- 业务封装层 -->
-
-    <script src="js/run/go.js"></script>
-
-	<script src="js/htm/cap.js"></script>
-	<script src="js/htm/cap_mdn.js"></script>
-	<script src="js/htm/cap_mmv.js"></script>
-	<script src="js/htm/cap_mup.js"></script>
-
 </head>
 <body>
-<div id=zMather>
+
+<div id=zMather hidden>
 <div id=nav>
 	<div id=navhead class=opac><span id=logo class=subhead></span>
 	    <select id=lang></select>
 	            </div>
 	<div id=navbody>
 		<div id=toolnav class="opac pd2"></div>
-
+		<details id=searchTool><summary>
+			<select id=searchBy></select>
+			<input type=search id=search list=searchlist />
+			<datalist id=searchlist></datalist>
+		    </summary>
+		    <div id=searchResults></div>
+		            </details>
 		<details id=subject><summary class=opac>
 		    <select id=subject0></select>
 		    <select id=subject1 hidden></select>
@@ -330,9 +92,7 @@
 		    <div class=ground1></div>
 		            </details>
 		            
-		<details id=searchTool><summary><input type=search id=search />
-		    </summary>
-		            </details>
+
 		            
 	</div>
 </div>
@@ -430,7 +190,7 @@
 </div>
 </div>
 
-<div id=panel>
+<div id=panel hidden>
 		<div id=menu>
 			<span id=bar>&nbsp;</span>
 			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
@@ -1501,7 +1261,7 @@
 			</div>
 	</div>
 
-<div id=oContent>
+<div id=oContent hidden>
 
     <div id=oHTML></div>
     <div id=Caps>
@@ -1513,5 +1273,271 @@
 </div>
 
 
+<progress class=mathloader></progress>
 
+
+<!-- 界面数据层 -->
+
+    <script src="js/interface/solve.js"></script>
+
+    <script src="js/interface/solve/2110.js"></script>
+    <script src="js/interface/solve/2199.js"></script>
+    <script src="js/interface/solve/3430.js"></script>
+    <script src="js/interface/solve/81.js"></script>
+
+
+    <script src="js/interface/graphic.js"></script>
+    <script src="js/interface/graphic/echarts.js"></script>
+
+
+    <script src="js/interface/show.js"></script>
+
+
+    <script src="js/interface/show/speech.js"></script>
+    <script src="js/interface/show/video.js"></script>
+    
+    <script src="js/interface/show/2d.js"></script>
+    <script src="js/interface/show/3d.js"></script>
+    
+    <script src="js/interface/show/vr.js"></script>
+    <script src="js/interface/show/ar.js"></script>
+
+
+
+
+    <script src="js/interface/wiki.js"></script>
+
+    <script src="js/interface/wiki/algebra.js"></script>
+    <script src="js/interface/wiki/algebra_group.js"></script>
+    <script src="js/interface/wiki/algebra_ring.js"></script>
+    <script src="js/interface/wiki/algebra_lattice.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/algebraic.js"></script>
+    <script src="js/interface/wiki/analytic.js"></script>
+    <script src="js/interface/wiki/complex.js"></script>
+
+
+    <script src="js/interface/wiki/differential.js"></script>
+    <script src="js/interface/wiki/formal_power_series.js"></script>
+    <script src="js/interface/wiki/fraction.js"></script>
+    <script src="js/interface/wiki/function.js"></script>
+    
+    
+    <script src="js/interface/wiki/geometry_point.js"></script>
+    <script src="js/interface/wiki/geometry_line.js"></script>
+    <script src="js/interface/wiki/geometry_angle.js"></script>
+    <script src="js/interface/wiki/geometry_plane.js"></script>
+    <script src="js/interface/wiki/geometry_solid.js"></script>
+    
+
+    <script src="js/interface/wiki/graph_type.js"></script>
+    <script src="js/interface/wiki/graph_unary_operation.js"></script>
+    <script src="js/interface/wiki/graph_binary_operation.js"></script>
+    <script src="js/interface/wiki/graph_binary_relation.js"></script>
+    <script src="js/interface/wiki/graph_path.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/hyperbolic.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/infinite_series.js"></script>
+    
+    
+    <script src="js/interface/wiki/integer.js"></script>
+    <script src="js/interface/wiki/integer_divide.js"></script>
+    <script src="js/interface/wiki/integer_fermat_number.js"></script>
+    <script src="js/interface/wiki/integer_type.js"></script>
+    <script src="js/interface/wiki/integral.js"></script>
+    
+    <script src="js/interface/wiki/limit.js"></script>
+    <script src="js/interface/wiki/logic.js"></script>
+    
+    
+
+
+    <script src="js/interface/wiki/matrix_type.js"></script>
+    <script src="js/interface/wiki/matrix_unary_operation.js"></script>
+    <script src="js/interface/wiki/matrix_binary_operation.js"></script>
+    <script src="js/interface/wiki/matrix_binary_relation.js"></script>
+    <script src="js/interface/wiki/matrix_determinant.js"></script>
+    <script src="js/interface/wiki/matrix_factorization.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/number.js"></script>
+    <script src="js/interface/wiki/polynomial.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/prime.js"></script>
+    <script src="js/interface/wiki/prime_mersenne_number.js"></script>
+    <script src="js/interface/wiki/prime_structure.js"></script>
+    <script src="js/interface/wiki/prime_type.js"></script>
+    
+    
+    <script src="js/interface/wiki/radical.js"></script>
+    <script src="js/interface/wiki/recursive.js"></script>
+
+
+
+
+
+    <script src="js/interface/wiki/relation_type.js"></script>
+    <script src="js/interface/wiki/relation_equivalence.js"></script>
+    <script src="js/interface/wiki/relation_compatible.js"></script>
+    <script src="js/interface/wiki/relation_partial_order.js"></script>
+
+
+    <script src="js/interface/wiki/sequence_rational.js"></script>
+    <script src="js/interface/wiki/sequence_combination.js"></script>
+    <script src="js/interface/wiki/sequence_sum.js"></script>
+    <script src="js/interface/wiki/sequence_amicable_numbers.js"></script>
+    
+    
+    
+    <script src="js/interface/wiki/set.js"></script>
+    
+    <script src="js/interface/wiki/transcendental.js"></script>
+    <script src="js/interface/wiki/tensor.js"></script>
+    <script src="js/interface/wiki/trigonometric.js"></script>
+    <script src="js/interface/wiki/unit.js"></script>
+    <script src="js/interface/wiki/vector.js"></script>
+
+
+
+
+
+
+
+    <script src="js/interface/course.js"></script>
+<!--
+
+    <script src="js/interface/course/2110.js"></script>
+
+-->
+
+
+
+
+
+    <script src="js/interface/drill.js"></script>
+    <script src="js/interface/drill/2110.js"></script>
+
+
+
+
+
+
+    <script src="js/interface/topic.js"></script>
+    <script src="js/interface/topic/lottery.js"></script>
+
+    <script src="js/interface/topic/sudoku.js"></script>
+
+
+
+
+
+
+    <script src="js/interface/pitfall.js"></script>
+<!--
+    <script src="js/interface/pitfall/ .js"></script>
+    
+-->
+
+
+
+
+
+    <script src="js/interface/unsolved.js"></script>
+
+    <script src="js/interface/unsolved/3n_1.js"></script>
+
+
+
+
+
+
+
+
+    <script src="js/interface/refer.js"></script>
+<!--
+    <script src="js/interface/refer/activity.js"></script>
+    <script src="js/interface/refer/org.js"></script>
+    <script src="js/interface/refer/edu.js"></script>
+    <script src="js/interface/refer/fan.js"></script>
+    <script src="js/interface/refer/pub.js"></script>
+    <script src="js/interface/refer/mooc.js"></script>
+    <script src="js/interface/refer/ppt.js"></script>
+    <script src="js/interface/refer/exam.js"></script>
+    <script src="js/interface/refer/hardware.js"></script>
+    <script src="js/interface/refer/software.js"></script>
+    <script src="js/interface/refer/ref.js"></script>
+
+
+
+
+-->
+
+
+    <script src="js/interface/navhead/whitepaper.js"></script>
+    <script src="js/interface/navhead/protocol.js"></script>
+    <script src="js/interface/navhead/hotkey.js"></script>
+    <script src="js/interface/navhead/api.js"></script>
+    <script src="js/interface/navhead/project.js"></script>
+    <script src="js/interface/navhead/donate.js"></script>
+    <script src="js/interface/navhead/about.js"></script>
+
+
+
+
+
+
+
+<!-- 业务逻辑层 -->
+
+<!--
+    <script src="js/run/solve/function.js"></script>
+
+    <script src="js/run/solve/prime.js"></script>
+    <script src="js/run/solve/statistic.js"></script>
+    <script src="js/run/solve/geometry.js"></script>
+-->
+
+
+    <script src="js/run/solve/number.js"></script>
+    <script src="js/run/solve/sequence.js"></script>
+
+    <script src="js/run/solve/matrix.js"></script>
+    <script src="js/run/solve/permutation.js"></script>
+    <script src="js/run/solve/vector.js"></script>
+
+    <script src="js/run/solve/set.js"></script>
+    <script src="js/run/solve/relation.js"></script>
+    <script src="js/run/solve/proposition.js"></script>
+
+
+<!-- 业务封装层 -->
+
+    <script src="js/run/go.js"></script>
+
+	<script src="js/htm/cap.js"></script>
+	<script src="js/htm/cap_mdn.js"></script>
+	<script src="js/htm/cap_mmv.js"></script>
+	<script src="js/htm/cap_mup.js"></script>
+
+
+
+
+	<script src="js/lib/effects.js"></script> <!-- js特效-->
+    <script src="js/lib/qrcode.js"></script>
+    
+    <script src="js/lib/raphael.js"></script>
+    <script src="js/lib/flowchart.js"></script>
+<!-- fractal
+    <script src="js/lib/terrain.js"></script>
+ -->
 </body></html>

@@ -9,6 +9,10 @@ lang['zh_cn']={
 
 //non-standard key for Interface
 	' ':'',
+	'en':'英语',
+	'zh_cn':'简体',
+	'zh_tw':'繁体',
+	
 	'fonT':'字体',
 	'bW':'边宽',
 	'Bw':'边宽',
@@ -204,6 +208,7 @@ lang['zh_cn']={
 	'Animation':'动画',
 	'Gadget':'部件',
 	'Show':'演示',
+	'Presentation':'演讲稿',
 	'Doodle':'涂鸦',
 	'Compression':'压缩',
 	'Synthesis':'合成',
@@ -521,6 +526,8 @@ lang['zh_cn']={
 	'Download':'下载',
 	'Upload':'上传',
 	'Solve':'解题',
+	'Question Type':'题型',
+	
 	'Computation':'计算',
 	'Calculation':'计算',
 	'Decomposition':'分解',
@@ -609,7 +616,7 @@ lang['zh_cn']={
 	'input your words and then click Play button':'输入你想说的话，然后点击播放按钮',
 	'input your Audio/Video URL':'输入你的音视频地址',
 
-
+	
 //Math concept
 		
 // noun
@@ -622,7 +629,8 @@ lang['zh_cn']={
 
 	'Form':'型',
 	'Normal Form':'标准型',
-
+	
+	'Array':'数组',
 	'Integer':'整数',
 	'Fraction':'分数',
 	'Decimal':'小数',
@@ -664,6 +672,7 @@ lang['zh_cn']={
 	'Set':'集合',
 	'Group':'群',
 	'Ring':'环',
+	'Field':'域',
 	'Lattice':'格',
 
 	'Equivalence':'等价关系',
@@ -745,7 +754,7 @@ lang['zh_cn']={
 	'Solid':'立体',
 	'Polyhedron':'多面体',
 	'Equator':'赤道',
-	
+	'Fractal':'分形',
 	
 	
 	
@@ -758,6 +767,8 @@ lang['zh_cn']={
 	'Expansion':'展开',
 	'Sum':'求和',
 	'Prod':'求积',
+	'Harmonic':'调和',
+	
 	'Combination':'组合',
 	'Factorial':'阶乘',
 	'Greatest Common Divisor':'最大公约数',
@@ -823,7 +834,7 @@ lang['zh_cn']={
 // adj
 
 	//代数
-	
+	'Absolute':'绝对',
 	'Positive':'正',
 	'Natural':'自然',
 	'Prime':'质',
@@ -903,7 +914,9 @@ lang['zh_cn']={
 	'Differential':'微分',
 	'Integral':'积分',
 	'Boolean':'布尔',
-
+	
+	'Indefinite':'不定',
+	'Definite':'定',
 
 // 人名
 
@@ -923,6 +936,7 @@ lang['zh_cn']={
 	"2":"@0",
 	"3":"代数",
 
+	"Subject":"学科",
 	'Subject Classification GB':'中国国家标准数学学科分类',
 
 	"11":"数学史",

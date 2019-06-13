@@ -227,6 +227,12 @@ $(function(){
 	$('#copyTileOn').prepend(gM('Tile')+' ');
 	$('[name=MarginCopyOpt]').after(function(){var v=this.value;
 		return {w:gM('w')+' ('+gM('Margin')+')', copy:gM('Copy')+' ('+gM('Spacing')+')'}[v]
+	}).on('click',function(){
+		if(this.value=='w'){
+			$('#gridR,#gridC').val(30)
+		}else{
+			$('#gridR,#gridC').val(3)
+		}
 	});
 	$('#MarginCopyh').before(gM('Tick Length'));
 
@@ -351,6 +357,8 @@ $(function(){
 		$(zlr3('#','backvisi Equatorx Equatory','on',',')).prop('checked',true);
 
 
+		$('[name=MarginCopyOpt][value=copy]').prop('checked',true).parent().toggle(true);
+
 		tileToolCap(id);
 		
 		
@@ -362,8 +370,6 @@ $(function(){
 		$('#svgCssTransform').toggle(!pa.is('#svgTool,#svgTog') || isCopy);
 		$('#copyOpt').toggle(isCopy);
 
-
-		$('[name=MarginCopyOpt][value=copy]').prop('checked',true).parent().toggle(true);
 
 		
 
@@ -800,6 +806,9 @@ $(function(){
 
 
 	toggleColor();
+	setTimeout(function(){
+		$('body > progress').hide().prevAll('div').toggle();
+	},200);
 });
 
 

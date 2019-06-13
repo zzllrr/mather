@@ -109,8 +109,8 @@ function consolelog(){
 		console.log.apply(null,arguments)
 	}
 }
-function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)},msg)}
-	var M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
+function gM(mesg,str,o){if(isArr(mesg)){return Arrf(function(i){return gM(i,str,o)},mesg)}
+	var msg=''+mesg, M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
 	if(!x && chrome.i18n){
 		x=chrome.i18n.getMessage(msg, str)
 	}
@@ -130,7 +130,7 @@ function gM(msg,str,o){if(isArr(msg)){return Arrf(function(i){return gM(i,str,o)
 	
 	if(!x && / /.test(msg)){
 		if(msg==' '){
-			return ''		
+			return ''
 		}
 		var msg0=msg.replace(/ .+/,''),msg1=msg.replace(/[^ ]+ /,'');
 		if(O[msg1]){
@@ -356,7 +356,8 @@ ul=function(A,c){return '<ul class="alignl '+(c!=null?c:'')+'">'+Arrf(function(t
 dl=function(A,B,c){return '<dl class="alignl '+(c!=null?c:'')+'">'+concat(Arrf(function(t){return XML.wrapE('dt',t)},A),Arrf(function(t){return XML.wrapE('dd',t)},B)).join('')+'</dl>'}, kdl=function(A,B,c){return dl(Arrf(function(x){return x||x===0?'$'+x+'$':x},A),B,c)},
 
 $A=function(A){return Arrf(function(x){return x instanceof Array? $A(x):(x||x===0?'$'+x+'$':'')},A)},
-$B=function(A,esc){return Arrf(function(x){return x instanceof Array? $B(x,esc):(esc?(''+x).replace(/[\{\}]/g,'\\$&'):(x||x===0?'{'+x+'}':''))},A)}, 
+encodeLatex=function(t){return (''+t).replace(/[\{\}]/g,'\\$&')},
+$B=function(A,esc){return Arrf(function(x){return x instanceof Array? $B(x,esc):(esc?encodeLatex(x):(x||x===0?'{'+x+'}':''))},A)}, 
 
 Kx=function(t){return t.replace(/\$\$[^\$]+\$\$/g,function(x){return kdc(x.substr(2,x.length-4))}).replace(/\$[^\$]+\$/g,function(x){return ksc(x.substr(1,x.length-2))})},
 KxA=function(A){return Table([[SCtv('oLaTeX','LaTeX'),SCtv('Clear oClear','⌫')]],[[Kx(A.join(kbr2))]],'edit')},
@@ -756,7 +757,7 @@ bds 指定线条风格
 			}
 			th='<thead'+(tbodyClass?' class=cnt':'')+'>'+th+'</thead>';
 		}
-		var a='<table class="'+(bd||'bd0')+' collapse">'+th+'<tbody'+(tbodyClass?' class="'+tbodyClass+'"':'')+'>';
+		var a='<table class="'+(bd||'bd0')+' collapse mg10">'+th+'<tbody'+(tbodyClass?' class="'+tbodyClass+'"':'')+'>';
 		if(bd && /TB[CD]/.test(bd)){
 			var isC=/TBC/.test(bd),iA=bd.split(' ')[0].split('D')[1].split('_'),iAn=iA.length,jA=iA.join(',').split(',').reverse();
 
@@ -951,7 +952,7 @@ kmtrx=function(A,fracOff,parts){var t=mtrx((Mfn?Arrf(function(a){return isArr(a)
 		
 zstrx=function(t,p){return Arrf(function(x){return ZLR(x,'',p==undefined?' ':'')},t.split(';'))},
 zarray=function(A,spacing,parts){return mtrx(A,'.','.',spacing,parts)},
-tableT=function(A){
+tableT=function(A){/* Transpose	转置 */
 	var B=[],m=A.length,n=A[0].length;
 	for(var j=0;j<n;j++){
 		B.push([]);
@@ -2198,9 +2199,9 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 }, Latin=function(t,caps){
 	var f=function(i){var s=html2txt('&'+String.fromCharCode(i)+t+';'); if(/;/.test(s)){s=''} return s};
 	return Arrf(f,seqA(65+32*(+!caps),26))
-}, Options=function(A,B,selev){//返回数组
-	if(B){
-		var n=B.length,C=copyA('">',n),s=A.indexOf(selev||'');
+}, Options=function(A,tB,selev){//返回数组
+	if(tB){
+		var B=tB==1?gM(A):tB, n=B.length,C=copyA('">',n),s=A.indexOf(selev||'');
 		if(selev && s>-1){
 			C[s]='"'+seled+'>';
 		}
@@ -2735,7 +2736,8 @@ function md2html(str,sep){
 	
 	.replace(/\n#+ .+/g,function(x){var t=x.trim(), n=t.split(' ')[0].length, ht=t.replace(/^#+ | #+$/g,'');
 		headA.push([n,ht]);
-		return '\n<h'+n+' id=TOChi'+(headA.length-1)+'>'+ht+'</h'+n+'>'
+		var hi='TOChi'+(headA.length-1);
+		return '\n'+inhref('#'+hi+'" class="mkdnhead','<h'+n+' id='+hi+'>'+ht+'</h'+n+'>')
 	})
 	
 	.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g,function(x){

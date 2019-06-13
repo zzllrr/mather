@@ -7,6 +7,7 @@
 .underline{text-decoration:underline}
 .overline{text-decoration:overline}
 .through{text-decoration:line-through}
+.mkdnhead{text-decoration:none}
 .scroll{overflow:auto;max-width:80%}
 .scbox{white-space: nowrap}
 .hidden{display:none}
@@ -86,10 +87,9 @@ sup,sub,.small{
 
 
 #oHTML tr:hover{
-	text-shadow: 1px 1px 1px #666;
+	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
 #wiki details[open] > summary, #wiki>span{
-
     color: limegreen;
 }
 
@@ -208,7 +208,7 @@ li,#wiki{
 .relation{
 	margin:0 5px;
 }
-.ground > details,.ground summary{
+.ground > details,.ground summary,#searchTool{
 	margin-bottom:5px
 }
 
@@ -412,6 +412,9 @@ input[type=text],#wiki>span,.brad{
     margin-right: 10px;
 }
 
+#searchBy{
+    height: 30px;
+}
 #search{
     height: 30px;
     width:30%;
@@ -569,7 +572,7 @@ summary ~ details{
     cursor: pointer;
 }
 
-.level,[name=tool] + span{
+.level,[name=tool] + span, .sechResult{
 	padding:2px 4px;
 	margin:2px;
 	color:white;
@@ -592,7 +595,9 @@ summary ~ details{
 #subject .ground1 .level:not(.seled){
 	background:darkgray;
 }
-
+.sechResult{
+	background: rgba(50, 205, 50, 0.6);
+}
 #solveGround .level:not(.seled),#solve+span:hover{
 	background:blue;
 }
@@ -740,7 +745,9 @@ img{
 	cursor: pointer;
 }
 
-
+.mathloader{
+	width:100%
+}
 
 #cvsbg{
 	width:100%;

@@ -1335,6 +1335,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 	if(tp == 'function'){
 		var s=(''+val).replace(/^[^\(]+/,''), s0=s.split('{')[0], s1=s.substr(s0.length), c=s1.substr(1,s1.length-2),eg2='';
+		s0=s0.trim();
 		if(/【.+】/.test(c)){
 			var A=c.match(/【.+】[^\n]+/g);
 			consolelog(A);
@@ -1342,7 +1343,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			c=c.replace(/【.+】[^\n]+/g,'');
 		}
 		return sceg2(name+'()','', p?p+'.':'')+eg2+
-			detail(s0.substr(1,s0.length-2), XML.wrapE('pre',XML.encode(c)))
+			(s0 && s0!='()'?detail(s0.substr(1,s0.length-2), XML.wrapE('pre',XML.encode(c))):'')
 	}else{
 		return sceg2(name,'',p?p+'.':'')+XML.encode(val)
 	}

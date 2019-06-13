@@ -31,7 +31,14 @@ Table('',[
 	scHotk('Ctrl/⌘ + S'),gM('Save'),
 	],
 
-])+'<h3>MarkDown</h3>'+
+])+'<h3>'+gM('Table')+'</h3>'+
+
+Table('',[
+	[scHotk('Click'),gM('thtip')],
+	[scHotk('Alt + Click'),gM('Collapse')],
+
+
+])+'<h3>Markdown</h3>'+
 
 Table('',[
 	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')],

@@ -70,9 +70,12 @@ var Set={//集合 本质上是数组
 		}
 		return v
 	},
-	toStr:function(A,html){//html指定字符串需html转义（<>）
-		var str='',PA=['{[<(','}]>)'],ts=typeof(A),ht=html||'';
-//console.log(A,ht);
+	toStr:function(A,typ){/* 参数typ 指定输出类型
+			html 指定字符串需html转义（<>）
+			latex 需要对{}进行转义
+			*/
+		var str='',PA=['{[<(','}]>)'],ts=typeof(A),p=typ||'';
+
 		if(ts=='string'){
 			return A
 		}else if(ts=='number'){
@@ -80,24 +83,29 @@ var Set={//集合 本质上是数组
 		}else if(!A.length || A.s===''){
 			return '∅'
 		}else if(A.s){
-			if(ht){return XML.encode(A.s)}//.replace(/</g,'&lt;').replace(/>/g,'&gt;')
+			if(p=='html'){return XML.encode(A.s)}//.replace(/</g,'&lt;').replace(/>/g,'&gt;')
+			if(p=='latex'){return encodeLatex(A.s)}
 			return A.s
 		}else if(/Set_Cartesian/.test(A.t)){
 			var tp=A.t.substr(-2);
-			if(ht && tp=='<>'){
+			if(p=='html' && tp=='<>'){
 				tp=['&lt;','&gt;'];
 			}
 		//	console.log(tp);
 			for(var k=0;k<A.length;k++){
-				str+=Set.toStr(A[k],ht)+',';
+				str+=Set.toStr(A[k],p)+',';
 			}
 		//	console.log(str);
 			return tp[0]+str.replace(/,$/,tp[1])
 		}else{
 			for(var k=0;k<A.length;k++){
-				str+=Set.toStr(A[k],ht)+',';
+				str+=Set.toStr(A[k],p)+',';
 			}
-			return '{'+str.replace(/,$/,'}')
+			if(p=='latex'){
+				return '\\{'+str.replace(/,$/,'\\}')
+			}else{
+				return '{'+str.replace(/,$/,'}')
+			}
 		}
 	},
 
@@ -196,7 +204,7 @@ var Set={//集合 本质上是数组
 			var s=Set.toStr(B);
 //console.log(B,s,s[0]);
 			for(var k=0;k<m;k++){
-//console.log(Set.toStr(A[k]),s,Set.toStr(A[k]).length,s.length);
+
 				if(s==Set.toStr(A[k])){
 //console.log(k);
 					return k //从0开始计数！

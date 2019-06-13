@@ -819,6 +819,14 @@ function tileToolCap(t, val){
 
 	$('#VertexLineon').prop('checked',true);
 	
+	if(id=='Line'||id=='line1tick'){
+		$('#svgArwE').val(6)
+		$('#svgArwS').val(0)
+	}else if(id=='line2tick'){
+		$('#svgArwE').val(6);
+		$('#svgArwS').val(6);
+		$('[name=MarginCopyOpt][value=w]').click()
+	}
 	if(!tme.is('.ex')){
 
 		$(zlr3('#','Nest','on',',')).parent().parent().parent().toggle(isGONlike || /Ellipse(Sq)?$/.test(id));
