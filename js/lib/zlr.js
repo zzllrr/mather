@@ -369,10 +369,14 @@ kx=function(t){var s=re((''+t).replace(/−/g,'-').replace(/​/g,'').replace(/[
 //	.replace(/\\not([^\\ ])/g,function(x){return '$1\\not\\mathrlap{}'})		// fix latex ≠ bug V0.10.0
 
 	.replace(/≢/g,'\\not \\mathrlap{} \\negthickspace \\negthickspace ≡')	// fix latex ≢ bug	V0.10.1				katex bug:	table元素中使用katex，不等号会错位	字体显示≢会丢失 删除线
-	.replace(/FUNC([A-Za-z]+)/g,'\\mathrm{$1}');
+		
+	//extension 
+	.replace(/FUNC([A-Za-z]+)/g,'\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
+	.replace(/(\{[^\}]+\}|.) *\\\/ *(\{[^\}]+\}|.)/g,'\\frac{$1}{$2}')				//无嵌套分数形式	a\/b  <=> \frac{a}{b}
+	;
 
 
-
+	//中文及标点
 
 	if(!/\\text\{.*\}/.test(s)){
 		s=s.replace(/[\u4E00-\u9FA5\uFF00-\uFFFF]+/g,'\\text{$&}')	//[^\x00-\xff]

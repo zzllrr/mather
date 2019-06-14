@@ -359,7 +359,10 @@ tooltip={
 
 
 
-
+	'LaTeX':[
+		href(Hs+'katex.org/docs/supported.html','KaTeX API'),
+		
+	].join(br),
 
 
 
