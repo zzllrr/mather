@@ -77,12 +77,12 @@ var tco=function(f){/*尾递归 http://es6.ruanyifeng.com/#docs/function#%E5%B0%
 }, Ackermann=function(m,n){//阿克曼函数
 	if(m){
 		if(n){
-			return Ackermann(m-1n, Ackermann(m,n-1n))
+			return Ackermann(m-BigInt(1), Ackermann(m,n-BigInt(1)))
 		}else{
-			return Ackermann(m-1n,1n)
+			return Ackermann(m-BigInt(1),BigInt(1))
 		}
 	}else{
-		return n+1n
+		return n+BigInt(1)
 	}
 };
 

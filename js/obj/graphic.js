@@ -11,11 +11,7 @@ var Graphic={
 			
 		}
 		
-		
-		if(g=='flowchart'){
-			d=flowchart.parse(v?v.replace(/&&/g,'\n'):$(ID?'#'+ID:DOM).html());
-			
-		}
+
 		
 		if(g=='echarts'){
 			
@@ -32,23 +28,7 @@ console.log('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
-		}else if(/flowchart/.test(g)){
-			d=Graphic.parse(gl,v,ID,DOM);
-			var id=ID||$(DOM).attr('id')||$(DOM).attr('id',(new Date()).getTime()+(Math.random()+'').substr(2)).attr('id');
-			d.drawSVG(id,{'scale':1});
 
-			do{
-				$('#'+id+' text tspan').filter(function(){return /\$\$[^\$]+\$\$/.test($(this).text())}).each(function(){
-					var t=$(this).text().replace(/\$\$[^\$]+\$\$/g, function(x){return eval(x.replace(/^\$\$|\$\$$/g,''))});
-					$(this).text(t);
-				});
-
-			}while($('#'+id+' text tspan').filter(function(){return /\$\$[^\$]+\$\$/.test($(this).text())}).length);
-
-			$('#'+id+' text').filter(function(){return /^\$.+\$$/.test($(this).text())}).each(function(){
-				var t=$(this).text();
-				Graphic.drawHTMLinSVG('latex',kx(fnv0(t)),'',this);
-			});
 			
 		}else if(/echarts/.test(g)){
 
@@ -167,9 +147,7 @@ console.log(x);
 		}
 
 		
-		if(g=='flowchart'){
 
-		}
 	},
 	drawHTMLinSVG:function(graphType,v,ID,DOM){//用于在SVG绘制之后，再次加工HTML
 		var g=graphType,h;
@@ -184,10 +162,7 @@ console.log(x);
 
 		}
 
-		
-		if(g=='flowchart'){
 
-		}
 	},
 
 	

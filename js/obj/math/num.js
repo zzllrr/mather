@@ -2852,18 +2852,25 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 	
 	2
 	*/
-	var r=Math.trunc(Math.sqrt(Number(n))), m=0n;
-	if(/e/.test(r)){
-		r=BigInt((''+r).replace(/\.|e.+/g,'')+'0'.repeat(+(''+r).split('+')[1]-(''+r).replace(/.\.|e.+/g,'').length))
-	}else{
-		r=BigInt(r)
-	}
+	
+	if(BigInt){
+	
+		var r=Math.trunc(Math.sqrt(Number(n))), m=BigInt(0);
+		if(/e/.test(r)){
+			r=BigInt((''+r).replace(/\.|e.+/g,'')+'0'.repeat(+(''+r).split('+')[1]-(''+r).replace(/.\.|e.+/g,'').length))
+		}else{
+			r=BigInt(r)
+		}
 
-	while(m<n){
-		r++;
-		m=r*r;
+		while(m<n){
+			r++;
+			m=r*r;
+		}
+		return r
+	}else{
+		return Math.trunc(Math.sqrt(Number(n)))
+		
 	}
-	return r
 
 
 

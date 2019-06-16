@@ -152,7 +152,7 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 			Arrf(modP,PrimeA(1000,0,6))
 			var t=Random(100000,1),n=BigInt(t),m=BigInt(t)%29n;'\n mod 29 = \n'+m
 	*/
-	var isneg=/-/.test(a),A=BigInt(a), P=BigInt(p), b=isneg?-A:A, b2=2n*b;	//Math.abs不支持BigInt 
+	var isneg=/-/.test(a),A=BigInt(a), P=BigInt(p), b=isneg?-A:A, b2=BigInt(2)*b;	//Math.abs不支持BigInt 
 	if(b2<P){
 		return A
 	}else if(b2==P){
@@ -175,7 +175,7 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 //function t(x){var A=Arrf(function(a,i){return Mod(10**i,x)}, seqA(1,x-1)); if(A.indexOf(1,1)>0){return A.slice(0,A.indexOf(1,1))}else{return A}}
 	var P=BigInt(p), a=Mod(system||10,P), A=[1,a.toString()];
 	
-	for(var i=2n;i<P;i++){
+	for(var i=BigInt(2);i<P;i++){
 	//	var t=Mod(10**i,p);		i>22时，js精度问题，失真！10n**23n%29n 与10**23%29 不相等，因此用另一个方法（a 反复求幂 mod P）求余
 		var j=A.slice(-1)[0], t=Mod(BigInt(j)*a,P);
 		if(t==1){/* || t==-1	有些是1 .. 1 .. 循环，有些是1 .. -1 .. 1 .. -1 循环节分为前后两部分（前后相应位置的值正好互为相反数）
@@ -532,7 +532,7 @@ consolelog('周期性数位（随机间隔若干个0）字符串');
 		
 		由于Math.sqrt不支持BigInt，可以用n的位数一半的数近似估计
 	*/
-	var i=5001n, sqrtn=BigInt(1+'0'.repeat(Math.ceil(l/2)));
+	var i=BIgInt(5001), sqrtn=BigInt(1+'0'.repeat(Math.ceil(l/2)));
 	
 	while(i){
 		//var t=Math.floor(Math.sqrt(i)), Al=A.length;
@@ -551,7 +551,7 @@ consolelog('周期性数位（随机间隔若干个0）字符串');
 		if(i>=sqrtn){
 			return 1
 		}
-		i+=2n;
+		i+=BigInt(2);
 	}
 	
 	

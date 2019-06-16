@@ -88,7 +88,7 @@ graphics={
 		{'echarts':[
 		
 		]},
-		{'flowchart':''},
+	
 	],
 };
 
@@ -479,38 +479,5 @@ tooltip.graphic={
 
 
 
-	'Project/flowchart':['流程图 flowchart'+href(Hs+'flowchart.js.org','官网'),
-		'支持LaTeX的方法：',
-		'LaTeX公式用$美元符号$括起来'+sceg2('$x^2+y^2$'),
-		'JS代码再嵌套一层$'+sceg2('$$kxf(\'tr\')+\'(A)\'$$'),
-		,
-		sceg(['s=>start: $a^2+b^2$kroot(3)$=?$',
-		'e=>end: e',
-		'o1=>operation: o1',
-		's1=>subroutine: s1',
-		'c1=>condition: c1',
-		'i1=>inputoutput: i1',
-		'p1=>parallel: p1',
-		's->o1->c1',
-		'c1(yes)->i1->e',
-		'c1(no)->p1',
-		'p1(path1, bottom)->s1(right)->o1',
-		'p1(path2, top)->o1',
-		].join('&&'),10)+
-		Arrf(sceg,[
-		's@>o1({"stroke":"Red"})',
-		's@>o1({"stroke":"Red"})@>c1({"stroke":"Blue"})',
-		'o1@>c1({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})',
-		
-		]).join(br),
-
-		'常用命令片段：'+
-		Arrf(sceg2,[
-		'->',
-		's=>start:>',
-		'链接:>'+Hs+'[blank]',
-		]).join(br),
-
-	].join(br)
 
 };

@@ -1462,7 +1462,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 },opreplace2=function(x){//运算符规范化预处理	矩阵运算
 	return x.replace(/\^T|'/g,'†')//转置（共轭转置）
 		.replace(/\^?\*/g,'*')	//伴随矩阵
-		.replace(/^(\?⁻¹?\)?/g,'⁻')	//逆（广义逆）
+		.replace(/^\(?⁻¹?\)?/g,'⁻')	//逆（广义逆）
 
 },opreplace3=function(x){//运算符规范化预处理	微积分运算
 	return x.replace(/[′']{3}/g,'‴').replace(/[′']+/g,'″').replace(/‵{3}/g,'‷').replace(/‵+/g,'″')
