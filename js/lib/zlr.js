@@ -308,7 +308,7 @@ var HOM={
 
 var strop='</option><option value=', strchkbx0='<input type=checkbox ', strbtn='<input type=button value="', btnGo=strbtn+'GO" class=vipurl />',
 num=function(x,ma){return '<input type=number value='+x+' min=0 '+(ma?'max= '+ma:'')+'/>'},
-imgSRC='<img src="img/', prog=imgSRC+'loading.gif" width=16 class=prog />', chked=' checked', seled=' selected',
+imgSRC='<img src="img/', prog=imgSRC+'loading.gif" width=16 class=prog />', chked=' checked', seled=' selected', txtreadonly=function(x){return '<input type=text readonly value="'+fnq(x)+'" />'},
 meter=function(i,low,optimum,high){return '<meter min=0 max=100'+(low || low===0?' low='+low:'')+(optimum || optimum===0?' optimum='+optimum:'')+(high || high===0?' high='+high:'')+' value='+i+' />'},
 bgfrom='-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto='), to(', grad=function(t){
 	//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
@@ -993,10 +993,11 @@ piece=function(A,r){return arguments.length>=2?mtrx(A,['\\{','.','\\{'][+r],(+r?
 
 
 
-sceg=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
-sceg2=function(s,substr,hiddenpre){var v=XML.encode(''+s);return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
-scegj=function(s,substr,c){var v=XML.encode(''+s);return SCtv('eg js'+(c?' '+c:'')+'" data-eg="'+fnq(''+s),typeof substr=='number'?v.substr(0,substr):v)},
-
+sceg=function(s,substr,hiddenpre){var v=''+s;return SCtv('eg" data-eg="'+(hiddenpre||'')+fnq(''+s),XML.encode(typeof substr=='number'?v.substr(0,substr):v))},
+sceg2=function(s,substr,hiddenpre){var v=''+s;return SCtv('eg eg2" data-eg="'+(hiddenpre||'')+fnq(''+s),XML.encode(typeof substr=='number'?v.substr(0,substr):v))},
+scegj=function(s,substr,c){var v=''+s;return SCtv('eg js'+(c?' '+c:'')+'" data-eg="'+fnq(''+s),XML.encode(typeof substr=='number'?v.substr(0,substr):v))},
+scegc=function(s,substr,c){var v=''+s;return SCtv('eg'+(c?' '+c:'')+'" data-eg="&lt;'+fnq(''+s)+' /&gt;&&',XML.encode(typeof substr=='number'?v.substr(0,substr):v))},
+	
 zMath=function(v){return SCtv('zMath" title="'+v,v)};
 
 

@@ -367,6 +367,28 @@ tooltip={
 
 
 
+	'SVG':[
+		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial','SVG API'),
+		
+		detail(gM('Shape'),[
+			gM('Rectangle')+scegc('rect x=10 y=10 width=30 height=30 stroke=green fill=none',4),
+			gM('Round Corner')+scegc('rect x=10 y=10 rx=10 ry=10 width=30 height=30 fill=white',4),
+			gM('Circle')+scegc('circle cx=50 cy=50 r=50 stroke=green fill=none',6),
+			gM('Ellipse')+scegc('ellipse cx=100 cy=50 rx=100 ry=50 stroke=green fill=none',7),
+			gM('Line')+scegc('line x1=0 y1=80 x2=100 y2=20 stroke=red',4),
+			gM('Polyline')+scegc('polyline points="100,100 150,25 150,75 200,0" fill=none stroke=black',8),
+			
+		].join(br)),
+		
+		
+		detail(gM('Structure'),[
+			gM('group')+sceg('<g fill=white stroke=green>&&&&</g>&&',2),
+
+		].join(br))
+		
+	].join(''),
+
+
 	'Canvas':[
 	
 		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial','Canvas API'),

@@ -412,11 +412,9 @@ input[type=text],#wiki>span,.brad{
     margin-right: 10px;
 }
 
-#searchBy{
-    height: 30px;
-}
+
 #search{
-    height: 30px;
+
     width:30%;
     padding-left:10px;
     border-style: none none solid none;
