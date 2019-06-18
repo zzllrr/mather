@@ -372,19 +372,118 @@ tooltip={
 		
 		detail(gM('Shape'),[
 			gM('Rectangle')+scegc('rect x=10 y=10 width=30 height=30 stroke=green fill=none',4),
-			gM('Round Corner')+scegc('rect x=10 y=10 rx=10 ry=10 width=30 height=30 fill=white',4),
+			gM('Round Corner')+scegc('rect x=50 y=10 rx=10 ry=10 width=30 height=30 fill=green',4),
 			gM('Circle')+scegc('circle cx=50 cy=50 r=50 stroke=green fill=none',6),
 			gM('Ellipse')+scegc('ellipse cx=100 cy=50 rx=100 ry=50 stroke=green fill=none',7),
 			gM('Line')+scegc('line x1=0 y1=80 x2=100 y2=20 stroke=red',4),
 			gM('Polyline')+scegc('polyline points="100,100 150,25 150,75 200,0" fill=none stroke=black',8),
+			gM('Polygon')+scegc('polygon points="10 100, 150 25 ,250 100" stroke=red fill=none',7),
 			
 		].join(br)),
 		
-		
+		detail(gM('Simple Path'),[
+			scegc('path d="M10 20 L20 30" stroke=red fill=none',4),
+			gM('Closed')+' Z(z)'+sceg2('Z'),
+			gM('Move')+' M x y | m dx dy'+sceg2('M10 20')+sceg2('m10 20'),
+			gM('Line')+' L x y | l dx dy'+sceg2('L20 30')+sceg2('l20 30'),
+			gM('Horizontal Line')+' H x | h dx'+sceg2('H30')+sceg2('h30'),
+			gM('Vertical Line')+' V y | v dy'+sceg2('V50')+sceg2('v50'),
+
+		].join(br)),
+			
+		detail(gM('Bezier'),[
+			gM('Cubic')+'C x1 y1, x2 y2, x y | c dx1 dy1, dx2 dy2, dx dy',
+			scegc('path d="M10 10 C 20 20, 40 20, 50 10" fill=none stroke=red',4),
+				
+			gM('Symmetric Cubic')+'S x2 y2, x y | s dx2 dy2, dx dy',
+			'其中省略的第1个控制点，是前一个C或S命令中第2个控制点，关于终点的对称点',
+			scegc('path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke=black fill=transparent',4),
+			
+			gM('Quadratic')+'Q x1 y1, x y | q dx1 dy1, dx dy',
+			scegc('path d="M10 80 Q 95 10 180 80" fill=none stroke=red',4),
+				
+			gM('Symmetric Quadratic')+'T x y | t dx dy',
+			'其中省略的第1个控制点，是前一个Q或T命令中的控制点，关于终点的对称点',
+			scegc('path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke=black fill=transparent',4),
+			
+			
+		].join(br)),
+
+		detail(gM('Arc'),[
+			'A rx ry x-axis-rotation large-arc-flag[0,1] sweep-flag[↻1|↺0] x y',
+			'a rx ry x-axis-rotation large-arc-flag[0,1] sweep-flag[↻1|↺0] dx dy',
+			scegc('path d="M80 50A 45 45, 0, 0, 0, 125 95V50 Z" fill=green',4),
+			scegc('path d="M80 50A 45 45, 0, 1, 0, 125 95V50 Z" fill=red',4),
+			scegc('path d="M80 50A 45 45, 0, 0, 1, 125 95V50 Z" fill=purple',4),
+			scegc('path d="M80 50A 45 45, 0, 1, 1, 125 95V50 Z" fill=blue',4),
+
+		].join(br)),
+
 		detail(gM('Structure'),[
 			gM('group')+sceg('<g fill=white stroke=green>&&&&</g>&&',2),
 
-		].join(br))
+		].join(br)),
+			
+			
+		detail(gM('Style'),[
+			detail(gM('Stroke')+sceg2('stroke=red')+sceg2('stroke-opacity=0.8'),[
+				[sceg2('stroke-linecap=butt'), sceg2('stroke-linecap=square',-6), sceg2('stroke-linecap=round',-5)].join('|'),
+				[sceg2('stroke-linejoin=miter'),sceg2('stroke-linejoin=bevel',-5),sceg2('stroke-linejoin=round',-5)].join('|'),
+				sceg2('stroke-dasharray="5,10,5"')+sceg2('stroke-dashoffset=3'),
+				sceg2('stroke-miterlimit='),
+			].join(br)),
+			
+			detail(gM('Fill')+sceg2('fill=green')+sceg2('fill-opacity=0.8'),[
+				sceg2('fill-rule=')
+			].join(br)),
+			
+			
+			gM('Definition')+sceg('<defs>&&&&</defs>&&',6),
+			sceg('<style type="text/css">&&&&</style>&&',6),
+				
+
+			detail(gM('Gradient'),[
+				scegc('stop offset="50%" stop-color=green stop-opacity=0.5',4),
+				detail('Linear',[
+					sceg('<linearGradient>&&&&</linearGradient>',15)+' > stop',
+					sceg('<linearGradient>&&'+concat('<stop offset="',[0,50,100],'%" stop-color=',ZLR('red yellow blue'),' stop-opacity=0.5></stop>').join('&&')+'&&</linearGradient>',15),
+				
+					sceg('<linearGradient x1=0 x2=0 y1=0 y2=1>&&'+
+						concat('<stop offset="',[0,50,100],'%" stop-color=',ZLR('red yellow blue'),' stop-opacity=0.5></stop>').join('&&')+'&&</linearGradient>',15),
+					].join(br)
+				),
+				
+				detail('Radial',[
+					sceg('<radialGradient>&&&&</radialGradient>',15)+' > stop',
+					sceg('<radialGradient>&&'+concat('<stop offset="',[0,50,100],'%" stop-color=',ZLR('red yellow blue'),' stop-opacity=0.5></stop>').join('&&')+'&&</radialGradient>',15),
+				
+					sceg('<radialGradient cx=0.5 cy=0.5 r=0.25>&&'+
+						concat('<stop offset="',[0,50,100],'%" stop-color=',ZLR('red yellow blue'),' stop-opacity=0.5></stop>').join('&&')+'&&</radialGradient>',15),
+					gM('Focus')+
+					sceg('<radialGradient cx=0.5 cy=0.5 r=0.25 fx=0.25 fy=0.25>&&'+
+						concat('<stop offset="',[0,50,100],'%" stop-color=',ZLR('red yellow blue'),' stop-opacity=0.5></stop>').join('&&')+'&&</radialGradient>',15),
+						
+					].join(br)
+				),
+				
+				[sceg2('spreadMethod=pad'),sceg2('spreadMethod=reflect',-7),sceg2('spreadMethod=repeat',-6)].join('|'),
+				
+				[sceg2('gradientUnits=objectBoundingBox'),sceg2('gradientUnits=userSpaceOnUse',-14)].join('|'),
+					
+				sceg2('gradientTransform='),
+				
+			].join(br)),
+
+			detail(gM('Pattern.v'),
+				
+				
+				
+			),
+
+		].join(br)),
+			
+		
+
 		
 	].join(''),
 

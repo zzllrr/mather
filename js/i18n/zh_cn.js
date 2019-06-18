@@ -866,6 +866,7 @@ lang['zh_cn']={
 	'Primary':'主',
 	'Secondary':'次',
 
+	'Simple':'简单',
 	'Closed':'闭合',
 	'Clockwise':'顺时针',
 	'Counterclockwise':'逆时针',
