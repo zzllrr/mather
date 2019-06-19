@@ -183,6 +183,8 @@ lang['zh_cn']={
 	'Canvas':'画布',
 	'Graphic':'作图',
 	'Graphics':'图形',
+	'Mask':'遮罩',
+	
 	'Text':'文本',
 	'Image':'图片',
 	'Mic':'麦克风',
@@ -670,7 +672,9 @@ lang['zh_cn']={
 
 	
 	'Set':'集合',
-	'Group':'群',
+	'Group.Math':'群',
+	'Group':'群组',
+	
 	'Ring':'环',
 	'Field':'域',
 	'Lattice':'格',

@@ -81,7 +81,7 @@ wikis={
 	
 	'Algebra':[
 		'Algebra',
-		'Group',
+		'Group.Math',
 		'Ring',
 		'Lattice',
 	],
