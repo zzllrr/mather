@@ -596,6 +596,8 @@ summary ~ details{
 .sechResult{
 	background: rgba(50, 205, 50, 0.6);
 }
+
+
 #solveGround .level:not(.seled),#solve+span:hover{
 	background:blue;
 }

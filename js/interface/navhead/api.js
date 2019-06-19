@@ -260,12 +260,12 @@ tooltip['API']=[
 ];
 
 navhead['API']=[
-	[	href('./js','JS'),
+	[	href('./js','JavaScript'),
 		href('./css',gM('CSS')),
 		href('./js/i18n',gM('i18n')),
 	].join(' | '),
 	detail(gM('Native Math Function')+' (JavaScript)',
-		API(tooltip['Math Function (Native JS)']),
+		API(tooltip['Math Function (Native JavaScript)']),
 	),
 	API(tooltip['API']),
 	detail(gM('3rd-party'),
@@ -277,9 +277,9 @@ navhead['API']=[
 ].join(br);
 
 
-tooltip['JS']=[
+tooltip['JavaScript']=[
 	detail(gM('Native Math Function')+' (JavaScript)',
-		API(tooltip['Math Function (Native JS)']),
+		API(tooltip['Math Function (Native JavaScript)']),
 	),
 	detail(gM('Array Function'), API(tooltip['API'][1]['zlr.js'][9]['数组'])),
 	detail(gM('Calculation'), API(tooltip['API'][1]['zlr.js'][12]['计算'])),

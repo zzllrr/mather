@@ -585,8 +585,8 @@ $(function(){
 
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){
 		var p=$('#input0Type').val();
-		if(/Canvas|JS|HTML/.test(p)){
-			p='JS';
+		if(/Canvas|JavaScript|HTML/.test(p)){
+			p='JavaScript';
 		}
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
@@ -609,7 +609,7 @@ $(function(){
 		toolTip({'LaTeX':gM('Formula Snippet'),
 			'Ascii_Math':'ASCII '+gM('Character'),
 			'Unicode_Math':'Unicode '+gM('Character'),
-			'JS':'JavaScript '+gM('Snippet'),
+			'JavaScript':'JavaScript '+gM('Snippet'),
 			'Markdown':'Markdown '+gM('Snippet'),
 			'HTML':'HTML '+gM('Snippet'),
 			'Presentation_MathML':gM('Presentation Markup')+' MathML '+gM('Snippet'),
@@ -1007,12 +1007,8 @@ consolelog('最终A = ',A);
 	});
 
 	
-
-	$('#input0Type').html(OptGrps([{'Math':'LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML'},
-		{'Web':'Markdown Canvas HTML CSS SVG'},
-		{'Script':'JS'},
-		{'Data':'TXT TSV CSV XML YAML JSON'}
-	]))
+	
+	$('#input0Type').html(OptGrps(jSon('[{"'+gM("Formula")+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM("Webpage")+'":"Markdown Canvas HTML CSS SVG"},{"'+gM("Script")+'":"JavaScript"},{"'+gM("Data")+'":"TXT TSV CSV XML YAML JSON"}]')))
 	.on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]'), tv=tooltip[v];
 
@@ -1268,11 +1264,12 @@ consolelog('最终A = ',A);
 });
 
 var toolSwitch=function(x){
-	var G='#'+x+'Ground', isexplore=!/^solve|graphic|show/.test(x);
+	var G='#'+x+'Ground';
 	$('.ground:not('+G+')').hide();
 
 	$(G).show();
 	$('#subject').toggle(/^solve|course|drill/.test(x));
+	
 	if(!/^solve|graphic|show|course|drill/.test(x)){
 		
 		$('#iTextFold:contains(unfold_less)').click();
@@ -1283,8 +1280,8 @@ var toolSwitch=function(x){
 	
 	if(x=='graphic'){
 		$('#display.seled').click();
-	//	$('#svgs').not('.toggle').click();
 	}
+
 	if($(G).children().eq(0).html()==''){
 		$(G).find('.ground0').html(
 			jdetail(eval(x+'s')['index']||'')
@@ -1339,7 +1336,7 @@ var preDisplay=function(){
 		}else if(iv=='Markdown'){
 			w.html(md2html(v));
 			
-		}else if(iv=='JS'){
+		}else if(iv=='JavaScript'){
 			try{
 				w.html(Arrf(eval,vA).join(br))
 			}catch(e){

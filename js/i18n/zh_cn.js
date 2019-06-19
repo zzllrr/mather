@@ -88,7 +88,7 @@ lang['zh_cn']={
 	'Person':'人物',
 	'User':'用户',
 	
-	
+
 	'Student':'学生',
 	'Parent':'父母',
 	'Teacher':'老师',
@@ -146,7 +146,9 @@ lang['zh_cn']={
 	'Goal':'目标',
 	'Software':'软件',
 	'Hardware':'硬件',
-
+	'Web':'网络',
+	'Webpage':'网页',
+	
 	'Scope':'范围',
 	'Textarea':'文本框',
 	'Computer':'计算机',
@@ -169,7 +171,8 @@ lang['zh_cn']={
 	'Foot':'尾',
 	'Foot Note':'脚注',
 	'End Note':'尾注',
-		
+	'Child':'子元素',
+	
 	'Node':'节点',
 	'Dash':'虚线',
 	'Arrow':'箭头',
@@ -190,7 +193,8 @@ lang['zh_cn']={
 	'Mic':'麦克风',
 	'Calculator':'计算器',
 	'Editor':'编辑器',
-
+	'Script':'脚本',
+	
 	'Translator':'翻译',
 	
 	'Reader':'阅读器',
@@ -208,6 +212,7 @@ lang['zh_cn']={
 	'Action':'动作',
 	'Scene':'场景',
 	'Animation':'动画',
+	'Animate':'动画',
 	'Gadget':'部件',
 	'Show':'演示',
 	'Presentation':'演讲稿',

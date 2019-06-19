@@ -177,9 +177,9 @@ questions={
 },
 
 
-solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
-solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
-solveThen={}, graphicThen={}, showThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
+editor={}, solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
+editors={}, solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
+editorThen={}, solveThen={}, graphicThen={}, showThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
 /*
 	
 
@@ -397,7 +397,7 @@ tooltip={
 			gM('Vertical Line')+' V y | v dy'+sceg2('V50')+sceg2('v50'),
 
 			detail(gM('Method'),[
-				href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/SVGPathElement','JS API'),
+				href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/SVGPathElement','JavaScript API'),
 				'getTotalLength()',
 				'getPointAtLength(float)',
 			].join(br))
@@ -432,25 +432,22 @@ tooltip={
 		].join(br)),
 
 		detail(gM('Text'),[
-			sceg('<text>&&&&</text>',5),
-			sceg2('x=10')+sceg2('y=10'),
+			sceg('<text>&&&&</text>',5),sceg('<text x=10 y=20 font-weight=bold>'+gM('Text')+'</text>',5),
+			Arrf(sceg2,ZLR('x=10 y=20 dx=10 dy=20 rotate=45 textLength=')).join(''),
 			[sceg2('text-anchor=start'),sceg2('text-anchor=middle',-6),sceg2('text-anchor=end',-3)].join('|'),
+			[sceg2('lengthAdjust=spacing'),sceg2('lengthAdjust=spacingAndGlyphs',-16)].join('|'),
+			detail(gM('Text Attribute'),Arrf(sceg2,
+				zlrA2(ZLR('font-family font-style font-weight font-variant font-stretch font-size font-size-adjust kerning letter-spacing word-spacing text-decoration'),'=')).join(br)
+			),
 			
 			
 			detail(gM('Child'),[
 				sceg('<tspan font-weight=bold fill=red>Hello World!</tspan>',6),
-				Arrf(sceg2,ZLR('x= y= dx= dy= rotate= textLength=')).join(''),
-				scegc('tref xlink:href=#example',4),
 				sceg('<textPath xlink:href=#path0>1234</textPath>',9),
 			].join(br)),
 			
-			detail(gM('Attribute'),Arrf(sceg2,
-				zlrA2(ZLR('font-family font-style font-weight font-variant font-stretch font-size font-size-adjust kerning letter-spacing word-spacing text-decoration'),'=')).join(br)
-			),
-			
-			detail(gM('Font'),[
-			
-			].join(br))
+
+
 
 		].join(br)),
 		
@@ -551,18 +548,17 @@ tooltip={
 		
 		detail(gM('Clip'),[
 			sceg('<clipPath id=cp1>&&&&</clipPath>',9),
-			sceg('clip-path="url(#cp1)"'),	
-		
-			
+			sceg('clip-path="url(#cp1)"'),
+
 		].join(br)),
 
 		detail(gM('Mask'),[
 			sceg('<mask id=ms1>&&&&</mask>',9),
-			sceg('mask="url(#ms1)"'),	
+			sceg('mask="url(#ms1)"'),
 		
 		
 			
-		].join(br)),			
+		].join(br)),
 
 		detail(gM('Image'),[
 			scegc('image xlink:href="img/ZIL.png" x=0 y=0 height=50px width=50px',5),	
@@ -572,13 +568,17 @@ tooltip={
 
 		
 		detail('XHTML',[
-			sceg('<foreignObject x=20 y=20 width=200 height=200></foreignObject>',14),	
+			sceg('<foreignObject x=20 y=20 width=200 height=200>&&&&</foreignObject>',14),	
 		
 			
-		].join(br)),		
+		].join(br)),
 
 
-		
+		detail(gM('Animation'),[
+			scegc('animate attributeType=XML attributeName=x from=-100 to=120 dur=10s repeatCount=indefinite',7),
+			
+			
+		].join(br)),
 	].join(''),
 
 
@@ -944,7 +944,7 @@ var ican=$('#ican'),gl=ican[0].getContext('webgl');
 
 
 
-	'Math Function (Native JS)':[
+	'Math Function (Native JavaScript)':[
 		
 	{'Constant 常数':[
 		{'e (Euler number)':'Math.E'},
@@ -1174,7 +1174,7 @@ E|F|G
 	
 			[gM('Code Block'),sceg('``` ABC ```')].join(''),
 
-			['JS eval '+gM('Code Result'),sceg('$$2+3$$')].join(''),
+			['JavaScript eval '+gM('Code Result'),sceg('$$2+3$$')].join(''),
 	
 
 		].join(br))
