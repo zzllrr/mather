@@ -110,10 +110,15 @@ function consolelog(){
 	}
 }
 function gM(mesg,str,o){if(isArr(mesg)){return Arrf(function(i){return gM(i,str,o)},mesg)}
-	var msg=''+mesg, M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'',
-	chrome=chrome||'';
-	if(!x && chrome && chrome.i18n){
-		x=chrome.i18n.getMessage(msg, str)
+	var msg=''+mesg, M=(msg[0]||'').toUpperCase()+(msg||'').substr(1), O=o||i18n, x=O?O[msg] || O[M] || '':'';
+	try{
+		if(!x && chrome && chrome.i18n){
+			x=chrome.i18n.getMessage(msg, str)
+		}
+		
+	}catch(e){
+		
+		
 	}
 	if(!x && /[a-z]+[A-Z][a-z]*$/.test(msg)){
 		x=gM(msg.replace(/([a-z])([A-Z])/g,'$1 $2'),str,o)

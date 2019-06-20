@@ -559,6 +559,15 @@ tooltip={
 		
 			
 		].join(br)),
+			
+		detail(gM('Filter.v'),[
+			sceg('<filter x=0 y=0 width=100 height=100 filterRes=>&&&&</filter>',7),
+
+			[sceg2('filterUnits=objectBoundingBox'),sceg2('filterUnits=userSpaceOnUse',-14)].join('|'),
+			[sceg2('primitiveUnits=objectBoundingBox'),sceg2('primitiveUnits=userSpaceOnUse',-14)].join('|'),
+			
+		].join(br)),
+			
 
 		detail(gM('Image'),[
 			scegc('image xlink:href="img/ZIL.png" x=0 y=0 height=50px width=50px',5),	
@@ -577,7 +586,21 @@ tooltip={
 		detail(gM('Animation'),[
 			scegc('animate attributeType=XML attributeName=x from=-100 to=120 dur=10s repeatCount=indefinite',7),
 			
+			scegc('animateTransform attributeName=transform attributeType=XML type=rotate from="0 60 70" to="360 60 70" dur=10s repeatCount=indefinite',7),
+				
+			sceg('<animateMotion dur=6s repeatCount=indefinite rotate=auto keyPoints=0;0.5;1 keyTimes=0;0.15;1 calcMode=linear>&&&&</animateMotion>',14)+' > mpath',
+
+
+
+			[sceg2('calcMode=linear',-6),sceg2('calcMode=discrete'),sceg2('calcMode=paced',-5),sceg2('calcMode=spline',-6)].join('|'),
 			
+			sceg2('path='),
+
+       		scegc('mpath xlink:href=#path1',5),
+    
+       		scegc('set to=',3),
+       			
+			scegc('discard begin=',7),
 		].join(br)),
 	].join(''),
 
