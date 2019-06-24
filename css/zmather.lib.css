@@ -31,11 +31,14 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel, #input0Preview ~ *,#iTextMain ~ *{
+  #panel > *, #input0Preview ~ *,#iTextMain ~ *{
   	display:none
   }
   #iTextMain{
   	padding:1in
+  }
+  #iContent{
+  	border:none;
   }
 }
 .wiki,.wiki > tbody > tr > td{

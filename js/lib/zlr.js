@@ -2706,7 +2706,7 @@ function md2html(str,sep){
 					sepi=i;
 				}
 				return t.replace(/^\||\|$/g,'').split('|')
-			},x.replace(/\n$/,'').split('\n')),
+			},x.replace(/^\n|\n$/g,'').split('\n')),
 			sepA=sep.replace(/^\||\|$/g,'').split('|'), cols=sepA.length;
 			consolelog(sep,A.slice(0,sepi));
 			var c='';
@@ -2737,7 +2737,7 @@ function md2html(str,sep){
 			
 			return Table(A.slice(0,sepi),A.slice(sepi+1,A.length),c)
 		};
-		s=s.replace(/(.+\n)*\|?:?-+:?(\|:?-+:?)+.+(\n.+)*\n/g,ftb);
+		s=s.replace(/\n?(.+\n)*\|?:?-+:?(\|:?-+:?)+.+(\n.+)*\n/g,ftb);
 	}
 	
 	
@@ -2875,7 +2875,7 @@ function md2html(str,sep){
 	
 	if(mA.length){
 		var kA=[];
-		s=s.replace(/\n*katex#\d#\n*/g,function(x){
+		s=s.replace(/\n*katex#\d+#\n*/g,function(x){
 			var i=+x.replace(/\D/g,''), isblk=/^\n/.test(x) && /\n$/.test(x);
 			if(isblk){
 				var k=kA.indexOf(i);
