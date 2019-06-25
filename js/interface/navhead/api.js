@@ -183,7 +183,7 @@ tooltip['API']=[
 			{'序列':'seqA seqsA cartestian cartt carttNext carttPrev'},
 			{'增删':'uniPush Uniq'},
 			{'提取':'Arri ArrI subMtrx'},
-			{'运算':'Arrf Arrfc ArrfcA Arr1 Arr_1 tableT'},
+			{'运算':'Arrf Arrfc ArrfcA Arr1 Arr_1 tableT tableL'},
 			{'拼接':'zlrA zlrA2 zlrA3 snake'},
 			{'输出字符串':'zlr zlr2 zlr3 ZLR3'},
 			{'排序':'sortBy sort2'},

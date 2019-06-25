@@ -1,6 +1,5 @@
 /*
  * zzllrr Mather
- * Copyright by zzllrr since 2013. All rights reserved.
  * zzllrr@gmail
  * Released under MIT License
  */
@@ -532,7 +531,7 @@ consolelog('周期性数位（随机间隔若干个0）字符串');
 		
 		由于Math.sqrt不支持BigInt，可以用n的位数一半的数近似估计
 	*/
-	var i=BIgInt(5001), sqrtn=BigInt(1+'0'.repeat(Math.ceil(l/2)));
+	var i=BigInt(5001), sqrtn=BigInt(1+'0'.repeat(Math.ceil(l/2)));
 	
 	while(i){
 		//var t=Math.floor(Math.sqrt(i)), Al=A.length;

@@ -7,6 +7,9 @@
 
 var H='http://',Hs='https://', w3c='www.w3.org/', xmlns=H+w3c+'2000/svg', xhtml=H+w3c+'1999/xhtml', xmlnsxlink=H+w3c+'1999/xlink', xmml=H+w3c+'1998/Math/MathML',
 logon=false, i18n=typeof lang =='undefined'?'':lang[H_o().lang||'zh_cn']||'';
+if(typeof BigInt=='undefined'){
+	var BigInt=function(x){return +x}
+}
 var uri='^(blob|file|ftp|https?):.+', uriRe=new RegExp(uri,'i'), dataRe=/^data:.+[/].+;.+/,
 	imgPreReg='(blob|data|file|ftp|https?):.+',
 	imgPre=new RegExp(imgPreReg,'gi'), imgPreRe=new RegExp('^'+imgPreReg,'gi'),
@@ -263,9 +266,6 @@ CA=[.2126, .7152, .0722]
 	return MA;
 }
 
-function BigInt(n){
-	return BigInt?BigInt(n):+n
-}
 var H5Colors='aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow,yellowgreen';
 function H5Color(neg,pos){
 	var A=H5Colors.replace(/[^,]*grey[^,]*,/g,'').replace(/,(cyan|magenta),/g,',');
@@ -972,6 +972,21 @@ tableT=function(A){/* Transpose	转置 */
 		for(var i=0;i<m;i++){
 			B[j].push(A[i][j])
 		}
+	}
+	return B
+},
+tableL=function(A,row,col){/* 一维数组Line	转成二维表格（指定列数或行数） 分组 */
+	var B=[],l=A.length,n=col||Math.ceil(l/row), m=row||Math.ceil(l/col),c=0;
+
+	for(var i=0;i<m;i++){
+		if(c==l){break}
+		var a=[];
+		for(var j=0;j<n;j++){
+			if(c==l){break}
+			a.push(A[c]);
+			c++;
+		}
+		B.push(a);
 	}
 	return B
 },

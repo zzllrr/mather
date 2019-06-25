@@ -33,6 +33,10 @@ lang['zh_cn']={
 	"rotate2":"旋转180°",
 	"rotate3":"逆转90°",
 
+
+	'copy2input':'复制图形到输入框',
+	'copyAll2input':'复制所有图形到输入框',
+		
 	'Bright':'亮度',
 	'hueRotate':'色相',
 
@@ -342,6 +346,8 @@ lang['zh_cn']={
 	'Content':'内容',
 	'Contents':'目录',
 
+	'Hidden':'隐藏',
+	'Element':'元素',
 	'Support':'支持',
 	'Presentation Markup':'表现型标记',
 	'Content Markup':'内容型标记',
@@ -521,6 +527,7 @@ lang['zh_cn']={
 	'Start':'开始',
 	'Finish':'完成',
 	
+	'Ignore':'忽略',
 	'Filter':'过滤',
 	'Filter.v':'滤镜',
 	'Measure':'测量',

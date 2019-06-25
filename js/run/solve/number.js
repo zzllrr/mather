@@ -183,7 +183,7 @@ solve['number']=function(inputValue, uriA){
 		rS=rS.concat(
 		Arrf(function(t){
 				var A=seqsA(opreSeqsA(t)),P=[],C=[],One='';
-				Arrf(function(x){
+				Arrf(function(x){26364809,26366033
 					if(isPrime(x)){
 						P.push(x);
 
@@ -203,9 +203,14 @@ solve['number']=function(inputValue, uriA){
 	if(sel(uriA,'区间内质数个数')){
 		rS=rS.concat(
 			Arrf(function(x){
-				var xs=x.split(/\D/),x0=xs.length>1?+xs[0]:1,x1=+xs[1]||+xs[0];
-
-				return x+(xs.length>1?'区间内':'以内')+'质数个数是 '+(PrimeA(x1).length-PrimeA(x0).length)
+				var xs=x.split(/\D/),n1=xs[1]||xs[0],x0=BigInt(xs.length>1?xs[0]:1),x1=BigInt(n1), A1=PrimeA(+n1), l=A1.length,c=0;
+				for(var i=l-1;i>-1;i--){
+					if(BigInt(A1[i])<x0){
+						break
+					}
+					c++;
+				}
+				return x+(xs.length>1?'区间内':'以内')+'质数个数是 '+c+(c?'，分别是'+kbr+zarray(tableL(A1.slice(i+1),'',4),''):'')
 
 			},VA)
 		);

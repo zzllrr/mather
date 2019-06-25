@@ -127,7 +127,7 @@ $(function(){
 	$('span:empty[id]').text(function(){return gM(this.id)});
 	$('#cssClip').after(gM('Clip'));
 	$('.Grad').after(gM('Gradient'));
-	$('#Transform').after(function(){return gM(this.id)});
+	$('#Transform,#ignoreHiddenElement').after(function(){return gM(this.id)});
 	
 	$('[name=FGradType],[name=BGradType],[name=SGradType]').before(function(){var v=this.value;return gM(v)});
 	
