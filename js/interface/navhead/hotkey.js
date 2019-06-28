@@ -49,7 +49,7 @@ Table('',[
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
 	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
-])+'<h3>'+gM('SVG Gadget')+'</h3>'+
+])+'<h3>'+gM('Graphic')+'</h3>'+
 
 Table('',[
 	[scHotk('Ctrl + C'),gM('Copy'),
@@ -79,8 +79,8 @@ Table('',[
 	scHotk('↓'),gM('Move Down')
 	],
 	
-	[scHotk('Shift + Esc'),gM('Hide'),
-	scHotk('Esc'),gM('Toggle Gadget'),
+	[scHotk('Esc'),gM('Hide')+' | '+gM('Toggle'),
+	'',
 	'','',
 	'',''
 	],

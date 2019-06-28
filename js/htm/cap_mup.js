@@ -403,7 +403,7 @@ function mUp(e,Last){
 			}
 		}
 		if(shp=='Eraser'){
-			var eD=$('#eraserDir').val(), st='svg,textarea,span.caplatex',me=$(eos).closest(st);
+			var eD=$('#eraserDir').val(), st='svg,textarea,span.capfromTextarea',me=$(eos).closest(st);
 			if(eD && eD.length){
 				var eDT=eD.join(''),po=me.position(),pl=po.left,pt=po.top,z=+me.css('z-index');
 				if(/[01]/.test(eDT)){
@@ -426,7 +426,7 @@ function mUp(e,Last){
 			}
 		}
 		if(shp=='Copy'){
-			L.drawCopy=$(eos).closest('svg,textarea,span.caplatex').attr('id');
+			L.drawCopy=$(eos).closest('svg,textarea,span.capfromTextarea').attr('id');
 			drawCopy();
 			$('#Copy').click()
 		}

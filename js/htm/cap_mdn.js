@@ -310,26 +310,22 @@ function textareas(A,sty){
 		if($('#fontCSS .toggle.'+tArr[i]).length){cls+=tArr[i]+' '}
 	}
 	return '<textarea'+(sty?sty:idStyle('',A))+';font-size:'+sz+'px;'+
-		(mathFont?'':'font-family:'+$('#font').val().replace(/"/g,"'")+';')+'z-index:'+($('#Caps').children('svg, textarea').length+2001)+';'+
+		(mathFont?'':'font-family:'+$('#font').val().replace(/"/g,"'")+';')+'z-index:'+($('#Caps').children('svg, textarea, span').length+2001)+';'+
 		'background:transparent;color:'+hex2rgba(fg,fgOpa)+';border-color:'+hex2rgba(bg,bgOpa)+';border-width:'+
 		(sty?sw:0)+'px;opacity:'+(sty?fgOpa:1)+';text-align:'+(sty?pos:'center')+
 		'" class="'+cls+(mathFont?' mathFont':'')+'" placeholder="'+gM('urlImg')+'">'+$('#svgText'+(nv?'N':'M')).val()+'</textarea>'
 }
 
-function latexes(A,sty){
-	var sz=+$('#fontSize').val(), tArr=ZLR('bold italic underline overline through');
-	var pos=ZLR('left center right')[$('#tileFontCenter').val()], cls=sty?'soleTxt ':'noteTxt ', nv=+$('#svgText').val();
+function fromTextarea(typ,v,A,sty){
+	var sz=+$('#fontSize').val(), tArr=ZLR('bold italic underline overline through'), type=(typ||'LaTeX');
+	var pos=ZLR('left center right')[$('#tileFontCenter').val()];
 	var fg=$('#FGC').val(), bg=$('#BGC').val(), fgOpa=$('#OpaFGC').val(), bgOpa=$('#OpaBGC').val(),sw=+$('#strkW').val();
-	/*
-	for(var i=0;i<tArr.length;i++){
-		if($('#fontCSS .toggle.'+tArr[i]).length){cls+=tArr[i]+' '}
-	}
-	*/
-	return SCtv('caplatex"'+(sty?sty:idStyle('',A))+';font-size:'+sz+'px;'+
+
+	return SCtv('cap'+type+' capfromTextarea" data-texttype="'+typ+'"'+(sty?sty:idStyle('',A))+';font-size:'+sz+'px;'+
 		'z-index:'+($('#Caps').children('svg, textarea, span').length+2001)+';'+
 		'background:transparent;color:'+hex2rgba(fg,fgOpa)+';border-color:'+hex2rgba(bg,bgOpa)+';border-width:'+
 		(sty?sw:0)+'px;opacity:'+(sty?fgOpa:1)+';text-align:'+(sty?pos:'center')+
-		'" class="'+cls+'" >'+$('#svgText'+(nv?'N':'M')).val(),'')
+		(v && /Markdown|Canvas|Echarts/.test(typ)?'" data-text="'+escape(v):''),'')
 }
 
 
@@ -366,6 +362,7 @@ function drawEnd(e){
 	if(/Poly|Paral|Trape|lineangle[HV]|Line3YRight|cub/.test(shp) && L.drawShapeNow){
 		mUp(e,1);
 	}
+	tileToolCode(shpN);
 }
 
 function oOn(t,hdn){var c=min(Arrf(function(x){return +$('#'+x+'on').prop('checked')}, ZLR(t)));return hdn?' '+t+(c?'':' hidden'):c}
@@ -762,7 +759,8 @@ function toggleColorShpN(F0B1, onlyOpa){
 
 function tileToolCap(t, val){
 
-	var id=t.replace(/\d+$/g,''), txt=id=='Text', ln=+$('#svgLine').val(), isntP=L.drawShape!='Pointer', tme=$('#'+t), isLatex=txt && tme.is('span.caplatex');
+	var id=t.replace(/\d+$/g,''), txt=id=='Text', ln=+$('#svgLine').val(), isntP=L.drawShape!='Pointer', tme=$('#'+t),
+	isFromTextarea=txt && tme.is('span.capfromTextarea'), isLatex=txt && tme.is('span.capLaTeX');
 	var C='#Css', c='#css', s='#strk', v=':visible', s_='stroke-', fil=+$('#strkFill').val();
 	var polyln=/Polylin/.test(id), isLn=/Line/.test(id), isln=/line/i.test(id), isGONlike=/Rect|gon|Note|arrow/i.test(id) && !/(rect|ellipse)Note/.test(id),
 		isGON=isGONlike && !/A|Heart|QIGonRnd|(fan|Moon|Star)Note/.test(id),
@@ -780,9 +778,10 @@ function tileToolCap(t, val){
 
 	$('#FontSize,#fontSize,#Font').toggle(txt);//#svgTexts,
 	$('#svgTEXT').toggle(txt && isntP);
-	$('#svgTEXTLaTeX').toggle(!val && txt || isLatex);
+	$('#svgTEXTBox').toggle(!val && txt || isFromTextarea || id=='allEraser');
 	
 	$('#svgTextN,#svgTextDetail').toggle(txt && isntP && $('#svgText').val()!='0');
+
 
 	$('#svgSel, #svgCssTransform').toggle(id && id!='Pointer');
 	$('#scrTool').toggle(id=='Pointer');
@@ -875,10 +874,14 @@ function tileToolCap(t, val){
 
 
 
-	$('#SvgOpt,#COLOR').show();
+	$('#SvgOpt,#COLOR,#svgCode').show();
 	$('#copyOpt').hide();
 	$('#scrWH').toggle(/scr|all|Crop/.test(id));
 	
+	if(id=='allEraser'){
+
+
+	}
 	//val
 
 	if(val){
@@ -890,10 +893,17 @@ function tileToolCap(t, val){
 			$('#tileFontCenter').val(ZLR('left center right').indexOf(tme.css('text-align')));
 			$('#font').val(tme.css('font-family'));
 			
+			$('#TextBoxType').val(tme.attr('data-texttype')).change();
+
+			if(isFromTextarea){
+				tileToolCode(tme)
+			}
+/*
 			if(isLatex){
-				$('#TextLaTeX').val(XML.decode(tme.find('annotation').eq(0).text()));
+				$('#TextBox').val(XML.decode(tme.find('annotation').eq(0).text()));
 				
 			}
+*/
 		}
 		$(c+'X').val(tme.css('left').replace(/\D/g,''));
 		$(c+'Y').val(tme.css('top').replace(/\D/g,''));
@@ -1068,6 +1078,8 @@ function tileToolCap(t, val){
 		}else{
 			$('#skew ~ input').val(0);
 		}
+
+		tileToolCode(tme);
 	}
 }
 

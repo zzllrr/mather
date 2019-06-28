@@ -4,8 +4,8 @@
 
 #caps{
     position: absolute;
-    top: 0px;
-    z-index: -1;
+	top: 0px;
+	z-index: -1;
 }
 
 #tileToolCap img{
@@ -32,18 +32,16 @@
 
 #fontCSS span,#tileToolCap svg,#night{cursor:pointer}
 #tileTool{
-	border-left: dashed white 1px;
 	text-align:center;
 	right:12px;
 	position:fixed;
 	overflow-x:hidden;
 	user-select: none;
 	top:30px;
-
 }
 
 #svgShape svg{border-radius:5px}
-#tileToolCap,svg:hover,.caplatex:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+#tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
 
 
 #tileTool:not([for]):after{
@@ -61,6 +59,9 @@
 #Caps textarea:hover{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
+#TextBox{
+	width:100%
+}
 #capctxTXT div,#fxTXT div{
 	max-height:100px;
 	overflow-x: hidden;
@@ -78,7 +79,7 @@
 }
 
 
-#svgTEXTLaTeX{
+#svgTEXTBox{
 	position: fixed;
     right: 25%;
     z-index: 400000;
@@ -137,4 +138,4 @@ input:not([readonly]), select{
 
 .small{transform:scale(.9)}
 
-#TextLaTeX{background-color:rgba(50, 205, 50,0.5);color:black}
+#TextBox{background-color:rgba(50, 205, 50,0.5);color:black}

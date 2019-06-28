@@ -5,7 +5,7 @@
  */
  
 graphics={
-	index:['Plane Coordinate System.Math','Space Coordinate System.Math','Surface','Solid','81','Statistics','Project'],
+	index:['Plane Coordinate System.Math','Space Coordinate System.Math','Surface','Solid','81','Statistics','Fractal'],
 	'Plane Coordinate System.Math':[
 		
 		{'Curve':[
@@ -73,7 +73,6 @@ graphics={
 		{'Relation':[
 			{'hasse':''},
 			{'venn':''},
-			{'pie':''},
 			{'tree':''},
 
 		]},
@@ -82,14 +81,9 @@ graphics={
 		'bar','line','pie'
 	],
 	'Fractal':[
-		'bar','line','pie'
+		'Mandelbrot','Julia','Cantor','Koch'
 	],
-	'Project':[
-		{'echarts':[
-		
-		]},
-	
-	],
+
 };
 
 

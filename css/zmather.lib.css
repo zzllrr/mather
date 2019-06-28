@@ -385,7 +385,7 @@ input[type=text],#wiki>span,.brad{
 }
 
 
-#wiki summary,#wiki>span,.wiki > tbody > tr> td, .pd2,.scbox,.mfx{
+#wiki summary,#wiki>span,.wiki > tbody > tr> td, .pd2,.scbox,.mfx, #tileToolCap > details{
 	padding:2px
 }
 .pd10{
@@ -463,7 +463,7 @@ input[type=text],#wiki>span,.brad{
 	text-align:center
 }
 
-.alignl{
+.alignl, #canvasMenu ~ div{
 	text-align:left
 }
 .alignr{
@@ -752,15 +752,7 @@ img{
 	width:100%
 }
 
-#cvsbg{
-	width:100%;
-	height:100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index:-1;
 
-}
 
 
 @font-face {
@@ -805,12 +797,12 @@ img{
 	vertical-align: middle;
 	font-weight:bold;
 }
-#panel div > .mi-span.toggle,#menu .toggle{
+#panel div > .mi-span.toggle, .mi.toggle{
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 	padding-right:2px;
 }
 
-#menu i{
+#menu i,#canvasMenu i{
 	font-size:26px;
 }
 #menu{
@@ -819,11 +811,12 @@ img{
     padding-right: 5px;
 
 }
-#menu .toggle[title],#nav{
+#nav{
 	padding: 4px;
+	max-width:75%
 }
 
-#menu .toggle{
+.mi.toggle{
 	background:yellow
 }
 
@@ -835,9 +828,6 @@ input[len="2"]{
 	width: 80px;
 }
 
-#nav{
-	max-width:75%
-}
 .mi-span{
 	cursor:pointer;
 }

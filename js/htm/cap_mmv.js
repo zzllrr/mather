@@ -2081,5 +2081,36 @@ console.log('tp ',tp);
 		$('#Angle').text(DEG);
 	}
 
+	if(shpN.length){
+		tileToolCode(shpN)
+	}
 }
 
+function tileToolCode(obj,returnValue){
+	var a=[],o=$(obj),t;
+	if(o.is('svg')){
+		o.children().not($('#ignoreHiddenElement').prop('checked')?':hidden':'').each(function(){//.hidden
+			a.push(this.outerHTML.replace(/\n/g,''))
+	
+		});
+		t='<svg viewBox="0 0 '+o.width()+' '+o.height()+'" width=90% height=200px>'+a.join('')+'</svg>';
+
+	}else if(o.is('.capfromTextarea')){
+		
+		$('#TextBoxType').val(o.attr('data-texttype'));
+		$('#TextBox').val(unescape(o.attr('data-code')));
+		t=o.html();
+/*
+	}else{
+		a.push(this.outerHTML);
+		t=a.join('');
+*/
+	}
+	if(returnValue){
+		return t
+	}
+	
+	$('#SVGcode').val(t);
+
+
+}
