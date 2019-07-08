@@ -24,7 +24,7 @@ var Graphic={
 	},
 	drawSVG:function(graphType,v,ID,DOM){
 		var g=graphType,gl=g.replace(/.+[/]/,''),d;
-console.log('g=',g);
+consolelog('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
@@ -57,7 +57,8 @@ consolelog(D.html());
 						if(/^[a-z]+\(/i.test(ivi)){
 							x+=ivi
 						
-						}else{				
+						}else{
+
 							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
 								var egs=$('.inputTip[data-uri*="Plane Coordinate System"] .eg');
 								
@@ -77,12 +78,12 @@ consolelog(D.html());
 									gl='Arc';
 									
 									if(g.indexOf('/Shape/')>0){
-										egs=$('.inputTip[data-uri*="Plane Coordinate System/Shape"] .eg')
+										egs=$('.inputTip[data-uri*="Plane Coordinate System.Math/Shape"] .eg')
 									}
 									
 								}
 								
-					console.log('gl=',gl);			
+
 								x+="shape('','"+gl+"','','";
 								if(/path/i.test(gl)){
 								
@@ -96,11 +97,11 @@ consolelog(D.html());
 
 									var eg=split(egi.attr('data-eg')||'',/[a-z\d]+=/g);
 							
-							console.log(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
-									if(eg[0].length==1 && / /.test(ivi)){
+							consolelog(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
+									if(eg[0] && eg[0].length==1 && / /.test(ivi)){
 										ivi='"'+ivi+'"';
 										x+=eg[0]+ivi;
-									}else{
+									}else if(eg[0]){
 										x+=snake([eg[0].slice(0,ivil),(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
 									}
 								}
@@ -127,7 +128,7 @@ consolelog(D.html());
 							
 							
 						}
-console.log(x);
+consolelog(x);
 						str+=eval(x);
 					}
 				}

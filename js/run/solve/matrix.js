@@ -600,7 +600,7 @@ console.log(inputValue,uriA);
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'', M=MfS(t), A=Mtrx.opr1('特征值',M,ij,1);
 
-			return A[1]
+			return A[1].join(kbr)
 		},VA));
 	}
 	if(sel(uriA,'Singular Polynomial')){

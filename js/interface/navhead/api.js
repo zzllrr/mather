@@ -195,7 +195,7 @@ tooltip['API']=[
 			{'编码':'Base64 UTF8 XML ZML'},
 			{'特殊字符':'fCC Latin entity'},
 			{'翻译':'gM sbc2dbc dbc2sbc zh2big'},
-			{'数字转换':'n2Zh Zh2n nTrim wrapTrim'},
+			{'数字转换':'n2Zh Zh2n nTrim wrapTrim subwd'},
 			{'表格':'cell2cols cell2rows'}
 		]},
 

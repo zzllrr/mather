@@ -2813,8 +2813,9 @@ consolelog(d);
 				var eM=Mtrx.opr1('特征矩阵',A), eP=Mtrx.opr1('特征多项式',A,es,ar[3]);
 				C.push('|λI-A|',kdet(eM),eP[0],0);
 				var esA=countA(es);//[特征值去重数组，相应重数数组]
-			consolelog(esA);
+			console.log(esA);
 			consolelog(esA.join('\n'));
+				esA[0]=Arrf(Mfn.toStr,esA[0]);
 				C=['A='+kmtrx(A)+', '+C.join('='),'解得λ = '+count2pow(esA,2)];//, '备注：',esC1[1]];
 
 			}

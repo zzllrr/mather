@@ -397,6 +397,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 			//extension 
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
 			.replace(/(\{[^\}]+\}|.) *\\\/ *(\{[^\}]+\}|.)/g, '\\frac{$1}{$2}')				//无嵌套分数形式	a\/b  <=> \frac{a}{b}
+			.replace(/[√∛∜]-?[\d\.]+/g, function(x){var i='√∛∜'.indexOf(x[0]);return '\\sqrt'+(i?'['+(i+2)+']':'')+'{'+x.substr(1)+'}'})
 		;
 
 
@@ -2115,7 +2116,10 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	return 0
 
-
+}, subwd = function (t, len) {/*字符串t，截取前len个字符，但如果正好在单词内部截取，则再往前截取，使得单词完整
+	*/
+	return t.length>len?(t[101]==' '?t.substr(0,len):t.substring(0,t.substr(0,len).lastIndexOf(' '))):t
+	
 }, split = function (t, r, noshift) {/*字符串t，按(中缀)正则split分成两个数组 A[匹配到的分隔符数组A[0], 被分割后得到的数组A[1]]
 	如果不匹配返回字符串本身
 	如果A[1]首项为空，shift一下（未指定noshift的默认情况下）

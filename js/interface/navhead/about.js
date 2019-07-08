@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 navhead['about']=XML.wrapE('h3',gM('Version'))+
-	SCtv('',href(Hs+'zzllrr.github.io/mather','Live Demo')+' V2019.6.18'+href(Hs+'github.com/zzllrr/Mather','(GitHub)'))+
+	SCtv('',href(Hs+'zzllrr.github.io/mather','Live Demo')+' V2019.7.8'+href(Hs+'github.com/zzllrr/Mather','(GitHub)'))+
 	XML.wrapE('h3',gM('Summary'))+
 	DCtv('',gM('Summarytip')+
 	

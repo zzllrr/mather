@@ -8,7 +8,7 @@ $(function(){
 
 
 	$('#go').on('click',function(){
-		var tool=$('[name=tool]:checked').val(), o=$('#subject2').val().toLowerCase(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
+		var tool=$('[name=tool]:checked').val(), o=($('#subject2').val()||'').toLowerCase(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
 		
 		$('#svgs.toggle').click();
 		if(tool=='solve'){
