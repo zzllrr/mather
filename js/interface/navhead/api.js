@@ -114,7 +114,7 @@ tooltip['API']=[
 			{'Engin':'Engin'},
 			{'元素':[
 				{'过渡':'br hr prog'},
-				{'结构':'SCtv DCtv itv detail ol ul dl Options OptGrps subReg tmb Table'},
+				{'结构':'SCtv DCtv itv detail ol ul dl Options OptGrps optgrp subReg tmb Table'},
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num txa txtreadonly mark del href scHotk q_key sceg sceg2 scegc scegj zMath'},
 			]},

@@ -475,8 +475,8 @@ tooltip={
 			].join(br)),
 			
 			
-			gM('Definition')+sceg('<defs>&&&&</defs>&&',6),
-			sceg('<style type="text/css">&&&&</style>&&',6),
+			detail(gM('Definition'),sceg('<defs>&&&&</defs>&&',6)),
+			detail('CSS',sceg('<style type="text/css">&&&&</style>&&',6)),
 				
 
 			detail(gM('Gradient'),[

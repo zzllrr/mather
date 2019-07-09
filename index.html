@@ -80,7 +80,7 @@
 				<select id=lang></select>
 			</div>
 			<div id=navbody>
-				<div id=toolnav class="opac pd2"></div>
+				<div id=toolnav class="pd2"></div>
 				<details id=searchTool>
 					<summary>
 						<select id=searchBy></select>
@@ -237,7 +237,7 @@
 							<rect x=5 y=7 width=20 height=16 /></svg>
 						<svg id=Crop hotkey="C">
 							<path d="M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18" /></svg>
-						<svg id=allEraser tip="BGC">
+						<svg id=allEraser tip="bg">
 							<rect x=5 y=7 width=20 height=16 stroke=white fill=white /></svg>
 						<svg id=LayerToggle hotkey="V">
 							<path d="M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1" />
@@ -277,6 +277,22 @@
 							<textarea id=svgTextDetails></textarea>
 						</div>
 
+						<details id=svgTEXTBox open>
+							<summary>
+								<input type=button id=clrTextBox />
+								<select id=TextBoxType></select>
+								<span id=TextBoxContainer hidden>
+									<input type=number value=300 min=0 id=TextBoxW />
+									<input type=number value=200 min=0 id=TextBoxH />
+								</span>
+								<input type=button value="-- OK --" id=TextBoxGo />
+								</summary>
+							<textarea id=TextBox></textarea>
+							<details id=TextBoxTool hidden>
+								<summary></summary>
+							</details>
+						</details>
+
 						<div id=svgSel>
 							<details id=svgTEXT>
 								<summary>
@@ -299,22 +315,6 @@
 								<textarea id=svgTexts placeholder="My Clipboard"></textarea>
 							</details>
 
-
-							<details id=svgTEXTBox open>
-								<summary>
-									<input type=button id=clrTextBox />
-									<select id=TextBoxType></select>
-									<span>
-										<input type=number value=300 min=0 id=TextBoxW />
-										<input type=number value=200 min=0 id=TextBoxH />
-									</span>
-									<input type=button value="-- OK --" id=TextBoxGo />
-									</summary>
-								<textarea id=TextBox></textarea>
-								<details id=TextBoxTool hidden>
-									<summary></summary>
-								</details>
-							</details>
 
 
 							<select id=strkFill>

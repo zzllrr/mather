@@ -24,7 +24,7 @@ $(function(){
 				
 				var sbj2s=solves[v1||v0].sbj2s,str='';
 
-				sbj2.show().html(Options(sbj2s,Arrf(gM,sbj2s)).join(''));
+				sbj2.show().html(optgrp(gM('Math Object'), Options(sbj2s,Arrf(gM,sbj2s)).join('')));
 			}
 			
 			//L.subtool=[v,$('#subject1').val(),$('#subject2 :selected').index()].join('.');
@@ -47,7 +47,7 @@ $(function(){
 				
 				
 				var sbj2s=solves[v].sbj2s,str='';
-				sbj2.show().html(Options(sbj2s,Arrf(gM,sbj2s)).join(''));
+				sbj2.show().html(optgrp(gM('Math Object'), Options(sbj2s,Arrf(gM,sbj2s)).join('')));
 				//$('#subject .ground1').html(jdetail(subjects[v]));
 			}
 			
@@ -107,7 +107,7 @@ $(function(){
 
 		sbj0.val(ls[0]).change();
 		sbj1.not(':empty').val(ls[1]).change();
-		sbj2.not(':empty').val(sbj2.children().eq(+ls[2]).val()).change();
+		sbj2.not(':empty').val(sbj2.find('option').eq(+ls[2]).val()).change();
 		
 		if(ls[3]!='-1'){
 			var x=$('#solveGround .ground0').children().eq(+ls[3]).click();

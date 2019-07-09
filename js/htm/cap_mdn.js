@@ -71,6 +71,8 @@ function mDn(e){
 			*/
 			return;
 		}
+
+
 		if(/Eraser|Copy/.test(shp) || /textarea|span/.test(act.toLowerCase())){return}
 
 		var tim=Time.now5(), shpN=shp+tim, s_='stroke-', s='#strk', sw=+$(s+'W').val(), d=Math.ceil(sw/2), r=+$(s+'R').val(), ry=+$(s+'Ry').val(), WD=1+sw, HT=1+sw;
@@ -779,6 +781,7 @@ function tileToolCap(t, val){
 	$('#FontSize,#fontSize,#Font').toggle(txt);//#svgTexts,
 	$('#svgTEXT').toggle(txt && isntP);
 	$('#svgTEXTBox').toggle(!val && txt || isFromTextarea || id=='allEraser');
+	$('#TextBoxContainer').toggle(id!='allEraser');
 	
 	$('#svgTextN,#svgTextDetail').toggle(txt && isntP && $('#svgText').val()!='0');
 
@@ -878,13 +881,21 @@ function tileToolCap(t, val){
 	$('#copyOpt').hide();
 	$('#scrWH').toggle(/scr|all|Crop/.test(id));
 	
-	if(id=='allEraser'){
 
-
-	}
 	//val
 
 	if(val){
+		if(id=='allEraser'){
+			$('#TextBoxType').val('Canvas').change();
+			$('#TextBoxTool').attr('open','open');
+			var vs=$('#caps').attr('data-val')||'';
+			if(vs){
+
+			}else{
+
+			}
+
+		}
 		if(txt){
 			$('#fontCSS span').each(function(){
 				var me=$(this);

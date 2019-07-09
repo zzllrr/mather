@@ -125,7 +125,9 @@ sup,sub,.small{
 	color:black
 }
 .inputTip,.notes{
-	color:gray
+	color:gray;
+	border: solid 1px;
+    padding: 4px;
 }
 
 #panel{
@@ -524,7 +526,10 @@ input[type=text],#wiki>span,.brad{
 	counter-increment: cnt1;
 }
 #input0Tip{
-	counter-reset:cnt0 0
+	counter-reset:cnt0 0;
+	border: gainsboro solid 1px;
+	margin: 2px;
+	background: #eee;
 }
 #input0Tip .eg:not(.eg2):before{
 	content: "#" counter(cnt0) " ";
@@ -567,9 +572,9 @@ summary ~ details{
 
 #navhead span{
     color: white;
-    padding: 2px 4px;
+    padding: 4px;
     margin:2px;
-    border-radius: 0 5px;
+    border-radius: 4px 10px;
     cursor: pointer;
 }
 
@@ -594,7 +599,13 @@ summary ~ details{
 	background:gray;
 }
 #subject .ground1 .level:not(.seled){
-	background:darkgray;
+	background:royalblue;;
+}
+#subject{
+	background: rgba(0,0,0,0.1);
+}
+#toolnav{
+	background: black;
 }
 .sechResult{
 	background: rgba(50, 205, 50, 0.6);
@@ -648,11 +659,9 @@ summary ~ details{
 .task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled{
 	background:limegreen;
 }
-[name=tool]:checked + span{
-	border-radius: 0 5px;
-}
+
 #subject .ground0 .level:not(.seled){
-	background:darkblue;
+	background:royalblue;
 }
 
 textarea{
@@ -811,9 +820,9 @@ img{
     padding-right: 5px;
 
 }
-#nav{
-	padding: 4px;
-	max-width:75%
+#navhead{
+	padding: 6px 2px;
+	margin-top: 3px;
 }
 
 .mi.toggle{

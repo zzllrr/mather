@@ -1012,7 +1012,14 @@ $(function () {
 
 		$('[name=MarginCopyOpt][value=copy]').prop('checked', true).parent().toggle(true);
 
-		tileToolCap(id);
+		if(id=='allEraser'){
+			tileToolCap(id, true);
+	
+		}else{
+			tileToolCap(id);
+
+		}
+
 
 
 
@@ -1257,7 +1264,7 @@ $(function () {
 	}).on('change', '#Color :range, #Color :color, select, #svgTexts', function () {
 		cng_cap(this)
 
-	}).on('change keyup mouseup', 'tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text', function () {
+	}).on('change keyup mouseup', '#tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text', function () {
 		cng_cap(this)
 
 	}).on('paste', t, function (e) {
@@ -1764,6 +1771,10 @@ function clk_popout(obj) {
 			frTextarea = 1;
 			A = [shpN.css('left').replace(/\D/g, ''), shpN.css('top').replace(/\D/g, ''), 100, 100];
 		}
+		if (!v && /unknown/.test(shpNid)) {// allEraser
+			
+			
+		}
 		if (v) {
 			
 			if (L.drawShape == 'Pointer' && /Text/.test(shpNid)) {
@@ -1794,7 +1805,7 @@ function clk_popout(obj) {
 			if(iT=='Canvas'){
 				$e.html('<canvas width='+A[2]+' height='+A[3]+'></canvas>');
 
-				var c=new ctt(+A[2],+A[3]);
+				var c=new ctt($e.children(),+A[2],+A[3]);
 				eval(v);
 
 			}

@@ -13,6 +13,7 @@ lang['zh_cn'] = {
 	'zh_cn': '简体',
 	'zh_tw': '繁体',
 
+	'Obj':'对象',
 	'fonT': '字体',
 	'bW': '边宽',
 	'Bw': '边宽',
@@ -152,6 +153,10 @@ lang['zh_cn'] = {
 	'Hardware': '硬件',
 	'Web': '网络',
 	'Webpage': '网页',
+
+	'Help':'帮助',
+	'Example':'示例',
+	'Format':'格式',
 
 	'Exam':'考试',
 	'Answer':'答案',
@@ -956,7 +961,8 @@ lang['zh_cn'] = {
 	'Cartesian': '笛卡尔',
 
 	//Math subject
-
+	'Level-1':'一级',
+	'Level-2':'二级',
 	'Math': '@0',
 	'Mathematics': '@0',
 	"Mathematical": '@0',
@@ -966,6 +972,7 @@ lang['zh_cn'] = {
 	"2": "@0",
 	"3": "代数",
 
+	"Discipline":"学科",
 	"Subject": "学科",
 	'Subject Classification GB': '中国国家标准数学学科分类',
 

@@ -159,7 +159,7 @@ tooltip.graphic={
 		'【x y width】',
 		sceg('40 30 160',20),
 		
-		gM('Round Corner【x y width rx ry [cx] [cy]】'),
+		gM('Round Corner')+'【x y width rx ry [cx] [cy]】',
 		sceg('40 30 160 20 20',20)
 
 		].join(br),

@@ -2293,6 +2293,8 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	var f = function (i) { return i ? '<option value="' + i + '"' + (selev && i == selev ? seled : '') + '>' + i + '</option>' : '' };
 	return Arrf(f, A)
 
+}, optgrp = function (t,v) {//返回字符串
+	return '<optgroup label="'+t+'">'+v+'</optgroup>'
 }, OptGrps = function (A) {//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
 	var s = '';
 	for (var i = 0, l = A.length; i < l; i++) {

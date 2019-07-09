@@ -875,7 +875,8 @@ ctt=function(canvas,w,h,OX,OY){
 	this.repaint=function(){/*
 		重新绘制
 		*/
-		this.clear();
+		this.ini();
+		//this.clear();
 		this.bg();
 		this.grid();
 		this.dot();

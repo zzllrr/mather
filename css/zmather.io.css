@@ -11,7 +11,7 @@
 #iTextLaTeXBox{
 	position: relative;
     z-index: 30000;
-	margin-top: 28px;
+	border: outset yellow 1px;
 }
 
 

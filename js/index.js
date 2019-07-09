@@ -32,7 +32,7 @@ $(function(){
 		return '<label><input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc+'</label>'
 	},toolnames).join(''));
 
-	$('#searchBy').html(Options(ZLR('Subject Concept QuestionType'),1).join('')).on('change',function(){
+	$('#searchBy').html(optgrp(gM('Search'), Options(ZLR('Subject Concept QuestionType'),1).join(''))).on('change',function(){
 		$('#search').change();
 	});
 	$('#subject').after(Arrf(function(i){
@@ -212,8 +212,8 @@ $(function(){
 	
 
 	var sbj0=$('#subject0'), sbj1=$('#subject1'), sbj2=$('#subject2');
-	sbj0.html('<option value=0>'+gM('Subject Classification GB')+'</option>'+
-		Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join('')
+	sbj0.html(optgrp(gM('Subject Classification GB'),'<option value=0>'+gM('Level-1 Discipline')+'</option>'+
+		Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join(''))
 	).on('change', function(){//改变sbj1
 		var me=$(this), v=me.val();
 		$('#input0Tip, #input1Tip').add($('#'+$('[name=tool]:checked').attr('id')+'Ground .tasks')).empty();
@@ -222,7 +222,7 @@ $(function(){
 		}else{
 			var t=subjects[v]?Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},subjects[v]).join(''):'';
 			if(t){
-				sbj1.html(t).show();
+				sbj1.html(optgrp(gM('Level-2 Discipline'),t)).show();
 			}else{
 				sbj1.empty().hide();
 			}
@@ -243,7 +243,7 @@ $(function(){
 
 
 
-	$('#input0Tip').on('click','button',function(){
+	$('#input0Tip').attr('title',gM('Help')+' | '+gM('Example')).on('click','button',function(){
 		var t=$(this).attr('data-tool'),i0=$('#input0'),tl=$(this).parents('.inputTip').attr('data-tool');
 		if(tl=='Matrix' && t=='line Merge'){
 			i0.val(function(i,x){return '['+Arrf(function(s){
@@ -510,11 +510,14 @@ $(function(){
 							});
 						});
 					}else if(!c.length){
-						var t=td.text()
-						katex.render(kx(t), td[0], {
-						    throwOnError: true,
-						    displayMode: $(this).is('div'),
-						});
+						var t=td.text();
+						if(td.length){
+							katex.render(kx(t), td[0], {
+								throwOnError: true,
+								displayMode: $(this).is('div'),
+							});
+						}
+						
 					}
 				});
 				if(me.children().length){
@@ -1007,26 +1010,32 @@ consolelog('最终A = ',A);
 
 	
 	
-	$('#input0Type').html(OptGrps(jSon('[{"'+gM("Formula")+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM("Webpage")+'":"Markdown Canvas HTML CSS SVG Echarts"},{"'+gM("Script")+'":"JavaScript"},{"'+gM("Data")+'":"TXT TSV CSV XML YAML JSON"}]')))
-	.on('change', function(){
+	$('#input0Type').html(optgrp(gM('Input Format')+':',
+		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG Echarts"},{"'+gM('Script')+' | '+gM('Calculator')+'":"JavaScript"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
+		)
+	).on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]'), tv=tooltip[v];
 
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
-		$('#output0Type').html(Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
+		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
 			i<0?[[0]]:[[0,2,4],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
-		));
+		)));
 		$('.inputTypeTip').remove();
 		if(tv && it.length<1){
 			$('#input0Tip').append(detail(v,tv,'','class="inputTip inputTypeTip" data-tool='+v));
 
 		}
 		
+		if($('#navHide.seled').length<1 && /[23]/.test($(this).find('option[value='+v+']').parent().index())){
+			$('#navHide').click()
+		}
+
 		$('#input0').val(L[v]||'');
 		if($('#display.seled').length){
 			preDisplay()
 		}
 	});
-	$('#output0Type').html(Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML'))).on('change', function(){
+	$('#output0Type').html(optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))).on('change', function(){
 		if($('#display.seled').length){
 			preDisplay()
 		}
@@ -1304,7 +1313,7 @@ var preDisplay=function(){
 
 function OverCanvas(t){
 
-	var iT=$('#inputType').val();
+	var iT=$('#input0Type').val();
 	L.drawShapeNow='';
 	$('#TextBoxType').val(iT);
 	$('#TextBox').val(t);

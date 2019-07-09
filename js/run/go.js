@@ -12,6 +12,11 @@ $(function(){
 		
 		$('#svgs.toggle').click();
 		if(tool=='solve'){
+			if(!i0v){
+				var v=$('.inputTip .eg').last().attr('data-eg')||'';
+				i0.val(v);
+				i0v=v;
+			}
 			OH(KxA(solve[o](i0v,questionA())));
 			
 			setTimeout(function(){
