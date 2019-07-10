@@ -47,13 +47,11 @@ $(function () {
 	$('#svgTog').attr('title', gM('Hide') + ' | ' + gM('hotkey') + ': Shift + Esc');
 	$('#Tile :button[title]').attr('title', function (i, v) { return gM('hotkey') + ': ' + v });
 	$('#font').attr('placeholder', gM('font'));
-	$('#CssRotate6 img,#svgCode button').attr('title', function () { return gM(this.id) });
+	$('#CssRotate6 img,#svgCode button').attr('tip', function () { return $(this).attr('id')});
 
-	$('#svgArwE,#svgArwS').attr('title', gM('arrow'));
-	$('#tileFontCenter').attr('title', gM('center')).before(gM('center'));
+
+	$('#tileFontCenter').before(gM('center'));
 	$('#svgShape svg[id], #svgTog svg').attr('stroke-width', 2);
-
-	$('#Angle').attr('title', function () { return gM(this.id) });
 
 	$('#CssRotate :radio').attr('name', 'rotate');
 
@@ -97,10 +95,10 @@ $(function () {
 	$('#COLOR summary input:text').attr('readonly', '');
 	$('#Color :color').val(function () {
 		return L[this.id.replace('G', 'T')] || L[this.id] || L[this.id.replace(/^./, 'B')];
-	}).next('input').add('#cssDropShadowOpac').attr('title', gM('opa'));
+	}).next('input').add('#cssDropShadowOpac').attr('tip', 'opa');
 
 	var C = '#Css';
-	$(C + 'Filter img, .scale, .skew, .clip, .translate').attr('title', gM('reset')).on('click', function () {
+	$(C + 'Filter img, .scale, .skew, .clip, .translate').attr('tip', 'reset').on('click', function () {
 		var me = $(this);
 		//	console.log(this.outerHTML);
 		cng_popout(me.parent().find('input').val(function () { return $(this).attr('value') }).last()[0]);
@@ -860,6 +858,10 @@ $(function () {
 
 	})
 	$('#copy2input').on('click',function(){
+		var iT=$('#input0Type');
+		if(!/Markdown|HTML|SVG/.test(iT.val())){
+			iT.val('SVG').change()
+		}
 		$('#input0').val(function(i,v){return v+$('#SVGcode').val()}).change();
 
 	})
@@ -869,7 +871,13 @@ $(function () {
 			//a.push($(this).prop('outerHTML'))
 			a.push(tileToolCode(this,1))
 		});
-		$('#input0').val(function(i,v){return v+a.join('\n')}).change();
+		if(a.length){
+			var iT=$('#input0Type');
+			if(!/Markdown|HTML|SVG/.test(iT.val())){
+				iT.val('SVG').change()
+			}
+			$('#input0').val(function(i,v){return v+a.join('\n')}).change();
+		}
 
 	})
 
@@ -1146,6 +1154,9 @@ $(function () {
 	});
 
 	toggleSvg();
+
+	$('[tip]').attr('title',function(){return gM($(this).attr('tip'))});
+
 	$('#svgShape svg[id]').hover(function () {
 		var me = $(this), id = this.id, h = gM('hotkey') + ' ', met = me.attr('tip'), meh = me.attr('hotkey'),
 			t = met || meh ? gM(met || id) + (meh ? ' | ' + h + meh : '') : '';

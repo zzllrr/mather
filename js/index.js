@@ -73,8 +73,7 @@ $(function(){
 
 	$('#calc0Adv').val(gM('Advanced'));
 	$(':button').not('[value]').val(function(){return gM(this.id)});
-	$('.Clear').attr('title',gM('Clear')).attr('tip',gM('Clear'));
-	$('#displayOverCanvas').attr('title',gM('copy2Canvas'));
+	$('.Clear').attr('tip','Clear');
 	
 	$('#night').on('click',function(){
 		var me=$(this),isnight=me.text()=='brightness_3';
@@ -92,13 +91,14 @@ $(function(){
 
 
 
-	$('.mi[title]').attr('title',function(i,v){return gM(v)});
+	//$('.mi[title]').attr('title',function(i,v){return gM(v)});
 	
-	$('#iTextOpt .tool,#input0Tool .tool').not('#display').attr('title',function(){return gM(this.id+'tip')});
-
+	$('#iTextOpt .tool,#input0Tool .tool').not('#preview').attr('tip',function(){return this.id+'tip'});
+	$('#input0Tool input').not('.Clear').attr('tip',function(){return this.id});
 
 	$('.mi-span,i18').text(function(i,v){return gM(v)});
 
+	$('[tip]').attr('title',function(){return gM($(this).attr('tip'))});
 	
 	$('#search').attr('placeholder',gM('search')).on('change keyup',function(){
 		var by=$('#searchBy').val(), v=$(this).val().trim(), sR=$('#searchResults'), rA=[], u={}, lA=[], hA=[];
@@ -269,7 +269,7 @@ $(function(){
 
 	$('#iClear').on('click',function(){
 		if($('#input0').val()==''){
-			$('#displayOff').click();
+			$('#previewOff').click();
 		}else{
 			$('#input0').val('');
 			$('#input0Preview').empty().removeAttr('style');
@@ -307,7 +307,7 @@ $(function(){
 			$('#input0Tool .seled').not('#navHide').removeClass('seled');
 
 			$('#go').prev().slideDown();
-			if($('#display').is('.seled')){
+			if($('#preview').is('.seled')){
 				$('#latexDisplayTool').show();
 			}
 			$(this).removeClass('seled');
@@ -338,8 +338,8 @@ $(function(){
 
 
 //输出编辑
-	$('#displayOff').on('click',function(){
-		$('#display.seled').removeClass('seled');
+	$('#previewOff').on('click',function(){
+		$('#preview.seled').removeClass('seled');
 		$('#input0Preview, #latexDisplayTool').hide();
 	});
 
@@ -454,7 +454,7 @@ $(function(){
 			}
 			if(shft){
 				if(k==13){
-					$('#display').click();
+					$('#preview').click();
 				}	
 			}
 		}
@@ -593,7 +593,7 @@ $(function(){
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
 		var me=$(this);
-		toolTip($('#'+me.parents('.iTextLaTeX').attr('id')+'on').attr('title'));
+		toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
 
 	}).on('mouseover', '.task',function(e){
 		var me=$(this);
@@ -618,10 +618,6 @@ $(function(){
 			
 		}[v]||v);
 
-
-	}).on('mouseover', '#displayOverCanvas',function(e){
-
-		toolTip(this.title);
 
 	}).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
 		var me=$(this),hk=me.attr('hotkey')||'';
@@ -668,7 +664,7 @@ $(function(){
 			
 		}else{
 			i.val(t);
-			if($('#display.seled').length){
+			if($('#preview.seled').length){
 				preDisplay()
 			}
 			return
@@ -682,7 +678,7 @@ $(function(){
 		i[0].selectionStart=s2;
 		i[0].selectionEnd=s2;
 		
-		if($('#display.seled').length){
+		if($('#preview.seled').length){
 			preDisplay()
 		}
 
@@ -871,12 +867,12 @@ consolelog('最终A = ',A);
 			}
 		}
 
-		if(id=='display'){
+		if(id=='preview'){
 			var v=$('#input0').val().trim();
 			if(se){// && v
 				preDisplay();
 			}else{
-				$('#displayOff').click()
+				$('#previewOff').click()
 				
 			}
 			//$('.inputTip').removeAttr('open');
@@ -962,7 +958,7 @@ consolelog('最终A = ',A);
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
-			if($('#display.seled').length){
+			if($('#preview.seled').length){
 				preDisplay()
 			}
 		}
@@ -975,7 +971,7 @@ consolelog('最终A = ',A);
 		var t=$('[name=tool]:checked').val();
 		if(t=='solve'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'').replace(/\\\\/g,'')});
-			if($('#display.seled').length){
+			if($('#preview.seled').length){
 				preDisplay()
 			}
 		}
@@ -997,7 +993,7 @@ consolelog('最终A = ',A);
 		var v=$(this).val(),p=$('#input0Type').val(), l0=(L[p]||'').trim(),vt=v.trim();
 		L[p]=v;
 		
-		if(l0!=vt && $('#display').is('.seled') && vt){
+		if(l0!=vt && $('#preview').is('.seled') && vt){
 
 			preDisplay();
 		}
@@ -1011,7 +1007,7 @@ consolelog('最终A = ',A);
 	
 	
 	$('#input0Type').html(optgrp(gM('Input Format')+':',
-		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG Echarts"},{"'+gM('Script')+' | '+gM('Calculator')+'":"JavaScript"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
+		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Project')+' | '+gM('Script')+'":"Echarts"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
 		)
 	).on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]'), tv=tooltip[v];
@@ -1031,12 +1027,12 @@ consolelog('最终A = ',A);
 		}
 
 		$('#input0').val(L[v]||'');
-		if($('#display.seled').length){
+		if($('#preview.seled').length){
 			preDisplay()
 		}
 	});
 	$('#output0Type').html(optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))).on('change', function(){
-		if($('#display.seled').length){
+		if($('#preview.seled').length){
 			preDisplay()
 		}
 
@@ -1143,7 +1139,7 @@ var toolSwitch=function(x){
 	}
 	
 	if(x=='graphic'){
-		$('#display.seled').click();
+		$('#preview.seled').click();
 	}
 
 	if($(G).children().eq(0).html()==''){

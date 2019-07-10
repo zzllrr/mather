@@ -157,6 +157,7 @@ lang['zh_cn'] = {
 	'Help':'帮助',
 	'Example':'示例',
 	'Format':'格式',
+	'Preview':'预览',
 
 	'Exam':'考试',
 	'Answer':'答案',

@@ -81,7 +81,7 @@
 			</div>
 			<div id=navbody>
 				<div id=toolnav class="pd2"></div>
-				<details id=searchTool>
+				<details id=searchTool hidden>
 					<summary>
 						<select id=searchBy></select>
 						<input type=search id=search list=searchlist />
@@ -113,26 +113,22 @@
 					<textarea id=input0></textarea>
 					<div id=input0Tool class="opac">
 						<input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
-						<i class=mi id=navHide>keyboard_arrow_up</i>
+						<i class=mi id=navHide tip=Collapse>keyboard_arrow_up</i>
 						<input type=button class="Clear rotate180" id=tClear value=⌫ />
-						<br />
 
-						<span class="opac iTextLaTeXon">
 
-							<input type=button id=sbson class=tool />
-							<br />
-							<input type=button id=funcson class=tool />
-							<br />
-							<input type=button id=strucon class=tool />
-							<br />
-						</span>
+						<p class="opac iTextLaTeXon">
+							<input type=button id=sbson class=tool value=α />
+							<input type=button id=funcson class=tool value=ƒ />
+							<input type=button id=strucon class=tool value=∑ />
+						</p>
 						<input type="file" accept="image/*" capture="camera" hidden />
 						<input type="file" accept="image/*" multiple="multiple" hidden />
+						<p class="opac lineTool">
+							<input id=lineSplit type=button value=⤵ />
+							<input id=lineMerge type=button value=⤴ />
+						</p>
 
-						<input id=lineSplit type=button />
-						<br />
-						<input id=lineMerge type=button />
-						<br />
 						<input id=Condon class="tool" type=button />
 					</div>
 
@@ -166,9 +162,9 @@
 				<div id=iTextOpt class="pd2">
 
 					<span id=latexDisplayTool hidden>
-						<input type=button class="Clear rotate90" id=displayOff value=⌫ />
+						<input type=button class="Clear rotate90" id=previewOff value=⌫ />
 
-						<i class=mi id=displayOverCanvas>arrow_downward</i>
+						<i class=mi id=displayOverCanvas tip=copy2Canvas>arrow_downward</i>
 						<i class=mi id=downloadPreview tip="Download HTML File | savetip">file_download</i>
 					</span>
 
@@ -176,7 +172,7 @@
 
 						<select id=input0Type></select>
 
-						<input type=button id=display class="tool seled" />
+						<input type=button id=preview class="tool seled" />
 
 						<select id=output0Type></select>
 
@@ -188,8 +184,8 @@
 
 
 					<input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
-					<i class=mi id=iTextFold>unfold_less</i>
-					<i class=mi id=zMatherHide>keyboard_arrow_up</i>
+					<i class=mi id=iTextFold tip=Collapse>unfold_less</i>
+					<i class=mi id=zMatherHide tip=Collapse>keyboard_arrow_up</i>
 
 
 				</div>
@@ -325,9 +321,9 @@
 
 
 
-							<select id=svgArwE></select>
-							<select id=svgArwS></select>
-							<select id=svgLine></select>
+							<select id=svgArwE tip=arrow></select>
+							<select id=svgArwS tip=arrow></select>
+							<select id=svgLine tip=dash></select>
 
 							<select id=strkLnJoin>
 								<option value=round>﹙</option>
@@ -348,7 +344,7 @@
 							<details id=Font hidden>
 								<summary>
 									<span id=FontSize></span><input type=number id=fontSize min=12 value=24 title=px />
-									<input type=range id=tileFontCenter min=0 max=2 step=1 value=0 />
+									<input type=range id=tileFontCenter min=0 max=2 step=1 value=0 tip=center />
 								</summary>
 
 								<div id=fontCSS>
@@ -413,7 +409,7 @@
 
 							<div>
 								<span id=WH> </span>
-								<span id=Angle> </span>
+								<span id=Angle tip=Angle> </span>
 								<label><input type=checkbox id=cssClip /></label></div>
 
 

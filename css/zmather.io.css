@@ -11,9 +11,11 @@
 #iTextLaTeXBox{
 	position: relative;
     z-index: 30000;
-	border: outset yellow 1px;
 }
 
+#iTextLaTeXBox > div{
+	border: outset yellow 1px;
+}
 
 .sbsTbl .td{
 	float:left;
