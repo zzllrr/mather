@@ -140,6 +140,7 @@ lang['zh_cn'] = {
 	'WeChat': '微信公众号',
 
 	// 工程	
+	'Industry':'行业',
 	'Project': '工程',
 	'Program': '项目',
 	'Library': '库',
@@ -546,6 +547,7 @@ lang['zh_cn'] = {
 	'Start': '开始',
 	'Finish': '完成',
 
+	'Need':'需要',
 	'Ignore': '忽略',
 	'Filter': '过滤',
 	'Filter.v': '滤镜',
@@ -578,7 +580,7 @@ lang['zh_cn'] = {
 	'Explore': '探索',
 	'Search': '搜索',
 	'Contact': '联系',
-	'Donate': '捐赠',
+	'Donate': '捐助',
 
 	'Interoperability': '互操作',
 

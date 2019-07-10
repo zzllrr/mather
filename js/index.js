@@ -24,7 +24,7 @@ $(function(){
 	$('#logo').addClass('seled').text(gM('zzllrr Mather')).before('<i id=night class=mi>brightness_3</i>').after(
 		Arrf(function(i){
 			return SCtv('subhead" id="'+i,+gM(i))
-		},ZLR('whitepaper protocol hotkey API project donate about')).join('')
+		},ZLR('whitepaper hotkey API about')).join('')
 	);
 	
 	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought refer');
@@ -899,6 +899,8 @@ consolelog('最终A = ',A);
 			
 			$('#oHTML').empty();
 		}
+
+		$('#zMatherOn:contains(down)').click();
 		
 		/*
 		if(graphic){
@@ -1319,10 +1321,14 @@ function OverCanvas(t){
 
 }
 function toolTip(s){
+	var ts = (L.timeids_tip || '').trim();
+	if (ts) {
+		Arrfc([clearTimeout, Number], ZLR(ts));
+	}
 	$('#bar').html(SCtv('toolTip',s));
-	setTimeout(function(){
+	L.timeids_tip=(L.timeids_tip||'')+' '+setTimeout(function(){
 		$('#bar').empty();
-	},3000)
+	},3000);
 }
 function furi(o){
 	var g=o.parents('.ground');

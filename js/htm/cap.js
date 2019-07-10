@@ -836,8 +836,7 @@ $(function () {
 	$('.clrCanvas').on('click', function () {
 		var ts = (L.timeids || '').trim();
 		if (ts) {
-			Arrfc([clearInterval, Number], ZLR(L.timeids));
-
+			Arrfc([clearInterval, Number], ZLR(ts));
 		}
 		$('#Caps > .effects').remove();
 		$('#caps ~ canvas').remove();

@@ -332,6 +332,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
+	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
 	detail = function (s, v, o, c) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary>' + s + '</summary>' + v + '</details>' },
 	zdetail = function (s, v, notsk, notvk, notEdit, o) {
 		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :

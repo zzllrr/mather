@@ -60,7 +60,7 @@
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
 #TextBox{
-	width:100%
+	width:98%
 }
 #capctxTXT div,#fxTXT div{
 	max-height:100px;
@@ -137,5 +137,3 @@ input:not([readonly]), select{
 .rotate1,#rotate1{transform:rotate(90deg)}
 
 .small{transform:scale(.9)}
-
-#TextBox{background-color:rgba(50, 205, 50,0.5);color:black}

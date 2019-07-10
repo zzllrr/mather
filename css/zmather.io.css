@@ -19,7 +19,7 @@
 
 .sbsTbl .td{
 	float:left;
-	padding:2px 10px;
+	padding:5px 12px;
 	margin:2px;
 	overflow:hidden;
 }
@@ -29,6 +29,9 @@
 	font: normal 1em KaTeX_Main,Times New Roman,serif;
 }
 
+.Symboli td{
+	padding: 10px
+}
 .Symboli_ {
     background-color: palegoldenrod;
 }
@@ -52,6 +55,7 @@
 	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
+	padding:10px;
 }
 
 .sbsTbl .td:not(:empty):active,.sbsTbl td:not(:empty):active{

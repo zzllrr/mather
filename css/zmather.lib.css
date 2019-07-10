@@ -158,15 +158,15 @@ sup,sub,.small{
 	user-select:none;
 	display:inline-block
 }
-summary,#menu{
+summary{
 	user-select:none;
+	padding: 5px;
 }
 
 .collapse{border-collapse: collapse}
 
 .edit > thead th{
 	border:0;
-	padding-bottom: 15px;
 }
 
 .bds{
@@ -497,12 +497,7 @@ input[type=text],#wiki>span,.brad{
 .fixb{
 	bottom:0;
 }
-.inputTip[open] > summary{
-    border-bottom: dashed gainsboro;
-}
-.inputTip details[open] > summary{
-	background:gainsboro;
-}
+
 #iContent{
 	border-bottom: dashed 1px gainsboro;
 }
@@ -556,7 +551,7 @@ input[type=text],#wiki>span,.brad{
 .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
 
-summary ~ details{
+summary ~ details summary{
 	padding-left: 15px;
 }
 
@@ -784,12 +779,15 @@ img{
 .Clear{
 	border:solid transparent 1px;
 	background: transparent;
+	padding:6px;
 }
 .mi{
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
   font-size: 1.5rem;
+  margin:5px;
+  padding:2px;
   border:solid transparent 1px;
  /* font-size: 1.5rem;   Preferred icon size 24px;*/
  /* display: inline-block;*/
@@ -815,7 +813,7 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:hover{
+.mi:hover,th:hover,summary{
 	background:rgba(50, 205, 50,0.5);
 	border: solid gainsboro 1px;
 }
@@ -834,15 +832,8 @@ img{
 	padding-right:2px;
 }
 
-#menu i,#canvasMenu i{
-	font-size:26px;
-}
-#menu{
-	margin-bottom:5px;
-    float: right;
-    padding-right: 5px;
 
-}
+
 #navhead{
 	margin-top: 5px;
 }
