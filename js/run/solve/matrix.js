@@ -13,7 +13,7 @@ solve['matrix']=function(inputValue, uriA){
 */
 	
 //Display
-console.log(inputValue,uriA);
+consolelog(inputValue,uriA);
 	if(sel(uriA,'A')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
@@ -1688,6 +1688,6 @@ https://zhidao.baidu.com/question/750762700228964772.html
 
 	}
 
-	console.log(rS);
+	consolelog(rS);
 	return rS;
 };

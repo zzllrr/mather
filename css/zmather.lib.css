@@ -55,7 +55,7 @@
 .large{
 	font-size:large
 }
-.larger{
+.larger,#menu i{
 	font-size:larger
 }
 .xlarge{
@@ -89,7 +89,7 @@ sup,sub,.small{
 
 
 
-#oHTML tr:hover{
+#oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
 #wiki details[open] > summary, #wiki>span{
@@ -132,9 +132,9 @@ sup,sub,.small{
 
 #panel{
     position: absolute;
-    top: 5px;
+    top: 2px;
     right: 10px;
-    z-index: 20001;
+	z-index: 20001;
 }
 
 
@@ -503,8 +503,7 @@ input[type=text],#wiki>span,.brad{
 }
 #oHTML{
 	position: relative;
-	padding-left:20px;
-	padding-top:10px;
+	padding:20px;
 	overflow:auto;
 }
 #oHTML > div.abs{
@@ -541,6 +540,9 @@ input[type=text],#wiki>span,.brad{
 }
 
 
+#iTextOpt:not(:hover) #zMatherHide, #previewOpt:not(:hover) #output0Type{
+	display: none
+}
 .inblk{
 	display:inline-block;
 }
@@ -583,13 +585,15 @@ summary ~ details summary{
 	font-size:1.5rem;
 }
 
-#subject select,#navhead select,#iContent select, #iTextOpt input:not(.Clear){
+#subject select, #menu{
 	font-size:1.5rem;
 }
-.iTextLaTeXon input{
+.iTextLaTeXon input, #iContent select, #iTextOpt input{
 	font-size:1.4rem;
 }
-
+#menu select{
+	font-size:1.3rem;
+}
 .level:not(.seled):not(:hover){
 	opacity:.5
 }
@@ -813,7 +817,7 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:hover,th:hover,summary{
+.mi:hover,th:not(.Clear):hover,summary{
 	background:rgba(50, 205, 50,0.5);
 	border: solid gainsboro 1px;
 }
@@ -835,7 +839,7 @@ img{
 
 
 #navhead{
-	margin-top: 5px;
+	margin: 10px;
 }
 
 .mi.toggle{
@@ -850,16 +854,14 @@ input[len="2"]{
 	width: 80px;
 }
 
+.Summarytip{
+	width:400px;
+}
+
 .mi-span{
 	cursor:pointer;
 }
-/*
-#menu .toggle:after{
-	content:attr(title);
-	padding:2px;
-	font-family: cursive;
-}
-*/
+
 #panel div > .mi-span.toggle + span{
 	font-family: cursive;
 }

@@ -275,7 +275,7 @@ console.log('b'+(12+l));
 				str+='</tr>';
 			}
 			str='<table id='+dmid+(k+1)+' class="sudoku"'+sdata+'><tbody>'+str+'</tbody></table>';
-			oH.append(str);
+			$('#oHTML').append(str);
 			
 			var dm=$('#'+dmid+(k+1));
 			if(cn){//有条件

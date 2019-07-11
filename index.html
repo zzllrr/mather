@@ -76,8 +76,8 @@
 		</div>
 	<div id=zMather hidden>
 		<div id=nav>
-			<div id=navhead class=opac><span id=logo class=subhead></span>
-				<select id=lang></select>
+			<div id=navhead class=opac>
+				<span id=logo class=subhead></span>
 			</div>
 			<div id=navbody>
 				<div id=toolnav class="pd2"></div>
@@ -116,19 +116,23 @@
 						<i class=mi id=navHide tip=Collapse>keyboard_arrow_up</i>
 						<input type=button class="Clear rotate180" id=tClear value=⌫ />
 
+					
 
 						<p class="opac iTextLaTeXon">
 							<input type=button id=sbson class=tool value=α />
 							<input type=button id=funcson class=tool value=ƒ />
 							<input type=button id=strucon class=tool value=∑ />
 						</p>
+
 						<input type="file" accept="image/*" capture="camera" hidden />
 						<input type="file" accept="image/*" multiple="multiple" hidden />
+
 						<p class="opac lineTool">
 							<input id=lineSplit type=button value=⤵ />
 							<input id=lineMerge type=button value=⤴ />
 						</p>
 
+						
 						<input id=Condon class="tool" type=button />
 					</div>
 
@@ -156,29 +160,26 @@
 					<div class=clear></div>
 				</div>
 
-
-
-
-				<div id=iTextOpt class="pd2">
-
-					<span id=latexDisplayTool hidden>
+				<div>
+					<span id=previewTool hidden>
 						<input type=button class="Clear rotate90" id=previewOff value=⌫ />
 
 						<i class=mi id=displayOverCanvas tip=copy2Canvas>arrow_downward</i>
 						<i class=mi id=downloadPreview tip="Download HTML File | savetip">file_download</i>
 					</span>
-
-					<span class=opac>
-
+					<span class=opac id=previewOpt>
 						<select id=input0Type></select>
 
 						<input type=button id=preview class="tool seled" />
 
 						<select id=output0Type></select>
-
-
-
 					</span>
+				</div>
+
+
+
+				<div id=iTextOpt class="pd2">
+
 
 					<input type=button id=go value="  GO  " hotkey="Ctrl + Enter" />
 
@@ -198,12 +199,11 @@
 
 	<div id=panel hidden>
 		<div id=menu>
-			<span id=bar>&nbsp;</span>
+			<span id=bar>&nbsp;</span>			
+			<select id=lang></select>
+			<i id=night class=mi>brightness_3</i>
 			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
-
 			<i class=mi id=svgs tip="Graphic" hotkey="Esc">layers</i>
-
-
 		</div>
 
 
@@ -217,9 +217,16 @@
 
 				<div id=svgShape>
 					<div id=svgTool>
+						<!--
 
+						svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
+						svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
+						svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
+
+						-->
 						<svg id=Pointer hotkey="P">
-							<path d="M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z" fill=yellow /></svg>
+								<path d="M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z" fill=yellow /></svg>
+	
 						<svg id=Copy hotkey="Ctrl+V">
 							<circle r=1 cx=8 cy=8 />
 							<circle r=1 cx=8 cy=22 />

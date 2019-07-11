@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-navhead['hotkey']='<h3>'+gM('Textarea')+'</h3>'+
+navhead['hotkey']=fieldseth(gM('Textarea'),
 Table('',[
 	[
 	scHotk('Tab'),gM('Increase Indent'),
@@ -31,14 +31,20 @@ Table('',[
 	scHotk('Ctrl/⌘ + S'),gM('Save'),
 	],
 
-])+'<h3>'+gM('Table')+'</h3>'+
+]))+fieldseth(gM('Table'),
 
 Table('',[
 	[scHotk('Click'),gM('thtip')],
 	[scHotk('Alt + Click'),gM('Collapse')],
 
+]))+fieldseth(gM('Help')+' | '+gM('Example'),
 
-])+'<h3>Markdown</h3>'+
+Table('',[
+	[scHotk('Click'),gM('copy2input')],
+	[scHotk('Shift + Click'),gM('Clear')+' & '+gM('copy2input')],
+
+
+]))+fieldseth('Markdown',
 
 Table('',[
 	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')],
@@ -49,7 +55,7 @@ Table('',[
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
 	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
-])+'<h3>'+gM('Graphic')+'</h3>'+
+]))+fieldseth(gM('Graphic'),
 
 Table('',[
 	[scHotk('Ctrl + C'),gM('Copy'),
@@ -86,4 +92,4 @@ Table('',[
 	],
 
 
-]);
+]));

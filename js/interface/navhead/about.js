@@ -3,7 +3,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-navhead['about']=fieldset(XML.wrapE('h3',gM('Version')),
+navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
 		DCtv('alignc pd10',XML.wrapE('h1','zzllrr Mather')+XML.wrapE('h2','V2019.7.10'))+
 		ul([
@@ -11,14 +11,15 @@ navhead['about']=fieldset(XML.wrapE('h3',gM('Version')),
 			'on GitHub: '+href(Hs+'github.com/zzllrr/mather'),
 
 		]),
-		DCtv('pd10',XML.wrapE('h4',gM('Summary'))+
+		DCtv('pd10 Summarytip',XML.wrapE('h4',gM('Summary'))+
 			gM('Summarytip'))
 		]
 	]))+
-	fieldset(XML.wrapE('h3',gM('Donate')),
-		DCtv('donatip red alignc',gM('zzllrr Mather')+' '+gM('donatip'))+
+	fieldseth(gM('Donate'),
+		DCtv('alignc floatl pd10',
+			DCtv('donatip red',gM('zzllrr Mather')+' '+gM('donatip'))+
 
-		DCtv('alignc',
+		
 			XML.wrapE('h2', gM('donatip0'))+
 			`<div id=donaCN>
 				<div id=donaQR>
@@ -41,10 +42,11 @@ navhead['about']=fieldset(XML.wrapE('h3',gM('Version')),
 				<div class=pay></div>
 				</div>
 
-			`)
+			`
+		)
 	)+
 
-	fieldset(XML.wrapE('h3',gM('About zzllrr')),
+	fieldseth(gM('About zzllrr'),
 		Table('',[
 
 			[ul([

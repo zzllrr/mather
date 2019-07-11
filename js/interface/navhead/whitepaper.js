@@ -11,33 +11,33 @@ var protocol_keywords={
 	'Consensus & Cooperation':['Kind','Pally','Peace-loving','Non-discriminatory']
 };
 navhead['whitepaper']=
-	Arrf(function(x){return XML.wrapE('h3',gM(x))+XML.wrapE('p',gM(x+'tip'))},
-		ZLR('Aims')).join('')+
+	fieldseth(gM('Aims'),gM('Aimstip'))+
 	
-	XML.wrapE('h3',gM('User')+' '+gM('or')+' '+gM('Participant'))+
-	
-	Table([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public'))],
-		['✔'.repeat(14).split('')],'TBrc','alignc')+
+	fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
+		Table([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public'))],
+			['✔'.repeat(14).split('')],'TBrc','alignc')
+	)+
 
-
-	XML.wrapE('h3',gM('Vision'))+XML.wrapE('p',gM('Visiontip'))+
+	fieldseth(gM('Vision'),gM('Visiontip')+
 		
-	Table([[gM('Program'),gM('Localized Name'),gM('Vision')]],
-		[['Mather',gM('Mather'),gM('International Standard Open-Sourced Math Tool Program by Experts')],['.','.','.','.'],
-		['zzllrr Mather',gM('zzllrr Mather'),gM('Customized Math Tool Program based on Mather by zzllrr')],['.','.','.','.'],
-		['??? Mather','??? '+gM('Mather'),gM('Customized Math Tool Program based on Mather by someone')],['.','.','.','.'],['.','.','.','.'],['.','.','.','.']],'TBrc')+
-	
-	XML.wrapE('h3',gM('Mather Protocol')+' V0.1')+
+		Table([[gM('Program'),gM('Localized Name'),gM('Vision')]],
+			[['Mather',gM('Mather'),gM('International Standard Open-Sourced Math Tool Program by Experts')],['.','.','.','.'],
+			['zzllrr Mather',gM('zzllrr Mather'),gM('Customized Math Tool Program based on Mather by zzllrr')],['.','.','.','.'],
+			['??? Mather','??? '+gM('Mather'),gM('Customized Math Tool Program based on Mather by someone')],['.','.','.','.'],['.','.','.','.'],['.','.','.','.']],'TBrc')
+	)+
 
-	ol(Arrf(function(i){return gM(i)+SCtv('floatr mgr20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
-		'Organism',
-		'Offline Computation & Online Connection',
-		'Energy Consumption Minimization',
-		'Open Access',
-		'Consensus & Cooperation'
-	]))+
+	fieldseth(gM('Mather Protocol')+' V0.1',
 
-	XML.wrapE('h3',gM('Licence'))+
+		ol(Arrf(function(i){return gM(i)+SCtv('floatr mgr20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
+			'Organism',
+			'Offline Computation & Online Connection',
+			'Energy Consumption Minimization',
+			'Open Access',
+			'Consensus & Cooperation'
+		]))
+	)+
+
+	fieldseth(gM('Licence'),
 	
 	Table([gM(['Type','Note','Default Licence','Local File'])],[
 		[gM('Content'),
@@ -58,6 +58,6 @@ navhead['whitepaper']=
 		],
 	
 	],'TBrc')	
-		
+	)
 
 ;

@@ -318,6 +318,8 @@ var HOM = {
 
 var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
 	num = function (x, ma) { return '<input type=number value=' + x + ' min=0 ' + (ma ? 'max= ' + ma : '') + '/>' },
+	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
+	rng = function (v,min,max) { return '<input type=range value="'+(v||'')+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
 	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', txtreadonly = function (x) { return '<input type=text readonly value="' + fnq(x) + '" />' },
 	meter = function (i, low, optimum, high) { return '<meter min=0 max=100' + (low || low === 0 ? ' low=' + low : '') + (optimum || optimum === 0 ? ' optimum=' + optimum : '') + (high || high === 0 ? ' high=' + high : '') + ' value=' + i + ' />' },
 	bgfrom = '-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto = '), to(', grad = function (t) {
@@ -327,12 +329,13 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	fcb = function (c, b, t) { return '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
 	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + t + '</textarea>' },
 	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { return SC + '"' + t + '">' + (v || '') + sc },
-	itv = function (t, v) { return '<i class="mi ' + t + '">' + (v || '') + '</i>' },
+	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' },
 	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
+	fieldseth = function (s, v, c, h) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
 	detail = function (s, v, o, c) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary>' + s + '</summary>' + v + '</details>' },
 	zdetail = function (s, v, notsk, notvk, notEdit, o) {
 		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
@@ -384,7 +387,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
 	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
-	KxA = function (A) { return Table([[SCtv('oLaTeX', 'LaTeX'), SCtv('Clear oClear', '⌫')]], [[Kx(A.join(kbr2))]], 'edit') },
+	KxA = function (A) { return Table([[SCtv('oLaTeX" tip="thtip', 'LaTeX'), '⌫']], [[Kx(A.join(kbr2))]], 'edit','','OHLaTeX').replace('bds>⌫','"bds Clear oClear" tip=Clear>⌫') },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
@@ -728,7 +731,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 
 
 	},
-	Table = function (thead, t, bd, tbodyClass) {	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
+	Table = function (thead, t, bd, tbodyClass, theadClass) {	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
 		/*
 			bd：表格class（控制表格边框 或 水平对齐）
 			
@@ -803,7 +806,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 				thi += '</tr>';
 				th += thi;
 			}
-			th = '<thead' + (tbodyClass ? ' class=cnt' : '') + '>' + th + '</thead>';
+			th = '<thead' + (theadClass ? ' class="' + theadClass +'"' : '') + '>' + th + '</thead>'; //class=cnt
 		}
 		var a = '<table class="' + (bd || 'bd0') + ' collapse mg10">' + th + '<tbody' + (tbodyClass ? ' class="' + tbodyClass + '"' : '') + '>';
 		if (bd && /TB[CD]/.test(bd)) {
@@ -1053,10 +1056,10 @@ array命令下		()	[]	\{\}	||	\|
 
 
 
-	sceg = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg" data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || '') , XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	sceg2 = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg eg2" data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || ''), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	scegj = function (s, substr, c) { var v = '' + s; return SCtv('eg js' + (c ? ' ' + c : '') + '" data-eg="' + fnq('' + s), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	scegc = function (s, substr, c) { var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	sceg = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || '') , XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	sceg2 = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg eg2" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || ''), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	scegj = function (s, substr, c) { var v = '' + s; return SCtv('eg js' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="' + fnq('' + s), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	scegc = function (s, substr, c) { var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 
 	zMath = function (v) { return SCtv('zMath" title="' + v, v) };
 
@@ -1448,15 +1451,40 @@ function svgAs(svg, base64) {
 
 var svgf = {
 	path: function (d) {
+		if(isArr(d)){
+			return Arrf(svgf.path,d)
+		}
 		return '<path d="' + d + '" stroke="white" fill="none"></path>'
-	}, text: function (i, t) {
-		return '<text y="' + (t ? t[0] : 22) + '" x="' + (t ? t[1] : 6) + '" font-size="' + (t ? t[2] : 16) + '" fill="white">' + i + '</text>'
-	}, rect: function (i, j, k, l) {
-		return '<rect x="' + i + '" y="' + j + '" width="' + k + '" height="' + (l || k) + '" stroke="white" fill="none"></rect>'
+	}, text: function (text, yxSize) {
+		if(isArr(text,2)){
+			return Arrf(function(x){return svgf.text.apply(null, x)},text)
+		}
+		return '<text y="' + (yxSize ? yxSize[0] : 22) + '" x="' + (yxSize ? yxSize[1] : 6) + '" font-size="' + (yxSize ? yxSize[2] : 16) + '" fill="white">' + text + '</text>'
+	}, rect: function (x, y, w, h) {
+		if(isArr(x,2)){
+			return Arrf(function(i){return svgf.rect.apply(null, i)},x)
+		}
+		return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + (h || w) + '" stroke="white" fill="none"></rect>'
 	}, circle: function (cx, cy, r) {
-		return '<circle r="' + r + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></circle>'
-	}, line: function (a, b, c, d) {
-		return '<line x1="' + a + '" y1="' + b + '" x2="' + c + '" y2="' + d + '" stroke="white" fill="none"></line>'
+		if(isArr(cx,2)){
+			return Arrf(function(x){return svgf.circle.apply(null, x)},cx)
+		}
+		return '<circle r="' + (r||1) + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></circle>'
+	}, line: function (x1, y1, x2, y2) {
+		if(isArr(x1,2)){
+			return Arrf(function(x){return svgf.line.apply(null, x)},x1)
+		}
+		return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="white" fill="none"></line>'
+	}, ellipse: function (cx, cy, rx, ry) {
+		if(isArr(cx,2)){
+			return Arrf(function(x){return svgf.ellipse.apply(null, x)},cx)
+		}
+		return '<ellipse rx="' + rx+ '" ry="' + ry + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></line>'
+	}, id: function (id,v,noVieWBox) {
+		if(isArr(id,2)){
+			return Arrf(function(x){return svgf.id.apply(null, x)},id)
+		}
+		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="white" fill="none">'+v+'</svg>'
 	}
 }, svgs = {
 	imgr: svgf.path('M11 5 H19 V15 H25 L15 25 5 15 H11 V5z')

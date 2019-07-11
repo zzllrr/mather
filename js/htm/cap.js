@@ -631,27 +631,27 @@ $(function () {
 
 	$('.mi-span,i18').text(function(i,v){return gM(v)});
 	$('span[for]').hide();
-	var colorTmpl='<div class=stroke>'+
+	var colorTmpl=DCtv('stroke',
 			'<label>'+gM('Stroke')+'<input type=checkbox class=strokeon checked=checked /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
-		'</div>'+
-		'<div class=fill>'+
+			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+
+		)+DCtv('fill',
 			'<label>'+gM('Fill')+'<input type=checkbox class=fillon /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'+
-		'</div>'+
-		'<div class=shadow>'+
+			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+
+		)+DCtv('shadow',
 			'<label>'+gM('dropShadow')+'<input type=checkbox class=shadowon /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			gM('Blur')+'<input type=number min=0 class=blur value=0 />'+
-			gM('Offset')+'<input type=text placeholder="0 0" class=offset />'+
-		'</div>'+
-		'<div><i class="mi Add">add</i><i class="mi Del">clear</i></div>';
+			gM('Offset')+'<input type=text placeholder="0 0" class=offset />'
+		)+'<div>'+itv('Add','add')+itv('Del','clear')+dc;
+
 	$('div[for=text] .multi').append(colorTmpl);
 	$('div[for=shape] .multi').append(
 		'<div>'+gM('Overlap')+'<select class=comp>'+Options(['source-over','source-atop','source-in','source-out','destination-over','destination-atop','destination-in','destination-out','lighter','copy','xor']).join('')+'</select>'+
@@ -837,6 +837,7 @@ $(function () {
 		var ts = (L.timeids || '').trim();
 		if (ts) {
 			Arrfc([clearInterval, Number], ZLR(ts));
+			L.timeids='';
 		}
 		$('#Caps > .effects').remove();
 		$('#caps ~ canvas').remove();
@@ -1844,8 +1845,8 @@ function toggleColor() {
 
 	if (L.drawShape == 'allEraser') {
 
-		//caps.repaint();
-		scrn('eraser');
+		caps.repaint();
+		//scrn('eraser');
 		return
 	}
 	refreshFilter();
