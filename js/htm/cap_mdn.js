@@ -1031,7 +1031,7 @@ function tileToolCap(t, val){
 		
 		$(c+'Matrix3d').val((Tf.match(/matrix.?.?\([^\)]+\)/)||[''])[0].replace(/.+\(|\)$|\.0{2,}\d+/g,''));
 		$(C+'Rotate6 img').removeClass('toggle');
-		$('input[name=rotate][value$=XYZ').prop('checked',true);
+		$('input[name=rotate][value$=XYZ]').prop('checked',true);
 		$(c+'Rotate3d').val('');
 		$(r3).val(0);
 		$('#flip0').addClass('toggle');

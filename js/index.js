@@ -84,11 +84,9 @@ $(function(){
 	}
 
 
-
-	//$('.mi[title]').attr('title',function(i,v){return gM(v)});
 	
-	$('#iTextOpt .tool,#input0Tool .tool').not('#preview').attr('tip',function(){return this.id+'tip'});
-	$('#input0Tool input').not('.Clear').attr('tip',function(){return this.id});
+
+	$('#input0Tool input,#preview').not('.Clear').attr('tip',function(){return this.id});
 
 	$('.mi-span,i18').text(function(i,v){return gM(v)});
 
@@ -289,7 +287,7 @@ $(function(){
 	$('#iTextFold').on('click',function(){
 		$(this).text(function(i,v){
 			if(/less/.test(v)){
-				$('#iTextOpt').prevAll().hide();
+				$('#iTextPreview').prevAll().hide();
 	
 				$(this).addClass('seled');
 

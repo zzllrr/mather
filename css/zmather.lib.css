@@ -135,6 +135,7 @@ sup,sub,.small{
     top: 2px;
     right: 10px;
 	z-index: 20001;
+	margin:5px;
 }
 
 
@@ -163,6 +164,9 @@ summary{
 	padding: 5px;
 }
 
+#previewTool{
+	padding: 10px 2px;
+}
 .collapse{border-collapse: collapse}
 
 .edit > thead th{
@@ -585,10 +589,10 @@ summary ~ details summary{
 	font-size:1.5rem;
 }
 
-#subject select, #menu{
+#subject select, #menu i {
 	font-size:1.5rem;
 }
-.iTextLaTeXon input, #iContent select, #iTextOpt input{
+#iContent select, #iContent input{
 	font-size:1.4rem;
 }
 #menu select{
@@ -663,7 +667,7 @@ summary ~ details summary{
 	background:darkred;
 }
 
-.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled{
+.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):hover{
 	background:limegreen;
 }
 
@@ -671,10 +675,10 @@ summary ~ details summary{
 	background:royalblue;
 }
 
-textarea{
+textarea, #iContent input:not(.seled):not(.Clear){
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
+.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview,#previewTool{
 	background: rgba(162,195,97,.1);
 }
 
@@ -693,12 +697,12 @@ textarea{
 
 }
 .toolTip{
-	padding:0 5px;
+	padding:5px;
 	opacity:0;
 	background:limegreen;
 	color:white;
     border-radius:5px 0;
-
+	font-size:1.1rem;
 	animation: inf01 3s 1 ease-out;
 }
 @keyframes inf01 {

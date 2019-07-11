@@ -127,13 +127,14 @@
 						<input type="file" accept="image/*" capture="camera" hidden />
 						<input type="file" accept="image/*" multiple="multiple" hidden />
 
-						<p class="opac lineTool">
-							<input id=lineSplit type=button value=⤵ />
-							<input id=lineMerge type=button value=⤴ />
+						<p class="opac">
+							<input id=lineMerge type=button value=. />
+							<input id=lineSplit type=button value=: />
+							<input id=Condon class="tool" type=button value=⋮ />
 						</p>
 
 						
-						<input id=Condon class="tool" type=button />
+						
 					</div>
 
 					<div id=iTextLaTeXBox>
@@ -160,7 +161,7 @@
 					<div class=clear></div>
 				</div>
 
-				<div>
+				<div id=iTextPreview>
 					<span id=previewTool hidden>
 						<input type=button class="Clear rotate90" id=previewOff value=⌫ />
 
@@ -170,7 +171,7 @@
 					<span class=opac id=previewOpt>
 						<select id=input0Type></select>
 
-						<input type=button id=preview class="tool seled" />
+						<input type=button id=preview class="tool seled" value=⇄ />
 
 						<select id=output0Type></select>
 					</span>
