@@ -1882,7 +1882,7 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 
 }, Admin = {
 	testAjax: function (t) { $.ajax({ type: 'get', url: t, success: function (d) { saveText(d, '123.txt') } }) },
-	testAjax2: function (t) { $.ajax({ type: 'get', url: '', success: function (d) { console.log($(d).find('').text()) } }) }
+	testAjax2: function (t,e) { $.ajax({ type: 'get', url: t, success: function (d) { console.log($(d).find(e).text()) } }) }
 }, fCC = function (A) {
 	return String.fromCharCode.apply(null, A)
 }, seqA = function (start, n, type, step) {//序列: 初始值，个数n，类型，步长	参数 n小于0时，逆序

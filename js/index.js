@@ -465,7 +465,8 @@ $(function(){
 
 		}else if(me.is('.Clear')){
 
-		}else if(me.parent().parent().is('.OHLaTeX')){
+		//}else if(me.parent().parent().is('.OHLaTeX')){
+		}else if(me.parents('#oHTML').length){
 
 
 			if(me.is('.katexed')){
@@ -593,7 +594,8 @@ $(function(){
 		var me=$(this);
 		toolTip(me.attr('data-tip')+' | '+gM('tasktip'));
 
-
+	}).on('mouseover', '#oHTML th',function(e){
+		toolTip(gM('thtip'));
 
 	}).on('mouseover', '#input0Type',function(e){
 		var v=$(this).val();
