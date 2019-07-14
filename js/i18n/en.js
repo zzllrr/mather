@@ -12,19 +12,19 @@ lang['en']={
 	'Bw':'Border Width',
 	'Fgc':'FG Color',
 	'bg':'Background',
-	'Bgc':'BG Color',
-	'BGC':'BG Color',
+	'Bgc':'Background Color',
+	'BGC':'Background Color',
 	'Opts':'Option',
 	'Opa':'Opacity',
 	'Backvisi':'Back Visible',
 	'fonT':'Font',
-		
-	
+	'Level-1 Discipline':'Level-1 Discipline',
+	'Level-2 Discipline':'Level-2 Discipline',
 	
 	'nodesXY':'Cartesian Nodes',
 	'nodesPolar':'Polar Nodes',
 		
-	'sbson':'Unicode',
+	'sbson':'Unicode Character',
 	'funcson':'Function',
 	'strucon':'Structure',
 	'Condon':'Condition',

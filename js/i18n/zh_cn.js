@@ -155,6 +155,7 @@ lang['zh_cn'] = {
 	'Web': '网络',
 	'Webpage': '网页',
 
+	'Night':'夜间',
 	'Help':'帮助',
 	'Example':'示例',
 	'Format':'格式',

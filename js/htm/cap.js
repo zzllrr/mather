@@ -446,7 +446,19 @@ dc+
 		svgf.id('lineIso135',svgf.text('135°',[20,2,12]))+
 		svgf.id('lineIso150',svgf.text('150°',[20,2,12]))+
 	dc+
-dc);
+dc+
+'<div>'+
+	svgf.id('MoonNote',svgf.path('M5 20 A11 11 0 0 1 25 20 z'))+
+	svgf.id('MoonNoteEqui',svgf.path('M5 20 A10 10 0 0 1 25 20 z'))+
+	svgf.id('LfanNoteV',svgf.path('M15 20 L25 10 A15 15 0 0 0 5 10 z'))+						
+	svgf.id('LfanNoteH',svgf.path('M20 15 L10 25 A15 15 0 0 1 10 5 z'))+
+	svgf.id('AfanNoteV',svgf.path('M10 22 A13 13 0 0 1 20 22 L27 12 A15 15 0 0 0 3 12 z'))+
+	svgf.id('AfanNoteH',svgf.path('M22 10 A13 13 0 0 0 22 20 L12 27 A15 15 0 0 1 12 3 z'))+
+dc
+
+
+
+);
 	$('#translate').text(function (i, v) { return gM(this.id + '.Math') });
 	$('.Char').text(gM('Char'));
 

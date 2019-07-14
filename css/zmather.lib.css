@@ -314,7 +314,9 @@ input[type=text],#wiki>span,.brad{
 	border-style:ridge;
 }
 
-
+.ground0{
+	border-bottom: dotted 1px blue;
+}
 .bdtdash{
 	border-top:dashed black 1px;
 }
@@ -725,7 +727,9 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 #donate div {margin:10px}
 #donaQR img{width:150px}
-#donaQR img:not(.alipayImg):not(.qqpayImg){margin:0 100px}
+#donaQR img,#donaQR > span{margin:0 50px}
+#donaWeixin img{width:350px}
+
 #Jiaohang{margin-right:50px;}
 .pay .jiaohang{
 	font-size: 12px;

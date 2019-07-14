@@ -16,22 +16,27 @@ navhead['about']=fieldseth(gM('Version'),
 		]
 	]))+
 	fieldseth(gM('Donate'),
-		DCtv('alignc floatl pd10',
+		DCtv('alignc pd10',
 			DCtv('donatip red',gM('zzllrr Mather')+' '+gM('donatip'))+
 
 		
 			XML.wrapE('h2', gM('donatip0'))+
 			`<div id=donaCN>
+
 				<div id=donaQR>
 					<div class=via>
+
 						<img src="img/Alipay.png" title="支付宝" class=alipayImg />
-						<img src="img/Weixinpay.jpg" title="微信赞赏" />
 						<img src="img/QQpay.png" title="QQ钱包" class=qqpayImg />
 						</div>
 					<span id=donaV2aliPay class=donaV2 title="支付宝赞赏"></span>
-					<img src="img/F1weixinPay.webp" title="微信赞赏" />
 					<span id=donaV2qqPay class=donaV2 title="QQ钱包"></span>
 					
+				</div>
+				<div class=pd10>
+					<img src="img/Weixinpay.jpg" title="微信赞赏" />
+
+					<div id=donaWeixin><img src="img/F1weixinPay.jpg" title="微信赞赏" /></div>
 				</div>
 			</div>
 

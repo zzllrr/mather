@@ -1,5 +1,7 @@
 # zzllrr Mather - An open-sourced Math Tool
 
+![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-Mathe-Demo.jpg)
+
 ## Summary in Chinese 中文摘要
 
 zzllrr Mather (小乐数学)，覆盖数学全部学科的数学知识库与解题工具Web APP，支持离线查阅、运算、绘图。
@@ -32,8 +34,6 @@ It is compact and portable, but powerful, and can be used offline and customized
 Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
 
 让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。
-
-[TOC]
 
 ## Preface 前言
 

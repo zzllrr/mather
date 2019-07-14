@@ -73,10 +73,7 @@ $(function(){
 		var me=$(this),isnight=me.text()=='brightness_3';
 		me.html(isnight?'wb_sunny':'brightness_3');
 		$('body').toggleClass('night',isnight).toggleClass('day',!isnight);
-		/*
-		$('body,textarea').css({color:(isnight?'gainsboro':'black')});
-		$('body').css({"background-color":(isnight?'black':'white')});
-		*/
+
 		L.night=isnight;
 	
 		dayOrNight();
