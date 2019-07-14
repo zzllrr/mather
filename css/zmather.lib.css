@@ -105,9 +105,19 @@ sup,sub,.small{
 	border-width:1px;
 }
 
-.gainsboro{
-	color:gainsboro
+body.day, .day textarea{
+	color:black;
 }
+.gainsboro, body.night, .night textarea, .night input:not(.seled){
+	color:gainsboro;
+}
+body.night{
+	background-color: black;
+}
+body.day{
+	background-color:white;
+}
+
 .prov{
 	color:dimgray
 }
@@ -131,11 +141,7 @@ sup,sub,.small{
 }
 
 #panel{
-    position: absolute;
-    top: 2px;
-    right: 10px;
 	z-index: 20001;
-	margin:5px;
 }
 
 
@@ -189,7 +195,7 @@ summary{
 	border-top: outset black 1px;
 }
 
-.inblk:not(.notm),.vam{
+.inblk:not(.notm),.vam, #bar, #bar span{
 	vertical-align: middle;
 }
 .vat{
@@ -667,7 +673,7 @@ summary ~ details summary{
 	background:darkred;
 }
 
-.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):hover{
+.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;
 }
 
@@ -675,7 +681,7 @@ summary ~ details summary{
 	background:royalblue;
 }
 
-textarea, #iContent input:not(.seled):not(.Clear){
+textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 	background:transparent;
 }
 .wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview,#previewTool{
@@ -691,7 +697,7 @@ textarea, #iContent input:not(.seled):not(.Clear){
 .hotk{
     border-radius: 5px;
     padding: 0 6px;
-    background: lightgray;
+    background: darkgray;
     color:white;
     text-shadow: 1px 1px 1px #666;
 
@@ -846,7 +852,7 @@ img{
 	margin: 10px;
 }
 
-.mi.toggle{
+.mi.toggle, .tool:hover{
 	background:yellow
 }
 

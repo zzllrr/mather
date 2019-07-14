@@ -33,14 +33,22 @@
 #fontCSS span,#tileToolCap svg,#night{cursor:pointer}
 #tileTool{
 	text-align:center;
-	right:12px;
-	position:fixed;
-	overflow-x:hidden;
 	user-select: none;
-	top:30px;
+	float: right;
+	margin-top: 2rem;
 }
 
-#svgShape svg{border-radius:5px}
+#svgShape svg{
+	border-radius:5px;
+    vertical-align: middle;
+    margin: 5px;
+
+}
+#svgTog,#svgTool{
+
+	background:lightslategray
+}
+
 #tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
 
 
@@ -59,7 +67,7 @@
 #Caps textarea:hover{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
-#TextBox{
+#TextBox,#SVGcode{
 	width:98%
 }
 #capctxTXT div,#fxTXT div{
@@ -78,6 +86,12 @@
     padding-left: 20px;
 }
 
+#menu{
+	position: absolute;
+    top: 7px;
+    right: 10px;
+    z-index: 20001;
+}
 
 #svgTEXTBox{
 	position: fixed;

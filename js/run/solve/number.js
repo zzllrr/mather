@@ -1020,14 +1020,14 @@ a b c d
 				return V[0]+'(保留'+dgts+'位有效数字) = '+(+V[0]).toPrecision(+dgts);
 		},VA));
 	}
-	if(sel(uriA,'科学计数法')){
+	if(sel(uriA,'科学记数法')){
 		rS=rS.concat(
 			Arrf(function(t){
 				var V=t.split(/[ &,]/),dgts=V.length>1?+V[1]:0;
 				return V[0]+' = '+(isNaN(dgts)?(+V[0]).toExponential():(+V[0]).toExponential(dgts)).replace('e+0','').replace(/e(.\d+)/,'⋅10^{$1}').replace('+','')
 		},VA));
 	}
-	if(sel(uriA,'工程计数法')){
+	if(sel(uriA,'工程记数法')){
 		rS=rS.concat(
 			Arrf(function(x){
 				var t=x.split(/[ &,]/)[0],V=t.split('.'),abst=Math.abs(+t),Expnum=(+t).toExponential(),Exp=+Expnum.replace(/.+e/,'');

@@ -317,9 +317,9 @@ var HOM = {
 };
 
 var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
-	num = function (x, ma) { return '<input type=number value=' + x + ' min=0 ' + (ma ? 'max= ' + ma : '') + '/>' },
+	num = function (x, min, max) { return '<input type=number value="' + x + '" min='+(min||0)+' ' + (max ? 'max= ' + max : '') + '/>' },
 	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
-	rng = function (v,min,max) { return '<input type=range value="'+(v||'')+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
+	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
 	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', txtreadonly = function (x) { return '<input type=text readonly value="' + fnq(x) + '" />' },
 	meter = function (i, low, optimum, high) { return '<meter min=0 max=100' + (low || low === 0 ? ' low=' + low : '') + (optimum || optimum === 0 ? ' optimum=' + optimum : '') + (high || high === 0 ? ' high=' + high : '') + ' value=' + i + ' />' },
 	bgfrom = '-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto = '), to(', grad = function (t) {
@@ -334,6 +334,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
+	i18=function(x){return XML.wrapE('i18',x)},
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
 	fieldseth = function (s, v, c, h) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
 	detail = function (s, v, o, c) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary>' + s + '</summary>' + v + '</details>' },
@@ -1450,41 +1451,56 @@ function svgAs(svg, base64) {
 }
 
 var svgf = {
+	marker:function(id,rx,ry,w,h,vBox,chd){
+		return '<marker id='+id+' refX='+(rx||8)+' refY='+(ry||5)+' markerWidth='+(w||4)+' markerHeight='+(h||4)+' viewBox="'+(vBox||'0 0 10 10')+'">'+chd+'</marker>'
+	},
 	path: function (d) {
 		if(isArr(d)){
 			return Arrf(svgf.path,d)
 		}
 		return '<path d="' + d + '" stroke="white" fill="none"></path>'
-	}, text: function (text, yxSize) {
+	}, 
+	polygon: function (d) {
+		if(isArr(d)){
+			return Arrf(svgf.polygon,d)
+		}
+		return '<polygon points="' + d + '" stroke="white" fill="none"></polygon>'
+	}, 
+	text: function (text, yxSize) {
 		if(isArr(text,2)){
 			return Arrf(function(x){return svgf.text.apply(null, x)},text)
 		}
 		return '<text y="' + (yxSize ? yxSize[0] : 22) + '" x="' + (yxSize ? yxSize[1] : 6) + '" font-size="' + (yxSize ? yxSize[2] : 16) + '" fill="white">' + text + '</text>'
-	}, rect: function (x, y, w, h) {
+	}, 
+	rect: function (x, y, w, h) {
 		if(isArr(x,2)){
 			return Arrf(function(i){return svgf.rect.apply(null, i)},x)
 		}
 		return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + (h || w) + '" stroke="white" fill="none"></rect>'
-	}, circle: function (cx, cy, r) {
+	}, 
+	circle: function (cx, cy, r) {
 		if(isArr(cx,2)){
 			return Arrf(function(x){return svgf.circle.apply(null, x)},cx)
 		}
 		return '<circle r="' + (r||1) + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></circle>'
-	}, line: function (x1, y1, x2, y2) {
+	}, 
+	line: function (x1, y1, x2, y2) {
 		if(isArr(x1,2)){
 			return Arrf(function(x){return svgf.line.apply(null, x)},x1)
 		}
 		return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="white" fill="none"></line>'
-	}, ellipse: function (cx, cy, rx, ry) {
+	}, 
+	ellipse: function (cx, cy, rx, ry) {
 		if(isArr(cx,2)){
 			return Arrf(function(x){return svgf.ellipse.apply(null, x)},cx)
 		}
 		return '<ellipse rx="' + rx+ '" ry="' + ry + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></line>'
-	}, id: function (id,v,noVieWBox) {
+	}, 
+	id: function (id,v,noVieWBox,w) {
 		if(isArr(id,2)){
 			return Arrf(function(x){return svgf.id.apply(null, x)},id)
 		}
-		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="white" fill="none">'+v+'</svg>'
+		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="white" fill="none" stroke-width="'+(w||2)+'">'+v+'</svg>'
 	}
 }, svgs = {
 	imgr: svgf.path('M11 5 H19 V15 H25 L15 25 5 15 H11 V5z')

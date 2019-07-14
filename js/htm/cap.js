@@ -51,7 +51,13 @@ $(function () {
 
 
 	$('#tileFontCenter').before(gM('center'));
+
+
 	$('#svgShape svg[id], #svgTog svg').attr('stroke-width', 2);
+
+
+
+
 
 	$('#CssRotate :radio').attr('name', 'rotate');
 
@@ -65,7 +71,7 @@ $(function () {
 	$('#font').val(function () { return L[this.id] || 'Microsoft Yahei' });
 
 	$('.clrCanvas').val(gM('clear'));
-	$('#clrTextBox').val(gM('Clear All'));
+
 
 
 	$(':button[value=""], :button:not([value])').val(function () { return gM(this.id) });
@@ -79,11 +85,11 @@ $(function () {
 	$('#Color').html(Arrf(function (X) {
 		var x = X.toLowerCase(), w = $(window).width(), h = $(window).height(), w2 = Math.ceil(w / 2), h2 = Math.ceil(h / 2),
 		gc = function (i) {
-			var t = '<input type=color id=' + X + 'GC' + i + ' /><input type=range id=Opa' + X + 'GC' + i + ' min=0 max=1 step=".1" value=1 />';
-			return i ? '<div id=' + x + 'gc' + i + ' hidden><input type=number class=Gradstop readonly value=' + (i == 1 ? 0 : 100) + ' />% ' + t + dc : t
+			var t = '<input type=color id=' + X + 'GC' + i + ' />'+rng('1" step=.1 id="Opa'+X+'GC'+i,0,1);
+			return i ? '<div id=' + x + 'gc' + i + ' hidden>'+num((i == 1 ? 0 : 100)+'" readonly class="Gradstop') + '% ' + t + dc : t
 		};
 		return detail(gM(x.replace('s', 'b') + 'gc') + gc(''),
-			'<label><input type=checkbox class=Grad /></label><span hidden>× <input type=number class=GradStops min=2 value=2 />' +
+			'<label>'+strchkbx0+'class=Grad /></label><span hidden>× '+num('2" class="GradStops',2)+
 			concat('<label><input type=radio name=' + X + 'GradType value=', ['Linear checked=checked', 'Radial'], ' /></label>').join('') + sc +
 			'<div class=Linear hidden>x1 ' + num(0) + ' y1 ' + num(0) + ' x2 ' + num(0) + ' y2 ' + num(X == 'S' ? h : 100) + dc +
 			'<div class=Radial hidden>' + concat(['cx', 'cy', X == 'S' ? 'r1' : 'r', br + 'fx', 'fy'].concat(X == 'S' ? 'r2' : []), copyA('<input type=number value=', 5 + (+(X == 'S'))),
@@ -118,6 +124,329 @@ $(function () {
 
 
 	//html
+
+	$('#svgShape').prepend(
+	'<div id=svgTool>'+
+		svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
+		svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
+		svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
+		svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+		svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
+		svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16))+
+		svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1'))+
+		'<div id=scrWH>'+
+			i18('W')+num('0" title=px id="scrW',1)+
+			i18('H')+num('0" title=px id="scrH',1)+dc+
+	
+		'<div id=copyOpt>'+
+			'<p><select id=copyDir multiple=multiple class=hmulti size=1 title=Ctrl></select></p>'+
+			'<p>'+SCtv('','×')+num('1" id="copyn',1)+
+				'<label id=margin>'+strchkbx0+'checked />'+
+					num('10" id=copyMargin title="px')+'</label>'+
+				'<label id=copyTileOn hidden>'+strchkbx0+'id=copyTile /></label></p>'+
+	
+			'<p><label>'+strchkbx0+'id=Transform /></label></p>'+dc+
+	
+		'<div id=eraserOpt>'+
+			'<p><select id=eraserDir multiple=multiple class=hmulti size=1 title=Ctrl></select></p>'+dc+
+	
+		'<div id=svgTextDetail><textarea id=svgTextDetails></textarea>'+dc+
+	
+		detail('<input type=button id=clrTextBox value="'+gM('Clear All')+'" />'+
+			'<select id=TextBoxType></select>'+
+			'<span id=TextBoxContainer hidden>'+
+				num('300" id="TextBoxW')+
+				num('200" id="TextBoxH')+sc+
+			strbtn+'-- OK --" id=TextBoxGo />',
+			'<textarea id=TextBox></textarea>'+
+			detail('','','','id=TextBoxTool hidden'),
+			1,'id=svgTEXTBox')+
+	
+		'<div id=svgSel>'+
+			detail('<select id=svgText>'+Options(seqA(0,11),ZLR(
+					' ❶⓪①⑴‰ ㈠㊀㋋㏫㊣ ⅠⅡⅰⅱΑα ⒜ⒶⓐAa ©®℉￠￥ ！：［｛ ←↕↙↶↺⇐ ∀∋∑∞∭⊆⋰ ■□▲●◐◑◢◣ ☀☑✔✿♞♣♬')
+				).join('')+'</select>'+
+				'<select id=svgTextN></select>'+
+				'<select id=svgTextM></select>',
+				'<textarea id=svgTexts placeholder="My Clipboard"></textarea>',
+				'','id=svgTEXT')+
+			'<select id=strkFill tip=fill>'+Options([0,1,2],ZLR('□ ▣ ■')).join('')+'</select>'+
+			'<select id=svgArwE tip=arrow></select>'+
+			'<select id=svgArwS tip=arrow></select>'+
+			'<select id=svgLine tip=dash></select>'+
+			'<select id=strkLnJoin>'+Options(ZLR('round miter bevel'),ZLR('﹙ ﹤ ﹝')).join('')+'</select>'+
+			'<select id=strkLnCap>'+Options(ZLR('butt round square'),ZLR('[ ( ▌')).join('')+'</select>'+dc+
+	
+		'<div id=SvgOpt>'+
+			detail(i18('FontSize')+num('24" id=fontSize title="px','',12)+
+					rng('','','2" step=1 tip=center id="tileFontCenter'),
+				'<div id=fontCSS>'+SCtv('bold" title="B')+SCtv('italic" title="I')+SCtv('underline')+SCtv('overline')+SCtv('through')+dc+
+				'<div>'+i18('fonT')+'<input type=text id=font list=CSS_fontfamily />'+dc,
+				'','id=Font hidden')+
+				
+			'<div id=Dash hidden>'+
+				i18('dash')+'<input type=text id=strkDash />'+
+				i18('offset')+num('1" id="strkDashOffset')+dc+
+	
+			detail('<label id=SIDES>'+num('5" id="Sides',3)+'</label>'+
+					i18('bW')+num('4" title=px id="strkW')+
+					'<span id=bWR>'+i18('Radii')+sc+num('0" hidden title=px id="strkR')+
+					'<span id=bWRy>, '+sc+num('10" hidden title=px id="strkRy'),
+				DCtv('lightgray" id="OtherOpts',
+				
+					Arrf(function (y) { return '<div>' + Arrf(function (x) { return '<label>'+strchkbx0+'id=' + x + 'on />' + gM(x == 'Medians' ? 'Median Line' : x.replace(/([^i])s$/, '$1')) + '</label>' }, ZLR(y)).join('') + dc }, [
+						'CircumRectangle CircumCircle Incircle',
+						'backvisi Diagonal Diameter ' + zlr2('Centroid Orthocenter Incenter Circumcenter Vertex', 'Line'),
+						'Medians MidPointLine OppositeMidPointLine',
+						'Altitudes PerpendicularFootLine',
+						'Axis Tick SymmetryAxis'
+					]).join('')+
+
+
+					'<div>' + gM('Equator') + '<label>'+strchkbx0+'id=Equatorxon />x ' + num(20) + '</label><label>'+strchkbx0+'id=Equatoryon />y ' + num(20) + '</label>' + dc +
+					'<div><label>'+strchkbx0+'id=Gridon />' + gM('Grid') + '</label>' + ['x', 'y', 'z', ''].join(' ' + num(2)) + dc +
+
+					detail('<label>'+strchkbx0+'id=Neston />' + gM('Nest') + '</label> × ' + num(2),
+						'<label>'+strchkbx0+'id=NestMarginon />' + gM('Margin') + '</label> ' + num(20) + ' , ' + num(20)) +
+
+					'<div><label>'+strchkbx0+'id=MidPointNeston />' + gM('MidPointLine') + ' ' + gM('Nest') + ' × </label>' + num(2) + dc +
+					'<div><label>'+strchkbx0+'id=PerpendicularFootNeston />' + gM('PerpendicularFootLine') + ' ' + gM('Nest') + ' × </label>' + num(2) + dc +
+
+					'<div>' + Arrf(function (x) { return '<label>'+strchkbx0+'id=Arc' + x + 'on />∠' + x + '</label>' }, [1, 2, 3]).join('') + ' ' + gM('Arc') + ' ' + gM('Radii') + ' ' + num(15) + dc +
+
+					'<div>' + Arrf(function (x) { return '<span><label>'+strchkbx0+'id=' + x + 'on />' + gM(x) + '</label> ' + gM('bw') + num(15) + sc }, ZLR('Rt')).join('') + dc +
+
+					Arrf(function (y) { return '<div>' + gM(y) + ' ' + Arrf(function (x) { return '<label>'+strchkbx0+'id=' + y + x + 'on />L' + x + ' </label>' }, [1, 2, 3]).join('') + dc }, ZLR('Median Altitude AngleBisector Midline')).join('')
+
+
+				
+				))+
+	
+	
+			DCtv('lightgray" id="MarginCopyOpt',
+	
+				'<label hidden><input type=radio name=MarginCopyOpt value=nest />'+
+					SCtv('','×')+
+					num('2" id="nestNum',1)+'</label>'+
+				'<label><input type=radio name=MarginCopyOpt value=w /></label>'+
+				'<label><input type=radio name=MarginCopyOpt value=copy checked=checked /></label>'+
+	
+				num('10" hidden id="copyNum',1)+
+	
+				'<div id=gridOpt hidden>'+
+					num('3" id="gridR',1)+'<span id=gridN>×'+sc+
+					num('3" id="gridC',1)+dc+
+	
+				'<div id=MarginCopyH hidden>'+num('10" id="MarginCopyh',1)+dc+
+				'<div id=nestOpt hidden>'+dc
+			)+
+	
+			'<div><span id=WH> '+sc+'<span id=Angle tip=Angle> '+sc+
+				'<label>'+strchkbx0+'id=cssClip /></label>'+dc+
+	
+			'<div id=CssClip hidden><img class=clip>'+i18('clip')+
+				SCtv('','↦')+num('0" id="cssClipL')+
+				SCtv('','↤')+num('100" id="cssClipR')+br+
+				SCtv('','↧')+num('0" id="cssClipT')+
+				SCtv('','↥')+num('100" id="cssClipB')+dc+
+	
+			'<div id=fxTXT hidden><textarea id=fxTxt placeholder="Condition;Ox,Oy,x0,x1,y0,y1;color;opacity"></textarea>'+
+				detail(strbtn+'f(x,y)" id=GOfx /><input type=button class=clrCanvas />')+dc+
+			'<div id=capctxTXT hidden><textarea id=capctxTxt></textarea>'+
+				detail(strbtn+'JS" id=GOcapctx /><select id=effects></select><input type=button class=clrCanvas />')+dc+
+	
+	
+		dc+
+	
+	dc+
+	'<div>'+
+	svgf.id('Freelin',svgf.path('M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2'))+
+	svgf.id('Text" hotkey="A',svgf.text('A',[25,5,28]))+
+	svgf.id('ArectNote" tip="Note" hotkey="',svgf.path('M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z'))+
+	svgf.id('LrectNote',svgf.path('M8 20 L7 25 13 20 H25 V5 H5 V20 H8z'))+
+
+
+	svgf.id('ellipseNote',svgf.path('M8 18 L7 25 13 20 A10 8 0 1 0 8 18z'))+
+	svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4 M4 4 H26 V26 H4 V4'))+
+
+
+dc+
+'<div>'+
+	svgf.id('LRect',svgf.rect(5,7,20,16))+
+	svgf.id('LRectSq',svgf.rect(5,5,20,20))+
+	svgf.id('ARect" tip="Round Corner" hotkey="R',svgf.rect(5,6,20,'18" rx=5 ry="5'))+
+	svgf.id('ARectSq',svgf.rect(5,5,20,'20" rx=5 ry="5'))+
+	svgf.id('Ellipse',svgf.ellipse(15,15,12,10))+
+	svgf.id('EllipseSq',svgf.circle(15,15,10))+
+
+dc+
+'<div>'+
+	svgf.id('diagon',svgf.polygon('7,15 15,5 23,15 15,25'))+
+
+	svgf.id('diagonSq',svgf.polygon('5,15 15,5 25,15 15,25'))+
+
+	svgf.id('SLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V7 z'))+
+	svgf.id('SANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V7 z'))+
+	svgf.id('DLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V13 L19 7 z'))+
+	svgf.id('DANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V14 A7 7 0 0 0 18 7 z'))+
+
+dc+
+'<div>'+
+	svgf.id('dartNote',svgf.path('M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z'))+
+	svgf.id('SdartNoteM',svgf.path('M5 7 V23 H17 L25 15 17 7 H5 z'))+
+	svgf.id('SdartNoteF',svgf.path('M5 7 L13 15 5 23 H25 V7 z'))+
+	svgf.id('Sarrow',svgf.path('M5 11 V19 H15 V25 L25 15 15 5 V11 H5z'))+
+	svgf.id('Darrow',svgf.path('M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z'))+
+	svgf.id('Xarrow',svgf.path('M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z'))+
+
+
+dc+
+'<div>'+
+	svgf.id('Quo',svgf.path('M5 12 A2 2 0 0 0 7 15 H13 A2 2 0 0 1 15 18 2 2 0 0 1 17 15 H23 A2 2 0 0 0 25 12'))+
+	svgf.id('Polylin',svgf.path('M6 24 L13 9 17 21 24 6'))+
+	svgf.id('PolyGon',svgf.path('M5 20 L20 25 25 10 15 5z'))+
+	svgf.id('HeartNote',svgf.path('M15 8 C15 7 14 5 10 5 C4 5 4 10 4 10 C4 16 8 20 15 24 C22 20 26 16 26 12 C26 12 26 5 20 5 C17 5 15 7 15 8z'))+
+	svgf.id('PentagonX',svgf.polygon('15,0 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12'))+
+	svgf.id('Regulargon',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26'))+
+
+dc+
+'<div id=svgLines>'+
+
+	'<div>'+
+	
+		svgf.id('Line" hotkey="L',
+			'<defs>'+
+				svgf.marker('ArwE0Line',2,5,4,4,'',svgf.path(''))+
+				svgf.marker('ArwS0Line',8,5,4,4,'',svgf.path(''))+
+				svgf.marker('ArwE1Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9'))+
+				svgf.marker('ArwS1Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9'))+
+				svgf.marker('ArwE2Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9z'))+
+				svgf.marker('ArwS2Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9z'))+
+				svgf.marker('ArwE3Line',8,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
+				svgf.marker('ArwS3Line',2,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
+				svgf.marker('ArwE4Line',8,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
+				svgf.marker('ArwS4Line',2,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
+				svgf.marker('ArwE5Line',8,5,4,4,'',svgf.circle(5,5,4))+
+				svgf.marker('ArwS5Line',2,5,4,4,'',svgf.circle(5,5,4))+
+			'</defs>'+
+			svgf.line(11,24,19,'6" marker-end="url(#ArwE6Line)')
+		)+
+	
+		svgf.id('LineSq',svgf.line(6,24,24,6))+
+	
+		svgf.id('line1tick',svgf.path('M4 16 H26 M15 16 V11 M4 16 H26'))+
+		svgf.id('line2tick',svgf.path('M9 4 V21 M9 15 H5 M15 21 V25 M9 21 H26'))+
+	
+		svgf.id('linecurveH',svgf.path('M5 20 Q15 5 25 20'))+
+		svgf.id('linecurveV',svgf.path('M20 5 Q5 15 20 25'))+
+	dc+
+	
+	'<div>'+
+	
+		svgf.id('SLlineH',svgf.path('M6 6 V24 H20'))+
+		svgf.id('SLlineSqH',svgf.path('M6 6 V24 H24'))+
+	
+		svgf.id('SAlineH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H20'))+
+		svgf.id('SAlineSqH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H24'))+
+	
+		svgf.id('linearcH',svgf.path('M6 10 A18 5 0 1 1 6 20'))+
+		svgf.id('linearcV',svgf.path('M10 24 A5 18 0 1 1 20 24'))+
+	
+	dc+
+	
+	
+	'<div>'+
+	
+		svgf.id('ZLlineV',svgf.path('M6 6 V15 H24 V24'))+
+		svgf.id('ZAlineV',svgf.path('M6 6 V11 A4 4 0 0 0 10 15 H20 A4 4 0 0 1 24 19 V24'))+
+	
+	
+		svgf.id('ZLlineH',svgf.path('M6 6 H15 V24 H24'))+
+		svgf.id('ZAlineH',svgf.path('M6 6 H11 A4 4 0 0 1 15 10 V20 A4 4 0 0 0 19 24 H24'))+
+	
+	
+		svgf.id('linearc',svgf.path('M6 22 A22 12 0 0 1 24 8'))+
+	
+		svgf.id('linearcSq',svgf.path('M10 5 A10 10 0 0 1 10 25'))+
+	dc+
+	
+	'<div>'+
+	
+		svgf.id('LineCross',svgf.line([[6,15,24,15],[15,10,15,20]]))+
+	
+		svgf.id('LineSqCross',svgf.line([[3,15,27,15],[15,3,15,27]]))+
+	
+		svgf.id('DLlineH',svgf.path('M24 10 H6 V20 H24'))+
+		svgf.id('DLlineSqH',svgf.path('M24 6 H6 V24 H24'))+
+	
+		svgf.id('DAlineH',svgf.path('M24 10 H10 A4 4 0 0 0 6 14 V16 A4 4 0 0 0 10 20 H24'))+
+		svgf.id('DAlineSqH',svgf.path('M24 6 H10 A4 4 0 0 0 6 10 V20 A4 4 0 0 0 10 24 H24'))+
+	
+	dc+
+	
+	'<div>'+
+		svgf.id('LineX',svgf.line([[6,20,24,10],[6,10,24,20]]))+
+		svgf.id('LineSqX',svgf.line([[5,25,25,5],[5,5,25,25]]))+
+	
+		svgf.id('DLlineV',svgf.path('M10 24 V6 H20 V24'))+
+		svgf.id('DLlineSqV',svgf.path('M6 24 V6 H24 V24'))+
+	
+		svgf.id('DAlineV',svgf.path('M10 24 V10 A4 4 0 0 1 14 6 H16 A4 4 0 0 1 20 10 V24'))+
+		svgf.id('DAlineSqV',svgf.path('M6 24 V10 A4 4 0 0 1 10 6 H20 A4 4 0 0 1 24 10 V24'))+
+	
+	
+	dc+
+	
+	
+	'<div>'+
+		svgf.id('Line3TH',svgf.line([[5,15,5,8],[5,15,5,22],[5,15,25,15]]))+
+		svgf.id('Line3TV',svgf.line([[15,8,3,8],[15,8,27,8],[15,8,15,22]]))+
+	
+		svgf.id('Line3Y',svgf.line([[15,15,8,2],[15,15,22,2],[15,15,15,25]]))+
+		svgf.id('Line3YEqui',svgf.line([[15,15,3.7,21.5],[15,15,26.3,21.5],[15,15,15,2]]))+
+	
+		svgf.id('Line3YRight',svgf.line([[15,15,28,15],[15,15,15,6],[15,15,6,24]]))+
+		svgf.id('Line3YRightSq',svgf.line([[15,15,28,15],[15,15,15,2],[15,15,6,24]]))+
+	
+	dc+
+	
+	
+	
+	
+	'<div>'+
+		svgf.id('lineangleH',svgf.path('M28 22 H4 L28 10'))+
+		svgf.id('lineangleV',svgf.path('M11 25 V5 L20 25'))+
+	
+		svgf.id('lineIsoH',svgf.path('M24 6 L6 15 24 24'))+
+		svgf.id('lineIsoV',svgf.path('M6 24 L15 6 24 24'))+
+	
+		svgf.id('Line3EH',svgf.line([[2,15,28,15],[2,15,28,5],[2,15,28,25]]))+
+		svgf.id('Line3EV',svgf.line([[15,2,15,28],[15,2,5,28],[15,2,25,28]]))+
+	
+	dc+
+	
+	'<div>'+
+		svgf.id('lineangle30',svgf.path('M25 24 L7 24 25 14')+svgf.text('30°',[15,2,10]))+
+		svgf.id('lineangle45',svgf.path('M25 24 L7 24 25 6')+svgf.text('45°',[15,2,10]))+
+		svgf.id('lineangle60',svgf.path('M24 24 L6 24 16 6')+svgf.text('60°',[20,14,10]))+
+		svgf.id('lineangle120',svgf.text('120°',[20,2,12]))+
+		svgf.id('lineangle135',svgf.text('135°',[20,2,12]))+
+		svgf.id('lineangle150',svgf.text('150°',[20,2,12]))+
+	
+	dc+
+	
+	
+	
+	'<div>'+
+		svgf.id('lineIso30',svgf.path('M25 15 L7 20 25 25')+svgf.text('30°',[15,2,10]))+
+		svgf.id('lineIso45',svgf.path('M25 10 L7 17.5 25 25')+svgf.text('45°',[14,2,10]))+
+		svgf.id('lineIso60',svgf.path('M22 4.6 L4 15 22 25.4')+svgf.text('60°',[19,14,10]))+
+	
+		svgf.id('lineIso120',svgf.text('120°',[20,2,12]))+
+		svgf.id('lineIso135',svgf.text('135°',[20,2,12]))+
+		svgf.id('lineIso150',svgf.text('150°',[20,2,12]))+
+	dc+
+dc);
 	$('#translate').text(function (i, v) { return gM(this.id + '.Math') });
 	$('.Char').text(gM('Char'));
 
@@ -632,21 +961,21 @@ $(function () {
 	$('.mi-span,i18').text(function(i,v){return gM(v)});
 	$('span[for]').hide();
 	var colorTmpl=DCtv('stroke',
-			'<label>'+gM('Stroke')+'<input type=checkbox class=strokeon checked=checked /></label>'+
+			'<label>'+gM('Stroke')+strchkbx0+'class=strokeon checked=checked /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
+			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
 			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
 		)+DCtv('fill',
-			'<label>'+gM('Fill')+'<input type=checkbox class=fillon /></label>'+
+			'<label>'+gM('Fill')+strchkbx0+'class=fillon /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>'+gM('Gradient')+'<input type=checkbox class=gradon /></label>'+
+			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
 			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
 		)+DCtv('shadow',
-			'<label>'+gM('dropShadow')+'<input type=checkbox class=shadowon /></label>'+
+			'<label>'+gM('dropShadow')+strchkbx0+'class=shadowon /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			gM('Blur')+'<input type=number min=0 class=blur value=0 />'+
 			gM('Offset')+'<input type=text placeholder="0 0" class=offset />'
@@ -787,35 +1116,7 @@ $(function () {
 
 
 	$('#canvasMenu').nextAll().hide();
-	//OtherOpts
 
-	$('#OtherOpts').html(Arrf(function (y) { return '<div>' + Arrf(function (x) { return '<label><input type=checkbox id=' + x + 'on />' + gM(x == 'Medians' ? 'Median Line' : x.replace(/([^i])s$/, '$1')) + '</label>' }, ZLR(y)).join('') + dc }, [
-		'CircumRectangle CircumCircle Incircle',
-		'backvisi Diagonal Diameter ' + zlr2('Centroid Orthocenter Incenter Circumcenter Vertex', 'Line'),
-		'Medians MidPointLine OppositeMidPointLine',
-		'Altitudes PerpendicularFootLine',
-		'Axis Tick SymmetryAxis'
-	]).join(''));
-
-
-	$('#OtherOpts').append(
-
-		'<div>' + gM('Equator') + '<label><input type=checkbox id=Equatorxon />x ' + num(20) + '</label><label><input type=checkbox id=Equatoryon />y ' + num(20) + '</label>' + dc +
-		'<div><label><input type=checkbox id=Gridon />' + gM('Grid') + '</label>' + ['x', 'y', 'z', ''].join(' ' + num(2)) + dc +
-
-		detail('<label><input type=checkbox id=Neston />' + gM('Nest') + '</label> × ' + num(2),
-			'<label><input type=checkbox id=NestMarginon />' + gM('Margin') + '</label> ' + num(20) + ' , ' + num(20)) +
-
-		'<div><label><input type=checkbox id=MidPointNeston />' + gM('MidPointLine') + ' ' + gM('Nest') + ' × </label>' + num(2) + dc +
-		'<div><label><input type=checkbox id=PerpendicularFootNeston />' + gM('PerpendicularFootLine') + ' ' + gM('Nest') + ' × </label>' + num(2) + dc +
-
-		'<div>' + Arrf(function (x) { return '<label><input type=checkbox id=Arc' + x + 'on />∠' + x + '</label>' }, [1, 2, 3]).join('') + ' ' + gM('Arc') + ' ' + gM('Radii') + ' ' + num(15) + dc +
-
-		'<div>' + Arrf(function (x) { return '<span><label><input type=checkbox id=' + x + 'on />' + gM(x) + '</label> ' + gM('bw') + num(15) + sc }, ZLR('Rt')).join('') + dc +
-
-		Arrf(function (y) { return '<div>' + gM(y) + ' ' + Arrf(function (x) { return '<label><input type=checkbox id=' + y + x + 'on />L' + x + ' </label>' }, [1, 2, 3]).join('') + dc }, ZLR('Median Altitude AngleBisector Midline')).join('')
-
-	);
 
 
 
@@ -1144,14 +1445,16 @@ $(function () {
 
 	$('#svgTog svg').on('click', function () {
 		var me = $(this), id = me.attr('id');
-		me.find('text').attr('fill', 'yellow').text('○');
-		me.siblings().find('text').attr('fill', 'white').text('-');
+
+		me.html('<line x1="10" y1="15" x2="20" y2="15" stroke="yellow" fill="yellow"></line>');
+		me.siblings().html('<circle r="5" cx="15" cy="15" stroke="white" fill="none"></circle>');
+
 		var n = +id.replace('svgPg', ''), divSib = $('#svgTool').nextAll(), divs = divSib.not(':has(div)').add(divSib.find('div')), divi = divs.eq(n - 1);
 		divi = divs.slice(6 * (n - 1), 6 * n);
 
 		divs.not(divi).hide();
 		divi.show();
-	});
+	}).eq(0).click();
 
 	toggleSvg();
 

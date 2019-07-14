@@ -72,8 +72,11 @@ $(function(){
 	$('#night').on('click',function(){
 		var me=$(this),isnight=me.text()=='brightness_3';
 		me.html(isnight?'wb_sunny':'brightness_3');
+		$('body').toggleClass('night',isnight).toggleClass('day',!isnight);
+		/*
 		$('body,textarea').css({color:(isnight?'gainsboro':'black')});
 		$('body').css({"background-color":(isnight?'black':'white')});
+		*/
 		L.night=isnight;
 	
 		dayOrNight();
@@ -196,6 +199,10 @@ $(function(){
 			sR.find('.sechResult').click();
 		}
 	});
+	$('#Lang').on('click',function(){
+		$('#lang').show();
+		$(this).hide();
+	});
 	$('#lang').html(Options(ZLR('lang en zh_cn zh_tw'))).on('change',function(){
 		var l=location.href, lA=l.split('lang='), v=$(this).val();
 		L.lang=v;
@@ -313,7 +320,7 @@ $(function(){
 			$(this).toggleClass('seled',isup);
 			return 'keyboard_arrow_'+(isup?'down':'up')
 		});
-		$('#lang,#night').toggle(!isup);
+		
 	});
 
 	$('#zMatherHide').on('click',function(){
@@ -910,8 +917,9 @@ consolelog('最终A = ',A);
 		var me=$(this), isup=/up/.test(me.text());
 		$('#zMather').toggle();
 		me.text('keyboard_arrow_'+(isup?'down':'up'));
-		$('#lang,#night').toggle(!isup);
-		$('#Caps').hide();
+
+		$('#Caps,#lang').hide();
+		$('#Lang').show();
 
 	});
 	
