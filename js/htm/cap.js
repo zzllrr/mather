@@ -53,7 +53,7 @@ $(function () {
 	$('#tileFontCenter').before(gM('center'));
 
 
-	$('#svgShape svg[id], #svgTog svg').attr('stroke-width', 2);
+	//$('#svgShape svg[id], #svgTog svg').attr('stroke-width', 2);
 
 
 
@@ -125,7 +125,8 @@ $(function () {
 
 	//html
 
-	$('#svgShape').prepend(
+	$('#tileToolCap').prepend(
+'<div id=svgShape>'+
 	'<div id=svgTool>'+
 		svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
 		svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
@@ -260,203 +261,401 @@ $(function () {
 	
 	dc+
 	'<div>'+
-	svgf.id('Freelin',svgf.path('M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2'))+
-	svgf.id('Text" hotkey="A',svgf.text('A',[25,5,28]))+
-	svgf.id('ArectNote" tip="Note" hotkey="',svgf.path('M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z'))+
-	svgf.id('LrectNote',svgf.path('M8 20 L7 25 13 20 H25 V5 H5 V20 H8z'))+
+		svgf.id('Freelin',svgf.path('M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2'))+
+		svgf.id('Text" hotkey="A',svgf.text('A',[25,5,28]))+
+		svgf.id('ArectNote" tip="Note" hotkey="',svgf.path('M8 20 L7 25 13 20 H20 A5 5 0 0 0 25 15 V10 A5 5 0 0 0 20 5 H10 A5 5 0 0 0 5 10 V15 A5 5 0 0 0 8 20z'))+
+		svgf.id('LrectNote',svgf.path('M8 20 L7 25 13 20 H25 V5 H5 V20 H8z'))+
 
 
-	svgf.id('ellipseNote',svgf.path('M8 18 L7 25 13 20 A10 8 0 1 0 8 18z'))+
-	svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4 M4 4 H26 V26 H4 V4'))+
+		svgf.id('ellipseNote',svgf.path('M8 18 L7 25 13 20 A10 8 0 1 0 8 18z'))+
+		svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4 M4 4 H26 V26 H4 V4'))+
 
 
+	dc+
+	'<div>'+
+		svgf.id('LRect',svgf.rect(5,7,20,16))+
+		svgf.id('LRectSq',svgf.rect(5,5,20,20))+
+		svgf.id('ARect" tip="Round Corner" hotkey="R',svgf.rect(5,6,20,'18" rx=5 ry="5'))+
+		svgf.id('ARectSq',svgf.rect(5,5,20,'20" rx=5 ry="5'))+
+		svgf.id('Ellipse',svgf.ellipse(15,15,12,10))+
+		svgf.id('EllipseSq',svgf.circle(15,15,10))+
+
+	dc+
+	'<div>'+
+		svgf.id('diagon',svgf.polygon('7,15 15,5 23,15 15,25'))+
+
+		svgf.id('diagonSq',svgf.polygon('5,15 15,5 25,15 15,25'))+
+
+		svgf.id('SLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V7 z'))+
+		svgf.id('SANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V7 z'))+
+		svgf.id('DLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V13 L19 7 z'))+
+		svgf.id('DANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V14 A7 7 0 0 0 18 7 z'))+
+
+	dc+
+	'<div>'+
+		svgf.id('dartNote',svgf.path('M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z'))+
+		svgf.id('SdartNoteM',svgf.path('M5 7 V23 H17 L25 15 17 7 H5 z'))+
+		svgf.id('SdartNoteF',svgf.path('M5 7 L13 15 5 23 H25 V7 z'))+
+		svgf.id('Sarrow',svgf.path('M5 11 V19 H15 V25 L25 15 15 5 V11 H5z'))+
+		svgf.id('Darrow',svgf.path('M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z'))+
+		svgf.id('Xarrow',svgf.path('M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z'))+
+
+
+	dc+
+	'<div>'+
+		svgf.id('Quo',svgf.path('M5 12 A2 2 0 0 0 7 15 H13 A2 2 0 0 1 15 18 2 2 0 0 1 17 15 H23 A2 2 0 0 0 25 12'))+
+		svgf.id('Polylin',svgf.path('M6 24 L13 9 17 21 24 6'))+
+		svgf.id('PolyGon',svgf.path('M5 20 L20 25 25 10 15 5z'))+
+		svgf.id('HeartNote',svgf.path('M15 8 C15 7 14 5 10 5 C4 5 4 10 4 10 C4 16 8 20 15 24 C22 20 26 16 26 12 C26 12 26 5 20 5 C17 5 15 7 15 8z'))+
+		svgf.id('PentagonX',svgf.polygon('15,0 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12'))+
+		svgf.id('Regulargon',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26'))+
+
+	dc+
+	'<div id=svgLines>'+
+
+		'<div>'+
+		
+			svgf.id('Line" hotkey="L',
+				'<defs>'+
+					svgf.marker('ArwE0Line',2,5,4,4,'',svgf.path(''))+
+					svgf.marker('ArwS0Line',8,5,4,4,'',svgf.path(''))+
+					svgf.marker('ArwE1Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9'))+
+					svgf.marker('ArwS1Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9'))+
+					svgf.marker('ArwE2Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9z'))+
+					svgf.marker('ArwS2Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9z'))+
+					svgf.marker('ArwE3Line',8,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
+					svgf.marker('ArwS3Line',2,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
+					svgf.marker('ArwE4Line',8,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
+					svgf.marker('ArwS4Line',2,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
+					svgf.marker('ArwE5Line',8,5,4,4,'',svgf.circle(5,5,4))+
+					svgf.marker('ArwS5Line',2,5,4,4,'',svgf.circle(5,5,4))+
+				'</defs>'+
+				svgf.line(11,24,19,'6" marker-end="url(#ArwE6Line)')
+			)+
+		
+			svgf.id('LineSq',svgf.line(6,24,24,6))+
+		
+			svgf.id('line1tick',svgf.path('M4 16 H26 M15 16 V11 M4 16 H26'))+
+			svgf.id('line2tick',svgf.path('M9 4 V21 M9 15 H5 M15 21 V25 M9 21 H26'))+
+		
+			svgf.id('linecurveH',svgf.path('M5 20 Q15 5 25 20'))+
+			svgf.id('linecurveV',svgf.path('M20 5 Q5 15 20 25'))+
+		dc+
+		
+		'<div>'+
+		
+			svgf.id('SLlineH',svgf.path('M6 6 V24 H20'))+
+			svgf.id('SLlineSqH',svgf.path('M6 6 V24 H24'))+
+		
+			svgf.id('SAlineH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H20'))+
+			svgf.id('SAlineSqH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H24'))+
+		
+			svgf.id('linearcH',svgf.path('M6 10 A18 5 0 1 1 6 20'))+
+			svgf.id('linearcV',svgf.path('M10 24 A5 18 0 1 1 20 24'))+
+		
+		dc+
+		
+		
+		'<div>'+
+		
+			svgf.id('ZLlineV',svgf.path('M6 6 V15 H24 V24'))+
+			svgf.id('ZAlineV',svgf.path('M6 6 V11 A4 4 0 0 0 10 15 H20 A4 4 0 0 1 24 19 V24'))+
+		
+		
+			svgf.id('ZLlineH',svgf.path('M6 6 H15 V24 H24'))+
+			svgf.id('ZAlineH',svgf.path('M6 6 H11 A4 4 0 0 1 15 10 V20 A4 4 0 0 0 19 24 H24'))+
+		
+		
+			svgf.id('linearc',svgf.path('M6 22 A22 12 0 0 1 24 8'))+
+		
+			svgf.id('linearcSq',svgf.path('M10 5 A10 10 0 0 1 10 25'))+
+		dc+
+		
+		'<div>'+
+		
+			svgf.id('LineCross',svgf.line([[6,15,24,15],[15,10,15,20]]))+
+		
+			svgf.id('LineSqCross',svgf.line([[3,15,27,15],[15,3,15,27]]))+
+		
+			svgf.id('DLlineH',svgf.path('M24 10 H6 V20 H24'))+
+			svgf.id('DLlineSqH',svgf.path('M24 6 H6 V24 H24'))+
+		
+			svgf.id('DAlineH',svgf.path('M24 10 H10 A4 4 0 0 0 6 14 V16 A4 4 0 0 0 10 20 H24'))+
+			svgf.id('DAlineSqH',svgf.path('M24 6 H10 A4 4 0 0 0 6 10 V20 A4 4 0 0 0 10 24 H24'))+
+		
+		dc+
+		
+		'<div>'+
+			svgf.id('LineX',svgf.line([[6,20,24,10],[6,10,24,20]]))+
+			svgf.id('LineSqX',svgf.line([[5,25,25,5],[5,5,25,25]]))+
+		
+			svgf.id('DLlineV',svgf.path('M10 24 V6 H20 V24'))+
+			svgf.id('DLlineSqV',svgf.path('M6 24 V6 H24 V24'))+
+		
+			svgf.id('DAlineV',svgf.path('M10 24 V10 A4 4 0 0 1 14 6 H16 A4 4 0 0 1 20 10 V24'))+
+			svgf.id('DAlineSqV',svgf.path('M6 24 V10 A4 4 0 0 1 10 6 H20 A4 4 0 0 1 24 10 V24'))+
+		
+		
+		dc+
+		
+		
+		'<div>'+
+			svgf.id('Line3TH',svgf.line([[5,15,5,8],[5,15,5,22],[5,15,25,15]]))+
+			svgf.id('Line3TV',svgf.line([[15,8,3,8],[15,8,27,8],[15,8,15,22]]))+
+		
+			svgf.id('Line3Y',svgf.line([[15,15,8,2],[15,15,22,2],[15,15,15,25]]))+
+			svgf.id('Line3YEqui',svgf.line([[15,15,3.7,21.5],[15,15,26.3,21.5],[15,15,15,2]]))+
+		
+			svgf.id('Line3YRight',svgf.line([[15,15,28,15],[15,15,15,6],[15,15,6,24]]))+
+			svgf.id('Line3YRightSq',svgf.line([[15,15,28,15],[15,15,15,2],[15,15,6,24]]))+
+		
+		dc+
+		
+		
+		
+		
+		'<div>'+
+			svgf.id('lineangleH',svgf.path('M28 22 H4 L28 10'))+
+			svgf.id('lineangleV',svgf.path('M11 25 V5 L20 25'))+
+		
+			svgf.id('lineIsoH',svgf.path('M24 6 L6 15 24 24'))+
+			svgf.id('lineIsoV',svgf.path('M6 24 L15 6 24 24'))+
+		
+			svgf.id('Line3EH',svgf.line([[2,15,28,15],[2,15,28,5],[2,15,28,25]]))+
+			svgf.id('Line3EV',svgf.line([[15,2,15,28],[15,2,5,28],[15,2,25,28]]))+
+		
+		dc+
+		
+		'<div>'+
+			svgf.id('lineangle30',svgf.path('M25 24 L7 24 25 14')+svgf.text('30°',[15,2,10]))+
+			svgf.id('lineangle45',svgf.path('M25 24 L7 24 25 6')+svgf.text('45°',[15,2,10]))+
+			svgf.id('lineangle60',svgf.path('M24 24 L6 24 16 6')+svgf.text('60°',[20,14,10]))+
+			svgf.id('lineangle120',svgf.text('120°',[20,2,12]))+
+			svgf.id('lineangle135',svgf.text('135°',[20,2,12]))+
+			svgf.id('lineangle150',svgf.text('150°',[20,2,12]))+
+		
+		dc+
+		
+		
+		
+		'<div>'+
+			svgf.id('lineIso30',svgf.path('M25 15 L7 20 25 25')+svgf.text('30°',[15,2,10]))+
+			svgf.id('lineIso45',svgf.path('M25 10 L7 17.5 25 25')+svgf.text('45°',[14,2,10]))+
+			svgf.id('lineIso60',svgf.path('M22 4.6 L4 15 22 25.4')+svgf.text('60°',[19,14,10]))+
+		
+			svgf.id('lineIso120',svgf.text('120°',[20,2,12]))+
+			svgf.id('lineIso135',svgf.text('135°',[20,2,12]))+
+			svgf.id('lineIso150',svgf.text('150°',[20,2,12]))+
+		dc+
+	dc+
+	'<div>'+
+		svgf.id('MoonNote',svgf.path('M5 20 A11 11 0 0 1 25 20 z'))+
+		svgf.id('MoonNoteEqui',svgf.path('M5 20 A10 10 0 0 1 25 20 z'))+
+		svgf.id('LfanNoteV',svgf.path('M15 20 L25 10 A15 15 0 0 0 5 10 z'))+						
+		svgf.id('LfanNoteH',svgf.path('M20 15 L10 25 A15 15 0 0 1 10 5 z'))+
+		svgf.id('AfanNoteV',svgf.path('M10 22 A13 13 0 0 1 20 22 L27 12 A15 15 0 0 0 3 12 z'))+
+		svgf.id('AfanNoteH',svgf.path('M22 10 A13 13 0 0 0 22 20 L12 27 A15 15 0 0 1 12 3 z'))+
+	dc+
+
+
+	'<div>'+
+		svgf.id('TriangonIsoV',svgf.polygon('8,25 15,5 22,25'))+
+		svgf.id('TriangonIsoH',svgf.polygon('5,22 25,15 5,8'))+
+
+		svgf.id('TriangonIso30',svgf.text('30°',[20,5,12]))+
+
+		svgf.id('TriangonIsoEqui',svgf.polygon('4,25 15,5 26,25'))+
+
+		svgf.id('TriangonIso120',svgf.text('120°',[20,2,12]))+
+
+		svgf.id('TriangonIso150',svgf.text('150°',[20,2,12]))+
+
+	dc+
+	'<div>'+
+
+
+		svgf.id('TriangonRighttH',svgf.polygon('7,5 7,25 23,25'))+
+		svgf.id('TriangonRighttV',svgf.polygon('7,5 23,5 23,25'))+
+
+		svgf.id('TriangonRightt15',svgf.text('15°',[20,5,12]))+
+		svgf.id('TriangonRightt30',svgf.text('30°',[20,5,12]))+
+
+		svgf.id('TriangonRighttEqui',svgf.polygon('5,5 5,25 25,25'))+
+
+		svgf.id('TriangonH',svgf.polygon('8,25 12,5 22,25'))+
+	dc+
+
+	'<div>'+
+
+
+		svgf.id('TriangonRightxH',svgf.polygon('5,20 25,20 20,11'))+
+		svgf.id('TriangonRightxV',svgf.polygon('10,5 10,25 19,20'))+
+
+		svgf.id('TriangonRightx15',svgf.text('15°',[20,5,12]))+
+		svgf.id('TriangonRightx30',svgf.text('30°',[20,5,12]))+
+
+		svgf.id('TriangonRightxEqui',svgf.polygon('2,21 28,22 15,8'))+
+
+		svgf.id('TriangonV',svgf.polygon('5,22 25,18 5,8'))+
+	dc+
+
+
+
+
+	'<div>'+
+
+		svgf.id('LStarNote',svgf.path('M7 15 A8 10 0 0 1 15 25 8 10 0 0 1 23 15 8 10 0 0 1 15 5 8 10 0 0 1 7 15 z'))+
+		svgf.id('LStarNoteSq',svgf.path('M5 15 A10 10 0 0 1 15 25 10 10 0 0 1 25 15 10 10 0 0 1 15 5 10 10 0 0 1 5 15 z'))+
+		svgf.id('AStarNote',svgf.path('M8 15 L13 17 15 25 17 17 22 15 17 13 15 5 13 13 z'))+
+		svgf.id('AStarNoteSq',svgf.path('M5 15 L13 17 15 25 17 17 25 15 17 13 15 5 13 13 z'))+
+
+
+	dc+
+
+
+
+	'<div>'+
+
+		svgf.id('LIGonRndT',svgf.path('M5 18 H12 V23 H18 V18 H25 V12 H18 V7 H12 V12 H5 z'))+
+		svgf.id('LIGonRndSqT',svgf.path('M6 18 H12 V24 H18 V18 H24 V12 H18 V6 H12 V12 H6 z'))+
+
+
+		svgf.id('AIGonRndT',svgf.path('M8 12 A3 3 0 0 0 8 18 H12 V20 A3 3 0 0 0 18 20 V18 H22 A3 3 0 0 0 22 12 H18 V10 A3 3 0 0 0 12 10 V12 z'))+
+		svgf.id('AIGonRndSqT',svgf.path('M8 12 A3 3 0 0 0 8 18 H12 V22 A3 3 0 0 0 18 22 V18 H22 A3 3 0 0 0 22 12 H18 V8 A3 3 0 0 0 12 8 V12 z'))+
+
+		svgf.id('LOGonRnd',svgf.path('M5 18 H10 V23 H20 V18 H25 V12 H20 V7 H10 V12 H5 z'))+
+		svgf.id('LOGonRndSq',svgf.path('M5 20 H10 V25 H20 V20 H25 V10 H20 V5 H10 V10 H5 z'))+
+	dc+
+
+	'<div>'+
+		svgf.id('LIGonRndX',svgf.path('M5 11 L10 15 5 19 8 23 15 18 22 23 25 19 20 15 25 11 22 7 15 12 8 7 z'))+
+		svgf.id('LIGonRndSqX',svgf.path('M5 10 L10 15 5 20 10 25 15 20 20 25 25 20 20 15 25 10 20 5 15 10 10 5 z'))+
+		svgf.id('AIGonRndSqX',svgf.path('M5 10 L10 15 5 20 A3.5 3.5 0 0 0 10 25 L 15 20 20 25 A3.5 3.5 0 0 0 25 20 L 20 15 25 10 A3.5 3.5 0 0 0 20 5 L 15 10 10 5 A3.5 3.5 0 0 0 5 10z'))+
+
+		svgf.id('DdartNoteF',svgf.path('M5 10 L10 15 5 20 H25 L20 15 25 10 H5 z'))+
+
+		svgf.id('QIGonRnd',svgf.path('M5 11 Q10 15 5 19 L8 23 Q15 18 22 23 L25 19 Q20 15 25 11 L22 7 Q15 12 8 7z'))+
+		svgf.id('QIGonRndSq',svgf.path('M5 10 Q10 15 5 20 L10 25 Q15 20 20 25 L25 20 Q20 15 25 10 L20 5 Q15 10 10 5z'))+
+
+
+
+	dc+
+
+	'<div>'+
+
+
+		svgf.id('DdartNoteM',svgf.path('M10 9 L5 15 10 21 H20 L25 15 20 9 z'))+
+
+		svgf.id('LGonRnd',svgf.path('M3 18 L8 23 H22 L27 18 V12 L22 7 H8 L3 12 z'))+
+		svgf.id('AGonRnd',svgf.path('M5 18 A5 5 0 0 1 10 23 H20 A5 5 0 0 1 25 18 V12 A5 5 0 0 1 20 7 H10 A5 5 0 0 1 5 12 z'))+
+		svgf.id('AGonRndSq',svgf.path('M5 20 A5 5 0 0 1 10 25 H20 A5 5 0 0 1 25 20 V10 A5 5 0 0 1 20 5 H10 A5 5 0 0 1 5 10 z'))+
+
+		svgf.id('AOGonRnd',svgf.path('M5 18 H10 V23 Q15 20 20 23 V18 H25 Q22 15 25 12 H20 V7 Q15 9 10 7 V12 H5 Q7 15 5 18z'))+
+		svgf.id('AOGonRndSq',svgf.path('M5 20 H10 V25 Q15 22 20 25 V20 H25 Q22 15 25 10 H20 V5 Q15 7 10 5 V10 H5 Q7 15 5 20 z'))+
+
+	dc+
+
+
+
+	'<div>'+
+
+
+		svgf.id('Paralgon',svgf.polygon('5,25 18,25 25,5 12,5'))+
+		svgf.id('TrapegonIso',svgf.polygon('10,5 20,5 25,25 5,25'))+
+		svgf.id('TrapegonRight',svgf.polygon('5,5 5,25 25,25 15,5'))+
+
+
+
+		svgf.id('PentagonT',svgf.polygon('15,2 27,12 23,26 7,26 3,12'))+
+
+		svgf.id('LGonRndSq',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 z'))+
+
+	dc+
+
+
+	'<div>'+
+		svgf.id('CurveDbl',svgf.path('M5 15 Q10 7 15 15 20 7 25 15'))+
+		svgf.id('SCurveWav',svgf.path('M5 15 Q10 5 15 15 T 25 15'))+
+		svgf.id('DCurveWav',svgf.path('M5 15 Q10 5 15 15 T 25 15 M5 15 Q10 25 15 15 T 25 15'))+
+
+		svgf.id('StriLinWav',svgf.path('M4 21 L10 10 15 20 20 10 26 21'))+
+		svgf.id('DtriLinWav',svgf.path('M5 21 L15 9 25 21 M25 9 L15 21 5 9'))+
+
+		svgf.id('rectLinWav',svgf.path('M5 22 V10 H10 V21 H15 V10 H20 V21 H25'))+
+	dc+
+
+	'<div>'+
+		svgf.id('SLinWavH',svgf.path('M5 21 L25 9 M15 15 H22 M5 21 H12'))+
+		svgf.id('SLinWavV',svgf.path('M5 21 L25 9 M15 15 V20 M25 9 V14'))+
+		svgf.id('DLinWavH',svgf.path('M5 21 L25 9 M8 15 H22'))+
+		svgf.id('DLinWavV',svgf.path('M5 21 L25 9 M15 10 V20'))+
+
+		svgf.id('ShvLinWav',svgf.path('M7 23 V18 H13 V13 H19 V8 H25'))+
+
+		svgf.id('DhvLinWav',svgf.path('M7 23 V18 H13 V13 H19 V8 H25 M7 23 H13 V18  H19 V13 H25 V8'))+
+
+	dc+
+
+	'<div>'+
+
+
+		svgf.id('LinWavX',svgf.path('M5 21 L25 9 M5 15 L15 21 M15 9 L25 15'))+
+
+		svgf.id('LinWavT',svgf.path('M4 15 H26 M10 10 V20 M20 10 V20'))+
+
+
+		svgf.id('LatticeInner',svgf.path('M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4'))+
+
+		svgf.id('Grid',svgf.rect(5,7,20,16)+svgf.line([[15,7,15,23],[5,15,25,15]]))+
+	dc+
+
+
+	'<div>'+
+
+		svgf.id('cuboid',svgf.path('M3 13 V23 H20 V13 H3 M3 13 L10 8 H27 L20 13 M20 23 L27 18 V8" class=dash stroke-linejoin="round')+
+			svgf.path('M10 8 V18 H27 M10 18 L3 23" class=dash stroke-dasharray="3,1'))+
+		svgf.id('cuboidSq',svgf.path('M4 11 V26 H19 V11 H4 M4 11 L11 5 H26 L19 11 M19 26 L26 20 V5" class=dash stroke-linejoin="round')+
+			svgf.path('M11 5 V20 H26 M11 20 L4 26" class=dash stroke-dasharray="3,1'))+
+
+
+		svgf.id('Ellipsoid',svgf.ellipse(15,15,12,10)+
+			svgf.path('M15 5 A2 5 0 0 0 15 25 M3 15 A12 2 0 0 0 27 15')+
+			svgf.path('M15 5 A2 5 0 0 1 15 25 M3 15 A12 2 0 0 1 27 15" class=dash stroke-dasharray="3,1'))+
+		svgf.id('EllipsoidSq',svgf.circle(15,15,10)+
+			svgf.path('M15 5 A1 5 0 0 0 15 25 M5 15 A5 1 0 0 0 25 15')+
+			svgf.path('M15 5 A1 5 0 0 1 15 25 M5 15 A5 1 0 0 1 25 15" class=dash stroke-dasharray="3,1'))+
+	dc+
+
+	'<div>'+
+
+
+		svgf.id('cylinderoidV',svgf.ellipse(15,6,10,4)+
+			svgf.path('M5 6 V22 A5 2 0 0 0 25 22 V6')+
+			svgf.path('M5 22 A5 2 0 0 1 25 22" class=dash stroke-dasharray="3,1'))+
+		svgf.id('cylinderoidH',svgf.ellipse(24,15,4,10)+
+			svgf.path('M23 5 H7 A2 5 0 0 0 7 25 H23')+
+			svgf.path('M7 5 A2 5 0 0 1 7 25" class=dash stroke-dasharray="3,1'))+
+		svgf.id('conoidOV',svgf.path('M15 2 L5 22 A5 2 0 0 0 25 22 L15 2')+
+			svgf.path('M5 22 A5 2 0 0 1 25 22" class=dash stroke-dasharray="3,1'))+
+		svgf.id('conoidOH',svgf.path('M2 15 L22 5 A2 5 0 0 1 22 25 L2 15')+
+			svgf.path('M22 5 A2 5 0 0 0 22 25" class=dash stroke-dasharray="3,1'))+
+		svgf.id('conoidIV',svgf.path(['M15 2 L5 22 A5 2 0 0 1 25 22 L15 2','M5 22 A5 2 0 0 0 25 22']))+
+		svgf.id('conoidIH',svgf.path(['M2 15 L22 5 A2 5 0 0 0 22 25 L2 15','M22 5 A2 5 0 0 1 22 25']))+
+	dc+
+
+	'<div>'+
+		svgf.id('fx',svgf.text('ƒ',[22,9,24]))+
+		svgf.id('capctx',svgf.text('JS',[24,4,22]))+
+	dc+
 dc+
-'<div>'+
-	svgf.id('LRect',svgf.rect(5,7,20,16))+
-	svgf.id('LRectSq',svgf.rect(5,5,20,20))+
-	svgf.id('ARect" tip="Round Corner" hotkey="R',svgf.rect(5,6,20,'18" rx=5 ry="5'))+
-	svgf.id('ARectSq',svgf.rect(5,5,20,'20" rx=5 ry="5'))+
-	svgf.id('Ellipse',svgf.ellipse(15,15,12,10))+
-	svgf.id('EllipseSq',svgf.circle(15,15,10))+
-
-dc+
-'<div>'+
-	svgf.id('diagon',svgf.polygon('7,15 15,5 23,15 15,25'))+
-
-	svgf.id('diagonSq',svgf.polygon('5,15 15,5 25,15 15,25'))+
-
-	svgf.id('SLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V7 z'))+
-	svgf.id('SANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V7 z'))+
-	svgf.id('DLNoteRnd',svgf.path('M11 7 L5 13 V23 H25 V13 L19 7 z'))+
-	svgf.id('DANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V14 A7 7 0 0 0 18 7 z'))+
-
-dc+
-'<div>'+
-	svgf.id('dartNote',svgf.path('M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z'))+
-	svgf.id('SdartNoteM',svgf.path('M5 7 V23 H17 L25 15 17 7 H5 z'))+
-	svgf.id('SdartNoteF',svgf.path('M5 7 L13 15 5 23 H25 V7 z'))+
-	svgf.id('Sarrow',svgf.path('M5 11 V19 H15 V25 L25 15 15 5 V11 H5z'))+
-	svgf.id('Darrow',svgf.path('M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z'))+
-	svgf.id('Xarrow',svgf.path('M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z'))+
 
 
-dc+
-'<div>'+
-	svgf.id('Quo',svgf.path('M5 12 A2 2 0 0 0 7 15 H13 A2 2 0 0 1 15 18 2 2 0 0 1 17 15 H23 A2 2 0 0 0 25 12'))+
-	svgf.id('Polylin',svgf.path('M6 24 L13 9 17 21 24 6'))+
-	svgf.id('PolyGon',svgf.path('M5 20 L20 25 25 10 15 5z'))+
-	svgf.id('HeartNote',svgf.path('M15 8 C15 7 14 5 10 5 C4 5 4 10 4 10 C4 16 8 20 15 24 C22 20 26 16 26 12 C26 12 26 5 20 5 C17 5 15 7 15 8z'))+
-	svgf.id('PentagonX',svgf.polygon('15,0 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12'))+
-	svgf.id('Regulargon',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26'))+
 
-dc+
-'<div id=svgLines>'+
+'<div id=svgTog>'+
+	svgf.id('svgPg1',svgf.line(10,15,20,15))+
+	svgf.id(zlrA('svgPg',seqA(2,4)),svgf.circle(15,15,5)).join('')+
 
-	'<div>'+
-	
-		svgf.id('Line" hotkey="L',
-			'<defs>'+
-				svgf.marker('ArwE0Line',2,5,4,4,'',svgf.path(''))+
-				svgf.marker('ArwS0Line',8,5,4,4,'',svgf.path(''))+
-				svgf.marker('ArwE1Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9'))+
-				svgf.marker('ArwS1Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9'))+
-				svgf.marker('ArwE2Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9z'))+
-				svgf.marker('ArwS2Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9z'))+
-				svgf.marker('ArwE3Line',8,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
-				svgf.marker('ArwS3Line',2,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
-				svgf.marker('ArwE4Line',8,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
-				svgf.marker('ArwS4Line',2,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
-				svgf.marker('ArwE5Line',8,5,4,4,'',svgf.circle(5,5,4))+
-				svgf.marker('ArwS5Line',2,5,4,4,'',svgf.circle(5,5,4))+
-			'</defs>'+
-			svgf.line(11,24,19,'6" marker-end="url(#ArwE6Line)')
-		)+
-	
-		svgf.id('LineSq',svgf.line(6,24,24,6))+
-	
-		svgf.id('line1tick',svgf.path('M4 16 H26 M15 16 V11 M4 16 H26'))+
-		svgf.id('line2tick',svgf.path('M9 4 V21 M9 15 H5 M15 21 V25 M9 21 H26'))+
-	
-		svgf.id('linecurveH',svgf.path('M5 20 Q15 5 25 20'))+
-		svgf.id('linecurveV',svgf.path('M20 5 Q5 15 20 25'))+
-	dc+
-	
-	'<div>'+
-	
-		svgf.id('SLlineH',svgf.path('M6 6 V24 H20'))+
-		svgf.id('SLlineSqH',svgf.path('M6 6 V24 H24'))+
-	
-		svgf.id('SAlineH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H20'))+
-		svgf.id('SAlineSqH',svgf.path('M6 6 V20 A4 4 0 0 0 10 24 H24'))+
-	
-		svgf.id('linearcH',svgf.path('M6 10 A18 5 0 1 1 6 20'))+
-		svgf.id('linearcV',svgf.path('M10 24 A5 18 0 1 1 20 24'))+
-	
-	dc+
-	
-	
-	'<div>'+
-	
-		svgf.id('ZLlineV',svgf.path('M6 6 V15 H24 V24'))+
-		svgf.id('ZAlineV',svgf.path('M6 6 V11 A4 4 0 0 0 10 15 H20 A4 4 0 0 1 24 19 V24'))+
-	
-	
-		svgf.id('ZLlineH',svgf.path('M6 6 H15 V24 H24'))+
-		svgf.id('ZAlineH',svgf.path('M6 6 H11 A4 4 0 0 1 15 10 V20 A4 4 0 0 0 19 24 H24'))+
-	
-	
-		svgf.id('linearc',svgf.path('M6 22 A22 12 0 0 1 24 8'))+
-	
-		svgf.id('linearcSq',svgf.path('M10 5 A10 10 0 0 1 10 25'))+
-	dc+
-	
-	'<div>'+
-	
-		svgf.id('LineCross',svgf.line([[6,15,24,15],[15,10,15,20]]))+
-	
-		svgf.id('LineSqCross',svgf.line([[3,15,27,15],[15,3,15,27]]))+
-	
-		svgf.id('DLlineH',svgf.path('M24 10 H6 V20 H24'))+
-		svgf.id('DLlineSqH',svgf.path('M24 6 H6 V24 H24'))+
-	
-		svgf.id('DAlineH',svgf.path('M24 10 H10 A4 4 0 0 0 6 14 V16 A4 4 0 0 0 10 20 H24'))+
-		svgf.id('DAlineSqH',svgf.path('M24 6 H10 A4 4 0 0 0 6 10 V20 A4 4 0 0 0 10 24 H24'))+
-	
-	dc+
-	
-	'<div>'+
-		svgf.id('LineX',svgf.line([[6,20,24,10],[6,10,24,20]]))+
-		svgf.id('LineSqX',svgf.line([[5,25,25,5],[5,5,25,25]]))+
-	
-		svgf.id('DLlineV',svgf.path('M10 24 V6 H20 V24'))+
-		svgf.id('DLlineSqV',svgf.path('M6 24 V6 H24 V24'))+
-	
-		svgf.id('DAlineV',svgf.path('M10 24 V10 A4 4 0 0 1 14 6 H16 A4 4 0 0 1 20 10 V24'))+
-		svgf.id('DAlineSqV',svgf.path('M6 24 V10 A4 4 0 0 1 10 6 H20 A4 4 0 0 1 24 10 V24'))+
-	
-	
-	dc+
-	
-	
-	'<div>'+
-		svgf.id('Line3TH',svgf.line([[5,15,5,8],[5,15,5,22],[5,15,25,15]]))+
-		svgf.id('Line3TV',svgf.line([[15,8,3,8],[15,8,27,8],[15,8,15,22]]))+
-	
-		svgf.id('Line3Y',svgf.line([[15,15,8,2],[15,15,22,2],[15,15,15,25]]))+
-		svgf.id('Line3YEqui',svgf.line([[15,15,3.7,21.5],[15,15,26.3,21.5],[15,15,15,2]]))+
-	
-		svgf.id('Line3YRight',svgf.line([[15,15,28,15],[15,15,15,6],[15,15,6,24]]))+
-		svgf.id('Line3YRightSq',svgf.line([[15,15,28,15],[15,15,15,2],[15,15,6,24]]))+
-	
-	dc+
-	
-	
-	
-	
-	'<div>'+
-		svgf.id('lineangleH',svgf.path('M28 22 H4 L28 10'))+
-		svgf.id('lineangleV',svgf.path('M11 25 V5 L20 25'))+
-	
-		svgf.id('lineIsoH',svgf.path('M24 6 L6 15 24 24'))+
-		svgf.id('lineIsoV',svgf.path('M6 24 L15 6 24 24'))+
-	
-		svgf.id('Line3EH',svgf.line([[2,15,28,15],[2,15,28,5],[2,15,28,25]]))+
-		svgf.id('Line3EV',svgf.line([[15,2,15,28],[15,2,5,28],[15,2,25,28]]))+
-	
-	dc+
-	
-	'<div>'+
-		svgf.id('lineangle30',svgf.path('M25 24 L7 24 25 14')+svgf.text('30°',[15,2,10]))+
-		svgf.id('lineangle45',svgf.path('M25 24 L7 24 25 6')+svgf.text('45°',[15,2,10]))+
-		svgf.id('lineangle60',svgf.path('M24 24 L6 24 16 6')+svgf.text('60°',[20,14,10]))+
-		svgf.id('lineangle120',svgf.text('120°',[20,2,12]))+
-		svgf.id('lineangle135',svgf.text('135°',[20,2,12]))+
-		svgf.id('lineangle150',svgf.text('150°',[20,2,12]))+
-	
-	dc+
-	
-	
-	
-	'<div>'+
-		svgf.id('lineIso30',svgf.path('M25 15 L7 20 25 25')+svgf.text('30°',[15,2,10]))+
-		svgf.id('lineIso45',svgf.path('M25 10 L7 17.5 25 25')+svgf.text('45°',[14,2,10]))+
-		svgf.id('lineIso60',svgf.path('M22 4.6 L4 15 22 25.4')+svgf.text('60°',[19,14,10]))+
-	
-		svgf.id('lineIso120',svgf.text('120°',[20,2,12]))+
-		svgf.id('lineIso135',svgf.text('135°',[20,2,12]))+
-		svgf.id('lineIso150',svgf.text('150°',[20,2,12]))+
-	dc+
-dc+
-'<div>'+
-	svgf.id('MoonNote',svgf.path('M5 20 A11 11 0 0 1 25 20 z'))+
-	svgf.id('MoonNoteEqui',svgf.path('M5 20 A10 10 0 0 1 25 20 z'))+
-	svgf.id('LfanNoteV',svgf.path('M15 20 L25 10 A15 15 0 0 0 5 10 z'))+						
-	svgf.id('LfanNoteH',svgf.path('M20 15 L10 25 A15 15 0 0 1 10 5 z'))+
-	svgf.id('AfanNoteV',svgf.path('M10 22 A13 13 0 0 1 20 22 L27 12 A15 15 0 0 0 3 12 z'))+
-	svgf.id('AfanNoteH',svgf.path('M22 10 A13 13 0 0 0 22 20 L12 27 A15 15 0 0 1 12 3 z'))+
 dc
-
-
 
 );
 	$('#translate').text(function (i, v) { return gM(this.id + '.Math') });
@@ -1458,8 +1657,8 @@ dc
 	$('#svgTog svg').on('click', function () {
 		var me = $(this), id = me.attr('id');
 
-		me.html('<line x1="10" y1="15" x2="20" y2="15" stroke="yellow" fill="yellow"></line>');
-		me.siblings().html('<circle r="5" cx="15" cy="15" stroke="white" fill="none"></circle>');
+		me.html(svgf.line(10,15,20,15,'yellow','yellow'));
+		me.siblings().html(svgf.circle(15,15,5));
 
 		var n = +id.replace('svgPg', ''), divSib = $('#svgTool').nextAll(), divs = divSib.not(':has(div)').add(divSib.find('div')), divi = divs.eq(n - 1);
 		divi = divs.slice(6 * (n - 1), 6 * n);

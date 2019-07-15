@@ -352,7 +352,7 @@ function drawOn(){$('#tileTool').attr('tip',gM('shotTip')+'/Ctrl')}
 function drawEnd(e){
 	L.drawEnd='';
 	L.drawEnd2='';
-	$('#svgShape svg[id]').eq(0).mouseout();
+	//$('#svgShape svg[id]').eq(0).mouseout();
 	var shp=L.drawShape, shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
 	if(/Poly/.test(shp)){
 		
@@ -670,7 +670,7 @@ function scrn(t,o){
 	}
 
 	ctx.save();
-	$('#svgShape svg[id]').eq(0).mouseout();
+	//$('#svgShape svg[id]').eq(0).mouseout();
 }
 
 

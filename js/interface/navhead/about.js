@@ -5,7 +5,7 @@
  */
 navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
-		DCtv('alignc pd10',XML.wrapE('h1','zzllrr Mather')+XML.wrapE('h2','V2019.7.10'))+
+		DCtv('alignc pd10',XML.wrapE('h1','zzllrr Mather')+XML.wrapE('h2','V2019.7.15'))+
 		ul([
 			'Live Demo: '+href(Hs+'zzllrr.github.io/mather'),
 			'on GitHub: '+href(Hs+'github.com/zzllrr/mather'),
@@ -22,7 +22,11 @@ navhead['about']=fieldseth(gM('Version'),
 		
 			XML.wrapE('h2', gM('donatip0'))+
 			`<div id=donaCN>
+				<div class=pd10>
+					<img src="img/Weixinpay.jpg" title="微信赞赏" />
 
+					<div id=donaWeixin><img src="img/F1weixinPay.jpg" title="微信赞赏" /></div>
+				</div>
 				<div id=donaQR>
 					<div class=via>
 
@@ -33,11 +37,7 @@ navhead['about']=fieldseth(gM('Version'),
 					<span id=donaV2qqPay class=donaV2 title="QQ钱包"></span>
 					
 				</div>
-				<div class=pd10>
-					<img src="img/Weixinpay.jpg" title="微信赞赏" />
 
-					<div id=donaWeixin><img src="img/F1weixinPay.jpg" title="微信赞赏" /></div>
-				</div>
 			</div>
 
 			<div id=donaAbroad>

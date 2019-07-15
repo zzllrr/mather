@@ -1454,53 +1454,55 @@ var svgf = {
 	marker:function(id,rx,ry,w,h,vBox,chd){
 		return '<marker id='+id+' refX='+(rx||8)+' refY='+(ry||5)+' markerWidth='+(w||4)+' markerHeight='+(h||4)+' viewBox="'+(vBox||'0 0 10 10')+'">'+chd+'</marker>'
 	},
-	path: function (d) {
+	path: function (d, strk,fil) {
 		if(isArr(d)){
 			return Arrf(svgf.path,d)
 		}
-		return '<path d="' + d + '" stroke="white" fill="none"></path>'
+		return '<path d="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></path>'
 	}, 
-	polygon: function (d) {
+	polygon: function (d, strk,fil) {
 		if(isArr(d)){
 			return Arrf(svgf.polygon,d)
 		}
-		return '<polygon points="' + d + '" stroke="white" fill="none"></polygon>'
+		return '<polygon points="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></polygon>'
 	}, 
-	text: function (text, yxSize) {
+	text: function (text, yxSize, strk, fil) {
 		if(isArr(text,2)){
 			return Arrf(function(x){return svgf.text.apply(null, x)},text)
 		}
-		return '<text y="' + (yxSize ? yxSize[0] : 22) + '" x="' + (yxSize ? yxSize[1] : 6) + '" font-size="' + (yxSize ? yxSize[2] : 16) + '" fill="white">' + text + '</text>'
+		return '<text y="' + (yxSize ? yxSize[0] : 22) + '" x="' + (yxSize ? yxSize[1] : 6) + '" font-size="' + (yxSize ? yxSize[2] : 16) + '"'+(strk?' stroke="'+(strk||'white')+'"':'')+' fill="'+(fil||'white')+'">' + text + '</text>'
 	}, 
-	rect: function (x, y, w, h) {
+	rect: function (x, y, w, h, strk,fil) {
 		if(isArr(x,2)){
 			return Arrf(function(i){return svgf.rect.apply(null, i)},x)
 		}
-		return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + (h || w) + '" stroke="white" fill="none"></rect>'
+		return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + (h || w) + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></rect>'
 	}, 
-	circle: function (cx, cy, r) {
+	circle: function (cx, cy, r, strk,fil) {
 		if(isArr(cx,2)){
 			return Arrf(function(x){return svgf.circle.apply(null, x)},cx)
 		}
-		return '<circle r="' + (r||1) + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></circle>'
+		return '<circle r="' + (r||1) + '" cx="' + cx + '" cy="' + cy + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></circle>'
 	}, 
-	line: function (x1, y1, x2, y2) {
+	line: function (x1, y1, x2, y2, strk, fil) {
 		if(isArr(x1,2)){
 			return Arrf(function(x){return svgf.line.apply(null, x)},x1)
 		}
-		return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="white" fill="none"></line>'
+		return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></line>'
 	}, 
-	ellipse: function (cx, cy, rx, ry) {
+	ellipse: function (cx, cy, rx, ry, strk, fil) {
 		if(isArr(cx,2)){
 			return Arrf(function(x){return svgf.ellipse.apply(null, x)},cx)
 		}
-		return '<ellipse rx="' + rx+ '" ry="' + ry + '" cx="' + cx + '" cy="' + cy + '" stroke="white" fill="none"></line>'
+		return '<ellipse rx="' + rx+ '" ry="' + ry + '" cx="' + cx + '" cy="' + cy + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></ellipse>'
 	}, 
-	id: function (id,v,noVieWBox,w) {
+	id: function (id,v,noVieWBox,w, strk, fil) {
 		if(isArr(id,2)){
 			return Arrf(function(x){return svgf.id.apply(null, x)},id)
+		}else if(isArr(id)){
+			return Arrf(function(x){return svgf.id(x,v,noVieWBox,w)},id)
 		}
-		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="white" fill="none" stroke-width="'+(w||2)+'">'+v+'</svg>'
+		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+v+'</svg>'
 	}
 }, svgs = {
 	imgr: svgf.path('M11 5 H19 V15 H25 L15 25 5 15 H11 V5z')
