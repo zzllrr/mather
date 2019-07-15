@@ -1190,7 +1190,7 @@ E|F|G
 			['LaTeX',sceg('$x^2=4$')].join(''),
 			['ID',sceg('$x^2=4$#'+gM('Formula')+'1#')].join(''),
 			[gM('Reference'),sceg('$@'+gM('Formula')+'1@$')].join(''),
-
+			[gM('JavaScript'),sceg('$$2+3$$')].join('')
 		].join(br))+
 
 		detail(gM('Exam'),[
@@ -1219,9 +1219,9 @@ E|F|G
 	
 			[gM('Code Block'),sceg('``` ABC ```')].join(''),
 
-			['JavaScript eval '+gM('Code Result'),sceg('$$2+3$$')].join(''),
-	
-
+			['JavaScript eval ('+gM('Formula')+')',sceg('$$2+3$$')].join(''),
+			['JavaScript eval ('+gM('at first'),sceg('<js>1+2+3</js>'),sceg("<js>svgf.id('',svgf.circle(15,15,10,'red'))</js>",4)].join(''),
+			['JavaScript eval ('+gM('at last'),sceg('<JS>1+2+3</JS>')].join(''),
 		].join(br))
 
 

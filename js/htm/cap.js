@@ -171,10 +171,11 @@ $(function () {
 				'<select id=svgTextM></select>',
 				'<textarea id=svgTexts placeholder="My Clipboard"></textarea>',
 				'','id=svgTEXT')+
-			'<select id=strkFill tip=fill>'+Options([0,1,2],ZLR('□ ▣ ■')).join('')+'</select>'+
-			'<select id=svgArwE tip=arrow></select>'+
-			'<select id=svgArwS tip=arrow></select>'+
-			'<select id=svgLine tip=dash></select>'+
+			'<select id=strkFill tip=fill>'+optgrp(gM('fill'),Options([0,1,2],ZLR('□ ▣ ■')).join(''))+'</select>'+
+			'<select id=svgArwE tip=arrow>'+optgrp(gM('arrow'),Options(seqA(0, 10), ' ∧△◇□○▲◆■●'.split('')).join(''))+'</select>'+
+			'<select id=svgArwS tip=arrow>'+optgrp(gM('arrow'),Options(seqA(0, 10), ' ∧△◇□○▲◆■●'.split('')).join(''))+'</select>'+
+			'<select id=svgLine tip=dash>'+optgrp(gM('dash'),Options(seqA(0, 3), '￣﹉﹊'.split('')).join(''))+'</select>'+
+
 			'<select id=strkLnJoin>'+Options(ZLR('round miter bevel'),ZLR('﹙ ﹤ ﹝')).join('')+'</select>'+
 			'<select id=strkLnCap>'+Options(ZLR('butt round square'),ZLR('[ ( ▌')).join('')+'</select>'+dc+
 	
@@ -268,7 +269,7 @@ $(function () {
 
 
 		svgf.id('ellipseNote',svgf.path('M8 18 L7 25 13 20 A10 8 0 1 0 8 18z'))+
-		svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11 25 V4 M18 25 V4 M4 4 H26 V26 H4 V4'))+
+		svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11.5 25 V4 M18.5 25 V4 M4 4 H26 V26 H4 V4'))+
 
 
 	dc+
@@ -714,7 +715,7 @@ dc
 	});
 
 	$('#TextBoxTool summary').text(gM('Editor')).after(DCtv('hidden" for="Canvas',`
-	<div id=canvasMenu>
+	<div id=canvasMenu class=pd10>
 
 		<i class=mi id=bg tip="bg">photo_size_select_actual</i>
 		<i class=mi id=grid tip="Grid">grid_on</i>
@@ -1415,10 +1416,6 @@ dc
 
 
 
-
-	$('#svgArwE,#svgArwS').append(Options(seqA(0, 10), ' ∧△◇□○▲◆■●'.split('')).join(''));
-
-	$('#svgLine').append(Options(seqA(0, 3), '￣﹉﹊'.split('')).join('')); //﹋﹌
 
 
 	var c = $('#tileToolCap svg[id]').not('#Pointer,#allEraser,#Text,[id^=svgPg]').children().not('defs');

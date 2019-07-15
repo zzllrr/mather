@@ -544,7 +544,9 @@ lang['zh_cn'] = {
 	'Append':'添加',
 	'Focus': '聚焦',
 	'Begin': '开始',
+	'at first': '最先',
 	'End': '结束',
+	'at last': '最终',
 	'Start': '开始',
 	'Finish': '完成',
 

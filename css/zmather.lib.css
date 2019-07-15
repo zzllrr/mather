@@ -597,13 +597,11 @@ summary ~ details summary{
 	font-size:1.5rem;
 }
 
-#subject select, #menu i {
+#menu i {
 	font-size:1.5rem;
 }
-#iContent select, #iContent input{
-	font-size:1.4rem;
-}
-#menu select{
+
+select,input{
 	font-size:1.3rem;
 }
 .level:not(.seled):not(:hover){

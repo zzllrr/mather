@@ -1502,7 +1502,7 @@ var svgf = {
 		}else if(isArr(id)){
 			return Arrf(function(x){return svgf.id(x,v,noVieWBox,w)},id)
 		}
-		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+v+'</svg>'
+		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+v+'</svg>'
 	}
 }, svgs = {
 	imgr: svgf.path('M11 5 H19 V15 H25 L15 25 5 15 H11 V5z')
@@ -2690,7 +2690,7 @@ function md2html(str, sep) {
 		lnk = {}, footlnk = {}, footlnkA = [],
 		mlnk = {}, mA = [], mlnkA = [],
 		s = '\n' + str + '\n';
-
+	s=s.replace(/<js>.+<\/js>/g,function(t){return eval(t.substr(4,t.length-9))});
 	while (/\n\[[^\]]+\]:.+/.test(s)) {
 		s = s.replace(/\n\[[^\]]+\]:.+/, function (x) {
 			var k = x.split(']:')[0].substr(2), v = x.replace(/\n\[[^\]]+\]:/, '').replace(/ +/g, ' ').trim(), isfoot = /^\^/.test(k);
@@ -3025,6 +3025,8 @@ function md2html(str, sep) {
 		});
 	}
 	consolelog(s);
+
+	s=s.replace(/<JS>.+<\/JS>/g,function(t){return eval(t.substr(4,t.length-9))});
 
 	return s.replace(/^\n+/, '').replace(/\n+$/, '\n').replace(/\n/g, sep === undefined ? br : sep)
 

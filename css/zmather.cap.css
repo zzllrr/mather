@@ -24,7 +24,7 @@
 #copyDir,#eraserDir,#svgTEXT select,#svgTool textarea{font-size:18px}
 #svgTool > div{padding:5px}
 #Weib{margin:5px}
-#fontCSS span{margin:10px}
+#fontCSS span, #CssFilter div{margin:10px}
 
 #svgShape, #svgCssTransform > div{margin:10px 0;border-radius: 5px;}
 
@@ -120,7 +120,9 @@ input:not([readonly]), select{
 }
 #COLOR summary input[readonly] {
     margin: 2px;
-    width: 16px;
+	width: 16px;
+	height: 16px;
+	text-align: center;
 }
 #color1{background:skyblue}
 #color2{background:pink}
