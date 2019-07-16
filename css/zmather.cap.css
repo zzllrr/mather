@@ -95,10 +95,10 @@
 
 #svgTEXTBox{
 	position: fixed;
-    right: 50%;
+    right: 0;
     z-index: 400000;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: gainsboro;
    
 }
 
@@ -112,9 +112,6 @@ body {
     overflow-x: hidden;
 }
 
-input[type=number] {
-    width: 50px;
-}
 input:not([readonly]), select{
     vertical-align: middle;
 }

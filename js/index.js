@@ -624,13 +624,13 @@ $(function(){
 	}).on('click','.eg', function(e){
 
 		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey,
-		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js');
+		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'),tbt=me.parents('#TextBoxTool').length;
 		if(isjs){
 			t+=';\n'
 		}else{
 			t=t.replace(/&&/g,'\n')
 		}
-		if(!i1){
+		if(!i1 && !tbt){
 			toolTip('<input type=text value="'+t+'" />');
 			$('#bar input').select();
 			document.execCommand('copy', false, null);
@@ -639,8 +639,8 @@ $(function(){
 			return
 		}
 		
-		i1=i1.replace(/\D/g,'');
-		var is2=me.is('.eg2'),i=$('#input'+i1),iv=i.val();
+		i1=tbt?'svgTEXTBox':i1.replace(/\D/g,'');
+		var is2=me.is('.eg2'),i=tbt?$('#TextBox'):$('#input'+i1),iv=i.val();
 
 		
 		if(is2){
@@ -660,7 +660,7 @@ $(function(){
 			
 		}else{
 			i.val(t);
-			if($('#preview.seled').length){
+			if(!tbt && $('#preview.seled').length){
 				preDisplay()
 			}
 			return
@@ -674,7 +674,7 @@ $(function(){
 		i[0].selectionStart=s2;
 		i[0].selectionEnd=s2;
 		
-		if($('#preview.seled').length){
+		if(!tbt && $('#preview.seled').length){
 			preDisplay()
 		}
 
@@ -1213,6 +1213,11 @@ var preDisplay=function(){
 			
 		}else if(iv=='Canvas'){
 			try{
+				
+				$('#input0Preview').html('<canvas width=300 height=300></canvas>');
+				//var ican=$('#ican'),c=ican[0].getContext('2d')`,0),
+
+				var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
 				eval(v);
 			}catch(e){
 				w.html(v)

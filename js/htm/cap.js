@@ -714,7 +714,8 @@ dc
 		$(this).parent().parent().prev().val(function (i, v) { return (v ? v + '\n' : '') + x })
 	});
 
-	$('#TextBoxTool summary').text(gM('Editor')).after(DCtv('hidden" for="Canvas',`
+	$('#TextBoxTool summary').text(gM('Editor')).after(DCtv('hidden" for="Canvas',tooltip.Canvas+`
+	
 	<div id=canvasMenu class=pd10>
 
 		<i class=mi id=bg tip="bg">photo_size_select_actual</i>
@@ -859,6 +860,7 @@ dc
 					<span>
 						<i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 />
 					</span>
+					<br/>
 					<span>
 						<i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color />
 					</span>
@@ -872,6 +874,7 @@ dc
 						<i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5
 							size=10 />
 					</span>
+					<br/>
 					<span>
 						<i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color />
 					</span>
@@ -904,6 +907,7 @@ dc
 					<span>
 						<i18>Primary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" size=10 />
 					</span>
+					<br />
 					<span>
 						<i18>Primary Grid Color</i18><input type=color value="#a0a0a0" class=color />
 					</span>
@@ -921,7 +925,7 @@ dc
 						<i18>Secondary Grid Dash</i18><input type=text class=dash placeholder="2,4,2" value=5
 							size=10 />
 					</span>
-
+					<br />
 					<span>
 						<i18>Secondary Grid Color</i18><input type=color value="#cecece" class=color />
 					</span>
@@ -1020,7 +1024,7 @@ dc
 							placeholder="200 200,300 300,d45 l100;" size=60 />
 					</div>
 					<div>
-						<i18>Round Corner Radii</i18><input type=text class=rad2 placeholder="0,10" />
+						<i18>Round Corner</i18> <i18>Radii</i18><input type=text class=rad2 placeholder="0,10" />
 					</div>
 					<div><label>
 							<i18>Closed</i18> (<i18>Polygon</i18>) <input type=checkbox class=close />
@@ -1175,14 +1179,14 @@ dc
 	var colorTmpl=DCtv('stroke',
 			'<label>'+gM('Stroke')+strchkbx0+'class=strokeon checked=checked /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+
+			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
 			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
 		)+DCtv('fill',
 			'<label>'+gM('Fill')+strchkbx0+'class=fillon /></label>'+
 			'<input type=color value="#000000" class=color />'+
-			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+
+			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
 			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
 			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
@@ -1234,7 +1238,7 @@ dc
 		}else{
 			me.removeClass('toggle');
 		}
-
+		pa.siblings().children('.toggle').toggleClass('toggle').next().hide()
 	}).on('click','#aniControl .mi',function(){
 		var me=$(this),id=this.id.substr(3), L=localStorage;
 		
@@ -1682,8 +1686,8 @@ dc
 		$('#scrW').val(w);
 		$('#scrH').val(h);
 	});
-	$('#Caps').on('mousedown', 'svg, textarea, span[id]', function (e) { mDn(e) }).on('mousemove', 'svg, textarea, span[id]', function (e) { mMv(e) }).on('mouseup', 'svg, textarea, span[id]', function (e) { mUp(e) });
-	$('#caps').on('mousedown', function (e) { mDn(e) }).on('mousemove', function (e) { mMv(e) }).on('mouseup', function (e) { mUp(e) });
+	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) }).on('mousemove', 'svg, textarea, span[id]', function (e) { mMv(e) }).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e) });
+	$('#caps').on('mousedown touchstart', function (e) { mDn(e) }).on('mousemove', function (e) { mMv(e) }).on('mouseup touchend', function (e) { mUp(e) });
 
 	var t = zlr('#url', 'Img Cap', ',') + ',#Caps textarea, .urlImg';
 
@@ -2327,7 +2331,7 @@ function clk_popout(obj) {
 			if(iT=='Canvas'){
 				$e.html('<canvas width='+A[2]+' height='+A[3]+'></canvas>');
 
-				var c=new ctt($e.children(),+A[2],+A[3]);
+				var C=new ctt($e.children(),+A[2],+A[3]),c=C.ctx;
 				eval(v);
 
 			}
