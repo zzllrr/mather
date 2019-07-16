@@ -211,6 +211,8 @@ lang['zh_cn'] = {
 	'Mask': '遮罩',
 	'Clipboard': '剪贴板',
 
+	'Instant':'即时',
+	'Timeout':'延时',
 	'Text': '文本',
 	'Image': '图片',
 	'Mic': '麦克风',

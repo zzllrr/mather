@@ -2690,7 +2690,7 @@ function md2html(str, sep) {
 		lnk = {}, footlnk = {}, footlnkA = [],
 		mlnk = {}, mA = [], mlnkA = [],
 		s = '\n' + str + '\n';
-	s=s.replace(/<js>.+<\/js>/g,function(t){return eval(t.substr(4,t.length-9))});
+	s=s.replace(/<js>([\s\S](?!<\/js>))+[\s\S]?<\/js>/g,function(t){return eval(t.substr(4,t.length-9).trim())});
 	while (/\n\[[^\]]+\]:.+/.test(s)) {
 		s = s.replace(/\n\[[^\]]+\]:.+/, function (x) {
 			var k = x.split(']:')[0].substr(2), v = x.replace(/\n\[[^\]]+\]:/, '').replace(/ +/g, ' ').trim(), isfoot = /^\^/.test(k);
@@ -3026,7 +3026,8 @@ function md2html(str, sep) {
 	}
 	consolelog(s);
 
-	s=s.replace(/<JS>.+<\/JS>/g,function(t){return eval(t.substr(4,t.length-9))});
+	s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,function(t){setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
+
 
 	return s.replace(/^\n+/, '').replace(/\n+$/, '\n').replace(/\n/g, sep === undefined ? br : sep)
 

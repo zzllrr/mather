@@ -703,7 +703,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 }
 .toolTip{
-	padding:5px;
+	padding:2px;
 	opacity:0;
 	background:limegreen;
 	color:white;

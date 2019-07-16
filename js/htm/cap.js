@@ -1686,8 +1686,8 @@ dc
 		$('#scrW').val(w);
 		$('#scrH').val(h);
 	});
-	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) }).on('mousemove', 'svg, textarea, span[id]', function (e) { mMv(e) }).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e) });
-	$('#caps').on('mousedown touchstart', function (e) { mDn(e) }).on('mousemove', function (e) { mMv(e) }).on('mouseup touchend', function (e) { mUp(e) });
+	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) }).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) { mMv(e) }).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e) });
+	$('#caps').on('mousedown touchstart', function (e) { mDn(e) }).on('mousemove touchmove', function (e) { mMv(e) }).on('mouseup touchend', function (e) { mUp(e) });
 
 	var t = zlr('#url', 'Img Cap', ',') + ',#Caps textarea, .urlImg';
 
@@ -2012,7 +2012,7 @@ dc
 	toggleColor();
 	setTimeout(function () {
 		$('body > progress').hide().prevAll('div').toggle();
-	}, 200);
+	}, 100);
 });
 
 

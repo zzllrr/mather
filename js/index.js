@@ -1008,19 +1008,33 @@ consolelog('最终A = ',A);
 		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Project')+' | '+gM('Script')+'":"Echarts"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
 		)
 	).on('change', function(){
-		var v=$(this).val(), it=$('#input0Tip [data-tool="'+v+'"]'), tv=tooltip[v];
+		var v=$(this).val(), it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
 
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
 		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
 			i<0?[[0]]:[[0,2,4],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
 		)));
 		$('.inputTypeTip').remove();
+
+		var opti=$(this).find('option[value='+v+']').parent().index();
+
 		if(tv && it.length<1){
 			$('#input0Tip').append(detail(v,tv,'','class="inputTip inputTypeTip" data-tool='+v));
 
+			if(/[23]/.test(opti)){
+				$('.inputTip.inputTypeTip').last().prevAll().remove();
+			}
+
+			if(v=='Markdown'){
+				$('.inputTip.inputTypeTip').append(Arrf(function(x){
+					return detail(x,tooltip[x],'','class="inputTip inputTypeTip" data-tool='+x)
+				},ZLR('Canvas SVG JavaScript')).join(''));
+			}
 		}
 		
-		if($('#navHide.seled').length<1 && /[23]/.test($(this).find('option[value='+v+']').parent().index())){
+		
+		if($('#navHide.seled').length<1 && /[23]/.test(opti)){
+
 			$('#navHide').click()
 		}
 

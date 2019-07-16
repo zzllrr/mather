@@ -945,7 +945,7 @@ two.transferImageBitmap(b2);
 		
 		].join(br)),
 	
-	].join(br)),
+	].join('')),
 	
 	detail('3D',[
 		detail(gM('3D Animation'),[
@@ -961,8 +961,8 @@ var ican=$('#ican'),gl=ican[0].getContext('webgl');
 		].join(br)),
 	
 	
-	].join(br)),
-	].join(''),
+	].join('')),
+	].join(br),
 
 
 
@@ -1222,16 +1222,20 @@ E|F|G
 		
 		detail(gM('Code'),[
 		
-	
 			[gM('Code Block'),sceg('``` ABC ```')].join(''),
 
 			['JavaScript eval ('+gM('Formula')+')',sceg('$$2+3$$')].join(''),
-			['JavaScript eval ('+gM('at first'),sceg('<js>1+2+3</js>'),sceg("<js>svgf.id('',svgf.circle(15,15,10,'red'))</js>",4)].join(''),
-			['JavaScript eval ('+gM('at last'),sceg('<JS>1+2+3</JS>')].join(''),
-		].join(br))
+			['JavaScript eval ('+gM('Instant')+')',sceg('<js>1+2+3</js>'),sceg("<js>svgf.id('',svgf.circle(15,15,10,'red'))</js>",4)].join(''),
+			['JavaScript eval ('+gM('Timeout')+')',sceg('<JS>1+2+3</JS>')].join('')
+		].join(br))+
 
-
+		detail(gM('Canvas'),[
 	
+			['HTML',sceg('<canvas id=c1></canvas>')].join(''),
+			['JavaScript ('+gM('Initialize')+')',sceg("<JS>var C=new ctt('#c1',200,100),c=C.ctx;</JS>",4)].join(''),
+			['Canvas JS',sceg("<JS>c.strokeRect(10, 20, 50, 50);</JS>",4)].join(''),
+		].join(br)),
+
 	].join(br),
 
 
