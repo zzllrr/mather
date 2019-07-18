@@ -133,7 +133,7 @@ $(function () {
 		svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
 		svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
 		svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
-		svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16))+
+		svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
 		svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1'))+
 		'<div id=scrWH>'+
 			i18('W')+num('0" title=px id="scrW',1)+
