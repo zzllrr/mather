@@ -179,21 +179,47 @@ summary{
 	border:0;
 }
 
-.bds{
+
+body:not(.night) .bds{
 	border: solid black 1px;
 }
 
-.bdr{
-	border-right: outset black 1px;
+body:not(.night) .bdr{
+	border-right: solid black 1px;
 }
 
-.bdl{
-	border-left: outset black 1px;
+body:not(.night) .bdl{
+	border-left: solid black 1px;
 }
 
-.bdt{
-	border-top: outset black 1px;
+body:not(.night) .bdt{
+	border-top: solid black 1px;
 }
+
+body:not(.night) .bdb{
+	border-bottom: solid black 1px;
+}
+
+.night .bds{
+	border: solid gainsboro 1px;
+}
+
+.night .bdr{
+	border-right: solid gainsboro 1px;
+}
+
+.night .bdl{
+	border-left: solid gainsboro 1px;
+}
+
+.night .bdt{
+	border-top: solid gainsboro 1px;
+}
+
+.night .bdb{
+	border-top: solid gainsboro 1px;
+}
+
 
 .inblk:not(.notm),.vam, #bar, #bar span{
 	vertical-align: middle;

@@ -70,14 +70,66 @@ blockquote{
     background-color: rgba(242,97,9,.1);
     border-radius: 10px;
 }
-.bdb{
-    border-bottom: outset black 1px;
-}
+
 code, pre{
     background: rgba(0,0,0,0.1);
     border-radius: 5px;
     padding:2px
 }
+
+
+body:not(.night) .bds{
+	border: solid black 1px;
+}
+
+body:not(.night) .bdr{
+	border-right: solid black 1px;
+}
+
+body:not(.night) .bdl{
+	border-left: solid black 1px;
+}
+
+body:not(.night) .bdt{
+	border-top: solid black 1px;
+}
+
+body:not(.night) .bdb{
+	border-bottom: solid black 1px;
+}
+
+.night .bds{
+	border: solid gainsboro 1px;
+}
+
+.night .bdr{
+	border-right: solid gainsboro 1px;
+}
+
+.night .bdl{
+	border-left: solid gainsboro 1px;
+}
+
+.night .bdt{
+	border-top: solid gainsboro 1px;
+}
+
+.night .bdb{
+	border-top: solid gainsboro 1px;
+}
+
+.collapse{border-collapse: collapse}
+.pd10{
+	padding:10px
+}
+.mg10{
+	margin:10px
+}
+.mg20{
+	margin:20px
+}
+
+
 	`),
 	};
 
@@ -1045,6 +1097,7 @@ array命令下		()	[]	\{\}	||	\|
 		return lrp('\\left' + (c ? (A[t.indexOf(c[0])] || c[0]) : (l || '(')) + ' ', v, '\\right' + (c ? (A[t.indexOf(c[1] || c[0])] || c[0]) : (r || ')')) + ' ', '')
 	},
 	pp = function (v, c, l, r) { if (v === '') { return '' } return (c ? c[0] : (l || '(')) + v + (c ? c[1] : (r || ')')) },
+	big = function (size, lr, lmr) {return '\\'+(['big','Big','bigg','Bigg'][size||0]+(lmr||''))+'()[]{}'[lr||0].replace(/[\{\}]/g,'\\$&') },
 	frac = function (t, b, zM) { var nob = b == undefined, t3 = arguments.length >= 3; return t3 ? '\\' + (/^[td]$/.test(zM) ? zM : '') + 'frac{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '\\partial ' : '') + t + '}{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '\\partial ' : '') + b + '}' : SCtv('inblk alignc', SCtv('alignc', nob ? t[0] : t) + DCtv('fracline') + SCtv('alignc', nob ? t[1] : b)) },
 
 	root = function (t, n, s, zM) {
