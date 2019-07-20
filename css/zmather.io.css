@@ -25,7 +25,7 @@
 }
 
 
-.sbsTbl td, #input0Tool input{
+.sbsTbl td, #iTextMain input{
 	font: normal 1.3rem KaTeX_Main,Times New Roman,serif;
 }
 
@@ -75,14 +75,13 @@
 	background: rgba(162,195,97,.1);
 }
 
-.seled:not(div){
+.seled:not(div):not(.subhead):not(textarea){
 	border-color:gray;
 	background: yellow;
+	color: gray;
 }
 
-.bdb{
-	border-bottom: outset black 1px;
-}
+
 
 blockquote{
     padding:0 10px;

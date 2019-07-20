@@ -1142,13 +1142,7 @@ var toolSwitch=function(x){
 	$(G).show();
 	$('#subject').toggle(/^solve|course|drill/.test(x));
 	
-	if(!/^solve|graphic|show|course|drill/.test(x)){
-		
-		$('#iTextFold:contains(unfold_less)').click();
-	}else{
-		$('#iTextFold:contains(unfold_more)').click();
-		
-	}
+
 	
 	if(x=='graphic'){
 		$('#preview.seled').click();
@@ -1171,7 +1165,15 @@ var MfS=function(x,typ){return Mtrx.fromStr(x,typ)},
 function dayOrNight(){
 	var isnight=L.night=='true';
 	//$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});
-	$('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});	
+	$('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
+	if(isnight){
+		$('#oHTML svg *[stroke=black]').attr('stroke','gainsboro');
+		$('#oHTML svg *[fill=black]').attr('fill','gainsboro');	
+	}else{
+		$('#oHTML svg *[stroke=gainsboro]').attr('stroke','black');	
+		$('#oHTML svg *[fill=gainsboro]').attr('fill','black');	
+	}
+	
 }
 
 var preDisplay=function(){

@@ -24,6 +24,12 @@
 	opacity:0
 }
 
+.logo{
+	animation: hue 12s linear infinite;
+
+}
+
+
 @media print{
   
   
@@ -108,7 +114,7 @@ sup,sub,.small{
 body.day, .day textarea{
 	color:black;
 }
-.gainsboro, body.night, .night textarea, .night input:not(.seled){
+.gainsboro, body.night, .night textarea, .night input:not(.seled):not(:hover){
 	color:gainsboro;
 }
 body.night{
@@ -170,6 +176,9 @@ summary{
 	padding: 5px;
 }
 
+#input0Preview{
+	min-height:185px;
+}
 #previewTool{
 	padding: 10px 2px;
 }
@@ -217,7 +226,7 @@ body:not(.night) .bdb{
 }
 
 .night .bdb{
-	border-top: solid gainsboro 1px;
+	border-bottom: solid gainsboro 1px;
 }
 
 
@@ -340,9 +349,61 @@ input[type=text],#wiki>span,.brad{
 	border-style:ridge;
 }
 
-.ground0{
-	border-bottom: dotted 1px blue;
+.ground > div:not(.tasks){
+	border-radius:10px;
 }
+#solveGround > div:not(.tasks){
+	border-left: solid 10px rgb(65, 105, 225,.5);
+	border-right: solid 10px rgb(65, 105, 225,.5);
+}
+
+#graphicGround > div:not(.tasks){
+	border-left: solid 10px rgb(255, 105, 180,.5);
+	border-right: solid 10px rgb(255, 105, 180,.5);
+}
+
+#showGround > div:not(.tasks){
+	border-left: solid 10px rgb(138, 43, 226,.5);
+	border-right: solid 10px rgb(138, 43, 226,.5);
+}
+#wikiGround > div:not(.tasks){
+	border-left: solid 10px rgb(153, 51, 102,.5);
+	border-right: solid 10px rgb(153, 51, 102,.5);
+}
+#courseGround > div:not(.tasks){
+	border-left: solid 10px rgb(153, 102, 51,.5);
+	border-right: solid 10px rgb(153, 102, 51,.5);
+}
+
+#drillGround > div:not(.tasks){
+	border-left: solid 10px rgb(204, 204, 102,.5);
+	border-right: solid 10px rgb(204, 204, 102,.5);
+}
+
+#topicGround > div:not(.tasks){
+	border-left: solid 10px rgb(0, 153, 51,.5);
+	border-right: solid 10px rgb(0, 153, 51,.5);
+}
+#pitfallGround > div:not(.tasks){
+	border-left: solid 10px rgb(204, 51, 102,.5);
+	border-right: solid 10px rgb(204, 51, 102,.5);
+}
+#unsolvedGround > div:not(.tasks){
+	border-left: solid 10px rgb(102, 51, 0,.5);
+	border-right: solid 10px rgb(102, 51, 0,.5);
+}
+
+#thoughtGround > div:not(.tasks){
+	border-left: solid 10px rgb(102, 153, 204,.5);
+	border-right: solid 10px rgb(102, 153, 204,.5);
+}
+#referGround > div:not(.tasks){
+	border-left: solid 10px rgb(139, 0, 0,.5);
+	border-right: solid 10px rgb(139, 0, 0,.5);
+}
+
+
+
 .bdtdash{
 	border-top:dashed black 1px;
 }
@@ -477,9 +538,7 @@ input[type=text],#wiki>span,.brad{
 	max-width:45px;
 }
 
-#input0,#input1,#input2{
-	min-width:25%;
-}
+
 
 #input0Tip,#input1Tip{
 	max-width:74%;
@@ -487,8 +546,9 @@ input[type=text],#wiki>span,.brad{
 }
 
 #input0,#input1,#input2{
-	min-height:160px;
+	min-height:200px;
 	background:rgba(50, 205, 50, 0.5);
+	border:0;
 }
 #outputOpt{
 	background: rgba(0,0,0,0.1);
@@ -560,7 +620,6 @@ input[type=text],#wiki>span,.brad{
 #input0Tip{
 	counter-reset:cnt0 0;
 	margin: 2px;
-	background: #eee;
 }
 #input0Tip .eg:not(.eg2):before{
 	content: "#" counter(cnt0) " ";
@@ -578,7 +637,7 @@ input[type=text],#wiki>span,.brad{
 }
 
 
-#iTextOpt:not(:hover) #zMatherHide, #previewOpt:not(:hover) #output0Type{
+#iTextOpt:not(:hover) #zMatherHide{
 	display: none
 }
 .inblk{
@@ -595,10 +654,13 @@ summary ~ details summary{
 	padding-left: 15px;
 }
 
-.inputTip,.ground,.ground > div{
-	margin:5px
+.inputTip{
+	margin:5px;
 }
-
+.resize,.inputTip,#input0Preview,#input0Tool{
+	overflow: auto;
+    resize: auto;
+}
 #cvsbg{
 	width:98%;
 	z-index:-1;
@@ -610,6 +672,12 @@ summary ~ details summary{
     margin: 5px;
     border-radius: 4px 10px;
     cursor: pointer;
+}
+
+.logo{
+    color: white;
+	border-radius: 4px 10px;
+	background:limegreen;
 }
 
 .level,[name=tool] + span, .sechResult{
@@ -699,7 +767,7 @@ select,input{
 	background:darkred;
 }
 
-.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
+[name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;
 }
 
@@ -710,7 +778,7 @@ select,input{
 textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview,#previewTool{
+.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
 	background: rgba(162,195,97,.1);
 }
 
@@ -796,7 +864,8 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 .tasks{
     background: rgba(0,0,0,.1);
-    border-radius: 5px;
+	border-radius: 5px;
+	margin: 5px;
 }
 img{
 	cursor: pointer;
@@ -881,7 +950,8 @@ img{
 }
 
 .mi.toggle, .tool:hover{
-	background:yellow
+	background:yellow;
+	color: black;
 }
 
 
@@ -915,4 +985,9 @@ input[len="2"]{
 }
 .multinput{
 	-webkit-appearance:radio
+}
+
+@keyframes hue {
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(360deg); }
 }

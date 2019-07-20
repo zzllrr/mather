@@ -108,6 +108,7 @@
 
 
 				<div id=iTextMain>
+
 					<div id=input0Preview contentEditable=true class="pd10" hidden></div>
 
 					<textarea id=input0></textarea>
@@ -118,11 +119,20 @@
 
 					
 
-						<p class="iTextLaTeXon">
-							<input type=button id=sbson class=tool value=α />
-							<input type=button id=funcson class=tool value=ƒ />
-							<input type=button id=strucon class=tool value=∑ />
-						</p>
+						<div id=previewOpt>
+								<select id=input0Type></select>
+								<br />
+								<input type=button id=preview class="tool seled" value=⇄ />
+								<span class="iTextLaTeXon">
+										<input type=button id=sbson class=tool value=α />
+										<input type=button id=funcson class=tool value=ƒ />
+										<input type=button id=strucon class=tool value=∑ />
+									</span>
+								<br />
+								<select id=output0Type></select>
+							</div>
+
+
 
 						<input type="file" accept="image/*" capture="camera" hidden />
 						<input type="file" accept="image/*" multiple="multiple" hidden />
@@ -133,7 +143,6 @@
 							<input id=Condon class="tool" type=button value=⋮ />
 						</p>
 
-						
 						
 					</div>
 
@@ -168,13 +177,7 @@
 						<i class=mi id=displayOverCanvas tip=copy2Canvas>arrow_downward</i>
 						<i class=mi id=downloadPreview tip="Download HTML File | savetip">file_download</i>
 					</span>
-					<span class=opac id=previewOpt>
-						<select id=input0Type></select>
 
-						<input type=button id=preview class="tool seled" value=⇄ />
-
-						<select id=output0Type></select>
-					</span>
 				</div>
 
 

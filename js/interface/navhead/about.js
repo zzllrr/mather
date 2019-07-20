@@ -5,10 +5,10 @@
  */
 navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
-		DCtv('alignc pd10',XML.wrapE('h1','zzllrr Mather')+XML.wrapE('h2','V2019.7.15'))+
+		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+XML.wrapE('h2','V2019.7.20'))+
 		ul([
-			'Live Demo: '+href(Hs+'zzllrr.github.io/mather'),
-			'on GitHub: '+href(Hs+'github.com/zzllrr/mather'),
+			'Demo: '+href(Hs+'zzllrr.github.io/mather'),
+			'GitHub: '+href(Hs+'github.com/zzllrr/mather'),
 
 		]),
 		DCtv('pd10 Summarytip',XML.wrapE('h4',gM('Summary'))+
