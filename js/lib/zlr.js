@@ -380,15 +380,21 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	},
 	fcb = function (c, b, t) { return '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
 	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + t + '</textarea>' },
-	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { return SC + '"' + t + '">' + (v || '') + sc },
+	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return SCtv(t,x)},v)} return SC + '"' + t + '">' + (v || '') + sc },
 	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' },
-	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { return DC + '"' + t + '">' + (v || '') + dc },
+	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
 	i18=function(x){return XML.wrapE('i18',x)},
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
 	fieldseth = function (s, v, c, h) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
+	subtabs = function (hA,vA,seli) { if(seli==-1){
+		return DCtv('subtabs',DCtv('subtabheads', SCtv('subtabhead',hA).join(''))+DCtv('subtab',vA).join(''))
+		}else{var j=seli||0;
+		return DCtv('subtabs',DCtv('subtabheads', Arrf(function(x,i){return SCtv('subtabhead'+(i==j?' seled':''),x)},hA).join(''))+Arrf(function(x,i){return DCtv('subtab'+(i==j?'':' hidden'),x)},vA).join(''))
+		}
+	},
 	detail = function (s, v, o, c) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary>' + s + '</summary>' + v + '</details>' },
 	zdetail = function (s, v, notsk, notvk, notEdit, o) {
 		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
@@ -440,7 +446,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
 	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
-	KxA = function (A) { return Table([[SCtv('oLaTeX" tip="thtip', 'LaTeX'), '⌫']], [[Kx(A.join(kbr2))]], 'edit','','OHLaTeX').replace('bds>⌫','"bds Clear oClear" tip=Clear>⌫') },
+	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), '⌫']],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX').replace('bds>⌫','"bds Clear oClear" tip=Clear>⌫') },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))

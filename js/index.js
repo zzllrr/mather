@@ -24,7 +24,7 @@ $(function(){
 	$('#logo').addClass('seled').text(gM('zzllrr Mather')).after(
 		Arrf(function(i){
 			return SCtv('subhead" id="'+i,+gM(i))
-		},ZLR('whitepaper hotkey API about')).join('')
+		},ZLR('hotkey API about')).join('')
 	);
 	
 	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought refer');
@@ -61,6 +61,7 @@ $(function(){
 
 	});
 	
+
 	$('#menu').nextAll().hide();
 
 
@@ -580,7 +581,10 @@ $(function(){
 
 
 
-
+	}).on('click','.subtabhead',function(e){
+		var me=$(this).addClass('seled'), pa=me.parent(), i=me.index(),shft=e.shiftKey;
+		me.siblings('.subtabhead').removeClass('seled');
+		pa.parent().find('.subtab').hide().eq(i).show();
 
 
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){

@@ -184,12 +184,9 @@ summary{
 }
 .collapse{border-collapse: collapse}
 
-.edit > thead th{
-	border:0;
-}
 
 
-body:not(.night) .bds{
+body:not(.night) .bds:not(.Clear){
 	border: solid black 1px;
 }
 
@@ -209,7 +206,7 @@ body:not(.night) .bdb{
 	border-bottom: solid black 1px;
 }
 
-.night .bds{
+.night .bds:not(.Clear){
 	border: solid gainsboro 1px;
 }
 
@@ -495,7 +492,7 @@ input[type=text],#wiki>span,.brad{
 .mg10{
 	margin:10px
 }
-.mg20{
+.mg20, .subtabheads{
 	margin:20px
 }
 .mgr10{
@@ -666,7 +663,7 @@ summary ~ details summary{
 	z-index:-1;
 }
 
-#navhead span{
+#navhead span,.subtabhead{
     color: white;
 	padding: 6px 20px;
     margin: 5px;
@@ -702,7 +699,7 @@ select,input{
 	opacity:.5
 }
 
-.subhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
+.subhead:not(.seled),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
 	background:black;
 }
 .task:not(.seled),.taskname{
@@ -767,7 +764,7 @@ select,input{
 	background:darkred;
 }
 
-[name=tool]:checked + span,.subhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
+[name=tool]:checked + span,.subhead.seled,.subtabhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;
 }
 

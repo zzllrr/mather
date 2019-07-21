@@ -75,7 +75,7 @@
 	background: rgba(162,195,97,.1);
 }
 
-.seled:not(div):not(.subhead):not(textarea){
+.seled:not(div):not(.subhead):not(.subtabhead):not(textarea){
 	border-color:gray;
 	background: yellow;
 	color: gray;
