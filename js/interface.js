@@ -1067,7 +1067,7 @@ var ican=$('#ican'),gl=ican[0].getContext('webgl');
 			
 			[XML.wrapE('del',gM('Strikeline')),sceg('~~ABC~~')].join(''),
 			[XML.wrapE('mark',gM('Highlight')),sceg('==ABC==')].join(''),
-			[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__'),sceg('__$\\phantom{\\quad A \\quad}$__'),].join(''), 
+			[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__'),sceg('__$\\phantom{\\quad A \\quad}$__',0),].join(''), 
 				
 	
 			[scHotk('Ctrl + Q'),gM('Blockquote'),Arrf(sceg,['> ABC','\n> A\n> > B\n> > > C'])].join(''),

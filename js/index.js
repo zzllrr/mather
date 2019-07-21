@@ -919,7 +919,7 @@ consolelog('最终A = ',A);
 		$('#zMather').toggle();
 		me.text('keyboard_arrow_'+(isup?'down':'up'));
 
-		$('#Caps,#lang').hide();
+		$('#lang').hide();
 		$('#Lang').show();
 
 	});
@@ -1235,7 +1235,6 @@ var preDisplay=function(){
 			try{
 				
 				$('#input0Preview').html('<canvas width=300 height=300></canvas>');
-				//var ican=$('#ican'),c=ican[0].getContext('2d')`,0),
 
 				var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
 				eval(v);
@@ -1251,7 +1250,8 @@ var preDisplay=function(){
 			w.html(v);
 
 		}else if(iv=='Echarts'){
-			w.width('40%').height(function(i,v){return +v+300});
+
+			w.empty();
 			Graphic.drawSVG('echarts',v,'',w);
 		
 

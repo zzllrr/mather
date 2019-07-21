@@ -13,7 +13,7 @@ var protocol_keywords={
 
 navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
-		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+XML.wrapE('h2','V2019.7.21'))+
+		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+XML.wrapE('h2','V2019.7.22'))+
 		ul([
 			'Demo: '+href(Hs+'zzllrr.github.io/mather'),
 			'GitHub: '+href(Hs+'github.com/zzllrr/mather'),
