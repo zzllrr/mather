@@ -369,7 +369,7 @@ var HOM = {
 };
 
 var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
-	num = function (x, min, max) { return '<input type=number value="' + x + '" min='+(min||0)+' ' + (max ? 'max= ' + max : '') + '/>' },
+	num = function (x, min, max) { return '<input type=number value="' + x + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
 	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
 	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
 	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', txtreadonly = function (x) { return '<input type=text readonly value="' + fnq(x) + '" />' },

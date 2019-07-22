@@ -63,12 +63,8 @@ $(function () {
 
 	//val
 
-	$('#font,#fontSize').on('change keyup mouseup', function () {
-		L[this.id] = this.value;
-		if (/font/.test(this.id)) { changeTextCSS() }
-	})
-	$('#fontSize').val(function () { return L[this.id] || 24 });
-	$('#font').val(function () { return L[this.id] || 'Microsoft Yahei' });
+
+
 
 	$('.clrCanvas').val(gM('clear'));
 
@@ -77,7 +73,7 @@ $(function () {
 	$(':button[value=""], :button:not([value])').val(function () { return gM(this.id) });
 
 	// change
-	$('select,:color,:range,:number').not('#editOpt :number').on('change', function () { cng_popout(this) });
+//	$('select,:color,:range,:number').not('#editOpt :number').on('change', function () { cng_popout(this) });
 
 
 	$('#tileToolCap img').attr('src', 'img/ZIL.png');
@@ -158,7 +154,7 @@ $(function () {
 			'<span id=TextBoxContainer hidden>'+
 				num('300" id="TextBoxW')+
 				num('200" id="TextBoxH')+sc+
-			strbtn+'-- OK --" id=TextBoxGo />',
+			strbtn+' OK " id=TextBoxGo />',
 			'<textarea id=TextBox></textarea>'+
 			detail('','','','id=TextBoxTool hidden'),
 			1,'id=svgTEXTBox')+
@@ -180,7 +176,7 @@ $(function () {
 			'<select id=strkLnCap>'+Options(ZLR('butt round square'),ZLR('[ ( ▌')).join('')+'</select>'+dc+
 	
 		'<div id=SvgOpt>'+
-			detail(i18('FontSize')+num('24" id=fontSize title="px','',12)+
+			detail(i18('FontSize')+num('24" id=fontSize title="px',12)+
 					rng('','','2" step=1 tip=center id="tileFontCenter'),
 				'<div id=fontCSS>'+SCtv('bold" title="B')+SCtv('italic" title="I')+SCtv('underline')+SCtv('overline')+SCtv('through')+dc+
 				'<div>'+i18('fonT')+'<input type=text id=font list=CSS_fontfamily />'+dc,
@@ -708,6 +704,8 @@ dc
 	]).join('') + dc);
 
 
+	$('#fontSize').val(function () { return L[this.id] || 24 });
+	$('#font').val(function () { return L[this.id] || 'Microsoft Yahei' });
 
 	$('.JS').on('click', function () {
 		var x = $(this).text();
@@ -1790,7 +1788,7 @@ dc
 	}).on('change', '#Color :range, #Color :color, select, #svgTexts', function () {
 		cng_cap(this)
 
-	}).on('change keyup mouseup', '#tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text', function () {
+	}).on('change keyup mouseup', '#tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text, #font', function () {
 		cng_cap(this)
 
 	}).on('paste', t, function (e) {
@@ -2008,7 +2006,6 @@ dc
 		});
 
 
-
 	toggleColor();
 	setTimeout(function () {
 		$('body > progress').hide().prevAll('div').toggle();
@@ -2045,7 +2042,10 @@ function cng_cap(obj) {
 		$('#copyTileOn').toggle(v.length > 1)
 	}
 
-
+	if( id == 'font' || id =='fontSize'){
+		L[this.id] = this.value;
+		changeTextCSS();
+	}
 
 
 	var shpN = L.drawShapeNow || 'unknown', isTxt = /Text/.test(shpN), sp = $('#' + shpN);
@@ -2389,7 +2389,7 @@ function cng_popout(obj) {
 
 
 	if (id == 'svgTexts') {
-	L[id] = v;
+		L[id] = v;
 		$('#svgTextM').html(Options(v.split('')).join(''));
 	}
 	if (id == 'svgTextN') { $('#svgTextAdd').click() }
