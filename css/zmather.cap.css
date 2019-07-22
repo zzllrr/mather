@@ -12,7 +12,7 @@
     width: 16px;
 }
 
-#tileToolCap svg[id]{width:45px;height:45px}
+#tileToolCap svg[id]{width:3rem;height:3rem}
 
 #tileFontCenter{width:40px}
 
@@ -64,7 +64,7 @@
 	height:20px;
 	z-index: 1;
 }
-#Caps textarea:hover{resize:auto;overflow:auto}
+#Caps textarea:hover, #svgShapes{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
 #TextBox,#SVGcode{
@@ -95,12 +95,14 @@
 
 #svgTEXTBox{
 	position: fixed;
-    right: 30%;
+    left: 30%;
     z-index: 400000;
     top: 0;
-    background-color: gainsboro;
+
+	overflow: scroll;
+    resize: auto;
+}	
    
-}
 
 #Tile > table td{padding:0}
 

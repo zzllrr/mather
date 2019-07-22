@@ -17,8 +17,9 @@ function mUp(e,Last){
 		isGON2=isGON || /Ellipse(Sq)?$/.test(shp), isGON3=isGON2 || /(fan|Moon|Star)Note/.test(shp),
 		isgon=isGON && /LRect|gon/i.test(shp), istrigon=/Triangon/.test(shp),
 		
+		X=document.documentElement.scrollLeft+(e.clientX||e.originalEvent.changedTouches[0].clientX),
+		Y=document.documentElement.scrollTop+(e.clientY||e.originalEvent.changedTouches[0].clientY),
 		
-		X=document.documentElement.scrollLeft+e.clientX, Y=document.documentElement.scrollTop+e.clientY,
 		pos=shpN.position(),lt=pos?pos.left:0,tp=pos?pos.top:0, zi=[2000],Z, chd=shpN.children(), chdm=chd.filter('.main'), chdmp=chdm.attr('points'), chdmd=chdm.attr('d'),
 		w0=Math.abs(X-(+L.X0)), h0=Math.abs(Y-(+L.Y0)), sw=+$('#strkW').val(), d=Math.ceil(sw/2),
 		WD=shpN.width(),HT=shpN.height(), WgH=WD>HT, WD2=WD/2,HT2=HT/2, WH2=(WD+HT)/2, WH_2=Math.abs((WD-HT)/2);

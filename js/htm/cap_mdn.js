@@ -9,7 +9,9 @@ function mDn(e){
 	var eos=e.originalEvent.srcElement, act=eos.tagName, DEG='';
 
 	if(act!='CANVAS'){e.stopPropagation()}
-	var X=document.documentElement.scrollLeft+e.clientX, Y=document.documentElement.scrollTop+e.clientY;
+	consolelog(e);
+	var X=document.documentElement.scrollLeft+(e.clientX||e.originalEvent.changedTouches[0].clientX),
+	 Y=document.documentElement.scrollTop+(e.clientY||e.originalEvent.changedTouches[0].clientY);
 	L.X=X;
 	L.Y=Y;
 
@@ -292,8 +294,10 @@ function mDn(e){
 		$(c+'X').val(X);
 		$(c+'Y').val(Y);
 		$(c+'Z').val(Z);
-		$('#WH').text(WD+'×'+HT);
-		$('#Angle').text(DEG);
+
+		$('#ContainerW').val(WD);
+		$('#ContainerH').val(HT);
+		$('#angle').val(DEG);
 	}
 }
 
@@ -325,7 +329,7 @@ function fromTextarea(typ,v,A,sty){
 
 	return SCtv('cap'+type+' capfromTextarea" data-texttype="'+typ+'"'+(sty?sty:idStyle('',A))+';font-size:'+sz+'px;'+
 		'z-index:'+($('#Caps').children('svg, textarea, span').length+2001)+';'+
-		'background:transparent;color:'+hex2rgba(fg,fgOpa)+';border-color:'+hex2rgba(bg,bgOpa)+';border-width:'+
+		'background:transparent;color:'+hex2rgba(fg,fgOpa)+';border-style:solid;border-color:'+hex2rgba(bg,bgOpa)+';border-width:'+
 		(sty?sw:0)+'px;opacity:'+(sty?fgOpa:1)+';text-align:'+(sty?pos:'center')+
 		(v && /Markdown|Canvas|Echarts/.test(typ)?'" data-text="'+escape(v):''),'')
 }
@@ -779,9 +783,9 @@ function tileToolCap(t, val){
 	$('#capctxTXT').toggle(L.drawShape=='capctx');
 
 	$('#FontSize,#fontSize,#Font').toggle(txt);//#svgTexts,
-	$('#svgTEXT').toggle(txt && isntP);
+	$('#svgTEXT').toggle(txt);// && isntP);
 	$('#svgTEXTBox').toggle(!val && txt || isFromTextarea || id=='allEraser');
-	$('#TextBoxContainer').toggle(id!='allEraser');
+
 	
 	$('#svgTextN,#svgTextDetail').toggle(txt && isntP && $('#svgText').val()!='0');
 
@@ -800,7 +804,7 @@ function tileToolCap(t, val){
 
 
 
-	$('#Color > details:eq(1)').toggle(txt || !isLn && fil>0);
+	//$('#Color > details:eq(1)').toggle(txt || !isLn && fil>0);
 
 
 	$('#copyNum').toggle(/Dbl|Wav|Copy|1tick/.test(id));
@@ -884,9 +888,17 @@ function tileToolCap(t, val){
 
 	//val
 
+	if(id=='allEraser'){
+		$('#TextBoxType').val('Canvas').attr('disabled','disabled')
+
+	}else{
+		$('#TextBoxType').removeAttr('disabled')
+	}
+
+
 	if(val){
 		if(id=='allEraser'){
-			$('#TextBoxType').val('Canvas').change();
+			$('#TextBoxType').change();
 			$('#TextBoxTool').attr('open','open');
 			var vs=$('#caps').attr('data-val')||'';
 			if(vs){

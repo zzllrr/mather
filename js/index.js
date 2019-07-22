@@ -1083,7 +1083,7 @@ consolelog('最终A = ',A);
 		
 	})
 
-	$('#panel').on('click','#zMatherOn ~ i',function(){
+	$('#panel').on('click','#lang ~ i',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(/^svgs$/.test(id)){

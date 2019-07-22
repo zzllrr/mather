@@ -22,8 +22,8 @@ $(function () {
 
 	setTimeout(function () {
 
-
-		$('#allEraser').click();
+		$('#Pointer').click();
+		//$('#allEraser').click();
 		$('#color' + (L.night == 'false' ? 0 : 3)).click();
 
 		if ($('#svgs').length < 1) {
@@ -53,12 +53,6 @@ $(function () {
 	$('#tileFontCenter').before(gM('center'));
 
 
-	//$('#svgShape svg[id], #svgTog svg').attr('stroke-width', 2);
-
-
-
-
-
 	$('#CssRotate :radio').attr('name', 'rotate');
 
 	//val
@@ -71,9 +65,6 @@ $(function () {
 
 
 	$(':button[value=""], :button:not([value])').val(function () { return gM(this.id) });
-
-	// change
-//	$('select,:color,:range,:number').not('#editOpt :number').on('change', function () { cng_popout(this) });
 
 
 	$('#tileToolCap img').attr('src', 'img/ZIL.png');
@@ -102,7 +93,7 @@ $(function () {
 	var C = '#Css';
 	$(C + 'Filter img, .scale, .skew, .clip, .translate').attr('tip', 'reset').on('click', function () {
 		var me = $(this);
-		//	console.log(this.outerHTML);
+
 		cng_popout(me.parent().find('input').val(function () { return $(this).attr('value') }).last()[0]);
 		me.parent().find('.rngv').text(function () { return $(this).prev().attr('value') });
 	});
@@ -122,6 +113,7 @@ $(function () {
 	//html
 
 	$('#tileToolCap').prepend(
+		'<div id=svgShapes>'+
 '<div id=svgShape>'+
 	'<div id=svgTool>'+
 		svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
@@ -151,9 +143,6 @@ $(function () {
 	
 		detail('<input type=button id=clrTextBox value="'+gM('Clear All')+'" />'+
 			'<select id=TextBoxType></select>'+
-			'<span id=TextBoxContainer hidden>'+
-				num('300" id="TextBoxW')+
-				num('200" id="TextBoxH')+sc+
 			strbtn+' OK " id=TextBoxGo />',
 			'<textarea id=TextBox></textarea>'+
 			detail('','','','id=TextBoxTool hidden'),
@@ -239,7 +228,7 @@ $(function () {
 				'<div id=nestOpt hidden>'+dc
 			)+
 	
-			'<div><span id=WH> '+sc+'<span id=Angle tip=Angle> '+sc+
+			'<div><span id=Container>'+gM('Container')+' '+num(2,'0" tip=W id="ContainerW')+' × '+num(2,'0" tip=H id="ContainerH')+sc+'<span id=Angle tip=Angle> ∠ '+num(2,'0" id="angle')+'°'+sc+
 				'<label>'+strchkbx0+'id=cssClip /></label>'+dc+
 	
 			'<div id=CssClip hidden><img class=clip>'+i18('clip')+
@@ -652,6 +641,7 @@ dc+
 	svgf.id('svgPg1',svgf.line(10,15,20,15))+
 	svgf.id(zlrA('svgPg',seqA(2,4)),svgf.circle(15,15,5)).join('')+
 
+dc+
 dc
 
 );
@@ -661,8 +651,6 @@ dc
 	$('#copy2clipboard').before(gM('CopyCode '));
 	$('#Sides').before(gM('Sides') + '× ');
 
-	$('#TextBoxW').before(gM('Container')+':'+gM('W'));
-	$('#TextBoxH').before(gM('H'));
 
 	$('#bWR').text(gM('Radii'));
 	$('#fontCSS span').text('A');
@@ -1578,7 +1566,7 @@ dc
 
 				if (all) {
 					var dtl = Cd.eq(2), isGrad = dtl.find('.Grad').prop('checked');
-					dtl.show().siblings().hide();
+				//	dtl.show().siblings().hide();
 					if (isGrad) {
 						dtl.find(':color').not('#SGC').each(function () {
 							var c = RandomColor();
@@ -1620,10 +1608,11 @@ dc
 				$('#caps').css('cursor', 'crosshair');
 
 			} else {
-
+				/*
 				Cd.eq(2).hide();
 				Cd.eq(0).show();
 				Cd.eq(1).toggle(+$('#strkFill').val() > 0);
+				*/
 				$('#CssFilter').show();
 				$('#Color').show();
 			}
@@ -1785,10 +1774,10 @@ dc
 			me.width(20).height(20);
 		}
 
-	}).on('change', '#Color :range, #Color :color, select, #svgTexts', function () {
+	}).on('change', ':range, #Color :color, select, #svgTexts', function () {
 		cng_cap(this)
 
-	}).on('change keyup mouseup', '#tileTool :number:not(#jpgQ):not(#fontSize), #strkDash, #CssTransform :text, #font', function () {
+	}).on('change keyup mouseup', ':number:not(#jpgQ), #strkDash, #CssTransform :text, #font', function () {
 		cng_cap(this)
 
 	}).on('paste', t, function (e) {
@@ -2018,7 +2007,7 @@ dc
 
 function cng_cap(obj) {
 	var me = $(obj), id = me.attr('id'), v = me.val();
-
+consolelog(id);
 	if (/^css/.test(id) || id == 'capType' || id == 'svgTexts' || id == 'svgText') { cng_popout(obj); return }
 	if (/scr[WH]$/.test(id)) {
 		var cvs = $('#caps')[0], w = +$('#scrW').val(), h = +$('#scrH').val();
@@ -2067,11 +2056,19 @@ function cng_cap(obj) {
 		});
 	}
 
+	if(/ContainerW/.test(id)){
+		sp.width(v)
+	}
+	if(/ContainerH/.test(id)){
+		sp.height(v)
+	}
+
+
 	if (/^strk/.test(id)) {
 		id = id.substr(4);
 		if (id == 'Fill') {
-			$('#Color details:eq(1)').toggle(v != '0');
-			$('#Color details:lt(2)').find('.Grad').prop('checked', false).parent().nextAll().hide();
+		//	$('#Color details:eq(1)').toggle(v != '0');
+		//	$('#Color details:lt(2)').find('.Grad').prop('checked', false).parent().nextAll().hide();
 			toggleColorShpN();
 		}
 
@@ -2290,7 +2287,7 @@ function clk_popout(obj) {
 	if (id == 'TextBoxGo') {
 		var iT = $('#TextBoxType').val(), it = iT.toLowerCase(),v = $('#TextBox').val().trim(), shpNid = L.drawShapeNow || 'unknown', shpN = $('#' + shpNid), frTextarea, 
 		//A = [100, 200, 300, 200];
-		A = [$('#cssX').val(),$('#cssY').val(),$('#TextBoxW').val(),$('#TextBoxH').val()];
+		A = [$('#cssX').val(),$('#cssY').val(),$('#ContainerW').val(),$('#ContainerH').val()];
 
 		if (!v && /Text/.test(shpNid)) {
 			v = shpN.val();
@@ -2341,7 +2338,8 @@ function clk_popout(obj) {
 			}
 
 			L.drawShapeNow = eid;
-	}
+
+		}
 	}
 
 
