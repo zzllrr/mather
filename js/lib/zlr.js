@@ -365,7 +365,9 @@ var HOM = {
 	'Z': webStore.replace('detail', 'search') + 'zzllrr',
 	'ZQR': Hs + 'site.douban.com/127068/',
 	'ZIGPic': Hs + 'img3.douban.com/view/photo/photo/public/p1376698902.jpg',
-	'ZRPic': Hs + 'img5.douban.com/view/photo/photo/public/p1990186399.jpg'
+	'ZRPic': Hs + 'img5.douban.com/view/photo/photo/public/p1990186399.jpg',
+	'ZMATHER': Hs + 'zzllrr.github.io/mather',
+	'ZMather': Hs + 'github.com/zzllrr/mather'
 };
 
 var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',

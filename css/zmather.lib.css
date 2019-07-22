@@ -675,6 +675,7 @@ summary ~ details summary{
     color: white;
 	border-radius: 4px 10px;
 	background:limegreen;
+	padding:0 10px;
 }
 
 .level,[name=tool] + span, .sechResult{
@@ -692,7 +693,7 @@ summary ~ details summary{
 	font-size:1.5rem;
 }
 
-select,input{
+select,input,.rem13{
 	font-size:1.3rem;
 }
 .level:not(.seled):not(:hover){

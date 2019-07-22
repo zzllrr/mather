@@ -13,14 +13,18 @@ var protocol_keywords={
 
 navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
-		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+XML.wrapE('h2','V2019.7.22'))+
-		ul([
-			'Demo: '+href(Hs+'zzllrr.github.io/mather'),
-			'GitHub: '+href(Hs+'github.com/zzllrr/mather'),
+		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.23')),
 
-		]),
-		DCtv('pd10 Summarytip',XML.wrapE('h4',gM('Summary'))+
-			gM('Summarytip'))
+		DCtv('pd10 Summarytip',
+			ul([
+				'Demo: '+href(HOM.ZMather),
+				'GitHub: '+href(HOM.ZMATHER),
+
+			])+
+			XML.wrapE('h4',gM('Summary'))+
+			gM('Summarytip')
+			
+		)
 		]
 	]))+
 
@@ -212,7 +216,7 @@ navhead['about']=fieldseth(gM('Version'),
 					href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
 					href(HOM.ZIG,'小乐图客zzllrr Imager Geek')+'（Google Chrome Extension）作者',
 					href(HOM.ZRL,'小乐图客zzllrr RSS Reader')+'（Google Chrome APP）作者',
-					href(Hs+'github.com/zzllrr/Mather','小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
+					href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
 					gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),
 					
 				]),
@@ -240,6 +244,14 @@ navheadThen['about']=function(){
 			width : 150,
 			height : 150
 		});
+	}
+	if($('#ZMatherQR').length){
+		var qrcode001 = new QRCode($('#ZMatherQR')[0], {
+			text:HOM.ZMather,
+			width : 150,
+			height : 150
+		});
+		$('#ZMatherQR').html('<img width=150 src="'+$('#ZMatherQR canvas')[0].toDataURL('image/jpg')+'" />');
 	}
 };
 

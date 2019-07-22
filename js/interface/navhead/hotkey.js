@@ -31,20 +31,20 @@ Table('',[
 	scHotk('Ctrl/⌘ + S'),gM('Save'),
 	],
 
-]))+fieldseth(gM('Table'),
+]),'class=rem13')+fieldseth(gM('Table'),
 
 Table('',[
 	[scHotk('Click'),gM('thtip')],
 	[scHotk('Alt + Click'),gM('Collapse')],
 
-]))+fieldseth(gM('Help')+' | '+gM('Example'),
+]),'class=rem13')+fieldseth(gM('Help')+' | '+gM('Example'),
 
 Table('',[
 	[scHotk('Click'),gM('copy2input')],
 	[scHotk('Shift + Click'),gM('Clear')+' & '+gM('copy2input')],
 
 
-]))+fieldseth('Markdown',
+]),'class=rem13')+fieldseth('Markdown',
 
 Table('',[
 	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')],
@@ -55,7 +55,7 @@ Table('',[
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
 	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
-]))+fieldseth(gM('Graphic'),
+]),'class=rem13')+fieldseth(gM('Graphic'),
 
 Table('',[
 	[scHotk('Ctrl + C'),gM('Copy'),
@@ -92,4 +92,4 @@ Table('',[
 	],
 
 
-]));
+]),'class=rem13');
