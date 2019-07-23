@@ -13,14 +13,15 @@ var protocol_keywords={
 
 navhead['about']=fieldseth(gM('Version'),
 	Table('',[[
-		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.23')),
+		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+
+			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.23'))+
+			ul([
+				'Demo: '+href(HOM.ZMATHER),
+				'GitHub: '+href(HOM.ZMather),
+
+			]),
 
 		DCtv('pd10 Summarytip',
-			ul([
-				'Demo: '+href(HOM.ZMather),
-				'GitHub: '+href(HOM.ZMATHER),
-
-			])+
 			XML.wrapE('h4',gM('Summary'))+
 			gM('Summarytip')
 			

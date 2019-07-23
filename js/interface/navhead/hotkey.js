@@ -10,6 +10,8 @@ Table('',[
 	scHotk('Tab'),gM('Increase Indent'),
 	scHotk('Shift + Tab'),gM('Decrease Indent'),	
 
+	],
+	[
 	scHotk('Ctrl/⌘ + A'),gM('Select All'),
 	scHotk('Ctrl/⌘ + X'),gM('Cut'),
 	
@@ -17,7 +19,8 @@ Table('',[
 	[
 	scHotk('Ctrl/⌘ + C'),gM('Copy'),
 	scHotk('Ctrl/⌘ + V'),gM('Paste'),
-
+	],
+	[
 	scHotk('Ctrl/⌘ + Y'),gM('Redo'),
 	scHotk('Ctrl/⌘ + Z'),gM('Undo'),
 	
@@ -26,7 +29,8 @@ Table('',[
 	scHotk('Ctrl + Enter'),'GO',
 
 	scHotk('Shift + Enter'),gM('Display'),
-
+	],
+	[
 	scHotk('Ctrl + E'),gM('Clear'),
 	scHotk('Ctrl/⌘ + S'),gM('Save'),
 	],
@@ -58,38 +62,43 @@ Table('',[
 ]))+fieldseth(gM('Graphic'),
 
 Table('',[
-	[scHotk('Ctrl + C'),gM('Copy'),
-	scHotk('P'),gM('Pointer'),
-	scHotk('V'),gM('Layer Toggle'),
-	scHotk('←'),gM('Move Left'),
-	
-	],
-	
-	
-	[scHotk('Ctrl + V'),gM('Paste'),
-	scHotk('A'),gM('Text'),
-	scHotk('C'),gM('Crop'),
-	scHotk('→'),gM('Move Right'),
-	],
-	
-	[scHotk('D / Delete'),gM('Delete')+' | '+gM('Eraser'),
-	scHotk('L'),gM('Line'),
-	scHotk('N'),gM('Note'),
-	scHotk('↑'),gM('Move Up'),
-	],
-	
-	
-	[scHotk('Shift + D / Delete'),gM('Delete All'),
-	scHotk('R'),gM('Round Corner')+gM(' ')+gM('Rectangle'),
-	'','',
-	scHotk('↓'),gM('Move Down')
-	],
-	
-	[scHotk('Esc'),gM('Hide')+' | '+gM('Toggle'),
-	'',
-	'','',
-	'',''
+	[
+		scHotk('←'),gM('Move Left'),
+		scHotk('Ctrl + C'),gM('Copy'),
 	],
 
+	[
+		scHotk('→'),gM('Move Right'),
+		scHotk('Ctrl + V'),gM('Paste'),
+	],
+	
+	[
+		scHotk('↑'),gM('Move Up'),
+		scHotk('D / Delete'),gM('Delete')+' | '+gM('Eraser'),
+	],
+	
+	
+	[
+		scHotk('↓'),gM('Move Down'),
+		scHotk('Shift + D / Delete'),gM('Delete All'),
+	],
+	
+	[
+		scHotk('Esc'),gM('Hide')+' | '+gM('Toggle'),
 
+		scHotk('P'),gM('Pointer'),
+	],
+
+	[
+		scHotk('A'),gM('Text'),
+		scHotk('C'),gM('Crop'),
+	],
+	[
+		scHotk('L'),gM('Line'),
+		scHotk('N'),gM('Note'),
+	],
+	[
+		scHotk('R'),gM('Round Corner')+gM(' ')+gM('Rectangle'),
+		scHotk('V'),gM('Layer Toggle'),
+	]
 ]));

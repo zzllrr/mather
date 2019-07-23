@@ -8,6 +8,7 @@ var svgid = '#svgShape svg[id', strk, slid, dsh, shps,
 
 $(function () {
 
+
 	L.drawEnd = '';
 	L.drawEnd2 = '';
 	L.drawMove = '';
@@ -2032,8 +2033,9 @@ dc
 
 	toggleColor();
 	setTimeout(function () {
-		$('body > progress').hide().prevAll('div').toggle();
-	}, 100);
+		$('#webslides').hide().nextAll().fadeIn();
+
+	}, 500);
 });
 
 
