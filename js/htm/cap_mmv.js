@@ -19,8 +19,9 @@ function mMv(e,repaint){
 	}
 	
 	
-	var X=document.documentElement.scrollLeft+(e.clientX||e.originalEvent.changedTouches[0].clientX),
-	Y=document.documentElement.scrollTop+(e.clientY||e.originalEvent.changedTouches[0].clientY),
+	var ect=e.originalEvent.changedTouches,
+	X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
+	Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0)),
 	WD, HT, DEG='';
 	L.X=X;
 	L.Y=Y;
@@ -1995,7 +1996,8 @@ console.log('tp ',tp);
 					tArr[i*2+1]=tArr1[i];
 				}
 
-				if(n>2){
+
+				if(n>2 && /Poly/.test(shp)){
 					Arrf(function(x){var dA=gon(/Poly/.test(shp)?tArr.slice(0,n*2-2):tArr,x);
 						if(dA.length>2){chd.filter('.'+x).attr('d',dA.join(' '))}
 					},ZLR('Medians Altitudes Diagonal '+
@@ -2053,7 +2055,7 @@ console.log('tp ',tp);
 					$('#Ox').val(function(i,v){return v-offX});
 					$('#Oy').val(function(i,v){return v-offY})
 					if(offX||offY){
-						$('#Oy').change();
+						//$('#Oy').change();
 					}
 					L.X0=X;
 					L.Y0=Y;
@@ -2079,10 +2081,11 @@ console.log('tp ',tp);
 		$('#ContainerW').val(WD);
 		$('#ContainerH').val(HT);
 		$('#angle').val(DEG);
+
 	}
 
 	if(shpN.length){
-		tileToolCode(shpN)
+		//tileToolCode(shpN)
 	}
 }
 

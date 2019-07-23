@@ -7,7 +7,7 @@
 
 function mUp(e,Last){
 
-	var eos=e.originalEvent.srcElement, act=eos.tagName;
+	var eos=e.originalEvent.srcElement, act=eos.tagName, ect=e.originalEvent.changedTouches;
 	if(act!='CANVAS'){e.stopPropagation()}
 
 	var shp=L.drawShape, shp2=/Crop/.test(shp), shp3=/Paral|Trape|(lineangle|Triangon)[HV]|Line3YRight|cub/.test(shp), shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid),
@@ -17,8 +17,8 @@ function mUp(e,Last){
 		isGON2=isGON || /Ellipse(Sq)?$/.test(shp), isGON3=isGON2 || /(fan|Moon|Star)Note/.test(shp),
 		isgon=isGON && /LRect|gon/i.test(shp), istrigon=/Triangon/.test(shp),
 		
-		X=document.documentElement.scrollLeft+(e.clientX||e.originalEvent.changedTouches[0].clientX),
-		Y=document.documentElement.scrollTop+(e.clientY||e.originalEvent.changedTouches[0].clientY),
+		X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
+	 	Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0)),
 		
 		pos=shpN.position(),lt=pos?pos.left:0,tp=pos?pos.top:0, zi=[2000],Z, chd=shpN.children(), chdm=chd.filter('.main'), chdmp=chdm.attr('points'), chdmd=chdm.attr('d'),
 		w0=Math.abs(X-(+L.X0)), h0=Math.abs(Y-(+L.Y0)), sw=+$('#strkW').val(), d=Math.ceil(sw/2),
@@ -245,7 +245,9 @@ function mUp(e,Last){
 			RndColors($('#'+(L.drawShapeNow||'unknown')).nextAll('[id^='+(L.drawShapeNow||'unknown')+']'));
 		}		
 		
-		
+		if(shpN.length){
+			tileToolCode(shpN)
+		}
 	};
 	
 	

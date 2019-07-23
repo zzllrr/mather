@@ -6,12 +6,12 @@
 
 function mDn(e){
 
-	var eos=e.originalEvent.srcElement, act=eos.tagName, DEG='';
+	var eos=e.originalEvent.srcElement, act=eos.tagName, DEG='',ect=e.originalEvent.changedTouches;
 
 	if(act!='CANVAS'){e.stopPropagation()}
 	consolelog(e);
-	var X=document.documentElement.scrollLeft+(e.clientX||e.originalEvent.changedTouches[0].clientX),
-	 Y=document.documentElement.scrollTop+(e.clientY||e.originalEvent.changedTouches[0].clientY);
+	var X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
+	 Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0));
 	L.X=X;
 	L.Y=Y;
 
@@ -765,7 +765,7 @@ function toggleColorShpN(F0B1, onlyOpa){
 
 function tileToolCap(t, val){
 
-	var id=t.replace(/\d+$/g,''), txt=id=='Text', ln=+$('#svgLine').val(), isntP=L.drawShape!='Pointer', tme=$('#'+t),
+	var id=t.replace(/\d+$/g,''), txt=id=='Text', ln=+$('#svgLine').val(),  shp=L.drawShape, isntP=shp!='Pointer', tme=$('#'+t),
 	isFromTextarea=txt && tme.is('span.capfromTextarea'), isLatex=txt && tme.is('span.capLaTeX');
 	var C='#Css', c='#css', s='#strk', v=':visible', s_='stroke-', fil=+$('#strkFill').val();
 	var polyln=/Polylin/.test(id), isLn=/Line/.test(id), isln=/line/i.test(id), isGONlike=/Rect|gon|Note|arrow/i.test(id) && !/(rect|ellipse)Note/.test(id),
@@ -779,8 +779,10 @@ function tileToolCap(t, val){
 	$('#bWR,'+s+'R').toggle((/A|Rnd|arc|oid/.test(id) || txt) && !/LGonRndSq|cub/.test(id));
 	$('#bWRy,'+s+'Ry').toggle(/ARect|Ellipsoid|linearc(.+or)*$/.test(id));
 
-	$('#fxTXT').toggle(L.drawShape=='fx');
-	$('#capctxTXT').toggle(L.drawShape=='capctx');
+	$('#fxTXT').toggle(shp=='fx');
+	$('#capctxTXT').toggle(shp=='capctx');
+
+
 
 	$('#FontSize,#fontSize,#Font').toggle(txt);//#svgTexts,
 	$('#svgTEXT').toggle(txt);// && isntP);
@@ -789,6 +791,7 @@ function tileToolCap(t, val){
 	
 	$('#svgTextN,#svgTextDetail').toggle(txt && isntP && $('#svgText').val()!='0');
 
+	$('#Angle').toggle(/Regulargon|Triangon|Trapegon|Line3YRight|lineangle|lineIso|Line3E/.test(shp+id));
 
 	$('#svgSel, #svgCssTransform').toggle(id && id!='Pointer');
 	$('#scrTool').toggle(id=='Pointer');
@@ -802,9 +805,6 @@ function tileToolCap(t, val){
 
 	$(s+'Fill').toggle(!isLn  && !txt && !/LinWav[HXTV]|Lattice|tick/.test(id));
 
-
-
-	//$('#Color > details:eq(1)').toggle(txt || !isLn && fil>0);
 
 
 	$('#copyNum').toggle(/Dbl|Wav|Copy|1tick/.test(id));
@@ -886,7 +886,7 @@ function tileToolCap(t, val){
 	$('#scrWH').toggle(/scr|all|Crop/.test(id));
 	
 
-	//val
+
 
 	if(id=='allEraser'){
 		$('#TextBoxType').val('Canvas').attr('disabled','disabled')
@@ -895,7 +895,12 @@ function tileToolCap(t, val){
 		$('#TextBoxType').removeAttr('disabled')
 	}
 
+	if(txt && !val){
+		$('#ContainerW').val(200);
+		$('#ContainerH').val(100);
+	}
 
+	//val
 	if(val){
 		if(id=='allEraser'){
 			$('#TextBoxType').change();
@@ -917,11 +922,11 @@ function tileToolCap(t, val){
 			$('#font').val(tme.css('font-family'));
 			
 			$('#TextBoxType').val(tme.attr('data-texttype')).change();
-
+/*
 			if(isFromTextarea){
 				tileToolCode(tme)
 			}
-/*
+
 			if(isLatex){
 				$('#TextBox').val(XML.decode(tme.find('annotation').eq(0).text()));
 				

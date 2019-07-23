@@ -77,6 +77,9 @@ $(function(){
 
 		L.night=isnight;
 	
+		$('#lang').hide();
+		$('#Lang').show();
+
 		dayOrNight();
 	});
 

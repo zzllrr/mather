@@ -390,7 +390,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
 	i18=function(x){return XML.wrapE('i18',x)},
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
-	fieldseth = function (s, v, c, h) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
+	fieldseth = function (s, v, c, h) { return '<fieldset class=rem13' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
 	subtabs = function (hA,vA,seli) { if(seli==-1){
 		return DCtv('subtabs',DCtv('subtabheads', SCtv('subtabhead',hA).join(''))+DCtv('subtab',vA).join(''))
 		}else{var j=seli||0;

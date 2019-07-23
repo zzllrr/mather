@@ -116,6 +116,7 @@ $(function () {
 		'<div id=svgShapes>'+
 '<div id=svgShape>'+
 	'<div id=svgTool>'+
+		svgf.id('Narrow',svgf.path('M4 15 H26 L20 10 M26 15 L20 20 M10 10 L4 15 L10 20','none" stroke-linejoin="round'))+
 		svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
 		svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
 		svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
@@ -228,7 +229,7 @@ $(function () {
 				'<div id=nestOpt hidden>'+dc
 			)+
 	
-			'<div><span id=Container>'+gM('Container')+' '+num(2,'0" tip=W id="ContainerW')+' × '+num(2,'0" tip=H id="ContainerH')+sc+'<span id=Angle tip=Angle> ∠ '+num(2,'0" id="angle')+'°'+sc+
+			'<div><span id=Container>'+gM('Container')+' '+num(2,'0" tip=W id="ContainerW')+' × '+num(2,'0" tip=H id="ContainerH')+sc+'<span id=Angle tip=Angle hidden> ∠ '+num(2,'0" id="angle')+'°'+sc+
 				'<label>'+strchkbx0+'id=cssClip /></label>'+dc+
 	
 			'<div id=CssClip hidden><img class=clip>'+i18('clip')+
@@ -1493,10 +1494,19 @@ dc
 	}).before(gM('Random Colors'));
 
 
+
 	$('#svgShape svg[id]').on('click', function (e) {
 
 
 		var id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id);
+		if(id=='Narrow'){
+
+			var w=$('#tileTool')[0].style.width;
+			$('#tileTool')[0].style.width=(w?'':'6rem');
+			return
+		}
+
+
 		L.drawShape = id;
 		L.drawShapeNow = '';
 		toggleSvg();
@@ -1673,8 +1683,24 @@ dc
 		$('#scrW').val(w);
 		$('#scrH').val(h);
 	});
-	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) }).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) { mMv(e) }).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e) });
-	$('#caps').on('mousedown touchstart', function (e) { mDn(e) }).on('mousemove touchmove', function (e) { mMv(e) }).on('mouseup touchend', function (e) { mUp(e) });
+	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) 
+	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) { mMv(e);
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
+	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e)
+	});
+
+	$('#caps').on('mousedown touchstart', function (e) { mDn(e) 
+	}).on('mousemove touchmove', function (e) { mMv(e);
+		
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
+	}).on('mouseup touchend', function (e) { mUp(e)
+	});
 
 	var t = zlr('#url', 'Img Cap', ',') + ',#Caps textarea, .urlImg';
 
@@ -1779,6 +1805,8 @@ dc
 
 	}).on('change keyup mouseup', ':number:not(#jpgQ), #strkDash, #CssTransform :text, #font', function () {
 		cng_cap(this)
+
+
 
 	}).on('paste', t, function (e) {
 		//console.log(e);
@@ -1983,7 +2011,14 @@ dc
 		e.stopPropagation();
 	});
 
-
+	window.addEventListener('orientationchange', function() {  
+		consolelog(window.innerWidth); 
+		setTimeout(function() {  
+			consolelog(window.innerWidth,innerHeight); 
+			caps.ini(innerWidth,innerHeight);
+			caps.repaint();
+		}, 300);  
+	}, false);
 
 	$(document).on('click', 'legend,button,:button,:checkbox' +
 		zlr(',#', 'Tiles W H S E cssTransOpt cssClip cssCut') +
@@ -2339,6 +2374,9 @@ function clk_popout(obj) {
 
 			L.drawShapeNow = eid;
 
+			if (L.drawShape == 'Text'){
+				$('#Pointer').click();
+			}
 		}
 	}
 

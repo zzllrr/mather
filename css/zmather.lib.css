@@ -61,7 +61,7 @@
 .large{
 	font-size:large
 }
-.larger,#menu i{
+.larger{
 	font-size:larger
 }
 .xlarge{
@@ -663,12 +663,13 @@ summary ~ details summary{
 	z-index:-1;
 }
 
-#navhead span,.subtabhead{
+.subtabhead,.subhead{
     color: white;
 	padding: 6px 20px;
     margin: 5px;
     border-radius: 4px 10px;
-    cursor: pointer;
+	cursor: pointer;
+	font-size:1.3rem;
 }
 
 .logo{
@@ -689,9 +690,6 @@ summary ~ details summary{
 	font-size:1.5rem;
 }
 
-#menu i {
-	font-size:1.5rem;
-}
 
 select,input,.rem13{
 	font-size:1.3rem;
@@ -946,7 +944,9 @@ img{
 #navhead{
 	margin: 10px;
 }
-
+#menu i{
+	margin: 0 10px;
+}
 .mi.toggle, .tool:hover{
 	background:yellow;
 	color: black;

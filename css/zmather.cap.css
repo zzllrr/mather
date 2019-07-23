@@ -24,7 +24,7 @@
 #copyDir,#eraserDir,#svgTEXT select,#svgTool textarea{font-size:18px}
 #svgTool > div{padding:5px}
 #Weib{margin:5px}
-#fontCSS span, #CssFilter div{margin:10px}
+#fontCSS span, #CssFilter div,#tileToolCap{margin:10px}
 
 #svgShape, #svgCssTransform > div{margin:10px 0;border-radius: 5px;}
 
