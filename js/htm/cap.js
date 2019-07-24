@@ -2033,7 +2033,8 @@ dc
 
 	toggleColor();
 	setTimeout(function () {
-		$('#webslides').hide().nextAll().fadeIn();
+		$('.logo').hide().nextAll().not('#webslides').fadeIn();
+		
 
 	}, 500);
 });

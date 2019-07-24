@@ -28,8 +28,15 @@
 	animation: hue 12s linear infinite;
 
 }
+#inputTools{
+	padding: 10px;
+	background:rgba(50, 205, 50, 0.5);
+}
 
-
+@media screen and (max-width:800px){
+	#hotkey,#API{display:none; }
+	#input0Tip{margin-top: 2rem;}
+}	
 @media print{
   
   
@@ -677,6 +684,7 @@ summary ~ details summary{
 	border-radius: 4px 10px;
 	background:limegreen;
 	padding:0 10px;
+	margin-top: 0;
 }
 
 .level,[name=tool] + span, .sechResult{
