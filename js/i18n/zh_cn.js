@@ -155,6 +155,7 @@ lang['zh_cn'] = {
 	'Web': '网络',
 	'Webpage': '网页',
 
+	'Interface':'界面',
 	'Night':'夜间',
 	'Help':'帮助',
 	'Example':'示例',
@@ -568,6 +569,7 @@ lang['zh_cn'] = {
 	'Solve': '解题',
 	'Question Type': '题型',
 
+	'Setting':'设置',
 	'Computation': '计算',
 	'Calculation': '计算',
 	'Decomposition': '分解',

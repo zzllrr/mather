@@ -50,6 +50,7 @@ $(function(){
 				OH('');
 			}
 		}else{
+			$('#menu > .toggle').click();
 			$('#navbody').hide();
 			OH(navhead[id]);
 			if(navheadThen[id]){
@@ -76,9 +77,6 @@ $(function(){
 		$('body').toggleClass('night',isnight).toggleClass('day',!isnight);
 
 		L.night=isnight;
-	
-		$('#lang').hide();
-		$('#Lang').show();
 
 		dayOrNight();
 	});
@@ -200,16 +198,7 @@ $(function(){
 			sR.find('.sechResult').click();
 		}
 	});
-	$('#Lang').on('click',function(){
-		$('#lang').show();
-		$(this).hide();
-	});
-	$('#lang').html(Options(ZLR('lang en zh_cn zh_tw'))).on('change',function(){
-		var l=location.href, lA=l.split('lang='), v=$(this).val();
-		L.lang=v;
-		location.href=/lang=/.test(l)?lA[0]+'lang='+lA[1].replace(/^[^&]+/,v):l+(/\?/.test(l)?'&':'?')+'lang='+v
-	});
-	
+
 
 	var sbj0=$('#subject0'), sbj1=$('#subject1'), sbj2=$('#subject2');
 	sbj0.html(optgrp(gM('Subject Classification GB'),'<option value=0>'+gM('Level-1 Discipline')+'</option>'+
@@ -921,10 +910,6 @@ consolelog('最终A = ',A);
 		var me=$(this), isup=/up/.test(me.text());
 		$('#zMather').toggle();
 		me.text('keyboard_arrow_'+(isup?'down':'up'));
-
-		$('#lang').hide();
-		$('#Lang').show();
-
 	});
 	
 	$('#downloadPreview').on('click',function(e){
@@ -1086,7 +1071,7 @@ consolelog('最终A = ',A);
 		
 	})
 
-	$('#panel').on('click','#lang ~ i',function(){
+	$('#panel').on('click','#night ~ i',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(/^svgs$/.test(id)){

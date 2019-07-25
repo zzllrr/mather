@@ -12,24 +12,32 @@ var protocol_keywords={
 };
 
 navhead['about']=fieldseth(gM('Version'),
-	Table('',[[
-		DCtv('alignc pd10','<h1 class=logo>zzllrr Mather</h1>'+
-			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.23'))+
+	DCtv('alignc',
+		DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
+			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.25')+
 			ul([
 				'Demo: '+href(HOM.ZMATHER),
 				'GitHub: '+href(HOM.ZMather),
-
-			]),
-
-		DCtv('pd10 Summarytip',
+	
+			])
+		)+
+		DCtv('Summarytip',
 			XML.wrapE('h4',gM('Summary'))+
 			gM('Summarytip')
 			
 		)
-		]
-	]))+
 
-	subtabs(gM(['Whitepaper','Project Progress','Licence','Donate'].concat('About zzllrr')),[
+	))+
+
+	subtabs(gM(['Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
+		fieldseth(gM('Interface'),
+			gM('Language')+itv('','language')+'<select id=lang hidden>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
+
+		),
+
+
+		
+
 		fieldseth(gM('Aims'),gM('Aimstip'))+
 		
 		fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
@@ -254,6 +262,11 @@ navheadThen['about']=function(){
 		});
 		$('#ZMatherQR').html('<img width=150 src="'+$('#ZMatherQR canvas')[0].toDataURL('image/jpg')+'" />');
 	}
+	$('#lang').on('change',function(){
+		var l=location.href, lA=l.split('lang='), v=$(this).val();
+		L.lang=v;
+		location.href=/lang=/.test(l)?lA[0]+'lang='+lA[1].replace(/^[^&]+/,v):l+(/\?/.test(l)?'&':'?')+'lang='+v
+	});
 };
 
 $(function(){

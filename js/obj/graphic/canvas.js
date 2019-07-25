@@ -97,7 +97,7 @@ ctt=function(canvas,w,h,OX,OY){
 		this.Oy=OY===undefined?(+$('#Oy').val()||0):OY;
 
 		this.cvs.width=w||$(window).width();//-20;
-		this.cvs.height=h||$(document).height();//$(window).height();//-20;
+		this.cvs.height=h||$(window).height();//$(document).height();//-20;
 		
 		if(canvas){
 			this.draw(canvas)

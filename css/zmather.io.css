@@ -76,7 +76,6 @@
 }
 
 .seled:not(div):not(.subhead):not(.subtabhead):not(textarea){
-	border-color:gray;
 	background: yellow;
 	color: gray;
 }

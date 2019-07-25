@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width:800px){
-	#hotkey,#API{display:none; }
+	#hotkey,#API{display:none;}
 	#input0Tip{margin-top: 2rem;}
 }	
 @media print{
@@ -677,6 +677,7 @@ summary ~ details summary{
     border-radius: 4px 10px;
 	cursor: pointer;
 	font-size:1.3rem;
+	display: inline-block;
 }
 
 .logo{
@@ -701,6 +702,9 @@ summary ~ details summary{
 
 select,input,.rem13{
 	font-size:1.3rem;
+}
+.rem3{
+	font-size:3rem;
 }
 .level:not(.seled):not(:hover){
 	opacity:.5
@@ -801,7 +805,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 }
 .toolTip{
-	padding:2px;
+	padding:2px 12px;
 	opacity:0;
 	background:limegreen;
 	color:white;
@@ -895,7 +899,7 @@ img{
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 1.5rem;
+  font-size: 3rem;
   margin:5px;
   padding:2px;
   border:solid transparent 1px;
@@ -925,7 +929,6 @@ img{
 }
 .mi:hover,th:not(.Clear):hover,summary{
 	background:rgba(50, 205, 50,0.5);
-	border: solid gainsboro 1px;
 }
 .Clear:hover{
 	background: red;
@@ -963,9 +966,6 @@ input[len="2"]{
 	width: 80px;
 }
 
-.Summarytip{
-	width:400px;
-}
 
 .mi-span{
 	cursor:pointer;
