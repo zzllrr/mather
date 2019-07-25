@@ -70,7 +70,7 @@ lang['en']={
 	
 	"s":"Space",
 	"11":"History of @0",
-	"14": "@2 Logic and @2 Basis",
+	"14": "Math Logic and Math Basis",
 	"1410": "Deductive Logic",
 	"1420": "@7 of Proof",
 	"1430": "Recursion @7",

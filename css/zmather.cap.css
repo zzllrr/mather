@@ -35,7 +35,7 @@
 	text-align:center;
 	user-select: none;
 	float: right;
-	margin-top: 3rem;
+	margin-top: 2rem;
 }
 
 #svgShape svg{
@@ -95,7 +95,7 @@
 
 #svgTEXTBox{
 	position: fixed;
-    left: 30%;
+    left: 0;
     z-index: 400000;
     top: 0;
 

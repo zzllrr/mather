@@ -31,7 +31,7 @@ navhead['about']=fieldseth(gM('Version'),
 
 	subtabs(gM(['Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		fieldseth(gM('Interface'),
-			gM('Language')+itv('','language')+'<select id=lang hidden>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
+			gM('Language')+itv('','language')+'<select id=lang>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
 
 		),
 
@@ -55,7 +55,7 @@ navhead['about']=fieldseth(gM('Version'),
 
 		fieldseth(gM('Mather Protocol')+' V0.1',
 
-			ol(Arrf(function(i){return gM(i)+SCtv('floatr mgr20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
+			ol(Arrf(function(i){return gM(i)+SCtv('mg20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
 				'Organism',
 				'Offline Computation & Online Connection',
 				'Energy Consumption Minimization',
@@ -263,9 +263,10 @@ navheadThen['about']=function(){
 		$('#ZMatherQR').html('<img width=150 src="'+$('#ZMatherQR canvas')[0].toDataURL('image/jpg')+'" />');
 	}
 	$('#lang').on('change',function(){
-		var l=location.href, lA=l.split('lang='), v=$(this).val();
+		var v=$(this).val();
 		L.lang=v;
-		location.href=/lang=/.test(l)?lA[0]+'lang='+lA[1].replace(/^[^&]+/,v):l+(/\?/.test(l)?'&':'?')+'lang='+v
+		
+		location.href=H_o('',{'lang':v})
 	});
 };
 

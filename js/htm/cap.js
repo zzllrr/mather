@@ -1500,6 +1500,7 @@ dc
 
 
 		var id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id);
+		Scroll('scrollT');
 		if(id=='Narrow'){
 
 			var w=$('#tileTool')[0].style.width;

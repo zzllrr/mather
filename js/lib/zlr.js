@@ -448,7 +448,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
 	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
-	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), '⌫']],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX').replace('bds>⌫','"bds Clear oClear" tip=Clear>⌫') },
+	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), '⌫']],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX').replace('bds>⌫','"bds Clear oClear" tip=Clear>⌫').replace('edit collapse mg10','edit') },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
@@ -1469,9 +1469,9 @@ function H_a(u, base) {
 	return src;
 }
 
-function H_o(u) {
+function H_o(u,o) {
 
-	var url = u || window.location.href;
+	var url = u || window.location.href, ha=location.hash;
 	var search = url.substring(url.lastIndexOf('?') + 1);
 	var obj = {};
 	var reg = /([^?&=]+)=([^?&=]*)/g;
@@ -1481,6 +1481,16 @@ function H_o(u) {
 		obj[name] = val;
 		return rs;
 	});
+	if(o){
+		var s='';
+		$.each(o,function(k,v){
+			obj[k]=v;
+		})
+		$.each(obj,function(k,v){
+			s+='&'+k+'='+v
+		})
+		return url.replace(/#.+/,'')+s.replace(/^&/,'?')
+	}
 	return obj;
 }
 

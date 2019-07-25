@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width:800px){
-	#hotkey,#API{display:none;}
+	#zMatherOn,#hotkey,#API{display:none;}
 	#input0Tip{margin-top: 2rem;}
 }	
 @media print{
@@ -605,7 +605,7 @@ input[type=text],#wiki>span,.brad{
 }
 #oHTML{
 	position: relative;
-	padding:20px;
+	margin:3rem 0 0 4px;
 	overflow:auto;
 }
 #oHTML > div.abs{
@@ -672,7 +672,7 @@ summary ~ details summary{
 
 .subtabhead,.subhead{
     color: white;
-	padding: 6px 20px;
+	padding: 2px 20px;
     margin: 5px;
     border-radius: 4px 10px;
 	cursor: pointer;
@@ -805,13 +805,18 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 }
 .toolTip{
-	padding:2px 12px;
+	padding:2px;
 	opacity:0;
 	background:limegreen;
 	color:white;
     border-radius:5px 0;
-	font-size:1.1rem;
+	font-size:1.5rem;
 	animation: inf01 3s 1 ease-out;
+	position: fixed;
+	left:2px;
+	top:2px;
+
+
 }
 @keyframes inf01 {
 	from {opacity:0}
@@ -827,7 +832,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 #donate div {margin:10px}
 #donaQR img{width:150px}
-#donaQR img,#donaQR > span{margin:0 50px}
+#donaQR img,#donaQR > span{margin:0 10px}
 #donaWeixin img{width:350px}
 
 #Jiaohang{margin-right:50px;}
@@ -899,7 +904,7 @@ img{
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 3rem;
+  font-size: 2rem;
   margin:5px;
   padding:2px;
   border:solid transparent 1px;
@@ -947,9 +952,6 @@ img{
 
 
 
-#navhead{
-	margin: 10px;
-}
 #menu i{
 	margin: 0 10px;
 }
