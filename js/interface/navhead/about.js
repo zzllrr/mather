@@ -14,7 +14,7 @@ var protocol_keywords={
 navhead['about']=fieldseth(gM('Version'),
 	DCtv('alignc',
 		DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
-			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.25')+
+			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.28')+
 			ul([
 				'Demo: '+href(HOM.ZMATHER),
 				'GitHub: '+href(HOM.ZMather),
@@ -32,6 +32,16 @@ navhead['about']=fieldseth(gM('Version'),
 	subtabs(gM(['Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		fieldseth(gM('Interface'),
 			gM('Language')+itv('','language')+'<select id=lang>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
+
+		)+
+		fieldseth(gM('Browser Cache'),[
+			gM('Usage')+itv('" id="CacheUsage','data_usage'),
+			gM('Import File')+itv('" id="CacheUpload','file_upload')+
+			'<input type=file hidden accept="text/*" id=CacheUploadFile />'+
+			gM('Export File')+itv('" id="CacheDownload','file_download'),
+			gM('Clear Cache')+itv('" id="CacheClear','clear_all')
+			].join(br)
+
 
 		),
 
@@ -268,6 +278,64 @@ navheadThen['about']=function(){
 		
 		location.href=H_o('',{'lang':v})
 	});
+	$('#CacheUsage').on('click', function(){
+		var me=$(this), c=cacheUsage(), c1=Math.ceil(100*c[1]/1024/1024/5);
+		if(me.next('meter').length<1){
+			me.after(meter(c1))
+		}else{
+			me.next().val(c1)
+		}
+	});
+	$('#CacheClear').on('click', function(){
+		if(confirm(gM('resetAlert'))){
+			L.clear();
+		}
+	});
+	$('#CacheDownload').on('click', function(){
+		saveText(jSoff(L),'zzllrr-Mather-Cache'+Time.now()+'.txt')
+	});
+	$('#CacheUpload').on('click', function(){
+		$('#CacheUploadFile').click()
+	});
+	$('#CacheUploadFile').on('change',function(){
+		var v=$(this).val();
+		if(v){
+			var files=this.files, fl=files.length;
+			for(var i=0;i<fl;i++){
+				var f=files[i], s=f.size, ext=f.type.replace(/text[/]/,'');
+
+consolelog(f);
+				if(/^text[/]/.test(f.type) || !ext){
+					if(!s){s='?KB'}else{
+						s=sizeKB(s)
+					}
+
+					var reader=new FileReader();
+					reader.onload = function(e){
+						//var txt = this.result;
+						L.clear();
+						var txt=e.target.result;
+						try{
+							var obj=jSon(txt);
+							$.each(obj,function(k,v){
+								L[k]=v;
+							});
+							$('#CacheUsage').click()
+						}catch(e){
+
+						}
+
+					};
+					//reader.readAsDataURL(f);
+					reader.readAsText(f);
+					
+
+				}
+			}
+		}
+	});
+
+	$('#CacheUsage').click();
 };
 
 $(function(){

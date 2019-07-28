@@ -66,13 +66,31 @@ $(function(){
 			
 		}
 		if(tool=='show'){
-			var subtool=$('#showGround .ground0 .level_last.seled').attr('data-i');
-			if(subtool=='Voice'){
-				$('#zRAudioPlay2').click();
+			var s=$('#showGround .ground0 .level.seled').attr('data-i'), ss=s.toLowerCase();
+			if(/Document|Slide/.test(s)){
+				OH('<iframe src="'+ss+'.html" width="99%" height="1000px" class=resize></iframe>');
+			}
+			if(s=='Speech'){
+				OH(
+					`<div id=audioPlay2></div>
+					<div id=zRaudioPlay>
+						<div id=audioParaA></div>
+					</div>
+					`
+				);
+				$('#zRAudioPlay2').show().click();
 				
 			}
-			if(subtool=='Video'){
-				$('#zRMediaPlay2').click();
+			if(s=='Video'){
+				OH(
+					`
+					<div hidden id=zRmediaPlay>
+						<div id=mediaParaA></div>
+					</div>
+					`
+				);
+				
+				$('#zRMediaPlay2').show().click();
 				
 			}
 		}

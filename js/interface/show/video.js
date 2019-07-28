@@ -9,19 +9,12 @@
 showThen['Video']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your Audio/Video URL')+'"></textarea>'+
-		detail(SCtv('VideoTool','<input type="file" accept="video/*" capture="camcorder">'+strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
+		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		detail(SCtv('VideoTool','<input type="file" id=zRmediaPlayFile accept="video/*" capture="camcorder" multiple="multiple" />'+
+		strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
 	);
-	$('#showGround .ground2').html('<div id=mediaPlay2></div>');
-	OH(
-		`
-		<div hidden id=zRmediaPlay>
-			<div id=mediaParaA></div>
-		</div>
-		`
-	);
-	
-
- 	$('#mediaParaA').on('click','p', function(e){
+	$('#showGround .editorText').val(L.video||'');
+ 	$('#oHTML').on('click','#mediaParaA p', function(e){
 		var me=$(this);
 		me.addClass('mediaPlay').siblings().removeClass('mediaPlay');
 		var t=me.attr('data-src'),tp=me.attr('type');
@@ -181,7 +174,25 @@ showThen['Video']=function(){
 				}
 			}
 		}
-		
+	}).on('change',':file',function(){
+		var v=$(this).val();
+		if(v){
+			var files=this.files, fl=files.length;
+			for(var i=0;i<fl;i++){
+				var f=files[i], s=f.size, ext=f.type.replace(/video[/]/,'');
+
+
+				if(/^video[/]/.test(f.type)){
+					if(!s){s='?KB'}else{
+						s=sizeKB(s)
+					}
+
+					var src=(URL||webkitURL).createObjectURL(f);
+					textareaAdd(src,'#showGround .ground1 .editorText',1);
+
+				}
+			}
+		}
 	});
 
 

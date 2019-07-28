@@ -5,7 +5,7 @@
  * Released under MIT License
  */
 
-var H = 'http://', Hs = 'https://', w3c = 'www.w3.org/', xmlns = H + w3c + '2000/svg', xhtml = H + w3c + '1999/xhtml', xmlnsxlink = H + w3c + '1999/xlink', xmml = H + w3c + '1998/Math/MathML',
+var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'www.w3.org/', xmlns = H + w3c + '2000/svg', xhtml = H + w3c + '1999/xhtml', xmlnsxlink = H + w3c + '1999/xlink', xmml = H + w3c + '1998/Math/MathML',
 	logon = false, i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || 'zh_cn'] || '';
 if (typeof BigInt == 'undefined') {
 	var BigInt = function (x) { return +x }
@@ -220,7 +220,15 @@ function gM(mesg, str, o) {
 
 	return x || M
 }
-
+function cacheUsage(){
+	var x=0;
+	for(item in L) {
+		if(L.hasOwnProperty(item)) {
+		 	x += L.getItem(item).length;
+		}
+	}
+	return [sizeKB(x),x]
+}
 function fMatrixPly(A, B) {
 	var n = A.length, m = 1, C = new Array(n);
 	if (B[0] instanceof Array) { m = B[0].length }
@@ -1489,7 +1497,7 @@ function H_o(u,o) {
 		$.each(obj,function(k,v){
 			s+='&'+k+'='+v
 		})
-		return url.replace(/#.+/,'')+s.replace(/^&/,'?')
+		return url.replace(/[#\?].+/,'')+s.replace(/^&/,'?')
 	}
 	return obj;
 }
@@ -1974,6 +1982,11 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 	testAjax2: function (t,e) { $.ajax({ type: 'get', url: t, success: function (d) { console.log($(d).find(e).text()) } }) }
 }, fCC = function (A) {
 	return String.fromCharCode.apply(null, A)
+}, sizeKB = function (sz) {
+	var s=sz||0;
+	s=s/1024;
+	if(s>=1024){s=(s/1024).toFixed(1)+'MB'}else{s=s.toFixed(1)+'KB'}
+	return s
 }, seqA = function (start, n, type, step) {//序列: 初始值，个数n，类型，步长	参数 n小于0时，逆序
 	/*
 	var isBig=typeof start=='bigint', t=[],y=type||'arith',p=step==undefined?(isBig?1n:1):step, N=n>=0?n:-n;
@@ -3164,10 +3177,10 @@ function blking(t, Neg) {
 	s = arr.join('');
 	return s;
 }
-function textareaAdd(str, obj) {
-	var O = $(obj), ov = O.val(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
-		v = ov.substr(0, sS) + (str || '') + (sE == ov.length ? '' : ov.substr(sE));
-	O.val(v);
+function textareaAdd(str, obj, newline) {
+	var O = $(obj), ov = O.val().trim(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
+		v = ov.substr(0, sS) + (newline?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE));
+	O.val(v.trim());
 	var t = sS + (str || '').length;
 	O.focus();
 	O[0].selectionStart = t;

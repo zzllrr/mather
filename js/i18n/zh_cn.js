@@ -66,7 +66,7 @@ lang['zh_cn'] = {
 	'strucontip': "@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
 	'tasktip': "@{clickWithShift}则自动输入示例命令",
 	'copytip': "@{clickWithShift}@{copy2Canvas}",
-	'savetip': "@{clickWithShift}则保存纯文本文件",
+
 	'copy2Canvas': '复制到画布上方',
 	'clickWithShift': '点击并按住Shift键，',
 	'notLaTeX': '，而不是LaTeX格式',
@@ -76,7 +76,7 @@ lang['zh_cn'] = {
 	'Accnum': '收款账号',
 	'copiedtip': '已粘贴到剪贴板',
 	'copied2Canvastip': '已复制到画布',
-
+	'resetAlert':'确定重置吗？',
 
 
 	'Five-year research plan': '未来五年主要工作计划',
@@ -233,6 +233,11 @@ lang['zh_cn'] = {
 	'Voice': '嗓音',
 	'Music': '音乐',
 	'Noise': '噪音',
+	'Usage':'使用量',
+	'Cache':'缓存',
+	'Export':'导出',
+	'Import':'导入',
+	'Browser':'浏览器',
 
 	'Effects': '特效',
 	'Action': '动作',
@@ -241,7 +246,8 @@ lang['zh_cn'] = {
 	'Animate': '动画',
 	'Gadget': '部件',
 	'Show': '演示',
-	'Presentation': '演讲稿',
+	'Slide': '幻灯片',
+	'Document':'文档',
 	'Doodle': '涂鸦',
 	'Compression': '压缩',
 	'Synthesis': '合成',

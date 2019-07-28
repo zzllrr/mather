@@ -88,7 +88,9 @@ ctt=function(canvas,w,h,OX,OY){
 		ctx2.putImageData(imageData, x||0, y||0)
 	};
 	this.draw=function(canvas){
-		this.put($(canvas)[0].getContext('2d'))
+		var $c=$(canvas);
+		if(!$c.length){return}
+		this.put($c[0].getContext('2d'))
 	};
 
 	this.ini=function(w,h,OX,OY){

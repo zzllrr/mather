@@ -9,11 +9,20 @@
 
 
 	<title>zzllrr Mather Demo Version</title>
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="img/zMather.png">
+    <link rel="shortcut icon" sizes="32x32" href="img/zMather.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="img/zMather.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="img/zMather.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="img/zMather.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="img/zMather.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="img/zMather.png">
 
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
 	<link rel="stylesheet" href="css/katex.css" />
 	
-
-
 	<link rel="stylesheet" href="css/zmather.io.css" />
 
 	<link rel="stylesheet" href="css/zmather.lib.css" />
@@ -47,8 +56,8 @@
 
 	<script src="js/interface.js"></script>
 
-	<script src="js/index.js"></script>
-
+	<script src="js/htm/index.js"></script>
+	<script src="js/htm/common.js"></script>
 
 
 	<!-- 底层对象 -->
@@ -123,7 +132,13 @@
 					<textarea id=input0></textarea>
 					<div id=input0Tool class="opac">
 						<input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
+
+						<i class=mi id=send2textBox tip=copy2input>arrow_upward</i>
+						
+						
 						<i class=mi id=navHide tip=Collapse>keyboard_arrow_up</i>
+						<i class=mi id=UploadFile tip="Import File">add</i>
+						<input type="file" id=inputFile hidden />
 						<input type=button class="Clear rotate180" id=tClear value=⌫ />
 
 					
@@ -132,6 +147,7 @@
 								<select id=input0Type></select>
 								<div id=inputTools>
 									<input type=button id=preview class="tool seled" value=⇄ />
+
 									<span class="iTextLaTeXon">
 											<input type=button id=sbson class=tool value=α />
 											<input type=button id=funcson class=tool value=ƒ />
@@ -142,14 +158,12 @@
 							</div>
 
 
-
-						<input type="file" accept="image/*" capture="camera" hidden />
-						<input type="file" accept="image/*" multiple="multiple" hidden />
-
 						<p>
 							<input id=lineMerge type=button value=. />
 							<input id=lineSplit type=button value=: />
 							<input id=Condon class="tool" type=button value=⋮ />
+							<input id=DownloadFile type=button value=⤓ tip="Download Text File" />
+
 						</p>
 
 						
@@ -184,7 +198,9 @@
 						<input type=button class="Clear rotate90" id=previewOff value=⌫ />
 
 						<i class=mi id=displayOverCanvas tip=copy2Canvas>exit_to_app</i>
-						<i class=mi id=downloadPreview tip="Download HTML File | savetip">file_download</i>
+
+						<i class=mi id=downloadPreview tip="Download HTML File">file_download</i>
+						
 					</span>
 
 				</div>
@@ -387,8 +403,11 @@
 
 	<script src="js/interface/show.js"></script>
 
-
+	<script src="js/interface/show/document.js"></script>
+	<script src="js/interface/show/slide.js"></script>
 	<script src="js/interface/show/speech.js"></script>
+
+	<script src="js/interface/show/image.js"></script>
 	<script src="js/interface/show/video.js"></script>
 
 	<script src="js/interface/show/2d.js"></script>
@@ -626,7 +645,7 @@
 	<script src="js/lib/qrcode.js"></script>
 
 	<!-- fractal
-	<script src="js/lib/webslides.js"></script>
+
     <script src="js/lib/terrain.js"></script>
  -->
 

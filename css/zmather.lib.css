@@ -36,6 +36,11 @@
 @media screen and (max-width:800px){
 	#zMatherOn,#hotkey,#API{display:none;}
 	#input0Tip{margin-top: 2rem;}
+	.toolTip{
+		position: fixed;
+		left:2px;
+		top:2px;
+	}
 }	
 @media print{
   
@@ -700,7 +705,7 @@ summary ~ details summary{
 }
 
 
-select,input,.rem13{
+select,input:not([type="file"]), .rem13{
 	font-size:1.3rem;
 }
 .rem3{
@@ -812,9 +817,6 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
     border-radius:5px 0;
 	font-size:1.5rem;
 	animation: inf01 3s 1 ease-out;
-	position: fixed;
-	left:2px;
-	top:2px;
 
 
 }
@@ -828,7 +830,11 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 
 
-.editorText {width:20%;height:60px}
+.editorText {
+	width:20%;
+	height:60px;
+	vertical-align: middle;
+}
 
 #donate div {margin:10px}
 #donaQR img{width:150px}

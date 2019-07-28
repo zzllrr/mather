@@ -9,7 +9,9 @@
 showThen['Speech']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
-		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone">'+strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
+		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone" multiple="multiple" />'+
+		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
 		`
 			<div><input type=text class=btntxt value=Engine readonly data-d=0 /><select id=audioEngine></select></div>
 			<div><input type=text class=btntxt value=Language readonly data-d=0 /><select id=audioLanguage></select></div>
@@ -20,14 +22,8 @@ showThen['Speech']=function(){
 		`
 		)
 	);
-	$('#showGround .ground2').html('<div id=audioPlay2></div>');
-	$('#showGround .tasks').html(
-		`
-		<div hidden id=zRaudioPlay>
-			<div id=audioParaA></div>
-		</div>
-		`
-	);
+	$('#showGround .editorText').val(L.speech||'');
+
 	L.audioSpeed=L.audioSpeed||6;
 	L.audioPitch=L.audioPitch||5;
 	L.audioPerson=L.audioPerson||0;
@@ -79,7 +75,7 @@ showThen['Speech']=function(){
 
 
 
- 	$('#audioParaA').on('click','p', function(e){
+ 	$('#oHTML').on('click','#audioParaA p', function(e){
 		var me=$(this);
 		me.addClass('audioPlay').siblings().removeClass('audioPlay');
 		var t=me.attr('data-src')||me.text().trim().replace(/[,，：:;；]$/,'').trim();

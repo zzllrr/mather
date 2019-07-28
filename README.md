@@ -1,6 +1,6 @@
 # zzllrr Mather - An open-sourced Math Tool
 
-![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-Mathe-Demo.jpg)
+![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
 
 ## Summary in Chinese 中文摘要
 

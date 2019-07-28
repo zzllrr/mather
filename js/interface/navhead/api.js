@@ -106,7 +106,7 @@ tooltip['API']=[
 			{'查找':'Node urlArr'},
 			{'操作':'Scroll scrollH scrollW titleRe bodyFocus OffSet textareaAdd'},
 			{'输出':'saveText saveAs svgAs printF tableArr'},
-			{'调试':'consolelog'}
+			{'调试':'consolelog cacheUsage'}
 		]},
 	
 		{'HTML':[
@@ -208,7 +208,7 @@ tooltip['API']=[
 		{'计算':[
 			{'矩阵':'fMatrixPly fMatrix tableT'},
 			{'随机':'Random'},
-			{'统计':'max min countA CntN Cnt'},
+			{'统计':'max min countA CntN Cnt sizeKB'},
 			{'差分':'diff antidiff'},
 		]},
 
@@ -273,7 +273,7 @@ navhead['API']=[
 
 	detail(gM('3rd-party'),
 		detail(href('./js/lib','Javascript'),
-			ul(ZLR(zlr2('base64 jquery katex qrcode zlr echarts effects js-yaml terrain','.js'))),1)+
+			ul(ZLR(zlr2('base64 jquery katex qrcode zlr echarts effects js-yaml terrain webslides','.js'))),1)+
 		detail(href('./css/fonts','Fonts'),
 			ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 	,1), 

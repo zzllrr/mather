@@ -34,7 +34,6 @@ lang['en']={
 	'strucontip':"@{clickWithShift}get JS code@{notLaTeX}",
 	'tasktip':"@{clickWithShift}input the default expression",
 	'copytip':"@{clickWithShift}@{copy2Canvas}",
-	'savetip':"@{clickWithShift}download txt",
 	
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
@@ -46,7 +45,7 @@ lang['en']={
 	'Accnum':'Account Number',
 	'copiedtip':'Copied to the clipboard',
 	'copied2Canvastip':'Copied to the Canvas',
-	
+	'resetAlert':'Sure to reset?',
 	
 	
 	'zzllrr Mather':'zzllrr Mather',
