@@ -8,10 +8,10 @@
 
 showThen['Document']=function(){
 	$('#showGround .ground1').html(
-		'<textarea class=editorText placeholder="'+gM('input HTML')+'"></textarea>'+
+		'<textarea class=editorText tip="'+gM('input')+' HTML / Markdown'+'"></textarea>'+
 		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept="text/*" multiple="multiple" />'+
-		strbtn+gM('Play')+'" id=DocumentPlay />'),
+		strbtn+gM('Play')+'" id=DocumentPlay />'),''
 		)
 	);
 	$('#showGround .editorText').val(L.document||'');

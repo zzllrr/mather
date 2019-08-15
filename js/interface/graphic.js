@@ -78,7 +78,7 @@ graphics={
 		]},
 	],
 	'Statistics':[
-		'bar','line','pie'
+		'Echarts'
 	],
 	'Fractal':[
 		'Mandelbrot','Julia','Cantor','Koch'
@@ -188,10 +188,10 @@ tooltip.graphic={
 				gM('Line Segment')+': line【x1 y1 x2 y2 end mid start】',
 		sceg("shape('test','line','','x1=100 y1=50 x2=160 y2=100 end=∧ mid=∧ start=∧')"),
 					
-				'折线polyline【points】',
+				gM('Polyline')+' polyline【points】',
 		sceg("shape('test','polyline','','points=\"100 100 150 130 180 70\"')"),
 
-				'横竖折线lineHV【hv横竖位移序列 r拐角半径】',
+				gM('lineHV')+' lineHV【hv横竖位移序列 r拐角半径】',
 		sceg("shape('test','lineHV','','hv=V80H100V120 r=4')"),
 
 		].join(br),
@@ -459,16 +459,6 @@ tooltip.graphic={
 		
 	].join(br),
 	
-/*
-
-
-
-
-
-	'Statistics':[
-		'bar','line','pie'
-	],
-*/
 
 
 

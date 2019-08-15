@@ -854,7 +854,7 @@ consolelog('最终A = ',A);
 	
 	
 	$('#input0Type').html(optgrp(gM('Input Format')+':',
-		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Project')+' | '+gM('Script')+'":"Echarts"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
+		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
 		)
 	).on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
@@ -1049,7 +1049,7 @@ var toolSwitch=function(x){
 			
 		);
 	}
-
+	$('#send2textBox').toggle(/show/.test(x));
 };
 
 

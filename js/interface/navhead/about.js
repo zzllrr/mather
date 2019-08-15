@@ -14,7 +14,7 @@ var protocol_keywords={
 navhead['about']=fieldseth(gM('Version'),
 	DCtv('alignc',
 		DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
-			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.7.28')+
+			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.8.16')+
 			ul([
 				'Demo: '+href(HOM.ZMATHER),
 				'GitHub: '+href(HOM.ZMather),
@@ -37,7 +37,7 @@ navhead['about']=fieldseth(gM('Version'),
 		fieldseth(gM('Browser Cache'),[
 			gM('Usage')+itv('" id="CacheUsage','data_usage'),
 			gM('Import File')+itv('" id="CacheUpload','file_upload')+
-			'<input type=file hidden accept="text/*" id=CacheUploadFile />'+
+			'<input type=file hidden accept="text/*" id=CacheUploadFile />',
 			gM('Export File')+itv('" id="CacheDownload','file_download'),
 			gM('Clear Cache')+itv('" id="CacheClear','clear_all')
 			].join(br)
@@ -233,7 +233,7 @@ navhead['about']=fieldseth(gM('Version'),
 					href(Hs+'www.douban.com/group/mathought/','数学史与数学思想方法')+' (豆瓣小组) 组长',
 					href(Hs+'www.douban.com/group/nonlinear/','非线性Nonlinear')+' (豆瓣小组) 组长',
 					href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
-					href(HOM.ZIG,'小乐图客zzllrr Imager Geek')+'（Google Chrome Extension）作者',
+					href(HOM.ZIL,'小乐图客zzllrr Imager Lite')+'（Google Chrome Extension）作者',
 					href(HOM.ZRL,'小乐图客zzllrr RSS Reader')+'（Google Chrome APP）作者',
 					href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
 					gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),

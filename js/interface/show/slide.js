@@ -8,7 +8,7 @@
 
 showThen['Slide']=function(){
 	$('#showGround .ground1').html(
-		'<textarea class=editorText placeholder="'+gM('input HTML')+'"></textarea>'+
+		'<textarea class=editorText tip="'+gM('input')+'HTML / Markdown"></textarea>'+
 		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
 		detail(SCtv('SlideTool','<input type="file" id=SlideFile accept="text/*" multiple="multiple" />'+
 		strbtn+gM('Play')+'" id=SlidePlay />'),

@@ -38,8 +38,7 @@ lang['en']={
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
 	'notLaTeX':' instead of LaTeX code',
-	
-	
+
 	'donatip':'needs your help!',
 	'donatip0':'Anything immortal has an intrinsic nature of Mathematics.',
 	'Accnum':'Account Number',

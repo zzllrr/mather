@@ -785,6 +785,7 @@ lang['zh_cn'] = {
 	'Conic Section': '圆锥曲线',
 	'Arc': '弧',
 	'Polyline': '折线',
+	'lineHV':'横竖线',
 	'Vertex Line': '顶点连线',
 	'Bisector': '平分线',
 	'Midline': '中位线',

@@ -30,7 +30,7 @@ consolelog('g=',g);
 			
 
 			
-		}else if(/echarts/.test(g)){
+		}else if(/Echarts/.test(g)){
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
 			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));

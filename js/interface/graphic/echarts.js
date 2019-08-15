@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-tooltip.Echarts=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
+tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
 	'JS代码用$美元符号$括起来'+sceg2('$1+2$'),
 
 	detail('【折线图】line',[
