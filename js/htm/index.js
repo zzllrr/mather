@@ -471,13 +471,25 @@ $(function(){
 
 		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
 
+	}).on('click','.Mele', function(){
+		var t=$(this).text(),o=Meleo[t]||t;
+		if(t!='HTML'){
+			textareaAdd(XML.wrapE(t),'#showGround .editorText',1,t.length+3);
+		}
+		if($('#input0Type option[value='+o+']').length && $('#input0Type').val()!=o){
+			$('#input0Type').val(o).change();
+			$('#navHide.seled').click();
+			$('#iTextFold.seled').click();
+		}
 
 	}).on('click','.eg', function(e){
 
 		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey,
-		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'),tbt=me.parents('#TextBoxTool').length;
+		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),tbt=me.parents('#TextBoxTool').length;
 		if(isjs){
 			t+=';\n'
+		}else if(isnode){
+			t=XML.wrapE(t)
 		}else{
 			t=t.replace(/&&/g,'\n')
 		}
@@ -854,10 +866,13 @@ consolelog('最终A = ',A);
 	
 	
 	$('#input0Type').html(optgrp(gM('Input Format')+':',
-		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown Canvas HTML CSS SVG"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
+		OptGrps(jSon('[{"'+gM('Math Formula')+' | '+gM('Editor')+'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+gM('Webpage Grammar')+' | '+gM('Editor')+'":"Markdown HTML CSS"},{"'+gM('Graphics')+'":"Canvas SVG Echarts"},{"'+gM('Calculator')+' | '+gM('Script')+'":"JavaScript"},{"'+gM('Data')+' | '+gM('File')+'":"TXT TSV CSV XML YAML JSON"}]'))
 		)
 	).on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
+		if(v=='Echarts'){
+			tv=tooltip.graphic['Statistics/Echarts']
+		}
 
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
 		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
@@ -870,15 +885,9 @@ consolelog('最终A = ',A);
 		if(tv && it.length<1){
 			$('#input0Tip').append(detail(v,tv,'','class="inputTip inputTypeTip" data-tool='+v));
 
-			if(/[23]/.test(opti)){
-				$('.inputTip.inputTypeTip').last().prevAll().remove();
-			}
 
-			if(v=='Markdown'){
-				$('.inputTip.inputTypeTip').append(Arrf(function(x){
-					return detail(x,tooltip[x],'','class="inputTip inputTypeTip" data-tool='+x)
-				},ZLR('Canvas SVG JavaScript')).join(''));
-			}
+			$('.inputTip.inputTypeTip').last().prevAll().remove();
+
 		}
 		
 		

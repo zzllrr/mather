@@ -5,13 +5,8 @@
  */
     
 $(function () {
-	var o=H_o(),tp=o['type']||'HTML', t=L['document'];
-
+	var o=H_o(),tp=o['type']||'HTML', t=L['vr'];
 
     $('#oHTML').html(replaceNodeInner(t,'MD', md2html));
-    $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
-        all2html(this.nodeName,$(this).text(),this);
-    });
-
 
 });

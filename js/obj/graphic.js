@@ -30,12 +30,12 @@ consolelog('g=',g);
 			
 
 			
-		}else if(/Echarts/.test(g)){
+		}else if(/echarts/i.test(g)){
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
 			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
 
-			D.append(DCtv('echart0" style="width:'+D.width()+'px;height:'+(D.height()||600)+'px',''));
+			D.append(DCtv('echart0" style="width:'+(D.width()||600)+'px;height:'+(D.height()||600)+'px',''));
 consolelog(D.html());
 			var myChart = echarts.init(D.children().last()[0]);
 

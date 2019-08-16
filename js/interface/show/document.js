@@ -8,8 +8,13 @@
 
 showThen['Document']=function(){
 	$('#showGround .ground1').html(
-		'<textarea class=editorText tip="'+gM('input')+' HTML / Markdown'+'"></textarea>'+
+		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
 		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		DCtv('inblk',[
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('LA MD HTML')).join(''),
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('CV SV EC')).join(''),
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
+		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept="text/*" multiple="multiple" />'+
 		strbtn+gM('Play')+'" id=DocumentPlay />'),''
 		)

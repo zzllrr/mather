@@ -5,16 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
  
-    <title>Slide</title>
-
-
-
-    <link rel="stylesheet" href="css/katex.css" />
-    <link rel="stylesheet" type='text/css' media='all' href="css/webslides.css">
-
-    <!-- Optional - CSS SVG Icons (Font Awesome) 
-    <link rel="stylesheet" type='text/css' media='all' href="css/svg-icons.css">
-    -->
+    <title>VR - zzllrr Mather</title>
 
 
     <!-- FAVICONS -->
@@ -30,33 +21,36 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
 
+
+    <link rel="stylesheet" href="css/katex.css" />
+  
+    <link rel="stylesheet" href="css/zmather.lib.css" />
+
     <!-- 引用第三方库 -->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
-
+  
     <script src="js/lib/katex.js"></script>
-
+  
     <script src="js/lib/echarts.js"></script>
     <script src="js/lib/js-yaml.js"></script>
+    <script src="js/lib/aframe.js"></script>
 
     <script src="js/i18n/en.js"></script>
     <script src="js/i18n/zh_cn.js"></script>
-
-    <script src="js/lib/webslides.js"></script>
-
+  
+  
+  
+  
     <!-- 引用小乐库 -->
     <script src="js/lib/zlr.js"></script>
-    <script src="js/zmather.io.js"></script>
+  	<script src="js/zmather.io.js"></script>
     <script src="js/htm/common.js"></script>
-    <script src="js/htm/slide.js"></script>
-    
-<!-- 
-    <script src="js/zmather.io.js"></script>
- -->
-
   
-
-
+    <script src="js/htm/vr.js"></script>
+  
+  
+  
     <!-- 底层对象 -->
     <script src="js/obj/math/function.js"></script>
     <script src="js/obj/math/num.js"></script>
@@ -68,24 +62,25 @@
     <script src="js/obj/math/permutation.js"></script>
     <script src="js/obj/math/matrix.js"></script>
     <script src="js/obj/math/relation.js"></script>
-
+  
     <script src="js/obj/graphic/svg.js"></script>
     <script src="js/obj/graphic/canvas.js"></script>
-
-
+  
+  
     <!-- 底层对象封装 -->
     <script src="js/obj/math.js"></script>
     <script src="js/obj/graphic.js"></script>
   </head>
   <body>
- 
-    <main role="main">
-      <article id="webslides">
-  
+    <div id=panel hidden>
+        <div id=menu>
 
-      </article>
+            <i id=night class=mi tip=Night>brightness_3</i>
+            
 
-    </main>
+          </div>
+     </div>
+    <div id=oHTML></div>
 
   </body>
 </html>

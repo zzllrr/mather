@@ -1130,7 +1130,8 @@ array命令下		()	[]	\{\}	||	\|
 	sceg2 = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg eg2" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || ''), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 	scegj = function (s, substr, c) { var v = '' + s; return SCtv('eg js' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="' + fnq('' + s), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 	scegc = function (s, substr, c) { var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-
+	scegn = function (s, substr, c) { var v = '' + s; return SCtv('eg node' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="'+s, XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	
 	zMath = function (v) { return SCtv('zMath" title="' + v, v) };
 
 
@@ -1203,6 +1204,12 @@ function pathTxt(t, single) {
 	return (t || '').replace(/\\/g, '/').replace(/(\s*\/+\s*)/g, '/').trim()
 		.replace(/^\/+|\/+$/g, '').replace(/["\\:\?\*<>\|]/g, '-').replace(/\//g, single ? '_' : '/').replace(/~/g, '_')
 }
+function replaceNodeInner(str,node,f,ignoreCase){
+	return str.replace(new RegExp('<'+node+'>([\\s\\S](?!<\\/'+node+'>))+[\\s\\S]?<\\/'+node+'>','g'+(ignoreCase?'i':'')),
+		function(t){var nl=node.length;return f(t.substr(nl+2,t.length-nl*2-5).trim())}
+	);
+}
+
 function CntN(t, i) {
 	var arr = (t || '').replace(/[\s\(\)]/g, '').split('-'), tArr = Array(4), t;
 
@@ -2774,7 +2781,8 @@ function md2html(str, sep) {
 		lnk = {}, footlnk = {}, footlnkA = [],
 		mlnk = {}, mA = [], mlnkA = [],
 		s = '\n' + str + '\n';
-	s=s.replace(/<js>([\s\S](?!<\/js>))+[\s\S]?<\/js>/g,function(t){return eval(t.substr(4,t.length-9).trim())});
+	//s=s.replace(/<js>([\s\S](?!<\/js>))+[\s\S]?<\/js>/g,function(t){return eval(t.substr(4,t.length-9).trim())});
+	s=replaceNodeInner(s,'js', eval);
 	while (/\n\[[^\]]+\]:.+/.test(s)) {
 		s = s.replace(/\n\[[^\]]+\]:.+/, function (x) {
 			var k = x.split(']:')[0].substr(2), v = x.replace(/\n\[[^\]]+\]:/, '').replace(/ +/g, ' ').trim(), isfoot = /^\^/.test(k);
@@ -3110,7 +3118,8 @@ function md2html(str, sep) {
 	}
 	consolelog(s);
 
-	s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,function(t){setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
+	//s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,function(t){setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
+	s=replaceNodeInner(s,'JS', function(t){setTimeout(function(){eval(t)},100);return ''});
 
 
 	return s.replace(/^\n+/, '').replace(/\n+$/, '\n').replace(/\n/g, sep === undefined ? br : sep)
@@ -3177,11 +3186,12 @@ function blking(t, Neg) {
 	s = arr.join('');
 	return s;
 }
-function textareaAdd(str, obj, newline) {
+function textareaAdd(str, obj, newline, sellen) {
 	var O = $(obj), ov = O.val().trim(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
-		v = ov.substr(0, sS) + (newline?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE));
-	O.val(v.trim());
-	var t = sS + (str || '').length;
+		v = ov.substr(0, sS) + (newline?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
+		vt=v.trim();
+	O.val(vt);
+	var t = sS + (sellen||(str || '').length) + vt.length-v.length;
 	O.focus();
 	O[0].selectionStart = t;
 	O[0].selectionEnd = t;

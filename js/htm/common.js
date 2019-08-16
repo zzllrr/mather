@@ -1,4 +1,7 @@
 var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',
+Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript',Mele2='LA LT LX LTX TEX YM SV CV EC MD JS',
+Meleo={'LA':'LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript'},
+
 qrAli=Hs+'qr.alipay.com/', qrqq=Hs+'i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=122618817&ac=ZZLLRR&n=%E5%B0%8F%E4%B9%90%E7%AC%91%E4%BA%86&f=wallet',
 qrwx='wxp://',
 qrs={
@@ -100,9 +103,9 @@ var rng2=function(t,neg){
 	if(dx<0 && dy<0){return Math.atan(dy/dx)+Math.PI}
 	if(dx>0 && dy<0){return Math.atan(dy/dx)+Math.PI*2}
 };
-function all2html(iv,v,dom){
-    var vA=v.split('\n'), w=$(dom);
-    if(iv=='Unicode_Math'){
+function all2html(type,v,dom){
+    var vA=v.split('\n'), w=$(dom), iv=(type||'').toUpperCase();
+    if(/UNICODE_MATH|UM/.test(iv)){
         var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
         if(l){
         //	Dp.next().find('.task').click();
@@ -111,31 +114,37 @@ function all2html(iv,v,dom){
             w.html(asc2unicode(v).split('\n').join(br));
         }
         
-    }else if(iv=='Markdown'){
+    }else if(/MARKDOWN|MD/.test(iv)){
         w.html(md2html(v));
         
-    }else if(iv=='JavaScript'){
+    }else if(/JAVASCRIPT|JS/.test(iv)){
         try{
             w.html(Arrf(eval,vA).join(br))
         }catch(e){
             w.html(v)
         }
-    }else if(iv=='LaTeX'){
+    }else if(/LATEX|LA|LT|LX|TEX|LTX/.test(iv)){
         katex.render(kx(sub2n(v,1)), w[0], {
             throwOnError: false,
             displayMode: true
         });
             
-    }else if(iv=='SVG'){
-        
-        w.html('<svg xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink+'" version="1.1">'+v+'</svg>');
-        
-    }else if(iv=='Canvas'){
-        try{
-            
-            w.html('<canvas width=300 height=300></canvas>');
+    }else if(/SV/.test(iv)){
+        if(!w.is('svg')){
+            w.html('<svg xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink+'" version="1.1">'+v+'</svg>');
+        }else{
 
-            var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
+        }
+        
+    }else if(/CANVAS|CV/.test(iv)){
+        try{
+            var cvs=w;
+            if(!w.is('canvas')){
+                w.html(XML.wrapE('canvas'));
+                cvs=w.children();
+            }
+            //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
+            var C=new ctt(cvs,300,300), c=C.ctx;
             eval(v);
         }catch(e){
             w.html(v)
@@ -144,23 +153,26 @@ function all2html(iv,v,dom){
     }else if(iv=='YAML'){
         var x=jsyaml.load(v);
         w.html(XML.wrapE('pre',XML.wrapE('code',jSoff(x))));//txa
-        
-    }else if(iv=='HTML'){
-        w.html(v);
 
-    }else if(iv=='Echarts'){
+    }else if(iv=='I18'){
+        w.text(function(i,v){return gM(v)});
+
+    }else if(/ECHARTS|EC/.test(iv)){
 
         w.empty();
         Graphic.drawSVG('echarts',v,'',w);
     
-
-    }else{
+    }else if(iv=='CODE'){
         w.html(XML.wrapE('pre',XML.wrapE('code',XML.encode(v))));
+
+    }else{// if(iv=='HTML')
+        w.html(v);
     }
 }
 
 
 $(function () {
+    titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
     $('.mi-span,i18').text(function(i,v){return gM(v)});

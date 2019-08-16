@@ -110,7 +110,7 @@ tooltip['API']=[
 		]},
 	
 		{'HTML':[
-			{'格式化':'html2txt html2html altTxt txt2A blking ubb2html md2html'},
+			{'格式化':'html2txt html2html altTxt txt2A blking ubb2html md2html replaceNodeInner'},
 			{'Engin':'Engin'},
 			{'元素':[
 				{'过渡':'br hr prog'},

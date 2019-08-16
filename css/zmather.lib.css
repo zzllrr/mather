@@ -163,7 +163,7 @@ body.day{
 }
 
 
-.fdetail:hover summary,.task,.taskname{
+.fdetail:hover summary,.task,.taskname,.Mele:hover{
 	color:white;
 }
 .taskname{
@@ -239,7 +239,7 @@ body:not(.night) .bdb{
 }
 
 
-.inblk:not(.notm),.vam, #bar, #bar span{
+.inblk:not(.notm),.vam, #bar, #bar span, textarea{
 	vertical-align: middle;
 }
 .vat{
@@ -674,7 +674,18 @@ summary ~ details summary{
 	width:98%;
 	z-index:-1;
 }
-
+.Mele{
+	padding: 1px 10px;
+    margin: 2px 5px;
+	color:gray;
+	border-radius:15px;
+	cursor:pointer;
+	user-select: none;
+	display: inline-block;
+	font-size:1.1rem;
+	vertical-align: middle;
+	border: solid 1px gainsboro;
+}
 .subtabhead,.subhead{
     color: white;
 	padding: 2px 20px;
@@ -731,7 +742,7 @@ select,input:not([type="file"]), .rem13{
 	background: black;
 	padding-left: 20px;
 }
-.sechResult{
+.sechResult, .Mele:hover{
 	background: rgba(50, 205, 50, 0.6);
 }
 
@@ -831,9 +842,8 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
 
 
 .editorText {
-	width:20%;
-	height:60px;
-	vertical-align: middle;
+	width:50%;
+	height:100px;
 }
 
 #donate div {margin:10px}

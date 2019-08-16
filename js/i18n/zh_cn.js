@@ -386,6 +386,7 @@ lang['zh_cn'] = {
 	'Object': '对象',
 	'Entity': '实体',
 
+	'Component':'组件',
 	'Closure': '闭包',
 	'Computing Power': '计算能力',
 	'Synergy': '协同能力',

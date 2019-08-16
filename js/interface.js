@@ -608,29 +608,46 @@ tooltip={
 
 	'HTML':[
 		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/HTML/Element',gM('Native')+' HTML API'),
+		detail(gM('Component'),[
+
+			gM('Math Formulae')+Arrf(scegn,ZLR('LaTeX LA LT LX LTX TEX')).join('|'),
+			Arrf(scegn,ZLR('Unicode_Math UM')).join('|'),
+
+			gM('Graphic')+Arrf(scegn,ZLR('SVG SV')).join('|'),
+			Arrf(scegn,ZLR('Canvas CVS CV')).join('|'),
+			Arrf(scegn,ZLR('Echarts EC')).join('|'),
+			
+			'HTML'+Arrf(scegn,ZLR('Markdown MD')).join('|'),
+			Arrf(scegn,ZLR('i18')).join(''),
+			gM('Data')+Arrf(scegn,ZLR('YAML')).join(''),
+
+			gM('Script')+Arrf(scegn,ZLR('JavaScript JS')).join('|'),
+
+		].join(br)),
+
 		detail(gM('Slide'),[
 			detail(gM('Structure'),[
 
-				Arrf(sceg,Arrf(XML.wrapE,ZLR('section nav'))).join(''),
+				Arrf(scegn,ZLR('section nav')).join(''),
 
 				sceg('<nav class="navbar"></nav>'),
-				
+
 				gM('Grid')+sceg(DCtv('grid'))+' > '+sceg2(DCtv('column')),
 				'.(sidebar + main)'+sceg2('grid sm'),
 				'.(main + sidebar)'+sceg2('grid ms'),
 				'.(sidebar + main + sidebar)'+sceg2('grid sms'),
 
-				'ul.flexblock'+sceg('<ul class="flexblock"></ul>')+' > '+sceg2(XML.wrapE('li')),
+				'ul.flexblock'+sceg('<ul class="flexblock"></ul>')+' > '+scegn('li'),
 				Arrf(sceg2,ZLR('blink border steps gallery metrics')).join(''),
 				Arrf(sceg2,ZLR('clients features specs activity plans reasons')).join(''),
 
 				gM('Process')+Arrf(sceg2,ZLR('process')).join(''),
 				Arrf(sceg2,ZLR(zlr('step-','2 3 4'))).join(''),
 
-				'ul.work'+sceg('<ul class="work"></ul>')+' > '+sceg2(XML.wrapE('li')),
+				'ul.work'+sceg('<ul class="work"></ul>')+' > '+scegn('li'),
 				Arrf(sceg2,ZLR('work-label')).join(''),
 
-				'ul.description'+sceg('<ul class="description"></ul>')+' > '+sceg2(XML.wrapE('li')),
+				'ul.description'+sceg('<ul class="description"></ul>'),
 
 				gM('Button')+sceg(DCtv('button'))+Arrf(sceg2,ZLR('radius ghost')).join(''),
 
@@ -690,7 +707,20 @@ tooltip={
 
 			].join(br)),
 
-		].join(br))
+		].join(br)),
+	
+		detail(gM('VR'),[
+			href(Hs+'aframe.io','VR API'),
+			sceg(`
+			<a-scene>
+			<a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+			<a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+			<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+			<a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+			<a-sky color="#ECECEC"></a-sky>
+		  </a-scene>
+		  `,0)
+		].join(br)),
 
 	].join(br),
 
