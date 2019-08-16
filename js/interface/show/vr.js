@@ -9,7 +9,7 @@ showThen['VR']=function(){
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
 		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
         DCtv('inblk',[
-            SCtv('Mele" tip=VR title="VR','a-scene'),
+            SCtv('Mele" tip=VR title="VR',ZLR('VR a-scene')).join(''),
 
         ].join(br))+
 		detail(SCtv('VRTool','<input type="file" id=VRFile accept="text/*" multiple="multiple" />'+

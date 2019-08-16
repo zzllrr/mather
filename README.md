@@ -1,6 +1,7 @@
 # zzllrr Mather - An open-sourced Math Tool
 
 ![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
+<https://zzllrr.github.io/mather/>
 
 ## Summary in Chinese 中文摘要
 
@@ -148,15 +149,15 @@ Make mathematics easier to learn, practice, teach, study, appreciate, play, show
 
 ## How innovative is the research? 特色与创新之处
 
-一、	本地化离线计算。
+### 一、	本地化离线计算。
 充分利用本地计算能力和资源，从而节约能源和带宽消耗，不再为复杂的网络环境故障而尴尬烦恼。
-二、	多层级和高扩展的开源API支持。
+### 二、	多层级和高扩展的开源API支持。
 有适用于多场景的应用的丰富API，开发者还可以根据自己喜好来扩展和自定义新功能
-三、	丰富的数学知识概念和工具库
+### 三、	丰富的数学知识概念和工具库
 收集开放的、开源的学术资源，并加以重构和再创造，在系统内建结构化的知识体系，便于鸟瞰和在宏观、微观多层次认识数学。同时，将外部优质数学资源链接，进行结构化整理，便于随时查阅使用。
-四、	丰富的数学题库（自动出题和手动搜集整理，有待实现）
+### 四、	丰富的数学题库（自动出题和手动搜集整理，有待实现）
 方便广大学生和数学爱好者自学。
-五、	场景化的贴心功能（如夜间模式，即将推出的功能：图形动画课堂演示、板书风格自动语音讲解、考试随机出题和自测）
+### 五、	场景化的贴心功能（如夜间模式，即将推出的功能：图形动画课堂演示、板书风格自动语音讲解、考试随机出题和自测）
 
 ## Expected outcomes in stages 预期研究成果 阶段性研究计划
 ### 一、开源软件的迭代更新。

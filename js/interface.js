@@ -624,106 +624,121 @@ tooltip={
 			gM('Script')+Arrf(scegn,ZLR('JavaScript JS')).join('|'),
 
 		].join(br)),
-
-		detail(gM('Slide'),[
-			detail(gM('Structure'),[
-
-				Arrf(scegn,ZLR('section nav')).join(''),
-
-				sceg('<nav class="navbar"></nav>'),
-
-				gM('Grid')+sceg(DCtv('grid'))+' > '+sceg2(DCtv('column')),
-				'.(sidebar + main)'+sceg2('grid sm'),
-				'.(main + sidebar)'+sceg2('grid ms'),
-				'.(sidebar + main + sidebar)'+sceg2('grid sms'),
-
-				'ul.flexblock'+sceg('<ul class="flexblock"></ul>')+' > '+scegn('li'),
-				Arrf(sceg2,ZLR('blink border steps gallery metrics')).join(''),
-				Arrf(sceg2,ZLR('clients features specs activity plans reasons')).join(''),
-
-				gM('Process')+Arrf(sceg2,ZLR('process')).join(''),
-				Arrf(sceg2,ZLR(zlr('step-','2 3 4'))).join(''),
-
-				'ul.work'+sceg('<ul class="work"></ul>')+' > '+scegn('li'),
-				Arrf(sceg2,ZLR('work-label')).join(''),
-
-				'ul.description'+sceg('<ul class="description"></ul>'),
-
-				gM('Button')+sceg(DCtv('button'))+Arrf(sceg2,ZLR('radius ghost')).join(''),
-
-				gM('Image')+sceg(XML.wrapE('figure','<img src="" />'+XML.wrapE('figcaption',XML.wrapE('h2','')))),
-
-				gM('Video')+' .fullscreen > .embed > video'+
-				sceg('<section class="fullscreen">'+DCtv('embed','<video autoplay loop poster="image.jpg"><source src="video.mp4" type="video/mp4"></video>')+'</section>',0),
-				gM('Overlay')+': section.fullscreen.'+sceg2('bg-blue')+' > .embed.'+sceg2('dark')+' | '+sceg2('light'),
-
-				gM('Link')+sceg('<a class="badge-ios"></a>'),
-				gM('Badge')+Arrf(sceg2,ZLR(zlr('badge-','ios android'))).join(''),
-
-				gM('Comment')+sceg(SCtv('code-comment')),
-
-			].join(br)),
-			detail(gM('Style'),[
-				sceg2(' class=""'),
-				Arrf(sceg2,ZLR('wrap embed img flexblock')).join(''),
-				gM('Text')+Arrf(sceg2,ZLR(zlr('text-','data serif separator shadow'))).join(''),
-				Arrf(sceg2,ZLR(zlr('text-','landing subtitle intro context'))).join(''),
-				Arrf(sceg2,ZLR(zlr('text-pull-','left right'))).join(''),
+	
 
 
+	].join(br),
 
-				gM('BGC')+Arrf(sceg2,ZLR(zlr('bg-','primary secondary dark light apple facebook'))).join(''),
-				Arrf(sceg2,ZLR(zlr('bg-','black black-blue white red green blue brown gray purple'))).join(''),
-				Arrf(sceg2,ZLR(zlr('bg-trans-','dark light gradient'))).join(''),
+	'Slide':[
+		href(Hs+'webslides.tv/demos/','Slide API'),
+		detail(gM('Structure'),[
 
-				gM('Gradient')+':'+'Horizontal | Radial | Vertical',
-				Arrf(sceg2,ZLR(zlr('bg-gradient-','h r v white gray'))).join(''),
+			Arrf(scegn,ZLR('section nav')).join(''),
 
+			sceg('<nav class="navbar"></nav>'),
 
-				
-				gM('bg image')+Arrf(sceg2,ZLR(zlr('background',' -top -bottom'))).join(''),
-				Arrf(sceg2,ZLR(zlr('background-left',' -top -bottom'))).join(''),
-				Arrf(sceg2,ZLR(zlr('background-center',' -top -bottom'))).join(''),
-				Arrf(sceg2,ZLR(zlr('background-right',' -top -bottom'))).join(''),
-				Arrf(sceg2,ZLR(zlr('background-','anim video'))).join(''),
+			gM('Grid')+' .grid'+sceg(DCtv('grid'),0)+' > .column'+sceg(DCtv('column'),0),
+			'.(sidebar + main)'+sceg2('grid sm'),
+			'.(main + sidebar)'+sceg2('grid ms'),
+			'.(sidebar + main + sidebar)'+sceg2('grid sms'),
 
-				gM('Image'),
-				gM('Logo')+Arrf(sceg2,ZLR(zlr2('black gray white','logo'))).join(''),
-				gM('Avatar')+Arrf(sceg2,ZLR(zlr('avatar-','80 72 64 56 48 40'))).join(''),
-				Arrf(sceg2,ZLR('browser')).join(''),
+			'ul.flexblock'+sceg('<ul class="flexblock"></ul>')+' > '+scegn('li'),
+			Arrf(sceg2,ZLR('blink border steps gallery metrics')).join(''),
+			Arrf(sceg2,ZLR('clients features specs activity plans reasons')).join(''),
 
+			gM('Process')+Arrf(sceg2,ZLR('process')).join(''),
+			Arrf(sceg2,ZLR(zlr('step-','2 3 4'))).join(''),
 
-				gM('Card')+Arrf(sceg2,ZLR(zlr('card-','60 50 40'))).join(''),
-				gM('Size')+Arrf(sceg2,ZLR(zlr('size-','50 40 30'))).join(''),
+			'ul.work'+sceg('<ul class="work"></ul>')+' > '+scegn('li'),
+			Arrf(sceg2,ZLR('work-label')).join(''),
 
-				gM('Align')+Arrf(sceg2,ZLR(zlr('align','left center right'))).join('')+Arrf(sceg2,ZLR('vertical-align')).join(''),
-				Arrf(sceg2,ZLR(zlr('slide-','top bottom'))).join(''),
-				Arrf(sceg2,ZLR(zlr('content-','left center right'))).join(''),
+			'ul.description'+sceg('<ul class="description"></ul>'),
 
-				Arrf(sceg2,ZLR('overlay fullscreen frame shadow')).join(''),
+			gM('Button')+sceg(DCtv('button'))+Arrf(sceg2,ZLR('radius ghost')).join(''),
 
-				gM('Effects')+Arrf(sceg2,ZLR('fadeIn fadeInUp zoomIn slideInLeft slideInRight')).join(''),
-				Arrf(sceg2,ZLR('slow')).join(''),
+			gM('Image')+sceg(XML.wrapE('figure','<img src="" />'+XML.wrapE('figcaption',XML.wrapE('h2',''))),8),
 
-			].join(br)),
+			gM('Video')+' .fullscreen > .embed > video'+
+			sceg('<section class="fullscreen">'+DCtv('embed','<video autoplay loop poster="image.jpg"><source src="video.mp4" type="video/mp4"></video>')+'</section>',0),
+			gM('Overlay')+': section.fullscreen.'+sceg2('bg-blue')+' > .embed.'+sceg2('dark')+' | '+sceg2('light'),
+
+			gM('Link')+sceg('<a class="badge-ios"></a>'),
+			gM('Badge')+Arrf(sceg2,ZLR(zlr('badge-','ios android'))).join(''),
+
+			gM('Comment')+sceg(SCtv('code-comment')),
 
 		].join(br)),
-	
-		detail(gM('VR'),[
-			href(Hs+'aframe.io','VR API'),
-			sceg(`
+		detail(gM('Style'),[
+			sceg2(' class=""'),
+			Arrf(sceg2,ZLR('wrap embed img flexblock')).join(''),
+			gM('Text')+Arrf(sceg2,ZLR(zlr('text-','data serif separator shadow'))).join(''),
+			Arrf(sceg2,ZLR(zlr('text-','landing subtitle intro context'))).join(''),
+			Arrf(sceg2,ZLR(zlr('text-pull-','left right'))).join(''),
+
+
+
+			gM('BGC')+Arrf(sceg2,ZLR(zlr('bg-','primary secondary dark light apple facebook'))).join(''),
+			Arrf(sceg2,ZLR(zlr('bg-','black black-blue white red green blue brown gray purple'))).join(''),
+			Arrf(sceg2,ZLR(zlr('bg-trans-','dark light gradient'))).join(''),
+
+			gM('Gradient')+':'+'Horizontal | Radial | Vertical',
+			Arrf(sceg2,ZLR(zlr('bg-gradient-','h r v white gray'))).join(''),
+
+
+			
+			gM('bg image')+Arrf(sceg2,ZLR(zlr('background',' -top -bottom'))).join(''),
+			Arrf(sceg2,ZLR(zlr('background-left',' -top -bottom'))).join(''),
+			Arrf(sceg2,ZLR(zlr('background-center',' -top -bottom'))).join(''),
+			Arrf(sceg2,ZLR(zlr('background-right',' -top -bottom'))).join(''),
+			Arrf(sceg2,ZLR(zlr('background-','anim video'))).join(''),
+
+			gM('Image'),
+			gM('Logo')+Arrf(sceg2,ZLR(zlr2('black gray white','logo'))).join(''),
+			gM('Avatar')+Arrf(sceg2,ZLR(zlr('avatar-','80 72 64 56 48 40'))).join(''),
+			Arrf(sceg2,ZLR('browser')).join(''),
+
+
+			gM('Card')+Arrf(sceg2,ZLR(zlr('card-','60 50 40'))).join(''),
+			gM('Size')+Arrf(sceg2,ZLR(zlr('size-','50 40 30'))).join(''),
+
+			gM('Align')+Arrf(sceg2,ZLR(zlr('align','left center right'))).join('')+Arrf(sceg2,ZLR('vertical-align')).join(''),
+			Arrf(sceg2,ZLR(zlr('slide-','top bottom'))).join(''),
+			Arrf(sceg2,ZLR(zlr('content-','left center right'))).join(''),
+
+			Arrf(sceg2,ZLR('overlay fullscreen frame shadow')).join(''),
+
+			gM('Effects')+Arrf(sceg2,ZLR('fadeIn fadeInUp zoomIn slideInLeft slideInRight')).join(''),
+			Arrf(sceg2,ZLR('slow')).join(''),
+
+		].join(br)),
+
+	].join(br),
+
+	'VR':[
+		href(Hs+'aframe.io','VR API'),
+		sceg(`
 			<a-scene>
 			<a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
 			<a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
 			<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
 			<a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 			<a-sky color="#ECECEC"></a-sky>
-		  </a-scene>
-		  `,0)
-		].join(br)),
+		</a-scene>
+		`,0)
+		].join(br),
 
-	].join(br),
-
+	'AR':[
+		href(Hs+'github.com/jeromeetienne/ar.js','AR API'),
+		sceg(`
+			<a-scene embedded arjs>
+			<a-marker preset="hiro">
+				<a-box position='0 0.5 0' material='color: yellow;'></a-box>
+			</a-marker>
+			<a-entity camera></a-entity>
+		</a-scene>
+		`,0)
+		].join(br),
+		
 	'Canvas':[
 	
 		href(Hs+'developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial',gM('Native')+' Canvas API'),

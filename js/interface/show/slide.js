@@ -11,7 +11,7 @@ showThen['Slide']=function(){
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
 		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
 		DCtv('inblk',[
-			SCtv('Mele" tip=Slide title="Section','section'),
+			SCtv('Mele" tip="Slide',ZLR('Slide section')).join(''),
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('LA MD HTML')).join(''),
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('CV SV EC')).join(''),
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
