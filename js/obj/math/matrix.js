@@ -2413,7 +2413,7 @@ consolelog(d);
 			
 			var R=[],Def=[], r0=Mtrx.opr1('r0',A), c0=Mtrx.opr1('c0',A), r0m=fmax(r0), c0m=fmax(c0), byC=c0m>r0m;//列零数，行零数
 			
-			Def=Arrf(function(x){var Ax=Arr1(x);return [nInvOrder_(Ax)].concat(Mtrx.opr1('取',A,byC?[Ax,seqs(1,m)]:Ax))}, PermutN(m,m));
+			Def=Arrf(function(x){var Ax=Arr1(x);return [nInvOrder_(Ax)].concat(Mtrx.opr1('取',A,byC?[Ax,seqA(1,m)]:Ax))}, PermutN(m,m));
 
 			//R=[ArrfcA([plus,times],Def),ArrfcA([plus,times],Def,1)];
 			R=[!/\d/.test(A)?'省略':ArrfcA([plus,times],Def),ArrfcA([plus,times],Def,1)];

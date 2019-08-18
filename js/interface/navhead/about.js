@@ -14,7 +14,7 @@ var protocol_keywords={
 navhead['about']=fieldseth(gM('Version'),
 	DCtv('alignc',
 		DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
-			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.8.16')+
+			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.8.18')+
 			ul([
 				'Demo: '+href(HOM.ZMATHER),
 				'GitHub: '+href(HOM.ZMather),
@@ -51,8 +51,8 @@ navhead['about']=fieldseth(gM('Version'),
 		fieldseth(gM('Aims'),gM('Aimstip'))+
 		
 		fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
-			Table([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public'))],
-				['✔'.repeat(14).split('')],'TBrc','alignc')
+			Table('',tableT([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public')),
+			'✔'.repeat(14).split('')]),'TBrc','alignc')
 		)+
 
 		fieldseth(gM('Vision'),gM('Visiontip')+
@@ -85,7 +85,7 @@ navhead['about']=fieldseth(gM('Version'),
 						'#'+gM(ZLR('Multipath Convenient Layered')).join(', #'),
 						'#'+gM(ZLR('Teacher Student Engineer Artist Mathematician')).join(', #')],
 						
-					[gM('Show'),meter(5),
+					[gM('Show'),meter(65),
 						'#'+gM(ZLR('Efficient Semantical Automatic')).join(', #'),
 						'#'+gM(ZLR('Teacher Geek Educator Engineer Mathematician')).join(', #')],
 						
@@ -142,7 +142,7 @@ navhead['about']=fieldseth(gM('Version'),
 					[gM('Audio Synthesis'),meter(5),
 						'#'+gM(ZLR('Speech Sound Music')).join(', #')],
 						
-					[gM('Visualization'),meter(5),
+					[gM('Visualization'),meter(35),
 						'#'+gM(ZLR('Animation Video 2D 3D VR AR')).join(', #')],
 	
 					[gM('Open AI'),meter(0),
@@ -233,8 +233,8 @@ navhead['about']=fieldseth(gM('Version'),
 					href(Hs+'www.douban.com/group/mathought/','数学史与数学思想方法')+' (豆瓣小组) 组长',
 					href(Hs+'www.douban.com/group/nonlinear/','非线性Nonlinear')+' (豆瓣小组) 组长',
 					href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
-					href(HOM.ZIL,'小乐图客zzllrr Imager Lite')+'（Google Chrome Extension）作者',
-					href(HOM.ZRL,'小乐图客zzllrr RSS Reader')+'（Google Chrome APP）作者',
+					href(HOM.ZIG,'小乐图客zzllrr Imager')+'（Google Chrome Extension）作者',
+					href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
 					href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
 					gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),
 					

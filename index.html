@@ -131,7 +131,7 @@
 
 					<textarea id=input0></textarea>
 					<div id=input0Tool class="opac">
-						<input type=button class=Clear id=iClear value=⌫ hotkey="Ctrl + E" />
+						<i class="mi Clear" id=iClear hotkey="Ctrl + E">backspace</i>
 
 						<i class=mi id=send2textBox tip=copy2input>arrow_upward</i>
 						
@@ -139,7 +139,7 @@
 						<i class=mi id=navHide tip=Collapse>keyboard_arrow_up</i>
 						<i class=mi id=UploadFile tip="Import File">add</i>
 						<input type="file" id=inputFile hidden />
-						<input type=button class="Clear rotate180" id=tClear value=⌫ />
+						<i class="Clear rotate180 mi" id=tClear>backspace</i>
 
 					
 
@@ -185,7 +185,7 @@
 					<div id=input1Preview></div>
 					<textarea id=input1></textarea>
 					<div id=input1Tool class="opac">
-						<div><input type=button class=Clear id=cClear value=⌫ hidden /></div>
+						<div><i class="Clear mi hidden" id=cClear>backspace</i></div>
 
 
 					</div>
@@ -195,10 +195,10 @@
 
 				<div id=iTextPreview>
 					<span id=previewTool hidden>
-						<input type=button class="Clear rotate90" id=previewOff value=⌫ />
-
+						<i class="Clear rotate90 mi" id=previewOff>backspace</i>
+	<!-- 
 						<i class=mi id=displayOverCanvas tip=copy2Canvas>exit_to_app</i>
-
+	 -->
 						<i class=mi id=downloadPreview tip="Download HTML File">file_download</i>
 						
 					</span>
@@ -210,10 +210,10 @@
 				<div id=iTextOpt class="pd2">
 
 
-					<input type=button id=go value=" GO " hotkey="Ctrl + Enter" />
+					<i class=mi id=go tip="Run" hotkey="Ctrl + Enter">play_circle_outline</i>
 
 
-					<input type=button id=oHClear class="Clear oClear rotate270" value=⌫ />
+					<i id=oHClear class="mi Clear oClear rotate270">backspace</i>
 					<i class=mi id=iTextFold tip=Collapse>unfold_less</i>
 					<i class=mi id=zMatherHide tip=Collapse>keyboard_arrow_up</i>
 

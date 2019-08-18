@@ -19,7 +19,6 @@
 
 .sbsTbl .td{
 	float:left;
-	padding:5px 12px;
 	margin:2px;
 	overflow:hidden;
 }
@@ -27,6 +26,9 @@
 
 .sbsTbl td, #iTextMain input{
 	font: normal 1.3rem KaTeX_Main,Times New Roman,serif;
+}
+.sbsTbl td[title^="\\n"]{
+	font: normal 1.3rem serif;
 }
 
 .Symboli td{
@@ -52,10 +54,14 @@
 .sbsTbl .td, .sbsTbl td:not(:empty){
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
 	padding:10px;
+	position: relative;
+}
+
+.sbsTbl .td[title]:not(.Fns), .sbsTbl td[title]{
+	padding:1.2rem;
 }
 
 .sbsTbl .td:not(:empty):active,.sbsTbl td:not(:empty):active{
@@ -68,7 +74,18 @@
 }
 #sbs td:not(:empty){
 	min-width:30px;
-	font-size: 22px;
+	font-size: 1.5rem;
+}
+#iTextLaTeXBox td:not(:empty):after,#iTextLaTeXBox .td:not(:empty):not(.Fns):after {
+    content: attr(title);
+    display: block;
+    font-size: .8rem;
+	color: gray;
+	position: absolute;
+    left: 2px;
+	right: 2px;
+	overflow: hidden;
+    max-height: 1.2rem;
 }
 
 .sbsTbl:not(.sbsiTbl) tr:nth-child(odd), .Symboli:not(.Symboli_){
@@ -78,6 +95,7 @@
 .seled:not(div):not(.subhead):not(.subtabhead):not(textarea){
 	background: yellow;
 	color: gray;
+	border-radius: 100%;
 }
 
 

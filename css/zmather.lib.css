@@ -110,7 +110,7 @@ sup,sub,.small{
 #oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
-#wiki details[open] > summary, #wiki>span{
+#wiki details[open] > summary, #wiki>span, #go{
     color: limegreen;
 }
 
@@ -139,8 +139,8 @@ body.day{
 .prov{
 	color:dimgray
 }
-.red,.Clear{
-	color:red
+.red,.Clear:hover{
+	color:red;
 }
 
 .btnSim{
@@ -163,7 +163,7 @@ body.day{
 }
 
 
-.fdetail:hover summary,.task,.taskname,.Mele:hover{
+.fdetail:hover summary,.task,.taskname,.Mele:hover, #go:hover{
 	color:white;
 }
 .taskname{
@@ -641,7 +641,7 @@ input[type=text],#wiki>span,.brad{
 	resize: none;
 	overflow:hidden;
 }
-.windex,.Clear,.task,th{
+.windex,.task,th{
 	cursor: pointer;
 }
 
@@ -690,7 +690,7 @@ summary ~ details summary{
     color: white;
 	padding: 2px 20px;
     margin: 5px;
-    border-radius: 4px 10px;
+    border-radius: 100%;
 	cursor: pointer;
 	font-size:1.3rem;
 	display: inline-block;
@@ -708,7 +708,7 @@ summary ~ details summary{
 	padding:2px 14px;
 	margin:2px 5px;
 	color:white;
-	border-radius:5px;
+	border-radius:100%;
 	cursor:pointer;
 	user-select: none;
 	display: inline-block;
@@ -799,7 +799,7 @@ select,input:not([type="file"]), .rem13{
 	background:royalblue;
 }
 
-textarea, #iContent input:not(.seled):not(.Clear):not(:hover){
+textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 	background:transparent;
 }
 .wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
@@ -912,10 +912,9 @@ img{
 }
 
 .Clear{
-	border:solid transparent 1px;
-	background: transparent;
-	padding:6px;
+	color:gray
 }
+
 .mi{
   font-family: 'Material Icons';
   font-weight: normal;
@@ -925,7 +924,7 @@ img{
   padding:2px;
   border:solid transparent 1px;
  /* font-size: 1.5rem;   Preferred icon size 24px;*/
- /* display: inline-block;*/
+  display: inline-block;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -948,14 +947,10 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:hover,th:not(.Clear):hover,summary{
+.mi:not(.Clear):hover, th.bds:hover, summary{
 	background:rgba(50, 205, 50,0.5);
 }
-.Clear:hover{
-	background: red;
-	color:white;
-	border: solid gainsboro 1px;
-}
+
 
 #panel div > span.toggle{
 	vertical-align: middle;

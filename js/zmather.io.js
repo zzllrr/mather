@@ -3,257 +3,232 @@
  * zzllrr@gmail
  * Released under MIT License
 */
-var SBSi='Num Num1 ABC ABC1 ABC2 ABC3 Operator Operator1 Relation Relation1 Arrow Arrow1 Arrow2 Misc Misc1 Misc2',
+var SBSi=[zlr('Num',' 1 2 3'),
+	zlr('ABC',' 1 2 3 4 5'),
+	zlr('Operator',' 1 2'),
+	zlr('Relation',' 1 2'),
+	zlr('Arrow',' 1 2 3 4 5'),
+	zlr('Misc',' 1 2 3 4')
+].join(' '),
 SBS={
 
 	Num:[['⁰¹²³⁴⁵⁶⁷⁸⁹','₀₁₂₃₄₅₆₇₈₉'],
-		['⁺⁻⁼⁽⁾','₊₋₌₍₎'],
+		['⁺⁻⁼⁽⁾%‰‱','₊₋₌₍₎'],
+		['①②③④⑤❶❷❸❹❺','⑥⑦⑧⑨⑩❻❼❽❾❿'],
+		['➀➁➂➃➄','➅➆➇➈➉'],
 
-		['①②③④⑤⑥⑦⑧⑨⑩','⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'],
-	
-		['❶❷❸❹❺❻❼❽❾❿','➀➁➂➃➄➅➆➇➈➉'],
-		['➊➋➌➍➎➏➐➑➒➓','⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴'],
-		
-		['⓵⓶⓷⓸⓹⓺⓻⓼⓽⓾','㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚'],
-			
-		['㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵','㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿'],
-
-		['⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑','⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛'],
-		['⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽','⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇'],
-
-		['⅟½⅓⅔¼¾⅕⅖⅗⅘','⅙⅚⅛⅜⅝⅞%‰‱'],
-
-
-		],
+	],
 
 	Num1:[
 		
-		['〇一二三四五六七八九','零壹贰叁肆伍陆柒捌玖'],
-		['十百千万亿兆','拾佰仟萬亿兆'],
-		Arrf(fCC,[seqA(12928,10),seqA(12832,10)]),
-		
-		
-		Arrf(fCC,[seqA(12992,10),seqA(13002,2)]),
-		Arrf(fCC,[seqA(13280,10),seqA(13290,10)]),
-		Arrf(fCC,[seqA(13300,10),[13310]]),
-		Arrf(fCC,[seqA(13144,10),seqA(13154,10)]),
-		[fCC(seqA(13164,5)),' '],
-		['甲乙丙丁戊己庚辛壬癸','子丑寅卯辰巳午未申酉'],
-		['㆙㆚㆛㆜㆒㆓㆔㆕','戌亥㆖㆗㆘㆝㆞㆟']
-		],
+		['⒈⒉⒊⒋⒌⒒⒓⒔⒕⒖','⒍⒎⒏⒐⒑⒗⒘⒙⒚⒛'],
+		['⑴⑵⑶⑷⑸⑾⑿⒀⒁⒂','⑹⑺⑻⑼⑽⒃⒄⒅⒆⒇'],
+		['⓵⓶⓷⓸⓹⑪⑫⑬⑭⑮㉑㉒㉓㉔㉕','⓺⓻⓼⓽⓾⑯⑰⑱⑲⑳'],
+		['㉖㉗㉘㉙㉚㊱㊲㊳㊴㊵㊻㊼㊽㊾㊿','㉛㉜㉝㉞㉟㊶㊷㊸㊹㊺'],
+		['➊➋➌➍➎⓫⓬⓭⓮⓯','➏➐➑➒➓⓰⓱⓲⓳⓴'],
+	],
+
+	Num2:[
+
+		['⅟½⅓⅔ ⅗⅘⅙⅚','¼¾⅕⅖ ⅛⅜⅝⅞'],
+		['㋀㋁㋂㋃㋄㋊㋋','㋅㋆㋇㋈㋉'],
+		['㏠㏡㏢㏣㏤㏪㏫㏬㏭㏮㏴㏵㏶㏷㏸㏾','㏥㏦㏧㏨㏩㏯㏰㏱㏲㏳㏹㏺㏻㏼㏽'],
+		['㍙㍚㍛㍜㍝㍣㍤㍥㍦㍧㍭㍮㍯㍰㍘','㍞㍟㍠㍡㍢㍨㍩㍪㍫㍬'],
+	],
+
+	Num3:[
+		['一二三四五六七八九十百千万亿兆〇','壹贰叁肆伍陆柒捌玖拾佰仟萬亿兆零'],
+		['㊀㊁㊂㊃㊄㈠㈡㈢㈣㈤','㊅㊆㊇㊈㊉㈥㈦㈧㈨㈩'],
+		['甲乙丙丁戊子丑寅卯 申酉戌亥','己庚辛壬癸辰巳午未'],
+		['㆙㆚㆛㆜ ㆖㆗㆘','㆒㆓㆔㆕ ㆝㆞㆟']
+	],
 
 
 	ABC:[
-		Arrf(fCC,[seqA(945,10),seqA(913,10)]),
-		Arrf(fCC,[seqA(955,10),seqA(923,10)]),
-		Arrf(fCC,[seqA(965,5),seqA(933,5)]),
+		['αβγδελμνξουφχψω','ζηθικπρςστ'],
+		['ΑΒΓΔΕΛΜΝΞΟΥΦΧΨΩ','ΖΗΘΙΚΠΡ΢ΣΤ'],
 
+	//	Arrf(fCC,[seqA(913,25), seqA(945,25)])
 	//	Arrf(fCC,[seqA(65,26),seqA(97,26)]),
-		Arrf(fCC,[seqA(8560,10),seqA(8544,10)]),
-		[fCC(seqA(8570,6)),fCC(seqA(8554,6))],
-		['ℵℶℷℸ','∞∝∅⍉⌀℘'],
+	//	Arrf(fCC,[seqA(8560,16),seqA(8544,16)]),
 
-		['ℬℰℱℋℐℒℳℛ','ℯℊℴ'],
+		['ℵℶℷℸ℘','∞∝∅⍉⌀'],
+		['ƒℎæœＣ₵açþÞð°℃℉₴','ℲℏÆŒϹ∁āÇÐß'],
 
-		['ℂℍℕℙℚℝℤ','ℭℌℑℜℨ'],
-		['ƒℎæœ','ℲℏÆŒ'],
-		['⍺⍶ϐϒϵ⍷ℇϑϴϕ','⍳⍸⍴ϱ⍵⍹ϖ'],
-
-
-
-		],
-
+	],
 
 
 	ABC1:[
-		Arrf(fCC,[seqA(65345,10),seqA(65313,10)]),
-		Arrf(fCC,[seqA(65355,10),seqA(65323,10)]),
-		Arrf(fCC,[seqA(65365,6).concat(32,9392,9393,9394),
-				  seqA(65333,6).concat(32,9395,9396,9397)]),
 
+		['ⅰⅱⅲⅳⅴⅺⅻ','ⅵⅶⅷⅸⅹⅼⅽⅾⅿ'],
+		['ⅠⅡⅢⅣⅤⅪⅫ','ⅥⅦⅧⅨⅩⅬⅭⅮⅯ'],
+		['ℂℍℙℚ ℭℌℑℜ','ℕℝℤℨ'],
+		['ℬℰℱℋ ℯℊℴ','ℐℒℳℛ'],
+		['⍶⍺ϐϒϕ⍳⍸⍴ϱ','ϵ⍷ℇϑϴ⍵⍹ϖ'],
 
-		Arrf(fCC,[seqA(9372,10),seqA(9382,10)]),
-
-		Arrf(fCC,[seqA(9424,10),seqA(9398,10)]),
-		Arrf(fCC,[seqA(9434,10),seqA(9408,10)]),
-		Arrf(fCC,[seqA(9444,6),seqA(9418,6)]),
-		['àáâãäåçþÞ','ÀÁÂÃÄÅÇÐß'],
-		['èéêëìíîïÿ','ÈÉÊËÌÍÎÏÝ'],
-		['ñðòóôöùúûü','ÑÒÓÔÕÖÙÚÛÜ'],
-
-
-		
-
-	//	['+-	=.%|\\$<>,;^_~\'"&*/:?@#!删空',' '],		ℏ
+	
+		//	['+-	=.%|\\$<>,;^_~\'"&*/:?@#!删空',' '],		ℏ
+	
+			//['aāáǎàċ','äůâãă'],
+				
+	],
 
 
 
-		],
-			
-	ABC2:Arrf(function(t,i){return [Latin(t,true).join(''),Latin(t).join('')]},entity.slice(4)).concat(
-		[['aℝℎＣϹ∁','āáǎàċäůâãă']]
-		),
+	ABC2:[
+		['ａｂｃｄｅｋｌｍｎｏｕｖｗｘｙ','ｆｇｈｉｊｐｑｒｓｔｚ'],
+		['ＡＢＣＤＥＫＬＭＮＯＵＶＷＸＹ','ＦＧＨＩＪＰＱＲＳＴＺ'],
+		// Arrf(fCC,[seqA(65345,26),seqA(65313,26)]),
+		// Arrf(fCC,[seqA(9372,52),seqA(9424,26)]),
 
-	ABC3:[['°℃℉'+fCC(seqA(8372,2)),''],
-			[fCC(seqA(8352,10)),fCC(seqA(8362,10))],
-		].concat(Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),[
+		['⒜⒝⒞⒟⒠⒦⒧⒨⒩⒪⒰⒱⒲⒳⒴','⒡⒢⒣⒤⒥⒫⒬⒭⒮⒯⒵'],
+		['ⓐⓑⓒⓓⓔⓚⓛⓜⓝⓞⓤⓥⓦⓧⓨ','ⓕⓖⓗⓘⓙⓟⓠⓡⓢⓣⓩ'],
+		['ⒶⒷⒸⒹⒺⓀⓁⓂⓃⓄⓊⓋⓌⓍⓎ','ⒻⒼⒽⒾⒿⓅⓆⓇⓈⓉⓏ']
+	],
 
-		]),
+	ABC3:Arrf(function(t,i){return [Latin(t,true).join('').replace('É','$&G'),
+		Latin(t).join('').replace('⊙⋅⃛','i')
+	]},entity.slice(4,9)),
 
+	ABC4:Arrf(function(t,i){return [Latin(t,true).join(''),
+		Latin(t).join('').replace('◯','')
+	]},entity.slice(9)).concat([['₠₡₢₣₤₥₦₧₨₩','₪₫€₭₮₯₰₱₲₳']]),
+
+	ABC5:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),
 
 	Operator:[
-		['∑∏∐㏒㏑√∛∜','∫∬∭∮∯∰∱∲∳'],//⨌
-		['¬∀∃∄∂∇','!‼†′″‴‵‶‷'],
-		
-		['+∓⍅⍏⌿⌗⌶','⊹±⍆⍖⍀⋕#†'],
-		['‐‑‒−⁃∣','–—―－∤¦'],
+		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀◯'],//⨌
+		['′″‴! ¬∀∃∄ ∟√∛∜','‵‶‷‼ ∠∂∇†'],
+		['+×±⊕ ∧∨∩∪','-÷∓⊗'],
+		[ ZLR('() [] {} <> 〈〉 ⁽⁾ ┌┐ ⌈⌉ ⎰⎱ ⟦⟧ ║║ ||'),
+		ZLR('(,) [,] {,} <,> ⟨⟩ ₍₎ └┘ ⌊⌋ (,] [,)')],//⟮⟯
+	],
+
+	Operator1:[
+		['+∓⍅⍏⌿⌗†⌶','⊹±⍆⍖⍀⋕#'],
+		['‐‑‒−⁃¦∣∤','–—―－'],
 		['‾∓∔∸∺∻÷∹⍎','_±‗⍘⍙⍚⍛⍜⍕'],
 			
 		['×⨉∕╱','╳⋇∖╲'],
 			
-		['⊕⨁⨂⊖⊗⊘⌽⊜⊝','⦿⊙⨀⊚⌾⍟⊛⌻⌼'],//⧀⧁
+		['⊕⨁⨂⊖⊗⦿⊙⨀⊚⌾','⊘⌽⊜⊝ ⍟⊛⌻⌼'],//⧀⧁
+	],
 
+	Operator2:[
 		
 		['∧⋀⌃⌅⊼⌆⋋⋏⨇','∨⋁⌄‸⊻⊽⋌⋎⨈'],
 		['∩⋂⋓⋔ ⨃⨄⨅⊓','∪⋃⋒ ⊌⊍⊎⨆⊔'],
 
-		[ZLR('() [] {} <> 〈〉 ║║ || ⁽⁾ ┌┐ ⌈⌉ ⟨⟩ '),
-		ZLR('(,) [,] {,} <,> (,] [,) ⎰⎱ ₍₎ └┘ ⌊⌋ ⟦⟧')],//⟮⟯
-
-		],
-
-	Operator1:[
-
 		['∡∠','∢∟⊾⊿'],//⦛⦣⦤⦥⦟⦞ ⦠⦢⦡⦜⦝
-		['⊞⊠⍁⌸⊡⍃⍄⍰⍐⍍⍓⌺','⊟⌹⍂⍯⍠⍇⍈⍞⍗⍔⍌'],
+		['⊞⊠⍁⌸⊡⍃⍄⌺⍐⍍⍓⍌⍰','⊟⌹⍂⍯⍠⍇⍈⍞⍗⍔'],
 		['≖⋄','']
 
-		],
+	],
 
 	Relation:[
 
-		['⋅∙•‧․∘','⋆∗⁂⁑°'],
-
-		[':‥⋯⋰∵∷','∶¨⋮⋱∴⁞'],
-
-			
-
+		['⋅∙•‧․∘°','⋆∗⁂⁑'],
+		[':‥∷  ⋯⋰∵','∶¨⁞  ⋮⋱∴'],
 		['＝≡≣≗≘≙≚≛≜≝','≠≢≐≑≓≒≔≕≟≞'],
 		['∼≈≋≀⌇≌⋍≃≅≊','≁≉⍭∾∿∽≂≄≇≆'],
 
-		['<>≤≥⋖⋗≦≧','≮≯≰≱⋜⋝≨≩'],
-
-		['⊂⊃⊆⊇⊊⊋','⊄⊅⊈⊉⋐⋑'],
-		['∈∋∊∍⋳⋻⋶⋽⋸∁','∉∌⋲⋺⋴⋼⋷⋾⋹⋵'],
-
-		['≺≻≼≽⊰⊱≾≿','⊀⊁⋞⋟⋠⋡⋨⋩'],
-		
-		['⊲⊳⊴⊵⋉⋊⋈','⋪⋫⋬⋭'],
-			
-		['⊏⊐⋤⋥⌌⌍⌜⌝⌐⋿','⊑⊒⋢⋣⌎⌏⌞⌟⌙¬'],
-
-		],
+	],
 
 	Relation1:[
+		['<>≤≥ ⋖⋗≦≧','≮≯≰≱ ⋜⋝≨≩'],
 
+		['⊂⊃⊆⊇ ⊊⊋','⊄⊅⊈⊉ ⋐⋑'],
+		['∈∋∊∍⋳⋻⋶⋽⋸∁','∉∌⋲⋺⋴⋼⋷⋾⋹⋵'],
 
+		['≺≻≼≽ ⊰⊱≾≿','⊀⊁⋞⋟ ⋠⋡⋨⋩'],
+		
+		['≲≳≶≷ ⋚⋛≪≫','≴≵≸≹ ⋦⋧⋘⋙'],
 
-		['≲≳≶≷⋚⋛≪≫','≴≵≸≹⋦⋧⋘⋙'],
+	],
 
+	Relation2:[
+		['⊲⊳⊴⊵ ⋉⋊⋈','⋪⋫⋬⋭'],
+		['⊏⊐⋤⋥⋿⌌⌍⌜⌝⌐','⊑⊒⋢⋣¬⌎⌏⌞⌟⌙'],
 		['‖∥⊩⊫⧻','∦⧺⊮⊯⊪'],
-		['⊺⊧⊤⊦⊨⍑','⊢⊣⊥⊬⊭⍊'],
+		['⊺⊧⊤  ⊦⊨⍑','⊢⊣⊥  ⊬⊭⍊'],
 		['⍤⍥⍡⍢','⍣⍨⍩'],
-		],
+	],
 
 	Arrow:[
-
-
 		['←→↑↖↗⟵⟶','↚↛↓↙↘'],
 
-
-		['↤↦↥⤟⤠⤒⇤⇥','⟻⟼↧⤝⤞⤓'],
+		['↤↦↥  ⤒⇤⤟⤠','⟻⟼↧  ⤓⇥⤝⤞'],
 
 		['⇷⇸⤉⇞','⇺⇻⤈⇟'],
 		['↔⇹↕⤡⟷','↮⇼↨⤢⥈'],
-		['↼⇀↿↾⥊⥏⥑⥎','↽⇁⇃⇂⥋⥌⥍⥐'],
-		['⥚⥛⥠⥜⥒⥓⥘⥔','⥞⥟⥡⥝⥖⥗⥙⥕'],
-		['⥢⥤⥣⥮⥦⥨⥪⥬','⇋⇌⥥⥯⥩⥧⥫⥭'],
+
+	],
+	Arrow1:[
+		['↼⇀↿↾ ⥊⥏⥑⥎','↽⇁⇃⇂ ⥋⥌⥍⥐'],
+		['⥚⥛⥠⥜ ⥒⥓⥘⥔','⥞⥟⥡⥝ ⥖⥗⥙⥕'],
+		['⥢⥤⥣⥮ ⥦⥨⥪⥬','⇋⇌⥥⥯ ⥩⥧⥫⥭'],
 
 		['⇐⇒⇑⇖⇗⇔⟺⟸⟹','⇍⇏⇓⇙⇘⇎⤄⤂⤃'],
 		['⇇⇉⇈','⬱⇶⇊'],
 
-		['⇆⇅⥃⥂⥶⥸','⇄⇵⥄ ⥹⥻'],
 
+	],
+	Arrow2:[
 
-		],
-	Arrow1:[
-		['⤪⤨⤧⤮⤯⤲','⤫⤬⤩⤭⤰⤱'],
-		['⤆⤇⇚⇛⤊⟰','⟽⟾  ⤋⟱'],
-
-
+		['⇆⇅⥃⥂ ⥶⥸','⇄⇵⥄  ⥹⥻'],
+		['⤪⤨⤧  ⤮⤯⤲','⤫⤬⤩  ⤭⤰⤱'],
+		['⤆⤇⇚  ⤊⟰','⟽⟾⇛  ⤋⟱'],
+		['↞↠↟⥉ ⬴⤀⬻⤖ ⬼⤗⬶⤅','⤛⤜↡  ⬵⤁⬷⤐ ⬽⤘'],
 	
+		['↩↪⤣⤤ ↜↝↭⬳⟿','↫↬⤦⤥ ⇜⇝⬿⤳'],
 
-
-
-		['↞↠↟⥉ ⬴⤀⬻⤖⬼⤗','⤛⤜↡⬶⤅⬵⤁⬷⤐⬽⤘'],
-	
-		['↩↪⤣⤤↜↝↭⬳⟿','↫↬⤦⤥⇜⇝⬿⤳'],
-		['⤾⤿⤺↶⤽⤼','⤶⤷⤻↷⤸⤹'],
+	],
+	Arrow3:[
+		['⤿⤾⤺  ↶⤽⤼','⤷⤶⤻  ↷⤸⤹'],
 			
 		['⇠⇢⇡⤌⤍','⤎⤏⇣⬸⤑'],
 		['⤙⤚⬹⤔','↢↣⬺⤕'],
 
-		['⥳⥴⭋⭌⭊⥵⥆⥅','⭉⥲⭁⭇⭂⭈⭀⥱'],
+		['⥳⥴⭋⭌ ⭊⥵⥆⥅','⭉⥲⭁⭇ ⭂⭈⭀⥱'],
 
-		['⬰⇴⬾⥇','⬲⟴⥺⭄⥷⭃'],
+		['⬰⇴⬾⥇⥷','⬲⟴⥺⭄⭃'],
 
+	],
+	Arrow4:[
 		['↰↱⤴↴⇱','↲↳⤵↵⇲'],
-		],
 
-	Arrow2:[
+		['⇦⇨⇕⇧⇳','⇽⇾⇿⇩'],
 		
-		['⇦⇨ ⇧⇳','⇽⇾⇿⇩⇕'],
-		
-		['￩￫￪➚➶➹','‹›￬➘➴➷'],
+		['￩￫￪  ➚➶➹','‹›￬  ➘➴➷'],
 
-		['↹','↸☈↯⏎☇ ⥰'],
+		['↹⥰','↸☈↯⏎☇'],
+
+	],
+	Arrow5:[
 		['➾➟➠➢➣➤➨➧➥➩','➙➝➞➡➔➜➲⇰➦➪'],
 		['➬➮➱➳➵➺➼','➫➭➯➛➸➻➽'],
 		['⇪⇫⇬⇭⇮⇯',''],
 		['↻↺⥀','⟲⟳⥁'],
 		
-		],
+	],
+
+	Misc:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632,4,'',20)),
+
+	Misc1:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*4,5,'',20)),
+
+	Misc2:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*9,5,'',20)),
+
+	Misc3:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*14,5,'',20)),
+
+	Misc4:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(8962,3,'',20)).concat(
+		[['卍卐⌘','']]
+	),
+
 /* 暂不收录的Unicode字符：
 	27C0-27EF：杂项数学符号-A (Miscellaneous Mathematical Symbols-A) 
 ⟐⟑⟒⟓⟔⟕⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟	
 
-
-
-
 */
-
-
-	Misc:Arrf(function(x,i){return i==4?['卍卐⌘'+fCC(seqA(x+13,7)),'']:[fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632,10,'',20)),
-
-
-	Misc1:Arrf(function(x){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9832,4,'',20)).concat([
-			['⚸⚹⚺⚻⚼✁✂✃✄✆','✇✈✉✌✍✎✏✐✑✒']
-		]).concat(Arrf(function(x){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(10003,3,'',20))
-		).concat([
-			['❏❐❑❒❖'+fCC(seqA(8962,5)),fCC(seqA(8967,10))],
-			[fCC(seqA(8977,10)),fCC(seqA(8987,10))]
-		]),
-
-	Misc2:Arrf(function(x){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(8997,4,'',20)).concat([
-		
-		['⌢⌒≍╭╮≎⍱⍬','⌣≬≭╰╯≏⍲⍫'],
-		['□▫▭▯▱◇△','■▪▬▮▰◆▲'],
-		['∆▵▷▹▻◎○☌⊸⊶','∇▴▶▸►◉●∎☍⊷'],
-
-		
-		]),
-
-
 	SurPre:[ZLR("' ′ ″ ‴ ‵ ‶ ‷ % ‰ ‱ ‼ ! †"),ZLR('∫ ∬ ∭ ∮ ∯ ∰ ∱ ∲ ∳ ∑ ∏ ∐ ㏒ ㏑ √ ∛ ∜ ¬ ∀ ∃ ∄')],
 
 /*
@@ -916,18 +891,25 @@ SBS={
 	}
 
 }
-,FUNCSi=[ZLR('Arithmetic Algebraic Trigonometric Hyperbolic Analytical'),
-	ZLR('Set Logistical Probabilistic Statistical Topological'),
-	ZLR('Geometric'),
+,FUNCSi=[ZLR('Trigonometric Hyperbolic'),
+	ZLR('Arithmetic 17'),
+
+	ZLR('Algebraic Analytical'),
+	ZLR('Set Logistical'),
+	ZLR('Geometric Topological'),
+	ZLR('Probabilistic Statistical'),
 ]
 	
 ,FUNCS={
-	'Arithmetic':['gcd lcm mod sign','exp log ln Arg arg'],// ㏒ ㏑
+	'17':['dr'],
+	'Arithmetic':['gcd log Arg mod sign','lcm ln arg exp'],// ㏒ ㏑
 	'Algebraic':['r tr det dim','hom ker Pr diag'],
-	'Trigonometric':['sin cos tan cot sec csc',zlr('arc','sin cos tan cot sec csc')],
-	'Hyperbolic':['sh ch th cth sech csch',zlr2('sh ch th cth sech csch','^{-1}')],//⁻¹
+	'Trigonometric':['sin tan sec','cos cot csc',
+		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
+	'Hyperbolic':['sh th sech','ch cth csch',
+	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
 
-	'Analytical':['lim sup inf limsup liminf'],
+	'Analytical':['lim sup inf','limsup liminf'],
 	'Set':[],
 	'Logistical':[],
 	'Probabilistic':[],
@@ -1596,14 +1578,20 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 	if(me.is('.symboli')){
 		$('.Symboli td.seled').not(td).not(':has(.symboli_)').click();
-	}
 
-	if(me.is('.symboli')){
 		td.toggleClass('seled');
 		var di=me.attr('data-i');
+		if(!me.is('.symboli_') && !me.parent().parent().is('.Symboli_')){
+			$('.symboli_').parent('.seled').removeClass('seled');
+			$('.Symboli.Symboli_').hide();
+		}
+
+		Scroll('scrollT');
 		if(me.is('.symboli_')){
-			$(zlr('.'+di,seqA(10,30).join(' '),',')).hide();
-			$(zlr3('.Symboli_[data-i='+di,seqA(1,3).join(' '),']',',')).toggle().find('td.seled').removeClass('seled');
+
+			$('.symboli_').not(me).parent().removeClass('seled');
+			$('.Symboli.Symboli_').not(me.parent().parent().nextUntil('.Symboli:not(.Symboli_)')).hide();
+			$(zlr3('.Symboli_[data-i='+di,seqA(1,10).join(' '),']',',')).toggle().find('td.seled').removeClass('seled');
 			return
 		}
 		
@@ -1734,26 +1722,29 @@ $(function(){
 
 	var str='<table class=sbsTbl>',str2='</table><table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
-
-		var si=1,s='',n=Math.max(A[0].length,A[1].length);
-
-		for(var j=0;j<2;j++){
-			s+='<tr class='+K+'>';
-			for(var i=0;i<n;i++){
-				var c=A[j][i];
-				if(!c){break}
-				var tl=SL[c];
-
-				s+='<td'+(tl?' title="'+(tl[0]=='^'?tl:'\\'+tl)+'"':'')+'>'+(c==' '?'':SCtv('symbol'+si,c))+'</td>';
+consolelog(A);
+		var si=1,s='',n=Math.max(A[0].length,A[1].length), f=function(c){
+			if(c==' '){
+				return ''
 			}
-			s+='</tr>';
+			var tl=SL[c];
+			return '<td'+(tl?' title="'+(tl[0]=='^'?tl:'\\'+tl)+'"':'')+'>'+SCtv('symbol'+si,c)+'</td>'
+		},f5=function(i,j){
+			var isstr=isStr(A[0]), x=isstr?A[j].substr(i*5,5).split(''):A[j].slice(i*5,i*5+5);
+			return x.length?'<tr class='+K+'>'+
+				Arrf(f,x).join('')+
+				'</tr>':''
+		};
+
+		for(var i=0,l=Math.ceil(n/5);i<l;i++){
+			s+=f5(i,0)+f5(i,1)
 		}
+
 		return s
 	};
 	var S=ZLR(SBSi);
 	for(var j=0;j<S.length;j++){
 		var K=S[j],A=SBS[K], Kisd=/\d/.test(K);
-
 
 		str2+='<tr class="Symboli'+(Kisd?' Symboli_ " data-i="'+K:'')+'">';
 

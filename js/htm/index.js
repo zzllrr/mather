@@ -256,8 +256,9 @@ $(function(){
 	$('#iTextFold').on('click',function(){
 		$(this).text(function(i,v){
 			if(/less/.test(v)){
+				$('#previewOff').click();
 				$('#iTextPreview').prevAll().hide();
-	
+				
 				$(this).addClass('seled');
 
 				return 'unfold_more'
@@ -442,14 +443,17 @@ $(function(){
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
-		var me=$(this);
-		toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
+		var me=$(this),t=me.attr('title');
+		if(!t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
+		}else{
+			toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
+		}
 
 	}).on('mouseover', '.task',function(e){
 		var me=$(this);
 		toolTip(me.attr('data-tip')+' | '+gM('tasktip'));
 
-	}).on('mouseover', '#oHTML th',function(e){
+	}).on('mouseover', '#oHTML th:eq(0)',function(e){
 		toolTip(gM('thtip'));
 
 	}).on('mouseover', '#input0Type',function(e){
