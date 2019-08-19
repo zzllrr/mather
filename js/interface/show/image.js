@@ -8,7 +8,7 @@ showThen['Image']=function(){
 
 $('#showGround .ground1').html(
 	'<textarea class=editorText tip="'+gM('input Image')+' URL"></textarea>'+
-	strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+	itvc('" hotkey="Ctrl + E')+
 	detail(SCtv('ImageTool','<input type="file" id=ImageFile accept="image/*" multiple="multiple" />'+
 	strbtn+gM('Play')+'" id=ImagePlay />'),'')
 );

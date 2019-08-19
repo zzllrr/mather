@@ -7,7 +7,7 @@
 showThen['AR']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		itvc('" hotkey="Ctrl + E')+
         DCtv('inblk',[
             SCtv('Mele" tip=AR title="AR',ZLR('AR a-scene')).join(''),
 

@@ -391,7 +391,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	fcb = function (c, b, t) { return '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
 	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + t + '</textarea>' },
 	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return SCtv(t,x)},v)} return SC + '"' + t + '">' + (v || '') + sc },
-	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' },
+	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' }, itvc=function (c) {return itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace')},
 	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
@@ -456,7 +456,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
 	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
-	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), '<i class="mi Clear oClear" tip=Clear>backspace</i>']],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX bd0').replace('edit collapse mg10','edit') },
+	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), itvc('oClear')]],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX bd0').replace('edit collapse mg10','edit') },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))

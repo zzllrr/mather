@@ -9,7 +9,7 @@
 showThen['Video']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your Audio/Video URL')+'"></textarea>'+
-		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		itvc('" hotkey="Ctrl + E')+
 		detail(SCtv('VideoTool','<input type="file" id=zRmediaPlayFile accept="video/*" capture="camcorder" multiple="multiple" />'+
 		strbtn+'Play" id=zRMediaPlay hidden />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
 	);

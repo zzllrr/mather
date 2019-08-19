@@ -498,11 +498,7 @@ $(function(){
 			t=t.replace(/&&/g,'\n')
 		}
 		if(!i1 && !tbt){
-			toolTip('<input type=text value="'+t+'" />');
-			$('#bar input').select();
-			document.execCommand('copy', false, null);
-			$('#bar input').remove();
-			toolTip(gM('copiedtip'));
+			copy2clipboard(t)
 			return
 		}
 		
@@ -964,12 +960,16 @@ consolelog(f);
 	});
 
 	$('#oHTML').on('click','.katex',function(e){
+		
+		copy2clipboard($(this).find('annotation').eq(0).text());
 		var shft=e.shiftKey;
+		/*
 		if(shft){
 			OverCanvas($(this).find('annotation').eq(0).text());
 			toolTip(gM('copied2Canvastip'));
 			Scroll('scrollB');
 		}
+		*/
 		
 	}).on('click','svg[id]',function(e){
 		var shft=e.shiftKey;

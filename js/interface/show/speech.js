@@ -9,7 +9,7 @@
 showThen['Speech']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
-		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		itvc('" hotkey="Ctrl + E')+
 		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone" multiple="multiple" />'+
 		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
 		`

@@ -32,6 +32,14 @@ function dayOrNight(){
 	
 }
 
+function copy2clipboard(t){
+    toolTip('<input type=text value="'+t+'" />');
+    $('#bar input').select();
+    document.execCommand('copy', false, null);
+    $('#bar input').remove();
+    toolTip(gM('copiedtip'));
+}
+
 var rng2=function(t,neg){
 	var A=(t.trim()||'0,0').split(/[^-\d\.]/);
 	A[0]=+A[0];

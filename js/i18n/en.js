@@ -33,14 +33,14 @@ lang['en']={
 	'funcsontip':"@{clickWithShift}get function name without () followed",
 	'strucontip':"@{clickWithShift}get JS code@{notLaTeX}",
 	'tasktip':"@{clickWithShift}input the default expression",
-	'copytip':"@{clickWithShift}@{copy2Canvas}",
+	'copytip':"click to copy it to the clipboard",
 	
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
 	'notLaTeX':' instead of LaTeX code',
 
 	'donatip':'needs your help!',
-	'donatip0':'Anything immortal has an intrinsic nature of Mathematics.',
+	'donatip0':'For the Mathematics we must know and we will know!',
 	'Accnum':'Account Number',
 	'copiedtip':'Copied to the clipboard',
 	'copied2Canvastip':'Copied to the Canvas',

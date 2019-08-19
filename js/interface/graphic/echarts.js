@@ -2189,5 +2189,5 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}),10)
 	].join(br)
 	)
-].join(br);
+].join('');
 

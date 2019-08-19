@@ -9,7 +9,7 @@
 showThen['Slide']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		itvc('" hotkey="Ctrl + E')+
 		DCtv('inblk',[
 			SCtv('Mele" tip="Slide',ZLR('Slide section')).join(''),
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('LA MD HTML')).join(''),

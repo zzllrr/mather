@@ -66,14 +66,14 @@ lang['zh_cn'] = {
 	'funcsontip': "@{clickWithShift}则函数后面不自动加(括号)",
 	'strucontip': "@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
 	'tasktip': "@{clickWithShift}则自动输入示例命令",
-	'copytip': "@{clickWithShift}@{copy2Canvas}",
+	'copytip': "点击复制到剪贴板",
 
 	'copy2Canvas': '复制到画布上方',
 	'clickWithShift': '点击并按住Shift键，',
 	'notLaTeX': '，而不是LaTeX格式',
 
 	'donatip': '需要您的支持！',
-	'donatip0': '千里之行，始于足下<br />万年之兴，基于数学',
+	'donatip0': '为了必须知道和必将知道的数学！',
 	'Accnum': '收款账号',
 	'copiedtip': '已粘贴到剪贴板',
 	'copied2Canvastip': '已复制到画布',

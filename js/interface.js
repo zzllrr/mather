@@ -712,7 +712,7 @@ tooltip={
 
 		].join(br)),
 
-	].join(br),
+	].join(''),
 
 	'VR':[
 		href(Hs+'aframe.io','VR API'),
@@ -1096,7 +1096,7 @@ tooltip={
 		
 		
 		].join('')),
-	].join(br),
+	].join(''),
 
 
 

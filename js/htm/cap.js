@@ -307,12 +307,12 @@ $(function () {
 				'<defs>'+
 					svgf.marker('ArwE0Line',2,5,4,4,'',svgf.path(''))+
 					svgf.marker('ArwS0Line',8,5,4,4,'',svgf.path(''))+
-					svgf.marker('ArwE1Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9'))+
-					svgf.marker('ArwS1Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9'))+
-					svgf.marker('ArwE2Line',8,5,4,4,'',svgf.path('M1 1 L9 5 1 9z'))+
-					svgf.marker('ArwS2Line',2,5,4,4,'',svgf.path('M9 1 L1 5 9 9z'))+
-					svgf.marker('ArwE3Line',8,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
-					svgf.marker('ArwS3Line',2,5,4,4,'',svgf.path('M0 5 L5 1 10 5 5 9z'))+
+					svgf.marker('ArwE1Line',7,5,4,4,'',svgf.path('M1 1 L9 5 1 9'))+
+					svgf.marker('ArwS1Line',3,5,4,4,'',svgf.path('M9 1 L1 5 9 9'))+
+					svgf.marker('ArwE2Line',7,5,4,4,'',svgf.path('M1 1 L9 5 1 9z'))+
+					svgf.marker('ArwS2Line',3,5,4,4,'',svgf.path('M9 1 L1 5 9 9z'))+
+					svgf.marker('ArwE3Line',8,5,4,4,'',svgf.path('M1 5 L5 1 9 5 5 9z'))+
+					svgf.marker('ArwS3Line',2,5,4,4,'',svgf.path('M1 5 L5 1 9 5 5 9z'))+
 					svgf.marker('ArwE4Line',8,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
 					svgf.marker('ArwS4Line',2,5,4,4,'',svgf.path('M2 2 L2 8 8 8 8 2z'))+
 					svgf.marker('ArwE5Line',8,5,4,4,'',svgf.circle(5,5,4))+

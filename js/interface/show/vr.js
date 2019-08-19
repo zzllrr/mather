@@ -7,7 +7,7 @@
 showThen['VR']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		strbtn+'⌫" hotkey="Ctrl + E" tip="Clear" class=Clear />'+
+		itvc('" hotkey="Ctrl + E')+
         DCtv('inblk',[
             SCtv('Mele" tip=VR title="VR',ZLR('VR a-scene')).join(''),
 

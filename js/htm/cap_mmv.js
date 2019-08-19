@@ -2018,7 +2018,7 @@ console.log('tp ',tp);
 
 			}
 
-			if(/GonRnd|Note|arrow/.test(shp)){tArr.push('z')}
+			if(/GonRnd|Note|arrow|Lattice/.test(shp)){tArr.push('z')}
 
 			WD=w+sw;
 			HT=h+sw;
