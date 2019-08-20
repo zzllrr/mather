@@ -3,17 +3,17 @@
     "name": "zzllrr Mather",
     "icons": [
       {
-        "src": "/img/zMather.png",
+        "src": "img/zMather.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/img/zMather.png",
+        "src": "img/zMather.png",
         "type": "image/png",
         "sizes": "512x512"
       }
     ],
-    "start_url": "/",
+    "start_url": "mather/",
     "background_color": "#32cd32",
     "display": "standalone",
 
