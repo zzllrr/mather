@@ -7,6 +7,10 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<meta name="apple-mobile-web-app-title" content="zzllrr Mather">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏样式，black-translucent、 black、default-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 	<title>Demo Version</title>
     <!-- FAVICONS -->
@@ -16,8 +20,10 @@
     <link rel="apple-touch-icon icon" sizes="120x120" href="img/zMather.png">
     <link rel="apple-touch-icon icon" sizes="152x152" href="img/zMather.png">
     <link rel="apple-touch-icon icon" sizes="180x180" href="img/zMather.png">
-    <link rel="apple-touch-icon icon" sizes="192x192" href="img/zMather.png">
-
+	<link rel="apple-touch-icon icon" sizes="192x192" href="img/zMather.png">
+	
+	<link rel="manifest" href="/manifest.json">
+	
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
@@ -86,12 +92,8 @@
 
 <body class=day>
 
-	<h1 class="logo alignc rem3">zzllrr Mather</h1>
+	<div id=splash><div class=rem3>zzllrr Mather</div></div>
 
-	<div id=Caps hidden>
-		<canvas id=caps hidden></canvas>
-		<img id=capsimg />
-		</div>
 	<div id=zMather hidden>
 		<div id=nav>
 			<div id=navhead class=opac>
@@ -239,7 +241,7 @@
 
 
 
-
+		
 		<div id=tileTool for=svgs class=cap>
 
 

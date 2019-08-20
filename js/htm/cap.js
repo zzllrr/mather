@@ -117,14 +117,15 @@ $(function () {
 		'<div id=svgShapes>'+
 '<div id=svgShape>'+
 	'<div id=svgTool>'+
-		svgf.id('Narrow',svgf.path('M4 15 H26 L20 10 M26 15 L20 20 M10 10 L4 15 L10 20','none" stroke-linejoin="round'))+
+		svgf.id('Narrow',svgf.path('M10 20 L15 15 10 10 M18 9 V21','none" stroke-linejoin="round'))+//M10 10 L4 15 L10 20
 		svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
 		svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
 		svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
 		svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
 		svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
 		svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
-		svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z M5 18 L15 25 25 18" stroke-dasharray="2,1'))+
+		svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z" stroke-dasharray="2,1')+svgf.path('M5 18 L15 25 25 18'))+
+		svgf.id('SVGhide" tip=Hide hotkey="Esc',svgf.path('M9 17 L15 11 21 17'))+
 		'<div id=scrWH>'+
 			i18('W')+num('0" title=px id="scrW',1)+
 			i18('H')+num('0" title=px id="scrH',1)+dc+
@@ -148,7 +149,7 @@ $(function () {
 			strbtn+' OK " id=TextBoxGo />',
 			'<textarea id=TextBox></textarea>'+
 			detail('','','','id=TextBoxTool hidden'),
-			1,'id=svgTEXTBox')+
+			'','id=svgTEXTBox')+
 	
 		'<div id=svgSel>'+
 			detail('<select id=svgText>'+Options(seqA(0,11),ZLR(
@@ -580,7 +581,7 @@ $(function () {
 
 		svgf.id('ShvLinWav',svgf.path('M7 23 V18 H13 V13 H19 V8 H25'))+
 
-		svgf.id('DhvLinWav',svgf.path('M7 23 V18 H13 V13 H19 V8 H25 M7 23 H13 V18  H19 V13 H25 V8'))+
+		svgf.id('DhvLinWav',svgf.path('M7 23 V18 H13 V13 H19 V8 H25 V13 H19 V18 H13 V23 H7 Z'))+
 
 	dc+
 
@@ -1389,7 +1390,7 @@ dc
 
 
 	$('#copyDir').append(Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')).before(gM('Copy'));
-	$('#eraserDir').append(Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')).before(gM('Del'));
+	$('#eraserDir').append(Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')).before(gM('Delete'));
 
 
 	$('#copyDir').val(['1']);
@@ -1505,9 +1506,25 @@ dc
 
 			var w=$('#tileTool')[0].style.width;
 			$('#tileTool')[0].style.width=(w?'':'6rem');
+			
 			return
 		}
 
+		if(id=='SVGhide'){
+			if($('#svgs').is('.toggle')){
+				if($('#tileTool').is(':visible')){
+
+					$('#tileTool').fadeOut()
+				}else{
+					$('#svgs').click();
+				}
+
+				
+			}else{
+				$('#svgs').click();
+			}
+			return
+		}
 
 		L.drawShape = id;
 		L.drawShapeNow = '';
@@ -1654,7 +1671,7 @@ dc
 
 	});
 
-	$('#svgTog svg').on('click', function () {
+	$('#svgTog svg[id^=svgPg]').on('click', function () {
 		var me = $(this), id = me.attr('id');
 
 		me.html(svgf.line(10,15,20,15,'yellow','yellow'));
@@ -1665,7 +1682,8 @@ dc
 
 		divs.not(divi).hide();
 		divi.show();
-	}).eq(0).click();
+	});
+	$('#svgPg1').eq(0).click();
 
 	toggleSvg();
 
@@ -1738,18 +1756,7 @@ dc
 				if (k == 27) {
 
 					if ($('#svgs').length) {
-						if($('#svgs').is('.toggle')){
-							if($('#tileTool').is(':visible')){
-
-								$('#tileTool').fadeOut()
-							}else{
-								$('#svgs').click();
-							}
-		
-							
-						}else{
-							$('#svgs').click();
-						}
+						$('#SVGhide').click()
 
 					} else {
 						$('#tileTool').fadeToggle()
@@ -2034,7 +2041,7 @@ dc
 
 	toggleColor();
 	setTimeout(function () {
-		$('.logo').hide().nextAll().not('#webslides').fadeIn();
+		$('#splash').hide().nextAll().fadeIn();
 		
 
 	}, 500);

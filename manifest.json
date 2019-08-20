@@ -1,0 +1,21 @@
+{
+    "short_name": "Mather",
+    "name": "zzllrr Mather",
+    "icons": [
+      {
+        "src": "/img/zMather.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/zMather.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#32cd32",
+    "display": "standalone",
+
+    "theme_color": "#32cd32"
+  }

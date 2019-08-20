@@ -1656,16 +1656,21 @@ console.log('tp ',tp);
 							}
 						}
 						if(/D/.test(shp)){
-							tArr.push('M',d+px,d+py);
+							//tArr.push('M',d+px,d+py);
 							if(offY<0){
-								for(var i=1;i<=n;i++){
-									tArr.push('H',d+parseInt(offX>0?wn*i:w-wn*i),'V',d+parseInt(h-hn*i));
+								//for(var i=1;i<=n;i++){
+								for(var i=n;i>=0;i--){
+									//tArr.push('H',d+parseInt(offX>0?wn*i:w-wn*i),'V',d+parseInt(h-hn*i));
+									tArr.push('V',d+parseInt(h-hn*i),'H',d+parseInt(offX>0?wn*i:w-wn*i));
 								}
 							}else{
-								for(var i=1;i<=n;i++){
-									tArr.push('V',d+parseInt(hn*i),'H',d+parseInt(offX>0?wn*i:w-wn*i));
+								//for(var i=1;i<=n;i++){
+								for(var i=n;i>=0;i--){
+									//tArr.push('V',d+parseInt(hn*i),'H',d+parseInt(offX>0?wn*i:w-wn*i));
+									tArr.push('H',d+parseInt(offX>0?wn*i:w-wn*i),'V',d+parseInt(hn*i));
 								}
 							}
+							tArr.push('Z')
 						}
 
 					}

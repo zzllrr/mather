@@ -73,7 +73,7 @@ lang['zh_cn'] = {
 	'notLaTeX': '，而不是LaTeX格式',
 
 	'donatip': '需要您的支持！',
-	'donatip0': '为了必须知道和必将知道的数学！',
+	'donatip0': '万物皆数',
 	'Accnum': '收款账号',
 	'copiedtip': '已粘贴到剪贴板',
 	'copied2Canvastip': '已复制到画布',

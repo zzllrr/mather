@@ -904,7 +904,7 @@ function tileToolCap(t, val){
 	if(val){
 		if(id=='allEraser'){
 			$('#TextBoxType').change();
-			$('#TextBoxTool').attr('open','open');
+			//$('#TextBoxTool').attr('open','open');
 			var vs=$('#caps').attr('data-val')||'';
 			if(vs){
 

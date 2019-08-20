@@ -11,25 +11,28 @@ var protocol_keywords={
 	'Consensus & Cooperation':['Kind','Pally','Peace-loving','Non-discriminatory']
 };
 
-navhead['about']=fieldseth(gM('Version'),
-	DCtv('alignc',
-		DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
-			'<div id=ZMatherQR>'+dc+XML.wrapE('h2','V2019.8.18')+
-			ul([
-				'Demo: '+href(HOM.ZMATHER),
-				'GitHub: '+href(HOM.ZMather),
-	
-			])
-		)+
-		DCtv('Summarytip',
-			XML.wrapE('h4',gM('Summary'))+
-			gM('Summarytip')
-			
-		)
+navhead['about']=
 
-	))+
+	subtabs(gM(['Version','Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
+		
+		fieldseth('V2019.8.20',
+			DCtv('alignc',
+				DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
+					'<div id=ZMatherQR>'+dc+
+					DCtv('alignl',
+						'Demo: '+href(HOM.ZMATHER)+br+
+						'Github: '+href(HOM.ZMather)
+					)
+				)+
+				DCtv('Summarytip',
+					XML.wrapE('h4',gM('Summary'))+
+					gM('Summarytip')
+					
+				)
 
-	subtabs(gM(['Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
+			)
+		),
+
 		fieldseth(gM('Interface'),
 			gM('Language')+itv('','language')+'<select id=lang>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
 
@@ -52,7 +55,7 @@ navhead['about']=fieldseth(gM('Version'),
 		
 		fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
 			Table('',tableT([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public')),
-			'✔'.repeat(14).split('')]),'TBrc','alignc')
+			'&nbsp;✔&nbsp;,'.repeat(14).split(',')]),'TBrc','alignc')
 		)+
 
 		fieldseth(gM('Vision'),gM('Visiontip')+
@@ -63,7 +66,7 @@ navhead['about']=fieldseth(gM('Version'),
 				['? Mather','? '+gM('Mather'),gM('Customized Math Tool Program based on Mather by someone')]],'TBrc')
 		)+
 
-		fieldseth(gM('Mather Protocol')+' V0.1',
+		fieldseth(gM('Mather Protocol'),
 
 			ol(Arrf(function(i){return gM(i)+SCtv('mg20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
 				'Organism',
@@ -75,7 +78,7 @@ navhead['about']=fieldseth(gM('Version'),
 		),
 
 		[
-			Table([gM(['Subproject','Progress','Goal','Core Participant'])],//'✔▲△'
+			Table([gM(['Project','Progress','Goal','Core Participant'])],//'✔▲△'
 				[
 					[gM('Solve'),meter(30),
 						'#'+gM(ZLR('Systematized Detailed Stepwise')).join(', #'),
@@ -149,7 +152,7 @@ navhead['about']=fieldseth(gM('Version'),
 						'#'+gM(ZLR('Universal Kind Peace-loving Non-discriminatory Decentralization')).join(', #')],
 			]),
 	
-			Table([gM(['Key Technology','Related Standardization','Need Industry Support','Related Institution & Organization'])],
+			Table([gM(['Key Technology','Related Standardization','Degree','Related Organization'])],
 				[
 					[gM('Math Graphics Library'),'#'+ZLR('WebGL OpenGL').concat(['OpenGL ES','Vulkan']).join(', #'),
 						meter(70),
@@ -159,7 +162,7 @@ navhead['about']=fieldseth(gM('Version'),
 						meter(30),
 						'#'+ZLR('ECMA').join(', #')],
 					
-					[gM('Math Expression'),'#'+ZLR('MathML SVG XML CSS XSL HTML XHTML DOM').join(', #'),
+					[gM('Math Expression'),'#'+ZLR('MathML SVG XML CSS XSL HTML XHTML DOM').join(', #').replace('CSS,','CSS<br>'),
 						meter(50),
 						'#'+ZLR('W3C WHATWG').join(', #')],
 	
@@ -227,21 +230,16 @@ navhead['about']=fieldseth(gM('Version'),
 		),
 
 		
-		Table('',[
-
-			[ul([
-					href(Hs+'www.douban.com/group/mathought/','数学史与数学思想方法')+' (豆瓣小组) 组长',
-					href(Hs+'www.douban.com/group/nonlinear/','非线性Nonlinear')+' (豆瓣小组) 组长',
-					href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
-					href(HOM.ZIG,'小乐图客zzllrr Imager')+'（Google Chrome Extension）作者',
-					href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
-					href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
-					gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),
-					
-				]),
-				DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
-			]
-		])
+		ul([
+			href(Hs+'www.douban.com/group/mathought/','数学史与数学思想方法')+' (豆瓣小组) 组长',
+			href(Hs+'www.douban.com/group/nonlinear/','非线性Nonlinear')+' (豆瓣小组) 组长',
+			href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
+			href(HOM.ZIG,'小乐图客zzllrr Imager')+'（Google Chrome Extension）作者',
+			href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
+			href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
+			gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),
+			
+		])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
 
 	])
 ;

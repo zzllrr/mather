@@ -7,7 +7,13 @@
 
 $(function(){
 
+	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg />'+dc
 	
+	
+	);
+
+
+
 	$('#logo').addClass('seled').text(gM('zzllrr Mather')).after(
 		Arrf(function(i){
 			return SCtv('subhead" id="'+i,+gM(i))
@@ -1002,7 +1008,14 @@ consolelog(f);
 				$('#zMatherOn:contains(up)').click();
 				$('#Caps').fadeIn();
 			}else{
-				$('#zMatherOn:contains(down)').click();
+				if(!$('#tileTool').is(':visible')){
+					$('#tileTool').fadeIn();
+					me.addClass('toggle');
+
+					tog=true;
+				}else{
+					$('#zMatherOn:contains(down)').click();
+				}
 			}
 			
 			

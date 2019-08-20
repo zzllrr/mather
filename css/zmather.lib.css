@@ -24,7 +24,7 @@
 	opacity:0
 }
 
-.logo{
+.logo,#splash{
 	animation: hue 12s linear infinite;
 
 }
@@ -34,13 +34,14 @@
 }
 
 @media screen and (max-width:800px){
-	#zMatherOn,#hotkey,#API{display:none;}
+	#zMatherOn,#hotkey,#API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
 	#input0Tip{margin-top: 2rem;}
 	.toolTip{
 		position: fixed;
 		left:2px;
 		top:2px;
 	}
+	
 }	
 @media print{
   
@@ -610,7 +611,6 @@ input[type=text],#wiki>span,.brad{
 }
 #oHTML{
 	position: relative;
-	margin:3rem 0 0 4px;
 	overflow:auto;
 }
 #oHTML > div.abs{
@@ -698,10 +698,36 @@ summary ~ details summary{
 
 .logo{
     color: white;
-	border-radius: 4px 10px;
+	border-radius: 50px;
 	background:limegreen;
 	padding:0 10px;
 	margin-top: 0;
+}
+
+#splash{
+	color: white;
+	background:limegreen;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+}
+#splash:after{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+#splash div{
+    display: inline-block;
+	vertical-align: middle;
+	border-radius: 100%;
+    border: solid 10px white;
+    padding: 20px;
 }
 
 .level,[name=tool] + span, .sechResult{

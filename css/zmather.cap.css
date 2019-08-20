@@ -92,16 +92,6 @@
     z-index: 20001;
 }
 
-#svgTEXTBox{
-	position: fixed;
-    left: 0;
-    z-index: 400000;
-    top: 0;
-
-	overflow: scroll;
-    resize: auto;
-}	
-   
 
 #Tile > table td{padding:0}
 
