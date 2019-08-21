@@ -257,7 +257,7 @@ $(function () {
 
 
 		svgf.id('ellipseNote',svgf.path('M8 18 L7 25 13 20 A10 8 0 1 0 8 18z'))+
-		svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11.5 25 V4 M18.5 25 V4 M4 4 H26 V26 H4 V4'))+
+		svgf.id('Lattice',svgf.path('M4 11 H26 M4 18 H26 M11.5 25 V4 M18.5 25 V4 M4 4 H26 V26 H4 V4 Z'))+
 
 
 	dc+
@@ -296,8 +296,8 @@ $(function () {
 		svgf.id('Polylin',svgf.path('M6 24 L13 9 17 21 24 6'))+
 		svgf.id('PolyGon',svgf.path('M5 20 L20 25 25 10 15 5z'))+
 		svgf.id('HeartNote',svgf.path('M15 8 C15 7 14 5 10 5 C4 5 4 10 4 10 C4 16 8 20 15 24 C22 20 26 16 26 12 C26 12 26 5 20 5 C17 5 15 7 15 8z'))+
-		svgf.id('PentagonX',svgf.polygon('15,0 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12'))+
-		svgf.id('Regulargon',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26'))+
+		svgf.id('PentagonX',svgf.polygon('15,3 18,12 27,12 21,18 24,27 15,21 6,27 9,18 3,12 12,12'))+
+		svgf.id('Regulargon',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 L3 15 H27 M9 26 L21 4 M9 4 L21 26" stroke-linejoin="round'))+
 
 	dc+
 	'<div id=svgLines>'+
@@ -325,7 +325,7 @@ $(function () {
 			svgf.id('LineSq',svgf.line(6,24,24,6))+
 		
 			svgf.id('line1tick',svgf.path('M4 16 H26 M15 16 V11 M4 16 H26'))+
-			svgf.id('line2tick',svgf.path('M9 4 V21 M9 15 H5 M15 21 V25 M9 21 H26'))+
+			svgf.id('line2tick',svgf.path('M9 4 V22 M9 15 H5 M15 21 V25 M9 21 H26'))+
 		
 			svgf.id('linecurveH',svgf.path('M5 20 Q15 5 25 20'))+
 			svgf.id('linecurveV',svgf.path('M20 5 Q5 15 20 25'))+
@@ -2334,6 +2334,10 @@ function clk_popout(obj) {
 		var iT = $('#TextBoxType').val(), it = iT.toLowerCase(),v = $('#TextBox').val().trim(), shpNid = L.drawShapeNow || 'unknown', shpN = $('#' + shpNid), frTextarea, 
 		//A = [100, 200, 300, 200];
 		A = [$('#cssX').val(),$('#cssY').val(),$('#ContainerW').val(),$('#ContainerH').val()];
+
+		if(!shpN.length){
+			shpNid='unknown';
+		}
 
 		if (!v && /Text/.test(shpNid)) {
 			v = shpN.val();

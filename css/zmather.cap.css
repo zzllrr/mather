@@ -87,8 +87,8 @@
 
 #menu{
 	position: absolute;
-    top: 5px;
-    right: 10px;
+    top:0;
+    right: 5px;
     z-index: 20001;
 }
 

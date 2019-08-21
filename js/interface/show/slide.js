@@ -12,9 +12,9 @@ showThen['Slide']=function(){
 		itvc('" hotkey="Ctrl + E')+
 		DCtv('inblk',[
 			SCtv('Mele" tip="Slide',ZLR('Slide section')).join(''),
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('LA MD HTML')).join(''),
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('CV SV EC')).join(''),
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip=Component title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('LA MD HTML')).join(''),
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('CV SV EC')).join(''),
+			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('SlideTool','<input type="file" id=SlideFile accept="text/*" multiple="multiple" />'+
 			strbtn+gM('Play')+'" id=SlidePlay />'),

@@ -298,7 +298,7 @@ $(function(){
 
 	$('#displayOverCanvas').on('click',function(){
 		OverCanvas($('#input0').val());
-		toolTip(gM('copiedtip'));
+		//toolTip(gM('copiedtip'));
 	});
 
 

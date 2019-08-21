@@ -577,7 +577,7 @@ function mMv(e,repaint){
 				var tickH=+$('#MarginCopyh').val(), r=+$('#gridC').val(), c=+$('#gridR').val();
 				px=(offX<0?w-sw-tickH:sw*3+tickH); py=(offY<0?h-sw-tickH:sw*3+tickH);
 				
-				pnt=['M',w-px+tickH,py,'H',px];
+				pnt=['M',w-px+tickH,py,'H',px+(offX<0?1:-1)*d];
 
 				
 				var d0=sw*6;//20
@@ -1277,7 +1277,7 @@ console.log('tp ',tp);
 					d+parseInt(w2*(1-s2)),d+parseInt(w2*(1+c2)), d+w2,d+parseInt(w2*(1+c/c2)),
 					d+parseInt(w2*(1+s2)),d+parseInt(w2*(1+c2)), d+parseInt(w2*(1+c*s/c2)),d+parseInt(w2*(1+c*c/c2)),
 					d+parseInt(w2*(1+s)),d+parseInt(w2*(1-c)), d+parseInt(w2*(1+c*s2/c2)),d+parseInt(w2*(1-c)),
-					d+w2,sw, d+parseInt(w2*(1-c*s2/c2)),d+parseInt(w2*(1-c))];
+					d+w2,d+sw, d+parseInt(w2*(1-c*s2/c2)),d+parseInt(w2*(1-c))];
 
 				if(/T/.test(shp)){for(var i=0;i<5;i++){pnt[i*4+2]=''; pnt[i*4+3]=''}
 					pnt=Arrf(Number,pnt.join(' ').replace(/ +/g,' ').trim().split(' '));
