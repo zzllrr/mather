@@ -17,6 +17,8 @@ lang['en']={
 	'Opts':'Option',
 	'Opa':'Opacity',
 	'Backvisi':'Back Visible',
+	'Del':'Delete',
+
 	'fonT':'Font',
 	'Level-1 Discipline':'Level-1 Discipline',
 	'Level-2 Discipline':'Level-2 Discipline',

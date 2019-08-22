@@ -29,7 +29,7 @@
 
 #fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
 
-#fontCSS span,#tileToolCap svg,#night{cursor:pointer}
+#fontCSS span,#tileToolCap svg{cursor:pointer}
 #tileTool{
 	text-align:center;
 	user-select: none;
@@ -87,7 +87,7 @@
 
 #menu{
 	position: absolute;
-    top:0;
+    top:2px;
     right: 5px;
     z-index: 20001;
 }

@@ -6,7 +6,8 @@
     
 $(function () {
 	var o=H_o(),tp=o['type']||'HTML', t=L['vr'];
-
-    $('#oHTML').html(replaceNodeInner(t,'MD', md2html));
+    setTimeout(function(){
+        $('#oHTML').html(replaceNodeInner(t,'MD', md2html));
+    },3000)
 
 });

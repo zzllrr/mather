@@ -155,7 +155,7 @@ SBS={
 	],
 
 	Arrow:[
-		['←→↑↖↗⟵⟶','↚↛↓↙↘'],
+		['←→↖↗ ⟵⟶↑↓','↚↛ ↙↘'],
 
 		['↤↦↥  ⤒⇤⤟⤠','⟻⟼↧  ⤓⇥⤝⤞'],
 
@@ -922,24 +922,26 @@ SBS={
 
 ,STRUCi=[//
 
-	'分式 箭头备注 等式备注',
-	'上下标 根式 二项式',
-	'括号 大括号 概括',
+	ZLR('Fraction Note Binom'),
+	ZLR('Subsup Root Size'),
+	['Parentheses','Big Parentheses','Color'],
 
-	'大型符号 积分 极限',
-	'行列式 竖向等式',
-	'上 横向等式 横向不等式',
+	ZLR('Equality Non-equality Relation'),
+	ZLR('Sum Integral Limit'),
+	ZLR('Matrix Det Summarize'),
 
-	'字体 数学字体 文本字体 希伯来文 希腊字母',
+	ZLR('Over Latin Linebreak'),
+	['Lowercase Greek','Uppercase Greek','Hebrew'],
+	['Font','Math Font','Text Font'],
 
-	'固定间距 负间距 间距值 微调间距',
-	'单字修饰 整体修饰 隐形 大小 颜色',
-	]
+	['Margin','Margin Value','Negative Margin'],
+
+]
 	
 ,STRUC={
 
 
-	'分式':[
+	'Fraction':[
 		$A(zlrA3("kfrac(",[
 			"'1/2'",
 			"[3,4]",
@@ -963,7 +965,32 @@ SBS={
 	],
 
 
-	'根式':[$A(zlrA3("kroot('x'",['',',3',',4'],')').concat(
+	'Note':[
+		zlrA3("$eq(1,'",'→↔←↦'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤	//←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄↦
+		['\\stackrel{1}{\\longrightarrow}'].concat(zlrA3("$eq(1,'",'↩↪↞↠'.split(''),"',2)$")),
+		['\\stackrel{1}{\\longleftarrow}'].concat(zlrA3("$eq(1,'",'↼⇀↽⇁'.split(''),"',2)$")),
+		zlrA3("$eq(1,'",'=⇒⇔⇐'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤
+		zlrA3("$eq(1,'",'⇋⇌⇄'.split(''),"',2)$"),
+		
+	],
+
+
+	'Relation':[['↖','↙'],
+		zlrA3("$mtrx([",[
+		
+			"['A\\\\quad~~','\\\\stackrel {1}⟶','\\\\quad B'],['↖\\\\footnotesize{3}','','↙\\\\footnotesize{2}'],['','C','']",
+			"['','A',''],['','↙\\\\footnotesize{1}\\\\quad ↖\\\\footnotesize{3}'],['B','\\\\stackrel{2}⟶','C']",
+			],"],'.','.','')$"),	
+
+		zlrA3("$mtrx([",[
+			"['A~~~','\\\\stackrel {1}⟶','B'],['↑\\\\footnotesize{4}','',' ~~↓\\\\footnotesize2'],['D~~~','\\\\stackrel {3}⟵','C']",
+			"['','A',''],['','~~↑\\\\footnotesize{1}',''],['D\\\\stackrel{4}←','O','\\\\stackrel {2}→B'],['','~~↓\\\\footnotesize3',''],['','C','']",
+			],"],'.','.','')$")
+	],
+	
+
+
+	'Root':[$A(zlrA3("kroot('x'",['',',3',',4'],')').concat(
 		zlrA3('mroots(',ZLR("[2,3],['','x','y'],'','','+-',1"),",'')")
 	)),
 		$A(zlrA3("kfrac([",ZLR("kroot(2),2 kroot(5)+'-1','2' '-b±'+kroot('b^2-4ac'),'2a'"),'])')),
@@ -972,9 +999,10 @@ SBS={
 	],
 
 	
-	'横向等式':Arrf($A,[
+	'Equality':Arrf($A,[
 		zlrA3("Eq([",[
-		"'x','y',2],'','line'",
+			"'x',''],'','line'",
+			"'x','y',2],'','line'",
 		],')').concat(
 			[
 				"eq0(['x','y'])",
@@ -988,10 +1016,16 @@ SBS={
 		[
 			"eqM([1,-1],2)"
 		],
-		
+		zlrA3("Eq([",[
+			"['x','1'],'2']",
+			"'x','1','2']",
+			"['x','1'],'2'],'','','≡'",
+			"'x','1','2'],'','','≡'",
+			],')'),
 	]),
 
-	'横向不等式':Arrf($A,[zlrA3("Eq([",[
+	'Non-equality':Arrf($A,[zlrA3("Eq([",[
+		"'x',''],'','line',['≤']",
 		"'x','y',2],'','line',['=','≤']",
 		"'x','y',2],'','line',['=','≠']",
 
@@ -1001,30 +1035,21 @@ SBS={
 		]
 	]),
 
-	'竖向等式':Arrf($A,[zlrA3("Eq([",[
-		"['x','1'],'2']",
-		"'x','1','2']",
-		"['x','1'],'2'],'','','≡'",
-		"'x','1','2'],'','','≡'",
-		],')'),
-		
-	]),
 
-
-	'概括':Arrf($A,[
-		['big(0,4)'].concat(zlrA3("kx",[
-			"o('a+b+c','{'",
-			"o('a+b+c','{','note'",
-		],')')),
-		['big(0,5)'].concat(zlrA3("kx",[
+	'Summarize':Arrf($A,[
+		['piece([1,2])'].concat(
+			zlrA3("kx",[
+				"o('a+b+c','{'",
+				"o('a+b+c','{','note'",
+			],')')),
+		['piece([1,2],1)'].concat(
+			zlrA3("kx",[
 			"u('a+b+c','{'",
 			"u('a+b+c','{','note'"
-		],')')),
-		zlrA3("piece([",[
+			],')')),
+		zlrA3('piece([',[
 			"[1,2],[3,4]]",
-			"1,2]",
 			"[1,2],[3,4]],2",
-			"1,2],1",
 			],')'),
 		[
 			"EqA(['1x+2y=3','4x-5y=6'])",
@@ -1032,7 +1057,7 @@ SBS={
 		]
 	]),
 
-	'括号':Arrf($A,[zlrA3("zp('x'",[
+	'Parentheses':Arrf($A,[zlrA3("zp('x'",[
 		"",
 		",'<>'",
 		",'[]'",
@@ -1066,17 +1091,17 @@ SBS={
 		"zp('x,y','','<','>')"],
 	]),
 
-	'大括号':Arrf($A,[
+	'Big Parentheses':Arrf($A,[
 		['big(0)+big(0,1)','big(1)+big(1,1)','big(2)+big(2,1)','big(3)+big(3,1)'],
 		['big(0,2)+big(0,3)','big(1,2)+big(1,3)','big(2,2)+big(2,3)','big(3,2)+big(3,3)'],
 		['big(0,4)+big(0,5)','big(1,4)+big(1,5)','big(2,4)+big(2,5)','big(3,4)+big(3,5)'],
 	
 	]),
-/*
-	'矩阵':Arrf($A,[zlrA3("zmtrx([[1,2],[3,4]]",[
+
+	'Matrix':Arrf($A,[zlrA3("zmtrx([[1,2],[3,4]]",[
 			"",
-			",'.','.',''",
-			",'p','p',''",
+			",'','.',''",
+			",'','p',''",
 		],')'),
 		
 		zlrA3("zmtrx([[1,2",[
@@ -1091,12 +1116,12 @@ SBS={
 		],"','')"),
 		
 		zlrA3("Eq([",[
-			"zmtrx([[1,2],[3,4]]),zmtrx([[5,6],[7,8]])],[['1st','2nd']],'','→'",	//\\begin{aligned} & ~ \\\\quad x \\\\  & =1 \\\\  & =2 \\end{aligned}
-			"zmtrx([[1,2,3,4],[5,6,7,8]],'','c2'),zmtrx([[1,2,3,4],[5,6,7,8]],'','c2')],[['1st','2nd']],'','→'"
+			"zmtrx([[1,2],[3,4]]),zmtrx([[5,6],[7,8]])],[['1','2']],'','→'",	//\\begin{aligned} & ~ \\\\quad x \\\\  & =1 \\\\  & =2 \\end{aligned}
+			"zmtrx([[1,2,3,4],[5,6,7,8]],'','c2'),zmtrx([[1,2,3,4],[5,6,7,8]],'','c2')],[['1','2']],'','→'"
 		],')')
 	]),
-*/
-	'行列式':Arrf($A,[
+
+	'Det':Arrf($A,[
 		["kdet([[1,2],[3,4]])",
 		 "zdet(['1 2','3 4'])"],
 		zlrA3("Eq([",[
@@ -1108,7 +1133,7 @@ SBS={
 	]),
 
 
-	'大型符号':[['\\sum','\\prod',"$Opr('','-','+','f','*')$"]].concat(
+	'Sum':[['\\sum','\\prod',"$Opr('','-','+','f','*')$"]].concat(
 		Arrf($A,[
 			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')"),
 			zlrA3("prod('i',0,'+','f',",[0,1,4,8],",'')"),
@@ -1122,9 +1147,8 @@ SBS={
 	),
 
 
-	'极限':[['\\lim'].concat(
+	'Limit':[['\\lim'].concat(
 			zlrA3("$lim('x','",[
-				"','f','",
 				"+','f','",
 				"-','f','",
 				],"','')$"
@@ -1143,17 +1167,18 @@ SBS={
 	
 
 	
-	'积分':[['\\int',"$intl('f','-1','1','x',0,'')$","$intl('f','-','+','x',6,'')$"]]
+	'Integral':[['\\int',"$intl('f','-1','1','x',0,'')$","$intl('f','-','+','x',6,'')$"]]
 		.concat(Arrf($A,[
-			zlrA3("intl('f','-','+','x',",[0,3],",'')"),
+
+			zlrA3("intl('f','-','+','x",["',0","yz',3"],",'')"),
 			zlrA3("intl('f','-','+','xy',",[1,4],",'')"),
-			zlrA3("intl('f','-','+','xyz',",[2,5],",'')"),
+			zlrA3("intl('f','-','+','x",["',2","yz',5"],",'')"),
 	])),
 
 
 
 
-	'上':Arrf($A,[zlrA3("kxo('a','",'-→↔←'.split(''),"')"),//katex 暂不支持 ⇐ ⇒
+	'Over':Arrf($A,[zlrA3("kxo('a','",'-→↔←'.split(''),"')"),//katex 暂不支持 ⇐ ⇒
 		zlrA3("kxu('a','",'-→↔←'.split(''),"')"),//katex 暂不支持  ↼ ⇀ < > ⇐ ⇒ 
 		
 		zlrA3("kxo('a','",'↼⇀<>'.split(''),"')"),
@@ -1161,31 +1186,7 @@ SBS={
 		zlrA3("kxu('a','",'I{(~='.split(''),"')")
 	]),
 
-
-	'箭头备注':[
-		zlrA3("$eq(1,'",'→↔←↦'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤	//←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄↦
-		['\\stackrel{1}{\\longrightarrow}'].concat(zlrA3("$eq(1,'",'↩↪↞↠'.split(''),"',2)$")),
-		['\\stackrel{1}{\\longleftarrow}'].concat(zlrA3("$eq(1,'",'↼⇀↽⇁'.split(''),"',2)$")),
-
-		].concat([zlrA3("$mtrx([",[
-		
-			"['A\\\\quad~~','\\\\stackrel {1}⟶','\\\\quad B'],['↖\\\\footnotesize{3}','','↙\\\\footnotesize{2}'],['','C','']",
-			"['','A',''],['','↙\\\\footnotesize{1}\\\\quad ↖\\\\footnotesize{3}'],['B','\\\\stackrel{2}⟶','C']",
-			],"],'.','.','')$"),	
-
-		zlrA3("$mtrx([",[
-			"['A~~~','\\\\stackrel {1}⟶','B'],['↑\\\\footnotesize{4}','',' ~~↓\\\\footnotesize2'],['D~~~','\\\\stackrel {3}⟵','C']",
-			"['','A',''],['','~~↑\\\\footnotesize{1}',''],['D\\\\stackrel{4}←','O','\\\\stackrel {2}→B'],['','~~↓\\\\footnotesize3',''],['','C','']",
-			],"],'.','.','')$")
-		]
-	),
-
-
-	'等式备注':Arrf($A,[zlrA3("eq(1,'",'=⇒⇔⇐'.split(''),"',2)"),//katex 暂不支持 ⇆ ↤
-		zlrA3("eq(1,'",'⇋⇌⇄'.split(''),"',2)"),
-	]),
-	
-	'上下标':[zlrA('{x}',[
+	'Subsup':[zlrA('{x}',[
 		'_1^2',
 		'^2',
 		'^3',
@@ -1199,8 +1200,8 @@ SBS={
 	],
 
 	
-	'二项式':[
-		zlrA3("$binom('n+1','n'",[",'c'",'',",'t'",",'d'"],')$'),
+	'Binom':[
+		zlrA3("$binom('2n','n'",[",'c'",'',",'t'",",'d'"],')$'),
 		zlrA3("$genfrac(1,2",[
 			",'','',1",
 			",'','',1,0",
@@ -1210,7 +1211,7 @@ SBS={
 			",'','','',0",
 			'',
 			",'','','',1"
-		],')').concat("kfraczp('1+2/3','','4')")),
+		],')').concat("kfraczp('1/2','','3')")),
 		
 
 	],
@@ -1219,73 +1220,76 @@ SBS={
 
 
 //zlrA3("\\math",ZLR('rm bb it bf sf tt'),"{A}"),
-	'字体':Arrf($A,[zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')"),
+	'Font':Arrf($A,[zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')"),
 		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold boldsymbol')),"','')"),
 	
 	]),
 	
-	'数学字体':Arrf($A,[zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('bb bf cal frak')),"')"),
-		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('it rm scr sf')),"')"),
-		["kxf('mathrm')"],
+	'Math Font':Arrf($A,[zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('bb bf cal')),"')"),
+		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('frak it rm')),"')"),
+		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('scr sf')),"')").concat("kxf('mathrm')")
+
 	]),
 	
-	'文本字体':Arrf($A,[zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR(' bf it rm')),"','text')"),
-		zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR('sf normal tt')),"','text')"),
+	'Text Font':Arrf($A,[
+		zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR(' bf it sf')),"','text')"),
+		zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR('rm normal tt')),"','text')"),
 	
-	]),
-	
-	'希伯来文':Arrf($A,[zlrA3("kxc('",['A','B','C','D'],"','a')"),
-	
-	]),
-	
-	'希腊字母':Arrf($A,[
-		zlrA3("kxc('",['a','b','c','d','A','B','C','D'],"','g')"),
-		zlrA3("kxc('",['e','f','g','h','E','F','G','H'],"','g')"),
-		zlrA3("kxc('",['i','j','k','l','I','J','K','L'],"','g')"),
-		zlrA3("kxc('",['m','n','o','p','M','N','O','P'],"','g')"),	
-		zlrA3("kxc('",['q','r','s','t','Q','R','S','T'],"','g')"),
-		zlrA3("kxc('",['u','v','w','x','U','V','W','X'],"','g')"),
-		zlrA3("kxc('",['y','z','Y','Z'],"','g')"),		
 	]),
 
-// \>
-	'固定间距':[zlrA('\\backslash',[',\\,',':\\:',';\\;']).concat('\\backslash~~'),
+	'Hebrew':Arrf($A,[
+		zlrA3("kxc('",['A','B','C','D'],"','a')"),	
+	]),
+
+	'Lowercase Greek':Arrf($A,[
+		zlrA3("kxc('",['a','b','c','d','e'],"','g')"),
+		zlrA3("kxc('",['f','g','h','i','k'],"','g')"),
+		zlrA3("kxc('",['l','m','n','o','p'],"','g')"),	
+		zlrA3("kxc('",['q','r','s','t','u'],"','g')"),
+		zlrA3("kxc('",['v','w','x','y','z'],"','g')"),
+	]),
+
+	'Uppercase Greek':Arrf($A,[
+		zlrA3("kxc('",['A','B','C','D','E'],"','g')"),
+		zlrA3("kxc('",['F','G','H','I','K'],"','g')"),
+		zlrA3("kxc('",['L','M','N','O','P'],"','g')"),	
+		zlrA3("kxc('",['Q','R','S','T','U'],"','g')"),
+		zlrA3("kxc('",['V','W','X','Y','Z'],"','g')"),
+	]),
+
+	'Margin':[zlrA('\\backslash',[',\\,',':\\:',';\\;']).concat('\\tilde~')
+			.concat(Arrf(function(x){return x+'\\'+x},['quad','qquad'])),
 		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('thin med thick en'),'space')),
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' nobreak'),'space').concat(['quad','qquad'])),
-		
-	],
-	
-	'负间距':[['\\backslash!\\!'],
-		Arrf(function(x){return x+'\\'+x},zlrA3('neg',ZLR('thin med thick'),'space')),
-	],
-	
-	
-	'间距值':[zlrA3('\\',ZLR('mkern mskip'),'{5mu}'),
-		zlrA3('\\',ZLR('kern hskip hspace hspace*'),'{0.25em}'),
-		['\\raisebox{0.25em}A']
+		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' nobreak'),'space')),
 	],
 
-	'微调间距':[zlrA3('\\',ZLR('smash[b] mathllap mathrlap mathclap'),'{A}')
-	
-	],
-	
-	'换行':[$A(['kbr','kbr2']),
+	'Margin Value':[zlrA3('\\',ZLR('mkern mskip hspace'),'{5mu}'),
+		zlrA3('\\',ZLR('kern hskip hspace*'),'{0.25em}'),
+
+		zlrA3('\\',ZLR('smash[b] raisebox{0.25em}'),'{A}'),
+
 	],
 
-	'隐形':[ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
+	'Negative Margin':[
+		['\\backslash!\\!'].concat(Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('negthick'),'space'))),
+		Arrf(function(x){return x+'\\'+x},zlrA3('neg',ZLR('thin med'),'space')),
+		zlrA3('\\math',ZLR('l c r'),'lap{A}')
+	],
+	
+	
+	'Linebreak':[$A(['kbr','kbr2']),
+		ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
 	
 	],
 	
-	'单字修饰':[zlrA3('\\',ZLR('vec bar acute check grave'),'{a}'),
-		zlrA3('\\',ZLR('dot ddot mathring hat tilde breve'),'{a}'),
-	],
-		
-	'整体修饰':[$A(["kancel(123)","kancel(123,'-')","kbox(123)","kbox('mathfrak','frak','math')"]),
+	'Latin':[zlrA3('\\',ZLR('vec bar acute check grave'),'{a}'),
+		zlrA3('\\',ZLR('dot ddot mathring hat tilde'),'{a}'),
+		['\\breve{a}'].concat($A(["kancel(1)","kancel(1,'-')","kbox(1)","kbox('F','frak','math')"])),
 	
 	],
 
 
-	'大小':[zlrA3("$ksz('",[
+	'Size':[zlrA3("$ksz('",[
 		"tiny',-4",
 		"scriptsize',-3",
 		"footnotesize',-2",
@@ -1313,7 +1317,7 @@ SBS={
 		],")$"),
 	],
 	
-	'颜色':[["\\color{red}A",
+	'Color':[["\\color{red}A",
 		"$fcb('red','','A')$",
 		"$fcb('red','yellow','A')$",
 		"\\colorbox{aqua}{A}"
@@ -1655,7 +1659,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 		if(iTyp=='LaTeX'){
 
-
+consolelog(t);
 			if(t){
 				if(t.indexOf('$')>-1){
 					t=t.replace(/^[^\$]+/g,'');
@@ -1773,11 +1777,13 @@ consolelog(A);
 
 		return s
 	};
-	var S=ZLR(SBSi);
+	var S=ZLR(SBSi),ii=0;
 	for(var j=0;j<S.length;j++){
 		var K=S[j],A=SBS[K], Kisd=/\d/.test(K);
-
-		str2+='<tr class="Symboli'+(Kisd?' Symboli_ " data-i="'+K:'')+'">';
+		if(!Kisd){
+			ii++;
+		}
+		str2+='<tr class="Symboli'+(Kisd?' Symboli_" data-i="'+K:((ii>3?' hidden':'')+'" data-ii="'+ii))+'">';
 
 		for(var i=0;i<A.length;i++){
 			str+=strK(K+i,A[i]);
@@ -1800,7 +1806,7 @@ consolelog(A);
 	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 
-		var s='<div class=Fns data-i='+K+'>',n=A.length;
+		var s='<div class=Fns data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
 			var c=A[i],hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,'');
 
@@ -1811,7 +1817,7 @@ consolelog(A);
 	};
 	for(var i=0,l=FUNCSi.length;i<l;i++){
 		var S=FUNCSi[i];
-		str2+='<tr class=Symboli>';
+		str2+='<tr class="Symboli'+(i>2?' hidden':'')+'" data-ii="'+(i+1)+'">';
 		for(var j=0;j<S.length;j++){
 			var K=S[j],A=FUNCS[K];
 			str+=Arrf(function(x){return strK(K,ZLR(x))},A).join('');
@@ -1828,31 +1834,37 @@ consolelog(A);
 	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 consolelog(K,A);
-		var s='<div class=Sts data-i='+K+'>',n=A.length;
+		var s='<div class=Sts data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
 			var c=A[i];
-			if(K=='间距值'){
+			if(K=='Margin Value'){
 				c=c.split('{')[0].substr(1)+c
 			}
-			s+='<div class="Sts td" title="'+c.replace(/.backslash./,'').replace(/^[a-z]{5,}/g,'')+'">'+SCtv('symboln',zx(c))+dc;
+
+			s+='<div class="Sts td" title="'+c.replace(/.backslash./,'')
+				.replace(/^[a-z]{4,}/g,'')
+				.replace('\\tilde~','~')
+				.replace(/^(\*|\[b\])/,'')
+				+'">'+SCtv('symboln',zx(c.replace(/math(.lap)/,'$1').replace(/phantom/,'p')
+				))+dc;
 		}
 		s+=DCtv('clear')+dc;
 		return s
 	};
 	var SA=STRUCi;
 	for(var i=0;i<SA.length;i++){
-		var S=ZLR(SA[i]);
-		str2+='<tr class=Symboli>';
+		var S=SA[i];
+		str2+='<tr class="Symboli'+(i>=3?' hidden':'')+'" data-ii="'+(i+1)+'">';
 		for(var j=0;j<S.length;j++){
 
 			var K=S[j],A=STRUC[K];
 			//str+=strK(K,A);
-			consolelog(A);
+			consolelog(K,A);
 			str+=Arrf(function(x){return strK(K,x)},A).join('');
 			
 			A=A[0];
 			
-			str2+='<td class=Sts title="'+gM(K)+'">'+SCtv('symboli" data-i="'+K, zx(K=='间距值'?A[0].split('{')[0].substr(1)+A[0]:A[0]))+'</td>'//K
+			str2+='<td class=Sts title="'+gM(K)+'">'+SCtv('symboli" data-i="'+K, zx(K=='Margin Value'?A[0].split('{')[0].substr(1)+A[0]:A[0]))+'</td>'//K
 		}
 		str2+='</tr>'
 	}

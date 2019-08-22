@@ -52,6 +52,7 @@ lang['zh_cn'] = {
 	'Del': '删除',
 	'lineSplit': '分行',
 	'lineMerge': '合行',
+	'Linebreak':'换行',
 
 	'nodesXY': '笛卡尔节点',
 	'nodesPolar': '极坐标节点',
@@ -60,6 +61,7 @@ lang['zh_cn'] = {
 	'sbson': '字符',
 	'funcson': '函数',
 	'strucon': '结构',
+
 	'Condon': '条件',
 	'thtip': '点击表头，可以显示/编辑LaTeX',
 	'sbsontip': '@{clickWithShift}则得到Unicode字符@{notLaTeX}',
@@ -392,7 +394,11 @@ lang['zh_cn'] = {
 	'Computing Power': '计算能力',
 	'Synergy': '协同能力',
 
-
+	'Latin':'拉丁字母',
+	'Greek':'希腊字母',
+	'Hebrew':'希伯来文',
+	'Lowercase':'小写',
+	'Uppercase':'大写',
 
 	'Rule': '法则',
 	'Aims': '宗旨',
@@ -417,6 +423,8 @@ lang['zh_cn'] = {
 
 	// adj.	prep.
 
+	'Big':'大',
+	'Small':'小',
 	'Double': '双',
 	'Triple': '三',
 	'Random': '随机',
@@ -483,6 +491,7 @@ lang['zh_cn'] = {
 	'Checkbox': '勾选框',
 
 	'All': '全部',
+	'Summarize':'概括',
 
 	'Systematized': '系统化',
 	'Semantical': '语义化',
@@ -629,6 +638,7 @@ lang['zh_cn'] = {
 
 	'Select': '选择',
 
+	
 
 	'Edit': '编辑',
 	'Replace': '替换',
@@ -727,6 +737,9 @@ lang['zh_cn'] = {
 	'Field': '域',
 	'Lattice': '格',
 
+	'Equality':'等式',
+	'Non-equality':'不等式',
+
 	'Equivalence': '等价关系',
 	'Partial Order': '偏序',
 	'Cover': '覆盖',
@@ -750,6 +763,8 @@ lang['zh_cn'] = {
 	'Foci': '焦点',
 
 
+	'Over':'上',
+	'Under':'下',
 
 	'Coordinate': '坐标',
 	'Centroid Coordinate': '中心坐标',
@@ -839,7 +854,11 @@ lang['zh_cn'] = {
 	'Rank': '秩',
 	'Trace': '迹',
 	'Order': '阶',
+	'Piece':'分段',
+
+	'Det':'行列式',
 	'Determinant': '行列式',
+
 	'Norm': '模',
 	'Inverse': '逆',
 	'Cofactor': '余子式',
@@ -847,6 +866,8 @@ lang['zh_cn'] = {
 
 	'Leading Principle Minor': '顺序主子式',
 
+	'Binom':'二项式',
+	'Subsup':'上下标',
 
 	'Dimension': '维度',
 	// 几何
@@ -859,6 +880,7 @@ lang['zh_cn'] = {
 
 	// verb
 
+	'Swap':'切换',
 
 	'Convert': '转换',
 	'Express': '表示',
@@ -889,11 +911,14 @@ lang['zh_cn'] = {
 	//代数
 	'Absolute': '绝对',
 	'Positive': '正',
+	'Negative':'负',
 	'Natural': '自然',
 	'Prime': '质',
 	'Rational': '有理',
 	'Irrational': '无理',
 	'Radical': '根式',
+	'Root':'根',
+
 	'Transcendental': '超越',
 	'Real': '实',
 	'Imaginary': '虚',
@@ -912,7 +937,7 @@ lang['zh_cn'] = {
 	'Recursive': '递归',
 	'Cross': '交叉',
 
-
+	'Parentheses':'括号',
 	'Nest': '嵌套',
 	'Symmetry': '对称',
 

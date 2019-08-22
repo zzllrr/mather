@@ -281,7 +281,10 @@ li,#wiki{
 
 }
 
-
+#swap{
+	text-shadow: 1px 1px 1px #666;
+	color: white;
+}
 
 .bdt[data-mt]:before{
     content: attr(data-mt);
@@ -630,7 +633,6 @@ input[type=text],#wiki>span,.brad{
 }
 #input0Tip{
 	counter-reset:cnt0 0;
-	margin: 2px;
 }
 #input0Tip .eg:not(.eg2):before{
 	content: "#" counter(cnt0) " ";
@@ -666,7 +668,7 @@ summary ~ details summary{
 }
 
 .inputTip{
-	margin:5px;
+	margin:0 5px;
 }
 .resize,.inputTip,#input0Preview,#input0Tool{
 	overflow: auto;
@@ -949,9 +951,9 @@ img{
   font-style: normal;
   font-size: 2rem;
   margin:0 5px;
-  
+  border-radius: 100%;
   border:solid transparent 1px;
- /* font-size: 1.5rem;   Preferred icon size 24px;*/
+
   display: inline-block;
   line-height: 1;
   text-transform: none;

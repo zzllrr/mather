@@ -93,6 +93,10 @@ $(function(){
 				$('#zRMediaPlay2').show().click();
 				
 			}
+			if(/^[VA]R$/.test(s)){
+				$('#'+s+'Play').click()
+				return 
+			}
 		}
 
 			/*

@@ -199,7 +199,11 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
-    $('body').on('click','th',function(e){
+
+
+
+    $('body').on('dblclick', function(){if(!/index.html/.test(location.href)){location.href='index.html'}})
+    .on('click','th',function(e){
         
         var me=$(this), i=me.index(),shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey;
         if(alt){

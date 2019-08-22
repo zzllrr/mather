@@ -21,8 +21,8 @@ showThen['AR']=function(){
 	$('#showGround .ARTool').on('click',':button',function(){
 		var T=$('#showGround .editorText'),s=T.val(),me=$(this),id=me.attr('id');
 		if(id=='ARPlay'){
-			L.vr=s;
-			open('vr.html');
+			L.ar=s;
+			open('ar.html');
 		}
 		
 	}).on('change',':file',function(){

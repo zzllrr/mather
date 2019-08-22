@@ -98,7 +98,11 @@
 	border-radius: 100%;
 }
 
-
+.sbsiTbl tr.Symboli:not(.Symboli_):after {
+    content: attr(data-ii);
+    text-shadow: 1px 1px 1px #666;
+	color: white;
+}
 
 blockquote{
     padding:0 10px;
