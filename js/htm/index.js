@@ -478,7 +478,9 @@ $(function(){
 
 	}).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
 		var me=$(this),hk=me.attr('hotkey')||'';
-
+		if($('#navHide').is('.seled') && me.is('#iClear') || /Mobile/.test(navigator.userAgent)){
+			hk='';
+		}
 		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
 
 	}).on('click','.Mele', function(){

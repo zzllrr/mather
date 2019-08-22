@@ -35,7 +35,9 @@
 
 @media screen and (max-width:800px){
 	#zMatherOn,#hotkey,#API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
-	#input0Tip{margin-top: 2rem;}
+	
+	/* #input0Tip{margin-top: 2rem;}
+	*/
 	.toolTip{
 		position: fixed;
 		left:2px;
@@ -946,8 +948,8 @@ img{
   font-weight: normal;
   font-style: normal;
   font-size: 2rem;
-  margin:5px;
-  padding:2px;
+  margin:0 5px;
+  
   border:solid transparent 1px;
  /* font-size: 1.5rem;   Preferred icon size 24px;*/
   display: inline-block;
