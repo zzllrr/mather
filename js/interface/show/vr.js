@@ -4,7 +4,6 @@
  * Released under MIT License
  */
 
-var VRcpn={
 	/*
 	<script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
@@ -35,7 +34,7 @@ var VRcpn={
     </a-scene>
 
 	*/
-};
+
 showThen['VR']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
@@ -46,7 +45,7 @@ showThen['VR']=function(){
         ].join(br))+
 		detail(SCtv('VRTool','<input type="file" id=VRFile accept="text/*" multiple="multiple" />'+
 				strbtn+gM('Play')+'" id=VRPlay />'),
-			[gM('Script'),
+			[itv('','library_books')+gM('JS Library')+': ', Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib data-lib="'+x+'" /> '+x)}, VRlib).join('')
 
 			].join('')
 		)
@@ -56,6 +55,8 @@ showThen['VR']=function(){
 	$('#showGround .VRTool').on('click',':button',function(){
 		var T=$('#showGround .editorText'),s=T.val(),me=$(this),id=me.attr('id');
 		if(id=='VRPlay'){
+			var j=[];$('.jslib').each(function(){j.push($(this).attr('data-lib'))});
+			L.vrjslib=j.join(' ');
 			L.vr=s;
 			open('vr.html');
 		}

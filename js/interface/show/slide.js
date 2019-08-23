@@ -20,7 +20,7 @@ showThen['Slide']=function(){
 			strbtn+gM('Play')+'" id=SlidePlay />'),
 
 			[gM('Head')+'<textarea id=slidehead tip="'+gM('input')+' HTML"></textarea>',
-			XML.wrapE('p',gM('Vertical')+itv('','swap_vertical_circle')+'<input type=checkbox id=slideSwapV />'),
+			XML.wrapE('p',XML.wrapE('label',itv('','swap_vertical_circle')+gM('Vertical')+'<input type=checkbox id=slideSwapV />')),
 			gM('Foot')+'<textarea id=slidefoot tip="'+gM('input')+' HTML"></textarea>'
 			].join('')
 

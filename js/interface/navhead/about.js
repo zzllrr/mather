@@ -15,7 +15,7 @@ navhead['about']=
 
 	subtabs(gM(['Version','Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		
-		fieldseth('V2019.8.20',
+		fieldseth('V2019.8.23',
 			DCtv('alignc',
 				DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 					'<div id=ZMatherQR>'+dc+

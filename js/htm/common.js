@@ -10,7 +10,12 @@ qrs={
 	'V2weixinPay':qrwx+'f2f0KhK_RnSDrozki2q4gmcvsFMS0DQJPVas',
 	
 	'weixinZQR':H+'weixin.qq.com/r/uXUFCg3EKzNUhxxpnyCd'
-};
+},
+VRlib=ZLR('aframe-','animation-component particle-system-component extras.ocean gradient-sky'),
+VRlibjs={
+    'aframe-gradient-sky':'gradientsky'
+},VRlibjsTmp=Hs+'unpkg.com/@/dist/@.min.js';
+
 if(H_o().lang !=L.lang){
 	i18n=lang[H_o().lang||L.lang||'zh_cn']
 }
