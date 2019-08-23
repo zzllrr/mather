@@ -4,9 +4,26 @@
  * Released under MIT License
  */
     
-$(function () {
-	var o=H_o(),tp=o['type']||'HTML', t=L['ar'];
+if(L.arjslib){
+    Arrf(function(x){
+        $('head').append('<script src="'+ARlibjsTmp.replace('@',x).replace('@',ARlibjs[x]||x) +'"></script>')
+    },ZLR(L.arjslib));
+}
 
-    $('#oHTML').html(replaceNodeInner(t,'MD', md2html));
+
+$(function () {
+    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['ar'], s=o['src'];
+    if(s){
+        $.ajax({type:'get',url: s, success:function(x){
+            oHTML(x,1,'body')
+        }, error:function(){oHTML(t,1,'body')}
+        })
+    }else{
+        oHTML(t,1,'body');
+
+    }
+    setTimeout(function(){
+        $('body').html(t);
+    },5000)
 
 });

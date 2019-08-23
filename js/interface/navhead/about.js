@@ -25,7 +25,7 @@ navhead['about']=
 					)
 				)+
 				DCtv('Summarytip',
-					XML.wrapE('h4',gM('Summary'))+
+					XML.wrapE('h4',href(gitmd+'README.md',gM('Summary')))+
 					gM('Summarytip')
 					
 				)
@@ -173,16 +173,15 @@ navhead['about']=
 		].join(br),
 
 
-		Table([gM(['Type','Note','Default Licence','Local File'])],[
+		Table([gM(['Type','Licence','Local File'])],[
 			[gM('Content'),
-				gM('Unless Otherwise Stated'),
+
 				href(Hs+'creativecommons.org/licenses/by/4.0/', gM('Creative Commons')+'(CC BY 4.0)'),
 				ul([
 					href('CODE_OF_CONDUCT.md',gM('Terms'))
 				])
 				],
 			[gM('Source Code'),
-				gM('except')+' '+href('./js/lib',gM('third-party library')),
 				href(Hs+'mit-license.org','MIT '+gM('Licence')),
 				ul([
 					href('LICENSE','MIT '+gM('Protocol')),

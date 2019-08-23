@@ -29,12 +29,17 @@ showThen['Slide']=function(){
 	$('#showGround .editorText').val(L.slide||'');
 
 	$('#showGround .SlideTool').on('click',':button',function(){
-		var T=$('#showGround .editorText'),s=T.val(),me=$(this),id=me.attr('id');
+		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='SlidePlay'){
 			L.slide=s;
 			L.slidehead=$('#slidehead').val();
 			L.slidefoot=$('#slidefoot').val();
-			open('slide.html'+($('#slideSwapV').prop('checked')?'?swap=v':''));
+
+			if(/^https?.+$/.test(st)){
+				open('slide.html?src='+st+'&'+($('#slideSwapV').prop('checked')?'swap=v':''));
+			}else{
+				open('slide.html'+($('#slideSwapV').prop('checked')?'?swap=v':''));
+			}
 		}
 		
 	}).on('change',':file',function(){

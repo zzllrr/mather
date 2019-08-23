@@ -9,10 +9,21 @@ if(L.vrjslib){
         $('head').append('<script src="'+VRlibjsTmp.replace('@',x).replace('@',VRlibjs[x]||x) +'"></script>')
     },ZLR(L.vrjslib));
 }
+
+
 $(function () {
-	var o=H_o(),tp=o['type']||'HTML', t=L['vr'];
+    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['vr'], s=o['src'];
+    if(s){
+        $.ajax({type:'get',url: s, success:function(x){
+            oHTML(x,1,'body')
+        }, error:function(){oHTML(t,1,'body')}
+        })
+    }else{
+        oHTML(t,1,'body');
+
+    }
     setTimeout(function(){
-        $('body').html(replaceNodeInner(t,'MD', md2html));
+        $('body').html(t);
     },5000)
 
 });

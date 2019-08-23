@@ -52,7 +52,7 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel > *, #input0Preview ~ *,#iTextMain ~ *{
+  #panel, #input0Preview ~ *,#iTextMain ~ *{
   	display:none
   }
   #iTextMain{
@@ -991,8 +991,16 @@ img{
 	padding-right:2px;
 }
 
+ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:a;}
+ol li:before {counter-increment:a;content:counters(a,".")". ";}
 
 
+#menu {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    z-index: 20001;
+}
 #menu i{
 	margin: 0 2px;
 }

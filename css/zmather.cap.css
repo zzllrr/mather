@@ -85,13 +85,6 @@
     padding-left: 20px;
 }
 
-#menu{
-	position: absolute;
-    top:2px;
-    right: 5px;
-    z-index: 20001;
-}
-
 
 #Tile > table td{padding:0}
 

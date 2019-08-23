@@ -15,17 +15,21 @@ showThen['Document']=function(){
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('CV SV EC')).join(''),
 			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
 		].join(br))+
-		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept="text/*" multiple="multiple" />'+
+		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+
 		strbtn+gM('Play')+'" id=DocumentPlay />'),''
 		)
 	);
 	$('#showGround .editorText').val(L.document||'');
 
 	$('#showGround .DocumentTool').on('click',':button',function(){
-		var T=$('#showGround .editorText'),s=T.val(),me=$(this),id=me.attr('id');
+		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='DocumentPlay'){
 			L.document=s;
-			open('document.html');
+			if(/^https?.+$/.test(st)){
+				open('document.html?src='+st);
+			}else{
+				open('document.html');
+			}
 		}
 		
 	}).on('change',':file',function(){
@@ -33,10 +37,13 @@ showThen['Document']=function(){
 		if(v){
 			var files=this.files, fl=files.length;
 			for(var i=0;i<fl;i++){
-				var f=files[i], s=f.size, ext=f.type.replace(/text[/]/,'');
+				var f=files[i], s=f.size, ext=f.type.replace(/text[/]/,''), name=f.name;
 
 consolelog(f);
 				if(/^text[/]/.test(f.type) || !ext){
+					if(!ext && /\..+/.test(name)){
+						ext=name.replace(/.+\./,'').toUpperCase()
+					}
 					if(!s){s='?KB'}else{
 						s=sizeKB(s)
 					}
@@ -46,6 +53,9 @@ consolelog(f);
 						//var txt = this.result;
 						var txt=e.target.result;
 						consolelog('txt',txt);
+						if(/MD|MARKDOWN/.test(ext)){
+							txt=XML.wrapE('MD',txt)
+						}
 						textareaAdd(txt,'#showGround .ground1 .editorText',1);
 					};
 					//reader.readAsDataURL(f);

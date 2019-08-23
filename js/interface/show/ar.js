@@ -19,10 +19,14 @@ showThen['AR']=function(){
 	$('#showGround .editorText').val(L.ar||'');
 
 	$('#showGround .ARTool').on('click',':button',function(){
-		var T=$('#showGround .editorText'),s=T.val(),me=$(this),id=me.attr('id');
+		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='ARPlay'){
 			L.ar=s;
-			open('ar.html');
+			if(/^https?.+$/.test(st)){
+				open('ar.html?src='+st);
+			}else{
+				open('ar.html');
+			}
 		}
 		
 	}).on('change',':file',function(){

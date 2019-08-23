@@ -14,7 +14,14 @@ qrs={
 VRlib=ZLR('aframe-','animation-component particle-system-component extras.ocean gradient-sky'),
 VRlibjs={
     'aframe-gradient-sky':'gradientsky'
-},VRlibjsTmp=Hs+'unpkg.com/@/dist/@.min.js';
+},VRlibjsTmp=Hs+'unpkg.com/@/dist/@.min.js',
+gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
+oHTML=function(x,notMD,elem){
+    $(elem||'#oHTML').html(notMD?x:replaceNodeInner(x,'MD', md2html));
+    $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
+        all2html(this.nodeName,$(this).text(),this);
+    });
+};
 
 if(H_o().lang !=L.lang){
 	i18n=lang[H_o().lang||L.lang||'zh_cn']

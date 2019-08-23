@@ -3065,7 +3065,7 @@ function md2html(str, sep) {
 
 
 	if (/\[U?TOC\]/.test(s) && headA.length) {
-		var ne = linear2nest(headA), toc = '<h2 id=TOCcontents>' + gM('Contents') + '</h2>';
+		var ne = linear2nest(headA), toc = SCtv('bold',gM('Contents'));
 		consolelog(headA, ne);
 		var f = function (x, u) {
 			if (isArr(x)) {
@@ -3076,8 +3076,8 @@ function md2html(str, sep) {
 			}
 		};
 
-		s = s.replace(/\[TOC\]/g, toc + ol(Arrf(f, ne)));
-		s = s.replace(/\[UTOC\]/g, toc + ul(Arrf(function (y) { return f(y, 1) }, ne)));
+		s = s.replace(/\[TOC\]/g, detail(toc,ol(Arrf(f, ne)),1,'id=TOCcontents'));
+		s = s.replace(/\[UTOC\]/g, detail(toc,ul(Arrf(function (y) { return f(y, 1) }, ne)),1,'id=TOCcontents'));
 	}
 
 

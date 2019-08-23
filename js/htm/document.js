@@ -5,13 +5,20 @@
  */
     
 $(function () {
-	var o=H_o(),tp=o['type']||'HTML', t=L['document'];
+	var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['document'], s=o['src'];
 
+    if(s){
+        $.ajax({type:'get',url: s, success:function(x){
+            if(/MD|MARKDOWN/.test(tp) || /\.MD|\.MARKDOWN/i.test(s)){
+                oHTML(XML.wrapE('MD',x))
+            }else{
+                oHTML(x)
+            }
+        }, error:function(){oHTML(t)}
+        })
+    }else{
+        oHTML(t);
 
-    $('#oHTML').html(replaceNodeInner(t,'MD', md2html));
-    $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
-        all2html(this.nodeName,$(this).text(),this);
-    });
-
+    }
 
 });
