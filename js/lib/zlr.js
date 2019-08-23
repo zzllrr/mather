@@ -6,7 +6,7 @@
  */
 
 var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'www.w3.org/', xmlns = H + w3c + '2000/svg', xhtml = H + w3c + '1999/xhtml', xmlnsxlink = H + w3c + '1999/xlink', xmml = H + w3c + '1998/Math/MathML',
-	logon = false, i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || 'zh_cn'] || '';
+	logon = false, isMobile=/Mobile/.test(navigator.userAgent), i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || 'zh_cn'] || '';
 if (typeof BigInt == 'undefined') {
 	var BigInt = function (x) { return +x }
 }

@@ -12,7 +12,22 @@ $(function(){
 	
 	);
 
+	$('#previewOpt').html(
 
+		'<select id=input0Type></select>'+
+		'<div id=inputTools>'+
+			itv('tool seled" tip=Preview id="preview','keyboard_arrow_left')+
+			itv('tool" tip=Shift id="Shift','keyboard_capslock')+
+			SCtv('iTextLaTeXon',
+				strbtn+'α" id=sbson class=tool />'+
+				strbtn+'ƒ" id=funcson class=tool />'+
+				strbtn+'∑" id=strucon class=tool />'
+
+			)+
+		dc+
+		'<select id=output0Type></select>'
+
+	);
 
 	$('#logo').addClass('seled').text(gM('zzllrr Mather')).after(
 		Arrf(function(i){
@@ -33,7 +48,7 @@ $(function(){
 	},toolnames).join(''));
 	
 	$('.subhead').on('click',function(e){
-		var me=$(this).addClass('seled'), id=this.id,shft=e.shiftKey;
+		var me=$(this).addClass('seled'), id=this.id,shft=e.shiftKey || $('#Shift').is('.seled');
 		me.siblings('.subhead').removeClass('seled');
 		if(id=='logo'){
 			$('#navbody').show();
@@ -312,7 +327,7 @@ $(function(){
 
 	
 	$('body').on('keydown',function(e){
-		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
+		var k=e.keyCode, shft=e.shiftKey || $('#Shift').is('.seled'), ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
 		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id')||'';
 //console.log(k,node);
 
@@ -436,7 +451,7 @@ $(function(){
 
 
 	}).on('click','.subtabhead',function(e){
-		var me=$(this).addClass('seled'), pa=me.parent(), i=me.index(),shft=e.shiftKey;
+		var me=$(this).addClass('seled'), pa=me.parent(), i=me.index(),shft=e.shiftKey || $('#Shift').is('.seled');
 		me.siblings('.subtabhead').removeClass('seled');
 		pa.parent().find('.subtab').hide().eq(i).show();
 
@@ -478,17 +493,17 @@ $(function(){
 
 	}).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
 		var me=$(this),hk=me.attr('hotkey')||'';
-		if($('#navHide').is('.seled') && me.is('#iClear') || /Mobile/.test(navigator.userAgent)){
+		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
 			hk='';
 		}
 		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
 
 	}).on('click','.Mele', function(){
 		var t=$(this).text(),o=Meleo[t]||t;
-		if(t!='HTML'){
+		if(!/HTML|Slide/i.test(t)){
 			textareaAdd(XML.wrapE(t),'#showGround .editorText',1,t.length+3);
 		}
-		if($('#input0Type option[value='+o+']').length && $('#input0Type').val()!=o){
+		if($('#input0Type option[value="'+o+'"]').length && $('#input0Type').val()!=o){
 			$('#input0Type').val(o).change();
 			$('#navHide.seled').click();
 			$('#iTextFold.seled').click();
@@ -496,7 +511,7 @@ $(function(){
 
 	}).on('click','.eg', function(e){
 
-		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey,
+		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey || $('#Shift').is('.seled'),
 		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),tbt=me.parents('#TextBoxTool').length;
 		if(isjs){
 			t+=';\n'
@@ -573,7 +588,7 @@ $(function(){
 
 	}).on('click','.ground .level,.task',function(e){
 
-		var me=$(this),mei=me.attr('data-i'),eg=me.attr('data-eg'),tip=me.attr('data-tip'),mtool=me.attr('data-tool'), shft=e.shiftKey,
+		var me=$(this),mei=me.attr('data-i'),eg=me.attr('data-eg'),tip=me.attr('data-tip'),mtool=me.attr('data-tool'), shft=e.shiftKey || $('#Shift').is('.seled'),
 		pa=me.parent(),p=pa.parents('.ground'),
 		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{},
 		issolve=tool=='solve', isshow=tool=='show', 
@@ -766,11 +781,12 @@ consolelog('最终A = ',A);
 				me.siblings('.seled.tool').removeClass('seled').each(function(){
 					$('#'+this.id.replace(/on$/,'')).hide();
 				});
-				$('#swap').remove();
+				$('#swap,#shift').remove();
 				if(se){
 					if(!me.next().is('#swap')){
 						me.after(itv('" tip=Swap id="swap','swap_vert'));
 					}
+			
 				}
 
 			}
@@ -867,7 +883,7 @@ consolelog('最终A = ',A);
 	});
 
 	$('#DownloadFile').on('click',function(e){
-		var k=e.keyCode, shft=e.shiftKey, ctrl=e.ctrlKey,
+		var k=e.keyCode, shft=e.shiftKey||$('#Shift').is('.seled'), ctrl=e.ctrlKey,
 			v0=$('#input0').val(),v1=$('#input0Preview').html(),
 			tp0=$('#input0Type').val().toLowerCase(),
 			tp=$('#output0Type').val().toLowerCase(),
@@ -1013,7 +1029,7 @@ consolelog(f);
 	$('#oHTML').on('click','.katex',function(e){
 		
 		copy2clipboard($(this).find('annotation').eq(0).text());
-		var shft=e.shiftKey;
+		var shft=e.shiftKey||$('#Shift').is('.seled');
 		/*
 		if(shft){
 			OverCanvas($(this).find('annotation').eq(0).text());
@@ -1023,7 +1039,7 @@ consolelog(f);
 		*/
 		
 	}).on('click','svg[id]',function(e){
-		var shft=e.shiftKey;
+		var shft=e.shiftKey || $('#Shift').is('.seled');
 		if(shft){
 			var zi=[],Z,me=$(this);
 			$('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});

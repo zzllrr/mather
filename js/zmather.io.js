@@ -1608,7 +1608,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 },sbsTbltd=function(T,e,textareaId,ityp){//LaTeX输入面板功能
 	var td=$(T),tr=td.parent(),me=td.children('span'),t=me.text(),iTyp=ityp||'LaTeX', istd=me.is('td'),
-		mult=tr.is('.Operator9'), fn=td.is('.Fns'), st=td.is('.Sts'), shft=e.shiftKey;//排版
+		mult=tr.is('.Operator9'), fn=td.is('.Fns'), st=td.is('.Sts'), shft=e.shiftKey || $('#Shift').is('.seled');//排版
 	
 
 	if(me.is('.symboli')){

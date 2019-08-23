@@ -1,6 +1,7 @@
 var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',
-Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript',Mele2='LA LT LX LTX TEX YM SV CV EC MD JS',
-Meleo={'LA':'LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript'},
+Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS',
+Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript'},
+Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)},
 
 qrAli=Hs+'qr.alipay.com/', qrqq=Hs+'i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=122618817&ac=ZZLLRR&n=%E5%B0%8F%E4%B9%90%E7%AC%91%E4%BA%86&f=wallet',
 qrwx='wxp://',
@@ -143,11 +144,12 @@ function all2html(type,v,dom){
         }catch(e){
             w.html(v)
         }
-    }else if(/LATEX|LA|LT|LX|TEX|LTX/.test(iv)){
+    }else if(/LATEX|LA|LT|LX|TEX|LTX|IL/.test(iv)){
         katex.render(kx(sub2n(v,1)), w[0], {
             throwOnError: false,
-            displayMode: true
+            displayMode: iv!='IL'
         });
+        
             
     }else if(/SV/.test(iv)){
         if(!w.is('svg')){

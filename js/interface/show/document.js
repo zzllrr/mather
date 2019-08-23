@@ -11,9 +11,9 @@ showThen['Document']=function(){
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
 		itvc('" hotkey="Ctrl + E')+
 		DCtv('inblk',[
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('LA MD HTML')).join(''),
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('CV SV EC')).join(''),
-			Arrf(function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip='+t+'. title="'+t:''),x)},ZLR('JS I18 YAML')).join(''),
+			Arrf(Melef,ZLR('IL LA MD HTML')).join(''),
+			Arrf(Melef,ZLR('CV SV EC')).join(''),
+			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+
 		strbtn+gM('Play')+'" id=DocumentPlay />'),''

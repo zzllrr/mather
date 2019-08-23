@@ -5,7 +5,7 @@
  */
     
 $(function () {
-	var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L[tp.toLowerCase()||'slide']||'', sh=L.slidehead, sf=L.slidefoot, s=o['src'];
+	var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['slide']||'', sh=L.slidehead, sf=L.slidefoot, s=o['src'];
 	if(tp=='IMAGE'){
 		var A=Arrf(function(x){return '<section class="bg-black aligncenter"><img src="'+x+'" /></section>'}, (L.image||'').split('\n'));
 		$('#webslides').html(A.join('\n'));
@@ -34,16 +34,14 @@ consolelog(s);
 				if(/MD|MARKDOWN/.test(tp) || /\.MD|\.MARKDOWN/i.test(s)){
 					oHTML(XML.wrapE('MD',x),'','#webslides')
 				}else{
-					oHTML(x,'','#webslides')
+					oHTML(x,1,'#webslides')
 				}
-			}, error:function(){oHTML(t,'','#webslides')}
+			}, error:function(){oHTML(t,1,'#webslides')}
 			})
 		}else{
-			//setTimeout(function(){
-				oHTML(t,'','#webslides');
-			//},3000)
-			
-	
+		
+			oHTML(t,1,'#webslides');
+
 		}
 
 	}
