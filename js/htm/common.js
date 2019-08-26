@@ -124,8 +124,8 @@ var rng2=function(t,neg){
 	if(dx<0 && dy<0){return Math.atan(dy/dx)+Math.PI}
 	if(dx>0 && dy<0){return Math.atan(dy/dx)+Math.PI*2}
 };
-function all2html(type,v,dom){
-    var vA=v.split('\n'), w=$(dom), iv=(type||'').toUpperCase();
+function all2html(type,V,dom){
+    var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||'').toUpperCase();
     if(/UNICODE_MATH|UM/.test(iv)){
         var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
         if(l){

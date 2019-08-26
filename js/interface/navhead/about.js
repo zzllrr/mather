@@ -15,7 +15,7 @@ navhead['about']=
 
 	subtabs(gM(['Version','Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		
-		fieldseth('V2019.8.23',
+		fieldseth('V2019.8.26',
 			DCtv('alignc',
 				DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 					'<div id=ZMatherQR>'+dc+
@@ -25,7 +25,7 @@ navhead['about']=
 					)
 				)+
 				DCtv('Summarytip',
-					XML.wrapE('h4',href(gitmd+'README.md',gM('Summary')))+
+					XML.wrapE('h4',href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary')))+
 					gM('Summarytip')
 					
 				)
@@ -236,7 +236,7 @@ navhead['about']=
 			href(HOM.ZIG,'小乐图客zzllrr Imager')+'（Google Chrome Extension）作者',
 			href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
 			href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
-			gM('Contact')+href(GMAIL,'zzllrr@gmail.com'),
+			gM('Contact')+': '+href(GMAIL,'zzllrr@gmail.com'),
 			
 		])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
 

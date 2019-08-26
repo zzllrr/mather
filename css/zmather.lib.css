@@ -110,6 +110,21 @@ sup,sub,.small{
 
 
 
+blockquote{
+    padding:0 10px;
+    border-left: solid 6px #ff5400;
+    margin-left: 0px;
+    background-color: rgba(242,97,9,.1);
+    border-radius: 10px;
+}
+code, pre{
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding:2px
+}
+
+
+
 #oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
