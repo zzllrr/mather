@@ -46,7 +46,7 @@ consolelog(s);
 
 	}
 
-	if(o['swap']=='v'){
+	if(o['swap']=='v' || !o['swap'] && L.slideSwapV=='true'){
 		$('#webslides').addClass('vertical')
 	}
 

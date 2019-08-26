@@ -180,7 +180,7 @@ function all2html(type,V,dom){
         w.text(function(i,v){return gM(v)});
 
     }else if(/ECHARTS|EC/.test(iv)){
-
+consolelog(v);
         w.empty();
         Graphic.drawSVG('echarts',v,'',w);
     
@@ -216,7 +216,11 @@ $(function () {
 
 
 
-    $('body').on('dblclick', function(){if(!/index.html/.test(location.href)){location.href='index.html'}})
+    $('body').on('dblclick', function(e){
+        var eos=e.originalEvent.srcElement, act=eos.tagName;
+        if(!/index.html/.test(location.href) && !/summary/i.test(act)){
+            location.href='index.html'}
+        })
     .on('click','th',function(e){
         
         var me=$(this), i=me.index(),shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey;

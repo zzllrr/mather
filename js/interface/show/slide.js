@@ -19,9 +19,10 @@ showThen['Slide']=function(){
 		detail(SCtv('SlideTool','<input type="file" id=SlideFile accept="text/*" multiple="multiple" />'+
 			strbtn+gM('Play')+'" id=SlidePlay />'),
 
-			[gM('Head')+'<textarea id=slidehead tip="'+gM('input')+' HTML"></textarea>',
-			XML.wrapE('p',XML.wrapE('label',itv('','swap_vertical_circle')+gM('Vertical')+'<input type=checkbox id=slideSwapV />')),
-			gM('Foot')+'<textarea id=slidefoot tip="'+gM('input')+' HTML"></textarea>'
+			[gM('Head')+'<textarea id=slidehead tip="'+gM('input')+' HTML">'+(L.slidehead||'')+'</textarea>',
+			XML.wrapE('p',XML.wrapE('label',itv('','swap_vertical_circle')+gM('Vertical')+
+				'<input type=checkbox id=slideSwapV'+(L.slideSwapV=='true'?chked:'')+' />')),
+			gM('Foot')+'<textarea id=slidefoot tip="'+gM('input')+' HTML">'+(L.slidefoot||'')+'</textarea>'
 			].join('')
 
 		)
@@ -31,14 +32,16 @@ showThen['Slide']=function(){
 	$('#showGround .SlideTool').on('click',':button',function(){
 		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='SlidePlay'){
+			var sv=$('#slideSwapV').prop('checked');
 			L.slide=s;
 			L.slidehead=$('#slidehead').val();
 			L.slidefoot=$('#slidefoot').val();
+			L.slideSwapV=sv;
 
 			if(/^https?.+$/.test(st)){
-				open('slide.html?src='+st+'&'+($('#slideSwapV').prop('checked')?'swap=v':''));
+				open('slide.html?src='+st+'&'+(sv?'swap=v':''));
 			}else{
-				open('slide.html'+($('#slideSwapV').prop('checked')?'?swap=v':''));
+				open('slide.html'+(sv?'?swap=v':''));
 			}
 		}
 		

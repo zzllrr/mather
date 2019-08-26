@@ -522,6 +522,17 @@ input[type=text],#wiki>span,.brad{
 .pd10{
 	padding:10px
 }
+
+.pd20p{
+	padding:0 20%;
+}
+
+.mg20p{
+	margin:0 20%;
+}
+.mg10p{
+	margin:0 10%;
+}
 .mg10{
 	margin:10px
 }
@@ -1006,8 +1017,11 @@ img{
 	padding-right:2px;
 }
 
-ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:a;}
-ol li:before {counter-increment:a;content:counters(a,".")". ";}
+ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:a 0;}
+ol li:before {counter-increment:a;content:counters(a,".")" ";}
+
+#TOCcontents ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:b 0;}
+#TOCcontents ol li:before {counter-increment:b;content:counters(b,".")". ";padding-right: 5px}
 
 
 #menu {

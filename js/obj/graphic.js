@@ -34,7 +34,10 @@ consolelog('g=',g);
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
 			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
-
+			if(D.length<1){
+				D=$(DOM)
+			}
+		
 			D.append(DCtv('echart0" style="width:'+(D.width()||600)+'px;height:'+(D.height()||600)+'px',''));
 consolelog(D.html());
 			var myChart = echarts.init(D.children().last()[0]);

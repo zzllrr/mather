@@ -16,7 +16,9 @@ showThen['Document']=function(){
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+
-		strbtn+gM('Play')+'" id=DocumentPlay />'),''
+		strbtn+gM('Play')+'" id=DocumentPlay />'),
+			gM('Style')+'<textarea id=documentCSS tip="CSS"></textarea>'+br+
+			XML.wrapE('label',gM('Display TOC')+strchkbx0+'id=documentTOC'+chked+' />')
 		)
 	);
 	$('#showGround .editorText').val(L.document||'');
@@ -25,6 +27,8 @@ showThen['Document']=function(){
 		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='DocumentPlay'){
 			L.document=s;
+			L.documentCSS=$('#documentCSS').val();
+			L.documentTOC=$('#documentTOC').prop('checked');
 			if(/^https?.+$/.test(st)){
 				open('document.html?src='+st);
 			}else{
