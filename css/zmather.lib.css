@@ -118,9 +118,9 @@ blockquote{
     border-radius: 10px;
 }
 code, pre{
-    background: rgba(0,0,0,0.1);
+    background: rgba(50, 205, 50, 0.1);
     border-radius: 5px;
-    padding:2px
+    padding:5px
 }
 
 
@@ -600,7 +600,7 @@ input[type=text],#wiki>span,.brad{
 	min-height:100px;
 }
 
-.wiki,.alignc{
+.wiki,.alignc, #oHTML > h1:first-child{
 	text-align:center
 }
 
@@ -734,7 +734,7 @@ summary ~ details summary{
 	margin-top: 0;
 }
 
-#splash{
+#splash,.abscenter{
 	color: white;
 	background:limegreen;
     position: fixed;
@@ -746,7 +746,7 @@ summary ~ details summary{
     white-space: nowrap;
     overflow: auto;
 }
-#splash:after{
+#splash:after,.abscenter:after{
     content: '';
     display: inline-block;
     height: 100%;

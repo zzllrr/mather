@@ -16,14 +16,18 @@ $(function () {
     if(s){
         $.ajax({type:'get',url: s, success:function(x){
             oHTML(x,1,'body')
-        }, error:function(){oHTML(t,1,'body')}
+            }, error:function(){
+                setTimeout(function(){
+                    oHTML(t,1,'body');
+                },5000)
+            }
         })
     }else{
-        oHTML(t,1,'body');
+        setTimeout(function(){
+            oHTML(t,1,'body');
+        },5000)
 
     }
-    setTimeout(function(){
-        $('body').html(t);
-    },5000)
+    
 
 });

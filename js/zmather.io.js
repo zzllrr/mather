@@ -1648,6 +1648,8 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 			t=(SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+c0+'}')+(hassbl?c.replace(/^[a-z]+/i,''):'');
 
+		}else{
+			t=td.attr('title')
 		}
 		if(!shft){
 			t+='()';
@@ -1693,7 +1695,8 @@ consolelog(t);
 		}else if(t.indexOf('$')>-1){
 			if(iTyp=='Markdown'){
 				if(shft){
-					t='\n$$zx('+t.replace(/\$/g,'')+')$$\n';
+					//t='\n$$zx('+t.replace(/\$/g,'')+')$$\n';
+					t='\n$'+t+'$\n';
 				}else{
 					t='$'+eval(t.replace(/\$/g,''))+'$'
 				}
@@ -1705,7 +1708,7 @@ consolelog(t);
 			
 		}else{
 			
-			
+			t='$'+t+'$';
 		}
 
 		

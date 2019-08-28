@@ -12,7 +12,7 @@ showThen['Document']=function(){
 		itvc('" hotkey="Ctrl + E')+
 		DCtv('inblk',[
 			Arrf(Melef,ZLR('IL LA MD HTML')).join(''),
-			Arrf(Melef,ZLR('CV SV EC')).join(''),
+			Arrf(Melef,ZLR('CV SV EC D2 D3')).join(''),
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+

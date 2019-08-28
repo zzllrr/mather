@@ -260,6 +260,7 @@ tooltip['API']=[
 ];
 
 navhead['API']=[
+	XML.wrapE('h1','API')+
 	[	href('./js','JavaScript'),
 		href('./css',gM('CSS')),
 		href('./js/i18n',gM('i18n')),

@@ -12,7 +12,7 @@ var protocol_keywords={
 };
 
 navhead['about']=
-
+	XML.wrapE('h1',gM('About'))+
 	subtabs(gM(['Version','Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		
 		fieldseth('V2019.8.26',

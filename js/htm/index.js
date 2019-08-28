@@ -6,46 +6,155 @@
 
 
 $(function(){
+	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought refer');
 
-	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg />'+dc
-	
-	
-	);
+	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg />'+dc+
+'<div id=zMather hidden>'+
+	'<div id=nav>'+
+		DCtv('opac" id="navhead',
+			Arrf(function(i){
+				return SCtv('subhead'+(i=='logo'?' seled':'')+'" id="'+i+'" title="'+gM(i),itv('',
+					{'logo':'home','hotkey':'keyboard','API':'device_hub','about':'info_outline'}[i]))
+			},ZLR('logo hotkey API about')).join('')
+		)+
+		'<div id=navbody>'+
+			DCtv('pd2" id="toolnav',
+				Arrf(function(i){
+					return XML.wrapE('label','<input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc)
+				},toolnames).join('')
+			)+
+			detail(
+				'<select id=searchBy>'+optgrp(gM('Search'), Options(ZLR('Subject Concept QuestionType'),1).join(''))+'</select>'+
+				'<input type=search id=search list=searchlist />'+
+				'<datalist id=searchlist></datalist>',
+				'<div id=searchResults></div>',
+				'','id=searchTool hidden'
+			)+
+			detail(
+				'<select id=subject0>'+optgrp(gM('Subject Classification GB'),'<option value=0>'+gM('Level-1 Discipline')+'</option>'+
+					Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join(''))+'</select>'+
+				'<select id=subject1 hidden></select>'+
+				'<select id=subject2 hidden></select>',
+				DCtv('ground0',jdetail(ZLR(subject0)))+DCtv('ground1'),
+				'','id=subject'
+			)+
+			Arrf(function(i){
+				return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
+			},toolnames).join('')+
+		dc+
+	dc+
+	'<div id=iContent class=pd2>'+
+		'<div id=iText>'+
+			'<div id=iTextMain>'+
+				DCtv('pd10" hidden contentEditable=true id="input0Preview')+
+				'<textarea id=input0></textarea>'+
+				DCtv('opac" id="input0Tool',
+					itvc('" id=iClear hotkey="Ctrl + E')+
+					itv('" id=send2textBox tip="copy2input','arrow_upward')+
+					itv('" id=navHide tip="Collapse','keyboard_arrow_up')+
+					itv('" id=UploadFile tip="Import File','add')+
+					'<input type="file" id=inputFile hidden />'+
+		
+					itvc('rotate180" id="tClear')+
+				
 
-	$('#previewOpt').html(
+					'<div id=previewOpt>'+
 
-		'<select id=input0Type></select>'+
-		'<div id=inputTools>'+
-			itv('tool seled" tip=Preview id="preview','keyboard_arrow_left')+
-			itv('tool" tip=Shift id="Shift','keyboard_capslock')+
-			SCtv('iTextLaTeXon',
-				strbtn+'α" id=sbson class=tool />'+
-				strbtn+'ƒ" id=funcson class=tool />'+
-				strbtn+'∑" id=strucon class=tool />'
+						'<select id=input0Type>'+optgrp(gM('Input Format')+':',
+							OptGrps(jSon('[{"'+
+								gM('Math Formula')+' | '+gM('Editor')+
+								'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
+								gM('Webpage Editor')+
+								'":"Markdown HTML CSS"},{"'+
+								gM('Graphics')+
+								'":"Canvas SVG Echarts"},{"'+
+								gM('Show')+
+								'":"Slide VR AR 2D 3D"},{"'+
+						
+								gM('Calculator')+' | '+gM('Script')+
+								'":"JavaScript"},{"'+
+								gM('Data')+' | '+gM('File')+
+								'":"TXT TSV CSV XML YAML JSON"}]')
+							)
+							)+'</select>'+
+						'<div id=inputTools>'+
+							itv('tool seled" tip=Preview id="preview','keyboard_arrow_left')+
+							itv('tool" tip=Shift id="Shift','keyboard_capslock')+
+							SCtv('iTextLaTeXon',
+								strbtn+'α" id=sbson class=tool />'+
+								strbtn+'ƒ" id=funcson class=tool />'+
+								strbtn+'∑" id=strucon class=tool />'
+				
+							)+
+						dc+
+						'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
+					dc+
+
+
+					XML.wrapE('p',
+						strbtn+'." id=lineMerge />'+
+						strbtn+':" id=lineSplit />'+
+						strbtn+'⋮" id=Condon class=tool />'+
+						strbtn+'↓" id=DownloadFile tip="Download Text File" />'
+					)
+				)+
+
+				
+
+				'<div id=iTextLaTeXBox>'+
+					DCtv('iTextLaTeX" hidden id="sbs')+
+					DCtv('iTextLaTeX" hidden id="funcs')+
+					DCtv('iTextLaTeX" hidden id="struc')+
+				dc+
+				'<div id=input0Tip>'+dc+
+				DCtv('clear')+
+
+			dc+
+
+
+			'<div hidden id=Cond>'+
+				'<div id=input1Preview>'+dc+
+				'<textarea id=input1></textarea>'+
+				DCtv('opac" id="input1Tool',
+					'<div>'+itvc('hidden" id="cClear')+dc
+				)+
+				'<div id=input1Tip>'+dc+
+				DCtv('clear')+
+			dc+
+
+			'<div id=iTextPreview>'+
+				'<span id=previewTool hidden>'+
+					itvc('rotate90" id="previewOff')+
+
+					/*
+					itv('" id=displayOverCanvas tip="copy2Canvas','exit_to_app')+
+	*/
+					itv('" id=downloadPreview tip="Download HTML File','file_download')+
+					
+				dc+
+
+			dc+
+
+
+			DCtv('pd2" id="iTextOpt',
+
+				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
+				itvc('oClear rotate270" id="oHClear')+
+				itv('id=iTextFold tip="Collapse','unfold_less')+
+				itv('id=zMatherHide tip="Collapse','keyboard_arrow_up')
 
 			)+
+
+
 		dc+
-		'<select id=output0Type></select>'
 
-	);
+	dc+
+dc);
 
-	$('#logo').addClass('seled').text(gM('zzllrr Mather')).after(
-		Arrf(function(i){
-			return SCtv('subhead" id="'+i,+gM(i))
-		},ZLR('hotkey API about')).join('')
-	);
-	
-	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought refer');
-	$('#toolnav').append(Arrf(function(i){
-		return '<label><input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc+'</label>'
-	},toolnames).join(''));
 
-	$('#searchBy').html(optgrp(gM('Search'), Options(ZLR('Subject Concept QuestionType'),1).join(''))).on('change',function(){
+	$('#searchBy').on('change',function(){
 		$('#search').change();
 	});
-	$('#subject').after(Arrf(function(i){
-		return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
-	},toolnames).join(''));
 	
 	$('.subhead').on('click',function(e){
 		var me=$(this).addClass('seled'), id=this.id,shft=e.shiftKey || $('#Shift').is('.seled');
@@ -73,13 +182,7 @@ $(function(){
 
 	$('#menu').nextAll().hide();
 
-
-
-	
-
 	$('#input0Tool input,#preview').not('.Clear').attr('tip',function(){return this.id});
-
-
 
 	$('[tip]').attr('title',function(){return gM($(this).attr('tip'))});
 	
@@ -190,9 +293,7 @@ $(function(){
 
 
 	var sbj0=$('#subject0'), sbj1=$('#subject1'), sbj2=$('#subject2');
-	sbj0.html(optgrp(gM('Subject Classification GB'),'<option value=0>'+gM('Level-1 Discipline')+'</option>'+
-		Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join(''))
-	).on('change', function(){//改变sbj1
+	sbj0.on('change', function(){//改变sbj1
 		var me=$(this), v=me.val();
 		$('#input0Tip, #input1Tip').add($('#'+$('[name=tool]:checked').attr('id')+'Ground .tasks')).empty();
 		if(v=='0'){
@@ -212,15 +313,6 @@ $(function(){
 	});
 
 
-
-	
-	
-	
-	$('#subject .ground0').html(jdetail(ZLR(subject0)));
-	
-
-
-	
 	$('#input0Tip').attr('title',gM('Help')+' | '+gM('Example')).on('click','button',function(){
 		var t=$(this).attr('data-tool'),i0=$('#input0'),tl=$(this).parents('.inputTip').attr('data-tool');
 		if(tl=='Matrix' && t=='line Merge'){
@@ -491,12 +583,6 @@ $(function(){
 		}[v]||v);
 
 
-	}).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
-		var me=$(this),hk=me.attr('hotkey')||'';
-		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
-			hk='';
-		}
-		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
 
 	}).on('click','.Mele', function(){
 		var t=$(this).text(),o=Meleo[t]||t;
@@ -932,23 +1018,7 @@ consolelog('最终A = ',A);
 
 	
 	
-	$('#input0Type').html(optgrp(gM('Input Format')+':',
-		OptGrps(jSon('[{"'+
-		gM('Math Formula')+' | '+gM('Editor')+
-		'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
-		gM('Webpage Editor')+
-		'":"Markdown HTML CSS"},{"'+
-		gM('Graphics')+
-		'":"Canvas SVG Echarts"},{"'+
-		gM('Show')+
-		'":"Slide VR AR"},{"'+
-
-		gM('Calculator')+' | '+gM('Script')+
-		'":"JavaScript"},{"'+
-		gM('Data')+' | '+gM('File')+
-		'":"TXT TSV CSV XML YAML JSON"}]'))
-		)
-	).on('change', function(){
+	$('#input0Type').on('change', function(){
 		var v=$(this).val(), it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
 		if(v=='Echarts'){
 			tv=tooltip.graphic['Statistics/Echarts']
@@ -981,7 +1051,7 @@ consolelog('最终A = ',A);
 			preDisplay()
 		}
 	});
-	$('#output0Type').html(optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))).on('change', function(){
+	$('#output0Type').on('change', function(){
 		if($('#preview.seled').length){
 			preDisplay()
 		}
@@ -1192,16 +1262,8 @@ function OverCanvas(t){
 
 
 }
-function toolTip(s){
-	var ts = (L.timeids_tip || '').trim();
-	if (ts) {
-		Arrfc([clearTimeout, Number], ZLR(ts));
-	}
-	$('#bar').html(SCtv('toolTip',s));
-	L.timeids_tip=setTimeout(function(){
-		$('#bar').empty();
-	},3000);
-}
+
+
 function furi(o){
 	var g=o.parents('.ground');
 	

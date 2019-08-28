@@ -198,10 +198,13 @@ lang['zh_cn'] = {
 	'Child': '子元素',
 
 	'Container':'容器',
+	'Box':'盒子',
 	'Node': '节点',
 	'Dash': '虚线',
 	'Arrow': '箭头',
 	'Round Corner': '圆角',
+	'Rounded': '圆角',
+
 	'Borderless':'无框',
 
 	'Pie': '饼',
@@ -261,6 +264,9 @@ lang['zh_cn'] = {
 	'Title': '标题',
 	'Background': '背景',
 
+	'Backface':'背面',
+	'Frontface':'前面',
+
 	'Keyword': '关键词',
 	'Layer': '层',
 	'Pointer': '指针',
@@ -288,6 +294,9 @@ lang['zh_cn'] = {
 	'From': '从',
 	'To': '到',
 	'Semi': '半',
+	'Demi': '半',
+	'Hemi': '半',
+
 	'Sub': '子',
 	'Quasi': '准',
 	'Multi': '多',
@@ -345,6 +354,7 @@ lang['zh_cn'] = {
 	'Eagerness': '热切程度',
 	'Step': '步',
 
+	'Event':'事件',
 	'Reusability': '复用性',
 
 	// 自由描述
@@ -374,6 +384,8 @@ lang['zh_cn'] = {
 	'Formulae': '公式',
 	'Formulas': '公式',
 	'Code': '代码',
+
+	'QRcode':'二维码',
 	'Snippet': '片段',
 	'Character': '字符',
 	'Content': '内容',
@@ -581,8 +593,14 @@ lang['zh_cn'] = {
 	'Close': '闭合',
 	'Composite': '复合',
 	'Draw': '画',
+	'Drag': '拖拽',
 	'Download': '下载',
 	'Upload': '上传',
+
+	'Update':'更新',
+	'Render':'渲染',
+
+
 	'Solve': '解题',
 	'Question Type': '题型',
 
@@ -663,7 +681,7 @@ lang['zh_cn'] = {
 	'Refer': '参考',
 	'Link': '链',
 	'href': '超链接',
-
+	'Lerp':'线性插值',
 
 	'i18n': '国际化',//	'Internationalization':'国际化',
 	'i10n': '本土化',	//Localization 

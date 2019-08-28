@@ -4,7 +4,8 @@
  * Released under MIT License
  */
 
-navhead['hotkey']=fieldseth(gM('Textarea'),
+navhead['hotkey']=XML.wrapE('h1',gM('Hotkey'))+
+	fieldseth(gM('Textarea'),
 
 Table('',[
 	[

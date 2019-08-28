@@ -1,4 +1,4 @@
-var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',
+var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,
 Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS',
 Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript'},
 Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)},
@@ -149,7 +149,9 @@ function all2html(type,V,dom){
             throwOnError: false,
             displayMode: iv!='IL'
         });
-        
+  
+    }else if(/D3|3D/.test(iv)){
+        eval(v);
             
     }else if(/SV/.test(iv)){
         if(!w.is('svg')){
@@ -192,9 +194,29 @@ consolelog(v);
     }
 }
 
+function toolTip(s){
+	var ts = (L.timeids_tip || '').trim();
+	if (ts) {
+		Arrfc([clearTimeout, Number], ZLR(ts));
+	}
+	$('#bar').html(SCtv('toolTip',s));
+	L.timeids_tip=setTimeout(function(){
+		$('#bar').empty();
+    },3000);
+}
 
 $(function () {
     titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
+
+    $('#panel').prepend('<div id=menu>'+
+        '<span id=loch class="abscenter" hidden> '+sc+
+        '<span id=bar>&nbsp;'+sc+
+        (/index.html/.test(loch)?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+    
+        itv('" id=night tip="Night','brightness_3')+
+        itv('" id=qrcode tip="QRcode','smartphone')+
+        (/index.html/.test(loch)?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
+    dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
     $('.mi-span,i18').text(function(i,v){return gM(v)});
@@ -213,12 +235,26 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
+    $('#qrcode').on('click',function(){
+        if($('#loch canvas').length){
 
+        }else{
+            var qrcode001 = new QRCode($('#loch')[0], {
+                text:loch,
+                width : 150,
+                height : 150
+            });
+        }
+        $('#loch').fadeToggle();
+    });
 
+    $('#loch').on('click',function(){
+        $('#qrcode').click()
+    });
 
     $('body').on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
-        if(!/index.html/.test(location.href) && !/summary/i.test(act)){
+        if(!/index.html/.test(loch) && !/summary/i.test(act)){
             location.href='index.html'}
         })
     .on('click','th',function(e){
@@ -337,5 +373,12 @@ $(function () {
     }).on('dblclick','.katexf',function(){
         var me=$(this);
         me.val(me.attr('placeholder'));
+
+    }).on('mouseover', '[tip]:not(#tileTool),[hotkey]',function(e){
+		var me=$(this),hk=me.attr('hotkey')||'';
+		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
+			hk='';
+		}
+		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
     });
 });

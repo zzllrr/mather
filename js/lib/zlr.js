@@ -2813,6 +2813,7 @@ function md2html(str, sep) {
 			return eval(t)
 			*/
 			try {
+				consolelog(t);
 				return '$' + eval(t) + '$'
 			} catch (e) {
 				return t

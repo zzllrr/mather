@@ -15,15 +15,18 @@ $(function () {
     var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['vr'], s=o['src'];
     if(s){
         $.ajax({type:'get',url: s, success:function(x){
-            oHTML(x,1,'body')
-        }, error:function(){oHTML(t,1,'body')}
+                oHTML(x,1,'body')
+            }, error:function(){
+                setTimeout(function(){
+                    $('body').html(t);
+                },5000)
+            }
         })
     }else{
-        oHTML(t,1,'body');
-
+        setTimeout(function(){
+            $('body').html(t);
+        },5000)
     }
-    setTimeout(function(){
-        $('body').html(t);
-    },5000)
+
 
 });

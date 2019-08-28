@@ -37,33 +37,39 @@
 
 	<!-- 引用第三方库 -->
 	<script src="js/lib/jquery.js"></script>
-	<script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
+    <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
+    <script src="js/lib/js-yaml.js"></script>
 
-	<script src="js/lib/katex.js"></script>
-
+    <!-- 富媒体 -->
+    <script src="js/lib/katex.js"></script>
+    <script src="js/lib/zdog.js"></script>
 	<script src="js/lib/echarts.js"></script>
-	<script src="js/lib/js-yaml.js"></script>
+	<script src="js/lib/qrcode.js"></script>
 
-	<script src="js/i18n/en.js"></script>
-	<script src="js/i18n/zh_cn.js"></script>
+    <!-- i18n -->
+    <script src="js/i18n/en.js"></script>
+    <script src="js/i18n/zh_cn.js"></script>
+    
+  
+    <!-- 引用小乐库 -->
+    <script src="js/lib/zlr.js"></script>
+    <script src="js/zmather.io.js"></script>
+    <script src="js/htm/common.js"></script>
 
+	<!-- 当前页面私有 -->
+	
+	<script src="js/lib/effects.js"></script> <!-- js特效-->
 
-
-
-	<!-- 引用小乐库 -->
-	<script src="js/lib/zlr.js"></script>
-
-
-	<script src="js/zmather.io.js"></script>
-
+	<!-- fractal
+    <script src="js/lib/terrain.js"></script>
+ -->
 
 	<!-- 界面及通用的变量和函数 -->
-
 
 	<script src="js/interface.js"></script>
 
 	<script src="js/htm/index.js"></script>
-	<script src="js/htm/common.js"></script>
+
 
 
 	<!-- 底层对象 -->
@@ -94,141 +100,8 @@
 
 	<div id=splash><div class=rem3>zzllrr Mather</div></div>
 
-	<div id=zMather hidden>
-		<div id=nav>
-			<div id=navhead class=opac>
-				<span id=logo class=subhead></span>
-			</div>
-			<div id=navbody>
-				<div id=toolnav class="pd2"></div>
-				<details id=searchTool hidden>
-					<summary>
-						<select id=searchBy></select>
-						<input type=search id=search list=searchlist />
-						<datalist id=searchlist></datalist>
-					</summary>
-					<div id=searchResults></div>
-				</details>
-				<details id=subject>
-					<summary class=opac>
-						<select id=subject0></select>
-						<select id=subject1 hidden></select>
-						<select id=subject2 hidden></select>
-					</summary>
-					<div class=ground0></div>
-					<div class=ground1></div>
-				</details>
 
-
-
-			</div>
-		</div>
-		<div id=iContent class=pd2>
-			<div id=iText>
-
-
-				<div id=iTextMain>
-
-					<div id=input0Preview contentEditable=true class="pd10" hidden></div>
-
-					<textarea id=input0></textarea>
-					<div id=input0Tool class="opac">
-						<i class="mi Clear" id=iClear hotkey="Ctrl + E">backspace</i>
-
-						<i class=mi id=send2textBox tip=copy2input>arrow_upward</i>
-						
-						
-						<i class=mi id=navHide tip=Collapse>keyboard_arrow_up</i>
-						<i class=mi id=UploadFile tip="Import File">add</i>
-						<input type="file" id=inputFile hidden />
-						<i class="Clear rotate180 mi" id=tClear>backspace</i>
-
-					
-
-						<div id=previewOpt>
-							</div>
-
-
-						<p>
-							<input id=lineMerge type=button value=. />
-							<input id=lineSplit type=button value=: />
-							<input id=Condon class="tool" type=button value=⋮ />
-							<input id=DownloadFile type=button value=↓ tip="Download Text File" />
-
-						</p>
-
-						
-					</div>
-
-					<div id=iTextLaTeXBox>
-						<div id=sbs hidden class=iTextLaTeX></div>
-						<div id=funcs hidden class=iTextLaTeX></div>
-						<div id=struc hidden class=iTextLaTeX></div>
-					</div>
-
-					<div id=input0Tip></div>
-
-					<div class=clear></div>
-				</div>
-
-
-				<div hidden id=Cond>
-					<div id=input1Preview></div>
-					<textarea id=input1></textarea>
-					<div id=input1Tool class="opac">
-						<div><i class="Clear mi hidden" id=cClear>backspace</i></div>
-
-
-					</div>
-					<div id=input1Tip></div>
-					<div class=clear></div>
-				</div>
-
-				<div id=iTextPreview>
-					<span id=previewTool hidden>
-						<i class="Clear rotate90 mi" id=previewOff>backspace</i>
-	<!-- 
-						<i class=mi id=displayOverCanvas tip=copy2Canvas>exit_to_app</i>
-	 -->
-						<i class=mi id=downloadPreview tip="Download HTML File">file_download</i>
-						
-					</span>
-
-				</div>
-
-
-
-				<div id=iTextOpt class="pd2">
-
-
-					<i class=mi id=go tip="Run" hotkey="Ctrl + Enter">play_circle_outline</i>
-
-
-					<i id=oHClear class="mi Clear oClear rotate270">backspace</i>
-					<i class=mi id=iTextFold tip=Collapse>unfold_less</i>
-					<i class=mi id=zMatherHide tip=Collapse>keyboard_arrow_up</i>
-
-
-				</div>
-
-
-			</div>
-
-		</div>
-	</div>
-
-	<div id=panel hidden>
-		<div id=menu>
-			<span id=bar>&nbsp;</span>
-
-			<i class=mi id=zMatherOn tip="Collapse">keyboard_arrow_up</i>
-			<i id=night class=mi tip=Night>brightness_3</i>
-			
-			<i class=mi id=svgs tip="Graphic" hotkey="Esc">layers</i>
-		</div>
-
-
-
+	<div id=panel>
 
 		
 		<div id=tileTool for=svgs class=cap>
@@ -366,17 +239,16 @@
 			</div>
 
 		</div>
-
-
 		<div for=clear>
 		</div>
 	</div>
 
-	<div id=oContent hidden>
+	<div id=oContent>
 
 		<div id=oHTML></div>
 
 	</div>
+
 
 
 	<!-- 界面数据层 -->
@@ -630,15 +502,6 @@
 	<script src="js/htm/cap_mup.js"></script>
 
 
-
-
-	<script src="js/lib/effects.js"></script> <!-- js特效-->
-	<script src="js/lib/qrcode.js"></script>
-
-	<!-- fractal
-
-    <script src="js/lib/terrain.js"></script>
- -->
 
  
 </body>
