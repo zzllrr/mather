@@ -157,11 +157,11 @@ dc);
 	});
 	
 	$('.subhead').on('click',function(e){
-		var me=$(this).addClass('seled'), id=this.id,shft=e.shiftKey || $('#Shift').is('.seled');
-		me.siblings('.subhead').removeClass('seled');
+		var me=$(this),sel=me.is('.seled'), id=this.id,shft=e.shiftKey || $('#Shift').is('.seled');
+		me.addClass('seled').siblings('.subhead').removeClass('seled');
 		if(id=='logo'){
 			$('#navbody').show();
-			if(shft){
+			if(shft && sel){
 				window.open('index.html');
 			}else{
 				OH('');
@@ -550,14 +550,14 @@ dc);
 
 	}).on('click', '.sbsTbl td, .sbsTbl .td',function(e){
 		var p=$('#input0Type').val();
-		if(/Canvas|JavaScript|HTML/.test(p)){
+		if(/Canvas|JavaScript|HTML|3D/.test(p)){
 			p='JavaScript';
 		}
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
-		var me=$(this),t=me.attr('title');
-		if(!t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
+		var me=$(this),t=me.attr('title'),iT=$('#input0Type').val();
+		if(iT!='LaTeX' || !t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
 		}else{
 			toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
 		}

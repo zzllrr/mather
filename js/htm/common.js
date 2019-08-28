@@ -1,6 +1,6 @@
 var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,
-Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS',
-Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript'},
+Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript 3D 2D',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS D3 D2',
+Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript','D2':'2D','D3':'3D'},
 Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)},
 
 qrAli=Hs+'qr.alipay.com/', qrqq=Hs+'i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=122618817&ac=ZZLLRR&n=%E5%B0%8F%E4%B9%90%E7%AC%91%E4%BA%86&f=wallet',
@@ -151,7 +151,20 @@ function all2html(type,V,dom){
         });
   
     }else if(/D3|3D/.test(iv)){
-        eval(v);
+        try{
+            var cvs=w;
+            if(!w.is('canvas')){
+                w.html('<canvas width='+(w.attr('width')||300)+' height='+(w.attr('height')||300)+'></canvas>');
+                cvs=w.children();
+            }
+            //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
+            //var C=new ctt(cvs,300,300), c=C.ctx;
+            var C=cvs[0];
+            eval(v);
+        }catch(e){
+            console.log(e);
+            w.html(v)
+        }
             
     }else if(/SV/.test(iv)){
         if(!w.is('svg')){

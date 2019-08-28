@@ -723,8 +723,7 @@ tooltip={
 	<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
 	<a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 	<a-sky color="#ECECEC"></a-sky>
-</a-scene>
-		`,0),
+</a-scene>`,0),
 
 		sceg(`
 <a-scene>
@@ -748,8 +747,7 @@ tooltip={
 	</a-entity>
 
 	<a-entity id="light" light="type: ambient; color: #888"></a-entity>
-</a-scene>
-		`,0)
+</a-scene>`,0)
 
 
 
@@ -763,8 +761,7 @@ tooltip={
 		<a-box position='0 0.5 0' material='color: yellow;'></a-box>
 	</a-marker>
 	<a-entity camera></a-entity>
-</a-scene>
-		`,0)
+</a-scene>`,0)
 		].join(br),
 
 
@@ -772,92 +769,124 @@ tooltip={
 	'3D':[
 
 		href(Hs+'zzz.dog/api','Zdog API'),
-		
-		detail(gM('Method'),[
-			detail(gM('Initialize'),[
-				'Illustration'+
+		detail(gM('Initialize'),[
+			'Illustration'+
+			scegj(`
+let isSpinning = true;
+
+let zo = new Zdog.Illustration({
+	element: C,
+	zoom: 2,
+	dragRotate: true,
+
+	onDragStart: function() {
+		isSpinning = false;
+	},
+	onDragMove: function(p,mx,my) {
+	},
+	onDragEnd: function() {
+		isSpinning = true;
+	},
+});
+let rect = new Zdog.Rect({
+	addTo: zo,
+	width: 120,
+	height: 80,
+	stroke: 20,
+	color: '#E62',
+})`,0)].join(br)),
+		detail(gM('Animate'),scegj(`
+function animate() {
+	if ( isSpinning ) {
+		zo.rotate.y += 0.03;
+	}
+	zo.updateRenderGraph();
+	requestAnimationFrame( animate );
+}
+animate()`,0)),
+		detail(gM('Setting'),[
+				gM('New')+
 				scegj(`
 let zo = new Zdog.Illustration({
-	element: '.zdog-canvas',
-})
-				`,0),
+	element: C,
+})`,0),
 
 
-				gM('Zoom')+sceg2('zoom: 4'),
+			gM('Zoom')+sceg2('zoom: 4'),
 
-				gM('Center')+sceg2('centered: false')+'| true',
+			gM('Center')+sceg2('centered: false')+'| true',
 
-				gM('Drag Rotate')+sceg2('dragRotate: true'),
+			gM('Drag Rotate')+sceg2('dragRotate: true'),
 
-				gM('Transform'),
-				sceg2('translate:{x:20}'),
-				sceg2('rotate:{y: Zdog.TAU/8}'),
-				sceg2('scale:{z:2}'),
+			gM('Transform'),
+			sceg2('translate:{x:20}'),
+			sceg2('rotate:{y: Zdog.TAU/8}'),
+			sceg2('scale:{z:2}'),
 
-				gM('Resize'),
-				sceg2('resize:false')+"| true | 'fullscreen'",
+			gM('Resize'),
+			sceg2('resize:false')+"| true | 'fullscreen'",
 
-				gM('Width')+'|'+gM('Height'),
-				scegj('$(C.ctx.canvas).width(300).height(300)',0),
-				scegj('zo.setSize( width, height )'),
+			gM('Width')+'|'+gM('Height'),
+			scegj('$(C.ctx.canvas).width(300).height(300)',0),
+			scegj('zo.setSize( width, height )'),
+			
+
+		].join(br)),
+
+
+		detail(gM('Operate'),[
+
+			detail(gM('Copy'),[
+				'obj'+scegj('.copy()'),
+				'obj'+scegj(".copy({translate: { x: 48 },color: '#C25',})"),
+
+				gM('with descendents'),
+				'obj'+scegj('.copyGraph()'),
+				'obj'+scegj(".copyGraph({translate: { x: 48 },color: '#C25',})"),
+			].join(br)),
+
+			detail(gM('Remove'),[
+				'obj'+scegj('.remove()'),
+
+			].join(br)),
+
+			detail(gM('Child'),[
+				'obj1'+scegj('.addChild(obj2)'),
+				'obj1'+scegj('.removeChild(obj2)'),
+			].join(br)),
+			
+
+			detail(gM('Update'),[
+				scegj('zo.updateRenderGraph()',0),
+				'obj'+scegj('.updateGraph()'),
+
+			].join(br)),
+
+			detail(gM('Render'),[
+	
+				'obj'+scegj('.renderGraphCanvas( ctx )'),
+				'obj'+scegj('.renderGraphSvg( svg|g )'),
+
+				scegj('zo.renderGraph()'),
+				scegj('zo.renderGraph( item )'),
+
+				scegj('zo.updateRenderGraph()'),
+				scegj('zo.updateRenderGraph( item )'),
+
 
 
 			].join(br)),
 
-
-			detail(gM('Operation'),[
-
-				detail(gM('Copy'),[
-					'obj'+scegj('.copy()'),
-					'obj'+scegj(".copy({translate: { x: 48 },color: '#C25',})"),
-	
-					gM('with descendents'),
-					'obj'+scegj('.copyGraph()'),
-					'obj'+scegj(".copyGraph({translate: { x: 48 },color: '#C25',})"),
-				].join(br)),
-	
-				detail(gM('Remove'),[
-					'obj'+scegj('.remove()'),
-	
-				].join(br)),
-	
-				detail(gM('Child'),[
-					'obj1'+scegj('.addChild(obj2)'),
-					'obj1'+scegj('.removeChild(obj2)'),
-				].join(br)),
-				
-
-				detail(gM('Update'),[
-					scegj('zo.updateRenderGraph()',0),
-					'obj'+scegj('.updateGraph()'),
-
-				].join(br)),
-
-				detail(gM('Render'),[
-		
-					'obj'+scegj('.renderGraphCanvas( ctx )'),
-					'obj'+scegj('.renderGraphSvg( svg|g )'),
-
-					scegj('zo.renderGraph()'),
-					scegj('zo.renderGraph( item )'),
-
-					scegj('zo.updateRenderGraph()'),
-					scegj('zo.updateRenderGraph( item )'),
-
-
-
-				].join(br)),
-
-				detail(gM('Size'),[
-					scegj('zo.setSize( width, height )'),
-				].join(br)),
-
-
-			].join('')),
-
+			detail(gM('Size'),[
+				scegj('zo.setSize( width, height )'),
+			].join(br)),
 
 
 		].join('')),
+
+
+
+		
 
 		detail(gM('Structure'),[
 						
@@ -869,8 +898,7 @@ let zAc1 = new Zdog.Anchor({
 	scale: 1.5,
 	translate: { z: 40 },
 	rotate: { z: -Zdog.TAU/8 },
-})
-				`)
+})`)
 			].join(br)),
 
 			detail(gM('Group'),[
@@ -879,8 +907,7 @@ let zAc1 = new Zdog.Anchor({
 let zAc2 = new Zdog.Group({
 	addTo: illo,
 	scale: 1.5,
-})
-				`)
+})`)
 			].join(br)),	
 		].join('')),
 
@@ -895,8 +922,7 @@ let rect = new Zdog.Rect({
 	height: 80,
 	stroke: 20,
 	color: '#E62',
-})
-				  `,0),
+})`,0),
 
 			].join(br)),
 
@@ -910,8 +936,7 @@ let rr = new Zdog.RoundedRect({
 	cornerRadius: 30,
 	stroke: 20,
 	color: '#EA0',
-})
-				  `,0),
+})`,0),
 
 			].join(br)),
 
@@ -923,8 +948,7 @@ let ell = new Zdog.Ellipse({
 	diameter: 72,
 	stroke: 28,
 	color: '#E62',
-})
-				  `,0),
+})`,0),
 				gM('Semi-circle')+scegj(`
 let ell = new Zdog.Ellipse({
 addTo: zo,
@@ -932,8 +956,7 @@ diameter: 80,
 quarters: 2,
 stroke: 20,
 color: '#C25',
-})
-				`,0),
+})`,0),
 				gM('Ellipse')+scegj(`
 let ell = new Zdog.Ellipse({
 	addTo: zo,
@@ -941,8 +964,7 @@ let ell = new Zdog.Ellipse({
 	height:40,
 	stroke: 28,
 	color: '#E62',
-})
-				`,0),
+})`,0),
 
 			].join(br)),
 
@@ -955,8 +977,7 @@ let ell = new Zdog.Polygon({
 	sides: 5,
 	stroke: 20,
 	color: '#EA0',
-})
-				  `,0),
+})`,0),
 
 			].join(br)),
 
@@ -967,8 +988,7 @@ let dt = new Zdog.Shape({
 	addTo: zo,
 	stroke: 10,
 	color: '#636',
-})
-				  `,0),
+})`,0),
 
 				gM('Line')+scegj(`
 let ln = new Zdog.Shape({
@@ -979,8 +999,7 @@ let ln = new Zdog.Shape({
 	],
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 				'Z-'+gM('Shape')+scegj(`
 let lnZ = new Zdog.Shape({
@@ -994,8 +1013,7 @@ let lnZ = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 				'3D Z-'+gM('Shape')+scegj(`
 let lnZ3D = new Zdog.Shape({
@@ -1009,8 +1027,7 @@ let lnZ3D = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 				gM('Move')+scegj(`
 let lnmv = new Zdog.Shape({
@@ -1024,8 +1041,7 @@ let lnmv = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 				gM('Arc')+scegj(`
 let arc = new Zdog.Shape({
@@ -1044,8 +1060,7 @@ let arc = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 
 				gM('Bezier')+scegj(`
@@ -1062,8 +1077,7 @@ let bz = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 				gM('Closed')+'('+gM('default')+')'+scegj(`
 let bz = new Zdog.Shape({
@@ -1076,8 +1090,7 @@ let bz = new Zdog.Shape({
 		// closed by default
 	stroke: 20,
 	color: '#636'
-})
-				`,0),
+})`,0),
 
 
 			].join(br)),
@@ -1097,8 +1110,7 @@ let dome = new Zdog.Hemisphere({
 	stroke: false,
 	color: '#C25',
 	backface: '#EA0',
-})
-				  `,0),
+})`,0),
 
 			].join(br)),
 
@@ -1112,8 +1124,7 @@ let hat = new Zdog.Cone({
 	stroke: false,
 	color: '#636',
 	backface: '#C25',
-})
-				  `,0),
+})`,0),
 
 			].join(br)),
 
@@ -1127,8 +1138,7 @@ let cy = new Zdog.Cylinder({
 	stroke: false,
 	color: '#C25',
 	backface: '#E62',
-})
-				  `,0),
+})`,0),
 				gM('Face')+scegj(`
 let cyface = new Zdog.Cylinder({
 	addTo: zo,
@@ -1138,8 +1148,7 @@ let cyface = new Zdog.Cylinder({
 	color: '#C25',
 	frontFace: '#EA0',
 	backface: '#636',
-})
-				`,0),
+})`,0),
 			].join(br)),
 
 
@@ -1158,8 +1167,7 @@ let box = new Zdog.Shape({
 	rightFace: '#E62',
 	topFace: '#ED0',
 	bottomFace: '#636',
-})
-				`,0),
+})`,0),
 
 				'4-'+gM('Face')+scegj(`
 let box = new Zdog.Shape({
@@ -1175,8 +1183,7 @@ let box = new Zdog.Shape({
 	rearFace: '#EA0',
 	topFace: '#ED0',
 	bottomFace: '#636',
-})
-				`,0),
+})`,0),
 
 			].join(br)),
 
@@ -1196,8 +1203,7 @@ let lnZ3D = new Zdog.Shape({
 	closed: false,
 	stroke: 20,
 	color: '#636',
-})
-				`,0),
+})`,0),
 
 		
 			].join(br)),
@@ -1239,8 +1245,7 @@ let lnZ3D = new Zdog.Shape({
 		detail(gM('Vector'),[
 			'new Zdog.Vector()',
 			scegj(`
-var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
-			`,0),
+var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 			sceg2('.set({ y: 2 })'),
 			sceg2('.copy()'),
 
@@ -1276,7 +1281,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 
 			
 
-		].join('')),
+		].join(br)),
 
 		detail('Zdog',[
 
@@ -1288,7 +1293,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 
 			
 
-		].join('')),
+		].join(br)),
 
 	].join(''),
 
@@ -1386,8 +1391,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 		c.fillStyle=ptn;
 		c.fillRect(0,0,150,150)
 
-	}
-	`,0)
+	}`,0)
 
 				].join(br)),
 				
@@ -1396,8 +1400,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 		c.shadowOffsetX = 2;
 		c.shadowOffsetY = 2;
 		c.shadowBlur = 2;
-		c.shadowColor = 'rgba(0, 0, 0, 0.5)'
-	`,0)				
+		c.shadowColor = 'rgba(0, 0, 0, 0.5)'`,0)				
 				].join(br))
 			].join(br)),
 
@@ -1419,8 +1422,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 			
 				gM('Measure')+scegj(`
 					var t=c.measureText('foo');
-					t.width
-				`,0)
+					t.width`,0)
 			].join(br)),
 
 			detail(gM('Begin Path'),[
@@ -1579,8 +1581,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 	if(e.region) {
 		console.log("hit region:" + e.region);
 	}
-	})
-	`,0),
+	})`,0),
 				gM('Focus')+scegj('c.drawFocusIfNeeded(element)')+'|(Path2D, element)',
 		
 				gM('Attribute')+scegj('c.getContextAttributes()'),
@@ -1621,9 +1622,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })
 	var b1 = offscreen.transferToImageBitmap();
 	one.transferImageBitmap(b1);
 	var b2 = offscreen.transferToImageBitmap();
-	two.transferImageBitmap(b2);
-						
-	`,0),
+	two.transferImageBitmap(b2);`,0),
 						
 					].join(br)),
 				].join(br)),
@@ -1827,8 +1826,7 @@ E|F|G
 |--|--|--|
 1|2|3
 4|5|6
-7|8|9
-`,0),
+7|8|9`,0),
 
 sceg(`
 A|B|C|D
@@ -1836,8 +1834,7 @@ E|F|G
 --|--|--
 1|2|3
 4|5|6
-7|8|9
-`,0),
+7|8|9`,0),
 
 sceg(`
 A|B|C|D
@@ -1845,8 +1842,7 @@ E|F|G
 |--|--|--
 1|2|3
 4|5|6
-7|8|9
-`,0),
+7|8|9`,0),
 
 sceg(`
 A|B|C|D
@@ -1854,20 +1850,17 @@ E|F|G
 --|--|--|
 1|2|3
 4|5|6
-7|8|9
-`,0),
+7|8|9`,0),
 ].join(''),
 
 			[gM('Table Align'),sceg(`
 |A111|B222|C333|
 |:--|:--:|--:|
-|1|2|3|
-`,0)
+|1|2|3|`,0)
 	,gM('Center'),sceg(`
 |A111|B222|C333|
 |:--:|:--:|:--:|
-|1|2|3|
-`,0)
+|1|2|3|`,0)
 ].join(''),
 			[gM('Borderless Table'),sceg('$$zarray([[1,2,3],[4,5,6],[7,8,9]])$$',0)
 			].join(''),

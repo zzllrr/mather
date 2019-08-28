@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width:800px){
-	#zMatherOn,#hotkey,#API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
+	#zMatherOn,.subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
 	
 	/* #input0Tip{margin-top: 2rem;}
 	*/
@@ -257,7 +257,7 @@ body:not(.night) .bdb{
 }
 
 
-.inblk:not(.notm),.vam, #bar, #bar span, textarea{
+.inblk:not(.notm),.vam, #bar, #bar span, textarea,.abscenter > *{
 	vertical-align: middle;
 }
 .vat{
@@ -688,6 +688,9 @@ input[type=text],#wiki>span,.brad{
 }
 .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
+summary ~ details{
+	padding-left: 15px;
+}
 
 summary ~ details summary{
 	padding-left: 15px;
@@ -718,7 +721,7 @@ summary ~ details summary{
 }
 .subtabhead,.subhead{
     color: white;
-	padding: 2px 20px;
+	padding: 0 10px;
     margin: 5px;
     border-radius: 100%;
 	cursor: pointer;
@@ -734,7 +737,7 @@ summary ~ details summary{
 	margin-top: 0;
 }
 
-#splash,.abscenter{
+.abscenter{
 	color: white;
 	background:limegreen;
     position: fixed;
@@ -746,15 +749,15 @@ summary ~ details summary{
     white-space: nowrap;
     overflow: auto;
 }
-#splash:after,.abscenter:after{
+.abscenter:after{
     content: '';
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
+
 #splash div{
-    display: inline-block;
-	vertical-align: middle;
+	display: inline-block;
 	border-radius: 100%;
     border: solid 10px white;
     padding: 20px;
@@ -976,7 +979,7 @@ img{
   font-weight: normal;
   font-style: normal;
   font-size: 2rem;
-  margin:0 5px 0 0;
+  margin:0 2px;
   border-radius: 100%;
   border:solid transparent 1px;
 
@@ -1028,7 +1031,7 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
     position: absolute;
     top: 2px;
     right: 5px;
-    z-index: 20001;
+    z-index: 90001;
 }
 #menu i{
 	margin: 0 2px;

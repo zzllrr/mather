@@ -10,7 +10,7 @@ showThen['3D']=function(){
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
 		itvc('" hotkey="Ctrl + E')+
         DCtv('inblk',[
-            SCtv('Mele" tip=3D. title="3D',ZLR('D3')).join(''),
+            SCtv('Mele" tip=3D title="3D',ZLR('D3')).join(''),
 
         ].join(br))+
 		detail(SCtv('3DTool','<input type="file" id=3DFile accept="text/*" multiple="multiple" />'+
@@ -25,7 +25,7 @@ showThen['3D']=function(){
 		if(id=='3DPlay'){
 			var j=[];$('.jslib').each(function(){j.push($(this).attr('data-lib'))});
 
-			L['3D']=s;
+			L['3d']=s;
 			if(/^https?.+$/.test(st)){
 				open('3d.html?src='+st);
 			}else{

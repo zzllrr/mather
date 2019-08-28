@@ -15,7 +15,7 @@ navhead['about']=
 	XML.wrapE('h1',gM('About'))+
 	subtabs(gM(['Version','Setting','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 		
-		fieldseth('V2019.8.26',
+		fieldseth('V2019.8.29',
 			DCtv('alignc',
 				DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 					'<div id=ZMatherQR>'+dc+
