@@ -13,7 +13,11 @@ showThen['AR']=function(){
 
         ].join(br))+
 		detail(SCtv('ARTool','<input type="file" id=ARFile accept="text/*" multiple="multiple" />'+
-			strbtn+gM('Play')+'" class=play id=ARPlay hidden />'),''
+			strbtn+gM('Play')+'" class=play id=ARPlay hidden />'+
+				
+			//↑
+			strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+			strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),''
 		)
 	);
 	$('#showGround .editorText').val(L.ar||'');

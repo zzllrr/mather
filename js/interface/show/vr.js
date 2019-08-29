@@ -14,8 +14,11 @@ showThen['VR']=function(){
         ].join(br))+
 		detail(SCtv('VRTool','<input type="file" id=VRFile accept="text/*" multiple="multiple" />'+
 				strbtn+gM('Play')+'" class=play id=VRPlay hidden />'+
-				strbtn+gM('QRcode')+' ↓" class=qrGen />'),
-			[itv('','library_books')+gM('JS Library')+': ', Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib'+(L.vrjslib.indexOf(x)>-1?chked:'')+' data-lib="'+x+'" /> '+x)}, VRlib).join('')
+				
+				//↑
+				strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+				strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),
+			[itv('','library_books')+gM('JS Library')+': ', Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib'+((L.vrjslib||'').indexOf(x)>-1?chked:'')+' data-lib="'+x+'" /> '+x)}, VRlib).join('')
 
 			].join('')
 		)

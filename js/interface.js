@@ -749,7 +749,7 @@ tooltip={
 	<a-entity id="light" light="type: ambient; color: #888"></a-entity>
 </a-scene>`,0)
 
-
+// aframe.io/docs/0.9.0/introduction/entity-component-system.html
 
 		].join(br),
 

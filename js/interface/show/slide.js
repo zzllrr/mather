@@ -17,7 +17,11 @@ showThen['Slide']=function(){
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('SlideTool','<input type="file" id=SlideFile accept="text/*" multiple="multiple" />'+
-			strbtn+gM('Play')+'" class=play id=SlidePlay hidden />'),
+			strbtn+gM('Play')+'" class=play id=SlidePlay hidden />'+
+				
+			//↑
+			strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+			strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),
 
 			[gM('Head')+'<textarea id=slidehead tip="'+gM('input')+' HTML">'+(L.slidehead||'')+'</textarea>',
 			XML.wrapE('p',XML.wrapE('label',itv('','swap_vertical_circle')+gM('Vertical')+

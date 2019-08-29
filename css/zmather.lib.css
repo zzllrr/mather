@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width:800px){
-	#zMatherOn, #hotkey, #API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
+	#hotkey, #API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
 	
 	/* #input0Tip{margin-top: 2rem;}
 	*/

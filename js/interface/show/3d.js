@@ -14,7 +14,11 @@ showThen['3D']=function(){
 
         ].join(br))+
 		detail(SCtv('3DTool','<input type="file" id=3DFile accept="text/*" multiple="multiple" />'+
-				strbtn+gM('Play')+'" class=play id=3DPlay hidden />'),
+				strbtn+gM('Play')+'" class=play id=3DPlay hidden />'+
+				
+				//↑
+				strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+				strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),
             ''
 		)
 	);

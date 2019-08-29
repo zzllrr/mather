@@ -16,7 +16,11 @@ showThen['Document']=function(){
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+
-		strbtn+gM('Play')+'" class=play id=DocumentPlay hidden />'),
+		strbtn+gM('Play')+'" class=play id=DocumentPlay hidden />'+
+				
+		//↑
+		strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+		strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),
 			gM('Style')+'<textarea id=documentCSS tip="CSS"></textarea>'+br+
 			XML.wrapE('label',gM('Display TOC')+strchkbx0+'id=documentTOC'+chked+' />')
 		)

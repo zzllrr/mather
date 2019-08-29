@@ -11,7 +11,11 @@ showThen['Video']=function(){
 		'<textarea class=editorText placeholder="'+gM('input your Audio/Video URL')+'"></textarea>'+
 		sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
 		detail(SCtv('VideoTool','<input type="file" id=zRmediaPlayFile accept="video/*" capture="camcorder" multiple="multiple" />'+
-		strbtn+'Play" id=zRMediaPlay hidden class=play />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'),'')
+		strbtn+'Play" id=zRMediaPlay hidden class=play />'+strbtn+gM('Play')+'" id=zRMediaPlay2 />'+strbtn+gM('Pause')+'" id=zRMediaPause hidden />'+
+				
+		//↑
+		strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+		strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),'')
 	);
 	$('#showGround .editorText').val(L.video||'');
  	$('#oHTML').on('click','#mediaParaA p', function(e){

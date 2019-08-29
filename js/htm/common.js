@@ -226,7 +226,7 @@ $(function () {
 
     var ishome=/index.html|\/$/.test(loch);
     $('#panel').prepend('<div id=menu>'+
-        DCtv('abscenter" hidden id="QRCODE','<div><textarea id=QRstr readonly></textarea></div><span id=QRimg> '+sc)+
+        DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
         (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
     
@@ -277,13 +277,14 @@ $(function () {
         }
         if(id=='qrcode'){
             me.removeClass('toggle');
-            $('#QRimg').empty();
+            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4);
 
-            
-            var qrcode001 = new QRCode($('#QRimg')[0], {
+            $('#QRCODE').empty();
+
+            var qrcode001 = new QRCode($('#QRCODE')[0], {
                 text:H_o('',losh),
-                width : 250,
-                height : 250
+                width : m,
+                height : m
             });
             
             $('#QRCODE').fadeToggle();
@@ -435,12 +436,13 @@ $(function () {
     }).on('click','.qrGen',function(){
         var t=$(this).parents('.ground1').find('.editorText').val();
         if(t){
-            $('#QRstr').val(t);
-            $('#QRimg').empty();
-            var qrcode001 = new QRCode($('#QRimg')[0], {
+            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.6);
+           
+            $('#QRCODE').empty();
+            var qrcode001 = new QRCode($('#QRCODE')[0], {
                 text:t,
-                width : 250,
-                height : 250
+                width : m,
+                height : m
             });
             
             $('#QRCODE').fadeToggle();

@@ -11,7 +11,11 @@ showThen['Speech']=function(){
 		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
 		sci(itv('navHide','keyboard_arrow_up')+br+itvc('" hotkey="Ctrl + E'))+
 		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone" multiple="multiple" />'+
-		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay class=play hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
+		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay class=play hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'+
+				
+		//↑
+		strbtn+gM('Scan QRcode')+'" class=qrScan tip="Scan QRcode" />'+
+		strbtn+gM('QRcode')+' ↓" class=qrGen tip="Generate Text QRcode" />'),
 		`
 			<div><input type=text class=btntxt value=Engine readonly data-d=0 /><select id=audioEngine></select></div>
 			<div><input type=text class=btntxt value=Language readonly data-d=0 /><select id=audioLanguage></select></div>

@@ -599,6 +599,8 @@ lang['zh_cn'] = {
 	'Upload': '上传',
 	'New':'新建',
 
+	'Generate':'生成',
+	'Scan':'扫描',
 	'Update':'更新',
 	'Render':'渲染',
 	'Remove':'移除',
