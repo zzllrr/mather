@@ -12,7 +12,7 @@ $(function () {
 		
 
 	}else{
-		if(!/<section>/.test(t)){
+		if(t && !/<section>/.test(t)){
 			t='<section>'+t+'</section>'
 		}
 		if(sh){
@@ -38,7 +38,7 @@ consolelog(s);
 				}
 			}, error:function(){oHTML(t,1,'#webslides')}
 			})
-		}else{
+		}else if(t){
 		
 			oHTML(t,1,'#webslides');
 

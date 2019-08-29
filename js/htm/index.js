@@ -140,8 +140,8 @@ $(function(){
 
 				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 				itvc('oClear rotate270" id="oHClear')+
-				itv('id=iTextFold tip="Collapse','unfold_less')+
-				itv('id=zMatherHide tip="Collapse','keyboard_arrow_up')
+				itv('" id=iTextFold tip="Collapse','unfold_less')+
+				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')
 
 			)+
 
@@ -337,8 +337,8 @@ dc);
 	
 	$('.ground1').on('change keyup mouseup','.editorText', function(){
 		L[$(this).parents('.ground1').prev().children('.level.seled').attr('data-i').toLowerCase()]=$(this).val()
-	}).on('click','.editorText + .Clear', function(){
-		$(this).prev().val('')
+	}).on('click','.editorText + span > .Clear', function(){
+		$(this).parent().prev().val('')
 	});
 
 	$('#iClear').on('click',function(){
@@ -653,6 +653,7 @@ dc);
 	}).on('click','[name=tool]',function(){
 		var x=this.id;
 		L.tool=x;
+		losh.tool=x;
 		toolSwitch(x);
 
 	}).on('click','#subject .ground0 .level',function(){
@@ -1128,34 +1129,6 @@ consolelog(f);
 		toolTip(gM('copytip'))
 		
 	})
-
-	$('#panel').on('click','#night ~ i',function(){
-		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
-
-		if(/^svgs$/.test(id)){
-
-			$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
-			if(tog){
-				$('#zMatherOn:contains(up)').click();
-				$('#Caps').fadeIn();
-			}else{
-				if(!$('#tileTool').is(':visible')){
-					$('#tileTool').fadeIn();
-					me.addClass('toggle');
-
-					tog=true;
-				}else{
-					$('#zMatherOn:contains(down)').click();
-				}
-			}
-			
-			
-			$('#oHTML').toggle(!tog);
-		}
-		me.siblings('.toggle').removeClass('toggle');
-		pa.nextAll('[for='+id+']').toggle(tog);
-		pa.nextAll().not('[for='+id+']').hide();
-	});
 
 
 	

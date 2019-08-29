@@ -1,4 +1,4 @@
-var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,
+var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,losh={},
 Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript 3D 2D',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS D3 D2',
 Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript','D2':'2D','D3':'3D'},
 Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)},
@@ -15,7 +15,10 @@ qrs={
 VRlib=ZLR('aframe-','animation-component particle-system-component extras.ocean gradient-sky'),
 VRlibjs={
     'aframe-gradient-sky':'gradientsky'
-},VRlibjsTmp=Hs+'unpkg.com/@/dist/@.min.js',
+},
+ARlib='',
+ARlibjs={
+},unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js',
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 oHTML=function(x,notMD,elem){
     $(elem||'#oHTML').html(notMD?x:replaceNodeInner(x,'MD', md2html));
@@ -221,14 +224,15 @@ function toolTip(s){
 $(function () {
     titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
 
+    var ishome=/index.html|\/$/.test(loch);
     $('#panel').prepend('<div id=menu>'+
-        '<span id=loch class="abscenter" hidden> '+sc+
+        DCtv('abscenter" hidden id="QRCODE','<div><textarea id=QRstr readonly></textarea></div><span id=QRimg> '+sc)+
         '<span id=bar>&nbsp;'+sc+
-        (/index.html/.test(loch)?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
     
         itv('" id=night tip="Night','brightness_3')+
         itv('" id=qrcode tip="QRcode','smartphone')+
-        (/index.html/.test(loch)?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
+        (ishome?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
     dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
@@ -248,29 +252,63 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
-    $('#qrcode').on('click',function(){
-        if($('#loch canvas').length){
+	$('#panel').on('click','#night ~ i',function(){
+		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
-        }else{
-            var qrcode001 = new QRCode($('#loch')[0], {
-                text:loch,
-                width : 150,
-                height : 150
-            });
+		if(/^svgs$/.test(id)){
+
+			$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
+			if(tog){
+				$('#zMatherOn:contains(up)').click();
+				$('#Caps').fadeIn();
+			}else{
+				if(!$('#tileTool').is(':visible')){
+					$('#tileTool').fadeIn();
+					me.addClass('toggle');
+
+					tog=true;
+				}else{
+					$('#zMatherOn:contains(down)').click();
+				}
+			}
+			
+			
+			$('#oHTML').toggle(!tog);
         }
-        $('#loch').fadeToggle();
-    });
+        if(id=='qrcode'){
+            me.removeClass('toggle');
+            $('#QRimg').empty();
 
-    $('#loch').on('click',function(){
+            
+            var qrcode001 = new QRCode($('#QRimg')[0], {
+                text:H_o('',losh),
+                width : 250,
+                height : 250
+            });
+            
+            $('#QRCODE').fadeToggle();
+            setTimeout(function(){$('#zMatherOn:contains(down)').click();},500);
+        }
+		me.siblings('.toggle').removeClass('toggle');
+		pa.nextAll('[for='+id+']').toggle(tog);
+		pa.nextAll().not('[for='+id+']').hide();
+	});
+
+
+    $('#QRCODE').on('click',function(){
         $('#qrcode').click()
     });
 
     $('body').on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
-        if(!/index.html/.test(loch) && !/summary/i.test(act)){
-            location.href='index.html'}
-        })
-    .on('click','th',function(e){
+        var ishome=/index.html|\/$/.test(loch);
+        if(ishome){
+            $('#caps ~ canvas').remove();
+
+        }else if(!/summary/i.test(act)){
+            location.href='index.html'
+        }
+    }).on('click','th',function(e){
         
         var me=$(this), i=me.index(),shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey;
         if(alt){
@@ -383,6 +421,33 @@ $(function () {
         var p=$(this).parent().parent(), v=p.find('.katexv');
         v.val(v.attr('data-katex'));
         
+
+
+    }).on('click','.navHide',function(){
+        var me=$(this),isup=me.text().indexOf('up')>0;
+        $('#toolnav,#navhead').add(me.parent().parent().prev()).toggle(!isup);
+        me.text('keyboard_arrow_'+(isup?'down':'up')).toggleClass('seled',isup);
+
+    }).on('click','.launch',function(){
+        var me=$(this);
+        me.parent().nextAll('details').find('.play').click();
+
+    }).on('click','.qrGen',function(){
+        var t=$(this).parents('.ground1').find('.editorText').val();
+        if(t){
+            $('#QRstr').val(t);
+            $('#QRimg').empty();
+            var qrcode001 = new QRCode($('#QRimg')[0], {
+                text:t,
+                width : 250,
+                height : 250
+            });
+            
+            $('#QRCODE').fadeToggle();
+        }
+
+
+
     }).on('dblclick','.katexf',function(){
         var me=$(this);
         me.val(me.attr('placeholder'));
@@ -392,6 +457,17 @@ $(function () {
 		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
 			hk='';
 		}
-		toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
+        toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
+        
+    }).on('keydown',function(e){
+    
+		var k=e.keyCode, shft=e.shiftKey || $('#Shift').is('.seled'), ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
+		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id')||'';
+//console.log(k,node);
+
+		if(ctrl && shft && k==13){
+            $('.launch').eq(0).click()
+        }
+
     });
 });

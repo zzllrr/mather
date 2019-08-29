@@ -7,14 +7,15 @@
 showThen['VR']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+		sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
         DCtv('inblk',[
             SCtv('Mele" tip=VR. title="VR',ZLR('VR a-scene')).join(''),
 
         ].join(br))+
 		detail(SCtv('VRTool','<input type="file" id=VRFile accept="text/*" multiple="multiple" />'+
-				strbtn+gM('Play')+'" id=VRPlay />'),
-			[itv('','library_books')+gM('JS Library')+': ', Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib data-lib="'+x+'" /> '+x)}, VRlib).join('')
+				strbtn+gM('Play')+'" class=play id=VRPlay hidden />'+
+				strbtn+gM('QRcode')+' ↓" class=qrGen />'),
+			[itv('','library_books')+gM('JS Library')+': ', Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib'+(L.vrjslib.indexOf(x)>-1?chked:'')+' data-lib="'+x+'" /> '+x)}, VRlib).join('')
 
 			].join('')
 		)
@@ -24,7 +25,7 @@ showThen['VR']=function(){
 	$('#showGround .VRTool').on('click',':button',function(){
 		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');
 		if(id=='VRPlay'){
-			var j=[];$('.jslib').each(function(){j.push($(this).attr('data-lib'))});
+			var j=[];$('.jslib:checked').each(function(){j.push($(this).attr('data-lib'))});
 			L.vrjslib=j.join(' ');
 			L.vr=s;
 			if(/^https?.+$/.test(st)){

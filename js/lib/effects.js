@@ -154,7 +154,7 @@ function Pythagorean_Tree(){
 
         c.save();
 
-        
+        var ctx=$('#caps')[0].getContext('2d');
         var imgD = ctx.getImageData(0,0,innerWidth,innerHeight);
         c.putImageData(imgD, 0, 0);
         
@@ -295,6 +295,7 @@ function ring(){
     then = Date.now();
     startTime = then;
     
+    var ctx=$('#caps')[0].getContext('2d');
     var imgD = ctx.getImageData(0,0,innerWidth,innerHeight);
     c.putImageData(imgD, 0, 0);
     

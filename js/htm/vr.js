@@ -6,7 +6,7 @@
 
 if(L.vrjslib){
     Arrf(function(x){
-        $('head').append('<script src="'+VRlibjsTmp.replace('@',x).replace('@',VRlibjs[x]||x) +'"></script>')
+        $('head').append('<script src="'+unpkgTmp.replace('@',x).replace('@',VRlibjs[x]||x) +'"></script>')
     },ZLR(L.vrjslib));
 }
 
@@ -22,7 +22,7 @@ $(function () {
                 },5000)
             }
         })
-    }else{
+    }else if(t){
         setTimeout(function(){
             $('body').html(t);
         },5000)

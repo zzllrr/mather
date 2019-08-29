@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width:800px){
-	#zMatherOn,.subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
+	#zMatherOn, #hotkey, #API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
 	
 	/* #input0Tip{margin-top: 2rem;}
 	*/
@@ -686,7 +686,7 @@ input[type=text],#wiki>span,.brad{
 .opac a{
 	color:transparent;
 }
-.mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
+.mathFont,.hotk{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
 summary ~ details{
 	padding-left: 15px;
@@ -901,7 +901,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 
 
 .editorText {
-	width:50%;
+	width:60%;
 	height:100px;
 }
 
@@ -1029,13 +1029,11 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 
 #menu {
     position: absolute;
-    top: 2px;
+	top: 0.3rem;
     right: 5px;
     z-index: 90001;
 }
-#menu i{
-	margin: 0 2px;
-}
+
 .mi.toggle, .tool:hover{
 	background:yellow;
 	color: black;

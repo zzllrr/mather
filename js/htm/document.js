@@ -31,7 +31,7 @@ $(function () {
             }
         }, error:function(){oHTML(t)}
         })
-    }else{
+    }else if(t){
         oHTML(t);
 
     }

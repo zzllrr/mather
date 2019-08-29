@@ -8,9 +8,9 @@ showThen['Image']=function(){
 
 $('#showGround .ground1').html(
 	'<textarea class=editorText tip="'+gM('input Image')+' URL"></textarea>'+
-	itvc('" hotkey="Ctrl + E')+
+	sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
 	detail(SCtv('ImageTool','<input type="file" id=ImageFile accept="image/*" multiple="multiple" />'+
-	strbtn+gM('Play')+'" id=ImagePlay />'),'')
+	strbtn+gM('Play')+'" class=play id=ImagePlay hidden />'),'')
 );
 $('#showGround .editorText').val(L.image||'');
 

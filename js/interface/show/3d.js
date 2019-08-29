@@ -8,17 +8,17 @@
 showThen['3D']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+        sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
         DCtv('inblk',[
             SCtv('Mele" tip=3D title="3D',ZLR('D3')).join(''),
 
         ].join(br))+
 		detail(SCtv('3DTool','<input type="file" id=3DFile accept="text/*" multiple="multiple" />'+
-				strbtn+gM('Play')+'" id=3DPlay />'),
+				strbtn+gM('Play')+'" class=play id=3DPlay hidden />'),
             ''
 		)
 	);
-	$('#showGround .editorText').val(L['3D']||'');
+	$('#showGround .editorText').val(L['3d']||'');
 
 	$('#showGround .3DTool').on('click',':button',function(){
 		var T=$('#showGround .editorText'),s=T.val(), st=s.trim(), me=$(this),id=me.attr('id');

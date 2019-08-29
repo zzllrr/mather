@@ -275,7 +275,7 @@ navhead['API']=[
 	detail(gM('3rd-party'),
 		XML.wrapE('q','Standing on the shoulders of giants!')+
 		detail(href('./js/lib','Javascript'),
-			ul(ZLR(zlr2('base64 jquery katex qrcode zlr echarts effects js-yaml terrain webslides aframe aframe-ar','.js'))),1)+
+			ul(ZLR(zlr2('base64 jquery katex qrcode qrcode-decoder zlr echarts effects js-yaml terrain webslides aframe aframe-ar zdog','.js'))),1)+
 		detail(href('./css/fonts','Fonts'),
 			ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 	,1), 

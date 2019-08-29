@@ -9,14 +9,14 @@
 showThen['Document']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+		sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
 		DCtv('inblk',[
-			Arrf(Melef,ZLR('IL LA MD HTML')).join(''),
-			Arrf(Melef,ZLR('CV SV EC D2 D3')).join(''),
+			Arrf(Melef,ZLR('IL LaTeX MD HTML')).join(''),
+			Arrf(Melef,ZLR('Canvas SVG Echarts D2 D3')).join(''),
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('DocumentTool','<input type="file" id=DocumentFile accept=".md, text/*" multiple="multiple" />'+
-		strbtn+gM('Play')+'" id=DocumentPlay />'),
+		strbtn+gM('Play')+'" class=play id=DocumentPlay hidden />'),
 			gM('Style')+'<textarea id=documentCSS tip="CSS"></textarea>'+br+
 			XML.wrapE('label',gM('Display TOC')+strchkbx0+'id=documentTOC'+chked+' />')
 		)

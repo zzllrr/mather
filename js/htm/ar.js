@@ -6,7 +6,7 @@
     
 if(L.arjslib){
     Arrf(function(x){
-        $('head').append('<script src="'+ARlibjsTmp.replace('@',x).replace('@',ARlibjs[x]||x) +'"></script>')
+        $('head').append('<script src="'+unpkgTmp.replace('@',x).replace('@',ARlibjs[x]||x) +'"></script>')
     },ZLR(L.arjslib));
 }
 
@@ -22,7 +22,7 @@ $(function () {
                 },5000)
             }
         })
-    }else{
+    }else if(t){
         setTimeout(function(){
             oHTML(t,1,'body');
         },5000)

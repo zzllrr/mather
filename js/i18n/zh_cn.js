@@ -48,6 +48,7 @@ lang['zh_cn'] = {
 	'Cb': '立方',
 
 	'Run':'运行',
+	'Launch':'在新窗口运行',
 	'Lang': '语言',
 	'Del': '删除',
 	'lineSplit': '分行',

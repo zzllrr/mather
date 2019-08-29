@@ -12,7 +12,7 @@ $(function () {
             oHTML(x,1,'body')
         }, error:function(){oHTML(t,1,'body')}
         })
-    }else{
+    }else if(t){
         oHTML(t,1,'body');
 
     }

@@ -7,13 +7,13 @@
 showThen['AR']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+		sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
         DCtv('inblk',[
             SCtv('Mele" tip=AR title="AR',ZLR('AR a-scene')).join(''),
 
         ].join(br))+
 		detail(SCtv('ARTool','<input type="file" id=ARFile accept="text/*" multiple="multiple" />'+
-		strbtn+gM('Play')+'" id=ARPlay />'),''
+			strbtn+gM('Play')+'" class=play id=ARPlay hidden />'),''
 		)
 	);
 	$('#showGround .editorText').val(L.ar||'');

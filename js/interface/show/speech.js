@@ -9,9 +9,9 @@
 showThen['Speech']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText placeholder="'+gM('input your words and then click Play button')+'"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+		sci(itv('navHide','keyboard_arrow_up')+br+itvc('" hotkey="Ctrl + E'))+
 		detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone" multiple="multiple" />'+
-		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
+		strbtn+gM('Clear')+'" id=zRAudioClear />'+strbtn+'Play" id=zRAudioPlay class=play hidden />'+strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+strbtn+gM('Pause')+'" id=zRAudioPause hidden />'),
 		`
 			<div><input type=text class=btntxt value=Engine readonly data-d=0 /><select id=audioEngine></select></div>
 			<div><input type=text class=btntxt value=Language readonly data-d=0 /><select id=audioLanguage></select></div>

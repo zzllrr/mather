@@ -45,7 +45,9 @@ Table('',[
 	[
 		scHotk('Ctrl/⌘ + S'),gM('Save'),
 	],
-
+	[
+		scHotk('Ctrl/⌘ + Shift + Enter'),gM('Launch'),
+	],
 ]))+fieldseth(gM('Table'),
 
 Table('',[

@@ -9,15 +9,15 @@
 showThen['Slide']=function(){
 	$('#showGround .ground1').html(
 		'<textarea class=editorText tip="'+gM('input')+' HTML"></textarea>'+
-		itvc('" hotkey="Ctrl + E')+
+		sci(itv('navHide','keyboard_arrow_up')+br+itv('launch" title="Ctrl + Shift + Enter','launch')+br+itvc('" hotkey="Ctrl + E'))+
 		DCtv('inblk',[
-			SCtv('Mele" tip="Slide',ZLR('Slide section')).join('')+Melef('IL'),
-			Arrf(Melef,ZLR('LA MD HTML')).join(''),
-			Arrf(Melef,ZLR('CV SV EC')).join(''),
+			Arrf(Melef,ZLR('Slide section')).join(''),
+			Arrf(Melef,ZLR('IL LaTeX MD HTML')).join(''),
+			Arrf(Melef,ZLR('Canvas SVG Echarts D2 D3')).join(''),
 			Arrf(Melef,ZLR('JS I18 YAML')).join(''),
 		].join(br))+
 		detail(SCtv('SlideTool','<input type="file" id=SlideFile accept="text/*" multiple="multiple" />'+
-			strbtn+gM('Play')+'" id=SlidePlay />'),
+			strbtn+gM('Play')+'" class=play id=SlidePlay hidden />'),
 
 			[gM('Head')+'<textarea id=slidehead tip="'+gM('input')+' HTML">'+(L.slidehead||'')+'</textarea>',
 			XML.wrapE('p',XML.wrapE('label',itv('','swap_vertical_circle')+gM('Vertical')+

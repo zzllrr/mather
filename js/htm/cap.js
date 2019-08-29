@@ -59,12 +59,6 @@ $(function () {
 	//val
 
 
-
-
-	$('.clrCanvas').val(gM('clear'));
-
-
-
 	$(':button[value=""], :button:not([value])').val(function () { return gM(this.id) });
 
 
@@ -241,9 +235,9 @@ $(function () {
 				SCtv('','↥')+num('100" id="cssClipB')+dc+
 	
 			'<div id=fxTXT hidden><textarea id=fxTxt placeholder="Condition;Ox,Oy,x0,x1,y0,y1;color;opacity"></textarea>'+
-				detail(strbtn+'f(x,y)" id=GOfx /><input type=button class=clrCanvas />')+dc+
+				detail(strbtn+'f(x,y)" id=GOfx /><input type=button class=clrCanvas value="'+gM('Clear')+'" />')+dc+
 			'<div id=capctxTXT hidden><textarea id=capctxTxt></textarea>'+
-				detail(strbtn+'JS" id=GOcapctx /><select id=effects></select><input type=button class=clrCanvas />')+dc+
+				detail(strbtn+'JS" id=GOcapctx /><select id=effects></select><input type=button class=clrCanvas value="'+gM('Clear')+'" />')+dc+
 	
 	
 		dc+
