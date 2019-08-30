@@ -337,7 +337,9 @@ dc);
 	
 	$('.ground1').on('change keyup mouseup','.editorText', function(){
 		L[$(this).parents('.ground1').prev().children('.level.seled').attr('data-i').toLowerCase()]=$(this).val()
+
 	}).on('click','.editorText + span > .Clear', function(){
+		
 		$(this).parent().prev().val('')
 	});
 

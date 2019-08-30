@@ -36,7 +36,8 @@ lang['en']={
 	'strucontip':"@{clickWithShift}get JS code@{notLaTeX}",
 	'tasktip':"@{clickWithShift}input the default expression",
 	'copytip':"click to copy it to the clipboard",
-	
+	'showEditip':'Input text, URL, or drag & drop file(text file, QRcode Image, Math Formula Image) here',
+
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
 	'notLaTeX':' instead of LaTeX code',

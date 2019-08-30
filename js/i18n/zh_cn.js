@@ -70,6 +70,7 @@ lang['zh_cn'] = {
 	'strucontip': "@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
 	'tasktip': "@{clickWithShift}则自动输入示例命令",
 	'copytip': "点击复制到剪贴板",
+	'showEditip':'输入文本、网址，或拖放文件（文本文件、二维码图片、数学公式图片）至此',
 
 	'copy2Canvas': '复制到画布上方',
 	'clickWithShift': '点击并按住Shift键，',
@@ -699,8 +700,8 @@ lang['zh_cn'] = {
 	'Programmatic': '程序化',
 	'AI': '人工智能',
 
-	'input your words and then click Play button': '输入你想说的话，然后点击播放按钮',
-	'input your Audio/Video URL': '输入你的音视频地址',
+	'Words': '文字',
+
 
 
 	//Math concept
