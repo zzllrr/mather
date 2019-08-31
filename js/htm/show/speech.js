@@ -7,17 +7,18 @@
 $(function () {
     var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['speech'], s=o['src'];
 
-    OH(detail(SCtv('VoiceTool','<input type="file" accept="audio/*" capture="microphone" multiple="multiple" id=zRAudioImport />'+
-        strbtn+gM('Clear')+'" id=zRAudioClear />'+
-        strbtn+'Play" id=zRAudioPlay class=play hidden />'+
-        strbtn+gM('Play')+'" id=zRAudioPlay2 hidden />'+
-        strbtn+gM('Pause')+'" id=zRAudioPause hidden />'+
-        '<audio controls="controls" id=audioPlay hidden></audio>'),
-        
-        '<textarea id=speechTxt hidden></textarea>')+
+    OH('<div id=audioPlay2>'+dc+
+		'<div id=zRaudioPlay><div id=audioParaA>'+dc+dc+
+		detail(SCtv('VoiceTool',
+			strbtn+gM('Clear')+'" id=zRAudioClear />'+
+			strbtn+'Play" id=zRAudioPlay class=play hidden />'+
+			strbtn+gM('Play')+'" id=zRAudioPlay2 />'+
+			strbtn+gM('Pause')+'" id=zRAudioPause hidden />'+
+			'<audio controls="controls" id=audioPlay hidden></audio>'),
+			
+			'<textarea id=speechTxt></textarea>','','class="alignc"')
 
-        '<div id=audioPlay2>'+dc+
-		'<div id=zRaudioPlay><div id=audioParaA>'+dc+dc
+        
     );
 
     var RemoveSrc=function(){
@@ -187,14 +188,16 @@ $(function () {
     if(s){
         $.ajax({type:'get',url: s, success:function(x){
                 $('#speechTxt').val(x);
-                $('#zRAudioPlay2').click();
+                $('#zRAudioPlay2').show().click();
 
             }, error:function(){
                 
-                $('#speechTxt').val(t);
+				$('#speechTxt').val(t);
+				$('#zRAudioPlay2').show().click();
             }
         })
     }else if(t){
-        $('#speechTxt').val(t);
+		$('#speechTxt').val(t);
+		$('#zRAudioPlay2').show().click();
     }
 });

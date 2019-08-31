@@ -70,46 +70,11 @@ $(function(){
 		}
 		if(tool=='show'){
 			var s=$('#showGround .ground0 .level.seled').attr('data-i'), ss=s.toLowerCase();
-			if(/Document|Slide|Image|[23]D|[VA]R/.test(s)){
-				OH('<iframe src="'+ss+'.html" width="99%" height="400px" class=resize></iframe>');
-			}
-			if(s=='Speech'){
-				OH(
-					`<div id=audioPlay2></div>
-					<div id=zRaudioPlay>
-						<div id=audioParaA></div>
-					</div>
-					`
-				);
-				$('#zRAudioPlay2').show().click();
-				
-			}
-			if(s=='Video'){
-				OH(
-					`
-					<div hidden id=zRmediaPlay>
-						<div id=mediaParaA></div>
-					</div>
-					`
-				);
-				
-				$('#zRMediaPlay2').show().click();
-				
-			}
-			/*
-			if(/^[VA]R$/i.test(s)){
-				$('#'+s+'Play').click()
-				return 
-			}
-			*/
+			
+			OH('<iframe src="'+ss+'.html" width="99%" height="400px" class=resize></iframe>');
+			
 		}
 
-			/*
-				import(`./${v}/${mei}.js`)
-				  .then(module => {
-				    module.go();
-				  })
-				  */
 		setTimeout(function(){
 			dayOrNight();
 		},200);

@@ -645,9 +645,8 @@ dc
 	$('#translate').text(function (i, v) { return gM(this.id + '.Math') });
 	$('.Char').text(gM('Char'));
 
-	$('#copy2clipboard').before(gM('CopyCode '));
+	$('#svgCode summary button').attr('title',gM('CopyCode'));
 	$('#Sides').before(gM('Sides') + '× ');
-
 
 	$('#bWR').text(gM('Radii'));
 	$('#fontCSS span').text('A');
@@ -1487,7 +1486,7 @@ dc
 		} else if (!shp.parent().is('#svgTool') || shp.is('#Pointer')) {
 			RndColors(shpN);
 		}
-	}).before(gM('Random Colors'));
+	}).before(gM('Random'));
 
 
 
@@ -1500,6 +1499,7 @@ dc
 
 			var w=$('#tileTool')[0].style.width;
 			$('#tileTool')[0].style.width=(w?'':'6rem');
+			$(this).children('path').attr('d', w?'M10 20 L15 15 10 10 M18 9 V21':'M20 20 L15 15 20 10 M12 9 V21');
 			
 			return
 		}

@@ -2,6 +2,10 @@
  * zzllrr Mather
  * zzllrr@gmail
  * Released under MIT License
+ * 
+ * 
+ * 依赖：
+ * 需先加载 KaTeX
 */
 var SBSi=[zlr('Num',' 1 2 3'),
 	zlr('ABC',' 1 2 3 4 5'),
@@ -1744,23 +1748,16 @@ consolelog(v,t);
 	i[0].selectionStart=t;
 	i[0].selectionEnd=t;
 	i.focus();
-};
+},
 
+sbsTbl=function(){
 
-
-$.each(FUNCS,function(i,v){SBSFn=SBSFn.concat(Arrf(ZLR,v.join(' ')))});
-
-var SBSFUN=SBS.Latex.func_tri.concat(SBS.Latex.func.replace(/.+% |log ln |sin .+ arcctg /g,'')+
-			' Arg ㏒ ㏑').join(' ');
-
-$(function(){
-	
-// LaTeX支持
-//SBS
+	// LaTeX支持
+	//SBS
 
 	var str='<table class=sbsTbl>',str2='</table><table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
-consolelog(A);
+	consolelog(A);
 		var si=1,s='',n=Math.max(A[0].length,A[1].length), f=function(c){
 			if(c==' '){
 				return ''
@@ -1805,7 +1802,7 @@ consolelog(A);
 
 
 
-//FUNCS
+	//FUNCS
 	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 
@@ -1833,10 +1830,10 @@ consolelog(A);
 	$('#funcs').append(str+str2+'</table>');
 
 
-//STRUC
+	//STRUC
 	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
-consolelog(K,A);
+	consolelog(K,A);
 		var s='<div class=Sts data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
 			var c=A[i];
@@ -1876,4 +1873,11 @@ consolelog(K,A);
 
 
 	$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide();	
-});
+};
+
+
+
+$.each(FUNCS,function(i,v){SBSFn=SBSFn.concat(Arrf(ZLR,v.join(' ')))});
+
+var SBSFUN=SBS.Latex.func_tri.concat(SBS.Latex.func.replace(/.+% |log ln |sin .+ arcctg /g,'')+
+			' Arg ㏒ ㏑').join(' ');

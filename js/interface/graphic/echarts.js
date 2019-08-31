@@ -1714,7 +1714,8 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 	'气泡图 Bubble'+
-	sceg(jSoff({
+	sceg(`
+	{
 	    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
 	        offset: 0,
 	        color: '#f7f8fa'
@@ -1806,7 +1807,8 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    }]
 	
-	}),10),
+	}
+	`,10),
 
 
 	'Anscombe\'s quartet'+

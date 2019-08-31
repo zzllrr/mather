@@ -14,12 +14,7 @@
 
 //坐标轴 coordinate axes
 
-var caps;
-$(function(){
-	caps=new ctt('#caps');
 
-	
-});
 var trace={//绘制运动轨迹
 	
 	

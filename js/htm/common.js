@@ -12,6 +12,27 @@ qrs={
 	
 	'weixinZQR':H+'weixin.qq.com/r/uXUFCg3EKzNUhxxpnyCd'
 },
+qrJPG=function(t,d,wh,noReplace){
+    $(d).empty();
+    var w=wh||150;
+    var qrcode001 = new QRCode($(d)[0], {
+        text:t,
+        width : w,
+        height : w
+    });
+    if(!noReplace){
+        setTimeout(function(){
+            var x=$(d).children('canvas')[0];
+            if(x){
+                x=x.toDataURL('image/jpeg',1);
+                $(d).html('<img width='+w+' src="'+x+'" />');
+    
+            }
+    
+        },2000);
+    }
+    
+},
 VRlib=ZLR('aframe-','animation-component particle-system-component extras.ocean gradient-sky'),
 VRlibjs={
     'aframe-gradient-sky':'gradientsky'
@@ -224,12 +245,13 @@ function toolTip(s){
 $(function () {
     titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
 
-    var ishome=/index.html|\/$/.test(loch);
+    var ishome=/index\.html|\/$/.test(loch);
     $('#panel').prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="zzllrr Mather"','home'))+
     
+        
         itv('" id=night tip="Night','brightness_3')+
         itv('" id=qrcode tip="QRcode','smartphone')+
         (ishome?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
@@ -238,6 +260,16 @@ $(function () {
     $('.Clear').attr('tip','Clear');
     $('.mi-span,i18').text(function(i,v){return gM(v)});
     
+    $('#menu #home').on('click',function(){
+        if (self != top) {
+
+            top.location.href=self.location.href.replace(/\/[a-z0-9]+\.html.*/i,'/index.html')
+
+        }else{
+
+            open(loch.replace(/\/[a-z0-9]+\.html.*/i,'/index.html'))
+        }
+    });
     $('#night').on('click',function(){
         var me=$(this),isnight=me.text()=='brightness_3';
         me.html(isnight?'wb_sunny':'brightness_3');
@@ -259,7 +291,8 @@ $(function () {
 
 			$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
 			if(tog){
-				$('#zMatherOn:contains(up)').click();
+                $('#zMatherOn:contains(up)').click();
+                $('#iTextFold').not('.seled').click();
 				$('#Caps').fadeIn();
 			}else{
 				if(!$('#tileTool').is(':visible')){
@@ -279,13 +312,7 @@ $(function () {
             me.removeClass('toggle');
             var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4);
 
-            $('#QRCODE').empty();
-
-            var qrcode001 = new QRCode($('#QRCODE')[0], {
-                text:H_o('',losh),
-                width : m,
-                height : m
-            });
+            qrJPG(H_o('',losh),'#QRCODE',m);
             
             $('#QRCODE').fadeToggle();
             setTimeout(function(){$('#zMatherOn:contains(down)').click();},500);
@@ -297,7 +324,8 @@ $(function () {
 
 
     $('#QRCODE').on('click',function(){
-        $('#qrcode').click()
+        //$('#qrcode').click()
+        $(this).fadeOut();
     });
 
     $('body').on('dblclick', function(e){
@@ -309,6 +337,46 @@ $(function () {
         }else if(!/summary/i.test(act)){
             location.href='index.html'
         }
+
+    }).on('click','#oHTML .katex',function(e){
+    
+        copy2clipboard($(this).find('annotation').eq(0).text());
+        var shft=e.shiftKey||$('#Shift').is('.seled');
+        /*
+        if(shft){
+            OverCanvas($(this).find('annotation').eq(0).text());
+            toolTip(gM('copied2Canvastip'));
+            Scroll('scrollB');
+        }
+        */
+        
+    }).on('click','#oHTML svg[id]',function(e){
+        var shft=e.shiftKey || $('#Shift').is('.seled');
+        if(shft && $('#Caps').length){
+            var zi=[],Z,me=$(this);
+            $('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
+            Z=max(zi)+1;
+            me.clone().appendTo('#Caps');
+            $('#Caps').find('#'+this.id).attr({'id':'graphic'+Time.now5()+(Math.random()+'').substr(2)})
+                .css({'position':'absolute', 'z-index':Z,'top':$('#Caps').position().top,'height':me.height()})
+            //L.drawShapeNow='';
+
+            $('#Pointer').click();
+            toolTip(gM('copied2Canvastip'));
+            //Scroll('scrollB');
+        }
+        
+    }).on('mouseover','#oHTML .katex, #oHTML svg[id]',function(e){
+        var me=$(this),pa=me.parents('th');
+        if(pa.length<1){
+
+            toolTip(gM('copytip'))
+
+        }
+
+	}).on('mouseover', '#oHTML th:eq(0)',function(e){
+		toolTip(gM('thtip'));
+
     }).on('click','th',function(e){
         
         var me=$(this), i=me.index(),shft=e.shiftKey, ctrl=e.ctrlKey, alt=e.altKey;
@@ -318,7 +386,8 @@ $(function () {
         }else if(me.is('.Clear')){
 
         //}else if(me.parent().parent().is('.OHLaTeX')){
-        }else if(me.parents('#oHTML').length){
+        //}else if(me.parents('#oHTML').length){
+        }else if(me.parents('.wiki').length){
 
 
             if(me.is('.katexed')){
@@ -429,6 +498,13 @@ $(function () {
         $('#toolnav,#navhead').add(me.parent().parent().prev()).toggle(!isup);
         me.text('keyboard_arrow_'+(isup?'down':'up')).toggleClass('seled',isup);
 
+
+
+	}).on('click','.subtabhead',function(e){
+		var me=$(this).addClass('seled'), pa=me.parent(), i=me.index(),shft=e.shiftKey || $('#Shift').is('.seled');
+		me.siblings('.subtabhead').removeClass('seled');
+		pa.parent().find('.subtab').hide().eq(i).show();
+
     }).on('click','.launch',function(){
         var me=$(this);
         me.parent().nextAll('details').find('.play').click();
@@ -436,14 +512,15 @@ $(function () {
     }).on('click','.qrGen',function(){
         var t=$(this).parents('.ground1').find('.editorText').val();
         if(t){
+            var tl=t.replace(hanziRe,"aa").length, limitL=1273;
+            if(tl>=1273){
+                saveText(v0,
+                    gM('zzllrr Mather')+Time.now()+'.txt'
+                )
+                return
+            }
             var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.6);
-           
-            $('#QRCODE').empty();
-            var qrcode001 = new QRCode($('#QRCODE')[0], {
-                text:t,
-                width : m,
-                height : m
-            });
+            qrJPG(t,'#QRCODE',m);
             
             $('#QRCODE').fadeToggle();
         }

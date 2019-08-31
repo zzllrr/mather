@@ -600,6 +600,7 @@ lang['zh_cn'] = {
 	'Upload': '上传',
 	'New':'新建',
 
+	'TOC':'目录',
 	'Generate':'生成',
 	'Scan':'扫描',
 	'Update':'更新',

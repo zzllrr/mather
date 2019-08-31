@@ -24,8 +24,8 @@
 #svgTool > div{padding:5px}
 #Weib{margin:5px}
 #fontCSS span, #CssFilter div{margin:10px}
-#tileToolCap{margin:1rem 10px 0 10px}
-#svgShape, #svgCssTransform > div{margin:10px 0;border-radius: 5px;}
+#tileToolCap{margin:0 10px}
+#svgShape, #svgCssTransform > div{margin:2px 0;border-radius: 5px;}
 
 #fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
 
@@ -34,7 +34,6 @@
 	text-align:center;
 	user-select: none;
 	float: right;
-	margin-top: 2rem;
 }
 
 #svgShape svg{

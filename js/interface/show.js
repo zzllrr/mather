@@ -56,35 +56,37 @@ shows = {
 };
 
 
-function showGround1(T) {
+function showThen(T) {
     var t = T.toLowerCase();
 
     $('#showGround .ground1').html(
-        '<textarea class="editorText show' + T + '" placeholder="' + gM('showEditorTip') + '" tip="Input">'+(L[t]||'')+'</textarea>' +
+        '<textarea class="editorText show' + T + '" placeholder="' + gM('showEditip') + '" tip="Input">'+(L[t]||'')+'</textarea>' +
         sci(itv('navHide', 'keyboard_arrow_up') + br + itv('launch" title="Ctrl + Shift + Enter', 'launch') + br + itvc('" hotkey="Ctrl + E')) +
         DCtv('inblk', Arrf(function (i) { return Arrf(Melef, ZLR(i)).join('') }, shows.tool[T]).join(br)) +
 
-        detail(SCtv(T + 'Tool', '<input type="file" id=' + T + 'File accept=".md, text/*, image/*" multiple="multiple" />' +
+        detail('<input type="file" id=' + T + 
+            'File accept=".md, text/*, image/*" multiple="multiple" />' +
+            //accept="audio/*" capture="microphone" 
             strbtn + gM('Play') + '" class=play id=' + T + 'Play hidden />' +
             //
             strbtn + gM('QRcode') + ' ↑" class=qrScan tip="Scan QRcode" />' +
-            strbtn + gM('QRcode') + ' ↓" class=qrGen tip="Generate Text QRcode" />'),
+            strbtn + gM('QRcode') + ' ↓" class=qrGen tip="Generate Text QRcode" />',
 
-            shows.opt[T].join(br)
+            shows.opt[T].join(br),
+            '','class='+T + 'Tool'
         )
     );
 
-    $('#showGround .'+T+'Tool').find('textarea, select, :num').filter('[id]').each(function(){
+    var sT='#showGround .'+T+'Tool';
+    $(sT).find('textarea, select, :number').filter('[id]').each(function(){
         $(this).val(L[this.id]||$(this).attr('data-d')||'')
     });
-    $('#showGround .'+T+'Tool :checkbox[id]').each(function(){
+    $(sT+' :checkbox[id]').each(function(){
         $(this).prop(L[this.id]=='true')
     });
 
-    //var j=[];$('.jslib').each(function(){j.push($(this).attr('data-lib'))});
 
-
-    $('#showGround .'+T+'Tool').on('click', ':button', function () {
+    $(sT+' :button[id]').on('click', function () {
         var TXA = $('#showGround .editorText'), s = TXA.val(), st = s.trim(), ish=/^https?.+$/.test(st),
          me = $(this), id = me.attr('id'), u,o={};
         
@@ -110,6 +112,10 @@ function showGround1(T) {
             }
 
             u=H_o(id.toLowerCase()+'.html',o);
+ 
+            $('#go').attr('data-url',u);
+            open(u);
+    
         }
 
 
@@ -135,32 +141,34 @@ function showGround1(T) {
             }
             */
 
-        $('#go').attr('data-url',u);
-        open(u);
-
     
  
-    }).on('click', '.btntxt').on('click', function(){
+    });
+    $(sT+' .btntxt').on('click', function(){
         var me=$(this), nx=me.next(), d=nx.attr('data-d');//data-default
         nx.val(d);
         L[nx.attr('id')]=d;
 
-    }).on('click', ':checkbox[id]').on('click', function(){
+    });
+    $(sT+' :checkbox[id]').on('click', function(){
         var me=$(this), c=me.prop('checked');
         L[this.id]=c;
 
-    }).on('click', '.jslib').on('click', function(){
+    });
+    $(sT+' .jslib').on('click', function(){
         var j=[];$('.jslib:checked').each(function(){j.push($(this).attr('data-lib'))});
-        L.vrjslib=j.join(' ');  //此处vr需泛化
-        L.vr=s;
+        L[t+'jslib']=j.join(' ');
+        L[t]=s;
 
 
-    }).on('change', ':num[id],select[id],textarea[id]', function () {
+    });
+    $(sT+' :number[id],select[id],textarea[id]').on('change', function () {
         var me=$(this), id=me.attr('id'), v = me.val();
         L[id]=v;
 
 
-    }).on('change', ':file', function () {
+    });
+    $(sT+' :file').on('change',function () {
         var v = $(this).val();
         if (v) {
             var files = this.files, fl = files.length;

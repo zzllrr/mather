@@ -128,7 +128,7 @@ code, pre{
 #oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
-#wiki details[open] > summary, #wiki>span, #go{
+#wiki details[open] > summary, #wiki>span{
     color: limegreen;
 }
 
@@ -181,7 +181,7 @@ body.day{
 }
 
 
-.fdetail:hover summary,.task,.taskname,.Mele:hover, #go:hover{
+.fdetail:hover summary,.task,.taskname,.Mele:hover{
 	color:white;
 }
 .taskname{
@@ -337,6 +337,9 @@ li,#wiki{
     margin-right: 2px;
 }
 
+.bd0{
+	border:0
+}
 
 .wiki:not(.bd0){
 	border-style: solid;
@@ -578,7 +581,9 @@ input[type=text],#wiki>span,.brad{
 #numStart{
 	max-width:45px;
 }
-
+input[type="file"]{
+	max-width: 100px;
+}
 
 
 #input0Tip,#input1Tip{
@@ -599,6 +604,8 @@ input[type=text],#wiki>span,.brad{
 	width:98%;
 	min-height:100px;
 }
+
+
 
 .wiki,.alignc, #oHTML > h1:first-child{
 	text-align:center
@@ -637,9 +644,6 @@ input[type=text],#wiki>span,.brad{
 	bottom:0;
 }
 
-#iContent{
-	border-bottom: dashed 1px gainsboro;
-}
 #oHTML{
 	position: relative;
 	overflow:auto;
@@ -676,9 +680,6 @@ input[type=text],#wiki>span,.brad{
 }
 
 
-#iTextOpt:not(:hover) #zMatherHide{
-	display: none
-}
 .inblk{
 	display:inline-block;
 }
@@ -719,16 +720,24 @@ summary ~ details summary{
 	vertical-align: middle;
 	border: solid 1px gainsboro;
 }
+.subtabhead{
+	padding: 0 20px;
+}
+
 .subtabhead,.subhead{
     color: white;
-	padding: 0 10px;
     margin: 5px;
     border-radius: 100%;
 	cursor: pointer;
 	font-size:1.3rem;
 	display: inline-block;
+	user-select:none;
 }
 
+
+.subhead :hover{
+	background: white;
+}
 .logo{
     color: white;
 	border-radius: 50px;
@@ -785,7 +794,7 @@ select,input:not([type="file"]), .rem13{
 	opacity:.5
 }
 
-.subhead:not(.seled),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
+.subhead:not(.seled):not(:hover),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
 	background:black;
 }
 .task:not(.seled),.taskname{
@@ -902,7 +911,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 
 .editorText {
 	width:60%;
-	height:100px;
+	height:180px;
 }
 
 #donate div {margin:10px}
@@ -979,7 +988,7 @@ img{
   font-weight: normal;
   font-style: normal;
   font-size: 2rem;
-  margin:0 2px;
+  margin:1px;
   border-radius: 100%;
   border:solid transparent 1px;
 
@@ -1007,7 +1016,8 @@ img{
 	content:attr(mi);
 }
 .mi:not(.Clear):hover, th.bds:hover, summary{
-	background:rgba(50, 205, 50,0.5);
+
+	color:limegreen;
 }
 
 
