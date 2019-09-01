@@ -13,8 +13,8 @@ $(function(){
 		'Consensus & Cooperation':['Kind','Pally','Peace-loving','Non-discriminatory']
 	};
 	
-	$('body').html(
-		XML.wrapE('h1',gM('About'))+
+	oHTML(
+		href('about.html',gM('About'),gM('Launch')+'" class="fixl fixt pd10')+
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
@@ -372,7 +372,7 @@ Table('',[
 			])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
 	
 		])
-	);
+	,1);
 
 
 	if($('#weixinZQR').length){

@@ -6,15 +6,15 @@
 
  $(function(){
 
-	$('body').html(
+	oHTML(
 		[
-			XML.wrapE('h1','API')+
-			[	href('./js','JavaScript'),
-				href('./css',gM('CSS')),
-				href('./js/i18n',gM('i18n')),
-			].join(' | '),
-			'',
-		
+			href('api.html','API',gM('Launch')+'" class="fixl fixt pd10'),
+			(!/https?:/.test(loch)?
+				[	href('./js','JavaScript'),
+					href('./css',gM('CSS')),
+					href('./js/i18n',gM('i18n')),
+				].join(' | '):''),
+
 			detail(gM('Native Math Function')+' (JavaScript)',
 				API(tooltip['Math Function (Native JavaScript)']),
 			),
@@ -29,5 +29,5 @@
 			,1), 
 		
 		].join(br)
-	);
+	,1);
  });

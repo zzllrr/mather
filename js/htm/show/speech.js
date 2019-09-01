@@ -7,7 +7,7 @@
 $(function () {
     var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['speech'], s=o['src'];
 
-    OH('<div id=audioPlay2>'+dc+
+    oHTML('<div id=audioPlay2>'+dc+
 		'<div id=zRaudioPlay><div id=audioParaA>'+dc+dc+
 		detail(SCtv('VoiceTool',
 			strbtn+gM('Clear')+'" id=zRAudioClear />'+
@@ -19,7 +19,7 @@ $(function () {
 			'<textarea id=speechTxt></textarea>','','class="alignc"')
 
         
-    );
+    ,1);
 
     var RemoveSrc=function(){
         if(L.audioplaying=='0'){

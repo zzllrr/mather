@@ -916,7 +916,7 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 
 #donate div {margin:10px}
 #donaQR img{width:150px}
-#donaQR img,#donaQR > span{margin:0 10px}
+#donaQR img{margin:0 10px}
 #donaWeixin img{width:350px}
 
 #Jiaohang{margin-right:50px;}

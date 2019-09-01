@@ -159,6 +159,7 @@ lang['zh_cn'] = {
 	'Hardware': '硬件',
 	'Web': '网络',
 	'Webpage': '网页',
+	'Home':'主页',
 
 	'Interface':'界面',
 	'Night':'夜间',

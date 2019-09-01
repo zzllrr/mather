@@ -9,11 +9,11 @@ $(function () {
     var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['3d'], s=o['src'];
     if(s){
         $.ajax({type:'get',url: s, success:function(x){
-            oHTML(x,1,'body')
-        }, error:function(){oHTML(t,1,'body')}
+            oHTML(x,1)
+        }, error:function(){oHTML(t,1)}
         })
     }else if(t){
-        oHTML(t,1,'body');
+        oHTML(t,1);
 
     }
 

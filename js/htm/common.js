@@ -42,10 +42,14 @@ ARlibjs={
 },unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js',
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 oHTML=function(x,notMD,elem){
-    $(elem||'#oHTML').html(notMD?x:replaceNodeInner(x,'MD', md2html));
+    $(elem||'#oHTML').hide().html(notMD?x:replaceNodeInner(x,'MD', md2html));
     $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
+    setTimeout(function(){
+        $('#splash').remove();
+        $(elem||'#oHTML').fadeIn();
+    },600);
 };
 
 if(H_o().lang !=L.lang){
@@ -249,7 +253,7 @@ $(function () {
     $('#panel').prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="zzllrr Mather"','home'))+
+        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="Home"','home'))+
     
         
         itv('" id=night tip="Night','brightness_3')+

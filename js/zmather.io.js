@@ -1881,3 +1881,104 @@ $.each(FUNCS,function(i,v){SBSFn=SBSFn.concat(Arrf(ZLR,v.join(' ')))});
 
 var SBSFUN=SBS.Latex.func_tri.concat(SBS.Latex.func.replace(/.+% |log ln |sin .+ arcctg /g,'')+
 			' Arg ㏒ ㏑').join(' ');
+
+$(function(){
+	$('body').on('click', '.sbsTbl td, .sbsTbl .td',function(e){
+		var p=$('#input0Type').val();
+		if(/Canvas|JavaScript|HTML|3D/.test(p)){
+			p='JavaScript';
+		}
+		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
+
+	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
+		var me=$(this),t=me.attr('title'),iT=$('#input0Type').val();
+		if(iT!='LaTeX' || !t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
+		}else{
+			toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
+		}
+
+	}).on('click','.eg', function(e){
+
+		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey || $('#Shift').is('.seled'),
+		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),tbt=me.parents('#TextBoxTool').length;
+		if(isjs){
+			t+=';\n'
+		}else if(isnode){
+			t=XML.wrapE(t)
+		}else{
+			t=t.replace(/&&/g,'\n')
+		}
+		if(!i1 && !tbt){
+			copy2clipboard(t)
+			return
+		}
+		
+		i1=tbt?'svgTEXTBox':i1.replace(/\D/g,'');
+		var is2=me.is('.eg2'),i=tbt?$('#TextBox'):$('#input'+i1),iv=i.val();
+
+		
+		if(is2){
+			var td=$('#sbsTbl td').filter(function(){return $(this).text()==t}).eq(0);
+			if(td.length){
+				i.click();
+				td.click();
+				return
+			}else if(!isjs){
+				if(/\.\d/.test(t)){
+					t=t.replace(/\.(\d+)/,'[$1]')	//这里要确认.何时需要替换为[]?
+				}
+				
+
+			}
+		}else if(i1 && iv && !shft){
+			
+		}else{
+			i.val(t);
+			if(!tbt && $('#preview.seled').length){
+				preDisplay()
+			}
+			return
+		
+		}
+		
+		var sS=i[0].selectionStart, sE=i[0].selectionEnd;
+		i.val(iv.substr(0,sS)+t+(sE==iv.length?'':iv.substr(sE)));
+		var s2=sS+t.length;
+		i.focus();
+		i[0].selectionStart=s2;
+		i[0].selectionEnd=s2;
+		
+		if(!tbt && $('#preview.seled').length){
+			preDisplay()
+		}
+
+
+	}).on('click','#swap',function(){
+		$('.Symboli td:visible:not(:has(.symboli_)).seled').click();
+		$('.Symboli td.seled:visible').click();
+		var id=($('.iTextLaTeXon .tool.seled').attr('id')||'').replace(/on/,''), i=3;
+		if(id){
+			var tr=$('#'+id+' .sbsiTbl tr').not('.Symboli_');
+			if(id=='struc'){
+				var tn=tr.length;
+				i=tr.filter(':visible').eq(0).index();
+
+				tr.slice(i,i+3).hide();
+				if(i+3>tn-1){
+					i=-3
+				}
+				tr.slice(i+3,i+6).show();
+				
+			}else{
+				if(tr.eq(0).is(':visible')){
+					tr.slice(0,i).hide();
+					tr.slice(i).show();
+				}else{
+					tr.slice(i).hide();
+					tr.slice(0,i).show();
+				}
+			}
+		}
+		
+	});
+});
