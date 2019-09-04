@@ -8,7 +8,7 @@
 
 	oHTML(
 		[
-			href('api.html','API',gM('Launch')+'" class="fixl fixt pd10'),
+			href('api.html',spanmi('launch','API'),gM('Launch')+'" class="fixl fixt pd10'),
 			(!/https?:/.test(loch)?
 				[	href('./js','JavaScript'),
 					href('./css',gM('CSS')),
@@ -23,7 +23,8 @@
 			detail(gM('3rd-party'),
 				XML.wrapE('q','Standing on the shoulders of giants!')+
 				detail(href('./js/lib','Javascript'),
-					ul(ZLR(zlr2('base64 jquery katex qrcode qrcode-decoder zlr echarts effects js-yaml terrain webslides aframe aframe-ar zdog','.js'))),1)+
+					ul(Arrf(function(x){return href(Hs+'github.com/search?q='+x,spanmi('launch',x+'.js'))},
+						ZLR('base64 jquery katex qrcode qrcode-decoder zlr echarts effects js-yaml terrain webslides aframe aframe-ar zdog'))),1)+
 				detail(href('./css/fonts','Fonts'),
 					ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 			,1), 

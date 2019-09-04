@@ -179,7 +179,7 @@ questions={
 
 editor={}, solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
 editors={}, solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
-editorThen={}, solveThen={}, graphicThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
+editorThen={}, solveThen={}, graphicThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={}
 /*
 	
 
@@ -198,8 +198,7 @@ tooltip[tool].k，存储提示工具栏	键使用路径URI
 
 
 
-tooltip={
-};
+;
 
 
 function sel(uriA,x,p,pp,ppp){

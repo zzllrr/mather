@@ -379,7 +379,7 @@ var HOM = {
 };
 
 var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
-	num = function (x, min, max) { return '<input type=number value="' + x + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
+	num = function (x, min, max) { return '<input type=number value="' + (x||0) + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
 	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
 	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
 	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', txtreadonly = function (x) { return '<input type=text readonly value="' + fnq(x) + '" />' },
@@ -389,9 +389,10 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 		return '-webkit-linear-gradient(top, white, ' + t + ' 20%, ' + t + ' 80%, white)'
 	},
 	fcb = function (c, b, t) { return '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
-	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + t + '</textarea>' },
+	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + (t||'') + '</textarea>' },
 	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return SCtv(t,x)},v)} return SC + '"' + t + '">' + (v || '') + sc },
 	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' }, itvc=function (c) {return itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace')},
+	spanmi=function(t,v,c){return '<span class="mi-span'+(c?' '+c:'')+'" mi='+t+'>'+v+sc},
 	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
@@ -405,7 +406,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 		return DCtv('subtabs',DCtv('subtabheads', Arrf(function(x,i){return SCtv('subtabhead'+(i==j?' seled':''),x)},hA).join(''))+Arrf(function(x,i){return DCtv('subtab'+(i==j?'':' hidden'),x)},vA).join(''))
 		}
 	},
-	detail = function (s, v, o, c) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary>' + s + '</summary>' + (v||'') + '</details>' },
+	detail = function (s, v, o, c, cs) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary'+(cs?' '+cs:'')+'>' + s + '</summary>' + (v||'') + '</details>' },
 	zdetail = function (s, v, notsk, notvk, notEdit, o) {
 		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
 			detail(gM('Edit') + strbtn + gM('Default') + '" class="katexv0" />',
@@ -3189,11 +3190,16 @@ function blking(t, Neg) {
 	return s;
 }
 function textareaAdd(str, obj, newline, sellen) {
-	var O = $(obj), ov = O.val().trim(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
+	var O = $(obj), ov = O.val(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
 		v = ov.substr(0, sS) + (newline?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
-		vt=v.trim();
-	O.val(vt);
-	var t = sS + (sellen||(str || '').length) + vt.length-v.length;
+		t=v.length;
+	O.val(v);
+	if(sellen==-1){
+		t=Math.max(t-1,0);
+	}else{
+		t=sS + (sellen||(str || '').length);
+	}
+
 	O.focus();
 	O[0].selectionStart = t;
 	O[0].selectionEnd = t;

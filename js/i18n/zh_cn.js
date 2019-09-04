@@ -35,8 +35,8 @@ lang['zh_cn'] = {
 	"rotate3": "逆转90°",
 
 
-	'copy2input': '复制到输入框',
-	'copyAll2input': '复制所有到输入框',
+	'copy2input': '复制到命令输入框',
+	'copyAll2input': '复制所有到命令输入框',
 
 	'Bright': '亮度',
 	'hueRotate': '色相',
@@ -703,7 +703,7 @@ lang['zh_cn'] = {
 	'AI': '人工智能',
 
 	'Words': '文字',
-
+	'Command':'命令',
 
 
 	//Math concept

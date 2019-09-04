@@ -60,8 +60,10 @@ function showThen(T) {
     var t = T.toLowerCase();
 
     $('#showGround .ground1').html(
-        '<textarea class="editorText show' + T + '" placeholder="' + gM('showEditip') + '" tip="Input">'+(L[t]||'')+'</textarea>' +
-        sci(itv('navHide', 'keyboard_arrow_up') + br + itv('launch" title="Ctrl + Shift + Enter', 'launch') + br + itvc('" hotkey="Ctrl + E')) +
+        '<textarea class="editorText show' + T + '" placeholder="' + gM('showEditip') + '" tip="Input Command">'+(L[t]||'')+'</textarea>' +
+        sci(itv('navHide', 'keyboard_arrow_up') + itv('launch" tip=Launch hotkey="Ctrl + Shift + Enter', 'launch')
+        + br +
+        itvc('" hotkey="Ctrl + E') +itv('downTxt" tip="Download TXT File', 'file_download'))+
         DCtv('inblk', Arrf(function (i) { return Arrf(Melef, ZLR(i)).join('') }, shows.tool[T]).join(br)) +
 
         detail('<input type="file" id=' + T + 
@@ -181,21 +183,25 @@ function showThen(T) {
                         ext = name.replace(/.+\./, '').toUpperCase()
                     }
                     if (!s) { s = '?KB' } else {
-                        s = sizeKB(s)
+                        // s = sizeKB(s)
                     }
 
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        //var txt = this.result;
-                        var txt = e.target.result;
-                        //consolelog('txt', txt);
-                        if (/MD|MARKDOWN/.test(ext)) {
-                            txt = XML.wrapE('MD', txt)
-                        }
-                        textareaAdd(txt, '#showGround .ground1 .editorText', 1);
+                    var g=function(){
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            //var txt = this.result;
+                            var txt = e.target.result;
+                            //consolelog('txt', txt);
+                            if (/MD|MARKDOWN/.test(ext)) {
+                                txt = XML.wrapE('MD', txt)
+                            }
+                            textareaAdd(txt, '#showGround .ground1 .editorText', 1,-1);
+                        };
+                        //reader.readAsDataURL(f);
+                        reader.readAsText(f);
                     };
-                    //reader.readAsDataURL(f);
-                    reader.readAsText(f);
+                    g();
 
 
                 }

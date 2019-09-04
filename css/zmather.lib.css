@@ -12,7 +12,7 @@
 .scbox{white-space: nowrap}
 .hidden{display:none}
 
-.opac0:not(:hover){
+.opac0:not(:hover), .opac:not(:hover) .hid, .phantom{
 	opacity:0
 }
 
@@ -20,9 +20,6 @@
 	opacity:0.5
 }
 
-.opac:not(:hover) .hid{
-	opacity:0
-}
 
 .logo,#splash{
 	animation: hue 12s linear infinite;

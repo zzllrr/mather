@@ -342,8 +342,8 @@ function mUp(e,Last){
 				}else{
 					$('#tileTool').fadeIn();
 				}
-			}else if(/Grid|(rect|ellipse)Note/.test(shp)){
-				
+		//	}else if(/Grid|(rect|ellipse)Note/.test(shp)){
+			}else if(/GridNote/.test(shp)){
 				
 				
 				var txta=shpN.attr('data-txta');

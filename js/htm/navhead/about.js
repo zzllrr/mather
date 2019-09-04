@@ -14,11 +14,11 @@ $(function(){
 	};
 	
 	oHTML(
-		href('about.html',gM('About'),gM('Launch')+'" class="fixl fixt pd10')+
+		href('about.html',spanmi('launch',gM('About')),gM('Launch')+'" class="fixl fixt pd10')+
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.8.31',
+			fieldseth('V2019.9.4',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+

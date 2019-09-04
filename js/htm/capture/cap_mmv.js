@@ -2031,9 +2031,11 @@ console.log('tp ',tp);
 			shpN.css(ltwh([lt,tp,WD,HT]));
 			chd.filter('path.main').attr('d',tArr.join(' '));
 			
+			/*
 			if(/(rect|ellipse)Note/.test(shp)){
 				shpN.attr('data-txta',txta.join(','))
 			}
+			*/
 
 			if(/Gon|Note|arrow/.test(shp) && !/A|Heart|Star/.test(shp) && tArr.length>3){
 				Arrf(function(x){var dA=gon(tArr.join(' '),x);

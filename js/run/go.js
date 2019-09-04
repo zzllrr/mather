@@ -69,9 +69,12 @@ $(function(){
 			
 		}
 		if(tool=='show'){
-			var s=$('#showGround .ground0 .level.seled').attr('data-i'), ss=s.toLowerCase();
-			
-			OH('<iframe src="'+ss+'.html" width="99%" height="400px" class=resize></iframe>');
+			var s=$('#showGround .ground0 .level.seled').attr('data-i'), ss=s.toLowerCase(),o={};
+			if(ss=='image'){
+				ss='slide';
+				o.type='image';
+			}
+			OH('<iframe src="'+H_o(ss+'.html',o)+'" width="99%" height="400px" class=resize></iframe>');
 			
 		}
 

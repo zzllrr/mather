@@ -57,7 +57,7 @@
     <!-- 引用小乐库 -->
 	<script src="js/lib/zlr.js"></script>
 	<script src="js/zmather.io.js"></script>
-
+	<script src="js/htm/common.js"></script>
 
 	<!-- 底层对象 -->
 	<script src="js/obj/math/function.js"></script>
@@ -85,9 +85,6 @@
 	
 	<!-- 界面及通用的变量和函数 -->
 
-	<script src="js/htm/common.js"></script>
-
-
 	<script src="js/interface.js"></script>
 
 
@@ -100,15 +97,15 @@
 
 	<!-- 当前页面私有 -->
 	<script src="js/htm/index.js"></script>
-  
-	<!-- 业务封装层 -->
-
-	<script src="js/run/go.js"></script>
 
 	<script src="js/htm/capture/cap.js"></script>
 	<script src="js/htm/capture/cap_mdn.js"></script>
 	<script src="js/htm/capture/cap_mmv.js"></script>
 	<script src="js/htm/capture/cap_mup.js"></script>
+  
+	<!-- 业务封装层 -->
+
+	<script src="js/run/go.js"></script>
 
 
 	<!-- fractal
@@ -117,158 +114,14 @@
 
 
 
-
-
-
-
 </head>
 
 <body class=day>
 
-	<div id=splash class="abscenter"><div class=rem3>zzllrr Mather</div></div>
+	<div id=splash class=abscenter><div class=rem3>zzllrr Mather</div></div>
 
 
-	<div id=panel>
-
-		
-		<div id=tileTool for=svgs class=cap>
-
-
-			<div id=tileToolCap>
-
-				<details id=svgCssTransform>
-					<summary><span id=transform></span>
-						<span>
-							<span title=px>x <input type=number id=cssX min=0 value=0 /></span>
-							<span title=px>y <input type=number id=cssY min=0 value=0 /></span>
-							<span title="z-index">z <input type=number id=cssZ value=0 /></span>
-						</span>
-
-					</summary>
-					<div id=CssTransform class=lightgray>
-						<div id=CssTransOpt hidden class=lightgray>
-							<div><span id=perspec></span><input type=number id=cssPerspec min=0 value=0 title=px />
-								<span id=perspecOrig></span><input type=text id=cssPerspecOrig value="50% 50%"
-									placeholder="[xy]=left center right length %" title="x y" /></div>
-							<div><label><span id=tranStyle></span><input type=checkbox id=cssTranStyle /></label>
-								<span id=transOrig></span><input type=text id=cssTransOrig value="50% 50% 0"
-									placeholder="[xy]=left center right length %; [z]=length" title="x y z" /></div>
-							<div><label><span id=backVisi></span><input type=checkbox id=cssBackVisi checked /></label>
-							</div>
-						</div>
-						<div>
-							<label><input type=checkbox id=cssMatrix /><span
-									id=matrix></span><span>(2D/3D)</span></label>
-							<span id=cssTransOpt></span>
-						</div>
-						<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" /></div>
-						<div id=CssScale><img class=scale><span id=scale></span>
-							<span>x</span><input type=number id=cssScaleX min=0 step=".1" value=1 />
-							<span>y</span><input type=number id=cssScaleY min=0 step=".1" value=1 />
-							<span>z</span><input type=number id=cssScaleZ min=0 step=".1" value=1 /></div>
-
-						<div id=CssSkew><img class=skew><span id=skew></span>
-							<span>x</span><input type=number id=cssSkewX value=0 title=deg />
-							<span>y</span><input type=number id=cssSkewY value=0 title=deg /></div>
-
-						<div id=CssTranslate><img class=translate><span id=translate></span>
-							<span>x</span><input type=number id=cssTranslateX min=0 value=0 />
-							<span>y</span><input type=number id=cssTranslateY min=0 value=0 />
-							<span>z</span><input type=number id=cssTranslateZ min=0 value=0 /></div>
-
-						<div id=CssRotate>
-
-
-							<div id=CssRotate3><label><input type=radio value=cssRotateXYZ checked />
-									<img class=rotate1><span id=rotate></span>
-									<span>x</span><input type=number id=cssRotateX value=0 title=deg step=15 />
-									<span>y</span><input type=number id=cssRotateY value=0 title=deg step=15 />
-									<span>z</span><input type=number id=cssRotateZ value=0 title=deg step=15 />
-
-									<div id=CssRotate6><img id=flipy><img id=flipx><img id=flip0><img id=rotate1><img
-											id=rotate2><img id=rotate3></div>
-								</label>
-							</div>
-
-
-							<div id=CssRotate3d><label><input type=radio value=cssRotate3d />
-									<img class=rotate1><span id=Rotate></span><span>3D</span><input type=text
-										id=cssRotate3d placeholder="x,y,z,angle" /></label></div>
-						</div>
-
-					</div>
-
-
-
-				</details>
-
-				<details id=COLOR>
-					<summary>
-						<input type=text id=color0 title="Snow" />
-						<input type=text id=color1 title="Blue Sky" />
-						<input type=text id=color2 title="Pink Girl" />
-						<input type=text id=color3 title="Black Rhythm" />
-						<input type=text id=color4 title="Red Charm" />
-						<input type=text id=color5 title="Random" value="?" />
-
-						<label tip="Random Colors"><input type=checkbox id=RandomColorson checked=checked /></label>
-					</summary>
-					<div id=Color></div>
-					<details id=CssFilter>
-						<summary id=CssOpa><img class=btn1><span id=opa></span><input type=range id=cssOpa min=0 max=1
-								step=".1" value=1 /></summary>
-
-						<div id=CssContrast><img class=contrast><span id=contrast></span><input type=range
-								id=cssContrast max=2 min=0 step=".1" value=1 /></div>
-						<div id=CssBright><img class=bright><span id=bright></span><input type=range id=cssBright min=0
-								max=2 step=".1" value=1 /></div>
-						<div id=CssSaturate><img class=saturate><span id=saturate></span><input type=range
-								id=cssSaturate min=0 max=20 step=".1" value=1 /></div>
-
-						<div id=CssGrayscale><img class=grayscale><span id=grayscale></span><input type=range
-								id=cssGrayscale min=0 max=1 step=".1" value=0 /></div>
-						<div id=CssSepia><img class=sepia><span id=sepia></span><input type=range id=cssSepia min=0
-								max=1 step=".1" value=0 /></div>
-						<div id=CssInvert><img class=invert><span id=invert></span><input type=range id=cssInvert min=0
-								max=1 step=".1" value=0 /></div>
-						<div id=CssHueRotate><img class=hueRotate><span id=hueRotate></span><input type=range
-								id=cssHueRotate min=0 value=0 title=deg max=360 /></div>
-						<div id=CssBlur><img class=blur><span id=blur></span><input type=range id=cssBlur min=0 value=0
-								title=px /></div>
-
-						<div id=CssDropShadow><img class=dropShadow><label><span id=dropShadow></span><input
-									type=checkbox id=cssDropShadow /></label>
-							<div hidden id=CssDropshadow><span>x</span><input type=number id=cssDropShadowX value=2
-									title=px />
-								<span>y</span><input type=number id=cssDropShadowY value=2 title=px />
-								<i18>blur</i18><input type=number id=cssDropShadowBlur min=0 value=2 title=px />
-								<div><input type=color id=cssDropShadowColor value="#000000" /><input type=range
-										id=cssDropShadowOpac min=0 max=1 step=".1" value=.5 /></div>
-							</div>
-						</div>
-					</details>
-				</details>
-
-				<details id=svgCode>
-					<summary>
-						<button id=copy2clipboard class=mi>library_books</button>
-						<button id=copy2input class=mi>library_add</button>
-						<button id=copyAll2input class=mi>photo_library</button>
-
-					</summary>
-					<div>
-						<label><input type=checkbox id=ignoreHiddenElement checked=checked /></label>
-					</div>
-					<textarea id=SVGcode></textarea>
-
-				</details>
-
-			</div>
-
-		</div>
-		<div for=clear>
-		</div>
-	</div>
+	<div id=panel></div>
 
 	<div id=oContent>
 
@@ -331,13 +184,6 @@
 
 
 	<script src="js/interface/pitfall.js"></script>
-	<!--
-    <script src="js/interface/pitfall/ .js"></script>
-    
--->
-
-
-
 
 
 	<script src="js/interface/unsolved.js"></script>

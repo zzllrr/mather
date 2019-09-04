@@ -3,19 +3,19 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-var caps;
+
 
 $(function(){
 	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought');
 
-	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg />'+dc+
+	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after(
 '<div id=zMather hidden>'+
 	'<div id=nav>'+
 		DCtv('opac" id="navhead',
 			Arrf(function(i){
 				return SCtv('subhead'+(i=='home'?' seled':'')+'" id="'+i+'" title="'+gM(i),itv('',
 					{'home':'home',
-					'news':'rss_feed',
+
 					'api':'device_hub',
 					'about':'info_outline',
 
@@ -24,7 +24,7 @@ $(function(){
 					'wiki':'public'
 
 					}[i]))
-			},ZLR('home news api about')).join('')
+			},ZLR('home api about')).join('')
 		)+
 		'<div id=navbody>'+
 			DCtv('pd2" id="toolnav',
@@ -69,9 +69,9 @@ $(function(){
 
 					'<div id=previewOpt>'+
 
-						'<select id=input0Type>'+optgrp(gM('Input Format')+':',
+						'<select id=input0Type>'+optgrp(gM('Code Editor')+':',
 							OptGrps(jSon('[{"'+
-								gM('Math Formula')+' | '+gM('Editor')+
+								gM('Math Formula')+
 								'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
 								gM('Webpage Editor')+
 								'":"Markdown HTML CSS"},{"'+
@@ -150,7 +150,7 @@ $(function(){
 				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 				itv('" id=launch tip="Launch','launch')+
 				itvc('oClear rotate270" id="oHClear')+
-				itv('" id=iTextFold tip="Collapse','unfold_less')+
+				itv('" id=iTextFold tip="Code Editor','keyboard')+
 				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')
 
 			)+
@@ -379,33 +379,30 @@ dc);
 	});
 
 	$('#iTextFold').on('click',function(){
-		$(this).text(function(i,v){
-			if(/less/.test(v)){
-				$('#previewOff').click();
-				$('#iTextPreview').prevAll().hide();
-				
-				$(this).addClass('seled');
-
-				return 'unfold_more'
-			}
+		var me=$(this), sel=me.is('.seled');
+		if(sel){
 			$('#iTextMain').show();
 
 			if($('#preview').is('.seled')){
 				$('#previewTool').show();
 			}
-			$(this).removeClass('seled');
-
-			return 'unfold_less'
-		})
+		}else{
+			$('#previewOff').click();
+			$('#iTextPreview').prevAll().hide();
+			
+		}
+		me.toggleClass('seled');
 	});
 
 
 	$('#launch').on('click',function(){
-		var x=$('#oHTML iframe').attr('src')||'';
-		if(x){
+		var x=$('#oHTML iframe').attr('src')||'', lv=$('.launch:visible');
+		if(lv.length){
+			lv.click()
+		}else if(x){
 			open(x);
 		}else{
-			$('.launch').click()
+			$('#go').click()
 		}
 	});
 

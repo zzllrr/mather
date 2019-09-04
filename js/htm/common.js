@@ -41,6 +41,10 @@ ARlib='',
 ARlibjs={
 },unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js',
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
+
+tooltip={
+},
+caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch),
 oHTML=function(x,notMD,elem){
     $(elem||'#oHTML').hide().html(notMD?x:replaceNodeInner(x,'MD', md2html));
     $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
@@ -249,7 +253,7 @@ function toolTip(s){
 $(function () {
     titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
 
-    var ishome=/index\.html|\/$/.test(loch);
+
     $('#panel').prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
@@ -258,7 +262,7 @@ $(function () {
         
         itv('" id=night tip="Night','brightness_3')+
         itv('" id=qrcode tip="QRcode','smartphone')+
-        (ishome?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
+        (ishome||iscap?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
     dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
@@ -334,8 +338,8 @@ $(function () {
 
     $('body').on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
-        var ishome=/index.html|\/$/.test(loch);
-        if(ishome){
+
+        if(ishome || iscap){
             $('#caps ~ canvas').remove();
 
         }else if(!/summary/i.test(act)){
@@ -513,6 +517,13 @@ $(function () {
         var me=$(this);
         me.parent().nextAll('details').find('.play').click();
 
+    }).on('click','.downTxt',function(){
+        var me=$(this), t=me.parent().prev().val();
+        saveText(t,
+			gM('zzllrr Mather')+$('#showGround .level.seled').text()+Time.now()+'.txt'
+		)
+
+
     }).on('click','.qrGen',function(){
         var t=$(this).parents('.ground1').find('.editorText').val();
         if(t){
@@ -553,4 +564,6 @@ $(function () {
         }
 
     });
+
+
 });
