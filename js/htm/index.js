@@ -1026,15 +1026,7 @@ consolelog(f);
 
 	
 
-	
-	$(window).resize(function(){
-		caps.repaint();
-	});
-	
-	$(document).scroll( function() {
-		caps.repaint();
-	});
-	
+
 	var uo=H_o(sch);//	?tool=&subtool=	
 
 	

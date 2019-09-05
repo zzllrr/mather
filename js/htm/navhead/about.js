@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.4',
+			fieldseth('V2019.9.5',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -283,13 +283,13 @@ Table('',[
 							'#'+gM(ZLR('Universal Kind Peace-loving Non-discriminatory Decentralization')).join(', #')],
 				]),
 		
-				Table([gM(['Key Technology','Related Standardization','Degree','Related Organization'])],
+				Table([gM(['Key Technology','Related Standardization','Degree.','Related Organization'])],
 					[
 						[gM('Math Graphics Library'),'#'+ZLR('WebGL OpenGL').concat(['OpenGL ES','Vulkan']).join(', #'),
 							meter(70),
 							'#'+ZLR('Khronos').join(', #')],
 						
-						['JavaScript '+gM('Math Function Library'),'#'+ZLR('ECMAScript(ES)').join(', #'),
+						['JS '+gM('Math Function Library'),'#'+ZLR('ECMAScript(ES)').join(', #'),
 							meter(30),
 							'#'+ZLR('ECMA').join(', #')],
 						
@@ -360,6 +360,7 @@ Table('',[
 			),
 	
 			//about zzllrr
+
 			ul([
 				href(Hs+'www.douban.com/group/mathought/','数学史与数学思想方法')+' (豆瓣小组) 组长',
 				href(Hs+'www.douban.com/group/nonlinear/','非线性Nonlinear')+' (豆瓣小组) 组长',
@@ -369,7 +370,7 @@ Table('',[
 				href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
 				gM('Contact')+': '+href(GMAIL,'zzllrr@gmail.com'),
 				
-			])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
+			])+DCtv('alignc pd10" style="background:url(img/zzllrr.gif) repeat-x center',gM('WeChat')+'<div id=weixinZQR>'+dc),
 	
 		])
 	,1);

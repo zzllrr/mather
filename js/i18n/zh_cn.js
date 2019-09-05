@@ -488,7 +488,9 @@ lang['zh_cn'] = {
 	'Anticlockwise': '逆时针',
 
 	'Rad': '弧度',
-	'Degree': '角度',
+	'Degree': '度',
+
+	'Degree.': '程度',
 
 	'Bold': '加粗',
 	'Italic': '斜体',

@@ -225,6 +225,7 @@ $.each({
 
 	'LaTeX':[
 		href(Hs+'katex.org/docs/supported.html','KaTeX API'),
+		href(H+'dralpha.altervista.org/zh/tech/tech.htm','LaTeX Funny Introduction（中文）'),
 		
 	].join(br),
 

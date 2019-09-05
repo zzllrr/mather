@@ -56,9 +56,25 @@ oHTML=function(x,notMD,elem){
     },600);
 };
 
-if(H_o().lang !=L.lang){
-	i18n=lang[H_o().lang||L.lang||'zh_cn']
-}
+
+$.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键}	  ➡️ 值
+	$.each(v,function(ii,vv){
+		if(/@/.test(vv)){
+			var f=function(I,V){
+				var y=I.replace(/@([a-z]|\d+)/ig,function(x){return V[x.substr(1)]})
+				.replace(/@\{[^\}]+\}/g,function(x){return V[x.substr(2).split('}')[0]]});
+				return /@/.test(y)?f(y,V):y
+			};
+			v[ii]=f(vv,v);
+				consolelog(v[ii]);
+		}
+	});
+});
+lang['zh_tw']=JSON.parse(zh2big(JSON.stringify(lang['zh_cn'])));
+if(!i18n || H_o().lang !=L.lang){i18n=lang[H_o().lang||'zh_cn']}
+
+
+
 var MfS=function(x,typ){return Mtrx.fromStr(x,typ)},
 	PfS=function(x){return Perm.fromStr(x.replace(/&.+/,''))},
 	PtS=function(x,typ){return Perm.toStr(x,typ)};
@@ -318,12 +334,13 @@ $(function () {
         }
         if(id=='qrcode'){
             me.removeClass('toggle');
-            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4);
+            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4), t=H_o('',losh);
 
-            qrJPG(H_o('',losh),'#QRCODE',m);
+            qrJPG(t,'#QRCODE',m);
             
             $('#QRCODE').fadeToggle();
             setTimeout(function(){$('#zMatherOn:contains(down)').click();},500);
+            copy2clipboard(t);
         }
 		me.siblings('.toggle').removeClass('toggle');
 		pa.nextAll('[for='+id+']').toggle(tog);
@@ -335,6 +352,18 @@ $(function () {
         //$('#qrcode').click()
         $(this).fadeOut();
     });
+
+    
+    if(ishome || iscap){
+        $(window).resize(function(){
+            caps.repaint();
+        });
+        
+        $(document).scroll( function() {
+            caps.repaint();
+        });
+	
+    }
 
     $('body').on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
@@ -393,9 +422,12 @@ $(function () {
 
         }else if(me.is('.Clear')){
 
-        //}else if(me.parent().parent().is('.OHLaTeX')){
+
+
+
+
         //}else if(me.parents('#oHTML').length){
-        }else if(me.parents('.wiki').length){
+        }else if(me.parents('.wiki').length || me.parent().parent().is('.OHLaTeX')){
 
 
             if(me.is('.katexed')){

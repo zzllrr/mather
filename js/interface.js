@@ -121,21 +121,6 @@
 
 */
 
-$.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键}	  ➡️ 值
-	$.each(v,function(ii,vv){
-		if(/@/.test(vv)){
-			var f=function(I,V){
-				var y=I.replace(/@([a-z]|\d+)/ig,function(x){return V[x.substr(1)]})
-				.replace(/@\{[^\}]+\}/g,function(x){return V[x.substr(2).split('}')[0]]});
-				return /@/.test(y)?f(y,V):y
-			};
-			v[ii]=f(vv,v);
-				consolelog(v[ii]);
-		}
-	});
-});
-lang['zh_tw']=JSON.parse(zh2big(JSON.stringify(lang['zh_cn'])));
-if(!i18n){i18n=lang[H_o().lang||'zh_cn']}
 
 var oH,navhead={},navheadThen={},
 
