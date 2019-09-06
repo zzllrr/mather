@@ -98,6 +98,17 @@
 	border-radius: 100%;
 }
 
+.snippet{
+	min-height:200px;
+}
+.snippet:not(.seled){
+	border:solid 1px rgba(50, 205, 50, 0.5);
+}
+textarea.seled{
+	border:solid 1px yellow;
+	background:rgba(50, 205, 50, 0.5);
+}
+
 .sbsiTbl tr.Symboli:not(.Symboli_):after {
     content: attr(data-ii);
     text-shadow: 1px 1px 1px #666;

@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.5',
+			fieldseth('V2019.9.6',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -29,7 +29,11 @@ $(function(){
 						)
 					)+
 					DCtv('Summarytip',
-						XML.wrapE('h4',href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary')))+
+						XML.wrapE('h4',
+							href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary'))+' '+
+							href('api.html','API')
+
+						)+
 						gM('Summarytip')
 						
 					)

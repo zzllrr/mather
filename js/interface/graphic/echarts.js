@@ -5,7 +5,8 @@
  */
 
 tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
-	'JS代码用$美元符号$括起来'+sceg2('$1+2$'),
+	br,
+	'JS代码片段用$美元符号$括起来'+sceg2('$1+2$'),
 
 	detail('【折线图】line',[
 	sceg(jSoff({
@@ -2188,8 +2189,59 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
         }
     ]
 
-	}),10)
-	].join(br)
-	)
+		}),10),
+
+		].join(br)
+	),
+
+
+	detail('【3D 折线图】line3D',[
+		sceg(`var o=
+		{
+			backgroundColor: 'transparent',
+			visualMap: {
+				show: false,
+				dimension: 2,
+				min: 0,
+				max: 30,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				}
+			},
+			xAxis3D: {
+				type: 'value'
+			},
+			yAxis3D: {
+				type: 'value'
+			},
+			zAxis3D: {
+				type: 'value'
+			},
+			grid3D: {
+				viewControl: {
+					projection: 'orthographic'
+				}
+			},
+			series: [{
+			name:'123',
+				type: 'line3D',
+				data: (function(){var data = [];
+				
+				for (var t = 0; t < 25; t += 0.001) {
+					var x = (1 + 0.25 * Math.cos(75 * t)) * Math.cos(t);
+					var y = (1 + 0.25 * Math.cos(75 * t)) * Math.sin(t);
+					var z = t + 2.0 * Math.sin(75 * t);
+					data.push([x, y, z]);
+				}
+				return data
+			})(),
+				lineStyle: {
+					width: 4
+				}
+			}]
+		
+		
+		};o`,10)
+	].join(br))
 ].join('');
 

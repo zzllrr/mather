@@ -277,7 +277,7 @@ $(function () {
     
         
         itv('" id=night tip="Night','brightness_3')+
-        itv('" id=qrcode tip="QRcode','smartphone')+
+        itv('" id=qrcode tip="Share','share')+
         (ishome||iscap?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
     dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});

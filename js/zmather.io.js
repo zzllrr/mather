@@ -1747,7 +1747,7 @@ consolelog(v,t);
 
 	i[0].selectionStart=t;
 	i[0].selectionEnd=t;
-	i.focus();
+	//i.focus();
 },
 
 sbsTbl=function(){
@@ -1944,7 +1944,7 @@ $(function(){
 		var sS=i[0].selectionStart, sE=i[0].selectionEnd;
 		i.val(iv.substr(0,sS)+t+(sE==iv.length?'':iv.substr(sE)));
 		var s2=sS+t.length;
-		i.focus();
+		//i.focus();
 		i[0].selectionStart=s2;
 		i[0].selectionEnd=s2;
 		

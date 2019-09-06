@@ -588,11 +588,7 @@ input[type="file"]{
 	max-height:50%;
 }
 
-#input0,#input1,#input2{
-	min-height:200px;
-	background:rgba(50, 205, 50, 0.5);
-	border:0;
-}
+
 #outputOpt{
 	background: rgba(0,0,0,0.1);
 	border-radius:5px;

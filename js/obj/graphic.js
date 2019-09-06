@@ -33,7 +33,8 @@ consolelog('g=',g);
 		}else if(/echarts/i.test(g)){
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
-			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
+			//o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
+			o=isObj(v)?v:eval(fnv(v[0]=='{'?v:'{'+v+'}'));
 			if(D.length<1){
 				D=$(DOM)
 			}

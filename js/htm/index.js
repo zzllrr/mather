@@ -16,7 +16,6 @@ $(function(){
 				return SCtv('subhead'+(i=='home'?' seled':'')+'" id="'+i+'" title="'+gM(i),itv('',
 					{'home':'home',
 
-					'api':'device_hub',
 					'about':'info_outline',
 
 
@@ -24,7 +23,7 @@ $(function(){
 					'wiki':'public'
 
 					}[i]))
-			},ZLR('home api about')).join('')
+			},ZLR('home about')).join('')
 		)+
 		'<div id=navbody>'+
 			DCtv('pd2" id="toolnav',
@@ -56,7 +55,7 @@ $(function(){
 		'<div id=iText>'+
 			'<div id=iTextMain>'+
 				DCtv('pd10" hidden contentEditable=true id="input0Preview')+
-				'<textarea id=input0></textarea>'+
+				'<textarea id=input0 class=snippet></textarea>'+
 				DCtv('opac" id="input0Tool',
 					itvc('" id=iClear hotkey="Ctrl + E')+
 					itv('" id=send2textBox tip="copy2input','arrow_upward')+
@@ -69,7 +68,7 @@ $(function(){
 
 					'<div id=previewOpt>'+
 
-						'<select id=input0Type>'+optgrp(gM('Code Editor')+':',
+						'<select id=input0Type>'+optgrp(gM('Snippet Editor')+':',
 							OptGrps(jSon('[{"'+
 								gM('Math Formula')+
 								'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
@@ -147,10 +146,10 @@ $(function(){
 
 			DCtv('pd2" id="iTextOpt',
 
+				itv('" id=iTextFold tip="Snippet Editor','description')+
 				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 				itv('" id=launch tip="Launch','launch')+
 				itvc('oClear rotate270" id="oHClear')+
-				itv('" id=iTextFold tip="Code Editor','keyboard')+
 				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')
 
 			)+
@@ -433,7 +432,9 @@ dc);
 		$('#preview.seled').removeClass('seled').text('keyboard_arrow_right');
 		$('#input0Preview, #previewTool').hide();
 	});
-
+	$('#input0Preview').resize(
+		preDisplay
+	);
 
 	
 	$('body').on('keydown',function(e){
@@ -968,11 +969,7 @@ consolelog('最终A = ',A);
 
 		}
 		
-		
-		if($('#navHide.seled').length<1 && /[23]/.test(opti)){
 
-			$('#navHide').click()
-		}
 
 		$('#input0').val(L[v]||'');
 		if($('#preview.seled').length){

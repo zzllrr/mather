@@ -247,6 +247,7 @@ lang['zh_cn'] = {
 	'Export':'导出',
 	'Import':'导入',
 	'Browser':'浏览器',
+	'Share':'分享',
 
 	'Effects': '特效',
 	'Action': '动作',
