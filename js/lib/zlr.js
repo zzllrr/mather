@@ -3191,7 +3191,7 @@ function blking(t, Neg) {
 }
 function textareaAdd(str, obj, newline, sellen) {
 	var O = $(obj), ov = O.val(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
-		v = ov.substr(0, sS) + (newline?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
+		v = ov.substr(0, sS) + (newline && sS?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
 		t=v.length;
 	O.val(v);
 	if(sellen==-1){

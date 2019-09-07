@@ -6,19 +6,18 @@
 
 var showTool = [
     'IL LaTeX MD HTML',
-    'Canvas SVG Echarts D2 D3',
+    'D2 D3 Canvas SVG Echarts Zdog',
     'JS I18 YAML'
 ];
 shows = {
-    index: ZLR('Document Slide Speech Sound Music 2D 3D Image Video VR AR'),
+    index: ZLR('Document Slide Speech Sound Music 3D Image Video VR AR'),
     tool: {
         'Document': showTool,
         'Slide': ['Slide section'].concat(showTool),
         'Speech': [],
         'Sound': [],
         'Music': [],
-        '2D': ZLR('D2 Canvas SVG Echarts'),
-        '3D': ZLR('D3 Canvas SVG Echarts'),
+        '3D': ['D3 D2 Zdog Canvas SVG Echarts'],
         'Image': [],
         'Video': [],
         'VR': ['VR a-scene'],
@@ -43,14 +42,13 @@ shows = {
         ]),
         'Sound': [],
         'Music': [],
-        '2D': ['D2'],
-        '3D': ['D3'],
+        '3D': [],
         'Image': [],
         'Video': [],
         'VR': [itv('','library_books')+gM('JS Library')+': '].concat(
             Arrf(function(x){return XML.wrapE('label',strchkbx0+'class=jslib'+((L.vrjslib||'').indexOf(x)>-1?chked:'')+' data-lib="'+x+'" /> '+x)}, VRlib)
         ),
-        'AR': ['AR a-scene'],
+        'AR': [],
     }
 
 };

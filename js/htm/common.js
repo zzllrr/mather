@@ -1,7 +1,4 @@
 var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,losh={},
-Mele='LaTeX Unicode_Math SVG Canvas Echarts Markdown YAML i18 JavaScript 3D 2D',Mele2='LA LT LX LTX TEX IL YM SV CV EC MD JS D3 D2',
-Meleo={'LA':'LaTeX','IL':'Inline LaTeX','MD':'Markdown','CV':'Canvas','SV':'SVG','EC':'Echarts','JS':'JavaScript','D2':'2D','D3':'3D'},
-Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)},
 
 qrAli=Hs+'qr.alipay.com/', qrqq=Hs+'i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=122618817&ac=ZZLLRR&n=%E5%B0%8F%E4%B9%90%E7%AC%91%E4%BA%86&f=wallet',
 qrwx='wxp://',
@@ -47,12 +44,13 @@ tooltip={
 caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch),
 oHTML=function(x,notMD,elem){
     $(elem||'#oHTML').hide().html(notMD?x:replaceNodeInner(x,'MD', md2html));
-    $(ZLR(Mele+' '+Mele2).join(',')).each(function(){
+    $(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
     setTimeout(function(){
         $('#splash').remove();
         $(elem||'#oHTML').fadeIn();
+        $('#panel').fadeIn();
     },600);
 };
 
@@ -197,8 +195,8 @@ function all2html(type,V,dom){
             throwOnError: false,
             displayMode: iv!='IL'
         });
+    }else if(/ZD/.test(iv)){
   
-    }else if(/D3|3D/.test(iv)){
         try{
             var cvs=w;
             if(!w.is('canvas')){
@@ -270,7 +268,7 @@ $(function () {
     titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
 
 
-    $('#panel').prepend('<div id=menu>'+
+    $('#panel').hide().prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
         (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="Home"','home'))+

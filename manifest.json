@@ -3,12 +3,12 @@
     "name": "zzllrr Mather",
     "icons": [
       {
-        "src": "../img/logo.png",
+        "src": "./img/logo.jpg",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "../img/logo.png",
+        "src": "./img/logo.jpg",
         "type": "image/png",
         "sizes": "512x512"
       }

@@ -7,6 +7,13 @@
  * 依赖：
  * 需先加载 KaTeX
 */
+var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18 JavaScript 3D 2D Zdog',
+Meles='LA AM UM CM PM SV CV EC MD YM I18 JS D2 D3 ZD',
+Mele2='LT LX LTX TEX IL YML',
+Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
+Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
+Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
+
 var SBSi=[zlr('Num',' 1 2 3'),
 	zlr('ABC',' 1 2 3 4 5'),
 	zlr('Operator',' 1 2'),
@@ -1625,7 +1632,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			$('.Symboli.Symboli_').hide();
 		}
 
-		Scroll('scrollT');
+		//Scroll('scrollT');
 		if(me.is('.symboli_')){
 
 			$('.symboli_').not(me).parent().removeClass('seled');
@@ -1881,6 +1888,53 @@ $.each(FUNCS,function(i,v){SBSFn=SBSFn.concat(Arrf(ZLR,v.join(' ')))});
 
 var SBSFUN=SBS.Latex.func_tri.concat(SBS.Latex.func.replace(/.+% |log ln |sin .+ arcctg /g,'')+
 			' Arg ㏒ ㏑').join(' ');
+var snippet={
+	Ini:function(){
+		L.snippets=L.snippets||1;
+		L.snippetName1=L.snippetName1 || gM('Snippet');
+		L.snippetType1=L.snippetType1 || 'LA';
+		L.snippet1=L.snippet1 || '';
+	},
+	Save:function(){
+		var s=$('.snippet.seled'), i=s.index()+1, p=$('#input0Type').val();
+		L['snippetName'+i]=s.find('.snippetName').text();
+		L['snippetType'+i]=ZLR(Meles)[ZLR(Mele).indexOf(p)]||p;
+		L['snippet'+i]=$('#input0').val();
+		L['snippets']=$('.snippet').length;
+	},
+	Str:function(name,type,selected){
+		return DCtv('snippet'+(selected?' seled':'')+'" data-type="'+type,
+				SCtv('snippetName" contentEditable="true',
+				name)+itv('snippetSend','arrow_upward')+
+			(selected?itv('snippetNew','add'):''))
+	},
+	load:function(i){
+		$('#input0').val(L['snippet'+i]||''), t=L['snippetType'+i];
+		$('.snippet').removeClass('seled').find('.snippetNew').remove();
+
+		if($('.snippet').length<i){
+			$('#snippets').append(snippet.Str(L['snippetName'+i],t,1));
+		}else{
+			$('.snippet').eq(i-1).replaceWith(snippet.Str(L['snippetName'+i],t,1));
+		}
+
+		$('#input0Type').val(Meleo[t]||t).change();
+	},
+	Del:function(i){
+		var s=$('.snippet.seled'), x=i || s.index()+1, l=$('.snippet').length;
+		if(x){
+			for(var j=x;j<=l;j++){
+				L['snippetName'+j]=L['snippetName'+(j+1)];
+				L['snippetType'+j]=L['snippetType'+(j+1)];
+				L['snippet'+j]=L['snippet'+(j+1)];
+			}
+			L['snippets']=l-1;
+
+		}
+
+	}
+};
+snippet.Ini();
 
 $(function(){
 	$('body').on('click', '.sbsTbl td, .sbsTbl .td',function(e){
@@ -1889,6 +1943,48 @@ $(function(){
 			p='JavaScript';
 		}
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
+
+	}).on('click', '.snippetName',function(){
+		var me=$(this),pa=me.parent(), t=pa.attr('data-type'), i=pa.index()+1;
+		if(me.nextAll('.snippetNew').length<1){
+
+			me.next().after(itv('snippetNew','add'));
+		}
+		pa.addClass('seled').siblings().removeClass('seled').find('.snippetNew').remove();
+
+		$('#input0Type').val(Meleo[t]||t);//.change();
+		$('#input0').val(L['snippet'+i]);
+
+	}).on('change keyup mouseup', '.snippetName',function(){
+		var me=$(this), t=me.text().trim(), pa=me.parent();
+		var i=pa.index()+1;
+		L['snippetName'+i]=t;
+
+	}).on('click', '.snippetSend',function(){
+		var v=L['snippet'+($(this).parent().index()+1)];
+		if(v.trim()){
+			textareaAdd(v,'#'+L.tool+'Ground .ground1 .editorText')
+		}
+
+	}).on('click', '.snippetNew',function(){
+		var me=$(this),pa=me.parent();
+
+		pa.removeClass('seled').after(snippet.Str(me.prevAll('.snippetName').text(),
+			pa.attr('data-type'),1));
+		var i=$('.snippet').length;
+		L.snippets=i;
+
+		me.remove();
+		snippet.Save();
+
+	}).on('click','#snippetDel',function(){
+		if($('.snippet').length>1){
+			snippet.Del();
+			var i=$('.snippet.seled').index()+1;
+			$('.snippet.seled').remove();
+			snippet.load(i>$('.snippet').length?1:i);
+		}
+
 
 	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
 		var me=$(this),t=me.attr('title'),iT=$('#input0Type').val();
@@ -1906,7 +2002,7 @@ $(function(){
 		}else if(isnode){
 			t=XML.wrapE(t)
 		}else{
-			t=t.replace(/&&/g,'\n')
+			t=t.replace(/&&(?! )/g,'\n')
 		}
 		if(!i1 && !tbt){
 			copy2clipboard(t)

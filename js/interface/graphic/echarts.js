@@ -9,7 +9,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	'JS代码片段用$美元符号$括起来'+sceg2('$1+2$'),
 
 	detail('【折线图】line',[
-	sceg(jSoff({
+	sceg(`o={
 		xAxis: {
 	        type: 'category',
 	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -21,12 +21,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        data: ["$820+50$", 932, 901, 934, 1290, 1330, 1320],
 	        type: 'line'
 	    }]
-	}),10),'可以插在series.type后面的参数：',
+	}`,10),'可以插在series.type后面的参数：',
 		'面积图 '+sceg2(',areaStyle:{}'),
 		'光滑图 '+sceg2(',smooth:true'),
 
 	'平行坐标系 Parallel'+
-	sceg(jSoff({
+	sceg(`o={
 	    parallelAxis: [
 	        {dim: 0, name: 'Price'},
 	        {dim: 1, name: 'Net Weight'},
@@ -49,10 +49,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            [20, 120, 60, 'Excellent']
 	        ]
 	    }
-	}),10),
+	}`,10),
 
 	'多个X轴Multiple X Axes'+
-	sceg(jSoff({
+	sceg(`o={
 	    color: ['#5793f3', '#d14a61', '#675bba'],
 
 	    tooltip: {
@@ -132,11 +132,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7]
 	        }
 	    ]
-	}),10),
+	}`,10),
 		
 		
 	'折线+饼图'+
-	sceg(jSoff({
+	sceg(`o={
         legend: {},
         tooltip: {
             trigger: 'axis',
@@ -174,12 +174,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
                 }
             }
         ]
-	}),10)
+	}`,10)
 	].join(br)
 	),
 	detail('【极坐标图】polar',[
 	'爱心Heart'+		
-	sceg(jSoff({
+	sceg(`o={
 	    title: {
 	        text: '极坐标双数值轴'
 	    },
@@ -203,12 +203,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        coordinateSystem: 'polar',
 	        name: 'line',
 	        type: 'line',
-	        data: '$$'
+	        data: Arrf(function(x){var t=x/100*360;return [5*(1+Math.sin(t/180*Math.PI)),t]},seqA(0,101))
 	    }]
-	}).replace('"$$"','$jSoff(Arrf(function(x){var t=x/100*360;return [5*(1+Math.sin(t/180*Math.PI)),t]},seqA(0,101)))$'),10),
+	}`,10),
 	
 	'8叶线'+
-	sceg(jSoff({
+	sceg(`o={
 	    title: {
 	        text: '极坐标双数值轴'
 	    },
@@ -236,14 +236,14 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        name: 'line',
 	        type: 'line',
 	        showSymbol: false,
-	        data: '$$'
+	        data: Arrf(function(x){var t=x/45*Math.PI;return [Math.sin(t)/2,x]},seqA(0,361))
 	    }],
 	    animationDuration: 2000
-	}).replace('"$$"','$jSoff(Arrf(function(x){var t=x/45*Math.PI;return [Math.sin(t)/2,x]},seqA(0,361)))$'),10),
+	}`,10),
 	
 	
 	'堆叠柱状图1（极坐标系）'+
-	sceg(jSoff({
+	sceg(`o={
 	
 	    angleAxis: {
 	    },
@@ -278,10 +278,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        data: ['A', 'B', 'C']
 	    }
 
-	}),10),
+	}`,10),
 		
 	'堆叠柱状图2（极坐标系）'+
-	sceg(jSoff({
+	sceg(`o={
 	
 	    angleAxis: {
 	        type: 'category',
@@ -316,7 +316,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        data: ['A', 'B', 'C']
 	    }
 
-	}),10),
+	}`,10),
 		
 		
 	].join(br)
@@ -324,7 +324,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 	,
 	detail('【柱状图/条形图】bar',[
-	sceg(jSoff({
+	sceg(`o={
 	    xAxis: {
 	        type: 'category',
 	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -337,10 +337,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        type: 'bar'
 	    }]
 		
-	}),10),
+	}`,10),
 
 	'年度细分对比'+
-	sceg(jSoff({
+	sceg(`o={
 	    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
 	    tooltip: {
 	        trigger: 'axis',
@@ -400,10 +400,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            data: [98, 77, 101, 99, 40]
 	        }
 	    ]
-	}),10),
+	}`,10),
 	
 	'正负条形图（横向）'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -467,11 +467,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            data:[-120, -132, -101, -134, -190, -230, -210]
 	        }
 	    ]
-	}),10),
+	}`,10),
 	
 	
 	'堆叠柱状图'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -563,10 +563,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            data:[62, 82, 91, 84, 109, 110, 120]
 	        }
 	    ]
-	}),10),
+	}`,10),
 
 	'坐标轴刻度与标签对齐'+
-	sceg(jSoff({
+	sceg(`o={
 	    color: ['#3398DB'],
 	    tooltip : {
 	        trigger: 'axis',
@@ -602,10 +602,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            data:[10, 52, 200, 334, 390, 330, 220]
 	        }
 	    ]
-	}),10),
+	}`,10),
 
 	'阶梯组成'+
-	sceg(jSoff({
+	sceg(`o={
 	    title: {
 	        text: '深圳月最低生活费组成（单位:元）',
 	        subtext: 'From www',
@@ -666,10 +666,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 	'阶梯瀑布图'+
-	sceg(jSoff({
+	sceg(`o={
 	    title: {
 	        text: '阶梯瀑布图',
 	        subtext: 'From ...',
@@ -758,10 +758,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	    ]
 
 
-	}),10),
+	}`,10),
 	
 	'横向组成图'+
-	sceg(jSoff({
+	sceg(`o={
 
 	    title: {
 	        text: '世界人口总量',
@@ -803,10 +803,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 	'堆叠条形图'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -892,12 +892,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 
 	'平均刻度线'+
-	sceg(jSoff({
+	sceg(`o={
 	    title : {
 	        text: '某地区蒸发量和降水量',
 	        subtext: '纯属虚构'
@@ -963,11 +963,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            }
 	        }
 	    ]
-	}),10),
+	}`,10),
 
 
 	'折线图+柱状图'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip: {
 	        trigger: 'axis',
 	        axisPointer: {
@@ -1038,11 +1038,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 	'多y轴'+
-	sceg(jSoff({
+	sceg(`o={
 	    color: ['#5793f3', '#d14a61', '#675bba'],
 
 	    tooltip: {
@@ -1141,11 +1141,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 	'数据形式（数组）'+
-	sceg(jSoff({
+	sceg(`o={
 	    legend: {},
 	    tooltip: {},
 	    dataset: {
@@ -1167,10 +1167,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        {type: 'bar'}
 	    ]
 
-	}),10),
+	}`,10),
 
 	'数据形式（JSON）'+
-	sceg(jSoff({
+	sceg(`o={
 	    legend: {},
 	    tooltip: {},
 	    dataset: {
@@ -1192,11 +1192,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        {type: 'bar'}
 	    ]
 
-	}),10),
+	}`,10),
 
 
 	'横向对比条形图'+
-	sceg(jSoff({
+	sceg(`o={
 	    dataset: {
 	        source: [
 	            ['score', 'amount', 'product'],
@@ -1238,12 +1238,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 
 	'多维度对比'+
-	sceg(jSoff({
+	sceg(`o={
 	    legend: {},
 	    tooltip: {},
 	    dataset: {
@@ -1277,7 +1277,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
 	        {type: 'bar', xAxisIndex: 1, yAxisIndex: 1}
 	    ]
-	}),10),
+	}`,10),
 
 
 
@@ -1289,7 +1289,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	detail('【饼图】pie',[
 		
 	'半径一致'+
-	sceg(jSoff({
+	sceg(`o={
 	    title : {
 	        text: '某站点用户访问来源',
 	        subtext: '纯属虚构',
@@ -1327,10 +1327,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 		
 	'半径不一致'+
-	sceg(jSoff({
+	sceg(`o={
 	    backgroundColor: '#2c343c',
 
 	    title: {
@@ -1404,11 +1404,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	}),10),
+	}`,10),
 		
 		
 	'南丁格尔玫瑰图'+
-	sceg(jSoff({
+	sceg(`o={
 	    title : {
 	        text: '南丁格尔玫瑰图',
 	        subtext: '纯属虚构',
@@ -1492,10 +1492,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	}),10),
+	}`,10),
 
 	'多个饼图'+
-	sceg(jSoff({
+	sceg(`o={
 	    legend: {},
 	    tooltip: {},
 	    dataset: {
@@ -1538,10 +1538,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    }]
 		
-	}),10),
+	}`,10),
 
 	'Doughnut环形图'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -1585,12 +1585,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 
 	'环形图 + 饼图'+
-	sceg(jSoff({
+	sceg(`o={
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -1629,7 +1629,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            radius: ['40%', '55%'],
 	            label: {
 	                normal: {
-	                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+	                    formatter: '{a|{a}}{abg|}\\n{hr|}\\n  {b|{b}：}{c}  {per|{d}%}  ',
 	                    backgroundColor: '#eee',
 	                    borderColor: '#aaa',
 	                    borderWidth: 1,
@@ -1683,14 +1683,14 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            ]
 	        }
 	    ]
-	}),10),
+	}`,10),
 	].join(br)
 	),
 	
 	
 	detail('【散点图】scatter',[
 
-	sceg(jSoff({
+	sceg(`o={
 	    xAxis: {},
 	    yAxis: {},
 	    series: [{
@@ -1711,12 +1711,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        type: 'scatter'
 	    }]
 	
-	}),10),
+	}`,10),
 
 
 	'气泡图 Bubble'+
-	sceg(`
-	{
+	sceg(`o={
+
 	    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
 	        offset: 0,
 	        color: '#f7f8fa'
@@ -1813,10 +1813,10 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 	'Anscombe\'s quartet'+
-	sceg(jSoff({
+	sceg(`o={
 
 	    title: {
-	        text: 'Anscombe\'s quartet',
+	        text: 'Anscombe\\'s quartet',
 	        x: 'center',
 	        y: 0
 	    },
@@ -2024,12 +2024,12 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 
-	}),10),
+	}`,10),
 
 
 
 	'扩散特效'+
-	sceg(jSoff({
+	sceg(`o={
 	    xAxis: {
 	        scale: true
 	    },
@@ -2052,7 +2052,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	}),10),
+	}`,10),
 
 
 
@@ -2068,7 +2068,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	detail('【树形图】tree',[
 	
 	'矩形树图'+
-	sceg(jSoff({
+	sceg(`o={
 	    series: [{
 	        type: 'treemap',
 	        data: [{
@@ -2097,11 +2097,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 		
 		
 		
-	}),10),
+	}`,10),
 	
 	
 	'横向树图'+
-	sceg(jSoff({
+	sceg(`o={
     tooltip: {
         trigger: 'item',
         triggerOn: 'mousemove'
@@ -2189,7 +2189,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
         }
     ]
 
-		}),10),
+		}`,10),
 
 		].join(br)
 	),
@@ -2241,7 +2241,587 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 			}]
 		
 		
-		};o`,10)
-	].join(br))
+		};o`,0),
+	].join(br)),
+
+	detail('【3D 散点图】scatter3D',[
+		sceg(`var o=
+		{
+			grid3D: {},
+			xAxis3D: {
+				type: 'category'
+			},
+			yAxis3D: {},
+			zAxis3D: {},
+			dataset: {
+				dimensions: [
+					'Income',
+					'Life Expectancy',
+					'Population',
+					'Country',
+					{name: 'Year', type: 'ordinal'}
+				],
+				source: ['Income,Life Expectancy,Population,Country,Year'.split(','),[815,34.05,351014,'Australia',1800],[1314,39,645526,'Canada',1800]]
+			},
+			series: [
+				{
+					type: 'scatter3D',
+					symbolSize: 2.5,
+					encode: {
+						x: 'Country',
+						y: 'Life Expectancy',
+						z: 'Income',
+						tooltip: [0, 1, 2, 3, 4]
+					}
+				}
+			]
+		
+		};o`,0),
+
+		sceg(`var indices = {
+			name: 0,
+			group: 1,
+			id: 16
+		};
+		var schema = [
+			{name: 'name', index: 0},
+			{name: 'group', index: 1},
+			{name: 'protein', index: 2},
+			{name: 'calcium', index: 3},
+			{name: 'sodium', index: 4},
+			{name: 'fiber', index: 5},
+			{name: 'vitaminc', index: 6},
+			{name: 'potassium', index: 7},
+			{name: 'carbohydrate', index: 8},
+			{name: 'sugars', index: 9},
+			{name: 'fat', index: 10},
+			{name: 'water', index: 11},
+			{name: 'calories', index: 12},
+			{name: 'saturated', index: 13},
+			{name: 'monounsat', index: 14},
+			{name: 'polyunsat', index: 15},
+			{name: 'id', index: 16}
+		];
+		
+		var fieldIndices = schema.reduce(function (obj, item) {
+			obj[item.name] = item.index;
+			return obj;
+		}, {});
+		
+		var groupCategories = [];
+		var groupColors = [];
+		var data;
+		var fieldNames = schema.map(function (item) {
+			return item.name;
+		});
+		fieldNames = fieldNames.slice(2, fieldNames.length - 2);
+		
+		function getMaxOnExtent(data) {
+			var colorMax = -Infinity;
+			var symbolSizeMax = -Infinity;
+			for (var i = 0; i < data.length; i++) {
+				var item = data[i];
+				var colorVal = item[fieldIndices[config.color]];
+				var symbolSizeVal = item[fieldIndices[config.symbolSize]];
+				colorMax = Math.max(colorVal, colorMax);
+				symbolSizeMax = Math.max(symbolSizeVal, symbolSizeMax);
+			}
+			return {
+				color: colorMax,
+				symbolSize: symbolSizeMax
+			};
+		}
+		
+		var config = app.config = {
+			xAxis3D: 'protein',
+			yAxis3D: 'fiber',
+			zAxis3D: 'sodium',
+			color: 'fiber',
+			symbolSize: 'vitaminc',
+		
+			onChange: function () {
+				var max = getMaxOnExtent(data);
+				if (data) {
+					myChart.setOption({
+						visualMap: [{
+							max: max.color / 2
+						}, {
+							max: max.symbolSize / 2
+						}],
+						xAxis3D: {
+							name: config.xAxis3D
+						},
+						yAxis3D: {
+							name: config.yAxis3D
+						},
+						zAxis3D: {
+							name: config.zAxis3D
+						},
+						series: {
+							dimensions: [
+								config.xAxis3D,
+								config.yAxis3D,
+								config.yAxis3D,
+								config.color,
+								config.symbolSiz
+							],
+							data: data.map(function (item, idx) {
+								return [
+									item[fieldIndices[config.xAxis3D]],
+									item[fieldIndices[config.yAxis3D]],
+									item[fieldIndices[config.zAxis3D]],
+									item[fieldIndices[config.color]],
+									item[fieldIndices[config.symbolSize]],
+									idx
+								];
+							})
+						}
+					});
+				}
+			}
+		};
+		app.configParameters = {};
+		['xAxis3D', 'yAxis3D', 'zAxis3D', 'color', 'symbolSize'].forEach(function (fieldName) {
+			app.configParameters[fieldName] = {
+				options: fieldNames
+			};
+		});
+
+		data=[
+			["Beverage, instant breakfast powder, chocolate, not reconstituted","Dairy and Egg Products",19.9,0.285,0.385,0.4,0.07690000000000001,0.947,66.2,65.8,1.4,7.4,357,0.56,0.314,0.278,27481  ],
+			["Beverage, instant breakfast powder, chocolate, sugar-free, not reconstituted","Dairy and Egg Products",35.8,0.5,0.717,2,0.138,1.705,41,39,5.1,7.4,358,2.162,1.189,1.027,27482  ],
+			["Beverage, milkshake mix, dry, not chocolate","Dairy and Egg Products",23.5,0.88,0.78,1.6,0.0012,2.2,52.9,51.3,2.6,12.8,329,2.059,0.332,0.06,27483 ]
+		];
+		var max = getMaxOnExtent(data);
+
+		var o=
+		{
+			tooltip: {},
+			visualMap: [{
+				top: 10,
+				calculable: true,
+				dimension: 3,
+				max: max.color / 2,
+				inRange: {
+					color: ['#1710c0', '#0b9df0', '#00fea8', '#00ff0d', '#f5f811', '#f09a09', '#fe0300']
+				},
+				textStyle: {
+					color: '#fff'
+				}
+			}, {
+				bottom: 10,
+				calculable: true,
+				dimension: 4,
+				max: max.symbolSize / 2,
+				inRange: {
+					symbolSize: [10, 40]
+				},
+				textStyle: {
+					color: '#fff'
+				}
+			}],
+			xAxis3D: {
+				name: config.xAxis3D,
+				type: 'value'
+			},
+			yAxis3D: {
+				name: config.yAxis3D,
+				type: 'value'
+			},
+			zAxis3D: {
+				name: config.zAxis3D,
+				type: 'value'
+			},
+			grid3D: {
+				axisLine: {
+					lineStyle: {
+						color: '#fff'
+					}
+				},
+				axisPointer: {
+					lineStyle: {
+						color: '#ffbd67'
+					}
+				},
+				viewControl: {
+					// autoRotate: true
+					// projection: 'orthographic'
+				}
+			},
+			series: [{
+				type: 'scatter3D',
+				dimensions: [
+					config.xAxis3D,
+					config.yAxis3D,
+					config.yAxis3D,
+					config.color,
+					config.symbolSiz
+				],
+				data: data.map(function (item, idx) {
+					return [
+						item[fieldIndices[config.xAxis3D]],
+						item[fieldIndices[config.yAxis3D]],
+						item[fieldIndices[config.zAxis3D]],
+						item[fieldIndices[config.color]],
+						item[fieldIndices[config.symbolSize]],
+						idx
+					];
+				}),
+				symbolSize: 12,
+				// symbol: 'triangle',
+				itemStyle: {
+					borderWidth: 1,
+					borderColor: 'rgba(255,255,255,0.8)'
+				},
+				emphasis: {
+					itemStyle: {
+						color: '#fff'
+					}
+				}
+			}]
+		};o`,0),
+	].join(br)),
+
+	detail('【3D 曲面图】surface',[
+		sceg(`var o=
+		{
+			tooltip: {},
+			backgroundColor: '#fff',
+			visualMap: {
+				show: false,
+				dimension: 2,
+				min: -1,
+				max: 1,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				}
+			},
+			xAxis3D: {
+				type: 'value'
+			},
+			yAxis3D: {
+				type: 'value'
+			},
+			zAxis3D: {
+				type: 'value'
+			},
+			grid3D: {
+				viewControl: {
+					// projection: 'orthographic'
+				}
+			},
+			series: [{
+				type: 'surface',
+				wireframe: {
+					// show: false
+				},
+				equation: {
+					x: {
+						step: 0.05
+					},
+					y: {
+						step: 0.05
+					},
+					z: function (x, y) {
+						if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) {
+							return '-';
+						}
+						return Math.sin(x * Math.PI) * Math.sin(y * Math.PI);
+					}
+				}
+			}]
+		
+		};o`,0),
+
+
+		'3D 球面 Sphere Parametric Surface',
+
+		sceg(`var o=
+		{
+			tooltip: {},
+			visualMap: {
+				show: false,
+				dimension: 2,
+				min: -1,
+				max: 1,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				}
+			},
+			xAxis3D: {},
+			yAxis3D: {},
+			zAxis3D: {},
+			grid3D: {},
+			series: [{
+				type: 'surface',
+				parametric: true,
+				// shading: 'albedo',
+				parametricEquation: {
+					u: {
+						min: -Math.PI,
+						max: Math.PI,
+						step: Math.PI / 20
+					},
+					v: {
+						min: 0,
+						max: Math.PI,
+						step: Math.PI / 20
+					},
+					x: function (u, v) {
+						return Math.sin(v) * Math.sin(u);
+					},
+					y: function (u, v) {
+						return Math.sin(v) * Math.cos(u);
+					},
+					z: function (u, v) {
+						return Math.cos(v);
+					}
+				}
+			}]
+		};o`,0),
+
+
+		'3D Surface Wave',
+
+		sceg(`var o=
+		{
+			tooltip: {},
+			backgroundColor: '#fff',
+			visualMap: {
+				show: false,
+				dimension: 2,
+				min: -1,
+				max: 1,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				}
+			},
+			xAxis3D: {
+				type: 'value'
+			},
+			yAxis3D: {
+				type: 'value'
+			},
+			zAxis3D: {
+				type: 'value',
+				max: 1,
+				splitNumber: 2
+			},
+			grid3D: {
+				viewControl: {
+					// projection: 'orthographic'
+				},
+				boxHeight: 40
+			},
+			series: [{
+				type: 'surface',
+				wireframe: {
+					show: false
+				},
+				shading: 'color',
+				equation: {
+					x: {
+						step: 0.05,
+						min: -3,
+						max: 3,
+					},
+					y: {
+						step: 0.05,
+						min: -3,
+						max: 3,
+					},
+					z: function (x, y) {
+						return Math.sin(x * x + y * y) * x / 3.14
+					}
+				}
+			}]
+		};o`,0),
+
+		].join(br)),
+
+
+	detail('【3D 柱状图】bar3D',[
+		sceg(`var o=
+		{
+			grid3D: {},
+			tooltip: {},
+			xAxis3D: {
+				type: 'category'
+			},
+			yAxis3D: {
+				type: 'category'
+			},
+			zAxis3D: {},
+			visualMap: {
+				max: 1e8,
+				dimension: 'Population'
+			},
+			dataset: {
+				dimensions: [
+					'Income',
+					'Life Expectancy',
+					'Population',
+					'Country',
+					{name: 'Year', type: 'ordinal'}
+				],
+				source: ['Income,Life Expectancy,Population,Country,Year'.split(','),[815,34.05,351014,'Australia',1800],[1314,39,645526,'Canada',1800]]
+			},
+			series: [
+				{
+					type: 'bar3D',
+					// symbolSize: symbolSize,
+					shading: 'lambert',
+					encode: {
+						x: 'Year',
+						y: 'Country',
+						z: 'Life Expectancy',
+						tooltip: [0, 1, 2, 3, 4]
+					}
+				}
+			]
+		
+		};o`,0),
+
+		sceg(`
+		var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a'];
+		var days = ['Saturday', 'Friday', 'Thursday','Wednesday'];
+		var data = [[0,0,5],[0,1,1],[0,2,2],[0,3,2],[0,4,0]];
+		var o=
+		{
+			tooltip: {},
+			visualMap: {
+				max: 20,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090']
+				}
+			},
+			xAxis3D: {
+				type: 'category',
+				data: hours
+			},
+			yAxis3D: {
+				type: 'category',
+				data: days
+			},
+			zAxis3D: {
+				type: 'value'
+			},
+			grid3D: {
+				boxWidth: 200,
+				boxDepth: 80,
+				viewControl: {
+					// projection: 'orthographic'
+				},
+				light: {
+					main: {
+						intensity: 1.2,
+						shadow: true
+					},
+					ambient: {
+						intensity: 0.3
+					}
+				}
+			},
+			series: [{
+				type: 'bar3D',
+				data: data.map(function (item) {
+					return {
+						value: [item[1], item[0], item[2]],
+					}
+				}),
+				shading: 'lambert',
+		
+				label: {
+					textStyle: {
+						fontSize: 16,
+						borderWidth: 1
+					}
+				},
+		
+				emphasis: {
+					label: {
+						textStyle: {
+							fontSize: 20,
+							color: '#900'
+						}
+					},
+					itemStyle: {
+						color: '#900'
+					}
+				}
+			}]
+		
+		};o`,0),
+
+	].join(br)),
+
+
+	detail('【3D 节点图】GL 关系图',[
+		sceg(`function createNodes(widthCount, heightCount) {
+			var nodes = [];
+			for (var i = 0; i < widthCount; i++) {
+				for (var j = 0; j < heightCount; j++) {
+					nodes.push({
+						x: Math.random() * window.innerWidth,
+						y: Math.random() * window.innerHeight,
+						value: 1
+					});
+				}
+			}
+			return nodes;
+		}
+		
+		function createEdges(widthCount, heightCount) {
+			var edges = [];
+			for (var i = 0; i < widthCount; i++) {
+				for (var j = 0; j < heightCount; j++) {
+					if (i < widthCount - 1) {
+						edges.push({
+							source: i + j * widthCount,
+							target: i + 1 + j * widthCount,
+							value: 1
+						});
+					}
+					if (j < heightCount - 1) {
+						edges.push({
+							source: i + j * widthCount,
+							target: i + (j + 1) * widthCount,
+							value: 1
+						});
+					}
+				}
+			}
+			return edges;
+		}
+		
+		var nodes = createNodes(50, 50);
+		var edges = createEdges(40, 40);
+		
+		var o=
+		{
+			series: [{
+				type: 'graphGL',
+				nodes: nodes,
+				edges: edges,
+				itemStyle: {
+					color: 'rgba(255,255,255,0.8)'
+				},
+				lineStyle: {
+					color: 'rgba(255,255,255,0.8)',
+					width: 3
+				},
+				forceAtlas2: {
+					steps: 5,
+					jitterTolerence: 10,
+					edgeWeightInfluence: 4
+				}
+			}]
+		
+		
+		};o`,0),
+	].join(br)),
+
+
+
 ].join('');
 

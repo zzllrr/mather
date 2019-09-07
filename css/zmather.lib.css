@@ -26,7 +26,6 @@
 
 }
 #inputTools{
-	padding: 10px 0;
 	background:rgba(50, 205, 50, 0.5);
 }
 
@@ -382,54 +381,44 @@ input[type=text],#wiki>span,.brad{
 .ground > div:not(.tasks){
 	border-radius:10px;
 }
-#solveGround > div:not(.tasks){
-	border-left: solid 10px rgb(65, 105, 225,.5);
-	border-right: solid 10px rgb(65, 105, 225,.5);
+#solveGround > div:not(.tasks):not(:empty){
+	border:5px outset rgb(65, 105, 225,.5);
+
 }
 
-#graphicGround > div:not(.tasks){
-	border-left: solid 10px rgb(255, 105, 180,.5);
-	border-right: solid 10px rgb(255, 105, 180,.5);
+#graphicGround > div:not(.tasks):not(:empty){
+	border:5px outset rgb(255, 105, 180,.5);
 }
 
-#showGround > div:not(.tasks){
-	border-left: solid 10px rgb(138, 43, 226,.5);
-	border-right: solid 10px rgb(138, 43, 226,.5);
+#showGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(138, 43, 226,.5);
 }
-#wikiGround > div:not(.tasks){
-	border-left: solid 10px rgb(153, 51, 102,.5);
-	border-right: solid 10px rgb(153, 51, 102,.5);
+#wikiGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(153, 51, 102,.5);
 }
-#courseGround > div:not(.tasks){
-	border-left: solid 10px rgb(153, 102, 51,.5);
-	border-right: solid 10px rgb(153, 102, 51,.5);
+#courseGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(153, 102, 51,.5);
 }
 
-#drillGround > div:not(.tasks){
-	border-left: solid 10px rgb(204, 204, 102,.5);
-	border-right: solid 10px rgb(204, 204, 102,.5);
+#drillGround > div:not(.tasks):not(:empty){
+	border:5px outset rgb(204, 204, 102,.5);
 }
 
-#topicGround > div:not(.tasks){
-	border-left: solid 10px rgb(0, 153, 51,.5);
-	border-right: solid 10px rgb(0, 153, 51,.5);
+#topicGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(0, 153, 51,.5);
 }
-#pitfallGround > div:not(.tasks){
-	border-left: solid 10px rgb(204, 51, 102,.5);
-	border-right: solid 10px rgb(204, 51, 102,.5);
+#pitfallGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(204, 51, 102,.5);
 }
-#unsolvedGround > div:not(.tasks){
-	border-left: solid 10px rgb(102, 51, 0,.5);
-	border-right: solid 10px rgb(102, 51, 0,.5);
+#unsolvedGround > div:not(.tasks):not(:empty){
+	border:5px outset rgb(102, 51, 0,.5);
 }
 
-#thoughtGround > div:not(.tasks){
-	border-left: solid 10px rgb(102, 153, 204,.5);
-	border-right: solid 10px rgb(102, 153, 204,.5);
+#thoughtGround > div:not(.tasks):not(:empty){
+	border:5px outset rgb(102, 153, 204,.5);
 }
-#referGround > div:not(.tasks){
-	border-left: solid 10px rgb(139, 0, 0,.5);
-	border-right: solid 10px rgb(139, 0, 0,.5);
+#referGround > div:not(.tasks):not(:empty){
+	border: 5px outset rgb(139, 0, 0,.5);
 }
 
 
@@ -581,6 +570,7 @@ input[type=text],#wiki>span,.brad{
 input[type="file"]{
 	max-width: 100px;
 }
+
 
 
 #input0Tip,#input1Tip{
