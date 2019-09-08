@@ -198,14 +198,16 @@ function all2html(type,V,dom){
     }else if(/ZD/.test(iv)){
   
         try{
-            var cvs=w;
+            var id='zdog'+Random(12,1)+Time.now5();
             if(!w.is('canvas')){
-                w.html('<canvas width='+(w.attr('width')||300)+' height='+(w.attr('height')||300)+'></canvas>');
-                cvs=w.children();
+                w.html('<canvas id='+id+' width='+(w.attr('width')||300)+' height='+(w.attr('height')||300)+'></canvas>');
+
             }
             //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
             //var C=new ctt(cvs,300,300), c=C.ctx;
-            var C=cvs[0];
+            //var C=$('#'+id)[0];
+            var C=w.children()[0];
+            //console.log(v);
             eval(v);
         }catch(e){
             console.log(e);
@@ -309,7 +311,7 @@ $(function () {
 	$('#panel').on('click','#night ~ i',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
-		if(/^svgs$/.test(id)){
+		if(id=='svgs'){
 
 			$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
 			if(tog){
@@ -368,9 +370,15 @@ $(function () {
 
         if(ishome || iscap){
             $('#caps ~ canvas').remove();
+        }else if(/canvas/i.test(act)){
+            if($(eos).parent('zdog').length){
+                //console.log(e,act,act.id);
+                $(eos).attr('spinning',function(i,v){return v!='true'});
+            }
 
         }else if(!/summary/i.test(act)){
-            location.href='index.html'
+            location.href='index.html';
+            //history.back()
         }
 
     }).on('click','#oHTML .katex',function(e){
@@ -580,7 +588,10 @@ $(function () {
 		var me=$(this),hk=me.attr('hotkey')||'';
 		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
 			hk='';
-		}
+        }
+        if(me.parent('#iTextOpt').length * $('#iTextFold.seled').length * $('#zMatherHide:contains(down)').length){
+            return
+        }
         toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));
         
     }).on('keydown',function(e){

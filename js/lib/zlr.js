@@ -3196,6 +3196,8 @@ function textareaAdd(str, obj, newline, sellen) {
 	O.val(v);
 	if(sellen==-1){
 		t=Math.max(t-1,0);
+	}else if(newline && sellen && !sS){
+		t=sS + sellen -1;
 	}else{
 		t=sS + (sellen||(str || '').length);
 	}

@@ -609,12 +609,13 @@ $.each({
 
 
 			
-	'3D':[
+	'Zdog':[
 
 		href(Hs+'zzz.dog/api','Zdog API'),
 		detail(gM('Initialize'),[
 			'Illustration'+
 			scegj(`
+$(C).attr('spinning',true);
 let isSpinning = true;
 
 let zo = new Zdog.Illustration({
@@ -637,7 +638,17 @@ let rect = new Zdog.Rect({
 	height: 80,
 	stroke: 20,
 	color: '#E62',
-})`,0)].join(br)),
+});
+
+function animate() {
+	if ( isSpinning && $(C).attr('spinning')=='true') {
+		zo.rotate.y += 0.03;
+	}
+	zo.updateRenderGraph();
+	requestAnimationFrame( animate );
+}
+animate()
+`,0)].join(br)),
 		detail(gM('Animate'),scegj(`
 function animate() {
 	if ( isSpinning ) {

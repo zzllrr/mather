@@ -2486,7 +2486,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 		sceg(`var o=
 		{
 			tooltip: {},
-			backgroundColor: '#fff',
+			backgroundColor: 'transparent',
 			visualMap: {
 				show: false,
 				dimension: 2,

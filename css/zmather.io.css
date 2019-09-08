@@ -8,12 +8,12 @@
 }
 
 
-#iTextLaTeXBox{
+#TextLaTeXBox{
 	position: relative;
     z-index: 30000;
 }
 
-#iTextLaTeXBox > div{
+.TextLaTeXBox > div{
 	border: outset yellow 1px;
 }
 
@@ -76,7 +76,7 @@
 	min-width:30px;
 	font-size: 1.5rem;
 }
-#iTextLaTeXBox td:not(:empty):after,#iTextLaTeXBox .td:not(:empty):not(.Fns):after {
+.TextLaTeXBox td:not(:empty):after,.TextLaTeXBox .td:not(:empty):not(.Fns):after {
     content: attr(title);
     display: block;
     font-size: .8rem;
@@ -110,9 +110,6 @@
 #input0Type,#output0Type{
 	max-width:6rem;
 }
-#snippets{
-	max-width:10rem;
-}
 
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;
@@ -126,11 +123,10 @@ textarea.seled,.snippet.seled{
 }
 
 .snippet:before {
-	content: counter(cnt);
+	content: counter(cnt) ". ";
     counter-increment: cnt;
     text-shadow: 1px 1px 1px #666;
 	color: white;
-	padding-right: 2px;
 }
 .snippet:not(.seled):after {
 	content: attr(data-type);

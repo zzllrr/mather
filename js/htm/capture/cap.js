@@ -19,6 +19,7 @@ $(function () {
 	//var cvs = $('#caps')[0], capctx = cvs.getContext('2d');
 	$('#splash').after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg /><div hidden>' + dc+dc);
 
+	caps=new ctt('#caps');
 
 	setTimeout(function () {
 
@@ -1003,14 +1004,14 @@ dc+
 
 				detail(
 					'<img class=btn1 />'+gM('opa')+rng('1" id=cssOpa step=".1', 0,1),[
-					'<div id=CssContrast><img class=contrast />'+gM('Contrast')+rng('1" id=cssContrast step=".1', 0,2),
-					'<div id=CssBright><img class=bright />'+gM('Bright')+rng('1" id=cssBright step=".1', 0,2),
-					'<div id=CssSaturate><img class=saturate />'+gM('Bright')+rng('1" id=cssSaturate step=".1', 0,20),
-					'<div id=CssGrayscale><img class=grayscale />'+gM('Grayscale')+rng('0" id=cssGrayscale step=".1', 0,1),
-					'<div id=CssSepia><img class=sepia />'+gM('Sepia')+rng('0" id=cssSepia step=".1', 0,1),
-					'<div id=CssInvert><img class=invert />'+gM('Invert')+rng('0" id=cssInvert step=".1', 0,1),
-					'<div id=CssHueRotate><img class=HueRotate />'+gM('HueRotate')+rng('0" id=cssHueRotate title=deg step=".1', 0,360),
-					'<div id=CssBlur><img class=blur />'+gM('Blur')+rng('0" id=cssblur title=px step=".1', 0,100),
+					'<div id=CssContrast><img class=contrast />'+gM('Contrast')+rng('1" id=cssContrast step=".1', 0,2)+dc,
+					'<div id=CssBright><img class=bright />'+gM('Bright')+rng('1" id=cssBright step=".1', 0,2)+dc,
+					'<div id=CssSaturate><img class=saturate />'+gM('Bright')+rng('1" id=cssSaturate step=".1', 0,20)+dc,
+					'<div id=CssGrayscale><img class=grayscale />'+gM('Grayscale')+rng('0" id=cssGrayscale step=".1', 0,1)+dc,
+					'<div id=CssSepia><img class=sepia />'+gM('Sepia')+rng('0" id=cssSepia step=".1', 0,1)+dc,
+					'<div id=CssInvert><img class=invert />'+gM('Invert')+rng('0" id=cssInvert step=".1', 0,1)+dc,
+					'<div id=CssHueRotate><img class=HueRotate />'+gM('HueRotate')+rng('0" id=cssHueRotate title=deg step=".1', 0,360)+dc,
+					'<div id=CssBlur><img class=blur />'+gM('Blur')+rng('0" id=cssblur title=px step=".1', 0,100)+dc,
 
 					'<div id=CssDropShadow><img class=dropShadow /><label>'+gM('DropShadow')+strchkbx0+' id=cssDropShadow /></label>'+
 						'<div hidden id=CssDropshadow>'+

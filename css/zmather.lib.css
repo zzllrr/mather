@@ -29,6 +29,7 @@
 	background:rgba(50, 205, 50, 0.5);
 }
 
+
 @media screen and (max-width:800px){
 	#hotkey, #API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
 	
@@ -40,7 +41,20 @@
 		top:2px;
 	}
 	
-}	
+	.editorText {
+		width: 70%;
+		height: 180px;
+	}
+}
+
+
+@media screen and (min-width:800px){
+	.editorText {
+		width:50%;
+		height:200px;
+	}
+}
+
 @media print{
   
   
@@ -153,7 +167,7 @@ body.day{
 .prov{
 	color:dimgray
 }
-.red,.Clear:hover{
+.red,.Clear:hover, .Del:hover{
 	color:red;
 }
 
@@ -853,7 +867,7 @@ select,input:not([type="file"]), .rem13{
 textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
+.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview, #iTextPreview{
 	background: rgba(162,195,97,.1);
 }
 
@@ -892,10 +906,6 @@ textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 
 
 
-.editorText {
-	width:60%;
-	height:180px;
-}
 
 #donate div {margin:10px}
 #donaQR img{width:150px}
@@ -998,7 +1008,7 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:not(.Clear):hover, th.bds:hover, summary{
+.mi:not(.Clear):not(.Del):hover, th.bds:hover, summary{
 
 	color:limegreen;
 }

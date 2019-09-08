@@ -1762,7 +1762,7 @@ sbsTbl=function(){
 	// LaTeX支持
 	//SBS
 
-	var str='<table class=sbsTbl>',str2='</table><table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
+	var str='<table class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
 	consolelog(A);
 		var si=1,s='',n=Math.max(A[0].length,A[1].length), f=function(c){
@@ -1805,12 +1805,12 @@ sbsTbl=function(){
 		str2+='</tr>'
 	}
 
-	$('#sbs').append(str+str2+'</table>');
 
-
+	$('#sbs').append(str+'</table>');
+	$('#isbs').append(str2+'</table>');
 
 	//FUNCS
-	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
+	var str='<div class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 
 		var s='<div class=Fns data-i="'+K+'">',n=A.length;
@@ -1834,11 +1834,11 @@ sbsTbl=function(){
 		str2+='</tr>';
 	}
 
-	$('#funcs').append(str+str2+'</table>');
-
+	$('#funcs').append(str+dc);
+	$('#ifuncs').append(str2+'</table>');
 
 	//STRUC
-	var str='<div class=sbsTbl>',str2=dc+'<table class="sbsTbl sbsiTbl">';
+	var str='<div class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 	consolelog(K,A);
 		var s='<div class=Sts data-i="'+K+'">',n=A.length;
@@ -1876,8 +1876,8 @@ sbsTbl=function(){
 		str2+='</tr>'
 	}
 
-	$('#struc').append(str+str2+'</table>');
-
+	$('#struc').append(str+dc);
+	$('#istruc').append(str2+'</table>');
 
 	$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide();	
 };
@@ -1905,7 +1905,7 @@ var snippet={
 	Str:function(name,type,selected){
 		return DCtv('snippet'+(selected?' seled':'')+'" data-type="'+type,
 				SCtv('snippetName" contentEditable="true',
-				name)+itv('snippetSend','arrow_upward')+
+				name)+itv('snippetSend" tip="copy2input','arrow_upward')+
 			(selected?itv('snippetNew','add'):''))
 	},
 	load:function(i){
@@ -1961,9 +1961,12 @@ $(function(){
 		L['snippetName'+i]=t;
 
 	}).on('click', '.snippetSend',function(){
-		var v=L['snippet'+($(this).parent().index()+1)];
+		$('#input0').change();
+		var v=L['snippet'+($(this).parent().index()+1)],
+			ta='#'+L.tool+'Ground .ground1 .editorText';
 		if(v.trim()){
-			textareaAdd(v,'#'+L.tool+'Ground .ground1 .editorText')
+			textareaAdd(v,ta);
+			$(ta).change();
 		}
 
 	}).on('click', '.snippetNew',function(){
@@ -1986,11 +1989,11 @@ $(function(){
 		}
 
 
-	}).on('mouseover', '.sbsTbl:not(.sbsiTbl) td, .sbsTbl:not(.sbsiTbl) .td',function(e){
+	}).on('mouseover', '#TextLaTeXBox .sbsTbl td, #TextLaTeXBox .sbsTbl .td',function(e){
 		var me=$(this),t=me.attr('title'),iT=$('#input0Type').val();
 		if(iT!='LaTeX' || !t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
 		}else{
-			toolTip(gM(me.parents('.iTextLaTeX').attr('id')+'ontip'));
+			toolTip(gM(me.parents('.iTextLaTeX').attr('id').replace(/^i/,'')+'ontip'));
 		}
 
 	}).on('click','.eg', function(e){
@@ -2054,7 +2057,7 @@ $(function(){
 		$('.Symboli td.seled:visible').click();
 		var id=($('.iTextLaTeXon .tool.seled').attr('id')||'').replace(/on/,''), i=3;
 		if(id){
-			var tr=$('#'+id+' .sbsiTbl tr').not('.Symboli_');
+			var tr=$('#i'+id+' .sbsiTbl tr').not('.Symboli_');
 			if(id=='struc'){
 				var tn=tr.length;
 				i=tr.filter(':visible').eq(0).index();

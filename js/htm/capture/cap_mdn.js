@@ -1018,7 +1018,8 @@ function tileToolCap(t, val){
 		$(ds+'Opac').val(opa).next().text(opa);
 
 		$(C+'Filter input').not(Ds+' input').each(function(){
-			var me=$(this), id=this.id.substr(3), pid=me.prevAll('span[id]').attr('id');
+			var me=$(this), id=this.id.substr(3), pid=id[0].toLowerCase()+id.substr(1);
+			//pid=me.prevAll('span[id]').attr('id');
 			pid=pid.replace('bright','brightness').replace('opa','opacity').replace('R','-r');
 
 			var reg=new RegExp(pid+'\\([^\\)]+\\)','gi'), rngv;
