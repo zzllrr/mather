@@ -1,0 +1,62 @@
+.wiki{
+	text-align: center;
+
+}
+
+.wiki > tbody > tr:nth-child(odd):not(:hover){
+	background: rgba(162,195,97,.1);
+}
+
+.wiki,.wiki > tbody > tr > td{
+	border-color:gainsboro
+}
+
+.wiki:not(.bd0){
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+
+	min-width:25px;
+}
+
+
+.wiki>.cnt2{
+    counter-reset: cnt 1;
+}
+.wiki>.cnt1{
+    counter-reset: cnt 0;
+}
+.wiki>.cnt0{
+    counter-reset: cnt -1;
+}
+.wiki>.cnt_1{
+    counter-reset: cnt -2;
+}
+.wiki>.cnt2>tr:before{
+	content: counter(cnt);
+	counter-increment: cnt;
+}
+.wiki>.cnt1>tr:before{
+	content: counter(cnt);
+	counter-increment: cnt;
+}
+.wiki>.cnt0>tr:before{
+	content: counter(cnt);
+	counter-increment: cnt;
+}
+.wiki>.cnt_1>tr:before{
+	content: counter(cnt);
+	counter-increment: cnt;
+
+}
+.wiki>tbody>tr:before{
+    text-shadow: 1px 1px 1px #666;
+    color: gray;
+}
+.wiki>thead.cnt>tr:before{
+	content: "";
+}
+
+.wiki > tbody > tr> td{
+	padding:2px
+}

@@ -13,7 +13,7 @@ lang['zh_cn'] = {
 	'zh_cn': '简体',
 	'zh_tw': '繁体',
 
-	'Obj':'对象',
+	'Obj': '对象',
 	'fonT': '字体',
 	'bW': '边宽',
 	'Bw': '边宽',
@@ -47,13 +47,13 @@ lang['zh_cn'] = {
 	'Sq': '平方',
 	'Cb': '立方',
 
-	'Run':'运行',
-	'Launch':'在新窗口运行',
+	'Run': '运行',
+	'Launch': '在新窗口运行',
 	'Lang': '语言',
 	'Del': '删除',
 	'lineSplit': '分行',
 	'lineMerge': '合行',
-	'Linebreak':'换行',
+	'Linebreak': '换行',
 
 	'nodesXY': '笛卡尔节点',
 	'nodesPolar': '极坐标节点',
@@ -70,7 +70,7 @@ lang['zh_cn'] = {
 	'strucontip': "@{clickWithShift}则得到$内部函数命令$@{notLaTeX}",
 	'tasktip': "@{clickWithShift}则自动输入示例命令",
 	'copytip': "点击复制到剪贴板",
-	'showEditip':'输入文本、网址，或拖放文件（文本文件、二维码图片、数学公式图片）至此',
+	'showEditip': '输入文本、网址，或拖放文件（文本文件、二维码图片、数学公式图片）至此',
 
 	'copy2Canvas': '复制到画布上方',
 	'clickWithShift': '点击并按住Shift键，',
@@ -81,7 +81,7 @@ lang['zh_cn'] = {
 	'Accnum': '收款账号',
 	'copiedtip': '已粘贴到剪贴板',
 	'copied2Canvastip': '已复制到画布',
-	'resetAlert':'确定重置吗？',
+	'resetAlert': '确定重置吗？',
 
 
 	'Five-year research plan': '未来五年主要工作计划',
@@ -110,6 +110,7 @@ lang['zh_cn'] = {
 	'Philosopher': '哲学家',
 	'Artist': '艺术家',
 	'Mathematician': '数学家',
+
 	'Engineer': '工程师',
 
 	'Publisher': '出版工作者',
@@ -129,8 +130,6 @@ lang['zh_cn'] = {
 	'Public': '公众',
 	'Company': '公司',
 
-	'Institution': '机构',
-	'Organization': '组织',
 
 	'zzllrr': '小乐',
 	'zzllrr Mather': '小乐数学',
@@ -144,51 +143,254 @@ lang['zh_cn'] = {
 
 	'WeChat': '微信公众号',
 
-	// 工程	
-	'Industry':'行业',
-	'Project': '工程',
-	'Program': '项目',
+
+	// 百科
+
+	'Wiki': '百科',
+	
+	'Concept': '概念',
+	'Name': '名称',
+	'Notation': '记法',
+	'Definition': '定义',
+	'Summary': '简介',
+	'Description': '描述',
+	'Property': '性质',
+
+
+
+	
+	'Theorem': '定理',
+	'Axiom': '公理',
+	'Lemma': '引理',
+
+	'Conjecture':'猜想',
+	'Hypothesis': '假设',
+	'Suppose': '假设',
+
+	'Antinomy':'悖论',
+	'Paradox':'矛盾',
+	'Error':'错误',
+	'Impossibility':'不可能性',
+
+	'Proof': '证明',
+	'Prove': '证明',
+	'Inference': '推论',
+
+
+
+	'Calculate': '计算',
+	'Computation': '计算',
+	'Calculation': '计算',
+	'Method': '方法',
+
+	
+	'Formula': '公式',
+	'Formulae': '公式',
+	'Formulas': '公式',
+
+
+
+	'Thought': '思想',
+
+
+	'Inductive':'归纳',
+	'Direct':'直接',
+	'Indirect':'间接',
+	'Analogy':'类比',
+	'Deductive':'演绎',
+	'Reasoning': '推理',
+
+	'Pattern': '模式',
+	'Pattern.v': '图案',
+	'Paradigm':'范式',
+
+
+	'Topic': '课题',
+
+	//教学
+
+	'Teaching': '教学',
+	'Course': '课程',
+	'Drill': '题库',
+	'Examination Paper':'试卷',
+
+	'Exam': '考试',
+	'Quiz':'测验',
+
+	'Vote':'投票',
+	'Poll':'民测投票',
+	'Survey':'调查',
+	'Investigation':'调查研究',
+	'Questionnaire':'问卷',
+
+
+	'Discuss':'讨论',
+	'Discussion':'讨论',
+	
+	'Question':'问题',
+	'Answer':'答案',
+
+	'Respond':'响应',
+	'Reply':'回复',
+
+
+	'Score': '得分',
+	'fill in the blank': '填空',
+	'Choice': '选择',
+	'Judgement': '判断',
+
+
+
+	//学术
+
+	'Document': '文档',
+	'Periodical':'期刊',
+
+	'Reference': '引用',
+
+	'Meeting':'会议',
+
+	'Academic':'学术',
+	'Seminar':'研讨会',
+	'Conference':'会议',
+
+	'Race':'比赛',
+	'Contest':'竞赛',
+	'Competetion':'竞争',
+
+	'Prize':'奖',
+	'Awards':'奖项',
+	'Award':'奖',
+	'Bonus':'奖金',
+
+	'Institution': '机构',
+	'Organization': '组织',
+
+
+
+
+	//技术
+
+	'Technology': '技术',
+	'Modeling':'建模',
+	'Optimization':'优化',
+	'Standardization': '标准化',
+
+	'Programming': '编程',
+	'Programmatic': '程序化',
+
+	'Standard':'标准',
+	'Software': '软件',
+	'Hardware': '硬件',
+
 	'Library': '库',
+	'Industry': '行业',
+	'Project': '工程',
+
+
+
+
+
+
+	//科学
+
+	'Science':'科学',
+	'Scientific':'科学',
+	'Fiction':'幻想',
+	'Scientific Fiction':'科幻',
+
+	'Universe':'宇宙',
+	'Life':'生命',
+	'Environment':'环境',
+	'Environmental Protection':'环保',
+	'Eco-Friendly': '环保的',
+
+
+	'AI': '人工智能',
+	'Intelligent': '智能',
+	
+
+
+
+	//文化
+
+	'Culture':'文化',
+	'Game': '游戏',
+	'Paper Cutting':'剪纸',
+	'Paper Folding':'折纸',
+	'Origami':'日本折纸',
+	'Rubik Cube':'魔方',
+	'Sudoku':'数独',
+	'Tessellation':'镶嵌',
+	'Knot':'绳结',
+	'Plasticine':'橡皮泥',
+
+
+	'Comic':'漫画',
+	'Cartoon':'卡通',
+	'Animation': '动画',
+	'Animate': '动画',
+	'Doodle': '涂鸦',
+	'Joke':'笑话',
+	'Humor':'幽默',
+
+	'History':'历史',
+	
+	'Interview':'访谈',
+	'Report':'报道',
+	'Blog':'博客',
+	'Podcast':'播客',
+	'Vlog':'视频博客',
+	'Ebook':'电子书',
+
+
+	'Philosophy':'哲学',
+	'Art':'艺术',
+	'Architecture':'建筑',
+	'Sculpture':'雕塑',
+
+
+
+
+	// 工程	
+
+
+
+
+
+	'Program': '项目',
+
 	'File': '文件',
 	'Engine': '引擎',
 	'Subproject': '子项目',
 	'Application': '应用',
 	'by-product': '副产品',
 	'Goal': '目标',
-	'Software': '软件',
-	'Hardware': '硬件',
+
 	'Web': '网络',
 	'Webpage': '网页',
-	'Home':'主页',
+	'Home': '主页',
 
-	'Interface':'界面',
-	'Night':'夜间',
-	'Help':'帮助',
-	'Example':'示例',
-	'Format':'格式',
-	'Preview':'预览',
+	'Interface': '界面',
+	'Night': '夜间',
+	'Help': '帮助',
+	'Example': '示例',
+	'Format': '格式',
+	'Preview': '预览',
 
-	'Exam':'考试',
-	'Answer':'答案',
-	'Score':'得分',
-	'fill in the blank':'填空',
-	'Choice':'选择',
-	'Judgement':'判断',
+
 
 
 	'Scope': '范围',
 	'Textarea': '文本框',
 	'Computer': '计算机',
 
-	'Wiki': '百科',
-	'Drill': '题库',
-	'Course': '课程',
 
 	'Pitfall': '陷阱',
 	'Todo': '待办',
 
 	'Statistics': '统计',
-	'Game': '游戏',
+
 
 	'Lottery': '彩票',
 	'Sudoku': '数独',
@@ -200,15 +402,15 @@ lang['zh_cn'] = {
 	'End Note': '尾注',
 	'Child': '子元素',
 
-	'Container':'容器',
-	'Box':'盒子',
+	'Container': '容器',
+	'Box': '盒子',
 	'Node': '节点',
 	'Dash': '虚线',
 	'Arrow': '箭头',
 	'Round Corner': '圆角',
 	'Rounded': '圆角',
 
-	'Borderless':'无框',
+	'Borderless': '无框',
 
 	'Pie': '饼',
 	'Bar': '条形',
@@ -221,8 +423,8 @@ lang['zh_cn'] = {
 	'Mask': '遮罩',
 	'Clipboard': '剪贴板',
 
-	'Instant':'即时',
-	'Timeout':'延时',
+	'Instant': '即时',
+	'Timeout': '延时',
 	'Text': '文本',
 	'Image': '图片',
 	'Mic': '麦克风',
@@ -242,23 +444,21 @@ lang['zh_cn'] = {
 	'Voice': '嗓音',
 	'Music': '音乐',
 	'Noise': '噪音',
-	'Usage':'使用量',
-	'Cache':'缓存',
-	'Export':'导出',
-	'Import':'导入',
-	'Browser':'浏览器',
-	'Share':'分享',
+	'Usage': '使用量',
+	'Cache': '缓存',
+	'Export': '导出',
+	'Import': '导入',
+	'Browser': '浏览器',
+	'Share': '分享',
 
 	'Effects': '特效',
 	'Action': '动作',
 	'Scene': '场景',
-	'Animation': '动画',
-	'Animate': '动画',
+
 	'Gadget': '部件',
 	'Show': '演示',
 	'Slide': '幻灯片',
-	'Document':'文档',
-	'Doodle': '涂鸦',
+
 	'Compression': '压缩',
 	'Synthesis': '合成',
 	'Note': '注释',
@@ -268,8 +468,8 @@ lang['zh_cn'] = {
 	'Title': '标题',
 	'Background': '背景',
 
-	'Backface':'背面',
-	'Frontface':'前面',
+	'Backface': '背面',
+	'Frontface': '前面',
 
 	'Keyword': '关键词',
 	'Layer': '层',
@@ -358,22 +558,11 @@ lang['zh_cn'] = {
 	'Eagerness': '热切程度',
 	'Step': '步',
 
-	'Event':'事件',
+	'Event': '事件',
 	'Reusability': '复用性',
 
 	// 自由描述
-	'Name': '名称',
-	'Summary': '简介',
-	'Description': '描述',
-	'Definition': '定义',
-	'Property': '性质',
-	'Notation': '记法',
-	'Theorem': '定理',
-	'Axiom': '公理',
-	'Lemma': '引理',
-	'Inference': '推论',
-	'Hypothesis': '猜想',
-	'Suppose': '假设',
+
 
 
 	'Glossary': '词汇表',
@@ -384,12 +573,10 @@ lang['zh_cn'] = {
 
 
 	'Expression': '表达式',
-	'Formula': '公式',
-	'Formulae': '公式',
-	'Formulas': '公式',
+
 	'Code': '代码',
 
-	'QRcode':'二维码',
+	'QRcode': '二维码',
 	'Snippet': '片段',
 	'Character': '字符',
 	'Content': '内容',
@@ -405,16 +592,16 @@ lang['zh_cn'] = {
 	'Object': '对象',
 	'Entity': '实体',
 
-	'Component':'组件',
+	'Component': '组件',
 	'Closure': '闭包',
 	'Computing Power': '计算能力',
 	'Synergy': '协同能力',
 
-	'Latin':'拉丁字母',
-	'Greek':'希腊字母',
-	'Hebrew':'希伯来文',
-	'Lowercase':'小写',
-	'Uppercase':'大写',
+	'Latin': '拉丁字母',
+	'Greek': '希腊字母',
+	'Hebrew': '希伯来文',
+	'Lowercase': '小写',
+	'Uppercase': '大写',
 
 	'Rule': '法则',
 	'Aims': '宗旨',
@@ -428,19 +615,15 @@ lang['zh_cn'] = {
 	'Terms': '条款',
 
 	'Creative Commons': '知识共享',
-	'Topic': '课题',
+
 	'Consensus': '共识',
 	'Cooperation': '合作',
 	'Condition': '条件',
-	'Concept': '概念',
-	'Technology': '技术',
-	'Thought': '思想',
-	'Proof': '证明',
 
 	// adj.	prep.
 
-	'Big':'大',
-	'Small':'小',
+	'Big': '大',
+	'Small': '小',
 	'Double': '双',
 	'Triple': '三',
 	'Random': '随机',
@@ -505,11 +688,11 @@ lang['zh_cn'] = {
 	'Inline': '行内',
 	'Quote': '引用',
 	'Blockquote': '块引用',
-	'Reference': '引用',
+
 	'Checkbox': '勾选框',
 
 	'All': '全部',
-	'Summarize':'概括',
+	'Summarize': '概括',
 
 	'Systematized': '系统化',
 	'Semantical': '语义化',
@@ -524,9 +707,9 @@ lang['zh_cn'] = {
 
 	'Stable': '稳定的',
 	'Portable': '便携的',
-	'Eco-Friendly': '环保的',
+
 	'Efficient': '高效的',
-	'Intelligent': '智能',
+
 	'Automatic': '自动化',
 	'Flexible': '灵活的',
 	'Agile': '敏捷的',
@@ -569,17 +752,16 @@ lang['zh_cn'] = {
 	'Region': '区域',
 	'Data': '数据',
 	'Opacity': '透明度',
-	'Pattern': '模式',
-	'Pattern.v': '图案',
+
 	'Width': '宽',
 	'Height': '高',
 	'Shadow': '阴影',
 	'Direction': '方向',
 	'Option': '选项',
-	'Method': '方法',
+
 	'Attribute': '属性',
 	// action
-	'Append':'添加',
+	'Append': '添加',
 	'Focus': '聚焦',
 	'Begin': '开始',
 	'at first': '最先',
@@ -588,7 +770,7 @@ lang['zh_cn'] = {
 	'Start': '开始',
 	'Finish': '完成',
 
-	'Need':'需要',
+	'Need': '需要',
 	'Ignore': '忽略',
 	'Filter': '过滤',
 	'Filter.v': '滤镜',
@@ -602,24 +784,23 @@ lang['zh_cn'] = {
 	'Drag': '拖拽',
 	'Download': '下载',
 	'Upload': '上传',
-	'New':'新建',
+	'New': '新建',
 
-	'TOC':'目录',
-	'Generate':'生成',
-	'Scan':'扫描',
-	'Update':'更新',
-	'Render':'渲染',
-	'Remove':'移除',
-	'Illustration':'插图',
-	'Zoom':'缩放',
-	'Resize':'调整尺寸',
+	'TOC': '目录',
+	'Generate': '生成',
+	'Scan': '扫描',
+	'Update': '更新',
+	'Render': '渲染',
+	'Remove': '移除',
+	'Illustration': '插图',
+	'Zoom': '缩放',
+	'Resize': '调整尺寸',
 
 	'Solve': '解题',
 	'Question Type': '题型',
 
-	'Setting':'设置',
-	'Computation': '计算',
-	'Calculation': '计算',
+	'Setting': '设置',
+
 	'Decomposition': '分解',
 	'Emotionalization': '情感化',
 	'Parameterization': '参数化',
@@ -628,7 +809,7 @@ lang['zh_cn'] = {
 	'Decentralization': '去中心化',
 
 	'Integration': '整合',
-	'Standardization': '标准化',
+
 
 	'Initialize': '初始化',
 	'Operation': '运算',
@@ -670,7 +851,7 @@ lang['zh_cn'] = {
 
 	'Select': '选择',
 
-	
+
 
 	'Edit': '编辑',
 	'Replace': '替换',
@@ -695,18 +876,15 @@ lang['zh_cn'] = {
 	'Refer': '参考',
 	'Link': '链',
 	'href': '超链接',
-	'Lerp':'线性插值',
+	'Lerp': '线性插值',
 
 	'i18n': '国际化',//	'Internationalization':'国际化',
 	'i10n': '本土化',	//Localization 
 
-	'Reasoning': '推理',
-	'Programming': '编程',
-	'Programmatic': '程序化',
-	'AI': '人工智能',
+
 
 	'Words': '文字',
-	'Command':'命令',
+	'Command': '命令',
 
 
 	//Math concept
@@ -769,8 +947,8 @@ lang['zh_cn'] = {
 	'Field': '域',
 	'Lattice': '格',
 
-	'Equality':'等式',
-	'Non-equality':'不等式',
+	'Equality': '等式',
+	'Non-equality': '不等式',
 
 	'Equivalence': '等价关系',
 	'Partial Order': '偏序',
@@ -795,8 +973,8 @@ lang['zh_cn'] = {
 	'Foci': '焦点',
 
 
-	'Over':'上',
-	'Under':'下',
+	'Over': '上',
+	'Under': '下',
 
 	'Coordinate': '坐标',
 	'Centroid Coordinate': '中心坐标',
@@ -829,12 +1007,14 @@ lang['zh_cn'] = {
 	'Circle': '圆',
 	'Ellipse': '椭圆',
 	'Incircle': '内切圆',
+	'Cone': '圆锥',
+	'Cylinder': '圆柱',
 
 	'Curve': '曲线',
 	'Conic Section': '圆锥曲线',
 	'Arc': '弧',
 	'Polyline': '折线',
-	'lineHV':'横竖线',
+	'lineHV': '横竖线',
 	'Vertex Line': '顶点连线',
 	'Bisector': '平分线',
 	'Midline': '中位线',
@@ -886,9 +1066,9 @@ lang['zh_cn'] = {
 	'Rank': '秩',
 	'Trace': '迹',
 	'Order': '阶',
-	'Piece':'分段',
+	'Piece': '分段',
 
-	'Det':'行列式',
+	'Det': '行列式',
 	'Determinant': '行列式',
 
 	'Norm': '模',
@@ -898,8 +1078,8 @@ lang['zh_cn'] = {
 
 	'Leading Principle Minor': '顺序主子式',
 
-	'Binom':'二项式',
-	'Subsup':'上下标',
+	'Binom': '二项式',
+	'Subsup': '上下标',
 
 	'Dimension': '维度',
 	// 几何
@@ -912,13 +1092,11 @@ lang['zh_cn'] = {
 
 	// verb
 
-	'Swap':'切换',
+	'Swap': '切换',
 
 	'Convert': '转换',
 	'Express': '表示',
 	'Simplify': '化简',
-	'Calculate': '计算',
-	'Prove': '证明',
 
 	'Divide': '整除',
 
@@ -943,13 +1121,13 @@ lang['zh_cn'] = {
 	//代数
 	'Absolute': '绝对',
 	'Positive': '正',
-	'Negative':'负',
+	'Negative': '负',
 	'Natural': '自然',
 	'Prime': '质',
 	'Rational': '有理',
 	'Irrational': '无理',
 	'Radical': '根式',
-	'Root':'根',
+	'Root': '根',
 
 	'Transcendental': '超越',
 	'Real': '实',
@@ -969,7 +1147,7 @@ lang['zh_cn'] = {
 	'Recursive': '递归',
 	'Cross': '交叉',
 
-	'Parentheses':'括号',
+	'Parentheses': '括号',
 	'Nest': '嵌套',
 	'Symmetry': '对称',
 
@@ -1037,8 +1215,8 @@ lang['zh_cn'] = {
 	'Cartesian': '笛卡尔',
 
 	//Math subject
-	'Level-1':'一级',
-	'Level-2':'二级',
+	'Level-1': '一级',
+	'Level-2': '二级',
 	'Math': '@0',
 	'Mathematics': '@0',
 	"Mathematical": '@0',
@@ -1048,7 +1226,7 @@ lang['zh_cn'] = {
 	"2": "@0",
 	"3": "代数",
 
-	"Discipline":"学科",
+	"Discipline": "学科",
 	"Subject": "学科",
 	'Subject Classification GB': '中国国家标准数学学科分类',
 

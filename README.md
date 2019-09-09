@@ -1,12 +1,15 @@
 # zzllrr Mather - An open-sourced Math Tool
-
+![ ](https://img.shields.io/badge/license-MIT-blue)
 ![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
 <https://zzllrr.github.io/mather/>
 
+ 小乐数学，基于web网页的覆盖数学全部学科的数学开源软件。
+
+zzllrr Mather ![](https://img.shields.io/badge/license-MIT-blue)
+
 ## Summary 摘要
 
-zzllrr Mather (小乐数学)，基于web网页的覆盖数学全部学科的数学开源软件，
-浏览器打开index.html，开箱即用（兼容电脑和触屏移动设备）。
+开箱即用（兼容电脑和触屏移动设备）,
 支持离线解题、运算、公式编辑、几何绘图、演示（文档、PPT、AR、VR、语音等富媒体）、
 知识库（数学概念实体库、公式库、定理库、题库、文献资源索引库）。
 软件适合广大的数学师生、爱好者、研究者、开发者、科普工作者使用。
@@ -36,13 +39,18 @@ zzllrr Mather (小乐数学)，基于web网页的覆盖数学全部学科的数�
 - 2. 文档编辑
 点击演示（Show）菜单，文档（Document）子菜单，
 在输入框中，输入文本内容（以及图形或动画命令），然后点击左侧下方的绿色播放按钮，可以进入文档浏览模式。
-支持LaTeX、Markdown、HTML、SVG、Canvas、JavaScript、Echarts等格式混合内容排版，不同格式内容需使用相应闭合标签括起来。
+支持LaTeX、Markdown、HTML、SVG、Canvas、JavaScript、Echarts、Zdog、VR、AR等格式混合内容排版，
+不同格式内容需使用相应闭合标签括起来。
 例如（更多示例，参见软件内的输入框右侧提示）：
 - 行内数学公式：使用IL标签包裹LaTeX内容（参见KaTeX所支持的语法）
-``` <IL>x^2+y^2=z^2</IL>```
+```html
+<IL>x^2+y^2=z^2</IL>
+ ```
 
 - 行间数学公式：使用LA标签包裹LaTeX内容（参见KaTeX所支持的语法）
-``` <LA>x^2+y^2=z^2</LA>```
+```html
+<LA>x^2+y^2=z^2</LA>
+```
 
 - Markdown代码：使用MD标签包裹Markdown内容
 与常见Markdown软件支持的格式类似。数学公式用美元符号$括起来。
@@ -50,20 +58,37 @@ zzllrr Mather (小乐数学)，基于web网页的覆盖数学全部学科的数�
 - HTML代码：直接输入，无需额外的闭合标签包裹
 
 - SVG：直接输入完整的SVG源代码，或者使用SV标签包裹内容
-```<SV><rect x=10 y=10 width=100 height=30 stroke=green fill=none /></SV> ```
+```html
+<SV><rect x=10 y=10 width=100 height=30 stroke=green fill=none /></SV>
+```
 
 - Canvas：用CV标签包裹Canvas的JS代码（变量c代指canvas.getContext('2d')）
-```<CV>c.strokeRect(10, 20, 200, 150);</CV>```
+``` <CV> ```
+```js
+c.strokeRect(10, 20, 200, 150);
+```
+``` </CV> ```
 
 - JavaScript: 用JS标签包裹JS代码片段
-```<JS>1+2<JS>```
+``` <JS> ```
+```js
+1+2
+```
+``` </JS> ```
 
 - Echarts: 用EC标签包裹Echarts中的JSON数据命令
-```<EC>{"xAxis":{"type":"category","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]},"yAxis":{"type":"value"},"series":[{"data":[100,932,901,200,400,600,700],"type":"line"}]}</EC>```
+``` <EC> ```
+```json
+{"xAxis":{"type":"category","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]},"yAxis":{"type":"value"},"series":[{"data":[100,932,901,200,400,600,700],"type":"line"}]}
+```
+``` </EC> ```
+
 可以画出一个折线图
 
 - I18国际化：用I18标签包裹英文键值（软件会在预览时自动翻译为当前语言，暂只支持英语转成中文简体）：
-```<I18>Algebra and Geometry</I18>```
+```html
+<I18>Algebra and Geometry</I18>
+```
 
 
 - 3. 数学图形绘制

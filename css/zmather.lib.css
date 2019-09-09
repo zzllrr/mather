@@ -72,9 +72,7 @@
   	border:none;
   }
 }
-.wiki,.wiki > tbody > tr > td{
-	border-color:gainsboro
-}
+
 
 .inputTip,.subtools, #outputOpt{
 	font-size:1.1rem
@@ -351,14 +349,6 @@ li,#wiki{
 	border:0
 }
 
-.wiki:not(.bd0){
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
-}
-.wiki:not(.bd0){
-	min-width:25px;
-}
 
 
 
@@ -463,42 +453,6 @@ input[type=text],#wiki>span,.brad{
 	border-right:dotted black 1px;
 }
 
-.wiki>.cnt2{
-    counter-reset: cnt 1;
-}
-.wiki>.cnt1{
-    counter-reset: cnt 0;
-}
-.wiki>.cnt0{
-    counter-reset: cnt -1;
-}
-.wiki>.cnt_1{
-    counter-reset: cnt -2;
-}
-.wiki>.cnt2>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt1>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt0>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt_1>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-
-}
-.wiki>tbody>tr:before{
-    text-shadow: 1px 1px 1px #666;
-    color: gray;
-}
-.wiki>thead.cnt>tr:before{
-	content: "";
-}
 
 .subtools details[open]{
 	border: solid 1px;
@@ -519,7 +473,7 @@ input[type=text],#wiki>span,.brad{
 }
 
 
-#wiki summary,#wiki>span,.wiki > tbody > tr> td, .pd2,.scbox,.mfx, #tileToolCap > details{
+.pd2,.scbox,.mfx, #tileToolCap > details{
 	padding:2px
 }
 .pd10{
@@ -604,9 +558,6 @@ input[type="file"]{
 
 
 
-.wiki,.alignc, #oHTML > h1:first-child{
-	text-align:center
-}
 
 .alignl, #canvasMenu ~ div{
 	text-align:left
@@ -697,7 +648,7 @@ summary ~ details summary{
 .inputTip{
 	margin:0 5px;
 }
-.resize,.inputTip,#input0Preview,#input0Tool{
+.plot, .resize,.inputTip,#input0Preview,#input0Tool{
 	overflow: auto;
     resize: auto;
 }
@@ -867,7 +818,7 @@ select,input:not([type="file"]), .rem13{
 textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview, #iTextPreview{
+#input0Preview, #iTextPreview{
 	background: rgba(162,195,97,.1);
 }
 

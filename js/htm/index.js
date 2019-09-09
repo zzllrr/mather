@@ -6,7 +6,7 @@
 
 
 $(function(){
-	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought');
+	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought');// teaching academic technology science culture
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after(
 '<div id=zMather hidden>'+
@@ -76,6 +76,10 @@ $(function(){
 				
 						gM('Calculator')+' | '+gM('Script')+
 						'":"JavaScript"},{"'+
+
+						gM('Translator')+
+						'":"I18N"},{"'+
+
 						gM('Data')+' | '+gM('Text')+
 						'":"TXT TSV CSV XML YAML JSON"}]')
 					)
@@ -1001,6 +1005,9 @@ consolelog('最终A = ',A);
 		if(v=='Echarts'){
 			tv=tooltip.graphic['Statistics/Echarts']
 		}
+		if(v=='I18N'){
+			tv=v;
+		}
 
 		var ii=ZLR(Mele).indexOf(v),i=$('.snippet.seled').index()+1, p=ii>-1?ZLR(Meles)[ii]:v;
 		//console.log(v,p);
@@ -1017,7 +1024,16 @@ consolelog('最终A = ',A);
 			width=Math.max($('#input0').width(),$('#input0Tool').width())||200,
 			height=Math.max($('#input0').height(),$('#input0Tool').height())||200,
 			strc='class="inputTip inputTypeTip" style="max-height:'+height+'px" data-tool="';
+
 		if(tv && it.length<1){
+
+			if(tv=='I18N'){
+				tv='';
+				$.each(i18n,function(i,j){
+					tv+=sceg2(i)+': '+sceg2(j)+br
+				});
+			}
+
 			$('#input0Tip').append(detail(v,tv,'',strc+v+'"'));
 
 

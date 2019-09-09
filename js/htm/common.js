@@ -239,8 +239,9 @@ function all2html(type,V,dom){
         var x=jsyaml.load(v);
         w.html(XML.wrapE('pre',XML.wrapE('code',jSoff(x))));//txa
 
-    }else if(iv=='I18'){
-        w.text(function(i,v){return gM(v)});
+    }else if(/I18/.test(iv)){
+        //w.text(function(i,v){return gM(v)});
+        w.text(gM(v));
 
     }else if(/ECHARTS|EC/.test(iv)){
 consolelog(v);
@@ -429,10 +430,6 @@ $(function () {
         }else if(me.is('.Clear')){
 
 
-
-
-
-        //}else if(me.parents('#oHTML').length){
         }else if(me.parents('.wiki').length || me.parent().parent().is('.OHLaTeX')){
 
 

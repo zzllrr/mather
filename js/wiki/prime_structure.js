@@ -8,7 +8,7 @@
 wiki['Prime Structure']=Kx(
 
 
-detail('素数表<input type=number id=primeBegin max=50000 value=1 min=1 />~<input type=number id=primeEnd max=50000 value=100 min=1 /><label><input type=checkbox id=primeNO />序号</label>'+
+detail('素数表'+num('1" id="primeBegin',1,50000)+'~'+num('100" id="primeEnd',1,50000)+'<label>'+strchkbx0+'id=primeNO />序号</label>'+
 	'<select id=primeform>'+Options(['form','binary','binary2'],['形式','二进制','二进制1-[01]*1']).join('')+'</select>',
 	'<div id=primes>'+dc)+
 
@@ -17,7 +17,7 @@ detail('素数结构表 '+zx(kxo('ab')),Table([['截尾a','末位b=1','末位b=3
 		[1,1,3,7,9],[2,'',3,'',9],[3,1,'',7,''],[4,1,3,7,''],[5,'',3,'',9],[6,1,'',7,''],[7,1,3,'',9],[8,'',3,'',9],[9,'','',7,''],[10,1,3,7,9],[11,'',3,'',''],[12,'','',7,''],[13,1,'',7,9]
 	].concat(PrimeAlist(1000))
 	*/
-	,'TBrc'))+
+	,'TBrc wiki'))+
 detail('素数结构表 '+zx('∏p_i+p'),Table([['分布','表格结构','表格区域素数个数','备注']],[
 	[Table('',[[2,1],[1,3],[2,5]],'TBI1J1'),'','',''],
 	[Table('',[['2⋅3',1,5],[1,7,11],[2,13,17],[3,19,23],[4,scbox('25='+msup(5,2)),29],
@@ -111,7 +111,7 @@ detail('素数结构表 '+zx('2p_k+∏p_i'),Table([['奇素数>6','3','5','7','1
 
 	]
 
-	,'TBrc'))
+	,'TBrc wiki'))
 
 /*
 	Rowland's recurrence数列，相邻项之差的数列，只由1和素数构成

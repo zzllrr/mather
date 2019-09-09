@@ -7,7 +7,7 @@
  * 依赖：
  * 需先加载 KaTeX
 */
-var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18 JavaScript 3D 2D Zdog',
+var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N JavaScript 3D 2D Zdog',
 Meles='LA AM UM CM PM SV CV EC MD YM I18 JS D2 D3 ZD',
 Mele2='LT LX LTX TEX IL YML',
 Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
