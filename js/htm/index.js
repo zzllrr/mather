@@ -6,7 +6,7 @@
 
 
 $(function(){
-	var toolnames=ZLR('solve graphic show wiki course drill topic pitfall unsolved thought');// teaching academic technology science culture
+	var toolnames=ZLR('solve graphic show wiki teaching academic technology science culture');// course drill topic pitfall unsolved thought
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after(
 '<div id=zMather hidden>'+
@@ -657,22 +657,29 @@ dc);
 		var me=$(this),mei=me.attr('data-i'),eg=me.attr('data-eg'),tip=me.attr('data-tip'),mtool=me.attr('data-tool'), shft=e.shiftKey || $('#Shift').is('.seled'),
 		pa=me.parent(),p=pa.parents('.ground'),
 		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{},
-		issolve=tool=='solve', isshow=tool=='show', 
+		issolve=tool=='solve', isshow=tool=='show', iswiki=tool=='wiki',
 		istask=me.is('.task');
 
 		if(!istask){
 			pa.nextAll().add('#oHTML').empty();
 		}
-		
+
+
 		if(me.is('.seled')){
 			me.removeClass('seled');
 			$('.inputTip[data-uri^="'+muri+'"]').remove();
+			
+			if(istask){
+				var muri=me.attr('data-uri');
+				$('iframe[src="wiki.html?q='+muri).remove();
+			}
 			
 		}else{
 			me.addClass('seled');
 			if(!istask){
 				me.siblings().removeClass('seled');
 			}
+	
 			var fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length,v=issolve?$('#subject2').val():'';
 
 
@@ -693,7 +700,7 @@ dc);
 			for(var i=0;i<lvl;i++){
 				
 				var u0=fm[0].slice(0,i+1).join('/'),m0=fm[0][i],tip0=tt[u0],tip1=tt[u0+' Condition'];
-consolelog(u0, tip0);
+//consolelog(u0, tip0);
 				if(tip0 && $('#input0Tip .inputTip[data-uri="'+u0+'"][data-tool="'+m0+'"]').length<1){
 					$('#input0Tip').append(detail(gM(m0), tip0, '', strc+m0+'" data-uri="'+u0+'"'));
 
@@ -703,7 +710,7 @@ consolelog(u0, tip0);
 				}
 			}
 
-consolelog('路径',fm);
+//consolelog('路径',fm);
 
 			if(isshow){
 				if(/Slide|[VA]R/.test(mei) && $('#input0Type').val()!=mei){
@@ -719,12 +726,19 @@ consolelog('路径',fm);
 				}
 			}
 
-consolelog('uri = ',muri);
+//consolelog('uri = ',muri);
 
 			var A=evs[fm[0][0]];
-			
+	/*		
+			if(istask && iswiki){
+				OH(ev[A] || ev[fm[0].slice(-2).join(' ')]  || ev[fm[0].slice(-2).reverse().join(' ')] || ev[fm[0].join(' ')] || ev[muri] )
+				return 
+			}
+*/
+
+
 			if(A && !istask){
-consolelog('A = ',A);
+//console.log('A = ',A);
 				if(isStr(A)){
 
 
@@ -735,7 +749,7 @@ consolelog('A = ',A);
 						if(isObj(A)){
 							A=A[fm[0][1]]
 						}
-consolelog('此时A = ',A);
+//console.log('此时A = ',A);
 						if(lvl==3){
 							A=A[fm[1][2]];
 							if(isObj(A)){
@@ -744,20 +758,27 @@ consolelog('此时A = ',A);
 						}
 						
 					}
-consolelog('最终A = ',A);
+//console.log('最终A = ',A);
 					if(!isStr(A)){
 						for(var i=0,l=A.length;i<l;i++){
 							if(isStr(A[i])){
+//console.log('lvl = ',lvl,A[i]);
+
+
 								if(issolve){
 									str2+=jdetail(A[i],'','task')
+
+								}else if(lvl==3 && iswiki){
+									str2+=jdetail(A[i],'','task',muri+'/'+A[i])
+
 								}else{
 									str+=jdetail(A[i])
 								}
 								
 							}else{
 								$.each(A[i], function(k,v){
-									consolelog('A[i]=',k,v);
-									if(issolve && (!isArr(v) || lvl==3)){
+//console.log('A[i]=',k,v);
+									if((issolve || iswiki) && (!isArr(v) || lvl==3)){
 										if(isArr(v)){
 											str2+=jdetail(A[i],'','task')
 										}else{
@@ -773,17 +794,22 @@ consolelog('最终A = ',A);
 								});
 							}
 						}
-
+//console.log(lvl, str2);
 						pa.next().html(str)
 					}
 				}
+//console.log('lvl= ',lvl,str2);
+
 
 				if(issolve){
 					$('#solveGround .tasks').html(str2);
-					
+
+				}else if(str2 && iswiki && lvl==3){
+					$('#wikiGround .tasks').html(str2);
+
 				}else if(isStr(A)){
 
-					if(/wiki/.test(tool)){
+					if(iswiki){
 
 						OH('<iframe src="wiki.html?'+('q='+muri)+
 							'" width="99%" height="400px" class="resize bd0"></iframe>');
@@ -797,7 +823,15 @@ consolelog('最终A = ',A);
 			var B=eT[muri];
 			if(B){B()}
 			
-			
+			if(iswiki && istask){
+				if($('iframe[src="wiki.html?q='+muri).length<1){
+					$('#oHTML').append('<iframe src="wiki.html?'+('q='+muri)+
+					'" width="99%" height="400px" class="resize bd0"></iframe>');
+				}
+
+				return;
+			}
+
 			if(shft){//(v.trim()?v.trim()+'\n':'')+
 				$('#input0').val(eg||$('#input0Tip .eg').not('.eg2').attr('data-eg')||'');
 			}

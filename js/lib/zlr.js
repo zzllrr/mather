@@ -414,7 +414,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	},
 	kdetail = function (s, v, notsk, notvk) { return zdetail(s, v, notsk, notvk, 1) },
 
-	jdetail = function (A, i18nObj, subTool) {
+	jdetail = function (A, i18nObj, subTool, uri) {
 		var f = function (t, subtool) {
 			if (isStr(t)) {
 				var tool = t.replace(/[…—“][\S\s]+/, ''), ts = t.split('…'),
@@ -426,6 +426,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 				return subtool == 'task' ? SCtv('task" data-tool="' + ft
 					+ '" title="' + gM(title)
 					+ '" data-tip="' + (tip ? gM(tip) : ft)
+					+ '" data-uri="'+(uri||'')
 					+ '" data-eg="' + eg,
 					/^\$.+\$$/.test(m) ? zx(fnv0(m)) : m) : SCtv('level ' + (subtool || '') + '" data-i="' + tool, gM(tool, '', i18nObj))
 			}

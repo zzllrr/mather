@@ -162,6 +162,8 @@ lang['zh_cn'] = {
 	'Theorem': '定理',
 	'Axiom': '公理',
 	'Lemma': '引理',
+	'Principle':'原理',
+	'Law.Math':'定律',
 
 	'Conjecture':'猜想',
 	'Hypothesis': '假设',
@@ -174,13 +176,16 @@ lang['zh_cn'] = {
 
 	'Proof': '证明',
 	'Prove': '证明',
-	'Inference': '推论',
-
+	'Inference': '推断',
+	'Corollary':'推论',
 
 
 	'Calculate': '计算',
 	'Computation': '计算',
 	'Calculation': '计算',
+	'Estimate':'估算',
+
+
 	'Method': '方法',
 
 	
@@ -229,6 +234,7 @@ lang['zh_cn'] = {
 	
 	'Question':'问题',
 	'Answer':'答案',
+	'Q & A':'问答',
 
 	'Respond':'响应',
 	'Reply':'回复',

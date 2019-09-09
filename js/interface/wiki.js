@@ -5,17 +5,14 @@
  */
 
 wikis={
-	'index':['Number','Vector','Matrix','Analytic','Limit','Differential','Integral','Formal Power Series','Function','Algebra','Logic','Set','Relation','Geometry','Graph'],
-/*
-'Concept',
-													概念						
-													公理						
-建模	工程		科学	技术									定理						
-													公式						
-													猜想						
-													悖论						
-													不可能性						
-													方法	归纳	演绎	逻辑	推理	证明	类比
+	//'index':['Number','Vector','Matrix','Analytic','Limit','Differential','Integral','Formal Power Series','Function','Algebra','Logic','Set','Relation','Geometry','Graph'],
+
+	'index':['Concept','Theorem','Formula','Conjecture','Antinomy','Impossibility','Method'],
+	/*
+
+					
+建模	工程		科学	技术											
+
 教学	学术	技术	科学	文化															
 课程	文献库	建模	宇宙	游戏	剪纸	折纸	数独	镶嵌	魔方				思想						
 题库	机构	软件	生命	漫画									课题						
@@ -28,6 +25,75 @@ wikis={
 问卷																			
 讨论																			
 问答																			
+*/
+
+
+
+	'Theorem':[
+		{'Principle':[
+
+		]},
+		{'Axiom':[
+
+		]},
+		{'Theorem':[
+
+		]},
+		{'Corollary':[
+
+		]},
+		{'Law.Math':[
+
+		]},
+
+	],
+
+
+	'Formula':[
+		{'Calculate':[
+
+		]},
+
+		{'Estimate':[
+
+		]},
+	],
+
+
+	'Conjecture':[
+
+	],
+
+
+	'Antinomy':[
+
+	],
+
+	'Impossibility':[
+
+	],
+
+
+	'Method':[
+		{'Inductive':[
+
+		]},
+		{'Direct':[
+
+		]},
+		{'Indirect':[
+
+		]},
+		{'Analogy':[
+
+		]},
+		{'Deductive':[
+
+		]},
+		{'Reasoning':[
+
+		]},
+	],
 
 	'Concept':[
 		{'Number':[
@@ -57,8 +123,93 @@ wikis={
 				
 			]},
 		]},
+
+		{'Vector':[
+			'Vector',
+			'Tensor',
+		]},
+
+		{'Matrix':[
+			'Type',
+			'Unary Operation',
+			'Binary Operation',
+			'Binary Relation',
+			'Matrix Factorization',
+			'Determinant',
+			
+		]},
+		
+		{'Analytic':[
+			'Polynomial',
+			'Fraction',
+			'Radical',
+			'Infinite Series',
+			
+		]},
+		
+	
+		{'Limit':[
+			'Limit'
+		]},
+	
+		
+	
+		{'Differential':[
+			'Differential',
+		]},
+	
+		{'Integral':[
+			'Integral',
+		]},
+		
+		{'Formal Power Series':[
+			'Formal Power Series',
+		]},
+		
+		{'Function':[
+			'Function',
+			'Recursive',
+		]},
+		
+		{'Algebra':[
+			'Algebra',
+			'Group.Math',
+			'Ring',
+			'Lattice',
+		]},
+		
+		{'Logic':[
+			'Logic',
+		]},
+		
+		{'Set':[
+			'Set'
+		]},
+	
+		{'Relation':[
+			'Type',
+			'Compatible',
+			'Equivalence',
+			'Partial Order',
+		]},
+		
+	
+		{'Geometry':[
+			'Point',
+			'Line',
+			'Angle',
+			'Plane',
+			'Solid',
+		]},
+		{'Graph':[
+			'Type',
+			'Unary Operation',
+			'Binary Operation',
+			'Binary Relation',
+			'Path',
+		]},
 	],
-*/
+/*
 	'Number':[
 		'Unit',
 		'Number',
@@ -169,5 +320,5 @@ wikis={
 		'Binary Relation',
 		'Path',
 	]
-
+*/
 };

@@ -164,7 +164,14 @@ questions={
 
 editor={}, solve={}, graphic={}, show={}, wiki={},course={},drill={},topic={},pitfall={},unsolved={},thought={},refer={},
 editors={}, solves={}, graphics={}, shows={}, wikis={},courses=ZLR(subject0), drills=ZLR(subject0),topics={},pitfalls={},unsolveds={},thoughts={},refers={},
-editorThen={}, solveThen={}, graphicThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={}
+editorThen={}, solveThen={}, graphicThen={}, wikiThen={},courseThen={},drillThen={},topicThen={},pitfallThen={},unsolvedThen={},thoughtThen={},referThen={},
+
+
+teaching={},academic={}, technology={}, science={}, culture={},
+teachings={},academics={}, technologys={}, sciences={}, cultures={},
+teachingThen={}, academicThen={}, technologyThen={}, scienceThen={}, cultureThen={}
+
+
 /*
 	
 

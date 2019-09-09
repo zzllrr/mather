@@ -763,49 +763,18 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-#solveGround .level:not(.seled),#solve+span:hover{
+.ground:nth-of-type(3n+2) .level:not(.seled),#toolnav label:nth-of-type(3n+1) span:hover{
 	background:blue;
 }
 
-#graphicGround .level:not(.seled),#graphic+span:hover{
+.ground:nth-of-type(3n+3) .level:not(.seled),#toolnav label:nth-of-type(3n+2) span:hover{
 	background:hotpink;
 }
 
-#showGround .level:not(.seled),#show+span:hover{
+.ground:nth-of-type(3n+1) .level:not(.seled),#toolnav label:nth-of-type(3n+3) span:hover{
 	background:blueviolet;
 }
 
-#wikiGround .level:not(.seled),#wiki+span:hover{
-	background:#993366;
-}
-
-#courseGround .level:not(.seled),#course+span:hover{
-	background:#996633;
-}
-
-#drillGround .level:not(.seled),#drill+span:hover{
-	background:#CCCC66;
-}
-
-#topicGround .level:not(.seled),#topic+span:hover{
-	background:#009933;
-}
-
-#pitfallGround .level:not(.seled),#pitfall+span:hover{
-	background:#CC3366;
-}
-
-#unsolvedGround .level:not(.seled),#unsolved+span:hover{
-	background:#663300;
-}
-
-#thoughtGround .level:not(.seled),#thought+span:hover{
-	background:#6699CC;
-}
-
-#referGround .level:not(.seled),#refer+span:hover{
-	background:darkred;
-}
 
 [name=tool]:checked + span,.subhead.seled,.subtabhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;
