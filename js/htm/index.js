@@ -91,7 +91,7 @@ $(function(){
 					'<div id=inputTools>'+
 						strbtn+'." id=lineMerge />'+
 						strbtn+':" id=lineSplit />'+
-						strbtn+'⋮" id=Condon class=tool />'+
+						strbtn+'⋮" id=Condon class=tool hidden />'+
 
 						itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 						

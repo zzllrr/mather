@@ -565,6 +565,9 @@ input[type="file"]{
 .alignr{
 	text-align:right
 }
+.alignc{
+	text-align: center
+}
 
 .floatl,.inputTip,#iTextMain > *:not(.clear),#Cond > *:not(.clear){
 	float:left
