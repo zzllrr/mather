@@ -60,8 +60,48 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 			aB.html(html || '');
 			return Engin
 		}
+	}, delivr=function(x,y,type){
+		return Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
+	}, unpkg=function(x,y,type){
+		return Hs+'unpkg.com/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
+	}, referf=function(x,y,type){
+		return type=='css'?'<link rel="stylesheet" href="' + x+'"'+(y||'')+'>':(
+			type=='js'||!type?'<script src="'+x+'"'+(y||'')+'></script>':''
+		)
+	}, jslib={
+		'echarts':referf(delivr('echarts')),
+		// echart 3D 需要webgl，暂未找到完整集成的js cdn www.jsdelivr.com/package/npm/echarts?path=dist
+		'echarts_eval':function(t){return '<div id=echarts0 style="width:90%;height:600px">'+
+	t+dc+XML.wrapE('script',
+`	var d=document.getElementById('echarts0'),dt=d.innerText,o=eval(dt);
+	var myChart = echarts.init(d);
+	myChart.setOption(o);
+`)},
+		'zdog':referf(delivr('zdog','.dist.min')),
+
+		'canvas_eval':function(t){return '<div id=js hidden>'+t+dc+
+	'<canvas id=cvs width="300" height="300"></canvas>'+
+	XML.wrapE('script',
+`
+	var C=document.getElementById('cvs'),c=C.getContext('2d'),ct=document.getElementById('js').innerText;
+	eval(ct);
+`)},
+		//'aframe':referf(delivr('aframe','aframe-master')),
+		//'aframe':referf(unpkg('aframe')),
+		//'aframe':referf(Hs+'aframe.io/releases/0.9.2/aframe.min.js'),
+		'aframe':referf(Hs+'unpkg.com/aframe'),
+		'aframe-ar':referf(unpkg('aframe-ar')),
+
+		'slide':referf(Hs+'unpkg.com/webslides'),
+
 	}, csslib = {
-		'katex': '<link rel="stylesheet" href="' + Hs + 'cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">',
+		'katex': referf(delivr('katex','','css'),'',
+			//' integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous"',
+			'css'),
+		
+		'webslides': referf(Hs+'unpkg.com/webslides/static/css/webslides.css','','css')+
+			referf(Hs+'unpkg.com/webslides/static/css/svg-icons.css','','css'),
+
 		'markdown': XML.wrapE('style', `
 blockquote{
     padding:0 10px;
@@ -862,7 +902,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 
 		var th = '', b = '</tbody></table>', colh = '', edi = /edit/.test(bd),
 			bds = /dash|dot|dou|set|ridge|solid/.test(bd) ? bd.match(/solid|dash|dot|double|groove|inset|outset|ridge/g).join(' ') : '',
-			r = [], isA = t instanceof Array, A = isA ? t : t.split('\n'), n = A.length, m = (isA ? A[0] : A[0].split('\t')).length;
+			r = [], isA = t instanceof Array, A = isA ? t : t.split('\n'), n = A.length, m = (isA ? (n?A[0]:[]) : A[0].split('\t')).length;
 
 		if (thead) {
 			var thn = thead.length;
@@ -1514,6 +1554,21 @@ function H_o(u,o) {
 
 function html2txt(h) { return $('<b>' + h + '</b>').text().trim() }
 function html2html(h) { return $('<div>' + h + dc).html().trim() }
+function csv2A(t){
+	var X=t.replace(/("")+/g,function(x){return 'zZlLrR'.repeat(x.length/2)});
+	while(/"/.test(X)){
+		if(/^[^"]*,"[^"]*"[^,]/.test(X) || /^"[^"]*"[^,]/.test(X)){
+			X=X.replace(/"([^"]*)"/,'$1')
+		}else if(/^[^"]*","/.test(X)){
+			X=X.replace(/","/,'ZzLlRr')
+		}else{
+			X.X.replace(/"/,'zZlLrR')
+		}
+	}
+	X=X.replace(/zZlLrR/g,'"');
+
+	return Arrf(function(x){return x.replace(/ZzLlRr/g,',')},X.split(','))
+}
 
 function saveText(t, filename) {
 	var mime = 'text/plain';
@@ -3007,9 +3062,17 @@ function md2html(str, sep) {
 		})
 
 
-		.replace(/\!\[[^\]]+\]\(.+\)/g, function (x) {
+		.replace(/\!\[[^\]]*\]\([^\)]+\)/g, function (x) {
 			var t = x.replace(/\!\[.+\]/, '').replace(/^.|.$/g, ''), u = t.split(' ')[0];
 			return '<img src="' + u + '" alt="' + x.split('(')[0].replace(/^..|.$/g, '') + '"' + (/ /.test(t) ? ' title="' + t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') + '"' : '') + ' />';
+		})
+
+		.replace(/\[<img src=[^\]]+\]\([^\)]+\)/g, function (x) {
+			var t = x.replace(/.+\(|\)/g, ''), u = t.split(' ')[0],
+				hf = uriRe.test(u) ? href : inhref;
+				//console.log(x.split('(')[0].replace(/^.|.$/g, ''));
+				//console.log(/ /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '');
+			return hf(u, x.split('(')[0].replace(/^.|.$/g, ''), / /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '')
 		})
 
 		.replace(/\[[^\]\^]+\]\(.+\)/g, function (x) {

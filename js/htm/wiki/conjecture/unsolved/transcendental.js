@@ -5,11 +5,7 @@
  * Released under MIT License
  */
 
-
-$(function(){
-
-	
-	$('#wiki').html(Kx(
+wiki['Conjecture/Unsolved/Transcendental Number']=Kx(
 
 detail('超越数定义与性质',Table([ZLR('名称 定义 性质')],[
 	['超越数____transcendental number','不是代数数的实数或复数____不满足有理系数代数方程',ul([
@@ -37,7 +33,7 @@ detail('下列常数是超越数',Table([ZLR('名称 定义 性质')],[
 
 	['实不动点\\cos(x)=x','',scbox('Lindemann–Weierstrass','brad bold')],
 
-	['连分数'+mfracs(copyA(1,6), seqA(1,6).concat('⋱')),'',scbox('Carl Ludwig Siegel','brad bold')],
+	['连分数'+mfracs([1,1,1],[1,2,3],'',1,'+',''),'',scbox('Carl Ludwig Siegel','brad bold')],
 
 	['πi，π','',scbox('Lindemann–Weierstrass','brad bold')+'____（根据$e^{πi}=-1$反证，另外$i='+kroot(-1)+'$是无理代数数）'],
 	['π + e^π','',''],
@@ -58,7 +54,7 @@ detail('下列常数是超越数',Table([ZLR('名称 定义 性质')],[
 	['指数阶乘倒数的级数',ksc(sum('k',1,'+','a_k^{-1}','',''))+'____'+
 			'其中$a_0=1, a_n=n^{a_{n-1}}$',''],
 	
-],'TBrc').replace(/____/g,br))+
+],'TBrc wiki').replace(/____/g,br))+
 
 
 
@@ -108,7 +104,7 @@ detail('下列函数是超越数',Table([ZLR('名称 定义 性质')],[
 		'其中$a,b$是两个线性无关的复数, $c_i$是三个线性无关的复数',''],
 
 
-],'TBrc').replace(/____/g,br))+
+],'TBrc wiki').replace(/____/g,br))+
 
 
 
@@ -130,7 +126,7 @@ detail('幂',Table([['$a^b$____其中$a≠0,1; b≠0$','有理数','无理代数
 		'?未知是否超越 $e^e, '+msups(['e','π',2],'')+'$____'+
 		'?未知是否超越 $π^e, π^π$____',
 		]
-	],'TBrc').replace(/____/g,br)
+	],'TBrc wiki').replace(/____/g,br)
 )+
 
 
@@ -140,7 +136,7 @@ detail('幂',Table([['$a^b$____其中$a≠0,1; b≠0$','有理数','无理代数
 detail('下列无理数？未知是否超越数',Table([ZLR('名称 定义 性质')],[
 	['Apéry常数','$ζ(3)$ ____$1.2020569032⋯$',''],
 	
-],'TBrc').replace(/____/g,br))+
+],'TBrc wiki').replace(/____/g,br))+
 
 detail('下列数？未知是否无理数、超越数',Table([ZLR('名称 定义 性质')],[
 	['欧拉常数$γ$____Euler–Mascheroni','$0.57721566490153286060651209008240243104215933593992⋯$____'+
@@ -161,7 +157,7 @@ detail('下列数？未知是否无理数、超越数',Table([ZLR('名称 定义
 	[msups(['e','π',2],''),'',''],
 	['四指数猜想','$e^{ac}$, $e^{ad}$, $e^{bc}$, $e^{bd}$中至少有一个超越数____'+
 		'其中$a,b$是两个线性无关的复数, $c,d$是两个线性无关的复数',''],
-],'TBrc').replace(/____/g,br))+
+],'TBrc wiki').replace(/____/g,br))+
 
 detail('特殊常数一览表',Table([ZLR('名称 代数数 超越数')],[
 
@@ -213,7 +209,7 @@ detail('特殊常数一览表',Table([ZLR('名称 代数数 超越数')],[
 	[msups(['π','π',2],''),'','猜测'],
 
 
-],'TBrc').replace(/____/g,br))+
+],'TBrc wiki').replace(/____/g,br))+
 
 
 detail('超越函数一览表',Table([ZLR('名称 例外集（代数数集合，满足函数值也是代数数） 性质')],[
@@ -240,9 +236,7 @@ detail('超越函数一览表',Table([ZLR('名称 例外集（代数数集合，
 		'e^{1+πa}是超越数（其中a是代数数）'
 		],
 
-],'TBrc').replace(/____/g,br))
-
-));
+],'TBrc wiki').replace(/____/g,br))
+);
 	
 
-});

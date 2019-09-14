@@ -328,12 +328,12 @@ li,#wiki{
 }
 
 .notes:before{
-    content: "注意：";
+    content: "NOTES: ";
     margin-left: 2px;
 }
 
 .unknown:before{
-    content: "未知：";
+    content: "UNKNOWN: ";
     margin-left: 2px;
 }
 .prov:before{
@@ -384,45 +384,6 @@ input[type=text],#wiki>span,.brad{
 
 .ground > div:not(.tasks){
 	border-radius:10px;
-}
-#solveGround > div:not(.tasks):not(:empty){
-	border:5px outset rgb(65, 105, 225,.5);
-
-}
-
-#graphicGround > div:not(.tasks):not(:empty){
-	border:5px outset rgb(255, 105, 180,.5);
-}
-
-#showGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(138, 43, 226,.5);
-}
-#wikiGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(153, 51, 102,.5);
-}
-#courseGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(153, 102, 51,.5);
-}
-
-#drillGround > div:not(.tasks):not(:empty){
-	border:5px outset rgb(204, 204, 102,.5);
-}
-
-#topicGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(0, 153, 51,.5);
-}
-#pitfallGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(204, 51, 102,.5);
-}
-#unsolvedGround > div:not(.tasks):not(:empty){
-	border:5px outset rgb(102, 51, 0,.5);
-}
-
-#thoughtGround > div:not(.tasks):not(:empty){
-	border:5px outset rgb(102, 153, 204,.5);
-}
-#referGround > div:not(.tasks):not(:empty){
-	border: 5px outset rgb(139, 0, 0,.5);
 }
 
 
@@ -778,6 +739,19 @@ select,input:not([type="file"]), .rem13{
 	background:blueviolet;
 }
 
+
+
+.ground:nth-of-type(3n+2) > div:not(.tasks):not(:empty){
+	border:5px outset blue;
+}
+
+.ground:nth-of-type(3n+3) > div:not(.tasks):not(:empty){
+	border:5px outset hotpink;
+}
+
+.ground:nth-of-type(3n+1) > div:not(.tasks):not(:empty){
+	border:5px outset blueviolet;
+}
 
 [name=tool]:checked + span,.subhead.seled,.subtabhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;

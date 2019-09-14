@@ -104,7 +104,7 @@
 	word-break: break-all;
 }
 
-#input0{
+#input0,#input1{
 	min-height:200px;
 }
 #input0Type,#output0Type{

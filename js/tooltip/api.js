@@ -92,7 +92,7 @@ tooltip['API']=[
 			{'解析':'H_u H_w H_w1 H_W H_W1 H_d H_h H_a H_o urlTran picSrcNameExt'},
 			{'封装':'imgFav pathTxt fn0 fn1 fna fna0 fnb fnc fnd fne fnt fnx fnr fns'},
 			{'转换':'dataURItoBlob'},
-			{'接口':'FNS Admin txt2audio xhrcb'},
+			{'接口':'FNS Admin txt2audio xhrcb csslib jslib delivr referf'},
 		]},
 	
 	
@@ -110,7 +110,7 @@ tooltip['API']=[
 		]},
 	
 		{'HTML':[
-			{'格式化':'html2txt html2html altTxt txt2A blking ubb2html md2html replaceNodeInner'},
+			{'格式化':'html2txt html2html altTxt txt2A csv2A blking ubb2html md2html replaceNodeInner'},
 			{'Engin':'Engin'},
 			{'元素':[
 				{'过渡':'br hr prog'},

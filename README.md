@@ -1,11 +1,12 @@
 # zzllrr Mather - An open-sourced Math Tool
-![ ](https://img.shields.io/badge/license-MIT-blue)
+![ ](https://img.shields.io/badge/license-MIT-blue) [![ ](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
+
 ![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
 <https://zzllrr.github.io/mather/>
 
  小乐数学，基于web网页的覆盖数学全部学科的数学开源软件。
 
-zzllrr Mather ![](https://img.shields.io/badge/license-MIT-blue)
+![ ](https://img.shields.io/badge/license-MIT-blue) [![ ](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
 
 ## Summary 摘要
 

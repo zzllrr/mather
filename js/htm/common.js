@@ -52,7 +52,124 @@ oHTML=function(x,notMD,elem){
         $(elem||'#oHTML').fadeIn();
         $('#panel').fadeIn();
     },600);
+},
+loadHTML=function (x) {
+   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],t='';
+   if(u){
+       var A=u.split('/'),w=x;
+       t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
+//console.log(t,w);
+        titleRe(gM(A.slice(-1)[0])+' - '+gM('zzllrr Mather'));
+   }
+   if(s){
+       $.ajax({type:'get',url: s, success:function(x){
+           oHTML(x,1)
+       }, error:function(){oHTML(t,1)}
+       })
+   }else if(t){
+       oHTML(t,1);
+
+   }
+
 };
+
+var oH,navhead={},navheadThen={},
+
+
+subject0='11 14 17 21 24 27 31 34 37 41 44 47 51 54 57 61 64 67 71 74 77 81 84 87 99',
+subjects={
+	14:zlrA('14',seqA(10,6,'',10).concat(99)),
+	17:zlrA('17',seqA(10,8,'',10).concat(99)),
+	21:zlrA('21',seqA(10,15,'',5).concat(99)),
+	27:zlrA('27',seqA(10,10,'',5).concat(99)),
+	31:zlrA('31',seqA(10,11,'',5).concat(99)),
+	34:zlrA('34',seqA(10,3,'',10).concat(99)),
+	41:zlrA('41',seqA(10,7,'',10).concat(99)),
+	44:zlrA('44',seqA(10,3,'',10).concat(99)),
+	47:zlrA('47',seqA(10,4,'',10).concat(99)),
+	51:zlrA('51',seqA(10,3,'',10).concat(99)),
+	57:zlrA('57',seqA(10,10,'',5).concat(99)),
+	61:zlrA('61',seqA(10,8,'',10).concat(99)),
+	64:zlrA('64',seqA(10,8,'',10).concat(99)),
+	67:zlrA('67',seqA(10,11,'',5).concat(99)),
+	71:zlrA('71',seqA(10,4,'',10).concat(99)),
+	74:zlrA('74',seqA(10,15,'',5).concat(99))
+},
+
+concept0='Number Sequence Polynomial Vector Tensor Matrix Permutation Relation Function Proposition Logic Algebra Set Geometry Graph',
+concepts={
+	'Number':ZLR('Positive Natural Prime Rational Irrational Radical Transcendental Real Imaginary Complex'),
+	'Sequence':ZLR('Arithmetic Geometric Harmonic'),
+	'Algebra':ZLR('Group Ring Field Lattice'),
+	
+	'Relation':['Equivalence','Partial Order','Cover','Chain'],
+	
+	'Geometry':ZLR('Shape Surface Solid')
+},
+
+question0='Equation Inequation Limit',
+questions={
+	
+},
+
+
+solve={}, graphic={}, show={}, wiki={}
+solves={}, graphics={}, shows={}, wikis={}
+solveThen={}, graphicThen={}, wikiThen={},
+
+
+teaching={},academic={}, technology={}, science={}, culture={},
+teachings={},academics={}, technologys={}, sciences={}, cultures={},
+teachingThen={}, academicThen={}, technologyThen={}, scienceThen={}, cultureThen={}
+
+
+/*
+	
+
+
+单数名k，存储执行函数( 供Go按钮调用,例如solve ) 或字符串结果(例如navhead)
+复数名ks，存储目录结构，默认第一个键值index存储一级目录索引
+单数名kThen, 界面工具加载后的执行函数
+
+键有歧义时，用路径URI
+
+
+tooltip[tool].k，存储提示工具栏	键使用路径URI
+
+
+
+ 		mooc.js
+		 		有数学内容的网络公开课平台Coursera、Udacity、edX、khan academy
+		 		
+*/
+
+
+
+
+;
+
+
+function sel(uriA,x,p,pp,ppp){
+	var ux=(p?(pp?(ppp?ppp+'/':'')+pp+'/':'')+p+'/':'')+x;
+	for(var i=0,l=uriA.length;i<l;i++){
+		var u=uriA[i];
+		if(ux==u || u.indexOf(ux)>=0){
+			return 1
+		}
+	}
+	return 0
+}
+
+function questionA(){
+	var A=[];
+	$('#solveGround .task.seled').each(function(){
+		A.push(furi($(this))[0].join('/'))
+	});
+	return A
+}
+
+
+
 
 
 $.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键}	  ➡️ 值
@@ -205,8 +322,8 @@ function all2html(type,V,dom){
             }
             //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
             //var C=new ctt(cvs,300,300), c=C.ctx;
-            //var C=$('#'+id)[0];
-            var C=w.children()[0];
+            var C=$('#'+id)[0];// work!
+            //var C=w.children()[0];    fail!
             //console.log(v);
             eval(v);
         }catch(e){
@@ -214,7 +331,7 @@ function all2html(type,V,dom){
             w.html(v)
         }
             
-    }else if(/SV/.test(iv)){
+    }else if(/^SV/.test(iv)){
         if(!w.is('svg')){
             w.html('<svg xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink+'" version="1.1">'+v+'</svg>');
         }else{
@@ -251,6 +368,21 @@ consolelog(v);
     }else if(iv=='CODE'){
         w.html(XML.wrapE('pre',XML.wrapE('code',XML.encode(v))));
 
+    }else if(/HTML|SLIDE/.test(iv)){
+        w.html(v);
+        w.find(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
+            all2html(this.nodeName,$(this).text(),this);
+        });
+    }else if(/[TC]SV/.test(iv)){
+        if(iv=='TSV' || v.indexOf('\t')>-1){
+            vA=Arrf(function(x){return x.split('\t')},vA);
+        }else{
+            vA=Arrf(csv2A,vA);
+        }
+        //console.log(vA);
+        w.html(Table(vA.slice(0,1),vA.slice(1)));
+
+
     }else{// if(iv=='HTML')
         w.html(v);
     }
@@ -268,8 +400,13 @@ function toolTip(s){
 }
 
 $(function () {
-    titleRe(gM(document.title)+' - '+gM('zzllrr Mather'));
+    var d=document.title;
+    titleRe(gM(d)+' - '+gM('zzllrr Mather'));
 
+    d=d.toLowerCase();
+    if(/wiki|teaching|academic|technology|science|culture/.test(d)){
+        loadHTML(eval(d));
+    }
 
     $('#panel').hide().prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
@@ -366,18 +503,35 @@ $(function () {
 	
     }
 
-    $('body').on('dblclick', function(e){
+    $('body').on('keydown',function(e){
+		var k=e.keyCode, shft=e.shiftKey || $('#Shift').is('.seled'), ctrl=e.ctrlKey, alt=e.altKey, act=document.activeElement, 
+		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id')||'';
+//console.log(k,node);
+
+		if(node=='input' && k==13){
+			/*if(id=='input0'){
+				$('#go').click();
+			}
+			*/
+			return
+
+		}
+		if(node=='textarea'){
+            if(ctrl && k==69){act.value='';return false}
+        }
+    }).on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
 
         if(ishome || iscap){
             $('#caps ~ canvas').remove();
+
         }else if(/canvas/i.test(act)){
             if($(eos).parent('zdog').length){
                 //console.log(e,act,act.id);
                 $(eos).attr('spinning',function(i,v){return v!='true'});
             }
 
-        }else if(!/summary/i.test(act)){
+        }else if(/body/i.test(act)){
             location.href='index.html';
             //history.back()
         }

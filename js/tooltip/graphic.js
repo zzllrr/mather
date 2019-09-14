@@ -254,14 +254,8 @@ $.each({
 		detail('2D',[
 			
 			detail(gM('Initialize'),[
-				/*
-				scegj(`
-	$('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-	var ican=$('#ican'),c=ican[0].getContext('2d')`,0),
 
-	*/
-
-				scegj('$(C.ctx.canvas).width(300).height(300)',0)
+				scegj('C.width=300;C.height=300',0)
 			].join(br)),
 			
 			detail(gM('Rectangle'),[
@@ -527,7 +521,7 @@ $.each({
 	c.fill();
 	c.addHitRegion({id: "circle"});
 
-	$(c.canvas).on("mousemove", function(e){
+	C.addEventListener("mousemove", function(e){
 	if(e.region) {
 		console.log("hit region:" + e.region);
 	}
@@ -588,14 +582,8 @@ $.each({
 			
 
 				detail(gM('Initialize'),[
-					/*
-					scegj(`
-		$('#input0Preview').html('<canvas id=ican width=300 height=300></canvas>');
-		var ican=$('#ican'),c=ican[0].getContext('webgl')`,0),
 	
-		*/
-	
-					scegj('$(C.ctx.canvas).width(300).height(300)',0)
+					scegj('C.width=300;C.height=300',0)
 				].join(br))
 			].join(br)),
 		
@@ -615,7 +603,7 @@ $.each({
 		detail(gM('Initialize'),[
 			'Illustration'+
 			scegj(`
-$(C).attr('spinning',true);
+C.setAttribute('spinning',true);C.width=300;C.height=300;
 let isSpinning = true;
 
 let zo = new Zdog.Illustration({
@@ -636,12 +624,12 @@ let rect = new Zdog.Rect({
 	addTo: zo,
 	width: 120,
 	height: 80,
-	stroke: 20,
+	stroke: 2,
 	color: '#E62',
 });
 
 function animate() {
-	if ( isSpinning && $(C).attr('spinning')=='true') {
+	if ( isSpinning && C.getAttribute('spinning')=='true') {
 		zo.rotate.y += 0.03;
 	}
 	zo.updateRenderGraph();
@@ -681,7 +669,8 @@ let zo = new Zdog.Illustration({
 			sceg2('resize:false')+"| true | 'fullscreen'",
 
 			gM('Width')+'|'+gM('Height'),
-			scegj('$(C.ctx.canvas).width(300).height(300)',0),
+			//scegj('$(C.ctx.canvas).width(300).height(300)',0),
+			scegj('C.width=300;C.height=300',0),
 			scegj('zo.setSize( width, height )'),
 			
 
@@ -774,7 +763,7 @@ let rect = new Zdog.Rect({
 	addTo: zo,
 	width: 120,
 	height: 80,
-	stroke: 20,
+	stroke: 1,
 	color: '#E62',
 })`,0),
 
@@ -783,12 +772,12 @@ let rect = new Zdog.Rect({
 			detail(gM('Rounded Rectangle'),[
 				'new Zdog.RoundedRect()',
 				scegj(`
-let rr = new Zdog.RoundedRect({
+var rr = new Zdog.RoundedRect({
 	addTo: zo,
 	width: 120,
 	height: 80,
 	cornerRadius: 30,
-	stroke: 20,
+	stroke: 2,
 	color: '#EA0',
 })`,0),
 
@@ -797,26 +786,26 @@ let rr = new Zdog.RoundedRect({
 			detail(gM('Ellipse'),[
 				'new Zdog.Ellipse()',
 				gM('Circle')+scegj(`
-let ell = new Zdog.Ellipse({
+var ccl = new Zdog.Ellipse({
 	addTo: zo,
 	diameter: 72,
-	stroke: 28,
+	stroke: 2,
 	color: '#E62',
 })`,0),
 				gM('Semi-circle')+scegj(`
-let ell = new Zdog.Ellipse({
+var semic = new Zdog.Ellipse({
 addTo: zo,
 diameter: 80,
 quarters: 2,
-stroke: 20,
+stroke: 2,
 color: '#C25',
 })`,0),
 				gM('Ellipse')+scegj(`
-let ell = new Zdog.Ellipse({
+var ell = new Zdog.Ellipse({
 	addTo: zo,
 	width: 172,
 	height:40,
-	stroke: 28,
+	stroke: 2,
 	color: '#E62',
 })`,0),
 
@@ -825,11 +814,11 @@ let ell = new Zdog.Ellipse({
 			detail(gM('Polygon'),[
 				'new Zdog.Polygon()',
 				gM('Pentagon')+scegj(`
-let ell = new Zdog.Polygon({
+var pg = new Zdog.Polygon({
 	addTo: zo,
 	radius: 60,
 	sides: 5,
-	stroke: 20,
+	stroke: 2,
 	color: '#EA0',
 })`,0),
 
@@ -840,7 +829,7 @@ let ell = new Zdog.Polygon({
 				gM('Dot')+scegj(`
 let dt = new Zdog.Shape({
 	addTo: zo,
-	stroke: 10,
+	stroke: 1,
 	color: '#636',
 })`,0),
 
@@ -851,7 +840,7 @@ let ln = new Zdog.Shape({
 	{ x: -40 }, // start at 1st point
 	{ x:  40 }, // line to 2nd point
 	],
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -865,7 +854,7 @@ let lnZ = new Zdog.Shape({
 		{ x:  32, y:  40 }, // line to bottom right
 		],
 	closed: false,
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -879,7 +868,7 @@ let lnZ3D = new Zdog.Shape({
 		{ x:  32, y:  40, z: -40 },
 	],
 	closed: false,
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -893,7 +882,7 @@ let lnmv = new Zdog.Shape({
 		{ x:  40, y:  32 },          // line to bottom right
 		],
 	closed: false,
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -912,7 +901,7 @@ let arc = new Zdog.Shape({
 		]},
 		],
 	closed: false,
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -942,7 +931,7 @@ let bz = new Zdog.Shape({
 		{ x: -40, y:  40 },
 		],
 		// closed by default
-	stroke: 20,
+	stroke: 2,
 	color: '#636'
 })`,0),
 
@@ -1010,21 +999,30 @@ let cyface = new Zdog.Cylinder({
 				'new Zdog.Box()',
 
 				'6-'+gM('Face')+scegj(`
-let box = new Zdog.Shape({
+let box6 = new Zdog.Box({
 	addTo: zo,
-	width: 120,
-	height: 100,
+	width: 80,
+	height: 80,
 	depth: 80,
 	stroke: false,
 	color: '#C25', // default face color
+
+	frontFace: 'green',
+	rearFace: 'blue',
 	leftFace: '#EA0',
 	rightFace: '#E62',
 	topFace: '#ED0',
 	bottomFace: '#636',
+
+	rotate: {
+		x: Zdog.TAU/60,
+		y: Zdog.TAU/60,
+		z: Zdog.TAU/60
+	},
 })`,0),
 
 				'4-'+gM('Face')+scegj(`
-let box = new Zdog.Shape({
+let box4 = new Zdog.Box({
 	addTo: zo,
 	width: 120,
 	height: 100,
@@ -1055,7 +1053,7 @@ let lnZ3D = new Zdog.Shape({
 		{ x:  32, y:  40, z: -40 },
 	],
 	closed: false,
-	stroke: 20,
+	stroke: 2,
 	color: '#636',
 })`,0),
 
@@ -1069,7 +1067,7 @@ let lnZ3D = new Zdog.Shape({
 
 		detail(gM('Shape Attribute'),[
 			gM('Color')+sceg2('color: "#eee"')+'| rgb() | hsla()',
-			gM('Stroke')+sceg2('stroke: 20')+'| 0 | false',
+			gM('Stroke')+sceg2('stroke: 2')+'| 0 | false',
 			gM('Fill')+sceg2('fill: true')+'| false',
 			gM('Closed')+sceg2('closed: false')+'| true',
 			gM('Visible')+sceg2('visible: false')+'| true',

@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.8',
+			fieldseth('V2019.9.14',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -30,8 +30,8 @@ $(function(){
 					)+
 					DCtv('Summarytip',
 						XML.wrapE('h4',
-							href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary'))+' '+
-							href('api.html','API')
+							spanmi('launch',href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary')))+' '+
+							spanmi('launch',href('api.html','API'))
 
 						)+
 						gM('Summarytip')
@@ -213,51 +213,36 @@ Table('',[
 			//progress
 
 			[
-				Table([gM(['Project','Progress','Goal','Core Participant'])],//'✔▲△'
+				Table([gM(['Project','Progress','Goal'])],//'✔▲△'
 					[
 						[gM('Solve'),meter(30),
-							'#'+gM(ZLR('Systematized Detailed Stepwise')).join(', #'),
-							'#'+gM(ZLR('Teacher Student Enthusiast Engineer Mathematician')).join(', #')],
+							'#'+gM(ZLR('Systematized Detailed Stepwise')).join(', #')],
 					
 						[gM('Graphic'),meter(70),
-							'#'+gM(ZLR('Multipath Convenient Layered')).join(', #'),
-							'#'+gM(ZLR('Teacher Student Engineer Artist Mathematician')).join(', #')],
+							'#'+gM(ZLR('Multipath Convenient Layered')).join(', #')],
 							
-						[gM('Show'),meter(65),
-							'#'+gM(ZLR('Efficient Semantical Automatic')).join(', #'),
-							'#'+gM(ZLR('Teacher Geek Educator Engineer Mathematician')).join(', #')],
+						[gM('Show'),meter(85),
+							'#'+gM(ZLR('Efficient Semantical Automatic')).join(', #')],
 							
-						[gM('Wiki'),meter(10),
-							'#'+gM(ZLR('Compact Structural Semantical')).join(', #'),
-							'#'+gM(ZLR('Researcher Teacher Publisher Scholar Mathematician')).join(', #')],
+						[gM('Wiki'),meter(20),
+							'#'+gM(ZLR('Compact Structural Semantical')).join(', #')],
 					
-						[gM('Course'),meter(0),
-							'#'+gM(ZLR('Reusable Hierarchical Functional')).join(', #'),
-							'#'+gM(ZLR('Teacher Student Parent Educator Mathematician')).join(', #')],
+						[gM('Teaching'),meter(1),
+							'#'+gM(ZLR('Reusable Hierarchical Functional')).join(', #')],
 					
-						[gM('Drill'),meter(0),
-							'#'+gM(ZLR('Extendable Customizable Efficient')).join(', #'),
-							'#'+gM(ZLR('Teacher Student Parent Publisher Mathematician')).join(', #')],
-					
-						[gM('Topic'),meter(5),
-							'#'+gM(ZLR('Flexible Intelligent i10n')).join(', #'),
-							'#'+gM(ZLR('Enthusiast Scholar Public Amateur Mathematician')).join(', #')],
+						[gM('Academic'),meter(4),
+							'#'+gM(ZLR('Flexible Intelligent i10n')).join(', #')],
 							
-						[gM('Pitfall'),meter(1),
-							'#'+gM(ZLR('Structural Unambiguous Inspiring')).join(', #'),
-							'#'+gM(ZLR('Teacher Student Amateur Philosopher Mathematician')).join(', #')],
+						[gM('Technology'),meter(2),
+							'#'+gM(ZLR('Extendable Customizable Efficient')).join(', #')],
+
+						[gM('Science'),meter(1),
+							'#'+gM(ZLR('Structural Unambiguous Inspiring')).join(', #')],
 							
-						[gM('Unsolved'),meter(1),
-							'#'+gM(ZLR('Timely Portable Inspiring')).join(', #'),
-							'#'+gM(ZLR('Enthusiast Philosopher Geek Researcher Mathematician')).join(', #')],
+						[gM('Culture'),meter(2),
+							'#'+gM(ZLR('Systematized Interpretable Inspiring')).join(', #')],
 							
-						[gM('Thought'),meter(0),
-							'#'+gM(ZLR('Systematized Interpretable Inspiring')).join(', #'),
-							'#'+gM(ZLR('Scholar Artist Philosopher Engineer Mathematician')).join(', #')],
-							
-						[gM('Refer'),meter(0),
-							'#'+gM(ZLR('Organized i18n Legal')).join(', #'),
-							'#'+gM(ZLR('Educator Publisher Researcher').concat(gM('Legal Worker'),gM('Mathematician'))).join(', #')],
+
 				]),
 		
 				Table([gM(['Key Technology','Progress','Technology Decomposition'])],
@@ -280,7 +265,7 @@ Table('',[
 						[gM('Audio Synthesis'),meter(5),
 							'#'+gM(ZLR('Speech Sound Music')).join(', #')],
 							
-						[gM('Visualization'),meter(35),
+						[gM('Visualization'),meter(75),
 							'#'+gM(ZLR('Animation Video 2D 3D VR AR')).join(', #')],
 		
 						[gM('Open AI'),meter(0),
@@ -355,7 +340,7 @@ Table('',[
 	
 				<div id=donaAbroad>
 					<img src="img/jiaohang.png" id=Jiaohang title="Bank of Communication" class=jiaohang />
-					<a href="https://www.paypal.me/zzllrr" target=_blank><img src="img/paypal_dona.gif" id=Paypal title="Paypal" /></a>
+					<a href="https://www.paypal.me/zzllrr/8" target=_blank><img src="img/paypal_dona.gif" id=Paypal title="Paypal" /></a>
 	
 					<div class=pay></div>
 					</div>

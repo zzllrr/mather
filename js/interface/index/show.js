@@ -158,8 +158,6 @@ function showThen(T) {
     $(sT+' .jslib').on('click', function(){
         var j=[];$('.jslib:checked').each(function(){j.push($(this).attr('data-lib'))});
         L[t+'jslib']=j.join(' ');
-        L[t]=s;
-
 
     });
     $(sT+' :number[id],select[id],textarea[id]').on('change', function () {

@@ -6,7 +6,7 @@
     
 if(L.arjslib){
     Arrf(function(x){
-        $('head').append('<script src="'+unpkgTmp.replace('@',x).replace('@',ARlibjs[x]||x) +'"></script>')
+        $('head').append(referf(unpkg(x,(ARlibjs[x]||x)+'.min')))
     },ZLR(L.arjslib));
 }
 

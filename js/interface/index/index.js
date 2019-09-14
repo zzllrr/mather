@@ -6,7 +6,7 @@
 
 
 $(function(){
-	var toolnames=ZLR('solve graphic show wiki teaching academic technology science culture');// course drill topic pitfall unsolved thought
+	var toolnames=ZLR('solve graphic show wiki teaching academic technology science culture');
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather'))).after(
 '<div id=zMather hidden>'+
@@ -19,8 +19,8 @@ $(function(){
 					'about':'info_outline',
 
 
-					'book':'local_library',
-					'wiki':'public'
+				//	'book':'local_library',
+				//	'wiki':'public'
 
 					}[i]))
 			},ZLR('home about')).join('')
@@ -428,21 +428,7 @@ dc);
 		}
 	});
 
-	
-	/*
-	$('#navHide').on('click',function(){
-		var isup=/up/.test($(this).text());
-		if(isup){
-			$('#zMatherOn:contains(up)').click();
-		}
-		//$('#nav').toggle();
-		$(this).text(function(i,v){
-			$(this).toggleClass('seled',isup);
-			return 'keyboard_arrow_'+(isup?'down':'up')
-		});
-		
-	});
-*/
+
 	$('#zMatherHide').on('click',function(){
 		$('#zMatherOn').click();
 	});
@@ -473,16 +459,8 @@ dc);
 		node=act.tagName.toLowerCase(), me=$(act),id=me.attr('id')||'';
 //console.log(k,node);
 
-		if(node=='input' && k==13){
-			/*if(id=='input0'){
-				$('#go').click();
-			}
-			*/
-			return
-
-		}
 		if(node=='textarea'){
-			if(ctrl && k==69){act.value='';return false}
+
 			var iv=me.val(), sS=act.selectionStart, sE=act.selectionEnd,
 			A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS, iT=$('#input0Type').val();
 			if(k==9 && !alt){
@@ -596,21 +574,6 @@ dc);
 		var me=$(this);
 		toolTip(me.attr('data-tip')+' | '+gM('tasktip'));
 
-/*
-	}).on('mouseover', '#input0Type',function(e){
-		var v=$(this).val();
-		toolTip({'LaTeX':gM('Formula Snippet'),
-			'Ascii_Math':'ASCII '+gM('Character'),
-			'Unicode_Math':'Unicode '+gM('Character'),
-			'JavaScript':'JavaScript '+gM('Snippet'),
-			'Markdown':'Markdown '+gM('Snippet'),
-			'HTML':'HTML '+gM('Snippet'),
-			'Presentation_MathML':gM('Presentation Markup')+' MathML '+gM('Snippet'),
-			'Content_MathML':gM('Content Markup')+' MathML '+gM('Snippet'),
-			
-		}[v]||v);
-*/
-
 
 	}).on('click','.Mele', function(){
 		var t=$(this).text(),o=Meleo[t]||t;
@@ -658,6 +621,7 @@ dc);
 		pa=me.parent(),p=pa.parents('.ground'),
 		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{},
 		issolve=tool=='solve', isshow=tool=='show', iswiki=tool=='wiki',
+		iswikilike=/wiki|teaching|academic|technology|science|culture/.test(tool),
 		istask=me.is('.task');
 
 		if(!istask){
@@ -671,7 +635,8 @@ dc);
 			
 			if(istask){
 				var muri=me.attr('data-uri');
-				$('iframe[src="wiki.html?q='+muri).remove();
+				//$('iframe[src="wiki.html?q='+muri).remove();
+				$('iframe[src*="q='+muri).remove();
 			}
 			
 		}else{
@@ -726,15 +691,9 @@ dc);
 				}
 			}
 
-//consolelog('uri = ',muri);
+//console.log('uri = ',muri,'tool = ',tool);
 
 			var A=evs[fm[0][0]];
-	/*		
-			if(istask && iswiki){
-				OH(ev[A] || ev[fm[0].slice(-2).join(' ')]  || ev[fm[0].slice(-2).reverse().join(' ')] || ev[fm[0].join(' ')] || ev[muri] )
-				return 
-			}
-*/
 
 
 			if(A && !istask){
@@ -768,7 +727,7 @@ dc);
 								if(issolve){
 									str2+=jdetail(A[i],'','task')
 
-								}else if(lvl==3 && iswiki){
+								}else if(lvl==3 && iswikilike){
 									str2+=jdetail(A[i],'','task',muri+'/'+A[i])
 
 								}else{
@@ -778,7 +737,7 @@ dc);
 							}else{
 								$.each(A[i], function(k,v){
 //console.log('A[i]=',k,v);
-									if((issolve || iswiki) && (!isArr(v) || lvl==3)){
+									if((issolve || iswikilike) && (!isArr(v) || lvl==3)){
 										if(isArr(v)){
 											str2+=jdetail(A[i],'','task')
 										}else{
@@ -799,19 +758,19 @@ dc);
 					}
 				}
 //console.log('lvl= ',lvl,str2);
-
+//console.log('A= ',A);
 
 				if(issolve){
 					$('#solveGround .tasks').html(str2);
 
-				}else if(str2 && iswiki && lvl==3){
-					$('#wikiGround .tasks').html(str2);
+				}else if(str2 && iswikilike && lvl==3){
+					$('#'+tool+'Ground .tasks').html(str2);
 
-				}else if(isStr(A)){
+				}else if(isStr(A) || isArr(A) && A.length<1){
 
-					if(iswiki){
+					if(iswikilike){
 
-						OH('<iframe src="wiki.html?'+('q='+muri)+
+						OH('<iframe src="'+tool+'.html?'+('q='+muri)+
 							'" width="99%" height="400px" class="resize bd0"></iframe>');
 						return;
 					}
@@ -823,9 +782,9 @@ dc);
 			var B=eT[muri];
 			if(B){B()}
 			
-			if(iswiki && istask){
-				if($('iframe[src="wiki.html?q='+muri).length<1){
-					$('#oHTML').append('<iframe src="wiki.html?'+('q='+muri)+
+			if(iswikilike && istask){
+				if($('iframe[src="'+tool+'.html?q='+muri).length<1){
+					$('#oHTML').append('<iframe src="'+tool+'.html?'+('q='+muri)+
 					'" width="99%" height="400px" class="resize bd0"></iframe>');
 				}
 
@@ -947,10 +906,72 @@ dc);
 	});
 	
 	$('#downloadPreview').on('click',function(e){
-		var v1=$('#input0Preview').html();
-		saveText(csslib.katex+csslib.markdown+v1,
-			gM('zzllrr Mather')+Time.now()+'.html'
-		);
+		var v1=$('#input0Preview').html(), v=$('#input0').val(),
+			p=$('#input0Type').val(),tp=p.toLowerCase(), t,hd='',
+			nm=gM('zzllrr Mather')+'_'+p+Time.now(), ext='html';
+		if(p=='LaTeX'){
+			t=csslib.katex+v1
+
+		}else if(p=='Markdown'){
+			t=csslib.katex+csslib.markdown+v1
+
+		}else if(/Echarts/.test(p)){
+			t=jslib[tp]+jslib[tp+'_eval'](v)
+
+		}else if(/Zdog|Canvas/.test(p)){
+			t=(jslib[tp]||'')+jslib['canvas_eval'](v)
+
+		}else if(/Slide/.test(p)){
+			hd=csslib['katex']+csslib['webslides']+jslib[tp];
+			t='<main role="main"><article id="webslides"'+
+				($('#slideSwapV').prop('checked')?' class="vertical"':'')+'>'+
+				v1+'</article></main>';
+			var sh=$('#slidehead').val(),sf=$('#slidefoot').val();
+			if(sh){
+				t='<header role="banner">'+sh+
+			  	'</header>'+t
+			}
+			if(sf){
+				t+='<footer role="contentinfo">'+sf+
+				'</footer>'
+			}
+
+		}else if(/VR/.test(p)){
+			t=jslib['aframe']+v1;
+			$('.VRTool .jslib:checked').each(function(){
+				var x=$(this).attr('data-lib');
+				hd+=referf(unpkg(x,(VRlibjs[x]||x)+'.min'))
+			});
+			if(hd){
+				hd=XML.wrapE('head',hd)
+			}
+
+		}else if(/AR/.test(p)){
+			t=jslib['aframe']+jslib['aframe-ar']+v1;
+			$('.ARTool .jslib:checked').each(function(){
+				var x=$(this).attr('data-lib');
+				hd+=referf(unpkg(x,(ARlibjs[x]||x)+'.min'))
+			});
+			if(hd){
+				hd=XML.wrapE('head',hd)
+			}
+		}else if(p=='SVG'){
+			//t=v1;
+			t=svgAs('#input0Preview svg');
+			ext='svg'
+			
+		}else if(p=='JavaScript'){
+			t=v1;
+
+		}else {
+			t=v1
+		}
+
+		if(ext=='html'){
+			t='<html>'+(hd||'')+'<body>'+t+'</body><html>'
+
+		}
+		saveText(t,nm+'.'+ext);
 		
 	});
 
@@ -1149,17 +1170,6 @@ console.log(f,m,s,ext);
 	$('[name=tool][value='+uo.tool+']').click();
 	
 
-	/*
-		
-
-
-		href('./','文件列表')+hr+
-		href(Hs+'en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics','未解难题（Wikipedia）')
-	
-	var u='index.html?topic=wiki&s0='+fn0($('#subject2 .seled').val()||$('#subject2 .tool').val()||'数');
-
-	*/
-	//console.log(L.snippetType1);
 	$('#input0Type').val(Meleo[L.snippetType1]||L.snippetType1).change();
 	
 	$('#search').change();
@@ -1188,8 +1198,7 @@ var toolSwitch=function(x){
 	if($(G).children().eq(0).html()==''){
 		$(G).find('.ground0').html(
 			jdetail(eval(x+'s')['index']||'')
-			
-			
+
 		);
 	}
 

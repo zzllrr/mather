@@ -1840,7 +1840,7 @@ sbsTbl=function(){
 	//STRUC
 	var str='<div class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
-	consolelog(K,A);
+	//consolelog(K,A);
 		var s='<div class=Sts data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
 			var c=A[i];
@@ -1999,7 +1999,8 @@ $(function(){
 	}).on('click','.eg', function(e){
 
 		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey || $('#Shift').is('.seled'),
-		i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),tbt=me.parents('#TextBoxTool').length;
+			i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),
+			tbt=me.parents('#TextBoxTool').length;
 		if(isjs){
 			t+=';\n'
 		}else if(isnode){

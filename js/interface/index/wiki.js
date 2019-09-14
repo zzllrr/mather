@@ -5,29 +5,7 @@
  */
 
 wikis={
-	//'index':['Number','Vector','Matrix','Analytic','Limit','Differential','Integral','Formal Power Series','Function','Algebra','Logic','Set','Relation','Geometry','Graph'],
-
 	'index':['Concept','Theorem','Formula','Conjecture','Antinomy','Impossibility','Method'],
-	/*
-
-					
-建模	工程		科学	技术											
-
-教学	学术	技术	科学	文化															
-课程	文献库	建模	宇宙	游戏	剪纸	折纸	数独	镶嵌	魔方				思想						
-题库	机构	软件	生命	漫画									课题						
-试卷	期刊	标准化	智能	笑话															
-	会议	硬件	环保	访谈															
-	奖项		科幻	数学家															
-测验	竞赛			数学史															
-抢答				哲学															
-投票																			
-问卷																			
-讨论																			
-问答																			
-*/
-
-
 
 	'Theorem':[
 		{'Principle':[
@@ -61,7 +39,18 @@ wikis={
 
 
 	'Conjecture':[
+		{'Solved':[
+			'Fermat大定理',
+			'有限单群分类'
+		]},
 
+		{'Unsolved':[
+			'3n+1',
+			'Transcendental Number',
+			'Euler常数是否无理数',
+			'BSD',
+			'P与NP问题'
+		]},
 	],
 
 
@@ -70,6 +59,11 @@ wikis={
 	],
 
 	'Impossibility':[
+		{'不可作图':ZLR('古希腊三大几何作图问题无法完成')},
+		{'不完备':ZLR('哥德尔不完全性定理 阿罗不可能定理')},
+		{'不可证明':ZLR('哥德尔不完全性定理')},
+		{'不可计算':ZLR('Chaitin不可计算数')},
+		{'不可表达':ZLR('4次以上的一般代数方程无求根公式 无法使用初等函数表示的不定积分 无解析解的特殊方程')},
 
 	],
 

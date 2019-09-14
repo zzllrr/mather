@@ -3,23 +3,6 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-
-unsolved['3n+1']='';
-
-
-unsolvedThen['Algebraic/3n+1']=function(){
-
-	var s='';
-	for(var i=3;i<5;i+=2){//i<8
-		for(var j=1;j<i;j+=2){
-			s+=detail(i+'n+'+j+'轨道',DCtv('scroll',orbits(i+'n+'+j).join(br)))//+detail(i+'n+'+j+'图','')
-				+detail(i+'n-'+j+'轨道',DCtv('scroll',orbits(i+'n-'+j).join(br)))//+detail(i+'n-'+j+'图','');
-			
-		}
-	}
-	OH(detail('奇数→kn+b 偶数→除以2',s)+
-		'<input type=number id=k_kn_b value=3 min=3 max=1000 />n<label class=numsign>+</label><input type=number id=b_kn_b value=1 max=1000 min=-1000 /><div id=knb>'+dc);
-};
 var seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值，类型（决定终止条件）,fn是主迭代函数，fnstop是终止条件函数（返回布尔值false或者数字0，或空字符串） 递归（或迭代）次数未知 (maxl限定最多迭代次数，防止死循环)
 	var y=type||'3n+1',hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
 	if(/^\d+n[\+\-]\d+$/.test(y)){//
@@ -194,6 +177,24 @@ var seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值�
 	return 'A='+A.join('; ')+'\n\nB='+B.join('; ')
 };
 
+
+wiki['3n+1']=function(){
+
+	var s='';
+	for(var i=3;i<5;i+=2){//i<8
+		for(var j=1;j<i;j+=2){
+			s+=detail(i+'n+'+j+'轨道',DCtv('scroll',orbits(i+'n+'+j).join(br)))//+detail(i+'n+'+j+'图','')
+				+detail(i+'n-'+j+'轨道',DCtv('scroll',orbits(i+'n-'+j).join(br)))//+detail(i+'n-'+j+'图','');
+			
+		}
+	}
+	return detail('奇数→kn+b 偶数→除以2',s)+num('3" id="k_kn_b',3,1000)+
+		'n<label class=numsign>+</label>'+
+		num('1" id="b_kn_b',-1000,1000)+
+		'<div id=knb>'+dc;
+}();
+
+
 $(function(){
 
 	
@@ -210,3 +211,5 @@ $(function(){
 		$('#knb').html(detail(knb+'轨道',DCtv('scroll',orbits(knb).join(br))));//+detail(knb+'图','')
 	});
 });
+
+

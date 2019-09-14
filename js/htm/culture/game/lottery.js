@@ -4,49 +4,64 @@
  * Released under MIT License
  */
 
-topic['Lottery']='';
+ 
+var T=Time.week();
+if(/[024]/.test(T[0]) && (T[6]<21 || T[6]==21 && T[7]<=15)){
+	T=Time.week('',-(+(T[0]==0))-2);
+}else if(/![024]/.test(T[0])){
+	T=Time.week('',-(+(T[0]==6))-1);
+}
+/*T[0]	T[2]	期数+
+	0	1,2,3	0
+		4,5		1
+		6,7		2
 
-topicThen['Game/Lottery']=function(){
+	2	1,2		0
+		3,4,5	1
+		6,7		2
 	
+	4	1,2		0
+		3,4		1
+		5,6,7	2
+
+
+*/
+
+culture['Lottery']=XML.wrapE('style',
+		`.ltr_txta{min-width:400px;height:300px}`
+	)+
+	detail('双色球（6红+1蓝）',
+	'<div><textarea id=ltr_my_result class=ltr_txta>'+
+		'3 15 17 24 32 + 4 7 20 30 31 ; 3 12,5 7 12 24 29 + 11 22 23 26 28 ; 9 11,5 15 17 19 30 + 3 4 8 21 23 ; 7 16,5 6 11 13 24 + 3 20 31 32 33 ; 1 14,5 6 19 20 22 + 2 7 10 18 32 ; 8 2,4 13 14 23 33 + 7 10 22 25 29 ; 6 4,3 11 14 27 31 + 4 6 9 20 32 ; 10 13,2 9 18 24 25 + 7 14 17 27 30 ; 5 15,1 2 4 11 22 + 10 14 19 20 29 ; 1 14,8 9 10 21 30 + 2 4 16 28 31 ; 2 9,2 10 16 20 21 + 8 12 22 23 29 ; 4 10,1 2 20 28 29 + 10 13 15 25 32 ; 5 13,4 7 16 24 29 + 6 9 21 30 32 ; 7 15,5 12 13 19 25 + 2 7 15 17 24 ; 11 16,2 11 23 26 27 + 4 15 17 29 32 ; 8 12,17 23 27 30 31 + 11 20 21 25 33 ; 3 6'.replace(/,/g,'\n')+
+		'</textarea>'+strbtn+'←'+gM('AppendTo')+'" id=ltr_add2my /> <textarea id=ltr_result class=ltr_txta />'+dc+
+		'<p><label hidden>期号<input type=number id=ltr_vol value='+
+		T[3]+('00'+(T[1]*3+(T[2]<3||T[2]==3 && T[0]==0?0:(T[2]>5||T[2]==5 && T[0]==4?2:1 )))).substr(-3)+
+		'/></label><label>'+href(H+'www.jslottery.com/Lottery?PlayType=1','开奖号码')+
+		' <input type=text id=ltr_last_result value="9 13 14 19 22 25 2" /><label hidden>联网'+
+		strchkbx0+'id=ltr_lastOnline'+chked+' /></label>'+
+		strbtn+gM('Check')+'" id=ltr_chk /></label></p><p><label>胆 '+
+		num('5" id="ltr_dan',1,5)+'</label><label>拖 '+
+		num('5" id="ltr_tuo',2,6)+'<label>+ '+
+		strchkbx0+'class=ltr_addBlue'+chked+'/> '+gM('Blue')+' '+
+		num('2" class="blues',1,16)+'</label><label>'+
+		strbtn+gM('Random')+'" id=ltr_randDT />'+
+		num('5" class=bets',1,100)+gM('Bet')+'</label></p>'+
+		'<p>复式 <label>'+gM('Red Ball')+' '+
+		num('7" id="ltr_FSred',7,33)+'</label><label>+ '+
+		strchkbx0+'class=ltr_addBlue'+chked+' /> '+gM('Blue')+' '+
+		num('2" class="blues',1,16)+'</label><label>'+
+		strbtn+gM('Random')+'" id=ltr_randFSred />'+
+		num('5" class="bets',1,100)+gM('Bet')+'</label></p>'+
+		'<p>复式 <label>'+gM('Blue Ball')+' '+
+		num('2" class="blues',1,16)+'</label><label>'+
+		strbtn+gM('Random')+'" id=ltr_randFSblue />'+
+		num('5" class="bets',1,100)+gM('Bet')+'</label></p>'+
+
+		'<p>单式 <label>'+
+		strbtn+gM('Random')+'" id=ltr_randDS />'+
+		num('5" class="bets',1,100)+gM('Bet')+'</label></p>'
+);
 	
-	OH(XML.wrapE('style',
-			`.ltr_txta{min-width:400px;height:300px}`
-		)+
-		detail('双色球（6红+1蓝）','<div><textarea id=ltr_my_result class=ltr_txta /> <input type=button id=ltr_add2my value="←添加到" /> <textarea id=ltr_result class=ltr_txta />'+dc+
-			'<p><label hidden>期号<input type=number id=ltr_vol /></label><label>'+href(H+'www.jslottery.com/Lottery?PlayType=1','开奖号码')+' <input type=text id=ltr_last_result value="9 13 14 19 22 25 2" /><label hidden>联网<input type=checkbox id=ltr_lastOnline checked=checked /></label>'+
-				'<input type=button id=ltr_chk value="检查" /></label></p>'+
-			'<p><label>胆 <input type=number id=ltr_dan value=5 min=1 max=5 /></label><label>拖 <input type=number id=ltr_tuo value=5 min=2 max=6 /><label>+ <input type=checkbox class=ltr_addBlue checked=checked /> 蓝 <input type=number class=blues value=2 min=1 max=16 /></label><label><input type=button id=ltr_randDT value="随机" /><input type=number class=bets value=5 min=1 max=100 />注</label></p>'+
-			'<p>复式 <label>红球 <input type=number id=ltr_FSred value=7 min=7 max=33 /></label><label>+ <input type=checkbox class=ltr_addBlue checked=checked /> 蓝 <input type=number class=blues value=2 min=1 max=16 /></label><label><input type=button id=ltr_randFSred value="随机" /><input type=number class=bets value=5 min=1 max=100 />注</label></p>'+
-			'<p>复式 <label>蓝球 <input type=number class=blues value=2 min=1 max=16 /></label><label><input type=button id=ltr_randFSblue value="随机" /><input type=number class=bets value=5 min=1 max=100 />注</label></p>'+
-			'<p>单式 <label><input type=button id=ltr_randDS value="随机" /><input type=number class=bets value=5 min=1 max=100 />注</label></p>'
-			)
-	);
-	
-	var T=Time.week();
-	if(/[024]/.test(T[0]) && (T[6]<21 || T[6]==21 && T[7]<=15)){
-		T=Time.week('',-(+(T[0]==0))-2);
-	}else if(/![024]/.test(T[0])){
-		T=Time.week('',-(+(T[0]==6))-1);
-	}
-	/*T[0]	T[2]	期数+
-		0	1,2,3	0
-			4,5		1
-			6,7		2
-	
-		2	1,2		0
-			3,4,5	1
-			6,7		2
-		
-		4	1,2		0
-			3,4		1
-			5,6,7	2
-	
-	
-	*/
-	$('#ltr_vol').val(T[3]+('00'+(T[1]*3+(T[2]<3||T[2]==3 && T[0]==0?0:(T[2]>5||T[2]==5 && T[0]==4?2:1 )))).substr(-3));
-	
-	$('#ltr_my_result').val('3 15 17 24 32 + 4 7 20 30 31 ; 3 12,5 7 12 24 29 + 11 22 23 26 28 ; 9 11,5 15 17 19 30 + 3 4 8 21 23 ; 7 16,5 6 11 13 24 + 3 20 31 32 33 ; 1 14,5 6 19 20 22 + 2 7 10 18 32 ; 8 2,4 13 14 23 33 + 7 10 22 25 29 ; 6 4,3 11 14 27 31 + 4 6 9 20 32 ; 10 13,2 9 18 24 25 + 7 14 17 27 30 ; 5 15,1 2 4 11 22 + 10 14 19 20 29 ; 1 14,8 9 10 21 30 + 2 4 16 28 31 ; 2 9,2 10 16 20 21 + 8 12 22 23 29 ; 4 10,1 2 20 28 29 + 10 13 15 25 32 ; 5 13,4 7 16 24 29 + 6 9 21 30 32 ; 7 15,5 12 13 19 25 + 2 7 15 17 24 ; 11 16,2 11 23 26 27 + 4 15 17 29 32 ; 8 12,17 23 27 30 31 + 11 20 21 25 33 ; 3 6'.replace(/,/g,'\n'));
-};
 
 $(function(){
 

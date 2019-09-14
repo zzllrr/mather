@@ -6,7 +6,7 @@
 
 if(L.vrjslib){
     Arrf(function(x){
-        $('head').append('<script src="'+unpkgTmp.replace('@',x).replace('@',VRlibjs[x]||x) +'"></script>')
+        $('head').append(referf(unpkg(x,(VRlibjs[x]||x)+'.min')))
     },ZLR(L.vrjslib));
 }
 

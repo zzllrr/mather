@@ -157,7 +157,8 @@ lang['zh_cn'] = {
 	'Property': '性质',
 
 
-
+	'Thesis':'论文',
+	'Monograph':'专著',
 	
 	'Theorem': '定理',
 	'Axiom': '公理',
@@ -303,10 +304,11 @@ lang['zh_cn'] = {
 	'Science':'科学',
 	'Scientific':'科学',
 	'Fiction':'幻想',
-	'Scientific Fiction':'科幻',
+	'Science Fiction':'科幻',
 
 	'Universe':'宇宙',
 	'Life':'生命',
+	'Health':'健康',
 	'Environment':'环境',
 	'Environmental Protection':'环保',
 	'Eco-Friendly': '环保的',
@@ -314,6 +316,7 @@ lang['zh_cn'] = {
 
 	'AI': '人工智能',
 	'Intelligent': '智能',
+	'Intelligence': '智能',
 	
 
 
@@ -348,6 +351,8 @@ lang['zh_cn'] = {
 	'Podcast':'播客',
 	'Vlog':'视频博客',
 	'Ebook':'电子书',
+	'Movie':'影视',
+	'Painting':'画',
 
 
 	'Philosophy':'哲学',
@@ -416,7 +421,26 @@ lang['zh_cn'] = {
 	'Round Corner': '圆角',
 	'Rounded': '圆角',
 
+	'White':'白',
+	'Black':'黑',
+	'Gray':'灰',
+	'Gold':'金',
+	'Silver':'银',
+	'Bronze':'铜',
+	'Iron':'铁',
+	'Brown':'棕',
+	'Red':'红',
+	'Orange':'橙',
+	'Yellow':'黄',
+	'Green':'绿',
+	'Blue':'蓝',
+	'Indigo':'靛',
+	'Violet':'紫',
+
+	'Ball':'球',
+
 	'Borderless': '无框',
+	'Visible':'可见',
 
 	'Pie': '饼',
 	'Bar': '条形',
@@ -456,6 +480,7 @@ lang['zh_cn'] = {
 	'Import': '导入',
 	'Browser': '浏览器',
 	'Share': '分享',
+	'Check':'检查',
 
 	'Effects': '特效',
 	'Action': '动作',
@@ -661,6 +686,7 @@ lang['zh_cn'] = {
 	'Symmetric': '对称',
 
 	'Unsolved': '未解',
+	'Solved':'已解决',
 	'Open': '开放',
 	'Compatible': '相容',
 
@@ -857,8 +883,9 @@ lang['zh_cn'] = {
 
 	'Select': '选择',
 
-
-
+	'Bet':'注',
+	'Append':'添加',
+	'AppendTo':'添加到',
 	'Edit': '编辑',
 	'Replace': '替换',
 	'Copy': '复制',
@@ -887,11 +914,16 @@ lang['zh_cn'] = {
 	'i18n': '国际化',//	'Internationalization':'国际化',
 	'i10n': '本土化',	//Localization 
 
-
-
+	'Avatar':'头像',
+	'Card':'卡片',
+	'Process':'流程',
 	'Words': '文字',
 	'Command': '命令',
 
+	'Comment':'评论',
+	'Badge':'徽章',
+	'Overlay':'覆盖',
+	'Button':'按钮',
 
 	//Math concept
 
