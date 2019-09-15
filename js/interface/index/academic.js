@@ -4,6 +4,6 @@
  * Released under MIT License
  */
 academics={index:['Thesis','Monograph','Periodical','Institution',
-    'Conference','Seminar','Awards','Contest']
+    'Seminar','Awards','Contest']
 
 };

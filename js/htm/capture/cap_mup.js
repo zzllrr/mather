@@ -27,7 +27,10 @@ function mUp(e,Last){
 
 	var drawLast=function(){
 		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
+		if(oOn('Zdog')){
 
+			
+		}
 		
 		if(oOn('SymmetryAxis')){
 			var m1='M'+sw+' '+sw+'H'+(WD+40), m2='M'+sw+' '+sw+'V'+(HT+40), m3='M'+sw+' '+sw+'L'+(WD+40)+' '+(HT+40)+'M'+sw+' '+(HT+40)+'L'+(WD+40)+' '+sw,

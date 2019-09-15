@@ -152,7 +152,7 @@ code, pre{
 body.day, .day textarea{
 	color:black;
 }
-.gainsboro, body.night, .night textarea, .night input:not(.seled):not(:hover){
+.gainsboro, body.night, .night textarea{
 	color:gainsboro;
 }
 body.night{

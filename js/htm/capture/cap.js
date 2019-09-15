@@ -487,18 +487,21 @@ dc
 							'<div id=nestOpt hidden>'+dc
 						)+
 				
-						'<div><span id=Container>'+gM('Container')+' '+num(2,'0" tip=W id="ContainerW')+' × '+num(2,'0" tip=H id="ContainerH')+sc+'<span id=Angle tip=Angle hidden> ∠ '+num(2,'0" id="angle')+'°'+sc+
-							'<label>'+strchkbx0+'id=cssClip />'+gM('Clip')+'</label>'+dc+
+						detail(gM('Container')+num(2,'0" tip=W id="ContainerW')+' × '+num(2,'0" tip=H id="ContainerH')+
+							'<span id=Angle tip=Angle hidden> ∠ '+num(2,'0" id="angle')+'°'+sc,
+							'<label>'+strchkbx0+'id=cssClip />'+gM('Clip')+'</label>'+
 				
-						'<div id=CssClip hidden><img class=clip>'+gM('clip')+
-							SCtv('','↦')+num('0" id="cssClipL')+
-							SCtv('','↤')+num('100" id="cssClipR')+br+
-							SCtv('','↧')+num('0" id="cssClipT')+
-							SCtv('','↥')+num('100" id="cssClipB')+dc+
+							'<div id=CssClip hidden><img class=clip>'+gM('clip')+
+								SCtv('','↦')+num('0" id="cssClipL')+
+								SCtv('','↤')+num('100" id="cssClipR')+br+
+								SCtv('','↧')+num('0" id="cssClipT')+
+								SCtv('','↥')+num('100" id="cssClipB')+dc+
+							'<label>'+strchkbx0+'id=Zdogon />3D (Zdog)</label>'
+						)+
 				
 						'<div id=fxTXT hidden>'+txa('','" id=fxTxt placeholder="Condition;Ox,Oy,x0,x1,y0,y1;color;opacity')+
 							detail(strbtn+'f(x,y)" id=GOfx /><input type=button class=clrCanvas value="'+gM('Clear')+'" />')+
-							'<div>' + Arrf(function (x) { return '<p class=JS>' + x + ';</p>' }, [
+							'<div>' + Arrf(function (x) { return sceg(x,5) }, [
 
 								'(x**2+y**2)<=2500 && (x**2+y**2)>=1600;400,300,-50,50,-50,50;#a2c347;255',
 						
@@ -1180,14 +1183,6 @@ dc+
 			$('#tileTool').hide();
 		}
 	}).children().eq(0).text(gM('Effects'));
-
-
-
-
-	$('.JS').on('click', function () {
-		var x = $(this).text();
-		$(this).parent().parent().prev().val(function (i, v) { return (v ? v + '\n' : '') + x })
-	});
 
 
 

@@ -1999,8 +1999,9 @@ $(function(){
 	}).on('click','.eg', function(e){
 
 		var me=$(this),t=me.attr('data-eg'),shft=e.shiftKey || $('#Shift').is('.seled'),
-			i1=me.parents('.inputTip').parent().attr('id'),isjs=me.is('.js'), isnode=me.is('.node'),
-			tbt=me.parents('#TextBoxTool').length;
+			i1=me.parents('.inputTip').parent().attr('id'),
+			isjs=me.is('.js'), isnode=me.is('.node'),
+			tbt=me.parents('#TextBoxTool').length, fxTXT=me.parents('#fxTXT').length;
 		if(isjs){
 			t+=';\n'
 		}else if(isnode){
@@ -2008,15 +2009,16 @@ $(function(){
 		}else{
 			t=t.replace(/&&(?! )/g,'\n')
 		}
-		if(!i1 && !tbt){
+		if(!(i1 || tbt || fxTXT)){
 			copy2clipboard(t)
 			return
 		}
-		
-		i1=tbt?'svgTEXTBox':i1.replace(/\D/g,'');
-		var is2=me.is('.eg2'),i=tbt?$('#TextBox'):$('#input'+i1),iv=i.val();
 
-		
+		var is2=me.is('.eg2'),
+			i=fxTXT?'fxTxt':(tbt?'TextBox':'input'+i1.replace(/\D/g,''));
+		i=$('#'+i);
+		var iv=i.val();
+
 		if(is2){
 			var td=$('#sbsTbl td').filter(function(){return $(this).text()==t}).eq(0);
 			if(td.length){

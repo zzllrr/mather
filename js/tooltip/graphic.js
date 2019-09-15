@@ -255,7 +255,7 @@ $.each({
 			
 			detail(gM('Initialize'),[
 
-				scegj('C.width=300;C.height=300',0)
+				scegj('C.width=300;C.height=300',5)
 			].join(br)),
 			
 			detail(gM('Rectangle'),[
@@ -335,7 +335,7 @@ $.each({
 		c.fillStyle=ptn;
 		c.fillRect(0,0,150,150)
 
-	}`,0)
+	}`,5)
 
 				].join(br)),
 				
@@ -344,7 +344,7 @@ $.each({
 		c.shadowOffsetX = 2;
 		c.shadowOffsetY = 2;
 		c.shadowBlur = 2;
-		c.shadowColor = 'rgba(0, 0, 0, 0.5)'`,0)				
+		c.shadowColor = 'rgba(0, 0, 0, 0.5)'`,5)				
 				].join(br))
 			].join(br)),
 
@@ -366,7 +366,7 @@ $.each({
 			
 				gM('Measure')+scegj(`
 					var t=c.measureText('foo');
-					t.width`,0)
+					t.width`,5)
 			].join(br)),
 
 			detail(gM('Begin Path'),[
@@ -377,7 +377,8 @@ $.each({
 				detail('Path2D()',[
 					scegj('var P1=new Path2D()'),
 					gM('Clone')+scegj('var P2=new Path2D(P1)'),
-					gM('SVG Path')+'d('+gM('String')+')'+scegj("var P3=new Path2D('M10 10 h 80 v 80 h -80 Z')",15),
+					gM('SVG Path')+'d('+gM('String')+')'+
+					scegj("var P3=new Path2D('M10 10 h 80 v 80 h -80 Z')",15),
 					
 					'Path2D.addPath(path [, transform])',
 				].join(br))
@@ -525,7 +526,7 @@ $.each({
 	if(e.region) {
 		console.log("hit region:" + e.region);
 	}
-	})`,0),
+	})`,5),
 				gM('Focus')+scegj('c.drawFocusIfNeeded(element)')+'|(Path2D, element)',
 		
 				gM('Attribute')+scegj('c.getContextAttributes()'),
@@ -539,7 +540,7 @@ $.each({
 					'lighter copy xor multiply','screen overlay darken lighten',
 					'difference exclusion hue','saturation color luminosity',
 
-					scegj("c.globalCompositeOperation='source-over'",0),
+					scegj("c.globalCompositeOperation='source-over'",5),
 				
 				].join(br)),
 	].join(br)),
@@ -554,7 +555,7 @@ $.each({
 						scegj("var u=c.canvas.toDataURL('image/jpeg',0.5)"),
 					].join(br)),
 					detail('toBlob(callback, type, encoderOptions)',[
-						scegj("var b=c.canvas.toBlob(callback, type, encoderOptions)",0)
+						scegj("var b=c.canvas.toBlob(callback, type, encoderOptions)",5)
 					].join(br)),
 					
 					detail('OffscreenCanvas(x,y)',[
@@ -566,7 +567,7 @@ $.each({
 	var b1 = offscreen.transferToImageBitmap();
 	one.transferImageBitmap(b1);
 	var b2 = offscreen.transferToImageBitmap();
-	two.transferImageBitmap(b2);`,0),
+	two.transferImageBitmap(b2);`,5),
 						
 					].join(br)),
 				].join(br)),
@@ -583,7 +584,7 @@ $.each({
 
 				detail(gM('Initialize'),[
 	
-					scegj('C.width=300;C.height=300',0)
+					scegj('C.width=300;C.height=300',5)
 				].join(br))
 			].join(br)),
 		

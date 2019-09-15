@@ -536,6 +536,19 @@ $(function () {
             //history.back()
         }
 
+
+
+
+	}).on('click','#launch',function(){
+		var x=$('#oHTML iframe').attr('src')||location.href, lv=$('.launch:visible');
+		if(lv.length){
+			lv.click()
+		}else if(x){
+			open(x);
+		}else{
+			$('#go').click()
+		}
+
     }).on('click','#oHTML .katex',function(e){
     
         copy2clipboard($(this).find('annotation').eq(0).text());

@@ -170,10 +170,11 @@ $(function(){
 			DCtv('pd2" id="iTextOpt',
 				itvc('oClear rotate270" id="oHClear')+
 				itv('" id=iTextFold tip="Snippet Editor','description')+
-				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
-				itv('" id=launch tip="Launch','launch')+
+				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')+
 
-				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')
+				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
+				itv('" id=launch tip="Launch','launch')
+
 
 			)+
 
@@ -416,17 +417,6 @@ dc);
 		me.toggleClass('seled');
 	});
 
-
-	$('#launch').on('click',function(){
-		var x=$('#oHTML iframe').attr('src')||'', lv=$('.launch:visible');
-		if(lv.length){
-			lv.click()
-		}else if(x){
-			open(x);
-		}else{
-			$('#go').click()
-		}
-	});
 
 
 	$('#zMatherHide').on('click',function(){

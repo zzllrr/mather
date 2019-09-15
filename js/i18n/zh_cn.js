@@ -883,6 +883,7 @@ lang['zh_cn'] = {
 
 	'Select': '选择',
 
+	'Printing':'打印',
 	'Bet':'注',
 	'Append':'添加',
 	'AppendTo':'添加到',

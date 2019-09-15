@@ -12,14 +12,22 @@
     width: 16px;
 }
 
-#tileToolCap svg[id]{width:3rem;height:3rem}
+#tileToolCap svg[id]{height:2rem}
 
+@media screen and (max-width:800px){
+	
+	#tileToolCap svg[id]{width:3rem;}
+}
+@media screen and (min-width:800px){
+	#tileToolCap svg[id]{width:2rem;}
+}
 #tileFontCenter{width:40px}
 
 #strkDash{width:78px}
 #font{width:100px}
 
 #path_CapScr{width:55%}
+#SvgOpt textarea{width:85%}
 
 #svgTool > div{padding:5px}
 #Weib{margin:5px}
