@@ -308,7 +308,13 @@ function all2html(type,V,dom){
             w.html(v)
         }
     }else if(/LATEX|LA|LT|LX|TEX|LTX|IL/.test(iv)){
-        katex.render(kx(sub2n(v,1)), w[0], {
+        var x=sub2n(v,1);
+        try{
+            x=kx(x)
+        }catch(e){
+
+        }
+        katex.render(x, w[0], {
             throwOnError: false,
             displayMode: iv!='IL'
         });
@@ -414,9 +420,9 @@ $(function () {
         (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="Home"','home'))+
     
         
+        (ishome||iscap?itv('" id=svgs tip="Graphic" hotkey="Esc','palette'):'')+
         itv('" id=night tip="Night','brightness_3')+
         itv('" id=qrcode tip="Share','share')+
-        (ishome||iscap?itv('" id=svgs tip="Graphic" hotkey="Esc','layers'):'')+
     dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
@@ -446,7 +452,7 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
-	$('#panel').on('click','#night ~ i',function(){
+	$('#panel').on('click','i:not(#night):not(#zMatherOn)',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(id=='svgs'){
@@ -537,7 +543,9 @@ $(function () {
         }
 
 
+	}).on('click','#launchCap',function(){
 
+		open('cap.html');
 
 	}).on('click','#launch',function(){
 		var x=$('#oHTML iframe').attr('src')||location.href, lv=$('.launch:visible');

@@ -6,7 +6,15 @@
  */
 
 var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代次数或嵌套参数（次数cnt或[marginx,marginy]）
-	var S=[],M=[],B=[],A,A0, Cn=[0,0], C;
+	var S=[],M=[],B=[],A,A0, Cn=[0,0], C, err=function(x){
+		for(var i=0,l=x.length;i<l;i++){
+			if(isNaN(x[i])){
+				return []
+			}
+		}
+
+		return x
+	};
 	if(isArr(Arr) && Arr[0]!='M'){
 		A=[].concat(Arr);
 		A0=[].concat(Arr);
@@ -58,7 +66,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 		for(var i=0;i<n;i++){
 			B.push('M',A[i*2],A[i*2+1], 'L',C[0],C[1])
 		}
-		return B
+		return err(B)
 	}
 
 
@@ -106,17 +114,17 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 		B=[(3*C[0]-H[0])/2, (3*C[1]-H[1])/2]
 
 		if(typ=='Circumcenter'){
-			return B
+			return err(B)
 		}
 		if(typ=='CircumCircle'){
-			return B.concat(Lpd/(4*gon(A,'Area')))
+			return err(B.concat(Lpd/(4*gon(A,'Area'))))
 		}
 		if(typ=='CircumcenterLine'){
 			var D=[];
 			for(var i=0;i<n;i++){
 				D.push('M',A[i*2],A[i*2+1], 'L',B[0],B[1])
 			}
-			return D
+			return err(D)
 		}
 		
 	}
@@ -136,10 +144,10 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 		B=[(3*C[0]+H[0])/2, (3*C[1]+H[1])/2];
 
 		if(typ=='Nine_pointcenter'){
-			return B
+			return err(B)
 		}
 		if(typ=='Nine_pointCircle'){
-			return B.concat(Lpd/(8*gon(A,'Area')))
+			return err(B.concat(Lpd/(8*gon(A,'Area'))))
 		}
 	}
 
@@ -154,16 +162,16 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 			D[1]+=A[i*2+1]*k;
 		}
 		if(typ=='Incenter'){
-			return D
+			return err(D)
 		}
 		if(typ=='Incircle'){
-			return D.concat(gon(A,'Area')*2/Cf)
+			return err(D.concat(gon(A,'Area')*2/Cf))
 		}
 		if(typ=='IncenterLine'){
 			for(var i=0;i<n;i++){
 				B.push('M',A[i*2],A[i*2+1], 'L',D[0],D[1])
 			}
-			return B
+			return err(B)
 		}
 	}	
 
@@ -209,7 +217,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 			B.push((A[2]+A[4])/2, A[3], Math.abs(A[2]-A[4])/2)
 		}
 		
-		return B
+		return err(B)
 		
 	}
 	
@@ -229,7 +237,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 				B.push('M',A[i*2],A[i*2+1], 'L',M[((i+1+j)%n)*2],M[((i+1+j)%n)*2+1])
 			}
 		}
-		return B
+		return err(B)
 	}
 
 
@@ -248,7 +256,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 				B.push('M',M[i*2],M[i*2+1], 'L',M[((i+2+j)%n)*2],M[((i+2+j)%n)*2+1])
 			}
 		}
-		return B
+		return err(B)
 
 	}
 	
@@ -258,7 +266,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 				B.push('M',A[i*2],A[i*2+1], 'L',A[((i+2+j)%n)*2],A[((i+2+j)%n)*2+1])
 			}
 		}
-		return B
+		return err(B)
 	}
 
 	if(typ=='Nest'){//嵌套相似多边形（中心点是不变量）
@@ -294,7 +302,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 				}
 			}
 //console.log(P);
-			return P
+			return err(P)
 
 		};
 		if(isArr(o)){//[marginx,marginy]
@@ -342,7 +350,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 			}
 		}
 
-		return B
+		return err(B)
 		
 	}
 
@@ -380,7 +388,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 		}
 
 		if(typ=='PerpendicularFoot'){//垂足有n*(n-2)个
-			return B
+			return err(B)
 		}
 		if(typ=='PerpendicularFootLine'){//垂足连线，顺次连接（实际上述垂足需要重新排序，暂未实现！）	n*(n-2)条
 			if(o){
@@ -390,7 +398,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 			}
 		}
 		if(typ=='Altitudes'){
-			return B
+			return err(B)
 		}
 		
 		if(typ=='OrthocenterLine'){//利用垂心是高线三角形的内心
@@ -398,12 +406,12 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 			for(var i=0;i<n;i++){
 				D.push('M',A[i*2],A[i*2+1], 'L',I[0],I[1])
 			}
-			return D
+			return err(D)
 		}
 		
 	}
 
-	return B
+	return err(B)
 		
 		
 		

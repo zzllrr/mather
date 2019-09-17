@@ -949,6 +949,7 @@ lang['zh_cn'] = {
 	'Series': '级数',
 
 	'Equation': '方程',
+	'Equations': '方程组',
 	'Equation Array': '方程组',
 	'Inequation': '不等式',
 	'Analytic': '解析式',

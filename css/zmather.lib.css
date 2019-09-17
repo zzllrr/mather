@@ -45,6 +45,10 @@
 		width: 70%;
 		height: 180px;
 	}
+
+	input[type="number"]{
+		max-width: 2.5rem;
+	}
 }
 
 
@@ -52,6 +56,10 @@
 	.editorText {
 		width:50%;
 		height:200px;
+	}
+
+	input[type="number"]{
+		max-width: 3rem;
 	}
 }
 
@@ -940,11 +948,9 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 }
 
 
-input[type="number"]{
-	width: 60px;
-}
+
 input[len="2"]{
-	width: 80px;
+	width:5rem;
 }
 
 

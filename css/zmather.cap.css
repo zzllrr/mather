@@ -17,6 +17,7 @@
 @media screen and (max-width:800px){
 	
 	#tileToolCap svg[id]{width:3rem;}
+	#Crop {display: none}
 }
 @media screen and (min-width:800px){
 	#tileToolCap svg[id]{width:2rem;}
@@ -70,6 +71,12 @@
 	height:20px;
 	z-index: 1;
 }
+
+#svgShape{
+	overflow-y: auto;
+	max-height: 500px;
+}
+
 #Caps textarea:hover, #svgShapes{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
@@ -108,8 +115,8 @@ input:not([readonly]), select{
 }
 #COLOR summary input[readonly] {
     margin: 2px;
-	width: 16px;
-	height: 16px;
+	width: 2rem;
+	height: 2rem;
 	text-align: center;
 }
 #color1{background:skyblue}

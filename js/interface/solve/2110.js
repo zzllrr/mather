@@ -225,7 +225,12 @@ solves[2110]={sbj2s:['Matrix','Permutation','Vector',
 
 	
 		{'Equation':[
-
+			{'Linear Equations':[
+				'$AX=0$',
+				'$AX=b$—Input Augmented Matrix',
+				'Cramer Rule—Augmented Matrix&变换参数1@变换参数2&未知数风格x1[a][x]',
+				
+			]},
 			{'Matrix Equation':[
 				'$AX=aA+bX$…A&a,b&[XB]“1234&3,-1&B',
 				'$XA=aA+bX$…A&a,b&[XB]“1234&2,3&B',
@@ -237,10 +242,7 @@ solves[2110]={sbj2s:['Matrix','Permutation','Vector',
 			{'根据已知通解求其它方程通解':[
 				'$已知AX=β通解ξ+cη，求BY=(A,Ax+kβ)Y=β的通解$…矩阵(ξ,η,x)&系数k'
 			]},
-			'$AX=0$',
-			'$AX=b$—Input Augmented Matrix',
-			'Cramer Rule—Augmented Matrix&变换参数1@变换参数2&未知数风格x1[a][x]',
-			
+
 			'$P^{-1}AP=B求P$…A\nB“1234\n2751',
 		]},
 

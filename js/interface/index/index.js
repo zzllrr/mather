@@ -1166,7 +1166,7 @@ console.log(f,m,s,ext);
 });
 
 var toolSwitch=function(x){
-	var G='#'+x+'Ground';
+	var G='#'+x+'Ground', hasEditorTxt=/show/.test(x);
 	$('.ground:not('+G+')').hide();
 
 	$(G).show();
@@ -1184,6 +1184,8 @@ var toolSwitch=function(x){
 	if(/solve|graphic/.test(x)){
 		$('#iTextFold.seled').click()
 	}
+
+	$('#send2textBox,.snippetSend').toggle(hasEditorTxt);
 
 	if($(G).children().eq(0).html()==''){
 		$(G).find('.ground0').html(

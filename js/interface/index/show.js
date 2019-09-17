@@ -88,14 +88,14 @@ function showThen(T) {
 
     $(sT+' :button[id]').on('click', function () {
         var TXA = $('#showGround .editorText'), s = TXA.val(), st = s.trim(), ish=/^https?.+$/.test(st),
-         me = $(this), id = me.attr('id'), u,o={};
-        
+         me = $(this), Id = me.attr('id'), u,o={};
+         
     
-        if(/.+Play$/.test(id)){
-            id=id.replace(/Play$/,'');
-            var isImage=id=='Image';
+        if(/.+Play$/.test(Id)){
+            Id=Id.replace(/Play$/,'');
+            var isImage=Id=='Image';
             if(isImage){
-                id='Slide';
+                Id='Slide';
                 o.type='image'
             }
 
@@ -103,15 +103,17 @@ function showThen(T) {
                 o.src=st
             }
             
-    
-            if(id=='Slide'){
+            var id=Id.toLowerCase();
+            L[id]=s;
+
+            if(Id=='Slide'){
                 var sv=$('#slideSwapV').prop('checked');
                 if(sv && ish){
                     o.swap='v';
                 }
             }
 
-            u=H_o(id.toLowerCase()+'.html',o);
+            u=H_o(id+'.html',o);
  
             $('#go').attr('data-url',u);
             open(u);

@@ -462,7 +462,7 @@ dc
 
 								'<div>' + Arrf(function (x) { return '<span><label>'+strchkbx0+'id=' + x + 'on />' + gM(x) + '</label> ' + gM('bw') + num(15) + sc }, ZLR('Rt')).join('') + dc +
 
-								Arrf(function (y) { return '<div>' + gM(y) + ' ' + Arrf(function (x) { return '<label>'+strchkbx0+'id=' + y + x + 'on />L' + x + ' </label>' }, [1, 2, 3]).join('') + dc }, ZLR('Median Altitude AngleBisector Midline')).join('')
+								Arrf(function (y) { return '<div>' + gM(y=='Median'?'Median Line':y) + ' ' + Arrf(function (x) { return '<label>'+strchkbx0+'id=' + y + x + 'on />L' + x + ' </label>' }, [1, 2, 3]).join('') + dc }, ZLR('Median Altitude AngleBisector Midline')).join('')
 
 
 							
@@ -547,16 +547,25 @@ dc
 					svgf.id('DANoteRnd',svgf.path('M12 7 A7 7 0 0 0 5 14 V23 H25 V14 A7 7 0 0 0 18 7 z'))+
 
 				dc+
-				'<div>'+
-					svgf.id('dartNote',svgf.path('M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z'))+
-					svgf.id('SdartNoteM',svgf.path('M5 7 V23 H17 L25 15 17 7 H5 z'))+
-					svgf.id('SdartNoteF',svgf.path('M5 7 L13 15 5 23 H25 V7 z'))+
-					svgf.id('Sarrow',svgf.path('M5 11 V19 H15 V25 L25 15 15 5 V11 H5z'))+
-					svgf.id('Darrow',svgf.path('M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z'))+
-					svgf.id('Xarrow',svgf.path('M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z'))+
 
+				'<div>'+
+
+
+					svgf.id('TriangonH',svgf.polygon('8,25 12,5 22,25'))+
+
+					svgf.id('Paralgon',svgf.polygon('5,25 18,25 25,5 12,5'))+
+					svgf.id('TrapegonIso',svgf.polygon('10,5 20,5 25,25 5,25'))+
+					svgf.id('TrapegonRight',svgf.polygon('5,5 5,25 25,25 15,5'))+
+
+
+
+					svgf.id('PentagonT',svgf.polygon('15,2 27,12 23,26 7,26 3,12'))+
+
+					svgf.id('LGonRndSq',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 z'))+
 
 				dc+
+
+
 				'<div>'+
 					svgf.id('Quo',svgf.path('M5 12 A2 2 0 0 0 7 15 H13 A2 2 0 0 1 15 18 2 2 0 0 1 17 15 H23 A2 2 0 0 0 25 12'))+
 					svgf.id('Polylin',svgf.path('M6 24 L13 9 17 21 24 6'))+
@@ -811,21 +820,17 @@ dc
 				dc+
 
 
-
 				'<div>'+
+					svgf.id('dartNote',svgf.path('M5 7 L13 15 5 23 H17 L25 15 17 7 H5 z'))+
+					svgf.id('SdartNoteM',svgf.path('M5 7 V23 H17 L25 15 17 7 H5 z'))+
+					svgf.id('SdartNoteF',svgf.path('M5 7 L13 15 5 23 H25 V7 z'))+
+					svgf.id('Sarrow',svgf.path('M5 11 V19 H15 V25 L25 15 15 5 V11 H5z'))+
+					svgf.id('Darrow',svgf.path('M10 12 V7 L3 15 10 23 V18 H20 V23 L27 15 20 7 V12 H10z'))+
+					svgf.id('Xarrow',svgf.path('M5 11 L9 15 5 19 H15 V25 L25 15 15 5 V11 H5z'))+
 
-
-					svgf.id('Paralgon',svgf.polygon('5,25 18,25 25,5 12,5'))+
-					svgf.id('TrapegonIso',svgf.polygon('10,5 20,5 25,25 5,25'))+
-					svgf.id('TrapegonRight',svgf.polygon('5,5 5,25 25,25 15,5'))+
-
-
-
-					svgf.id('PentagonT',svgf.polygon('15,2 27,12 23,26 7,26 3,12'))+
-
-					svgf.id('LGonRndSq',svgf.path('M3 15 L9 26 H21 L27 15 21 4 H9 z'))+
 
 				dc+
+
 
 
 				'<div>'+
@@ -914,7 +919,7 @@ dc
 dc+
 
 
-			detail(gM('transform')+'<span>'+
+			detail('<span tip="Coordinate & Transform">'+
 				'<span title=px>x '+num('0" id="cssX')+sc+
 				'<span title=px>y '+num('0" id="cssY')+sc+
 				'<span title="z-index">z '+num('0" id="cssZ')+sc+
@@ -987,8 +992,9 @@ dc+
 				'<input type=text id=color2 title="Pink Girl" readonly />'+
 				'<input type=text id=color3 title="Black Rhythm" readonly />'+
 				'<input type=text id=color4 title="Red Charm" readonly />'+
-				'<input type=text id=color5 title="Random" value="?" readonly />'+
-				'<label tip="Random Colors">'+gM('Random')+strchkbx0+'id=RandomColorson'+chked+' /></label>',
+				'<input type=text id=color5 tip="Random Color" value="?" readonly />'+
+				'<input type=text id=RandomColorson tip="Inner-Random Colors" value="#" class="tool seled" readonly />',
+
 				
 				'<div id=Color>'+Arrf(function (X) {
 						var x = X.toLowerCase(), w = $(window).width(), h = $(window).height(), w2 = Math.ceil(w / 2), h2 = Math.ceil(h / 2),
@@ -1036,8 +1042,8 @@ dc+
 			detail(
 				'<button id=copy2clipboard class=mi>library_books</button>'+
 				'<button id=copy2input class=mi>library_add</button>'+
-				'<button id=copyAll2input class=mi>photo_library</button>',
-
+				'<button id=copyAll2input class=mi>photo_library</button>'+
+				'<button id=launchCap class=mi tip=Launch>launch</button>',
 				'<div><label>'+strchkbx0+'id=ignoreHiddenElement'+chked+' /></label>'+dc+
 				txa('','" id="SVGcode'),
 
@@ -1065,7 +1071,7 @@ dc+
 	$('#svgTog').attr('title', gM('Hide') + ' | ' + gM('hotkey') + ': Shift + Esc');
 	$('#Tile :button[title]').attr('title', function (i, v) { return gM('hotkey') + ': ' + v });
 	$('#font').attr('placeholder', gM('font'));
-	$('#CssRotate6 img,#svgCode button').attr('tip', function () { return $(this).attr('id')});
+	$('#CssRotate6 img,#svgCode button').not('[tip]').attr('tip', function () { return $(this).attr('id')});
 
 
 	$('#svgCode summary button').attr('title',gM('CopyCode'));
@@ -1472,7 +1478,7 @@ dc+
 
 
 	$('#RandomColorson').on('click', function () {
-		var c = $(this).prop('checked'), shp = $('#' + (L.drawShape || 'unknown')), shpN = $('#' + (L.drawShapeNow || 'unknown'));
+		var c = $(this).toggleClass('seled'), shp = $('#' + (L.drawShape || 'unknown')), shpN = $('#' + (L.drawShapeNow || 'unknown'));
 		if (L.drawShape == 'allEraser') {
 
 			caps.repaint();
@@ -1493,7 +1499,7 @@ dc+
 		if(id=='Narrow'){
 
 			var w=$('#tileTool')[0].style.width;
-			$('#tileTool')[0].style.width=(w?'':'6rem');
+			$('#tileTool')[0].style.width=(w?'':'5rem');
 			$(this).children('path').attr('d', w?'M10 20 L15 15 10 10 M18 9 V21':'M20 20 L15 15 20 10 M12 9 V21');
 			
 			return
@@ -1547,8 +1553,8 @@ dc+
 
 
 
-
-		$('#caps').css('cursor', 'default');
+		$('#caps').css('cursor', 'crosshair')
+//		$('#caps').css('cursor', 'default');
 
 		$('#svgSel').toggle(!pa.is('#svgTool,#svgTog'));
 
@@ -1693,23 +1699,66 @@ dc+
 		$('#scrH').val(h);
 	});
 
-	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) { mDn(e) 
-	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) { mMv(e);
+
+/*
+
+　　(1)touchstart				mousedown
+　　(2)mouseover
+　　(3)mousemove(一次)			mousemove
+　　(4)mousedown
+　　(5)mouseup					mouseup
+　　(6)click
+　　(7)touchend
+*/
+
+
+	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mDn(e);
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
-	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) { mUp(e)
+		
+	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mMv(e);
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
+		
+	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mUp(e);	
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
 	});
 
-	$('#caps').on('mousedown touchstart', function (e) { mDn(e) 
-	}).on('mousemove touchmove', function (e) { mMv(e);
+
+
+
+	$('#caps').on('mousedown touchstart', function (e) {consolelog('caps');
+		mDn(e);
+		if (e.cancelable) {
+			// 判断默认行为是否已经被禁用
+			if (!e.defaultPrevented) {
+				e.preventDefault && e.preventDefault();
+			}
+		}
+		
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
+		
+	}).on('mousemove touchmove', function (e) {consolelog('caps'); mMv(e);
 		
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
-	}).on('mouseup touchend', function (e) { mUp(e)
+		
+	}).on('mouseup touchend', function (e) {consolelog('caps'); mUp(e);
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
 	});
 
 
@@ -2365,6 +2414,9 @@ function clk_popout(obj) {
 			
 			
 		}
+
+		caps.repaint();
+
 		if (v) {
 			
 			if (L.drawShape == 'Pointer' && /Text/.test(shpNid)) {
@@ -2755,4 +2807,8 @@ function cng_popout(obj) {
 
 function fixed4(d) {
 	return d.toFixed(4).replace(/(\.[^0]*)0+/, '$1').replace(/\.$/, '')
+}
+
+function errPath(t) {
+	return (t||'').replace(/^.*M *[LZ].+$/i,'').replace(/.+[ML] *z*$/i,'')
 }

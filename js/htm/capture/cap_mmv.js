@@ -12,7 +12,8 @@ sweep-flag 是标记向顺时针(1)还是逆时针(0)方向绘制。
 x y 是圆弧终点的坐标。
 */
 function mMv(e,repaint){
-
+	//console.log(e.type);
+	//console.log(e);
 	if(!repaint){
 		var eos=e.originalEvent.srcElement, act=eos.tagName;
 		if(act!='CANVAS'){e.stopPropagation()}
@@ -600,13 +601,13 @@ function mMv(e,repaint){
 
 
 				for(var i=0;i<c;i++){
-					pnt.push('M',offX<0?w-wn*(i+1)-tickH:d+wn*(i+1)+tickH, py, 'V',(offY<0?h-d:d));
+					pnt.push('M',offX<0?w-wn*(i+1)-tickH:d+wn*(i+1)+tickH, py, 'V',(offY<0?h+sw:d));
 
 				}
 
 				
 				for(var i=0;i<r;i++){
-					pnt.push('M',px,offY<0?h-hn*(i+1)-tickH:d+hn*(i+1)+tickH,'H',(offX<0?w-d:d));
+					pnt.push('M',px,offY<0?h-hn*(i+1)-tickH:d+hn*(i+1)+tickH,'H',(offX<0?w+sw:d));
 
 				}
 				pnt.push('M',px,py,'V',h-py+tickH);
@@ -1371,23 +1372,24 @@ console.log('tp ',tp);
 			HT=h+sw;
 
 			shpN.css(ltwh([lt,tp,WD,HT]));
+			//console.log(pnt);
 			chd.filter('polygon.main').attr({points:pnt.join(' ')});
 			
 
-				Arrf(function(x){chd.filter('.'+x).attr('d',gon(pnt,x).join(' '))}, ZLR('Diagonal Medians Altitudes '+
+				Arrf(function(x){chd.filter('.'+x).attr('d',errPath(gon(pnt,x).join(' ')))}, ZLR('Diagonal Medians Altitudes '+
 					zlr2('MidPoint OppositeMidPoint PerpendicularFoot Centroid '+zlr2('Ortho In Circum','center'),'Line')));
 				
 				if(/Triangon/.test(shp)){
 					var g=gon(pnt,'MidPoint');
 					for(var i=0;i<3;i++){
-						chd.filter('.Midline'+(i+1)).attr('d',['M',g[i*2],g[i*2+1],'L',g[((i+1)%3)*2],g[((i+1)%3)*2+1]].join(' '))
+						chd.filter('.Midline'+(i+1)).attr('d',errPath(['M',g[i*2],g[i*2+1],'L',g[((i+1)%3)*2],g[((i+1)%3)*2+1]].join(' ')))
 					}
 					
 					var jA=ZLR('Median Altitude');
 					for(var j=0;j<2;j++){
 						var g=gon(pnt,jA[j]+'s');
 						for(var i=0;i<3;i++){
-							chd.filter('.'+jA[j]+(i+1)).attr('d',g.slice(i*6,(i+1)*6).join(' '))
+							chd.filter('.'+jA[j]+(i+1)).attr('d',errPath(g.slice(i*6,(i+1)*6).join(' ')))
 						}
 					}
 		
@@ -2004,7 +2006,7 @@ console.log('tp ',tp);
 
 				if(n>2 && /Poly/.test(shp)){
 					Arrf(function(x){var dA=gon(/Poly/.test(shp)?tArr.slice(0,n*2-2):tArr,x);
-						if(dA.length>2){chd.filter('.'+x).attr('d',dA.join(' '))}
+						if(dA.length>2){chd.filter('.'+x).attr('d',errPath(dA.join(' ')))}
 					},ZLR('Medians Altitudes Diagonal '+
 					zlr2('MidPoint OppositeMidPoint PerpendicularFoot Centroid','Line')));
 				}
@@ -2029,7 +2031,7 @@ console.log('tp ',tp);
 			HT=h+sw;
 
 			shpN.css(ltwh([lt,tp,WD,HT]));
-			chd.filter('path.main').attr('d',tArr.join(' '));
+			chd.filter('path.main').attr('d',errPath(tArr.join(' ')));
 			
 			/*
 			if(/(rect|ellipse)Note/.test(shp)){
@@ -2039,7 +2041,7 @@ console.log('tp ',tp);
 
 			if(/Gon|Note|arrow/.test(shp) && !/A|Heart|Star/.test(shp) && tArr.length>3){
 				Arrf(function(x){var dA=gon(tArr.join(' '),x);
-					if(dA.length>2){chd.filter('.'+x).attr('d',dA.join(' '))}
+					if(dA.length>2){chd.filter('.'+x).attr('d',errPath(dA.join(' ')))}
 				},ZLR('Diagonal Medians MidPointLine OppositeMidPointLine Altitudes PerpendicularFootLine'));
 			}
 

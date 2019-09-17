@@ -1905,7 +1905,7 @@ var snippet={
 	Str:function(name,type,selected){
 		return DCtv('snippet'+(selected?' seled':'')+'" data-type="'+type,
 				SCtv('snippetName" contentEditable="true',
-				name)+itv('snippetSend" tip="copy2input','arrow_upward')+
+				name)+itv('snippetSend" '+($('#send2textBox').is(':visible')?'':' hidden')+'tip="copy2input','arrow_upward')+
 			(selected?itv('snippetNew','add'):''))
 	},
 	load:function(i){

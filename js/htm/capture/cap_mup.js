@@ -6,6 +6,8 @@
 
 
 function mUp(e,Last){
+	var et=e.type;
+	//console.log(et);
 
 	var eos=e.originalEvent.srcElement, act=eos.tagName, ect=e.originalEvent.changedTouches;
 	if(act!='CANVAS'){e.stopPropagation()}
@@ -278,7 +280,12 @@ function mUp(e,Last){
 
 					L.drawEnd2='';
 					
-					mMv(e);
+					if(et=='touchend'){
+
+					}else{
+						mMv(e);
+					}
+					
 					return;
 					
 				}
@@ -299,6 +306,12 @@ function mUp(e,Last){
 			}else{
 				L.drawEnd2='';
 				L.drawEnd='';
+				if(et=='touchend'){
+console.log('最后');
+					mMv(e);
+				}else{
+
+				}
 			}
 
 

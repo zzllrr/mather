@@ -22,7 +22,7 @@ $(function(){
 			setTimeout(function(){
 				$('#oHTML').find('.oLaTeX').eq(0).click();
 				Scroll('scrollB');
-				$('#zMatherHide').click();
+				$('#zMatherHide:contains(up)').click();
 			},300);
 
 		}
