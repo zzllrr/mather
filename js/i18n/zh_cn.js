@@ -33,7 +33,8 @@ lang['zh_cn'] = {
 	"rotate1": "顺转90°",
 	"rotate2": "旋转180°",
 	"rotate3": "逆转90°",
-
+	'Preserve 3D':'保持3D',
+	'Perspective':'透视',
 
 	'copy2input': '复制到命令输入框',
 	'copyAll2input': '复制所有到命令输入框',

@@ -21,7 +21,7 @@
 }
 
 
-.logo,#splash{
+.logo,#splash,.hue{
 	animation: hue 12s linear infinite;
 
 }

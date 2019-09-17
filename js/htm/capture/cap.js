@@ -927,19 +927,19 @@ dc+
 				
 				DCtv('lightgray" id="CssTransform',
 					DCtv('lightgray" hidden id="CssTransOpt',
-						'<div>'+gM('perspec')+''+num('0" title=px id="cssPerspec')+
-							gM('perspecOrig>')+'<input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
+						'<div>'+gM('Perspective')+num('0" title=px id="cssPerspec')+
+							gM('Origin')+'<input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
 						dc+
-						'<div><label>'+gM('tranStyle>')+strchkbx0+'id=cssTranStyle /></label>'+
-							gM('transOrig>')+'<input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
+						'<div><label>'+gM('Preserve 3D')+strchkbx0+'id=cssTranStyle /></label>'+
+							gM('Origin')+'<input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
 						dc+
-						'<div><label>'+gM('backVisi>')+strchkbx0+'id=cssBackVisi'+chked+ ' /></label>'+
+						'<div><label>'+gM('backvisi')+strchkbx0+'id=cssBackVisi'+chked+ ' /></label>'+
 						dc
 					
 					)+
 
 					'<div><label>'+strchkbx0+'id=cssMatrix />'+gM('matrix')+' (2D/3D)</label>'+
-						'<span id=cssTransOpt>'+gM('Opts')+'sc+'+
+						'<span id=cssTransOpt>'+gM('Opts')+sc+
 					dc+
 
 					'<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" />'+
@@ -968,9 +968,9 @@ dc+
 					'<div id=CssRotate><div id=CssRotate3><label>'+
 						'<input type=radio value=cssRotateXYZ checked />'+
 						'<img class=rotate1>'+gM('rotate')+
-						'<span>x'+sc+num('0" id=cssRotateX step=15 title="deg')+
-						'<span>y'+sc+num('0" id=cssRotateY step=15 title="deg')+
-						'<span>z'+sc+num('0" id=cssRotateZ step=15 title="deg')+
+						'<span>x'+sc+num('0" id=cssRotateX step=5 title="deg',-720,720)+
+						'<span>y'+sc+num('0" id=cssRotateY step=5 title="deg',-720,720)+
+						'<span>z'+sc+num('0" id=cssRotateZ step=5 title="deg',-720,720)+
 
 						'<div id=CssRotate6><img id=flipy /><img id=flipx /><img id=flip0 /><img id=rotate1 /><img id=rotate2><img id=rotate3>'+dc+
 						'</label>'+dc+
