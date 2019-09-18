@@ -246,7 +246,7 @@ function gM(mesg, str, o) {
 		}
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
-			x = x.replace(/. ./g, function (x) { return /[a-z] [a-z]/i.test(x) ? x : x.replace(/ /, '') })
+			x = x.replace(/. ./g, function (x) { return /[a-z] [a-z]/i.test(x) ? x : x.replace(/ /g, '') })
 		}
 	}
 	if (!x && /-/.test(msg)) {

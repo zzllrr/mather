@@ -4,7 +4,8 @@
  * Released under MIT License
  */
 var svgid = '#svgShape svg[id', strk, slid, dsh, shps,
-	Colors = '000000,F5F5F5,ffffff,FFFAFA;4682B4,87CEFA,87CEFA,FFF5EE;FA8072,F8F8FF,FFB6C1,FFC0CB;ffffff,DCDCDC,000000,696969;8B0000,B22222,CD5C5C,F08080';
+	Colors = '000000,F5F5F5,ffffff,FFFAFA;4682B4,87CEFA,87CEFA,FFF5EE;FA8072,F8F8FF,FFB6C1,FFC0CB;ffffff,DCDCDC,000000,696969;8B0000,B22222,CD5C5C,F08080', 
+	cap0='<canvas id=caps hidden></canvas><img id=capsimg /><div hidden id=capsdiv>' + dc;
 
 $(function () {
 
@@ -17,7 +18,8 @@ $(function () {
 	L.drawCopy = '';
 
 	//var cvs = $('#caps')[0], capctx = cvs.getContext('2d');
-	$('#splash').after('<div id=Caps hidden><canvas id=caps hidden></canvas><img id=capsimg /><div hidden>' + dc+dc);
+
+	$('#splash').after('<div id=Caps hidden>'+cap0+(L.cap0||'')+dc)
 
 	caps=new ctt('#caps');
 
@@ -52,14 +54,26 @@ $(function () {
 			'<div id=svgShape>'+
 				'<div id=svgTool>'+
 					svgf.id('Narrow',svgf.path('M10 20 L15 15 10 10 M18 9 V21','none" stroke-linejoin="round'))+//M10 10 L4 15 L10 20
+
 					svgf.id('Pointer" hotkey="P',svgf.path('M8 10 L8 21 13 16 17 25 A2 2 0 0 0 21 21 L17 15 23 15 8 2 z'))+
-					svgf.id('Copy" hotkey="Ctrl+V',svgf.circle([[8,8],[8,22],[22,8],[22,22]]).join(''))+
+
+					svgf.id('ToolOpt" tip="Option',svgf.path('M8 10 H22 M8 15 H22 M8 20 H22'))+
+
+					svgf.id('Undo" tip="Undo / Redo" hotkey="U',svgf.path('M5 20 Q15 5 25 20 M5 13 V20 H12 M25 13 V20 H18'))+
+
 					svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
 					svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+
+
+
+
+					svgf.id('Copy" hotkey="Ctrl+V',svgf.path('M8 20 V5 H20 M13 10 V25 H25 V10 H13'))+
 					svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
 					svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
+
 					svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z" stroke-dasharray="2,1')+svgf.path('M5 18 L15 25 25 18'))+
 					svgf.id('SVGhide" tip=Hide hotkey="Esc',svgf.path('M9 17 L15 11 21 17'))+
+					'<div id=svgToolOpt>'+
 					'<div id=scrWH>'+
 						gM('W')+num('0" title=px id="scrW',1)+
 						gM('H')+num('0" title=px id="scrH',1)+dc+
@@ -73,7 +87,7 @@ $(function () {
 						'<p><label>'+strchkbx0+'id=Transform /></label></p>'+dc+
 				
 					'<div id=eraserOpt>'+
-						'<p>'+gM('Delete')+'<select id=eraserDir multiple=multiple class=hmulti size=1 title=Ctrl>'+Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')+'</select></p>'+dc+
+						gM('Delete')+'<select id=eraserDir multiple=multiple class=hmulti size=1 title=Ctrl>'+Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')+'</select>'+dc+
 				
 					'<div id=svgTextDetail>'+txa('','" id="svgTextDetails')+dc+
 				
@@ -513,7 +527,136 @@ dc
 				
 				
 					dc+
-				
+
+
+
+detail('<span tip="Coordinate & Transform">'+
+'<span title=px>x '+num('0" id="cssX')+sc+
+'<span title=px>y '+num('0" id="cssY')+sc+
+'<span title="z-index">z '+num('0" id="cssZ')+sc+
+sc,
+
+DCtv('lightgray" id="CssTransform',
+	DCtv('lightgray" hidden id="CssTransOpt',
+		'<div>'+gM('Perspective')+num('0" title=px id="cssPerspec')+
+			gM('Origin')+'<input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
+		dc+
+		'<div><label>'+gM('Preserve 3D')+strchkbx0+'id=cssTranStyle /></label>'+
+			gM('Origin')+'<input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
+		dc+
+		'<div><label>'+gM('backvisi')+strchkbx0+'id=cssBackVisi'+chked+ ' /></label>'+
+		dc
+	
+	)+
+
+	'<div><label>'+strchkbx0+'id=cssMatrix />'+gM('matrix')+' (2D/3D)</label>'+
+		'<span id=cssTransOpt>'+gM('Opts')+sc+
+	dc+
+
+	'<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" />'+
+	dc+
+
+	'<div id=CssScale><img class=scale>'+gM('Scale')+
+		'<span>x'+sc+num('1" id=cssScaleX step=".1')+
+		'<span>y'+sc+num('1" id=cssScaleY step=".1')+
+		'<span>z'+sc+num('1" id=cssScaleZ step=".1')+
+	dc+
+
+
+	'<div id=CssSkew><img class=skew>'+gM('Skew')+
+		'<span>x'+sc+num('0" id=cssSkewX title="deg',-360)+
+		'<span>y'+sc+num('0" id=cssSkewY title="deg',-360)+
+	dc+
+
+
+	'<div id=CssTranslate><img class=translate>'+gM('translate.Math')+
+		'<span>x'+sc+num('0" id=cssTranslateX')+
+		'<span>y'+sc+num('0" id=cssTranslateY')+
+		'<span>z'+sc+num('0" id=cssTranslateZ')+
+	dc+
+
+
+	'<div id=CssRotate><div id=CssRotate3><label>'+
+		'<input type=radio value=cssRotateXYZ checked />'+
+		'<img class=rotate1>'+gM('rotate')+
+		'<span>x'+sc+num('0" id=cssRotateX step=5 title="deg',-720,720)+
+		'<span>y'+sc+num('0" id=cssRotateY step=5 title="deg',-720,720)+
+		'<span>z'+sc+num('0" id=cssRotateZ step=5 title="deg',-720,720)+
+
+		'<div id=CssRotate6><img id=flipy /><img id=flipx /><img id=flip0 /><img id=rotate1 /><img id=rotate2><img id=rotate3>'+dc+
+		'</label>'+dc+
+		
+		'<div id=CssRotate3d><label><input type=radio value=cssRotate3d />'+
+			'<img class=rotate1>'+gM('Rotate')+' 3D<input type=text id=cssRotate3d placeholder="x,y,z,angle" /></label>'+
+		dc+
+
+	dc
+
+
+	
+),
+'','id=svgCssTransform')+
+
+detail(
+'<input type=text id=color0 title="Snow" readonly />'+
+'<input type=text id=color1 title="Blue Sky" readonly />'+
+'<input type=text id=color2 title="Pink Girl" readonly />'+
+'<input type=text id=color3 title="Black Rhythm" readonly />'+
+'<input type=text id=color4 title="Red Charm" readonly />'+
+'<input type=text id=color5 tip="Random Color" value="?" readonly />'+
+'<input type=text id=RandomColorson tip="Inner-Random Colors" value="#" class="tool seled" readonly />',
+
+
+'<div id=Color>'+Arrf(function (X) {
+		var x = X.toLowerCase(), w = $(window).width(), h = $(window).height(), w2 = Math.ceil(w / 2), h2 = Math.ceil(h / 2),
+		gc = function (i) {
+			var t = '<input type=color id=' + X + 'GC' + i + ' />'+rng('1" step=.1 id="Opa'+X+'GC'+i,0,1);
+			return i ? '<div id=' + x + 'gc' + i + ' hidden>'+num((i == 1 ? 0 : 100)+'" readonly class="Gradstop') + '% ' + t + dc : t
+		};
+		return detail(gM(x.replace('s', 'b') + 'gc') + gc(''),
+			'<label>'+strchkbx0+'class=Grad /></label><span hidden>× '+num('2" class="GradStops',2)+
+			concat('<label><input type=radio name=' + X + 'GradType value=', ['Linear checked=checked', 'Radial'], ' /></label>').join('') + sc +
+			'<div class=Linear hidden>x1 ' + num(0) + ' y1 ' + num(0) + ' x2 ' + num(0) + ' y2 ' + num(X == 'S' ? h : 100) + dc +
+			'<div class=Radial hidden>' + concat(['cx', 'cy', X == 'S' ? 'r1' : 'r', br + 'fx', 'fy'].concat(X == 'S' ? 'r2' : []), copyA('<input type=number value=', 5 + (+(X == 'S'))),
+				X == 'S' ? [w2, h2, h2, w2, h2, w2] : copyA(50, 5), ' min=0 />').join('') + dc +
+			gc(1) + '<div id=' + x + 'gcs hidden>' + dc + gc(2))
+	}, 'FBS'.split('')).join('')+dc+
+
+detail(
+	'<img class=btn1 />'+gM('opa')+rng('1" id=cssOpa step=".1', 0,1),[
+	'<div id=CssContrast><img class=contrast />'+gM('Contrast')+rng('1" id=cssContrast step=".1', 0,2)+dc,
+	'<div id=CssBright><img class=bright />'+gM('Bright')+rng('1" id=cssBright step=".1', 0,2)+dc,
+	'<div id=CssSaturate><img class=saturate />'+gM('Bright')+rng('1" id=cssSaturate step=".1', 0,20)+dc,
+	'<div id=CssGrayscale><img class=grayscale />'+gM('Grayscale')+rng('0" id=cssGrayscale step=".1', 0,1)+dc,
+	'<div id=CssSepia><img class=sepia />'+gM('Sepia')+rng('0" id=cssSepia step=".1', 0,1)+dc,
+	'<div id=CssInvert><img class=invert />'+gM('Invert')+rng('0" id=cssInvert step=".1', 0,1)+dc,
+	'<div id=CssHueRotate><img class=HueRotate />'+gM('HueRotate')+rng('0" id=cssHueRotate title=deg step=".1', 0,360)+dc,
+	'<div id=CssBlur><img class=blur />'+gM('Blur')+rng('0" id=cssblur title=px step=".1', 0,100)+dc,
+
+	'<div id=CssDropShadow><img class=dropShadow /><label>'+gM('DropShadow')+strchkbx0+' id=cssDropShadow /></label>'+
+		'<div hidden id=CssDropshadow>'+
+			'x'+num('2" title=px id="cssDropShadowX')+
+			'y'+num('2" title=px id="cssDropShadowY')+
+
+			gM('Blur')+num('2" id=cssDropShadowBlur title="px',0)+
+			'<div><input type=color id=cssDropShadowColor value="#000000" />'+rng('0.5" id=cssDropShadowOpac step=".1', 0,1)+dc+
+
+		dc+
+	dc
+
+	].join(''),
+'','id=CssFilter','id=CssOpa')+
+
+'<label>'+gM('Colorful')+strchkbx0+' id=cssClassHue /></label>'
+,
+
+
+'','id=COLOR')+
+
+dc+
+
+
+
 				dc+
 				'<div>'+
 					svgf.id('Freelin',svgf.path('M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2'))+
@@ -919,126 +1062,6 @@ dc
 dc+
 
 
-			detail('<span tip="Coordinate & Transform">'+
-				'<span title=px>x '+num('0" id="cssX')+sc+
-				'<span title=px>y '+num('0" id="cssY')+sc+
-				'<span title="z-index">z '+num('0" id="cssZ')+sc+
-				sc,
-				
-				DCtv('lightgray" id="CssTransform',
-					DCtv('lightgray" hidden id="CssTransOpt',
-						'<div>'+gM('Perspective')+num('0" title=px id="cssPerspec')+
-							gM('Origin')+'<input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
-						dc+
-						'<div><label>'+gM('Preserve 3D')+strchkbx0+'id=cssTranStyle /></label>'+
-							gM('Origin')+'<input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
-						dc+
-						'<div><label>'+gM('backvisi')+strchkbx0+'id=cssBackVisi'+chked+ ' /></label>'+
-						dc
-					
-					)+
-
-					'<div><label>'+strchkbx0+'id=cssMatrix />'+gM('matrix')+' (2D/3D)</label>'+
-						'<span id=cssTransOpt>'+gM('Opts')+sc+
-					dc+
-
-					'<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" />'+
-					dc+
-
-					'<div id=CssScale><img class=scale>'+gM('Scale')+
-						'<span>x'+sc+num('1" id=cssScaleX step=".1')+
-						'<span>y'+sc+num('1" id=cssScaleY step=".1')+
-						'<span>z'+sc+num('1" id=cssScaleZ step=".1')+
-					dc+
-
-
-					'<div id=CssSkew><img class=skew>'+gM('Skew')+
-						'<span>x'+sc+num('0" id=cssSkewX title="deg',-360)+
-						'<span>y'+sc+num('0" id=cssSkewY title="deg',-360)+
-					dc+
-
-
-					'<div id=CssTranslate><img class=translate>'+gM('translate.Math')+
-						'<span>x'+sc+num('0" id=cssTranslateX')+
-						'<span>y'+sc+num('0" id=cssTranslateY')+
-						'<span>z'+sc+num('0" id=cssTranslateZ')+
-					dc+
-
-
-					'<div id=CssRotate><div id=CssRotate3><label>'+
-						'<input type=radio value=cssRotateXYZ checked />'+
-						'<img class=rotate1>'+gM('rotate')+
-						'<span>x'+sc+num('0" id=cssRotateX step=5 title="deg',-720,720)+
-						'<span>y'+sc+num('0" id=cssRotateY step=5 title="deg',-720,720)+
-						'<span>z'+sc+num('0" id=cssRotateZ step=5 title="deg',-720,720)+
-
-						'<div id=CssRotate6><img id=flipy /><img id=flipx /><img id=flip0 /><img id=rotate1 /><img id=rotate2><img id=rotate3>'+dc+
-						'</label>'+dc+
-						
-						'<div id=CssRotate3d><label><input type=radio value=cssRotate3d />'+
-							'<img class=rotate1>'+gM('Rotate')+' 3D<input type=text id=cssRotate3d placeholder="x,y,z,angle" /></label>'+
-						dc+
-
-					dc
-
-
-					
-				),
-			'','id=svgCssTransform')+
-
-			detail(
-				'<input type=text id=color0 title="Snow" readonly />'+
-				'<input type=text id=color1 title="Blue Sky" readonly />'+
-				'<input type=text id=color2 title="Pink Girl" readonly />'+
-				'<input type=text id=color3 title="Black Rhythm" readonly />'+
-				'<input type=text id=color4 title="Red Charm" readonly />'+
-				'<input type=text id=color5 tip="Random Color" value="?" readonly />'+
-				'<input type=text id=RandomColorson tip="Inner-Random Colors" value="#" class="tool seled" readonly />',
-
-				
-				'<div id=Color>'+Arrf(function (X) {
-						var x = X.toLowerCase(), w = $(window).width(), h = $(window).height(), w2 = Math.ceil(w / 2), h2 = Math.ceil(h / 2),
-						gc = function (i) {
-							var t = '<input type=color id=' + X + 'GC' + i + ' />'+rng('1" step=.1 id="Opa'+X+'GC'+i,0,1);
-							return i ? '<div id=' + x + 'gc' + i + ' hidden>'+num((i == 1 ? 0 : 100)+'" readonly class="Gradstop') + '% ' + t + dc : t
-						};
-						return detail(gM(x.replace('s', 'b') + 'gc') + gc(''),
-							'<label>'+strchkbx0+'class=Grad /></label><span hidden>× '+num('2" class="GradStops',2)+
-							concat('<label><input type=radio name=' + X + 'GradType value=', ['Linear checked=checked', 'Radial'], ' /></label>').join('') + sc +
-							'<div class=Linear hidden>x1 ' + num(0) + ' y1 ' + num(0) + ' x2 ' + num(0) + ' y2 ' + num(X == 'S' ? h : 100) + dc +
-							'<div class=Radial hidden>' + concat(['cx', 'cy', X == 'S' ? 'r1' : 'r', br + 'fx', 'fy'].concat(X == 'S' ? 'r2' : []), copyA('<input type=number value=', 5 + (+(X == 'S'))),
-								X == 'S' ? [w2, h2, h2, w2, h2, w2] : copyA(50, 5), ' min=0 />').join('') + dc +
-							gc(1) + '<div id=' + x + 'gcs hidden>' + dc + gc(2))
-					}, 'FBS'.split('')).join('')+dc+
-
-				detail(
-					'<img class=btn1 />'+gM('opa')+rng('1" id=cssOpa step=".1', 0,1),[
-					'<div id=CssContrast><img class=contrast />'+gM('Contrast')+rng('1" id=cssContrast step=".1', 0,2)+dc,
-					'<div id=CssBright><img class=bright />'+gM('Bright')+rng('1" id=cssBright step=".1', 0,2)+dc,
-					'<div id=CssSaturate><img class=saturate />'+gM('Bright')+rng('1" id=cssSaturate step=".1', 0,20)+dc,
-					'<div id=CssGrayscale><img class=grayscale />'+gM('Grayscale')+rng('0" id=cssGrayscale step=".1', 0,1)+dc,
-					'<div id=CssSepia><img class=sepia />'+gM('Sepia')+rng('0" id=cssSepia step=".1', 0,1)+dc,
-					'<div id=CssInvert><img class=invert />'+gM('Invert')+rng('0" id=cssInvert step=".1', 0,1)+dc,
-					'<div id=CssHueRotate><img class=HueRotate />'+gM('HueRotate')+rng('0" id=cssHueRotate title=deg step=".1', 0,360)+dc,
-					'<div id=CssBlur><img class=blur />'+gM('Blur')+rng('0" id=cssblur title=px step=".1', 0,100)+dc,
-
-					'<div id=CssDropShadow><img class=dropShadow /><label>'+gM('DropShadow')+strchkbx0+' id=cssDropShadow /></label>'+
-						'<div hidden id=CssDropshadow>'+
-							'<span>xsc+'+num('2" title=px id="cssDropShadowX')+
-							'<span>ysc+'+num('2" title=px id="cssDropShadowY')+
-
-							gM('Blur')+num('2" id=cssDropShadowBlur title="px',0)+
-							'<div><input type=color id=cssDropShadowColor value="#000000" />'+rng('0.5" id=cssDropShadowOpac step=".1', 0,1)+dc+
-
-						dc+
-					dc
-
-					].join(''),
-				'','id=CssFilter','id=CssOpa'),
-
-
-			'','id=COLOR')+
-			
 			detail(
 				'<button id=copy2clipboard class=mi>library_books</button>'+
 				'<button id=copy2input class=mi>library_add</button>'+
@@ -1060,7 +1083,7 @@ dc+
 
 	caps=new ctt('#caps');
 
-	$('#allEraser ~ div,#svgTog ~ *, #svgLines div:gt(0), #svgLines ~ div, span[for]').hide();
+	$('#svgTog ~ *, #svgLines div:gt(0), #svgLines ~ div, span[for]').hide();
 
 
 
@@ -1501,7 +1524,15 @@ dc+
 			var w=$('#tileTool')[0].style.width;
 			$('#tileTool')[0].style.width=(w?'':'5rem');
 			$(this).children('path').attr('d', w?'M10 20 L15 15 10 10 M18 9 V21':'M20 20 L15 15 20 10 M12 9 V21');
+			//console.log(w);
+			$('#svgToolOpt').toggleClass('Narrow',w=='');
 			
+			return
+		}
+
+		if(id=='ToolOpt'){
+
+			$('#svgToolOpt').toggle();
 			return
 		}
 
@@ -1567,7 +1598,7 @@ dc+
 
 		var scr = /scr/.test(id), note = /note/.test(id), all = /all/.test(id), Cd = $('#Color details');
 
-		if (/Pointer|Eraser|scr|Copy|LayerToggle/.test(id)) {
+		if (/Pointer|Eraser|scr|Copy|LayerToggle|Undo|Redo/.test(id)) {
 
 			$('#svgSel > *,#SvgOpt').hide();
 			$('#COLOR').toggle(scr || all || isCopy);
@@ -1577,7 +1608,46 @@ dc+
 				$('#caps').css('cursor', 'grab');
 			}
 
-			$('#capsimg ~ *').css('cursor', id == 'Pointer' ? 'move' : (id == 'Copy' ? 'copy' : 'no-drop'));
+			if(id=='Undo'){
+				var t=getcap0(), nx=$('#capsdiv').nextAll(), nxl=nx.length;
+				nx.remove();
+				if($(L.cap1).length==nxl){
+					$('#capsdiv').after(L.cap0||'');
+
+				}else{
+					$('#capsdiv').after(L.cap1||'');
+				}
+				//L.cap1=getcap0();
+				
+				
+
+			}
+			/*
+			if(id=='Redo'){
+				L.cap0=getcap0();
+				$('#capsdiv').nextAll().remove();
+				$('#capsdiv').after(L.cap1||'');
+			}
+			*/
+
+			if(id=='Eraser' || id=='Copy'){
+				$('#svgToolOpt').show()
+			}
+
+			if(/Pointer|Eraser|scr|Copy/.test(id)){
+
+				$('#capsimg ~ *').css('cursor', id == 'Pointer' ? 'move' : (id == 'Copy' ? 'copy' : 'no-drop'));
+			}
+
+			if(/do/.test(id)){
+				$('#Pointer').click()
+			}
+
+			if(id=='noteEraser'){
+				L.cap0=getcap0();
+			}
+
+
 			if (scr || all) {
 				var cvs = $('#caps')[0], hv = /[13]/.test(id);
 				if (all) {
@@ -2108,7 +2178,6 @@ dc+
 
 	setTimeout(function () {
 		$('#splash').hide().nextAll().fadeIn();
-		
 
 	}, 500);
 });
@@ -2157,7 +2226,7 @@ consolelog(id);
 		$('#Dash').toggle(v > 0);
 
 		sp.find('[stroke-dasharray]').attr('stroke-dasharray', $('#strkDash').val());
-		//$('#svgShape svg[id]').not('#svgTool svg').children().not('defs,.dash').attr('stroke-dasharray',['','5,1','3,1,1,1'][v]);
+
 	}
 	if (/svgArw/.test(id)) {
 		toggleSvg();
@@ -2811,4 +2880,12 @@ function fixed4(d) {
 
 function errPath(t) {
 	return (t||'').replace(/^.*M *[LZ].+$/i,'').replace(/.+[ML] *z*$/i,'')
+}
+
+function getcap0(){
+	var t='';
+	$('#capsdiv').nextAll().each(function(){
+		t+=this.outerHTML;
+	});
+	return t
 }

@@ -558,6 +558,8 @@ lang['zh_cn'] = {
 	'Style': '样式',
 	'Color': '颜色',
 	'Colors': '颜色',
+	'Colorful':'彩色',
+	'Hue':'色调',
 	'Gradient': '渐变',
 	'Contrast': '对比度',
 	'Brightness': '亮度',
@@ -565,6 +567,7 @@ lang['zh_cn'] = {
 	'Grayscale': '灰度',
 	'Sepia': '色偏',
 	'Invert': '反相',
+	'DropShadow':'投影',
 
 	// 时间		
 	'Time': '时间',
@@ -833,6 +836,7 @@ lang['zh_cn'] = {
 	'Question Type': '题型',
 
 	'Setting': '设置',
+	'Reset':'重置',
 
 	'Decomposition': '分解',
 	'Emotionalization': '情感化',

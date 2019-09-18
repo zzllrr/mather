@@ -101,7 +101,9 @@ function mDn(e){
 		var lnJoin=$(s+'LnJoin').val(), nv=+$('#svgText').val(), rndColor=$('#RandomColorson').is('.seled'),
 			fg=rndColor?RandomColor():$('#FGC').val(), bg=rndColor?RandomColor():$('#BGC').val(), fgOpa=$('#OpaFGC').val(), bgOpa=$('#OpaBGC').val();
 
-		strk=strks(/Crop/.test(shp)?shp:'',fg,bg);slid=' '+s_+'linejoin='+lnJoin+strk+' />';dsh=strk.replace(/dasharray="[^"]*"/,'dasharray="10,5"')+' />';
+		strk=strks(/Crop/.test(shp)?shp:'',fg,bg);
+		slid=' '+s_+'linejoin='+lnJoin+strk+' />';
+		dsh=strk.replace(/dasharray="[^"]*"/,'dasharray="10,5"')+' />';
 		shps=function(elem,clas, pnts){
 			var cls=clas||'', dshon=/dash/.test(cls), ele=elem||'path', da={
 				'polygon':'points="'+(pnts||'0,0 1,1 1,0')+'"',
@@ -127,6 +129,8 @@ function mDn(e){
 			return t
 
 		};
+
+		L.cap0=getcap0();
 
 		if(isTxt){
 			$('#Caps').append(textareas('',sty));
@@ -314,9 +318,12 @@ function mDn(e){
 
 function ltwh(t){return {left:t[0],top:t[1],width:t[2],height:t[3]}}
 
-function idStyle(id,A,shp, zi){
+function idStyle(id,A,shp, zi, noclass){
 	//xmlns="'+xmlns+'" 
-	return ' id="'+(id?id:(shp?shp:'Text')+Time.now5()+(Math.random()+'').substr(2))+'" style="position:absolute;left:'+A[0]+'px;top:'+A[1]+'px;width:'+A[2]+'px;height:'+A[3]+'px'+(zi?';z-index:'+zi:'')
+	return ' id="'+(id?id:(shp?shp:'Text')+Time.now5()+(Math.random()+'').substr(2))+'" '+(noclass?'':'class="'+
+		($('#cssClassHue').prop('checked')?'hue':'')+
+		'" ')+
+		'style="position:absolute;left:'+A[0]+'px;top:'+A[1]+'px;width:'+A[2]+'px;height:'+A[3]+'px'+(zi?';z-index:'+zi:'')
 }
 
 function textareas(A,sty){

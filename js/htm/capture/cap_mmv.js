@@ -39,6 +39,7 @@ function mMv(e,repaint){
 		
 		if(!(shp1 || shp2 || shp3) && L.drawEnd2=='' && w>sw && h>sw){
 			
+			//L.cap0=$('#Caps').html();
 			mUp(e);
 		}
 

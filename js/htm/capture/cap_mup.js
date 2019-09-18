@@ -253,6 +253,8 @@ function mUp(e,Last){
 		if(shpN.length){
 			tileToolCode(shpN)
 		}
+
+		L.cap1=getcap0();
 	};
 	
 	
@@ -307,7 +309,7 @@ function mUp(e,Last){
 				L.drawEnd2='';
 				L.drawEnd='';
 				if(et=='touchend'){
-console.log('最后');
+//console.log('最后');
 					mMv(e);
 				}else{
 
@@ -421,6 +423,12 @@ console.log('最后');
 				
 			}
 		}
+
+		if(shp=='Eraser' || shp=='Copy'){
+			L.cap0=getcap0();
+		}
+
+
 		if(shp=='Eraser'){
 			var eD=$('#eraserDir').val(), st='svg,textarea,span.capfromTextarea',me=$(eos).closest(st);
 			if(eD && eD.length){

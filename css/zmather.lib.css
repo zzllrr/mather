@@ -47,7 +47,7 @@
 	}
 
 	input[type="number"]{
-		max-width: 2.5rem;
+		max-width: 2.6rem;
 	}
 }
 
@@ -148,9 +148,9 @@ code, pre{
     color: limegreen;
 }
 
-.hmulti option{display:inline}
+.hmulti option{display:inline-block;}
 .hmulti {
-    overflow: auto;
+    overflow: hidden;
 }
 #zMather select{
 	border-style:none none solid none;
