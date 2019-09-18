@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.14',
+			fieldseth('V2019.9.19',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -173,6 +173,9 @@ Table('',[
 	[
 		scHotk('R'),gM('Round Corner')+gM(' ')+gM('Rectangle'),
 	],
+	[
+		scHotk('U'),gM('Undo / Redo'),
+	],	
 	[
 		scHotk('V'),gM('Layer Toggle'),
 	],

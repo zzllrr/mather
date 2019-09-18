@@ -148,7 +148,7 @@ code, pre{
     color: limegreen;
 }
 
-.hmulti option{display:inline-block;}
+.hmulti option{display:inline-block;width:2rem}
 .hmulti {
     overflow: hidden;
 }

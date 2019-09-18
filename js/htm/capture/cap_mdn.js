@@ -386,7 +386,7 @@ function drawEnd(e){
 	if(/Poly|Paral|Trape|lineangle[HV]|Line3YRight|cub/.test(shp) && L.drawShapeNow){
 		mUp(e,1);
 	}
-	tileToolCode(shpN);
+	//tileToolCode(shpN);
 }
 
 function oOn(t,hdn){var c=min(Arrf(function(x){return +$('#'+x+'on').prop('checked')}, ZLR(t)));return hdn?' '+t+(c?'':' hidden'):c}
@@ -463,7 +463,17 @@ new WebKitCSSMatrix(...)
 				
 			}
 
-			return m1?m1.toString():''
+			if(m1){
+				var x='';
+				try{
+					x=m1.toString();
+					
+				}catch(e){
+
+				}
+				return x;
+			}
+			return ''
 		};
 		
 		
@@ -899,7 +909,7 @@ function tileToolCap(t, val){
 
 
 
-	$('#SvgOpt,#COLOR,#svgCode').show();
+	$('#SvgOpt,#COLOR').show();
 	$('#copyOpt').hide();
 	$('#scrWH').toggle(/scr|all|Crop/.test(id));
 	
@@ -940,16 +950,7 @@ function tileToolCap(t, val){
 			$('#font').val(tme.css('font-family'));
 			
 			$('#TextBoxType').val(tme.attr('data-texttype')).change();
-/*
-			if(isFromTextarea){
-				tileToolCode(tme)
-			}
 
-			if(isLatex){
-				$('#TextBox').val(XML.decode(tme.find('annotation').eq(0).text()));
-				
-			}
-*/
 		}
 		$(c+'X').val(tme.css('left').replace(/\D/g,''));
 		$(c+'Y').val(tme.css('top').replace(/\D/g,''));
@@ -1126,7 +1127,7 @@ function tileToolCap(t, val){
 			$('#skew ~ input').val(0);
 		}
 
-		tileToolCode(tme);
+
 	}
 }
 

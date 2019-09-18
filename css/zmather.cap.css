@@ -32,14 +32,22 @@
 
 #svgToolOpt{
 	position: absolute;
-    top: 5rem;
-    background: honeydew;
+    top: 5.15rem;
 }
+
 #svgToolOpt.Narrow{
-    right: 5rem;
+    right: 4.39rem;
 }
 #svgToolOpt:not(.Narrow){
     right: 1rem;
+}
+
+.day #svgToolOpt{
+    background: honeydew;
+}
+
+.night #svgToolOpt{
+    background: darkslategray;
 }
 
 #svgToolOpt > *{
@@ -89,13 +97,13 @@
 
 #svgShape{
 	overflow-y: auto;
-	max-height: 500px;
+	max-height: 30rem;
 }
 
 #Caps textarea:hover, #svgShapes{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
-#TextBox,#SVGcode{
+#tileToolCap textarea{
 	width:98%
 }
 #capctxTXT div,#fxTXT div{
@@ -140,7 +148,7 @@ input:not([readonly]), select{
 #color4{background:firebrick}
 
 #CssRotate6 img {
-    margin: 0 2px;
+    margin: 0 1rem;
 }
 
 .blur{filter:blur(1px)}

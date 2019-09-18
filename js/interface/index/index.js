@@ -1114,7 +1114,7 @@ dc);
 			for(var i=0;i<fl;i++){
 				var f=files[i], s=f.size, ext=f.type.replace(/(text|application)[/]/,''), m=f.name;
 
-console.log(f,m,s,ext);
+//console.log(f,m,s,ext);
 				ext=ext.toUpperCase();
 				if(ZLR(Mele+' '+Mele2).indexOf(ext)>-1){
 					ext=ZLR(Meles)[ZLR(Mele).indexOf(ZLR(Mele2).indexOf(ext)>-1?Meleo[ext]:ext)]
@@ -1122,11 +1122,11 @@ console.log(f,m,s,ext);
 				if(!ext){
 					ext='TXT';
 				}
-
+/*
 					if(!s){s='?KB'}else{
 						s=sizeKB(s)
 					}
-
+*/
 					var reader=new FileReader();
 					reader.onload = function(e){
 						//var txt = this.result;

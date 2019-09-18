@@ -2094,9 +2094,6 @@ console.log('tp ',tp);
 
 	}
 
-	if(shpN.length){
-		//tileToolCode(shpN)
-	}
 }
 
 function tileToolCode(obj,returnValue){

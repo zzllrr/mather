@@ -250,9 +250,7 @@ function mUp(e,Last){
 			RndColors($('#'+(L.drawShapeNow||'unknown')).nextAll('[id^='+(L.drawShapeNow||'unknown')+']'));
 		}		
 		
-		if(shpN.length){
-			tileToolCode(shpN)
-		}
+
 
 		L.cap1=getcap0();
 	};
