@@ -2625,7 +2625,6 @@ function hoverItOff(t, from, to) {
 
 function cng_popout(obj) {
 	var me = $(obj), id = me.attr('id') || '', v = me.val(), pa = me.parent(), pid = pa.attr('id'), c = me.attr('class') || '';
-	var isCap = 1;
 
 	if (/^capType(Tile)?$/.test(id)) { me.next().toggle(v == 'jpeg'); L[id] = v }
 

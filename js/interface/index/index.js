@@ -184,7 +184,9 @@ $(function(){
 	dc+
 dc);
 
-	
+	$('#zMatherHide').on('click',function(){
+		$('#zMatherOn').click();
+	});
 	sbsTbl();//
 
 	$('#searchBy').on('change',function(){
@@ -419,9 +421,6 @@ dc);
 
 
 
-	$('#zMatherHide').on('click',function(){
-		$('#zMatherOn').click();
-	});
 
 	$('#displayOverCanvas').on('click',function(){
 		OverCanvas($('#input0').val());
@@ -885,15 +884,7 @@ dc);
 
 
 
-	$('#zMatherOn').on('click',function(){
-		var me=$(this), isup=/up/.test(me.text());
-		$('#nav').toggle();
-		me.add('#zMatherHide').text('keyboard_arrow_'+(isup?'down':'up'));
 
-		me.nextAll().toggle(!isup);
-
-
-	});
 	
 	$('#downloadPreview').on('click',function(e){
 		var v1=$('#input0Preview').html(), v=$('#input0').val(),

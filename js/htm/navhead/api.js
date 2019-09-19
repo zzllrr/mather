@@ -24,7 +24,7 @@
 				XML.wrapE('q','Standing on the shoulders of giants!')+
 				detail(href('./js/lib','Javascript'),
 					ul(Arrf(function(x){return href(Hs+'github.com/search?q='+x,spanmi('launch',x+'.js'))},
-						ZLR('base64 jquery katex qrcode qrcode-decoder zlr echarts echarts-gl effects js-yaml terrain webslides aframe aframe-ar zdog'))),1)+
+						ZLR('base64 jquery katex qrcode qrcode-decoder zlr echarts echarts-gl effects js-yaml terrain webslides aframe aframe-ar zdog d3 function-plot'))),1)+
 				detail(href('./css/fonts','Fonts'),
 					ul(ZLR(zlr2('KaTeX MaterialIcons-Regular','.woff2'))),1)
 			,1), 

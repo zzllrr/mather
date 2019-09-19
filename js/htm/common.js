@@ -41,7 +41,9 @@ gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 
 tooltip={
 },
-caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch),
+caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch), isdoc=/document\.html/.test(loch),
+hascap=iscap || ishome || isdoc,
+
 oHTML=function(x,notMD,elem){
     $(elem||'#oHTML').hide().html(notMD?x:replaceNodeInner(x,'MD', md2html));
     $(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
@@ -417,10 +419,11 @@ $(function () {
     $('#panel').hide().prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        (ishome?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):itv('" id=home tip="Home"','home'))+
+        (ishome || isdoc?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+        (ishome?'':itv('" id=home tip="Home"','home'))+
     
         
-        (ishome||iscap?itv('" id=svgs tip="Graphic" hotkey="Esc','palette'):'')+
+        (hascap?itv('" id=svgs tip="Graphic" hotkey="Esc','palette'):'')+
         itv('" id=night tip="Night','brightness_3')+
         itv('" id=qrcode tip="Share','share')+
     dc);
@@ -474,7 +477,7 @@ $(function () {
 			}
 			
 			
-			$('#oHTML').toggle(!tog);
+			//$('#oHTML').toggle(!tog);
         }
         if(id=='qrcode'){
             me.removeClass('toggle');
@@ -492,13 +495,26 @@ $(function () {
 	});
 
 
+    
+
+	$('#zMatherOn').on('click',function(){
+		var me=$(this), isup=/up/.test(me.text());
+		$('#nav').toggle();
+		me.add('#zMatherHide').text('keyboard_arrow_'+(isup?'down':'up'));
+
+		me.nextAll().toggle(!isup);
+
+
+    });
+    
+
     $('#QRCODE').on('click',function(){
         //$('#qrcode').click()
         $(this).fadeOut();
     });
 
     
-    if(ishome || iscap){
+    if(hascap){
         $(window).resize(function(){
             caps.repaint();
         });
@@ -528,7 +544,7 @@ $(function () {
     }).on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
 
-        if(ishome || iscap){
+        if(hascap){
             $('#caps ~ canvas').remove();
 
         }else if(/canvas/i.test(act)){

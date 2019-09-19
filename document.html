@@ -26,6 +26,8 @@
   
     <link rel="stylesheet" href="css/zmather.lib.css" />
 
+    <link rel="stylesheet" href="css/zmather.cap.css" />
+
     <!-- 引用第三方库 -->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
@@ -76,13 +78,18 @@
     <!-- 当前页面私有 -->
     <script src="js/htm/show/document.js"></script>
 
+    <script src="js/htm/capture/cap.js"></script>
+    <script src="js/htm/capture/cap_mdn.js"></script>
+    <script src="js/htm/capture/cap_mmv.js"></script>
+    <script src="js/htm/capture/cap_mup.js"></script>
 
 
   </head>
-  <body>
+  <body class=day>
       <div id=splash class=abscenter><div class=rem3>Document</div></div>
+      <div class=phantom><div class="subhead"><i class=mi>1</i></div></div>
       <div id=panel></div>
-      <div id=oHTML class=mg20p></div>
+      <div id=oHTML class=mg20p style="z-index:-2"></div>
 
   </body>
 </html>

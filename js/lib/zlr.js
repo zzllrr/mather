@@ -69,14 +69,18 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 			type=='js'||!type?'<script src="'+x+'"'+(y||'')+'></script>':''
 		)
 	}, jslib={
-		'echarts':referf(delivr('echarts')),
-		// echart 3D 需要webgl，暂未找到完整集成的js cdn www.jsdelivr.com/package/npm/echarts?path=dist
+		'echarts':referf(delivr('echarts'))+referf(unpkg('echarts-gl')),
+		// www.npmjs.com/package/echarts
 		'echarts_eval':function(t){return '<div id=echarts0 style="width:90%;height:600px">'+
 	t+dc+XML.wrapE('script',
 `	var d=document.getElementById('echarts0'),dt=d.innerText,o=eval(dt);
 	var myChart = echarts.init(d);
 	myChart.setOption(o);
 `)},
+		'd3':referf(unpkg('d3')),
+
+		'function-plot':referf(unpkg('function-plot','function-plot')),
+
 		'zdog':referf(delivr('zdog','.dist.min')),
 
 		'canvas_eval':function(t){return '<div id=js hidden>'+t+dc+

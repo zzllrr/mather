@@ -32,7 +32,8 @@
 
 #svgToolOpt{
 	position: absolute;
-    top: 5.15rem;
+	top: 5.15rem;
+	z-index: 99999999;
 }
 
 #svgToolOpt.Narrow{

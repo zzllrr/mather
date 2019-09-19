@@ -714,7 +714,7 @@ select,input:not([type="file"]), .rem13{
 	opacity:.5
 }
 
-.subhead:not(.seled):not(:hover),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
+.subhead:not(.seled):not(:hover),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span,#toolnav{
 	background:black;
 }
 .task:not(.seled),.taskname{
@@ -726,10 +726,7 @@ select,input:not([type="file"]), .rem13{
 #subject{
 	background: rgba(0,0,0,0.1);
 }
-#toolnav{
-	background: black;
-	padding-left: 20px;
-}
+
 .sechResult, .Mele:hover{
 	background: rgba(50, 205, 50, 0.6);
 }
