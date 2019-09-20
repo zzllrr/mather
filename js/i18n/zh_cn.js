@@ -610,6 +610,8 @@ lang['zh_cn'] = {
 	'Expression': '表达式',
 
 	'Code': '代码',
+	'Encode':'编码',
+	'Decode':'解码',
 
 	'QRcode': '二维码',
 	'Snippet': '片段',

@@ -85,7 +85,7 @@ $(function(){
 					)
 					)+'</select>'+
 
-					
+					itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')+
 					itvc('rotate180" id="tClear')+
 
 					'<div id=inputTools>'+
@@ -170,7 +170,7 @@ $(function(){
 			DCtv('pd2" id="iTextOpt',
 				itvc('oClear rotate270" id="oHClear')+
 				itv('" id=iTextFold tip="Snippet Editor','description')+
-				itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up')+
+
 
 				itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 				itv('" id=launch tip="Launch','launch')
@@ -206,7 +206,7 @@ dc);
 		}else{
 			$('#menu > .toggle').click();
 			$('#navbody').hide();
-			OH('<iframe src="'+id+'.html" width="99%" height="800px" class="resize bd0"></iframe>');
+			OH('<iframe src="'+id+'.html" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
 			
 		}
 
@@ -760,7 +760,7 @@ dc);
 					if(iswikilike){
 
 						OH('<iframe src="'+tool+'.html?'+('q='+muri)+
-							'" width="99%" height="400px" class="resize bd0"></iframe>');
+							'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
 						return;
 					}
 		
@@ -774,7 +774,7 @@ dc);
 			if(iswikilike && istask){
 				if($('iframe[src="'+tool+'.html?q='+muri).length<1){
 					$('#oHTML').append('<iframe src="'+tool+'.html?'+('q='+muri)+
-					'" width="99%" height="400px" class="resize bd0"></iframe>');
+					'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
 				}
 
 				return;

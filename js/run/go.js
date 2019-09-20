@@ -47,7 +47,7 @@ $(function(){
 				ss='slide';
 				o.type='image';
 			}
-			OH('<iframe src="'+H_o(ss+'.html',o)+'" width="99%" height="400px" class=resize></iframe>');
+			OH('<iframe src="'+H_o(ss+'.html',o)+'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class=resize></iframe>');
 			
 		}
 

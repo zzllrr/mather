@@ -113,7 +113,7 @@
 
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;
-	background:rgba(50, 205, 50, 0.5);
+	background:rgba(50, 205, 50, 0.2);
 }
 
 .sbsiTbl tr.Symboli:not(.Symboli_):after {
