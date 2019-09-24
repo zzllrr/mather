@@ -361,6 +361,7 @@ lang['zh_cn'] = {
 	'Architecture':'建筑',
 	'Sculpture':'雕塑',
 
+	'Piano':'钢琴',
 
 
 
@@ -587,6 +588,7 @@ lang['zh_cn'] = {
 	'Value': '值',
 	'Information': '信息',
 	'Font': '字体',
+	'Padding':'内边距',
 	'Language': '语言',
 
 	'Difficulty': '困难',

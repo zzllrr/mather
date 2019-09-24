@@ -93,7 +93,7 @@ $(function () {
 					'<div id=svgTextDetail>'+txa('','" id="svgTextDetails')+dc+
 				
 					detail('<input type=button id=clrTextBox value="'+gM('Clear All')+'" />'+
-						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts')).join('')+'</select>'+strbtn+' OK " id=TextBoxGo />',
+						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />',
 						txa('','" id="TextBox')+
 						detail(gM('Editor'),DCtv('hidden" for="Canvas',tooltip.Canvas+
 DCtv('pd10" id="canvasMenu',
@@ -1859,32 +1859,43 @@ dc+
 
 
 
+// || !(act=='DIV' && eos.id && eos.id=='oHTML')
+	$('#caps,#oHTML').on('mousedown touchstart', function (e) {consolelog('caps');
 
-	$('#caps').on('mousedown touchstart', function (e) {consolelog('caps');
 		mDn(e);
-		if (e.cancelable) {
-			// 判断默认行为是否已经被禁用
-			if (!e.defaultPrevented) {
-				e.preventDefault && e.preventDefault();
+		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
+
+			if (e.cancelable) {
+				// 判断默认行为是否已经被禁用
+				if (!e.defaultPrevented) {
+					e.preventDefault && e.preventDefault();
+				}
 			}
+			
+			e.returnValue=false;
+			e.stopPropagation && e.stopPropagation();
+			return false;
+
+
 		}
 		
-		e.returnValue=false;
-		e.stopPropagation && e.stopPropagation();
-		return false;
-		
 	}).on('mousemove touchmove', function (e) {consolelog('caps'); mMv(e);
-		
-		e.preventDefault && e.preventDefault();
-		e.returnValue=false;
-		e.stopPropagation && e.stopPropagation();
-		return false;
+		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
+			e.preventDefault && e.preventDefault();
+			e.returnValue=false;
+			e.stopPropagation && e.stopPropagation();
+			return false;
+		}
+
 		
 	}).on('mouseup touchend', function (e) {consolelog('caps'); mUp(e);
-		e.preventDefault && e.preventDefault();
-		e.returnValue=false;
-		e.stopPropagation && e.stopPropagation();
-		return false;
+		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
+			e.preventDefault && e.preventDefault();
+			e.returnValue=false;
+			e.stopPropagation && e.stopPropagation();
+			return false;
+		}
+
 	});
 
 

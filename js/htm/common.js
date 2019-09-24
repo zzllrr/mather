@@ -45,13 +45,15 @@ caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch), is
 hascap=iscap || ishome || isdoc,
 
 oHTML=function(x,notMD,elem){
-    $(elem||'#oHTML').hide().html(notMD?x:replaceNodeInner(x,'MD', md2html));
+    var o=$(elem||'#oHTML').hide();
+    o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
     $(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
     setTimeout(function(){
         $('#splash').remove();
-        $(elem||'#oHTML').fadeIn();
+        o.find('.wiki th.bds').click();
+        o.fadeIn();
         $('#panel').fadeIn();
     },600);
 },
@@ -420,11 +422,13 @@ $(function () {
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
         (ishome || isdoc?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
-        (ishome?'':itv('" id=home tip="Home"','home'))+
-    
+        (ishome?'':itv('" id=home tip="Home','home'))+
+        
         
         (hascap?itv('" id=svgs tip="Graphic" hotkey="Esc','palette'):'')+
         itv('" id=night tip="Night','brightness_3')+
+        (isdoc?itv('" id=padding tip="Padding','compare_arrows')+itv('" id=print tip="Print','print'):'')+
+
         itv('" id=qrcode tip="Share','share')+
     dc);
     $(':button').not('[value]').val(function(){return gM(this.id)});
@@ -441,6 +445,22 @@ $(function () {
             open(loch.replace(/\/[a-z0-9]+\.html.*/i,'/index.html'))
         }
     });
+
+    $('#padding').on('click',function(){
+        var o=$('#oHTML'),p=o.is('.pd20p'),pl=o.is('.pd20pl'),p20=o.is('.pd20');
+        o.removeClass('pd20p pd20pl pd20pr');
+        if(p){
+            o.addClass('pd20pl');
+        }else if(pl){
+            o.addClass('pd20');
+        
+        }else if(p20){
+            o.addClass('pd20p');
+        }
+    });
+    $('#print').on('click',function(){
+        window.print();
+    });
     $('#night').on('click',function(){
         var me=$(this),isnight=me.text()=='brightness_3';
         me.html(isnight?'wb_sunny':'brightness_3');
@@ -455,7 +475,7 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
-	$('#panel').on('click','i:not(#night):not(#zMatherOn)',function(){
+	$('#panel i').not('#night,#zMatherOn,#padding,#print').on('click',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
 		if(id=='svgs'){
@@ -507,6 +527,9 @@ $(function () {
 
     });
     
+    if(isdoc){
+        $('#zMatherOn').click()
+    }
 
     $('#QRCODE').on('click',function(){
         //$('#qrcode').click()

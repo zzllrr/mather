@@ -70,7 +70,7 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel, #input0Preview ~ *,#iTextMain ~ *{
+  #panel,#menu, #input0Preview ~ *,#iTextMain ~ *{
   	display:none
   }
   #iTextMain{
@@ -448,9 +448,19 @@ input[type=text],#wiki>span,.brad{
 .pd10{
 	padding:10px
 }
+.pd20{
+	padding:20px
+}
 
 .pd20p{
 	padding:0 20%;
+}
+
+.pd20pl{
+	padding-left:20%;
+}
+.pd20pr{
+	padding-right:20%;
 }
 
 .mg20p{
@@ -483,6 +493,9 @@ input[type=text],#wiki>span,.brad{
     margin-right: 10px;
 }
 
+.mkdnhead > [id]:hover:after {
+    content: " ↑";
+}
 
 #search{
 

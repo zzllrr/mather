@@ -8,11 +8,15 @@ function mDn(e){
 
 	var eos=e.originalEvent.srcElement, act=eos.tagName, DEG='',ect=e.originalEvent.changedTouches;
 
+
 	if(act!='CANVAS'){e.stopPropagation()}
 
 	var et=e.type;
-	//console.log(et);
-	//console.log(e);
+	/*
+	console.log(et);
+	console.log(e);
+	console.log(eos);
+	*/
 	var X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
 	 Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0));
 	L.X=X;
