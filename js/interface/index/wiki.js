@@ -10,6 +10,19 @@ wikis={
 	'Theorem':[
 		{'Principle':[
 
+			{'Duality':[
+
+			]},
+			{'Symmetry':[
+	
+			]},
+			{'Conservation':[
+	
+			]},
+			{'Ergodicity':[
+	
+			]},
+
 		]},
 		{'Axiom':[
 
@@ -69,24 +82,47 @@ wikis={
 
 
 	'Method':[
-		{'Inductive':[
-
-		]},
 		{'Direct':[
+			'Deduce',
+			'Converge',
+			'Enumerate',
+			'Exhaust',
+			'Classify',
+			'Concretize',
+			'Experiment',
+			'Parameterize',
+			'Functionalize',
+			
 
 		]},
+
 		{'Indirect':[
-
+			'Induce',
+			'Analogize',
+			'Convert',
+			'Symbolize',
+			'Visualize',
+			'Reverse',
+			'Reduction to Absurdity',
+			'Counter-example',
+			
 		]},
-		{'Analogy':[
 
+		{'Generalize':[
+			'Extend',
+			'Diverge',
+			'Penetrate',
+			'Integrate',
+			
+			'Dialectic',
+			
+			'Abstract',
+			'Forcing',
 		]},
-		{'Deductive':[
+	
+	],
 
-		]},
-		{'Reasoning':[
-
-		]},
+	'Topic':[
 	],
 
 	'Concept':[

@@ -200,11 +200,44 @@ lang['zh_cn'] = {
 	'Thought': '思想',
 
 
-	'Inductive':'归纳',
 	'Direct':'直接',
 	'Indirect':'间接',
+
+	'Induce':'归纳',
+	'Inductive':'归纳',
 	'Analogy':'类比',
+	'Analogize':'类比',
+	'Dual':'对偶',
+	'Duality':'对偶',
+	
+	'Holographic':'全息',
+	'Conservation':'守恒',
+	'Periodicity':'周期',
+	'Ergodic':'遍历',
+	'Ergodicity':'遍历',
+	'Reverse':'逆转',
+
+	'Converge':'收敛',
+	'Convergent':'收敛',
+	'Diverge':'发散',
+
+	'Divergent':'发散',
+
+	'Generalize':'推广',
+	'Integrate':'整合',
+	'Reduction to Absurdity':'归谬',
+
+	'Dialectical':'辩证的',
+	'Dialectic':'辩证',
+
+	'Experiment':'实验',
+	'Deduce':'演绎',
 	'Deductive':'演绎',
+
+	'Counterpose':'对立',
+	'Penetrate':'穿透',
+	'Abstract':'抽象',
+
 	'Reasoning': '推理',
 
 	'Pattern': '模式',
@@ -754,7 +787,9 @@ lang['zh_cn'] = {
 	'Flexible': '灵活的',
 	'Agile': '敏捷的',
 	'Compact': '紧凑的',
+	'Extend':'扩展',
 	'Extendable': '可扩展',
+	'Enumeration':'枚举',
 	'Customizable': '可定制',
 	'Convenient': '方便的',
 	'Handy': '便利的',
@@ -844,8 +879,18 @@ lang['zh_cn'] = {
 
 	'Decomposition': '分解',
 	'Emotionalization': '情感化',
+	'Parameterize':'参数化',
 	'Parameterization': '参数化',
+
+	'Forcing':'力迫',
+
+	'Classify':'分类',
+	'Symbolize':'符号化',
+	'Symbolization':'符号化',
+	'Functionalize':'函数化',
 	'Functionalization': '函数化',
+
+	'Visualize':'可视化',
 	'Visualization': '可视化',
 	'Decentralization': '去中心化',
 
@@ -856,6 +901,10 @@ lang['zh_cn'] = {
 	'Operation': '运算',
 	'Operate': '操作',
 	'Explore': '探索',
+	'Investigate':'研究',
+	'Exhaust':'穷举',
+	'Concretize':'具体化',
+	'Counter-example':'反例',
 	'Search': '搜索',
 	'Contact': '联系',
 	'Donate': '捐助',
