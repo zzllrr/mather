@@ -172,7 +172,8 @@ E|F|G
 
 			['JavaScript eval ('+gM('Formula')+')',sceg('$$2+3$$')].join(''),
 			['JavaScript eval ('+gM('Instant')+')',sceg('<js>1+2+3</js>'),sceg("<js>svgf.id('',svgf.circle(15,15,10,'red'))</js>",4)].join(''),
-			['JavaScript eval ('+gM('Timeout')+')',sceg('<JS>1+2+3</JS>')].join('')
+			['JavaScript eval ('+gM('Timeout')+')',sceg('<JS>1+2+3</JS>')].join(''),
+			[ruby('汉语拼音','','ha1n yu3 pi1n yi1n'),sceg("<js>ruby('小乐数学','','xia3o le4 shu4 xue2')</js>")].join(''),
 		].join(br))+
 
 		detail(gM('Canvas'),[

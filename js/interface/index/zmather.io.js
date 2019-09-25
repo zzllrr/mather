@@ -15,7 +15,7 @@ Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title
 Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
 
 var SBSi=[zlr('Num',' 1 2 3'),
-	zlr('ABC',' 1 2 3 4 5'),
+	zlr('ABC',' 1 2 3 4 5 6'),
 	zlr('Operator',' 1 2'),
 	zlr('Relation',' 1 2'),
 	zlr('Arrow',' 1 2 3 4 5'),
@@ -96,16 +96,25 @@ SBS={
 		['ⓐⓑⓒⓓⓔⓚⓛⓜⓝⓞⓤⓥⓦⓧⓨ','ⓕⓖⓗⓘⓙⓟⓠⓡⓢⓣⓩ'],
 		['ⒶⒷⒸⒹⒺⓀⓁⓂⓃⓄⓊⓋⓌⓍⓎ','ⒻⒼⒽⒾⒿⓅⓆⓇⓈⓉⓏ']
 	],
+	ABC3:[
+		['āáǎàaēéěèeūúǔùu','ōóǒòoīíǐìiǖǘǚǜü'],
 
-	ABC3:Arrf(function(t,i){return [Latin(t,true).join('').replace('É','$&G'),
+
+		[['i','ɪ','ə','ɚ','ɔ', 'e','ɛ','æ','//','[]', 'ɔː','ɔ','uː','u','ɑː'],['ɒ','ɑ','u','ʊ','ʌ', 'iː','i','əː','ɜː','ɝ',]],
+
+		[['ei','eɪ','e','ai','aɪ',  'əʊ','oʊ','o','iə','ɪə',  'ʊə','ʊr'],['ɔi','ɔɪ','au','aʊ','əu',  'ɪr','ɛə','eə','ɛr','uə']],
+				[['p','t','k','f','s', 'θ','ʃ','tʃ', 'ˈ','[]', 'h','j','l','ℓ','m'],['b','d','ɡ','v','z',  'ð','ʒ','dʒ', 'ˌ','//',  'n','ŋ','r','w']],
+
+	],
+	ABC4:Arrf(function(t,i){return [Latin(t,true).join('').replace('É','$&G'),
 		Latin(t).join('').replace('⊙⋅⃛','i')
 	]},entity.slice(4,9)),
 
-	ABC4:Arrf(function(t,i){return [Latin(t,true).join(''),
+	ABC5:Arrf(function(t,i){return [Latin(t,true).join(''),
 		Latin(t).join('').replace('◯','')
 	]},entity.slice(9)).concat([['₠₡₢₣₤₥₦₧₨₩','₪₫€₭₮₯₰₱₲₳']]),
 
-	ABC5:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),
+	ABC6:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),
 
 	Operator:[
 		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀◯'],//⨌
