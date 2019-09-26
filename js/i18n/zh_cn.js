@@ -217,6 +217,7 @@ lang['zh_cn'] = {
 	'Ergodicity':'遍历',
 	'Reverse':'逆转',
 
+	'Thinking':'思维',
 	'Converge':'收敛',
 	'Convergent':'收敛',
 	'Diverge':'发散',
@@ -244,8 +245,11 @@ lang['zh_cn'] = {
 	'Pattern.v': '图案',
 	'Paradigm':'范式',
 
+	'Pseudoscience':'伪科学',
+	'Potential Science':'潜科学',
 
 	'Topic': '课题',
+
 
 	//教学
 
@@ -481,6 +485,10 @@ lang['zh_cn'] = {
 	'Bar': '条形',
 	'Flowchart': '流程',
 	'Scatter': '散点',
+	'Flow':'流',
+
+	'Inspiration':'灵感',
+	'Compilation':'编纂',
 
 	'Canvas': '画布',
 	'Graphic': '作图',
@@ -528,6 +536,11 @@ lang['zh_cn'] = {
 	'Compression': '压缩',
 	'Synthesis': '合成',
 	'Note': '注释',
+	'Notes':'笔记',
+	'Essay':'散文',
+	'Brainstorm':'头脑风暴',
+	'Brainstorming':'集思',
+
 	'Environment': '环境',
 
 	'Result': '结果',
@@ -685,6 +698,7 @@ lang['zh_cn'] = {
 	'Privacy': '隐私',
 	'Policies': '政策',
 	'Terms': '条款',
+	'Knowledge':'知识',
 
 	'Creative Commons': '知识共享',
 
@@ -1210,7 +1224,8 @@ lang['zh_cn'] = {
 	'Transform': '变形',
 	'Transformation': '变换',
 
-	'Map': '映射',
+	'Map': '地图',
+	'Bridge':'桥',
 	'Mapping': '映射',
 
 
@@ -1305,12 +1320,14 @@ lang['zh_cn'] = {
 	'Indefinite': '不定',
 	'Definite': '定',
 
+	'Theory':'论',
 	// 人名
 
 	'Euler': '欧拉',
 	'Bezier': '贝塞尔',
 	'Fermat': '费马',
 	'Cartesian': '笛卡尔',
+	'Diophantus':'丢番图',
 
 	//Math subject
 	'Level-1': '一级',

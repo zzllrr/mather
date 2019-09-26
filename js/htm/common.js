@@ -427,7 +427,7 @@ $(function () {
     $('#panel').hide().prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        (ishome || isdoc || isedi || iscap?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+        itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up')+
         (ishome?'':itv('" id=home tip="Home','home'))+
         
         

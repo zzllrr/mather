@@ -5,7 +5,7 @@
  */
 
 wikis={
-	'index':['Concept','Theorem','Formula','Conjecture','Antinomy','Impossibility','Method'],
+	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Topic','Thinking'],
 
 	'Theorem':[
 		{'Principle':[
@@ -41,11 +41,19 @@ wikis={
 
 
 	'Formula':[
-		{'Calculate':[
+		{'Sequence':[
 
 		]},
 
-		{'Estimate':[
+		{'Function':[
+
+		]},
+
+		{'Equation':[
+			'Diophantus'
+		]},
+
+		{'Geometry':[
 
 		]},
 	],
@@ -53,35 +61,65 @@ wikis={
 
 	'Conjecture':[
 		{'Solved':[
-			'Fermat大定理',
+			'Fermat费马大定理',
 			'有限单群分类'
 		]},
 
 		{'Unsolved':[
 			'3n+1',
 			'Transcendental Number',
-			'Euler常数是否无理数',
+			'Euler欧拉常数',
 			'BSD',
 			'P与NP问题'
 		]},
 	],
 
 
-	'Antinomy':[
+	'Pitfall':[
+		{'Antinomy':[
+			'芝诺悖论',
+			'贝克莱悖论',
+			'罗素悖论'
+		]},
+		{'Impossibility':[
+			{'不可作图':[{'古希腊三大几何作图问题':['倍立方','三等分角','化圆为方']}
+			]},
+			{'不完备':[
+				{'Gödel哥德尔不完全性定理':[
+					'第一不完备定理：系统内存在不可证明或证伪命题',
+					'第二不完备定理：相容性（无矛盾性）无法在系统内得证'
+				]}
+			]},
 
+			{'不可计算':[
+				'Chaitin蔡廷不可计算数'
+			]},
+			{'不确定性':[
+				'Heisenberg海森堡测不准原理'
+			]},
+			{'无解':[
+				'Arrow阿罗不可能定理',
+			]},
+			{'不可表达':[
+				'Galois伽罗瓦4次以上代数方程无一般求根公式',
+				'无理数-无法表示成分数的实数',
+				'超越数-无法表示成有理系数代数方程的根',
+				'无法使用初等函数表示的不定积分',
+				'一些无解析解的方程',
+			]},
+	
+		]},
+		{'Counter-example':[
+			{'Number Theory':[
+				'Prime Number Formula'
+			]}
+		]}
 	],
 
-	'Impossibility':[
-		{'不可作图':ZLR('古希腊三大几何作图问题无法完成')},
-		{'不完备':ZLR('哥德尔不完全性定理 阿罗不可能定理')},
-		{'不可证明':ZLR('哥德尔不完全性定理')},
-		{'不可计算':ZLR('Chaitin不可计算数')},
-		{'不可表达':ZLR('4次以上的一般代数方程无求根公式 无法使用初等函数表示的不定积分 无解析解的特殊方程')},
-
-	],
 
 
-	'Method':[
+
+	'Thinking':[
 		{'Direct':[
 			'Deduce',
 			'Converge',
@@ -123,6 +161,8 @@ wikis={
 	],
 
 	'Topic':[
+		'长方体表面积2(ab+ac+bc)',
+		'费马大定理中的方程1解变6解',
 	],
 
 	'Concept':[
@@ -239,116 +279,5 @@ wikis={
 			'Path',
 		]},
 	],
-/*
-	'Number':[
-		'Unit',
-		'Number',
-		{'Integer':[
-			'Integer',
-			'Type',
-			'Divide',
-			'Fermat Number',
-		]},
-		{'Prime':[
-			'Prime',
-			'Type',
-			'Structure',
-			'Prime Mersenne Number',
-			
-		]},
-		'Algebraic',
-		'Transcendental',
-		'Complex',
-		{'Sequence':[
-			'Rational',
-			'Sum',
-			'Combination',
-			'Amicable Numbers',
-			
-		]},
-	],
-	'Vector':[
-		'Vector',
-		'Tensor',
-	],
-	'Matrix':[
-		'Type',
-		'Unary Operation',
-		'Binary Operation',
-		'Binary Relation',
-		'Matrix Factorization',
-		'Determinant',
-		
-	],
-	
-	'Analytic':[
-		'Polynomial',
-		'Fraction',
-		'Radical',
-		'Infinite Series',
-		
-	],
-	
 
-	'Limit':[
-		'Limit'
-	],
-
-	
-
-	'Differential':[
-		'Differential',
-	],
-
-	'Integral':[
-		'Integral',
-	],
-	
-	'Formal Power Series':[
-		'Formal Power Series',
-	],
-	
-	'Function':[
-		'Function',
-		'Recursive',
-	],
-	
-	'Algebra':[
-		'Algebra',
-		'Group.Math',
-		'Ring',
-		'Lattice',
-	],
-	
-	'Logic':[
-		'Logic',
-	],
-	
-	'Set':[
-		'Set'
-	],
-
-	'Relation':[
-		'Type',
-		'Compatible',
-		'Equivalence',
-		'Partial Order',
-	],
-	
-
-	'Geometry':[
-		'Point',
-		'Line',
-		'Angle',
-		'Plane',
-		'Solid',
-	],
-	'Graph':[
-		'Type',
-		'Unary Operation',
-		'Binary Operation',
-		'Binary Relation',
-		'Path',
-	]
-*/
 };

@@ -4,6 +4,8 @@
  * Released under MIT License
  */
 teachings={index:['Course','Drill','Examination Paper',
-    'Exam','Quiz','Vote','Survey','Discuss','Q & A']
+    'Exam','Quiz','Vote','Survey','Discuss','Q & A'],
+
+    
 
 };
