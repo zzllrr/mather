@@ -1,4 +1,23 @@
 
+
+@media screen and (max-width:800px){
+	#input0{
+		width:98%
+	}
+}
+@media screen and (min-width:800px){
+
+
+	#iTextMain > *:not(.clear),#Cond > *:not(.clear){
+		float:left
+	}
+}
+
+
+#input0Tool select{
+	vertical-align: middle
+}
+
 .Symboli .td:not(:hover),.Symboli td:not(:hover){
 	color:cadetblue
 }
@@ -13,9 +32,10 @@
     z-index: 30000;
 }
 
-.TextLaTeXBox > div{
-	border: outset yellow 1px;
+.TextLaTeXBox{
+	float:left
 }
+
 
 .sbsTbl .td{
 	float:left;
@@ -107,9 +127,7 @@
 #input0,#input1{
 	min-height:200px;
 }
-#input0Type,#output0Type{
-	max-width:6rem;
-}
+
 
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;

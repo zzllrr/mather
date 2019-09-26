@@ -3032,7 +3032,9 @@ function md2html(str, sep) {
 			var t = x.trim(), n = t.split(' ')[0].length, ht = t.replace(/^#+ | #+$/g, '');
 			headA.push([n, ht]);
 			var hi = 'TOChi' + (headA.length - 1);
-			return '\n' + inhref('#' + hi + '" class="mkdnhead', '<h' + n + ' id=' + hi + '>' + ht + '</h' + n + '>')
+			//return '\n' + inhref('#' + hi + '" class="mkdnhead', '<h' + n + ' id=' + hi + '>' + ht + '</h' + n + '>')
+			return '\n' + '<h' + n + ' id=' + hi + '>' + inhref('#' + hi + '" class="mkdnhead', '# ')+
+			 ht +  inhref('#TOChi0" class="mkdnhead', ' ↑')+ '</h' + n + '>'
 		})
 
 		.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g, function (x) {

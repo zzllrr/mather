@@ -41,7 +41,11 @@ gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 
 tooltip={
 },
-caps,ishome=/index\.html|mather\/$/.test(loch), iscap=/cap\.html/.test(loch), isdoc=/document\.html/.test(loch),
+caps,ishome=/index\.html|mather\/$/.test(loch), 
+iscap=/cap\.html/.test(loch), 
+isdoc=/document\.html/.test(loch),
+isedi=/editor\.html/.test(loch),
+
 hascap=iscap || ishome || isdoc,
 
 oHTML=function(x,notMD,elem){
@@ -291,6 +295,8 @@ var rng2=function(t,neg){
 	if(dx<0 && dy<0){return Math.atan(dy/dx)+Math.PI}
 	if(dx>0 && dy<0){return Math.atan(dy/dx)+Math.PI*2}
 };
+
+
 function all2html(type,V,dom){
     var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||'').toUpperCase();
     if(/UNICODE_MATH|UM/.test(iv)){
@@ -371,7 +377,7 @@ function all2html(type,V,dom){
         w.text(gM(v));
 
     }else if(/ECHARTS|EC/.test(iv)){
-consolelog(v);
+//consolelog(v);
         w.empty();
         Graphic.drawSVG('echarts',v,'',w);
     
@@ -421,7 +427,7 @@ $(function () {
     $('#panel').hide().prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        (ishome || isdoc?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
+        (ishome || isdoc || isedi || iscap?itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up'):'')+
         (ishome?'':itv('" id=home tip="Home','home'))+
         
         
@@ -515,6 +521,10 @@ $(function () {
 	});
 
 
+
+	$('#zMatherHide').on('click',function(){
+		$('#zMatherOn').click();
+	});
     
 
 	$('#zMatherOn').on('click',function(){
@@ -527,7 +537,7 @@ $(function () {
 
     });
     
-    if(isdoc){
+    if(!ishome){
         $('#zMatherOn').click()
     }
 

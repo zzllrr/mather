@@ -1604,7 +1604,7 @@ dc+
 		}
 
 		if(id=='ToolOpt'){
-
+			$(this).children('path').attr('stroke',$('#svgToolOpt').is(':visible')?'white':'yellow');
 			$('#svgToolOpt').toggle();
 			return
 		}
@@ -1788,7 +1788,7 @@ dc+
 		$(zlr(C, 'TransOpt Dropshadow Clip', ',')).hide();
 		$(c + 'Matrix3D').hide().nextAll().show();
 
-
+		$('#ToolOpt').children('path').attr('stroke',$('#svgToolOpt').is(':visible')?'yellow':'white');
 
 	});
 
@@ -2248,7 +2248,7 @@ dc+
 			$('#Caps,#tileTool').show();
 			$('#svgs').click();//addClass('seled');
 		}
-	}, 500);
+	}, 300);
 });
 
 

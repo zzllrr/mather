@@ -49,6 +49,7 @@
 	input[type="number"]{
 		max-width: 2.6rem;
 	}
+	
 }
 
 
@@ -60,6 +61,10 @@
 
 	input[type="number"]{
 		max-width: 3rem;
+	}
+	.tool:hover{
+		background:yellow;
+		color: black;
 	}
 }
 
@@ -166,7 +171,7 @@ body.day, .day textarea{
 body.night{
 	background-color: black;
 }
-body.day{
+body.day, iframe{
 	background-color:white;
 }
 
@@ -231,7 +236,10 @@ summary{
 .collapse{border-collapse: collapse}
 
 
-
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
 body:not(.night) .bds:not(.Clear){
 	border: solid black 1px;
 }
@@ -493,8 +501,11 @@ input[type=text],#wiki>span,.brad{
     margin-right: 10px;
 }
 
-.mkdnhead > [id]:hover:after {
-    content: " ↑";
+[id]:not(:hover)>.mkdnhead{
+    opacity:0
+}
+[id]:hover>.mkdnhead{
+    opacity:1
 }
 
 #search{
@@ -551,7 +562,7 @@ input[type="file"]{
 	text-align: center
 }
 
-.floatl,.inputTip,#iTextMain > *:not(.clear),#Cond > *:not(.clear){
+.floatl,.inputTip{
 	float:left
 }
 .floatr{
@@ -779,7 +790,7 @@ select,input:not([type="file"]), .rem13{
 	background:royalblue;
 }
 
-textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
+textarea, .katexvrule{
 	background:transparent;
 }
 #input0Preview, #iTextPreview{
@@ -952,7 +963,7 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
     z-index: 90001;
 }
 
-.mi.toggle, .tool:hover{
+.mi.toggle{
 	background:yellow;
 	color: black;
 }
@@ -988,4 +999,8 @@ input[len="2"]{
 @keyframes hue {
     from { filter: hue-rotate(0deg); }
     to   { filter: hue-rotate(360deg); }
+}
+
+input[type=checkbox]{
+	zoom: 2;
 }

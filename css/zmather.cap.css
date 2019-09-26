@@ -1,6 +1,6 @@
 #svgTextDetails, #svgTextN, .mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 #SvgOpt img, #COLOR img{vertical-align:middle}
-#fontCSS span{font-size:16px}
+
 
 #caps{
     position: absolute;
@@ -129,10 +129,7 @@
 #Tile table {
     border-spacing: 0;
 }
-body {
-    margin: 0;
-    overflow-x: hidden;
-}
+
 
 input:not([readonly]), select{
     vertical-align: middle;
