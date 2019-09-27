@@ -162,7 +162,7 @@ wikis={
 
 	'Explore':[
 		{'from Formula':[
-			'长方体表面积2(ab+ac+bc)',
+			'Rectangle.1 Surface Area',
 		]},
 		{'from Theorem':[
 			'费马大定理中的方程1解变6解',

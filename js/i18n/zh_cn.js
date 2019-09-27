@@ -1008,6 +1008,51 @@ lang['zh_cn'] = {
 
 	// structure entity
 
+	'One':'一',
+	'Two':'二',
+	'Three':'三',
+	'Four':'四',
+	'Five':'五',
+	'Six':'六',
+	'Seven':'七',
+	'Eight':'八',
+	'Nine':'九',
+	'Ten':'十',
+	'Eleven':'十一',
+	'Twelve':'十二',
+	'Thirteen':'十三',
+	'Fourteen':'十四',
+	'Fifteen':'十五',
+	'Sixteen':'十六',
+	'Seventeen':'十七',
+	'Eighteen':'十八',
+	'Nineteen':'十九',
+	'Twenty':'二十',
+
+
+	'First':'第一',
+	'Second':'第二',
+	'Third':'第三',
+	'Fourth':'第四',
+	'Fifth':'第五',
+	'Sixth':'第六',
+	'Seventh':'第七',
+	'Eighth':'第八',
+	'Nineth':'第九',
+	'Tenth':'第十',
+	'Eleventh':'第十一',
+	'Twelfth':'第十二',
+	'Thirteenth':'第十三',
+	'Fourteenth':'第十四',
+	'Fifteenth':'第十五',
+	'Sixteenth':'第十六',
+	'Seventeenth':'第十七',
+	'Eighteenth':'第十八',
+	'Nineteenth':'第十九',
+	'Twentyth':'第二十',
+
+
+
 	'Number': '数',
 	'Prime Mersenne Number': '梅森素数',
 	'Amicable Numbers': '亲和数',
@@ -1110,19 +1155,40 @@ lang['zh_cn'] = {
 	'Polygon': '多边形',
 	'Regular Polygon': '正多边形',
 	'Triangle': '三角形',
+	'Right Triangle': '直角三角形',
+	'Outer Napoleon Triangle':'第一拿破仑三角形',
+	'Inner Napoleon Triangle':'第二拿破仑三角形',
+	'Tangential Triangle':'外切三角形',
+	'Altitude Triangle':'高线三角形',
+	'Medial':'中位',
+	'Median Triangle':'中线三角形',
+	'Oblique':'斜',
+
 	'Square': '正方形',
 	'Rectangle': '矩形',
+	'Rectangle.1': '长方形',
+
 	'Quadrilateral': '四边形',
 	'Parallelogram': '平行四边形',
 	'Rhombus': '菱形',
 	'Trapezoid': '梯形',
 
+	'Enneagon':'九边形',
+	'Nonagon':'九边形',
+
+	'Fish Bladder':'鱼鳔形',
 	'Parabola': '抛物线',
 	'Hyperbola': '双曲线',
 
 	'Circle': '圆',
 	'Ellipse': '椭圆',
 	'Incircle': '内切圆',
+	'Circumcircle':'外接圆',
+	'Excircle':'外切圆',
+	'Escribed':'旁切',
+
+
+
 	'Cone': '圆锥',
 	'Cylinder': '圆柱',
 
@@ -1142,16 +1208,59 @@ lang['zh_cn'] = {
 	'Perpendicular Foot Line': '垂足连线',
 
 
-	'Surface': '曲面',
+	'Surface': '表面',
+	'Curved Surface': '曲面',
 	'Plane': '平面',
 	'Sphere': '球面',
 
 
 	'Solid': '立体',
-	'Polyhedron': '多面体',
+	'Solids': '多面体',
+
 	'Equator': '赤道',
 	'Fractal': '分形',
 
+
+	'Polytope':'多胞形',
+	'Polyhedron':'多面体',
+	'Polyhedra':'多面体',
+	'Regular Polyhedron':'正多面体',
+	'Uniform Polyhedron':'正多边形多面体',
+	'Noble polyhedron':'正直多面体',
+
+
+	'Tetrahedron':'四面体',
+	'Octahedron':'八面体',
+	'Dodecahedron':'十二面体',
+	'Icosahedron':'二十面体',
+	'Stellating':'星形',
+	'Prismatoid':'拟柱体',
+
+	'Prism':'棱柱',
+	'Pyramid':'棱锥',
+
+	'Frustum':'棱台',
+
+	'Touch':'相切',
+	'Intouch':'内切',
+	'Extouch':'旁切',
+
+	'Coaxal':'共轴',
+
+
+
+
+	'Isogonal':'等角',
+	'Isotoxal':'等边',
+	'Isohedral':'等面',
+
+	'Kepler–Poinsot':'正星形',
+
+
+	'Cube':'正方体',
+
+
+	'Cuboid':'长方体',
 
 
 	// measure
@@ -1204,6 +1313,9 @@ lang['zh_cn'] = {
 	'Radii': '半径',
 	'Sides': '边数',
 	'Side Length': '边长',
+	'Perimeter':'周长',
+	'Area':'面积',
+	'Similar':'相似',
 
 
 	// verb
@@ -1294,6 +1406,12 @@ lang['zh_cn'] = {
 	'Concave': '凹',
 	'Circum': '外接',
 	'Isosceles': '等腰',
+
+	'Equilateral':'等边',
+	'Scalene':'不等边',
+	'Pedal':'垂足',
+	'Orthic Triangle':'高线三角形',
+
 	'Radial': '径向',
 	'Straight': '直',
 
@@ -1332,6 +1450,9 @@ lang['zh_cn'] = {
 	'Fermat': '费马',
 	'Cartesian': '笛卡尔',
 	'Diophantus':'丢番图',
+	'Platonic':'柏拉图',
+	'Archimedean':'阿基米德',
+	'Napoleon':'拿破仑',
 
 	//Math subject
 	'Level-1': '一级',

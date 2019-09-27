@@ -9,68 +9,68 @@ wiki['Plane']=Kx(
 
 detail('平面几何图形的类型',Table([ZLR('名称 记法 定义 性质')],[
 	
-	ZLR('三角形\nTriangle________','','____'),
-	ZLR('直角三角形\nRight________','','____'),
-	ZLR('（斜角）非直角三角形\nOblique________','','____'),
-	ZLR('等腰三角形\nIsosceles________','','____'),
-	ZLR('等边三角形\nEquilateral________','','____'),
-	ZLR('不等边三角形\nScalene________','','____'),
+	ZLR(I18('Triangle')+'________','','____'),
+	ZLR(I18('Right Triangle')+'________','','____'),
+	ZLR(I18('Oblique Triangle',['（斜角）非直角三角形'])+'________','','____'),
+	ZLR(I18('Isosceles Triangle')+'________','','____'),
+	ZLR(I18('Equilateral Triangle')+'________','','____'),
+	ZLR(I18('Scalene Triangle')+'________','','____'),
 
 
-	ZLR('垂足三角形\nPedal triangle________过某一点引三角形三边垂线，3个垂足围成的三角形','','____'),
+	ZLR(I18('Pedal Triangle')+'________过某一点引三角形三边垂线，3个垂足围成的三角形','','____'),
 
-	ZLR('高线三角形\nOrthic triangle\nAltitude triangle________（非直角, '+kxf('oblique')+'）三角形垂心引的垂足三角形____高线三角形内心是原三角形的垂心','','____'),
-	ZLR('中位三角形\nMedial triangle\nMidpoint triangle________'+khrA(['3个中点围成的三角形','3条中位线围成的三角形']),'','____'),
-	ZLR('反中位三角形\nAntimedial triangle\nAnticomplementary triangle________以原三角形为中位三角形的三角形','','____'),
+	ZLR(I18(['Altitude Triangle','Orthic Triangle'])+'________（非直角, '+kxf('oblique')+'）三角形垂心引的垂足三角形____高线三角形内心是原三角形的垂心','','____'),
+	ZLR(I18(['Medial Triangle','Midpoint Triangle'])+'________'+khrA(['3个中点围成的三角形','3条中位线围成的三角形']),'','____'),
+	ZLR(I18(['Anti-medial Triangle','Anticomplementary Triangle'])+'________以原三角形为中位三角形的三角形','','____'),
 
-	ZLR('中线三角形\nMedian triangle________3条中线围成的三角形？【wikipedia有此术语，但无此page】','','____'),
+	ZLR(I18('Median Triangle')+'________3条中线围成的三角形？【wikipedia有此术语，但无此page】','','____'),
 
-	ZLR('内接三角形\nGergonne triangle\nContact triangle\nIntouch triangle________三角形内切圆3个内切点连成的三角形____'+
+	ZLR(I18(['Intouch Triangle','Contact Triangle','Gergonne Triangle'])+'________三角形内切圆3个内切点连成的三角形____'+
 		'内接三角形与旁接三角形面积相等，都是\n'
 		,'','____'),
 
-	ZLR('外接三角形\ntangential triangle________三角形外接圆3条切线围成的三角形____'+kul([
+	ZLR(I18('Tangential Triangle')+'________三角形外接圆3条切线围成的三角形____'+kul([
 			'外切三角形的内切圆就是原三角形的外接圆',
 			'原三角形是外接三角形的内接三角形',
 		]),'','____'),
 			
-	ZLR('旁接三角形\n外切三角形\nExtouch triangle\nNagel triangle________三角形3个旁（外）切圆的旁（外）切点连成的三角形','','____'),
+	ZLR(I18(['Extouch Triangle','Nagel Triangle'],['旁接三角形'])+'________三角形3个旁（外）切圆的旁（外）切点连成的三角形','','____'),
 
-	ZLR('第一拿破仑三角形\nOuter Napoleon triangle________三角形3个第一拿破仑点连成的三角形____（第一、第二）拿破仑三角形是等边三角形'+
+	ZLR(I18('Outer Napoleon Triangle')+'________三角形3个第一拿破仑点连成的三角形____（第一、第二）拿破仑三角形是等边三角形'+
 		kbox('拿破仑定理(Napoleon\'s Theorem'),'','____'),
 
-	ZLR('第二拿破仑三角形\nInner Napoleon triangle________三角形3个第二拿破仑点连成的三角形____','','____'),
+	ZLR(I18('Inner Napoleon Triangle')+'________三角形3个第二拿破仑点连成的三角形____','','____'),
 
 
 
-	ZLR('圆\nCircle  ','','____'),
+	ZLR(I18('Circle'),'','____'),
 
-	ZLR('椭圆\nEllipse  ','','____'),
+	ZLR(I18('Ellipse'),'','____'),
 
 
-	ZLR('Mandart圆\nMandart circle________旁接三角形的外接圆','','____'),
-	ZLR('Spieker圆\nSpieker circle________中位三角形的内切圆','','____'),
+	ZLR(I18('Mandart Circle')+'________旁接三角形的外接圆','','____'),
+	ZLR(I18('Spieker Circle')+'________中位三角形的内切圆','','____'),
 
-	ZLR('内切圆\nIncircle\nInscribed circle____________'+kul([
+	ZLR(I18(['Incircle','Inscribed Circle'])+'____________'+kul([
 		'内切圆的圆心称为内心I，',
 		'半径称为内径',
 		'内心是三条角平分线的交点',
 		'半径r满足r = 2S/C',
 		'其中C是周长，S是面积']),'','____'),
-	ZLR('外接圆\nCircumcircle\nCircumscribed circle____________'+kul([
+	ZLR(I18(['Circumcircle','Circumscribed Circle'])+'____________'+kul([
 		'外接圆的圆心称为外心O，',
 		'半径称为外径',
 		'外心是三条中垂线的交点',
 		'半径R满足R = abc/(4S)',
 		'其中a,b,c是边长，S是面积']),'','____'),
 		
-	ZLR('旁切圆\n外切圆\nExcircle\nEscribed circle____________'+kul([
+	ZLR(I18('Excircle')+'\n'+I18('Escribed Circle')+'____________'+kul([
 		'旁（外）切圆的圆心称为旁心E（外切圆心），',
 		'半径称为旁径'+kxf('Exradii')+'（外切圆半径）',
 		'旁心（外切圆心）是三角形一个内角平分线与',
 		'另两个内角相应外角平分线的交点']),'','____'),
 
-	ZLR('九点圆\nNine-point circle\nFeuerbach\'s circle\nEuler\'s circle\nTerquem\'s circle\nthe six-points circle\nthe twelve-points circle\nthe n-point circle\nthe medioscribed circle\nthe mid circle\nthe circum-midcircle'+
+	ZLR(I18(['Nine-point circle','Feuerbach\'s circle','Euler\'s circle','Terquem\'s circle','the six-points circle','the twelve-points circle','the n-point circle','the medioscribed circle','the mid circle','the circum-midcircle'])+
 		'____N____'+kxA(['三角形三边中点M_i（3个）和垂足H_i（3个），',
 		'以及欧拉点e_i（3个，三个顶点与垂心连线中点）',
 		'，九点共圆'])+'____'+kul([
@@ -101,7 +101,7 @@ detail('平面几何图形的类型',Table([ZLR('名称 记法 定义 性质')],
 		
 	]),'','____'),
 
-	ZLR('极圆\nPolar circle________'+kxA([
+	ZLR(I18('Polar Circle')+'________'+kxA([
 		'圆心是三角形垂心',
 		'半径r满足r^2 = HA⋅HD = HB⋅HE = HC⋅HF',
 		'= -4R^2\\cos A\\cos B\\cos C',
@@ -110,29 +110,29 @@ detail('平面几何图形的类型',Table([ZLR('名称 记法 定义 性质')],
 		
 		
 	
-	ZLR('鱼鳔形\nVesicae Piscis\nFish Bladder________半径相等，圆心距等于半径的两个圆重合的部分','','____'),
+	ZLR(I18(['Fish Bladder','Vesicae Piscis'])+'________半径相等，圆心距等于半径的两个圆重合的部分','','____'),
 
 
 
 		
-	ZLR('长方形\nRectangle________','','____'),
+	ZLR(I18('Rectangle',['矩形'])+'________','','____'),
 		
-	ZLR('正方形\nSquare  ','','____'),
+	ZLR(I18('Square'),'','____'),
 
-	ZLR('平行四边形\nParallelogram  ','','____'),
+	ZLR(I18('Parallelogram'),'','____'),
 
-	ZLR('菱形\n  ','','____'),
+	ZLR(I18('Rhombus'),'','____'),
 
-	ZLR('梯形\nTrapezoids  ','','____'),
+	ZLR(I18('Trapezoid'),'','____'),
 
 
-	ZLR('多边形\nPolygon  ','','____'),
-	ZLR('正多边形\nRegular Polygon  ','','____'),
+	ZLR(I18('Polygon'),'','____'),
+	ZLR(I18('Regular Polygon'),'','____'),
 
-	ZLR('九边形\nEnneagon\nNonagon\n9-gon ','','____'),
+	ZLR(I18(['Enneagon','Nonagon','9-gon']),'','____'),
 		
 		
-	ZLR('星形多边形\nStellating polygon ','','____'),
+	ZLR(I18('Stellating Polygon'),'','____'),
 
 
 

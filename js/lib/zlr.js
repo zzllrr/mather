@@ -299,6 +299,10 @@ function gM(mesg, str, o) {
 	}
 	if (!x && /-/.test(msg)) {
 		x = Arrf(function (t) { return gM(t, str, o) }, msg.split('-')).join('-');
+		hanziRe.lastIndex = 0;
+		if (hanziRe.test(x)) {
+			x = x.replace(/-/g, '')
+		}
 	}
 
 	if (!x && /\./.test(msg)) {// .无需翻译
@@ -485,7 +489,8 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
-	i18=function(x){return XML.wrapE('i18',x)},
+	i18=function(x){return XML.wrapE('i18',x)},	
+	I18=function(x,A){return (isArr(x)?x.join('\n'):x)+'\n'+XML.wrapE('i18',isArr(x)?x[0]:x)+(A?'\n'+A.join('\n'):'')},
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
 	fieldseth = function (s, v, c, h) { return '<fieldset class=rem13' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
 	subtabs = function (hA,vA,seli) { if(seli==-1){
