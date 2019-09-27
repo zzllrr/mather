@@ -6,7 +6,7 @@
  */
 
 var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'www.w3.org/', xmlns = H + w3c + '2000/svg', xhtml = H + w3c + '1999/xhtml', xmlnsxlink = H + w3c + '1999/xlink', xmml = H + w3c + '1998/Math/MathML',
-	logon = false, isMobile=/Mobile/.test(navigator.userAgent), i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || 'zh_cn'] || '';
+	logon = false, isMobile=/Mobile/.test(navigator.userAgent), i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || L.lang || 'zh_cn'] || '';
 if (typeof BigInt == 'undefined') {
 	var BigInt = function (x) { return +x }
 }
@@ -212,6 +212,46 @@ function consolelog() {
 		console.log.apply(null, arguments)
 	}
 }
+function GM(txt,fromLang,toLang) {
+	var l0=fromLang||H_o().lang || L.lang, l1=toLang||'en';
+	//分词. 多源词.0 .1 .2 
+	if(isArr(txt)){
+		return Arrf(function (i) { return GM(i, l0, l1) }, txt) 
+	}
+	var A=split(txt,/\.\d*/g), f=function(x){
+		var t='',xA=x.split('.'), y=x[0],yi=+x[1]||0, xi=-1;
+		$.each(lang[l0],function(i,v){
+			if(x==v){
+				xi++;
+				t=i;
+				if(xi==yi){
+					return false
+				}
+			}
+		});
+		//if(l1!='en'){
+			return gM(t,'',lang[l1])
+		//}
+		//return t
+	};
+	if(isArr(A)){
+		if(A[1].length==2 && A[1][1]==''){
+			return f(A[1][0])||A[1][0]
+		}
+		//console.log(concat(A[1],A[0].concat('')));
+		//return Arrf(f,concat(A[1],A[0].concat(''))).join(/zh/.test(toLang)?'':' ')
+		return Arrf(function(x){return GM(x,l0,l1)},concat(A[1],A[0].concat(''))).join(/zh/.test(toLang)?'':' ')
+	}else{
+		if(/ /.test(txt)){
+			return Arrf(f, txt.split(' ')).join(/zh/.test(toLang)?'':' ')
+
+		}else{
+			return f(txt)||txt
+		}
+
+	}
+
+}
 function gM(mesg, str, o) {
 	if (isArr(mesg)) { return Arrf(function (i) { return gM(i, str, o) }, mesg) }
 	var msg = '' + mesg, M = (msg[0] || '').toUpperCase() + (msg || '').substr(1), O = o || i18n, x = O ? O[msg] || O[M] || '' : '';
@@ -261,7 +301,7 @@ function gM(mesg, str, o) {
 		x = Arrf(function (t) { return gM(t, str, o) }, msg.split('-')).join('-');
 	}
 
-	if (!x && /\./.test(msg)) {
+	if (!x && /\./.test(msg)) {// .无需翻译
 
 		return msg.split('.')[0]
 	}

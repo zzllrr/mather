@@ -194,7 +194,7 @@ $.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键
 	});
 });
 lang['zh_tw']=JSON.parse(zh2big(JSON.stringify(lang['zh_cn'])));
-if(!i18n || H_o().lang !=L.lang){i18n=lang[H_o().lang||'zh_cn']}
+if(!i18n || H_o().lang !=L.lang){i18n=lang[H_o().lang||L.lang||'zh_cn']}
 
 
 
@@ -376,6 +376,10 @@ function all2html(type,V,dom){
         //w.text(function(i,v){return gM(v)});
         w.text(gM(v));
 
+    }else if(/EN/i.test(iv)){
+        //w.text(function(i,v){return gM(v)});
+        w.text(GM(v,'','en'));
+
     }else if(/ECHARTS|EC/.test(iv)){
 //consolelog(v);
         w.empty();
@@ -433,6 +437,10 @@ $(function () {
         
         (hascap?itv('" id=svgs tip="Graphic" hotkey="Esc','palette'):'')+
         itv('" id=night tip="Night','brightness_3')+
+
+        itv('" id="langu','language')+
+        '<select id=lang hidden>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'+
+
         (isdoc?itv('" id=padding tip="Padding','compare_arrows')+itv('" id=print tip="Print','print'):'')+
 
         itv('" id=qrcode tip="Share','share')+
@@ -481,6 +489,15 @@ $(function () {
         $('#night').html('brightness_3').click();
     }
 
+
+    $('#lang').on('change',function(){
+		var v=$(this).val();
+		L.lang=v;
+		
+		location.href=H_o('',{'lang':v})
+    });
+    
+
 	$('#panel i').not('#night,#zMatherOn,#padding,#print').on('click',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
 
@@ -505,8 +522,19 @@ $(function () {
 			
 			//$('#oHTML').toggle(!tog);
         }
+
+        if(id=='langu'){
+            $('#lang').toggle(tog)
+        }
+
+
+
         if(id=='qrcode'){
             me.removeClass('toggle');
+            if($('#input0Type').length){
+                losh.type=$('#input0Type').val();
+                losh.t=fn0($('#input0').val());
+            }
             var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4), t=H_o('',losh);
 
             qrJPG(t,'#QRCODE',m);
@@ -532,9 +560,12 @@ $(function () {
 		$('#nav').toggle();
 		me.add('#zMatherHide').text('keyboard_arrow_'+(isup?'down':'up'));
 
-		me.nextAll().toggle(!isup);
+		me.nextAll().not('select').toggle(!isup);
 
-
+        if(isup){
+            me.nextAll('select').hide();
+            $('#langu').removeClass('toggle')
+        }
     });
     
     if(!ishome){

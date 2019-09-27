@@ -8,10 +8,16 @@ $(function () {
     $('#splash').html(DCtv('rem3',gM('Snippet Editor')));
 
 
-    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['editor'], s=o['src'];
+    var o=H_o(),tp=(o['type']||'LaTeX'), t=o['t']?fn1(o['t']):'', s=o['src'];
     
     setTimeout(function () {
-		$('#splash').hide().nextAll().fadeIn();
 
-	}, 300);
+      $('#input0Type').val(tp).change();
+      if(t){
+        $('#snippetNew').eq(0).click();
+        $('#input0').val(t).mouseover()//.change();
+      }
+		  $('#splash').hide().nextAll().fadeIn();
+
+	  }, 300);
 });

@@ -915,6 +915,10 @@ lang['zh_cn'] = {
 	'Operation': '运算',
 	'Operate': '操作',
 	'Explore': '探索',
+	'Reconnaissance':'勘探',
+	'Reconnoitering':'侦察',
+	'Reconnoitre':'侦察',
+	
 	'Investigate':'研究',
 	'Exhaust':'穷举',
 	'Concretize':'具体化',

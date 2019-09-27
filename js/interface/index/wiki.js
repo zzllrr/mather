@@ -5,7 +5,7 @@
  */
 
 wikis={
-	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Topic','Thinking'],
+	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking'],
 
 	'Theorem':[
 		{'Principle':[
@@ -160,9 +160,13 @@ wikis={
 	
 	],
 
-	'Topic':[
-		'长方体表面积2(ab+ac+bc)',
-		'费马大定理中的方程1解变6解',
+	'Explore':[
+		{'from Formula':[
+			'长方体表面积2(ab+ac+bc)',
+		]},
+		{'from Theorem':[
+			'费马大定理中的方程1解变6解',
+		]}
 	],
 
 	'Concept':[

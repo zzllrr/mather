@@ -5,7 +5,7 @@
  */
     
 $(function () {
-    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=L['document'], s=o['src'],
+    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), t=o['t']?fn1(o['t']):L['document'], s=o['src'],
     c=L.documentCSS||'', toc=L.documentTOC=='true', tf=function(x){
         if(toc && !/\[U?TOC\]/.test(x) && /(^|\n)#+ /.test(x)){
             return '[TOC]\n'+x

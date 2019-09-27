@@ -14,11 +14,11 @@ $(function(){
 	};
 	
 	oHTML(
-		href('about.html',spanmi('launch',gM('About')),gM('Launch')+'" class="fixl fixt pd10')+
+		//href('about.html',spanmi('launch',gM('About')),gM('Launch')+'" class="fixl fixt pd10')+
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.26',
+			fieldseth('V2019.9.27',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -42,10 +42,7 @@ $(function(){
 			),
 	
 			//setting
-			fieldseth(gM('Interface'),
-				gM('Language')+itv('','language')+'<select id=lang>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'	
-	
-			)+
+
 			fieldseth(gM('Browser Cache'),[
 				gM('Usage')+itv('" id="CacheUsage','data_usage'),
 				gM('Import File')+itv('" id="CacheUpload','file_upload')+
@@ -380,12 +377,7 @@ Table('',[
 	if($('#ZMatherQR').length){
 		qrJPG(HOM.ZMather,'#ZMatherQR');
 	}
-	$('#lang').on('change',function(){
-		var v=$(this).val();
-		L.lang=v;
-		
-		location.href=H_o('',{'lang':v})
-	});
+
 	$('#CacheUsage').on('click', function(){
 		var me=$(this), c=cacheUsage(), c1=Math.ceil(100*c[1]/1024/1024/5);
 		if(me.next('meter').length<1){

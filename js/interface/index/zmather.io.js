@@ -7,8 +7,8 @@
  * 依赖：
  * 需先加载 KaTeX
 */
-var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N JavaScript 3D 2D Zdog',
-Meles='LA AM UM CM PM SV CV EC MD YM I18 JS D2 D3 ZD',
+var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog',
+Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D2 D3 ZD',
 Mele2='LT LX LTX TEX IL YML',
 Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
 Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
@@ -1917,8 +1917,8 @@ var snippet={
 	},
 	Str:function(name,type,selected){
 		return DCtv('snippet'+(selected?' seled':'')+'" data-type="'+type,
-				SCtv('snippetName" contentEditable="true',
-				name)+itv('snippetSend" '+($('#send2textBox').is(':visible')?'':'hidden ')+'tip="copy2input','arrow_upward')+
+				SCtv('snippetName" contentEditable="true',name)+
+				(itv('snippetSend" tip="copy2input',$('#send2textBox').is(':visible')?'arrow_upward':''))+
 			(selected?itv('snippetNew','add'):''))
 	},
 	load:function(i){
@@ -2043,7 +2043,7 @@ $(function(){
 					'":"JavaScript"},{"'+
 
 					gM('Translator')+
-					'":"I18N"},{"'+
+					'":"I18N EN"},{"'+
 
 					gM('Data')+' | '+gM('Text')+
 					'":"TXT TSV CSV XML YAML JSON"}]')
@@ -2237,8 +2237,10 @@ itv('" id=launch tip="Launch','launch')
 
 		var me=$(this),t=me.attr('title'),iT=$('#input0Type').val();
 		if(iT!='LaTeX' || !t && me.parents('#sbs').length || me.is('.Sts.td') && !/^\$.+\$/.test(t)){
+
 		}else{
-			toolTip(gM(me.parents('.iTextLaTeX').attr('id').replace(/^i/,'')+'ontip'));
+			var id=me.parents('.iTextLaTeX').attr('id')||'';
+			id && toolTip(gM(id.replace(/^i/,'')+'ontip'));
 		}
 
 	}).on('click','.eg', function(e){
@@ -2475,7 +2477,7 @@ itv('" id=launch tip="Launch','launch')
 		if(v=='Echarts'){
 			tv=tooltip.graphic['Statistics/Echarts']
 		}
-		if(v=='I18N'){
+		if(v=='I18N' || v=='EN'){
 			tv=v;
 		}
 
@@ -2500,7 +2502,13 @@ itv('" id=launch tip="Launch','launch')
 			if(tv=='I18N'){
 				tv='';
 				$.each(i18n,function(i,j){
-					tv+=sceg2(i)+': '+sceg2(j)+br
+					tv+=sceg2(i)+' → '+sceg2(j)+br
+				});
+			}
+			if(tv=='EN'){
+				tv='';
+				$.each(i18n,function(i,j){
+					tv+=sceg2(j)+' → '+sceg2(i)+br
 				});
 			}
 
@@ -2693,7 +2701,7 @@ itv('" id=launch tip="Launch','launch')
 
 	}).on('click','#editorLaunch',function(){
 
-		window.open('editor.html')
+		window.open('editor.html'+(ishome?'?type='+$('#input0Type').val()+'&t='+fn0($('#input0').val()):''))
 
 	}).on('click','.oClear',function(){
 		
