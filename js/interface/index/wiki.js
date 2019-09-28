@@ -162,7 +162,7 @@ wikis={
 
 	'Explore':[
 		{'from Formula':[
-			'Rectangle.1 Surface Area',
+			'Cuboid Surfacearea',
 		]},
 		{'from Theorem':[
 			'费马大定理中的方程1解变6解',

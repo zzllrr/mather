@@ -48,9 +48,16 @@ isedi=/editor\.html/.test(loch),
 
 hascap=iscap || ishome || isdoc,
 
-oHTML=function(x,notMD,elem){
+oHTML=function(x,notMD,elem,cb){
     var o=$(elem||'#oHTML').hide();
+    //o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
     o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
+    //console.log('oHTML',x);
+
+    $(ZLR('i18 i18n en').join(',')).each(function(){
+        all2html(this.nodeName,$(this).text(),this);
+    });
+
     $(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
@@ -59,23 +66,32 @@ oHTML=function(x,notMD,elem){
         o.find('.wiki th.bds').click();
         o.fadeIn();
         $('#panel').fadeIn();
-    },600);
+        if(cb){
+            setTimeout(cb,100)
+        }
+    },500);
+
 },
 loadHTML=function (x) {
-   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],t='';
+   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],cb=function(){},t='';
    if(u){
-       var A=u.split('/'),w=x;
+       var A=u.replace(/#.*/,'').split('/'),w=x;
        t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
 //console.log(t,w);
         titleRe(gM(A.slice(-1)[0])+' - '+gM('zzllrr Mather'));
+        if(/#.+/.test(u)){
+            cb=function(){
+                $('.mkdnhead[href=#'+u.replace(/.+#/,'')+']').click();
+            }
+        }
    }
    if(s){
        $.ajax({type:'get',url: s, success:function(x){
-           oHTML(x,1)
-       }, error:function(){oHTML(t,1)}
+           oHTML(x,1,'',cb)
+       }, error:function(){oHTML(t,1,'',cb)}
        })
    }else if(t){
-       oHTML(t,1);
+       oHTML(t,1,'',cb);
 
    }
 
@@ -299,6 +315,7 @@ var rng2=function(t,neg){
 
 function all2html(type,V,dom){
     var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||'').toUpperCase();
+   // console.log(V,type);
     if(/UNICODE_MATH|UM/.test(iv)){
         var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
         if(l){
@@ -310,7 +327,8 @@ function all2html(type,V,dom){
         
     }else if(/MARKDOWN|MD/.test(iv)){
         w.html(md2html(v));
-        
+       // console.log(v);
+
     }else if(/JAVASCRIPT|JS/.test(iv)){
         try{
             w.html(Arrf(eval,vA).join(br))
@@ -373,7 +391,7 @@ function all2html(type,V,dom){
         w.html(XML.wrapE('pre',XML.wrapE('code',jSoff(x))));//txa
 
     }else if(/I18/.test(iv)){
-        //w.text(function(i,v){return gM(v)});
+
         w.text(gM(v));
 
     }else if(/EN/i.test(iv)){

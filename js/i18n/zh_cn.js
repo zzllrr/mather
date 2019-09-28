@@ -1315,6 +1315,7 @@ lang['zh_cn'] = {
 	'Side Length': '边长',
 	'Perimeter':'周长',
 	'Area':'面积',
+	'Surfacearea':'表面积',
 	'Similar':'相似',
 
 
