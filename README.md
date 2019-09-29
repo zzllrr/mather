@@ -1,22 +1,33 @@
-# zzllrr Mather - An open-sourced Math Tool
-[![ ](https://img.shields.io/badge/license-MIT-blue)](https://mit-license.org/)
-[![ ](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
+# zzllrr Mather - An open-sourced comprehensive Web APP for Mathematics
 
 ![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
-<https://zzllrr.github.io/mather/>
 
- 小乐数学，基于web网页的覆盖数学全部学科的数学开源软件。
+小乐数学，一款基于web网页的覆盖数学全部学科的数学开源软件。
+ 
+国际用户请访问 <https://zzllrr.github.io/mather/>
+国内用户请访问 <http://zzllrr.gitee.io/mather/>
 
+[![ ](https://img.shields.io/badge/license-MIT-blue)](https://mit-license.org/) [![ ](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
+
+[About 关于](about.html "简介") | [API](api.html) 
+
+## Aims 宗旨
+Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
+
+让数学更易学易练，易教易研，易赏易玩，易见易得，易传易及。
 
 ## Summary 摘要
 
 开箱即用（兼容电脑和触屏移动设备）,
-支持离线解题（serverless）、运算、公式编辑、几何绘图、演示（文档、PPT、AR、VR、语音等富媒体）、
+支持离线解题（serverless）、数学运算、公式编辑、几何绘图、
+演示（文档、PPT、AR、VR、语音、2D及3D动画等富媒体）、
 知识库（数学概念实体库、公式库、定理库、题库、文献资源索引库）。
 软件适合广大的数学师生、爱好者、研究者、开发者、科普工作者使用。
 在内容上，覆盖全数学学科的知识概念和思想方法图谱、典型题库和解法、未解难题及开放课题；
 在功能上，集公式编辑、几何绘图、演示交互、解题、知识穿透联想、数学百科启发探索于一身；
 软件体积小巧便携，但功能强大，高度结构化和系统化，并可离线使用和自由扩展定制。
+
+
 
 ## How to Use 使用方法
 ### 1. 直接在线使用
@@ -25,12 +36,6 @@
 ### 2. 离线使用
 1. 下载安装包源文件
 2. 打开其中的网页index.html即可
-
-## Background 软件背景
-1. 本软件开发和研究背景，请参考RESEARCH.md 或点击软件内的关于 -> 简介
-2. API接口，请参见软件中的API模块
-3. 实现方案，渐进式完善，先充分利用第三方开源库，以及公开免费的第三方优秀高质量内容资源
-4. 未来方向，完成内核精简，减少不同开源库之间的重复冗余和不相容代码，推进行业协议。
 
 ## Function 功能模块
 ### 0. 编辑器功能
@@ -164,6 +169,9 @@ c.strokeRect(10, 20, 200, 150);
 通过数学游戏、玩具、历史、漫画、视频、博客等。来加快普及数学文化，增进大众对数学的了解。（待完善）
 
 
+## Future Plans 未来方向
+- 完成内核精简，减少不同开源库之间的重复冗余和不相容代码
+- 推进行业协议
 
 ## How to Contribute 如何贡献
 - 如果你是开发者，相信你的编码能力一定比小乐强。

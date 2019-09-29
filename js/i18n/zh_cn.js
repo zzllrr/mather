@@ -511,6 +511,7 @@ lang['zh_cn'] = {
 	'Camera': '摄像头',
 	'Video': '视频',
 
+	'Media':'媒体',
 	'Audio': '音频',
 	'Sound': '声音',
 	'Speech': '语音',
@@ -918,7 +919,7 @@ lang['zh_cn'] = {
 	'Reconnaissance':'勘探',
 	'Reconnoitering':'侦察',
 	'Reconnoitre':'侦察',
-	
+
 	'Investigate':'研究',
 	'Exhaust':'穷举',
 	'Concretize':'具体化',

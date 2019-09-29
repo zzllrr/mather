@@ -2892,8 +2892,12 @@ function md2html(str, sep) {
 		lnk = {}, footlnk = {}, footlnkA = [],
 		mlnk = {}, mA = [], mlnkA = [],
 		s = '\n' + str + '\n';
-	//s=s.replace(/<js>([\s\S](?!<\/js>))+[\s\S]?<\/js>/g,function(t){return eval(t.substr(4,t.length-9).trim())});
+
 	s=replaceNodeInner(s,'js', eval);
+	s=replaceNodeInner(s,'en', GM);
+	s=replaceNodeInner(s,'i18n', gM);
+	s=replaceNodeInner(s,'i18', gM);
+
 	while (/\n\[[^\]]+\]:.+/.test(s)) {
 		s = s.replace(/\n\[[^\]]+\]:.+/, function (x) {
 			var k = x.split(']:')[0].substr(2), v = x.replace(/\n\[[^\]]+\]:/, '').replace(/ +/g, ' ').trim(), isfoot = /^\^/.test(k);
@@ -3130,7 +3134,7 @@ function md2html(str, sep) {
 			return hf(u, x.split('(')[0].replace(/^.|.$/g, ''), / /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '')
 		})
 
-		.replace(/\[[^\]\^]+\]\(.+\)/g, function (x) {
+		.replace(/\[[^\]\^]+\]\([^\)]+\)/g, function (x) {// 暂不支持链接文字中含有()
 			var t = x.replace(/\[.+\]/, '').replace(/^.|.$/g, ''), u = t.split(' ')[0], hf = uriRe.test(u) ? href : inhref;
 			return hf(u, x.split('(')[0].replace(/^.|.$/g, ''), / /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '')
 		})

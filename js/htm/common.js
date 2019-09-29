@@ -41,7 +41,7 @@ gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 
 tooltip={
 },
-caps,ishome=/index\.html|mather\/$/.test(loch), 
+caps,ishome=/index\.html|mather\/\?.+|mather\/$/.test(loch), 
 iscap=/cap\.html/.test(loch), 
 isdoc=/document\.html/.test(loch),
 isedi=/editor\.html/.test(loch),
@@ -50,14 +50,24 @@ hascap=iscap || ishome || isdoc,
 
 oHTML=function(x,notMD,elem,cb){
     var o=$(elem||'#oHTML').hide();
-    //o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
-    o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
-    //console.log('oHTML',x);
 
+    //o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
+    //console.log('oHTML',x);
+    if(notMD){
+        var t=replaceNodeInner(x,'i18', gM,1);
+        t=replaceNodeInner(t,'i18n', gM,1);
+        t=replaceNodeInner(t,'en', GM,1);
+        o.html(t)
+        //o.html(replaceNodeInner(x,'i18', gM,1));
+
+    }else{
+        o.html(replaceNodeInner(x,'MD', md2html,1));
+    }
+    /*
     $(ZLR('i18 i18n en').join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
-
+*/
     $(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
         all2html(this.nodeName,$(this).text(),this);
     });
