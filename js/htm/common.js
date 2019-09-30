@@ -41,7 +41,7 @@ gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 
 tooltip={
 },
-caps,ishome=/index\.html|mather\/\?.+|mather\/$/.test(loch), 
+caps,ishome=/index\.html|mather\/$|^\/$/.test(location.pathname), 
 iscap=/cap\.html/.test(loch), 
 isdoc=/document\.html/.test(loch),
 isedi=/editor\.html/.test(loch),

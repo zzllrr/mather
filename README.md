@@ -9,7 +9,7 @@
 
 [![ ](https://img.shields.io/badge/license-MIT-blue)](https://mit-license.org/) [![ ](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
 
-[About 关于](about.html "简介") | [API](api.html) 
+[About 关于](https://zzllrr.github.io/mather/about.html "简介") | [API](https://zzllrr.github.io/mather/api.html) 
 
 ## Aims 宗旨
 Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
@@ -31,7 +31,8 @@ Make mathematics easier to learn, practice, teach, study, appreciate, play, show
 
 ## How to Use 使用方法
 ### 1. 直接在线使用
-访问网址 https://zzllrr.github.io/mather/
+访问网址 <https://zzllrr.github.io/mather/>
+或 <http://zzllrr.gitee.io/mather/>
 
 ### 2. 离线使用
 1. 下载安装包源文件
