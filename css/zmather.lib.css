@@ -961,7 +961,7 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
     z-index: 90001;
 }
 
-#menu > svg,#Geogebra svg{
+#menu > svg,#Widgets svg{
 	width:2rem;
 	height:2rem;
 	margin:2px;

@@ -479,9 +479,9 @@ $(function () {
         '<span id=bar>&nbsp;'+sc+
         itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up')+
         (ishome?'':itv('" id=home tip="Home','home'))+
-        
-        '<svg id=GGB viewBox="0 0 100 100" tip=GGB><path d="M99 37.81a11.45 11.45 0 0 0-12.88-11.42c-6.22-9-16.63-14-28.11-14.56a11.49 11.49 0 0 0-21.79 4.29 52.25 52.25 0 0 0-5.78 3 50.35 50.35 0 0 0-15.06 14 11.49 11.49 0 0 0-7.73 21.63 32.43 32.43 0 0 0 4.6 18.79 31.46 31.46 0 0 0 4.5 5.74 11.49 11.49 0 0 0 20.58 9.93A47.25 47.25 0 0 0 63.5 85.1a11.49 11.49 0 0 0 18.13-13.86 43.07 43.07 0 0 0 9.9-22.68A11.5 11.5 0 0 0 99 37.81zM38.94 81.45a11.47 11.47 0 0 0-17.17-8.26 24 24 0 0 1-3-3.94A24.87 24.87 0 0 1 15.2 55.5a11.47 11.47 0 0 0 6.4-18.19 42.42 42.42 0 0 1 12.59-11.67 44.3 44.3 0 0 1 4.06-2.19 11.49 11.49 0 0 0 20.61-3.88c8.18.76 15.45 4.39 20 10.63a11.48 11.48 0 0 0 4.46 18.33 35.2 35.2 0 0 1-8 17.65 11.49 11.49 0 0 0-15.09 10.91v.71a39.44 39.44 0 0 1-21.29 3.65z"/></svg>'+
         (hascap?itv('" id=svgs tip="Doodle" hotkey="Esc','palette'):'')+
+        
+        itv('" tip=Widget id="Widget','widgets')+
         itv('" id=night tip="Night','brightness_3')+
 
         itv('" id="langu','language')+
@@ -490,7 +490,8 @@ $(function () {
         (isdoc?itv('" id=padding tip="Padding','compare_arrows')+itv('" id=print tip="Print','print'):'')+
 
         itv('" id=qrcode tip="Share','share')+
-    dc+DCtv('" id=Geogebra hidden for="GGB',
+    dc+DCtv('" id=Widgets hidden for="Widget',
+        '<span id=Geogebra>'+
         '<svg id=GGBgraphing tip="GGB Graphing" viewBox="0 0 24 24"><defs><style>.graphing_calculator_svg__cls-2{fill:#99f}.graphing_calculator_svg__cls-3{fill:#333}</style></defs><title>Graphing</title><path d="M2.5 21.5C4.13 10.64 7.89.56 12 12s7.76 1.36 9.51-9.5" fill="none" stroke="#666" stroke-miterlimit="10" stroke-width="1.3"></path><circle class="graphing_calculator_svg__cls-2" cx="8.5" cy="6.5" r="2.5"></circle><circle class="graphing_calculator_svg__cls-2" cx="15.5" cy="17.5" r="2.5"></circle><path class="graphing_calculator_svg__cls-3" d="M15.5 15a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM8.5 4A2.5 2.5 0 1 0 11 6.5 2.5 2.5 0 0 0 8.5 4zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path></svg>'+
         '<svg id=GGBgeometry tip="GGB Geometry" viewBox="0 0 24 24"><defs><style>.geometry_svg__cls-1{fill:#99f}.geometry_svg__cls-2{fill:#666}</style></defs><title>Geometry</title><path class="geometry_svg__cls-1" d="M14 4.02L20.27 15H7.72L14 4.02z"></path><circle class="geometry_svg__cls-1" cx="9" cy="15" r="6"></circle><path class="geometry_svg__cls-2" d="M14 2L6 16h16zm0 2l6.27 11H7.72z"></path><path class="geometry_svg__cls-2" d="M9 8a7 7 0 1 0 7 7 7 7 0 0 0-7-7zm0 13a6 6 0 1 1 6-6 6 6 0 0 1-6 6z"></path><path d="M15 15H7.72L11 9.33A6 6 0 0 1 15 15z" fill="#6161ff"></path><path d="M11.47 8.46a6.93 6.93 0 0 0-1-.3L6 16h9.92a6.92 6.92 0 0 0-4.46-7.54zM7.72 15L11 9.33A6 6 0 0 1 15 15z" fill="#333"></path></svg>'+
         '<svg id=GGBcalculator tip="GGB Calculator" viewBox="0 0 512 512"><defs><style>.scientific_svg__cls-4{fill:#666}</style><clipPath id="scientific_svg__clip-path"><rect x="27" y="27" width="458" height="458" rx="44.76" fill="none"></rect></clipPath></defs><title>Scientific Calculator</title><g clip-path="url(#scientific_svg__clip-path)"><path fill="#99f" d="M0 331.1h512V475H0z"></path><path class="scientific_svg__cls-4" d="M0-.77h512v513.54H0zm467 82.89C467 59.41 453.59 46 430.88 46H82.12C59.41 46 46 59.41 46 82.12v348.76C46 453.59 59.41 467 82.12 467h348.76c22.71 0 36.12-13.41 36.12-36.12z"></path><path class="scientific_svg__cls-4" d="M0 173.67h512v18H0zM0 320.33h512v18H0z"></path></g><path class="scientific_svg__cls-4" d="M159.5 99.66v-38h19v38h38.25v19.68H178.5v38h-19v-38h-38.25V99.66zM121.2 246.08h95.6v19.67h-95.6z"></path><path d="M216.8 371.88v19.67h-95.6v-19.67zm0 41.4V433h-95.6v-19.72z" fill="#333"></path></svg>'+
@@ -500,8 +501,15 @@ $(function () {
         '<svg id=GGBcas tip="GGB CAS" viewBox="0 0 512 512"><title>CAS</title><defs><path d="M485 440.24c0 24.72-20.04 44.76-44.76 44.76H71.76C47.04 485 27 464.96 27 440.24V71.76C27 47.04 47.04 27 71.76 27h368.48C464.96 27 485 47.04 485 71.76v368.48z" id="H"/></defs><clipPath id="I"><use height="512" width="512" xlink:href="#H" overflow="visible"/></clipPath><g clip-path="url(#I)"><path fill="#99f" d="M0 0h150v512H0z"/><path d="M360.488 347.088h-56.055l-39.307-62.55-36.572 62.55h-52.637l62.55-93.652-56.397-81.348h55.713l34.52 51.61 29.737-51.61h52.295l-55.03 81.348 61.183 93.652zM512 239.947H376.174V219.38H512v20.567zM512 301H376.174v-20.895H512V301z" fill="#666"/></g></svg>'+
         '<svg id=GGBprobability tip="GGB Probability" viewBox="0 0 512 512"><title>Probability</title><defs><path d="M485 440.24c0 24.72-20.04 44.76-44.76 44.76H71.76C47.04 485 27 464.96 27 440.24V71.76C27 47.04 47.04 27 71.76 27h368.48C464.96 27 485 47.04 485 71.76v368.48z" id="m"/></defs><clipPath id="n"><use height="512" width="512" xlink:href="#m" overflow="visible"/></clipPath><g clip-path="url(#n)"><path d="M155.564 446.51h200.873V180.524C310.847 108.107 281.302 73.24 256 73.24c-25.302 0-54.847 34.867-100.436 107.283V446.51z" fill="#99f"/><path d="M609 422.968s-130.97 21.405-207.06-147.7C325.85 106.16 287.184 65.487 256 65.487c-31.183 0-69.85 40.672-145.94 209.778S-97 422.968-97 422.968" fill="none" stroke="#666" stroke-width="26" stroke-miterlimit="10"/><path fill="none" stroke="#333" stroke-width="26" stroke-miterlimit="10" d="M-97 446.51h706"/></g></svg>'+
         '<svg id=GGBspreadsheet tip="GGB Spreadsheet" viewBox="0 0 20 20"><title>Spreadsheet</title><defs><path id="a" d="M485 440.24c0 24.72-20.04 44.76-44.76 44.76H71.76C47.04 485 27 464.96 27 440.24V71.76C27 47.04 47.04 27 71.76 27h368.48C464.96 27 485 47.04 485 71.76v368.48z"/></defs><clipPath id="b"><use width="512" height="512" overflow="visible" xlink:href="#a"/></clipPath><g transform="translate(-.016 .148) scale(.03906)" clip-path="url(#b)" fill="#99f"><path d="M26 26h460v130H26z"/><path d="M26 26h130v460H26z"/></g><path transform="translate(-.016 .148) scale(.03906)" clip-path="url(#b)" d="M157.504 19.333h24v186.333h-24z" fill="#fff"/><path transform="translate(-.016 .148) scale(.03906)" clip-path="url(#b)" d="M20 155.504h139.766v24H20zm0 156.328h140.766v24H20zM310.934 21h24v139.765h-24z" fill="#fff"/><path transform="translate(-.016 .148) scale(.03906)" clip-path="url(#b)" d="M156 311.832h330v24H156z" fill="#666"/><path transform="translate(-.016 .148) scale(.03906)" clip-path="url(#b)" d="M310.934 156.252h24V486h-24z" fill="#666"/><path d="M11.292 5.532h-.506l-.372-.92h-1.68l-.376.92h-.493l1.444-3.43h.52zM10.215 4.21L9.56 2.624 8.92 4.21h1.295zM4.13 11.61h-.44V8.746c-.178.124-.426.256-.745.395v-.394c.134-.082.263-.174.384-.275.118-.098.203-.173.252-.224.05-.05.075-.075.075-.072h.474v3.437zm.445 6.062H2.5v-.44c.404-.45.724-.81.96-1.074.238-.265.404-.47.5-.614.094-.144.14-.27.14-.38 0-.207-.04-.36-.12-.457-.08-.1-.216-.148-.405-.148-.167 0-.293.048-.377.144-.083.097-.138.25-.163.46h-.483c.05-.666.39-1 1.023-1 .313 0 .558.096.735.287.177.19.265.407.265.65 0 .073-.006.142-.018.203-.013.063-.033.128-.06.198-.03.07-.067.142-.115.216-.048.075-.108.16-.18.254-.074.095-.917 1.053-1.016 1.164-.1.112 1.543-.05 1.412.098" fill="#333"/></svg>'+
-        itv('" id=GGBOn tip="Close','close')+
-        '<div id=ggb>'+dc
+        sc+
+        '<span id=Desmos>'+
+        '<svg id=Desgraphing tip="Desmos Graphing" viewBox="0 0 24 24"><defs><style>.desmos__cls-2{fill:green}.desmos__cls-3{fill:#333}</style></defs><title>Graphing</title><path d="M2.5 21.5C4.13 10.64 7.89.56 12 12s7.76 1.36 9.51-9.5" fill="none" stroke="#666" stroke-miterlimit="10" stroke-width="1.3"></path><circle class="desmos__cls-2" cx="8.5" cy="6.5" r="2.5"></circle><circle class="desmos__cls-2" cx="15.5" cy="17.5" r="2.5"></circle><path class="desmos__cls-3" d="M15.5 15a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM8.5 4A2.5 2.5 0 1 0 11 6.5 2.5 2.5 0 0 0 8.5 4zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path></svg>'+
+
+        sc+
+        itv('" id=WidgetOn tip="Close','close')+
+
+
+        '<div id=widget>'+dc
     )
     );
     $(':button').not('[value]').val(function(){return gM(this.id)});
@@ -523,9 +531,10 @@ $(function () {
         var me=$(this),id=this.id.substr(3),tog=me.is('.toggle');
         if(tog){
             me.removeAttr('class');
-            $('#ggb').fadeOut();
+            $('#widget').fadeOut();
         }else{
             me.attr('class','toggle');
+            $('#widget').empty();
             var ggbApp = new GGBApplet({
                 "appName": id,
                 "width": $(window).width(), 
@@ -533,15 +542,31 @@ $(function () {
                 "showToolBar": true,
                 "showAlgebraInput": true,
                 "showMenuBar": true 
-            }, true);ggbApp.inject('ggb');
-            $('#ggb').width($(window).width()).height($(window).height()*0.8).fadeIn();
+            }, true);ggbApp.inject('widget');
+            $('#widget').width($(window).width()).height($(window).height()*0.8).fadeIn();
         }
         me.siblings('.toggle').removeAttr('class');
+        me.parent().siblings().find('.toggle').removeAttr('class');
     });
+    $('#Desmos svg').on('click',function(){
+        var me=$(this),id=this.id.substr(3),tog=me.is('.toggle');
+        if(tog){
+            me.removeAttr('class');
+            $('#widget').fadeOut();
+        }else{
+            me.attr('class','toggle');
 
-    $('#GGBOn').on('click',function(){
-        $('#Geogebra svg.toggle').click();
-        $('#GGB.toggle').click();
+            var calculator = Desmos.GraphingCalculator($('#widget').empty()[0]);
+            calculator.setExpression({id:'graph1', latex:'y=x^2'});
+            $('#widget').width($(window).width()).height($(window).height()*0.8).fadeIn();
+        }
+        me.siblings('.toggle').removeAttr('class');
+        me.parent().siblings().find('.toggle').removeAttr('class');
+    });
+    $('#WidgetOn').on('click',function(){
+        $('#Widgets svg.toggle').click();
+        $('#Widgets .toggle').click();
+        $('#Widget.toggle').click();
     });
 
     $('#padding').on('click',function(){
@@ -592,6 +617,13 @@ $(function () {
                 $('#iTextFold').not('.seled').click();
             }else{
                 me.removeAttr('class')
+            }
+        }
+        if(id=='Widget'){
+            if(tog){
+                
+                $('#zMatherOn:contains(up)').click();
+                $('#iTextFold').not('.seled').click();
             }
         }
 		if(id=='svgs'){

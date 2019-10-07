@@ -154,7 +154,7 @@ input:not([readonly]), select{
 .invert{filter: invert(100%)}
 .hueRotate{filter:hue-rotate(180deg)}
 .saturate{filter: saturate(100%)}
-.scale{transform: scale(1.2,1); padding-right:2px}
+.scale:not(.KeyBoard){transform: scale(1.2,1); padding-right:2px}
 .skew{transform: skew(12deg)}
 .clip{clip:rect(0,12px,12px,0)}
 

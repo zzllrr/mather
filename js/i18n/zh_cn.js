@@ -539,6 +539,7 @@ lang['zh_cn'] = {
 	'Scene': '场景',
 
 	'Gadget': '部件',
+	'Widget':'部件',
 	'Show': '演示',
 	'Slide': '幻灯片',
 
@@ -878,7 +879,7 @@ lang['zh_cn'] = {
 	'Get': '获取',
 	'Create': '创建',
 	'Put': '放置',
-	'Close': '闭合',
+	'Close': '关闭',
 	'Composite': '复合',
 	'Draw': '画',
 	'Drag': '拖拽',
