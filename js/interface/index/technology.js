@@ -4,6 +4,14 @@
  * Released under MIT License
  */
 technologys={index:['Modeling','Software','Hardware',
-    'Standardization']
+    'Standardization'],
+    Software:[
+        {'Charts':[
+
+        ]},
+        {'Coding':[
+
+        ]}
+    ]
 
 };

@@ -116,7 +116,9 @@ $(function(){
 		}else{
 			$('#menu > .toggle').click();
 			$('#navbody').hide();
-			OH('<iframe src="'+id+'.html" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
+			OH('<iframe src="'+id+'.html" width="99%" height="'+
+			Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
+			'px" class="resize bd0"></iframe>');
 			
 		}
 
@@ -462,7 +464,9 @@ $(function(){
 					if(iswikilike){
 
 						OH('<iframe src="'+tool+'.html?'+('q='+muri)+
-							'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
+							'" width="99%" height="'+
+							Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
+							'px" class="resize bd0"></iframe>');
 						return;
 					}
 		
@@ -476,7 +480,9 @@ $(function(){
 			if(iswikilike && istask){
 				if($('iframe[src="'+tool+'.html?q='+muri).length<1){
 					$('#oHTML').append('<iframe src="'+tool+'.html?'+('q='+muri)+
-					'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class="resize bd0"></iframe>');
+					'" width="99%" height="'+
+					Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
+					'px" class="resize bd0"></iframe>');
 				}
 
 				return;

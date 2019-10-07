@@ -230,9 +230,7 @@ summary{
 #input0Preview{
 	min-height:185px;
 }
-#previewTool{
-	padding: 10px 2px;
-}
+
 .collapse{border-collapse: collapse}
 
 
@@ -963,9 +961,30 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
     z-index: 90001;
 }
 
-.mi.toggle{
+#menu > svg,#Geogebra svg{
+	width:2rem;
+	height:2rem;
+	margin:2px;
+	vertical-align: middle;
+	cursor: pointer;
+
+}
+
+.night #menu > svg:not(.toggle){
+	stroke:white;
+	fill:white;
+}
+#tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+#menu ~ div{
+	position: absolute;
+	top:3rem;
+	right:2px;
+	z-index: 999999999;
+}
+
+.mi.toggle, svg.toggle{
 	background:yellow;
-	color: black;
+	color: rgb(27, 24, 24);
 }
 
 

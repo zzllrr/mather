@@ -1,4 +1,4 @@
-# zzllrr Mather - An open-sourced comprehensive Web APP for Mathematics
+# zzllrr Mather - An open-sourced Web APP for Mathematics
 
 ![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
 

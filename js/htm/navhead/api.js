@@ -8,7 +8,7 @@
 	var uo=H_o(sch), gitjs=function(x){return href(Hs+'github.com/search?q='+x,spanmi('launch',x+'.js'))};
 	if(uo && uo['sub']=='3rd-party'){
 		oHTML(
-			XML.wrapE('q','Standing on the shoulders of giants!')+
+			XML.wrapE('q',gM('Standing on the shoulders of giants!'))+
 			DCtv('',
 				href('api.html',spanmi('launch','API'),gM('Launch'))+
 				(!/https?:/.test(loch)?' | '+href('./js/lib','Javascript'):'')
@@ -19,7 +19,7 @@
 						ZLR('base64 jquery qrcode qrcode-decoder zlr js-yaml terrain webslides'))),1),
 				detail(gM('Media | Graphic'.split(' ')).join(' '),
 					ul(Arrf(gitjs,
-						ZLR('katex echarts echarts-gl effects aframe aframe-ar zdog d3 function-plot'))),1),
+						ZLR('katex echarts echarts-gl effects aframe aframe-ar zdog d3 geogebra'))),1),
 
 				detail(gM('Math'),
 					ul(Arrf(gitjs,

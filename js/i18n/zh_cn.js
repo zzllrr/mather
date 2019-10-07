@@ -90,6 +90,7 @@ lang['zh_cn'] = {
 	'Customized Math Tool Program based on Mather by zzllrr': '小乐基于Mather个性化开发的数学工具项目',
 	'Customized Math Tool Program based on Mather by someone': '某人基于Mather个性化开发的数学工具项目',
 	'Unless Otherwise Stated': '如无特殊说明',
+	'Standing on the shoulders of giants!':'站在巨人的肩膀上！',
 	// standard 
 
 
@@ -316,7 +317,9 @@ lang['zh_cn'] = {
 
 	//技术
 
+	'GGB':'GeoGebra',
 	'Technology': '技术',
+	'Model':'模型',
 	'Modeling':'建模',
 	'Optimization':'优化',
 	'Standardization': '标准化',
@@ -493,6 +496,11 @@ lang['zh_cn'] = {
 	'Canvas': '画布',
 	'Graphic': '作图',
 	'Graphics': '图形',
+
+	'Chart':'图形',
+	'Charts':'制图',
+	'Plot':'绘制',
+	'Phase':'相位',
 	'Mask': '遮罩',
 	'Clipboard': '剪贴板',
 
@@ -538,6 +546,7 @@ lang['zh_cn'] = {
 	'Synthesis': '合成',
 	'Note': '注释',
 	'Notes':'笔记',
+	'Notebook':'笔记本',
 	'Essay':'散文',
 	'Brainstorm':'头脑风暴',
 	'Brainstorming':'集思',
@@ -661,8 +670,9 @@ lang['zh_cn'] = {
 	'Code': '代码',
 	'Encode':'编码',
 	'Decode':'解码',
-
+	'Coding':'编码',
 	'QRcode': '二维码',
+
 	'Snippet': '片段',
 	'Character': '字符',
 	'Content': '内容',
@@ -1003,6 +1013,8 @@ lang['zh_cn'] = {
 	'Overlay':'覆盖',
 	'Button':'按钮',
 
+	'Classic':'经典',
+	'Classical':'古典',
 	//Math concept
 
 	// noun
@@ -1099,7 +1111,7 @@ lang['zh_cn'] = {
 	'Algebra': '代数',
 	'Geometry': '几何',
 	'Graph': '图',
-
+	'Graphing': '作图',
 
 	'Set': '集合',
 	'Group.Math': '群',
@@ -1319,6 +1331,7 @@ lang['zh_cn'] = {
 	'Surfacearea':'表面积',
 	'Similar':'相似',
 
+	'Contour':'等高线',
 
 	// verb
 
@@ -1433,8 +1446,10 @@ lang['zh_cn'] = {
 	'Analytical': '分析',
 	'Logistical': '逻辑',
 	'Probabilistic': '概率',
+	'Probability':'概率',
 	'Statistical': '统计',
 	'Topological': '拓扑',
+	'Spreadsheet':'表格',
 
 	'Formal': '形式',
 	'Differential': '微分',

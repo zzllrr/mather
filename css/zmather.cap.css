@@ -30,17 +30,13 @@
 #path_CapScr{width:55%}
 #SvgOpt textarea{width:85%}
 
-#svgToolOpt{
-	position: absolute;
-	top: 5.15rem;
-	z-index: 99999999;
-}
+
 
 #svgToolOpt.Narrow{
-    right: 4.39rem;
-}
-#svgToolOpt:not(.Narrow){
-    right: 1rem;
+	right: 4.39rem;
+	position: absolute;
+	top:0;
+	z-index: 99999999;
 }
 
 .day #svgToolOpt{
@@ -80,7 +76,7 @@
 	background:lightslategray
 }
 
-#tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+
 
 
 #tileTool:not([for]):after{

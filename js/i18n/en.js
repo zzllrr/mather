@@ -51,7 +51,7 @@ lang['en']={
 	'copied2Canvastip':'Copied to the Canvas',
 	'resetAlert':'Sure to reset?',
 	
-	
+	'GGB':'GeoGebra',
 	'zzllrr Mather':'zzllrr Mather',
 
 	"0":"Mathematics",

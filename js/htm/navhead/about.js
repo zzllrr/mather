@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.9.30',
+			fieldseth('V2019.10.7',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -124,7 +124,7 @@ Table('',[
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
 	[scHotk('Ctrl + Shift + Q'),gM('Code Blockquote'),sceg('``` ABC ```')],
 
-]))+fieldseth(gM('Graphic'),
+]))+fieldseth(gM('Doodle'),
 
 Table('',[
 	[
