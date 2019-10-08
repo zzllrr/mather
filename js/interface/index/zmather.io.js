@@ -2735,7 +2735,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 			}else{
 				$('#oHTML').empty();
 			}
-			
+			$('#menu > i.toggle').click();
 
 		}else{
 			

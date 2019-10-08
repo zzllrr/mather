@@ -4,19 +4,21 @@
  * Released under MIT License
  */
 
-technology['Software/Charts']=XML.wrapE('md',
-`
-|<i18>Name</i18>|<i18>Type</i18>|<i18>Summary</i18>|
-|:--:|:--:|:--:|
-|[<i18>Contour</i18> - Contour Plot](https://github.com/benfred/contour_plot)|D3 Plugin|draw contour plots of 2D functions|
-|[<i18>Phase</i18> - Phase Plot](https://kisonecat.com/phase-plot/)|JS + GLSL|Plot complex functions [Github](https://github.com/kisonecat/phase-plot)|
-|[<i18>Visualization Notebook</i18> - Observable](https://observablehq.com/)|JS + HTML|magic notebook for visualization [D3](https://github.com/d3/d3/wiki/Gallery)|
-|[<i18>3D Model</i18> - Sketchfab](https://sketchfab.com)|JS + HTML|publish, share and embed interactive 3D files|
-|[Sketch <i18>Geometry</i18> - Sketchometry](https://start.sketchometry.org)|JS + HTML|convert hand drawings into geometric constructions|
-|[JSXGraph](http://jsxgraph.org)|JS + CSS|interactive geometry, function plotting, charting, and data visualization [Examples](http://jsxgraph.org/wiki/index.php/Category:Examples)|
-|[<i18>Geometry & Algebra</i18> - Geogebra - GGB](https://www.geogebra.org/)|JS + HTML|[Graphing](https://www.geogebra.org/graphing) [Calculator](https://www.geogebra.org/calculator) [CAS](https://www.geogebra.org/cas) [Geometry](https://www.geogebra.org/geometry) [3D](https://www.geogebra.org/3d) [Notes](https://www.geogebra.org/notes) [Classic](https://www.geogebra.org/classic) [Probability](https://www.geogebra.org/classic#probability) [Spreadsheet](https://www.geogebra.org/classic#spreadsheet) [Wiki](https://wiki.geogebra.org) [Dev](https://dev.geogebra.org/trac)|
-|[desmos](https://www.desmos.com)|JS + HTML|[Examples](https://www.desmos.com/api/v1.3/docs/index.html#document-collected-examples) [API](https://www.desmos.com/api/)|
+technology['Software/Charts']=Table([i18(ZLR('Name Type Summary'))],[
+	[href(git('benfred/contour_plot'),i18('Contour')+' - Contour Plot'),'D3 Plugin','draw contour plots of 2D functions'],
+	[href(Hs+'kisonecat.com/phase-plot/',i18('Phase')+' - Phase Plot'),'JS + GLSL','Plot complex functions '+href(git('kisonecat/phase-plot'),'Github')],
+	[href(Hs+'observablehq.com',i18('Visualization Notebook')+' - Observable'),'JS + HTML','magic notebook for visualization '+href(git('d3/d3/wiki/Gallery'),'D3 Gallery')],
+	[href(Hs+'sketchfab.com',i18('3D Model')+' - Sketchfab'),'JS + HTML','publish, share and embed interactive 3D files'],
+	[href(Hs+'start.sketchometry.org',i18('Sketch Geometry')+' - Sketchometry'),'JS + HTML','convert hand drawings into geometric constructions'],
 
-`
+	[href(Hs+'jsxgraph.org','JSXGraph'),'JS + CSS','interactive geometry, function plotting, charting, and data visualization '+href(Hs+('jsxgraph.org/wiki/index.php/Category:Examples'),'Examples')],
+	[href(Hs+'geogebra.org',i18('Geometry & Algebra')+' - Geogebra(GGB)'),'JS + HTML',
+		hrefA('geogebra.org',ZLR('Graphing Calculator CAS Geometry 3D Notes Classic Classic#Probability Classic#Spreadsheet')).concat(
+		hrefA('geogebra.org',ZLR('Wiki Dev'),1)).join(' ')],
 
-);
+	[href(Hs+'desmos.com','Desmos'),'JS + HTML',
+		hrefA('desmos.com',ZLR('Calculator Geometry FourFunction Scientific Accessibility Testing')).concat(
+		hrefA('desmos.com',ZLR('Learn Teacher'),1)).concat(
+		href(Hs+'desmos.com/api/v1.3/docs/index.html#document-collected-examples','Examples'),href(Hs+'desmos.com/api/','API')).join(' ')],
+],'TBrc');
+

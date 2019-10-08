@@ -64,6 +64,8 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 			aB.html(html || '');
 			return Engin
 		}
+	}, git=function(x,type){
+		return Hs+'github.com/'+x
 	}, delivr=function(x,y,type){
 		return Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
 	}, unpkg=function(x,y,type){
@@ -489,7 +491,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~',
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
-	i18=function(x){return XML.wrapE('i18',x)},	
+	i18=function(x){return isArr(x)?Arrf(i18,x):XML.wrapE('i18',x)},	
 	I18=function(x,A){return (isArr(x)?x.join('\n'):x)+'\n'+XML.wrapE('i18',isArr(x)?x[0]:x)+(A?'\n'+A.join('\n'):'')},
 	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
 	fieldseth = function (s, v, c, h) { return '<fieldset class=rem13' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
@@ -541,6 +543,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	},
 	mark = function (v, t) { return '<mark title=' + (t || 'API') + '>' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },
 	href = function (url, text, title) { return '<a href="' + url + '" target="_blank" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer">' + (text || url) + '</a>' },
+	hrefA = function(u,A,sub){return Arrf(function(x){return href(Hs+(sub?x.toLowerCase()+'.'+u:u+'/'+x.toLowerCase()),x.replace(/.+#/,''))},A)},
 	inhref = function (url, text, title) { return '<a href="' + url + '" ' + (title ? 'title="' + title + '" ' : '') + '>' + (text || url) + '</a>' },
 	ol = function (A, c, start) { return '<ol class="alignl ' + (c != null ? c : '') + '"' + (start != null ? ' start=' + start : '') + '>' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ol>' }, kol = function (A, c, start) { return ol(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c, start) },
 	ul = function (A, c) { return '<ul class="alignl ' + (c != null ? c : '') + '">' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ul>' }, kul = function (A, c) { return ul(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c) },
