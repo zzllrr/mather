@@ -412,7 +412,7 @@ lang['zh_cn'] = {
 
 
 	'Program': '项目',
-
+	'Tool':'工具',
 	'File': '文件',
 	'Engine': '引擎',
 	'Subproject': '子项目',

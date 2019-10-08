@@ -853,6 +853,14 @@ textarea, .katexvrule{
     transform: rotateY(180deg);
 }
 
+.remove{
+    position: relative;
+	top: -10px;
+	color:gainsboro;
+}
+.remove:hover{
+	color:red
+}
 #donaQR .via{margin-bottom: 0}
 
 .via img{
@@ -932,7 +940,7 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:not(.Clear):not(.Del):hover, th.bds:hover, summary{
+.mi:not(.Clear):not(.Del):not(.remove):hover, th.bds:hover, summary{
 
 	color:limegreen;
 }

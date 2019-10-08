@@ -614,7 +614,7 @@ $(function () {
             if(tog){
                 me.attr('class','toggle');
                 $('#zMatherOn:contains(up)').click();
-                $('#iTextFold').not('.seled').click();
+                $('#iTextFold.seled').click();
             }else{
                 me.removeAttr('class')
             }
@@ -623,7 +623,7 @@ $(function () {
             if(tog){
                 
                 $('#zMatherOn:contains(up)').click();
-                $('#iTextFold').not('.seled').click();
+                $('#iTextFold.seled').click();
             }
         }
 		if(id=='svgs'){
@@ -631,7 +631,7 @@ $(function () {
 			$('#zzllrrCanvas').removeClass('toggle').nextAll().hide();
 			if(tog){
                 $('#zMatherOn:contains(up)').click();
-                $('#iTextFold').not('.seled').click();
+                $('#iTextFold.seled').click();
 				$('#Caps').fadeIn();
 			}else{
 				if(!$('#tileTool').is(':visible')){
@@ -967,7 +967,7 @@ $(function () {
 		if($('#navHide').is('.seled') && me.is('#iClear') || isMobile){
 			hk='';
         }
-        if(me.parent('#iTextOpt').length * $('#iTextFold.seled').length * $('#zMatherHide:contains(down)').length){
+        if(me.parent('#iTextOpt').length * $('#iTextFold').not('.seled').length * $('#zMatherHide:contains(down)').length){
             return
         }
         toolTip(gM(me.attr('tip')||this.id||'')+(hk?' | '+gM('Hotkey')+' '+hk:''));

@@ -2021,7 +2021,7 @@ $(function(){
 		'<div id=iTextMain>'+
 			DCtv('pd10" hidden contentEditable=true id="input0Preview')+
 			'<textarea id=input0>'+(L.snippet1||'')+'</textarea>'+
-			DCtv('opac" id="input0Tool',
+			DCtv('opac" hidden id="input0Tool',
 				itvc('" id=iClear hotkey="Ctrl + E')+
 
 				(isedi?'':itv('" id=send2textBox tip="copy2input','arrow_upward'))+
@@ -2082,10 +2082,7 @@ $(function(){
 					dc+
 					DCtv('clear')+
 				dc+
-				itv('tool seled" tip=Preview id="preview','remove_red_eye')+
-				
-				
-				
+
 				itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 				itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
 
@@ -2141,8 +2138,9 @@ $(function(){
 
 )+(ishome?DCtv('pd2" id="iTextOpt',
 itvc('oClear rotate270" id="oHClear')+
-itv('" id=iTextFold tip="Snippet Editor','description')+
-
+itv('seled" id=iTextFold tip="Snippet Editor','edit')+
+itv('tool seled" tip=Preview id="preview','remove_red_eye')+
+itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 
 itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 itv('" id=launch tip="Launch','launch')
@@ -2155,7 +2153,7 @@ itv('" id=launch tip="Launch','launch')
 
 	$('#input0Tip').attr('title',gM('Help')+' | '+gM('Example')).on('click','button',function(){
 
-		var t=$(this).attr('data-tool'),i0=$('#input0'),tl=$(this).parents('.inputTip').attr('data-tool');
+		var me=$(this), t=me.attr('data-tool'),i0=$('#input0'),pa=me.parents('.inputTip'), tl=pa.attr('data-tool');
 		if(tl=='Matrix' && t=='line Merge'){
 			i0.val(function(i,x){return '['+Arrf(function(s){
 					var isfsi=/=\s*[^0]/.test(s), a=s, b=isfsi?exp2coe(s,'='):'';
@@ -2172,7 +2170,13 @@ itv('" id=launch tip="Launch','launch')
 				},x.replace(/\t/g,' ').trim().split('\n')).join(';')+']'});
 		}
 		
-		
+	}).on('click','i',function(){
+
+		var me=$(this), pa=me.parents('.inputTip');
+		if(me.is('.remove')){
+			pa.remove();
+		}
+
 	});
 
 	$('body').on('click', '.sbsTbl td, .sbsTbl .td',function(e){
@@ -2512,7 +2516,7 @@ itv('" id=launch tip="Launch','launch')
 				});
 			}
 
-			$('#input0Tip').append(detail(v,tv,'',strc+v+'"'));
+			$('#input0Tip').append(detail(v+itv('remove" tip="Remove','remove_circle'),tv,'',strc+v+'"'));
 
 
 			$('.inputTip.inputTypeTip').last().prevAll().remove();
@@ -2549,8 +2553,8 @@ itv('" id=launch tip="Launch','launch')
 				$('#input0Type').val(o).change();
 			}
 			
-			//$('#navHide.seled').click();
-			$('#iTextFold.seled').click();
+
+			$('#iTextFold').not('.seled').click();
 		}
 
 	}).on('click','#UploadSnippetFile',function(){
@@ -2633,7 +2637,8 @@ itv('" id=launch tip="Launch','launch')
 
 	}).on('click','#iTextFold',function(){
 	
-		var me=$(this), sel=me.is('.seled');
+		var me=$(this), sel=me.toggleClass('seled').is('.seled');
+		$('#preview,#input0Toolon').toggle(sel);
 		if(sel){
 			$('#iTextMain').show();
 
@@ -2643,10 +2648,12 @@ itv('" id=launch tip="Launch','launch')
 		}else{
 			$('#previewOff').click();
 			$('#iTextPreview').prevAll().hide();
-			
-		}
-		me.toggleClass('seled');
 
+		}
+
+	}).on('click','#input0Toolon',function(){
+		var me=$(this), sel=me.toggleClass('seled').is('.seled');
+		$('#input0Tool').toggle(sel);
 
 	}).on('click','#displayOverCanvas',function(){
 		
