@@ -12,11 +12,12 @@ $(function () {
     
     setTimeout(function () {
 
-      $('#input0Type').val(tp).change();
+      $('#input0Type').val(tp);
       if(t){
         $('#snippetNew').eq(0).click();
-        $('#input0').val(t).mouseover()//.change();
+        $('#input0').val(t)//.mouseover()//.change();
       }
+
 		  $('#splash').hide().nextAll().fadeIn();
 
 	  }, 300);

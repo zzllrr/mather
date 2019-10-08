@@ -127,9 +127,6 @@
 }
 
 
-input:not([readonly]), select{
-    vertical-align: middle;
-}
 #COLOR summary input[readonly] {
 	margin: 4px;
     width: 1.5rem;

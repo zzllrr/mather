@@ -830,6 +830,9 @@ textarea, .katexvrule{
 
 
 
+input:not([readonly]), select{
+    vertical-align: middle;
+}
 
 #donate div {margin:10px}
 #donaQR img{width:150px}

@@ -44,7 +44,7 @@
 }
 
 
-.sbsTbl td, #iTextMain input{
+.sbsTbl td, #iTextMain input, .inputTip{
 	font: normal 1.3rem KaTeX_Main,Times New Roman,serif;
 }
 .sbsTbl td[title^="\\n"]{

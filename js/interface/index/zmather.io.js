@@ -433,11 +433,12 @@ SBS={
 //'func':'# & % exp log ln lg arg gcd lcm mod max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arccot arctg arcctg det dim deg hom ker Pr',
 'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr',
 
+/*
 'struc':{//结构
 
 	
 },
-	
+*/
 //∘°度数
 
 //\,, \:, \;, \quad, \qquad 空格由小到大
@@ -1685,7 +1686,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 		if(iTyp=='LaTeX'){
 
-consolelog(t);
+//consolelog(t);
 			if(t){
 				if(t.indexOf('$')>-1){
 					t=t.replace(/^[^\$]+/g,'');
@@ -1740,13 +1741,13 @@ consolelog(t);
 	}else if(iTyp=='LaTeX' && !isArr(t)){//字符	istd
 		var tl=SL[t];
 		
-consolelog(tl,t);
+//consolelog(tl,t);
 		if(tl && !shft && t=='≠'){
 	//		t='=\\not\\mathrlap{}'	//fix bug of katex ≠
 		}else{
 			t=tl && !shft?(tl[0]=='^'?'':'\\')+tl+' ':t;
 		}
-consolelog(tl,t);
+//consolelog(tl,t);
 	}
 		
 
@@ -1754,14 +1755,14 @@ consolelog(tl,t);
 	if(shft && sS!=sE){// fix bug of shift on textarea 
 		sS=sE
 	}
-consolelog(iv,sS,sE);
+//consolelog(iv,sS,sE);
 
 
 
 	var v=iv.substr(0,sS+(t=='删'?-1:0))+(t=='删'?'':t)+(sE==iv.length?'':iv.substr(sE));
 	i.val(v).change();
 
-consolelog(v,t);
+//consolelog(v,t);
 
 	t=sS+(t=='删'?-1:(t.length%2==0 && mult?t.length/2:(istd && /\{/.test(t) && !/\(/.test(t)?t.indexOf('{')+1:(/,/.test(t)?(/..,/.test(t)?t.indexOf(',')+1:1):t.length-(+(fn && !shft))))));
 
@@ -1777,7 +1778,7 @@ sbsTbl=function(){
 
 	var str='<table class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
-	consolelog(A);
+	//consolelog(A);
 		var si=1,s='',n=Math.max(A[0].length,A[1].length), f=function(c){
 			if(c==' '){
 				return ''
@@ -2086,7 +2087,7 @@ $(function(){
 				itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 				itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
 
-				itv('Del" id=snippetDel tip="Delete Snippet','clear')+
+				itv('Del" id=snippetDel tip="Delete Snippet','remove_circle_outline')+
 
 				itv('" id=editorLaunch tip="Launch','launch')+
 				itvc('rotate180" id="tClear')+
@@ -2136,14 +2137,13 @@ $(function(){
 
 	dc
 
-)+(ishome?DCtv('pd2" id="iTextOpt',
-itvc('oClear rotate270" id="oHClear')+
-itv('seled" id=iTextFold tip="Snippet Editor','edit')+
+)+(ishome || isedi?DCtv('pd2" id="iTextOpt',
+(ishome?itvc('oClear rotate270" id="oHClear')+
+	itv('seled" id=iTextFold tip="Snippet Editor','edit'):'')+
 itv('tool seled" tip=Preview id="preview','remove_red_eye')+
 itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
-
-itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
-itv('" id=launch tip="Launch','launch')
+(ishome?itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
+	itv('" id=launch tip="Launch','launch'):'')
 
 
 ):''));
@@ -2515,6 +2515,17 @@ itv('" id=launch tip="Launch','launch')
 					tv+=sceg2(j)+' → '+sceg2(i)+br
 				});
 			}
+
+			if(v=='LaTeX'){
+				tv+=br;
+				$.each(SBS.Latex,function(i,j){
+					if(!/func/.test(i)){
+						tv+=sceg2(i)+' : '+sceg2('\\'+j+' ')+br
+					}
+				});
+			}
+
+
 
 			$('#input0Tip').append(detail(v+itv('remove" tip="Remove','remove_circle'),tv,'',strc+v+'"'));
 

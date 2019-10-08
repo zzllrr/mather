@@ -224,8 +224,8 @@ $.each({
 	// LaTeX
 
 	'LaTeX':[
-		href(Hs+'katex.org/docs/supported.html','KaTeX API'),
-		href(H+'dralpha.altervista.org/zh/tech/tech.htm','LaTeX Funny Introduction（中文）'),
+		href(Hs+'katex.org/docs/supported.html','KaTeX API') + ' ' + href(Hs+'mathlive.io/reference.html','Mathlive'),
+		href(H+'dralpha.altervista.org/zh/tech/tech.htm','LaTeX History中文'),
 		
 	].join(br),
 
