@@ -404,7 +404,7 @@ Table('',[
 			for(var i=0;i<fl;i++){
 				var f=files[i], s=f.size, ext=f.type.replace(/text[/]/,'');
 
-consolelog(f);
+//consolelog(f);
 				if(/^text[/]/.test(f.type) || !ext){
 					if(!s){s='?KB'}else{
 						s=sizeKB(s)

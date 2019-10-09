@@ -152,7 +152,8 @@ textarea.seled,.snippet.seled{
 	color: white;
 }
 #snippets{
-	counter-reset:cnt 0
+	counter-reset:cnt 0;
+	min-height: 4rem;
 }
 .eg:hover{
 	text-decoration: underline;

@@ -9,19 +9,19 @@ var toolSwitch=function(x){
 	$('.ground:not('+G+')').hide();
 
 	$(G).show();
-	$('#subject').toggle(/^solve|course|drill/.test(x));
 
 	
 	if(/graphic|show|wiki/.test(x)){
 		$('#preview.seled').click();
 	}
 	
+	
 	if(x=='show'){
-		$('#iTextFold').not('.seled').click()
+		$('#iTextFold.seled').click()
 	}
 
 	if(/solve|graphic/.test(x)){
-		$('#iTextFold.seled').click()
+		$('#iTextFold').not('.seled').click()
 	}
 
 	$('#send2textBox,.snippetSend').toggle(hasEditorTxt);
@@ -75,21 +75,15 @@ $(function(){
 					return XML.wrapE('label','<input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc)
 				},toolnames).join('')
 			)+
+/*
 			detail(
-				'<select id=searchBy>'+optgrp(gM('Search'), Options(ZLR('Subject Concept QuestionType'),1).join(''))+'</select>'+
+				'<select id=searchBy>'+optgrp(gM('Search'), Options(ZLR('Concept QuestionType'),1).join(''))+'</select>'+
 				'<input type=search id=search list=searchlist />'+
 				'<datalist id=searchlist></datalist>',
 				'<div id=searchResults></div>',
 				'','id=searchTool hidden'
 			)+
-			detail(
-				'<select id=subject0>'+optgrp(gM('Subject Classification GB'),'<option value=0>'+gM('Level-1 Discipline')+'</option>'+
-					Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},ZLR(subject0)).join(''))+'</select>'+
-				'<select id=subject1 hidden></select>'+
-				'<select id=subject2 hidden></select>',
-				DCtv('ground0',jdetail(ZLR(subject0)))+DCtv('ground1'),
-				'','id=subject'
-			)+
+*/
 			Arrf(function(i){
 				return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
 			},toolnames).join('')+
@@ -98,11 +92,12 @@ $(function(){
 
 
 	
-
+/*
 	$('#searchBy').on('change',function(){
 		$('#search').change();
 	});
-	
+*/
+
 	$('.subhead').on('click',function(e){
 		var me=$(this),sel=me.is('.seled'), id=this.id,shft=e.shiftKey || $('#Shift').is('.seled');
 		me.addClass('seled').siblings('.subhead').removeClass('seled');
@@ -122,7 +117,7 @@ $(function(){
 			
 		}
 
-		$('#iContent').toggle(id=='home');
+		$('#iContent,#iTextOpt i:not(#oHClear,#launch)').toggle(id=='home');
 
 	});
 	
@@ -132,40 +127,10 @@ $(function(){
 
 	$('[tip]').attr('title',function(){return gM($(this).attr('tip'))});
 	
+/*
 	$('#search').attr('placeholder',gM('search')).on('change keyup',function(){
 		var by=$('#searchBy').val(), v=$(this).val().trim(), sR=$('#searchResults'), rA=[], u={}, lA=[], hA=[];
-		if(by=='Subject'){
-			ZLR(subject0).forEach(function(x){
-				var x1=gM(x), x2=gM(x,'',lang.en), xc=subjects[x];;
-				if(!v || v && (x1+x2).indexOf(v)>-1){
-					hA.push(SCtv('sechResult" data-i="'+x,x1));
-					
-					if(xc){
-						xc.forEach(function(y){
-							if(!/99/.test(y)){
-								lA.push('<option value="'+gM(y)+'" label="'+x1+'"></option>');
-							}
-						});
-						
-					}else{
-						lA.push('<option value="'+x1+'"></option>');
-					}
-				}else if(v && xc){
-					xc.forEach(function(y){
-						if(!/99/.test(y)){
-							var y1=gM(y), y2=gM(y,'',lang.en);
-							if((y1+y2).indexOf(v)>-1){
-								lA.push('<option value="'+gM(y)+'" label="'+x1+'"></option>');
-								hA.push(SCtv('sechResult" data-i="'+x+'.'+y,x1));
-							}
-						}
-					});
-					
-				}
-				
-			});
-
-		}
+	
 		if(by=='Concept'){
 			ZLR(concept0).forEach(function(x){
 				var x1=gM(x), x2=gM(x,'',lang.en), xc=concepts[x];;
@@ -237,27 +202,7 @@ $(function(){
 		}
 	});
 
-
-	var sbj0=$('#subject0'), sbj1=$('#subject1'), sbj2=$('#subject2');
-	sbj0.on('change', function(){//改变sbj1
-		var me=$(this), v=me.val();
-		$('#input0Tip, #input1Tip').add($('#'+$('[name=tool]:checked').attr('id')+'Ground .tasks')).empty();
-		if(v=='0'){
-			sbj1.empty().hide();
-		}else{
-			var t=subjects[v]?Arrf(function(i){return '<option value='+i+'>'+i+' '+gM(i)+'</option>'},subjects[v]).join(''):'';
-			if(t){
-				sbj1.html(optgrp(gM('Level-2 Discipline'),t)).show();
-			}else{
-				sbj1.empty().hide();
-			}
-		}
-		$('#subject .ground0 .level[data-i='+v+']').addClass('seled').siblings().removeClass('seled');
-		$('#subject .ground1').html(subjects[v]?jdetail(subjects[v]):'');
-		$('#subject .ground1 .level').eq(0).addClass('seled');
-		$('#solveGround').children().empty();
-	});
-
+*/
 
 
 	
@@ -291,23 +236,6 @@ $(function(){
 		losh.tool=x;
 		toolSwitch(x);
 
-	}).on('click','#subject .ground0 .level',function(){
-		var me=$(this).toggleClass('seled'),i=me.attr('data-i');
-		me.siblings().removeClass('seled');
-		if(me.is('.seled')){
-			$('#subject0').val(i).change();
-		}
-
-	}).on('click','#subject .ground1 .level',function(){
-		var me=$(this).toggleClass('seled'),i=me.attr('data-i');
-		me.siblings().removeClass('seled');
-		if(me.is('.seled')){
-			$('#subject1').val(i).change();
-		}else{
-			//$('#'+$('[name=tool]:checked').val()+'Ground').children().empty()
-		}
-
-
 	}).on('click','.ground .level,.task',function(e){
 
 		var me=$(this),mei=me.attr('data-i'),eg=me.attr('data-eg'),tip=me.attr('data-tip'),mtool=me.attr('data-tool'), shft=e.shiftKey || $('#Shift').is('.seled'),
@@ -338,20 +266,21 @@ $(function(){
 				me.siblings().removeClass('seled');
 			}
 	
-			var fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length,v=issolve?$('#subject2').val():'';
+			var fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length, v=issolve?fm[0][0]:'';
 
 
 			var ttip=tooltip[v],tipOpr=tooltip[v+' Operation'],str='',str2='',
 				ev=eval(tool), evs=eval(tool+'s'), eT=eval(tool+'Then'), 
 				width=Math.max($('#input0').width(),$('#input0Tool').width())||200,
 				height=Math.max($('#input0').height(),$('#input0Tool').height())||200,
-				strc='class=inputTip style="max-height:'+height+'px" data-tool="';
+				strc='class=inputTip style="max-height:'+height+'px" data-tool="',
+				strrem=itv('remove" tip="Remove','remove_circle');
 			
 			if(ttip && $('#input0Tip .inputTip[data-tool="'+v+'"]').length<1){
-				$('#input0Tip').append(detail(gM(v), ttip, '', strc+v+'"'));
+				$('#input0Tip').append(detail(gM(v)+strrem, ttip, '', strc+v+'"'));
 
 				if(tipOpr){
-					$('#input0Tip').append(detail(gM(v+' Operation'), tipOpr, '', strc+v+'"'));
+					$('#input0Tip').append(detail(gM(v+' Operation')+strrem, tipOpr, '', strc+v+'"'));
 				}
 			}
 
@@ -360,10 +289,10 @@ $(function(){
 				var u0=fm[0].slice(0,i+1).join('/'),m0=fm[0][i],tip0=tt[u0],tip1=tt[u0+' Condition'];
 //consolelog(u0, tip0);
 				if(tip0 && $('#input0Tip .inputTip[data-uri="'+u0+'"][data-tool="'+m0+'"]').length<1){
-					$('#input0Tip').append(detail(gM(m0), tip0, '', strc+m0+'" data-uri="'+u0+'"'));
+					$('#input0Tip').append(detail(gM(m0)+strrem, tip0, '', strc+m0+'" data-uri="'+u0+'"'));
 
 					if(tip1){
-						$('#input1Tip').append(detail(gM(m0+' Condition'), tip1, '', strc+m0+'" data-uri="'+u0+'"'))
+						$('#input1Tip').append(detail(gM(m0+' Condition')+strrem, tip1, '', strc+m0+'" data-uri="'+u0+'"'))
 					}
 				}
 			}
@@ -377,14 +306,7 @@ $(function(){
 				eT(muri);
 				return
 			}
-			if(issolve){
-				evs=solves[$('#subject1').val()||$('#subject0').val()];
-				if(evs){
-					evs=evs.sbj2[v][fm[1][0]];
-				}
-			}
 
-//console.log('uri = ',muri,'tool = ',tool);
 
 			var A=evs[fm[0][0]];
 
@@ -494,7 +416,7 @@ $(function(){
 			
 			if(issolve && istask && eg && $('#input0Tip .inputTip[data-uri="'+muri+'"]').length<1){
 				var hasC=me.children('.katex').length;
-				$('#input0Tip').append(detail(hasC?me.html():tip, 
+				$('#input0Tip').append(detail((hasC?me.html():tip)+strrem, 
 					(hasC && mtool!=tip?tip+br:'')+(me.attr('title')?me.attr('title').replace(/\n/g,br)+br:'')+sceg(eg),
 					 1, strc+fm[0].slice(-1).join('')+'" data-uri="'+muri+'"'));
 			}
@@ -527,8 +449,26 @@ $(function(){
 	$('[name=tool][value='+uo.tool+']').click();
 	
 
+/*
+	if(uo.tool=='solve'){
+		var ls=(uo.subtool||L.subtool||'2110.0.0.1.1.0').split('.');
 
-	
-	$('#search').change();
+		if(ls[3]!='-1'){
+			var x=$('#solveGround .ground0').children().eq(+ls[3]).click();
+		}
+		if(ls[4]!='-1'){
+			var x=$('#solveGround .ground1').children().eq(+ls[4]).click();
+		}
+		if(ls[5]!='-1'){
+			var x=$('#solveGround .ground2').children().eq(+ls[5]).click();
+		}
+		if(ls[6]!='-1'){
+			var x=$('#solveGround .tasks').children().eq(+ls[6]).click();
+		}
+
+
+	}
+*/
+	//$('#search').change();
 });
 

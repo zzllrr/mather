@@ -7,7 +7,7 @@
 tooltip['API']=[
 
 
-	{'Math obj':[
+	{'obj / Math':[
 		{'Entity 实体':[{'数':'Num','整数':'Integer','小数':'Decimal','分数':'Frac','根数':'Root',
 			'矩阵':'Mtrx',
 		
@@ -19,7 +19,7 @@ tooltip['API']=[
 			'数学表达式':'Mfn',
 			'函数':'Fun',
 		}]},
-		{'Function.js':[{'实体':'Fun Mfn Polynomial'},
+		{'function.js':[{'实体':'Fun Mfn Polynomial'},
 			{'识别':'eType oType'},
 			{'运算符变换':'opneg opinv'},
 			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1'},
@@ -29,14 +29,14 @@ tooltip['API']=[
 			
 		]},
 		
-		{'Num.js':[{'实体':'Integer Decimal Frac Root Num'},
+		{'num.js':[{'实体':'Integer Decimal Frac Root Num'},
 				{'识别':'nis nAis nisd nisVd nisVid nisn'},
 				{'正则':'nRegofab nReg2dot nReg2digits nReg2A'},
 				{'转换':'percnt2n n2percnt n2frac n2ArabBig n2Roman Roman2n'},
 				{'精度':'digi Nsqrt'},
 		]},
 		
-		{'Prime.js':[{'实体':''},
+		{'prime.js':[{'实体':''},
 			{'素数集合':'PrimeA PrimeAlist PrimeAlistRowland PrimeAlistBC PrimeNumerator'},
 			{'识别':'isPrime feet1'},
 			{'因子分解':'tMod factor2 factor factorA factorA2n factors cntfactors Rho Factor odd odd_5'},
@@ -48,41 +48,41 @@ tooltip['API']=[
 			{'数和分解':'SUMs'},
 		]},
 
-		{'Statistic.js':[{'实体':''},
+		{'statistic.js':[{'实体':''},
 			{'概率':''},
 			{'统计':'count2pow'},
 			{'序关系':'floor ceil subA'},
 		]},
 
-		{'Geometry.js':[{'实体':''},
+		{'geometry.js':[{'实体':''},
 			{'多边形':'gon'},
 
 			
 		]},
 		
-		{'Proposition.js':[{'实体':'Prop'},
+		{'proposition.js':[{'实体':'Prop'},
 			{'功能':''},
 		]},
-		{'Set.js':[{'实体':'Set'},
+		{'set.js':[{'实体':'Set'},
 			{'功能':''},
 		]},
-		{'Permutation.js':[{'实体':'Perm'},
+		{'permutation.js':[{'实体':'Perm'},
 			{'IO':'PfS PtS'},
 			{'排列组合':'Fact Fact2 Permut Combin FactN PermutN CombinN RandomPermutN RandomCombinN RandomCombinA'},
 			{'逆序':'nInvOrder nInvOrder_'},
 
 		]},
-		{'Matrix.js':[{'实体':'Mtrx'},
+		{'matrix.js':[{'实体':'Mtrx'},
 
 		]},
-		{'Relation.js':[{'实体':'Rlt'},
+		{'relation.js':[{'实体':'Rlt'},
 			{'功能':''},
 		]},
 		
 		
 	]},
 
-	{'zlr.js':[
+	{'zmather_zlr.js':[
 		{'URL':[
 			{'常量':[
 				{'通用':'H Hs w3c xmlns xhtml xmlnsxlink webStore'},
@@ -214,7 +214,7 @@ tooltip['API']=[
 
 	]},
 
-	{'zmather.io.js':[
+	{'zmather_io.js':[
 		{'输入':[
 			{'字符集':'SBS SBSi'},
 			{'规范化':'n2sub sub2n asc2unicode opreplace opreplace0 opreplace1 opreplace2 opreplace3 opreplace6 opreplace7 opreNumRlt opreplace16 opreSeqsA simOpr'},
@@ -231,9 +231,6 @@ tooltip['API']=[
 			{'源代码输出':'fun2str API'},
 
 		]},
-	]},
-
-	{'interface.js':[{'学科':'subjects'},
 		{'解题目录':'solves'},
 		{'数学函数':'FUNCSi FUNCS SBSFn SBSFUN'},
 	//	{'工具语言':'mathmlAttrs'},
@@ -241,19 +238,20 @@ tooltip['API']=[
 
 	]},
 
-	{'svg.js':[{'矢量图形':'plot'},
+
+	{'obj / graphic / svg.js':[{'矢量图形':'plot'},
 		]},
 	
-	{'canvas.js':[{'画布':'draw'},
+	{'obj / graphic / canvas.js':[{'画布':'draw'},
 		{'动画':'trace loop Particle'}
 		]},
 			
-	{'graphic.js':[{'画图':'graphic'},
+	{'obj / graphic.js':[{'画图':'graphic'},
 		]},
 
 
-	{'common.js':[{'函数简写':'MfS PfS PtS'},
-
+	{'htm / common.js':[{'函数简写':'MfS PfS PtS'},
+		{'界面交互':'toolTip'},
 		]},
 
 
@@ -266,8 +264,8 @@ tooltip['JavaScript']=[
 	detail(gM('Native Math Function')+' (JavaScript)',
 		API(tooltip['Math Function (Native JavaScript)']),
 	),
-	detail(gM('Array Function'), API(tooltip['API'][1]['zlr.js'][9]['数组'])),
-	detail(gM('Calculation'), API(tooltip['API'][1]['zlr.js'][12]['计算'])),
+	detail(gM('Array Function'), API(tooltip['API'][1]['zmather_zlr.js'][9]['数组'])),
+	detail(gM('Calculation'), API(tooltip['API'][1]['zmather_zlr.js'][12]['计算'])),
 	detail(gM('All API'),API(tooltip['API'])),
 	
 ].join(br);

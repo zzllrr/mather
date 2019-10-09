@@ -642,7 +642,7 @@ summary ~ details summary{
 .inputTip{
 	margin:0 5px;
 }
-.plot, .resize,.inputTip,#input0Preview,#input0Tool{
+.plot, .resize,.inputTip,#input0Preview{
 	overflow: auto;
     resize: auto;
 }
@@ -742,12 +742,7 @@ select,input:not([type="file"]), .rem13{
 .task:not(.seled),.taskname{
 	background:gray;
 }
-#subject .ground1 .level:not(.seled){
-	background:royalblue;;
-}
-#subject{
-	background: rgba(0,0,0,0.1);
-}
+
 
 .sechResult, .Mele:hover{
 	background: rgba(50, 205, 50, 0.6);
@@ -784,9 +779,7 @@ select,input:not([type="file"]), .rem13{
 	background:limegreen;
 }
 
-#subject .ground0 .level:not(.seled){
-	background:royalblue;
-}
+
 
 textarea, .katexvrule{
 	background:transparent;
@@ -806,7 +799,7 @@ textarea, .katexvrule{
     padding: 0 6px;
     background: darkgray;
     color:white;
-    text-shadow: 1px 1px 1px #666;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
 }
 .toolTip{

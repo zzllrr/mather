@@ -109,7 +109,7 @@ loadHTML=function (x) {
 
 var oH,navhead={},navheadThen={},
 
-
+/*
 subject0='11 14 17 21 24 27 31 34 37 41 44 47 51 54 57 61 64 67 71 74 77 81 84 87 99',
 subjects={
 	14:zlrA('14',seqA(10,6,'',10).concat(99)),
@@ -129,6 +129,7 @@ subjects={
 	71:zlrA('71',seqA(10,4,'',10).concat(99)),
 	74:zlrA('74',seqA(10,15,'',5).concat(99))
 },
+*/
 
 concept0='Number Sequence Polynomial Vector Tensor Matrix Permutation Relation Function Proposition Logic Algebra Set Geometry Graph',
 concepts={

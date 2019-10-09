@@ -11,6 +11,9 @@ technologys={index:['Modeling','Software','Hardware',
         ]},
         {'Coding':[
 
+        ]},
+        {'AI':[
+
         ]}
     ]
 

@@ -897,6 +897,9 @@ lang['zh_cn'] = {
 	'Zoom': '缩放',
 	'Resize': '调整尺寸',
 
+	'More':'更多',
+	'Less':'更少',
+
 	'Solve': '解题',
 	'Question Type': '题型',
 

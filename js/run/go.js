@@ -8,7 +8,7 @@ $(function(){
 
 
 	$('#go').on('click',function(){
-		var tool=$('[name=tool]:checked').val(), o=($('#subject2').val()||'').toLowerCase(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
+		var tool=$('[name=tool]:checked').val(), i0=$('#input0'),i1=$('#input1'),i0v=i0.val().trim(),i1v=i1.val().trim();
 		
 		$('#svgs.toggle').click();
 		if(tool=='solve'){
@@ -17,7 +17,7 @@ $(function(){
 				i0.val(v);
 				i0v=v;
 			}
-			OH(KxA(solve[o](i0v,questionA())));
+			OH(KxA(solve[$('#solveGround .ground0 .seled').attr('data-i').toLowerCase()](i0v,questionA())));
 			
 			setTimeout(function(){
 				$('#oHTML').find('.oLaTeX').eq(0).click();
