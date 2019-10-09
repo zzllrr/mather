@@ -30,8 +30,8 @@ $(function(){
 					)+
 					DCtv('Summarytip',
 						XML.wrapE('h4',
-							spanmi('launch',href('document.html?src='+gitmd+'RESEARCH.md',gM('Summary')))+' '+
-							spanmi('launch',href('api.html','API'))
+							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'RESEARCH.md'),gM('Summary')))+' '+
+							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'api.html'),'API'))
 
 						)+
 						gM('Summarytip')
@@ -359,7 +359,7 @@ Table('',[
 				href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
 				gM('Contact')+': '+href(GMAIL,'zzllrr@gmail.com'),
 				
-			])+DCtv('alignc pd10" style="background:url(img/zzllrr.gif) repeat-x center',gM('WeChat')+'<div id=weixinZQR>'+dc),
+			])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
 	
 		])
 	,1);

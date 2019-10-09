@@ -250,8 +250,14 @@ tooltip['API']=[
 		]},
 
 
-	{'htm / common.js':[{'函数简写':'MfS PfS PtS'},
-		{'界面交互':'toolTip'},
+	{'htm / common.js':[
+		{'URL常量':'HOME GMAIL qrAli qrqq qrwx qrs VRlib VRlibjs ARlib ARlibjs unpkgTmp gitmd'},
+		{'URL变量':'loch losh ishome iscap isdoc isedi hascap'},
+		{'URL处理函数':'qrJPG sel questionA'},
+		{'数值处理':'rng2 rng4 color2rgba atan'},
+		{'界面交互':'toolTip oHTML loadHTML all2html dayOrNight copy2clipboard shadow'},
+		{'函数简写':'MfS PfS PtS'},
+
 		]},
 
 

@@ -10,7 +10,7 @@ For Chinese users国内用户请访问 <http://zzllrr.gitee.io/mather/>
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://mit-license.org/) [![Donate](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
 
-| [About 关于](https://zzllrr.github.io/mather/about.html "简介") | [API](https://zzllrr.github.io/mather/api.html) | [Background 背景](https://github.com/zzllrr/mather/blob/master/RESEARCH.md) [MIT License](https://github.com/zzllrr/mather/blob/master/LICENSE) | [Credits 鸣谢](https://zzllrr.github.io/mather/api.html?sub=3rd-party) |
+| [About 关于](https://zzllrr.github.io/mather/about.html "简介") | [API](https://zzllrr.github.io/mather/api.html) | [Background 背景](https://github.com/zzllrr/mather/blob/master/RESEARCH.md) | [MIT License 许可证](https://github.com/zzllrr/mather/blob/master/LICENSE) | [Credits 鸣谢](https://zzllrr.github.io/mather/api.html?sub=3rd-party) |
 
 ## Aims 宗旨
 Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
@@ -78,7 +78,7 @@ Compact, portable, powerful, customizable 软件体积小巧便携，但功能�
 
 - 2. Document Editor 文档编辑
 点击演示（Show）菜单，文档（Document）子菜单，
-在输入框中，输入文本内容（以及图形或动画命令），然后点击左侧下方的绿色运行 (Ctrl + Enter)按钮，可以进入文档浏览模式。
+在输入框中，输入文本内容（以及图形或动画命令），然后点击左侧下方的运行 (Ctrl + Enter)按钮，可以进入文档浏览模式。
 支持LaTeX、Markdown、HTML、SVG、Canvas、JavaScript、Echarts、Zdog、VR、AR等格式混合内容排版，
 不同格式内容需使用相应闭合标签括起来。
 例如（更多示例，参见软件内的输入框右侧提示）：
@@ -153,7 +153,7 @@ c.strokeRect(10, 20, 200, 150);
 
 ### 1. Solve 解题
 
-点击解题（Solve）菜单，选择相应子学科，点击子菜单，输入内容，点击绿色运行按钮即可
+点击解题（Solve）菜单，选择相应子学科，点击子菜单，输入内容，点击运行按钮即可
 目前仅支持下列学科的解题：
 + 21 代数学 -> 2110 线性代数（或 2119 其它代数学科，初等代数的内容放在这里）
 + 81 离散数学
@@ -162,28 +162,38 @@ eg. Solving Determinant 例如：求解矩阵行列式
 1. 点击解题（Solve）菜单，选择相应子学科：21 代数学 -> 2110 线性代数，默认进入矩阵子选项
 2. 选择“行列式”，点击|A|子菜单
 3. 文本框输入矩阵： ```1 2 3 4```
-4. 点击下方绿色运行 (Ctrl + Enter)按钮，立即得出行列式求解步骤和结果
+4. 点击下方运行 (Ctrl + Enter)按钮，立即得出行列式求解步骤和结果
 
 
 ### 2. Show 演示 
 点击演示（Show）菜单，文档（Document）子菜单，
 
 - Document 文档功能：在输入框输入内容（支持格式参见上述文档编辑功能的介绍）。
-如使用外链文档，直接在输入框中输入文档网址，点击绿色运行 (Ctrl + Enter)按钮即可
+
+如使用外链文档，直接在输入框中输入文档网址，点击运行 (Ctrl + Enter)按钮即可
+
 例如，打开网址：document.html?src=你的文档地址
+
 即可在线查看你的文档
 
 - PPT 功能：使用section闭合标签，将每一张幻灯片的内容括起来。
-如使用外链PPT文档，直接在输入框中输入文档网址，点击绿色运行 (Ctrl + Enter)按钮即可
-例如，打开网址：slide.html?src=你的PPT文档地址
+
+如使用外链PPT文档，直接在输入框中输入文档网址，点击运行 (Ctrl + Enter)按钮即可
+
+例如，打开网址：slide.html?src=你的PPT文档地址，
+
 即可在线演示你的PPT文档
 
-- Text to Speech 文字转语音：输入文本内容，点击左下方绿色运行 (Ctrl + Enter)按钮，播放语音音频。
+- Text to Speech 文字转语音：输入文本内容，点击左下方运行 (Ctrl + Enter)按钮，播放语音音频。
+
 注意：文字转语音功能，需要联网才能使用。
 
-- VR、AR 功能：使用a-scene闭合标签，编辑相应源代码，再点击绿色运行 (Ctrl + Enter)按钮即可。
-如使用外链VR、AR文档，直接在输入框中输入文档网址，点击绿色运行 (Ctrl + Enter)按钮即可
+- VR、AR 功能：使用a-scene闭合标签，编辑相应源代码，再点击运行 (Ctrl + Enter)按钮即可。
+
+如使用外链VR、AR文档，直接在输入框中输入文档网址，点击运行 (Ctrl + Enter)按钮即可
+
 例如，打开网址：vr.html?src=你的VR文档地址 或 ar.html?src=你的AR文档地址 
+
 即可在线查看你的VR作品或AR作品
 
 
@@ -233,4 +243,9 @@ https://chrome.google.com/webstore/detail/aphanomkkjgledipighdfjnilhfenpam?hl=zh
 
 * Contact 联系小乐邮箱：zzllrr@gmail.com
 
-* WeChat 小乐公众号：zzllrr小乐
+* WeChat 小乐微信公众号：zzllrr小乐
+
+* Donate 捐赠小乐
+[![Donate](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
+
+![Donate zzllrr via Wechat](https://github.com/zzllrr/mather/blob/master/img/F1weixinPay.jpg)

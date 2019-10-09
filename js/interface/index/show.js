@@ -59,9 +59,11 @@ function showThen(T) {
 
     $('#showGround .ground1').html(
         '<textarea class="editorText show' + T + '" placeholder="' + gM('showEditip') + '" tip="Input Command">'+(L[t]||'')+'</textarea>' +
-        sci(itv('navHide', 'keyboard_arrow_up') + itv('launch" tip=Launch hotkey="Ctrl + Shift + Enter', 'launch')
-        + br +
-        itvc('" hotkey="Ctrl + E') +itv('downTxt" tip="Download TXT File', 'file_download'))+
+        sci([itv('navHide', 'keyboard_arrow_up'),
+            itv('launch" tip=Launch hotkey="Ctrl + Shift + Enter', 'launch'),
+            itvc('" hotkey="Ctrl + E'),
+            itv('downTxt" tip="Download TXT File', 'file_download')
+        ].join(br))+
         DCtv('inblk', Arrf(function (i) { return Arrf(Melef, ZLR(i)).join('') }, shows.tool[T]).join(br)) +
 
         detail('<input type="file" id=' + T + 
@@ -69,8 +71,8 @@ function showThen(T) {
             //accept="audio/*" capture="microphone" 
             strbtn + gM('Play') + '" class=play id=' + T + 'Play hidden />' +
             //
-            strbtn + gM('QRcode') + ' ↑" class=qrScan tip="Scan QRcode" />' +
-            strbtn + gM('QRcode') + ' ↓" class=qrGen tip="Generate Text QRcode" />',
+            strbtn + 'QR↑" class=qrScan tip="Scan QRcode" />' +
+            strbtn + 'QR↓" class=qrGen tip="Generate Text QRcode" />',
 
             shows.opt[T].join(br),
             '','class='+T + 'Tool'

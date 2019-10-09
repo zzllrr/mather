@@ -11,18 +11,16 @@ var toolSwitch=function(x){
 	$(G).show();
 
 	
-	if(/graphic|show|wiki/.test(x)){
-		$('#preview.seled').click();
-	}
-	
-	
-	if(x=='show'){
+
+	$('#preview.seled').click();
+
+	if(/solve|graphic|teaching/.test(x)){
+		$('#iTextFold').not('.seled').click()
+	}else{
+		
 		$('#iTextFold.seled').click()
 	}
-
-	if(/solve|graphic/.test(x)){
-		$('#iTextFold').not('.seled').click()
-	}
+	$('#go').toggle(/solve|graphic|show|teaching/.test(x));
 
 	$('#send2textBox,.snippetSend').toggle(hasEditorTxt);
 
@@ -50,7 +48,7 @@ var toolSwitch=function(x){
 };
 
 $(function(){
-	var toolnames=ZLR('solve graphic show wiki teaching academic technology science culture');
+	var toolnames=ZLR('solve graphic show teaching wiki academic technology science culture');
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather')));
 	$('#zMather').prepend(

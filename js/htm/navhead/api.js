@@ -23,7 +23,7 @@
 
 				detail(gM('Math'),
 					ul(Arrf(gitjs,
-						ZLR('math'))),1),
+						ZLR('math algebra'))),1),
 
 				href('./css/fonts','Fonts'),
 				detail('Icon Font',

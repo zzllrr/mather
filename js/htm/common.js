@@ -939,8 +939,8 @@ $(function () {
     }).on('click','.navHide',function(){
         var me=$(this),isup=me.text().indexOf('up')>0;
         $('#toolnav,#navhead').add(me.parent().parent().prev()).toggle(!isup);
-        me.text('keyboard_arrow_'+(isup?'down':'up')).toggleClass('seled',isup);
-
+        me.text('keyboard_arrow_'+(isup?'down':'up'))//.toggleClass('seled',isup);
+        $('#panel').toggle(!isup);
 
 
 	}).on('click','.subtabhead',function(e){

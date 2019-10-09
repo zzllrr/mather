@@ -858,6 +858,10 @@ lang['zh_cn'] = {
 	'Height': '高',
 	'Shadow': '阴影',
 	'Direction': '方向',
+	'Directional': '方向',
+	'Grad':'梯度',
+	'Partial':'偏',
+	'Basic':'基本',
 	'Option': '选项',
 
 	'Attribute': '属性',
