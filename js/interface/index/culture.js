@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 cultures={index:['Game','Comic','Joke',
-    'Report','History','Art'],
+    'Report','Art'],
 
     'Game':[
 		{'Tessellation':[
@@ -19,17 +19,22 @@ cultures={index:['Game','Comic','Joke',
 		{'Rubik Cube':[
 
 		]},
+
 		{'Origami':[
 
 		]},
+
 		{'Paper Cutting':[
 
         ]},
         
         {'Lottery':[
 
-        ]},
+		]},
+		
+		{'Puzzle':[
 
+		]},
     ],
     
     'Comic':[
@@ -72,14 +77,6 @@ cultures={index:['Game','Comic','Joke',
 
     ], 
 
-    
-    'History':[
-		{'Mathematician':[
-
-		]},
-
-
-    ],
 
 
     'Art':[

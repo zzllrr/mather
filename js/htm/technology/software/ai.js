@@ -11,6 +11,9 @@ technology['Software/AI']=Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'thispersondoesnotexist.com','This Person Does Not Exist'),'JPG + TXT','A.I. Generated Faces and Scenes '+
 		hrefA('thispersondoesnotexist.com',ZLR('Image Friends Office')).join(' ')+' '+
 		hrefA('this@@doesnotexist.com',ZLR('Cat Article')).join(' ')],
+	[href(git('deepfakes/faceswap'),'Deepfakes FaceSwap'),'Python',' utilizes deep learning to recognize and swap faces in pictures and videos'],
 
+
+	
 ],'TBrc');
 

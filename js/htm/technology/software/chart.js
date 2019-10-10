@@ -25,7 +25,7 @@ technology['Software/Charts']=Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'demo.bpmn.io/s/start','bpmn.io'),'JS + SVG',hrefA('demo.bpmn.io/@@/new',ZLR('BPMN CMMN DMN')).join(' ')],
 
-	[href(Hs+'paveldogreat.github.io/WebGL-Fluid-Simulation/','WebGL Fluid Simulation'),'JS + WebGL',href(git('PavelDoGreat/WebGL-Fluid-Simulation'),'Github')],
+	[href(git('paveldogreat','WebGL-Fluid-Simulation'),'WebGL Fluid Simulation'),'JS + WebGL',href(git('PavelDoGreat/WebGL-Fluid-Simulation'),'Github')],
 
 	[href(Hs+'naotu.baidu.com','Mindmap by baidu'),'JS + SVG',href(git('PavelDoGreat/WebGL-Fluid-Simulation'),'Github')],
 

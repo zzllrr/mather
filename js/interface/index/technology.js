@@ -14,7 +14,10 @@ technologys={index:['Modeling','Software','Hardware',
         ]},
         {'AI':[
 
-        ]}
+        ]},
+        {'Misc':[
+
+        ]},
     ]
 
 };

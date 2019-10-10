@@ -326,6 +326,7 @@ lang['zh_cn'] = {
 
 	'Programming': '编程',
 	'Programmatic': '程序化',
+	'Algorithm':'算法',
 
 	'Standard':'标准',
 	'Software': '软件',
@@ -374,7 +375,10 @@ lang['zh_cn'] = {
 	'Tessellation':'镶嵌',
 	'Knot':'绳结',
 	'Plasticine':'橡皮泥',
-
+	'Tetris':'俄罗斯方块',
+	'Puzzle':'解谜',
+	'Emoji':'表情',
+	'Minesweeper':'扫雷',
 
 	'Comic':'漫画',
 	'Cartoon':'卡通',
@@ -1003,12 +1007,16 @@ lang['zh_cn'] = {
 	'Input': '输入',
 	'Output': '输出',
 	'Refer': '参考',
+	'Reference':'参考资料',
+
 	'Link': '链',
 	'href': '超链接',
 	'Lerp': '线性插值',
 
 	'i18n': '国际化',//	'Internationalization':'国际化',
-	'i10n': '本土化',	//Localization 
+	'l10n': '本土化',	//Localization 
+	'Misc':'杂项',
+	'Miscellaneous':'杂项',
 
 	'Avatar':'头像',
 	'Card':'卡片',
@@ -1662,7 +1670,10 @@ lang['zh_cn'] = {
 	"84": "模糊数学",
 	"87": "应用数学",
 	"99": "其它学科",
-
+	"9910":'数学物理方法',
+	"9920":'大数据',
+	"9930":'编程算法',
+	"9940":'人工智能',
 
 	'Summarytip': '小乐数学zzllrr Mather，是小乐原创开源实现的一款跨平台可离线运行并满足多用户背景、多场景需要的数学软件。' +
 		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的部分解题，' +

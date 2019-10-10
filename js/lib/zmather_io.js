@@ -2147,7 +2147,9 @@ $(function(){
 itv('tool seled" tip=Preview id="preview','remove_red_eye')+
 itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 (ishome?itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
-	itv('" id=launch tip="Launch','launch'):'')
+	itv('" id=launch tip="Launch','launch')+
+	itv('" id=qrcode tip="Share','share')+
+	itv('" id=zMatherOn2 tip="Collapse','keyboard_arrow_up'):'')
 
 
 ):''));
@@ -2743,6 +2745,10 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 
 		$('#zMatherOn:contains(down)').click();
 
+
+	}).on('click','#zMatherOn2',function(){
+		
+		$('#zMatherOn:contains(up)').click();
 
 	}).on('keydown',function(e){
 

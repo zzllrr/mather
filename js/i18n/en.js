@@ -239,6 +239,11 @@ lang['en']={
 	"84": "Fuzzy @0",
 	"87": "Applied @0",
 	"99": "Other disciplines",
+	"9910":'Mathematical Methods in Physics',
+	"9920":'Big Data',
+	"9930":'Programming Algorithm',
+	"9940":'AI',
+
 	'Summarytip':'zzllrr Mather, created and open-sourced by zzllrr, is a handy mathematical software, which can run offline and meet the needs of multi-background users and under multi-scenes.<br />'+
 		'This is a Demo version, which has only partial function.<br />'+
 		'Defects and mistakes are unavoidable due to limited personal abilities and time.<br />If there is a browser dead loop, just close the web page directly.<br />'+

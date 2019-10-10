@@ -109,27 +109,6 @@ loadHTML=function (x) {
 
 var oH,navhead={},navheadThen={},
 
-/*
-subject0='11 14 17 21 24 27 31 34 37 41 44 47 51 54 57 61 64 67 71 74 77 81 84 87 99',
-subjects={
-	14:zlrA('14',seqA(10,6,'',10).concat(99)),
-	17:zlrA('17',seqA(10,8,'',10).concat(99)),
-	21:zlrA('21',seqA(10,15,'',5).concat(99)),
-	27:zlrA('27',seqA(10,10,'',5).concat(99)),
-	31:zlrA('31',seqA(10,11,'',5).concat(99)),
-	34:zlrA('34',seqA(10,3,'',10).concat(99)),
-	41:zlrA('41',seqA(10,7,'',10).concat(99)),
-	44:zlrA('44',seqA(10,3,'',10).concat(99)),
-	47:zlrA('47',seqA(10,4,'',10).concat(99)),
-	51:zlrA('51',seqA(10,3,'',10).concat(99)),
-	57:zlrA('57',seqA(10,10,'',5).concat(99)),
-	61:zlrA('61',seqA(10,8,'',10).concat(99)),
-	64:zlrA('64',seqA(10,8,'',10).concat(99)),
-	67:zlrA('67',seqA(10,11,'',5).concat(99)),
-	71:zlrA('71',seqA(10,4,'',10).concat(99)),
-	74:zlrA('74',seqA(10,15,'',5).concat(99))
-},
-*/
 
 concept0='Number Sequence Polynomial Vector Tensor Matrix Permutation Relation Function Proposition Logic Algebra Set Geometry Graph',
 concepts={
@@ -490,7 +469,7 @@ $(function () {
 
         (isdoc?itv('" id=padding tip="Padding','compare_arrows')+itv('" id=print tip="Print','print'):'')+
 
-        itv('" id=qrcode tip="Share','share')+
+        (ishome?'':itv('" id=qrcode tip="Share','share'))+
     dc+DCtv('" id=Widgets hidden for="Widget',
         '<span id=Geogebra>'+
         '<svg id=Geogebragraphing tip="GGB Graphing" viewBox="0 0 24 24"><defs><style>.ggb_c1{fill:#99f}.ggb_c2{fill:#333}.ggb_c3{fill:#666}</style></defs><title>Graphing</title><path d="M2.5 21.5C4.13 10.64 7.89.56 12 12s7.76 1.36 9.51-9.5" fill="none" stroke="#666" stroke-miterlimit="10" stroke-width="1.3"></path><circle class="ggb_c1" cx="8.5" cy="6.5" r="2.5"></circle><circle class="ggb_c1" cx="15.5" cy="17.5" r="2.5"></circle><path class="ggb_c2" d="M15.5 15a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM8.5 4A2.5 2.5 0 1 0 11 6.5 2.5 2.5 0 0 0 8.5 4zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path></svg>'+
@@ -626,7 +605,7 @@ $(function () {
     });
     
 
-	$('#menu').children('i,svg').not('#night,#zMatherOn,#padding,#print').on('click',function(){
+	$('body').on('click','#menu > svg,#Widget,#svgs,#langu,#qrcode',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
         if(me.is('svg')){
             tog=!tog;
@@ -686,7 +665,13 @@ $(function () {
             $('#QRCODE').fadeToggle();
             setTimeout(function(){$('#zMatherOn:contains(down)').click();},500);
             copy2clipboard(t);
+
+            if(pa.is('#iTextOpt')){
+                return
+            }
         }
+
+
         me.siblings('.toggle').removeClass('toggle');
         me.siblings('svg').removeAttr('class');
 		pa.nextAll('[for='+id+']').toggle(tog);
@@ -711,8 +696,11 @@ $(function () {
             me.nextAll('select').hide();
             $('#langu').removeClass('toggle')
         }
+        $('#zMatherOn2').toggle(!isup);
     });
     
+	
+
     if(!ishome){
         $('#zMatherOn').click()
     }
