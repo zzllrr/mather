@@ -426,7 +426,8 @@ lang['zh_cn'] = {
 
 	'Web': '网络',
 	'Webpage': '网页',
-	'Home': '主页',
+	'Home': '首页',
+	'Homepage': '主页',
 
 	'Interface': '界面',
 	'Night': '夜间',

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-teaching['Course/9930']=
+teaching['Course/99/9930']=
 
 
 	

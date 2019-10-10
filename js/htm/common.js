@@ -654,12 +654,32 @@ $(function () {
 
         if(id=='qrcode'){
             me.removeClass('toggle');
-            if($('#input0Type').length){
-                losh.type=$('#input0Type').val();
-                losh.t=fn0($('#input0').val());
-            }
-            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4), t=H_o('',losh);
 
+            if($('#show').prop('checked')){
+                losh.t=fn0($('#showGround .editorText').val().substr(0,50));
+            }else{
+                if($('#input0Type').length){
+                    losh.type=$('#input0Type').val();
+                    losh.t=fn0($('#input0').val());
+                }
+            }
+
+            if(ishome){
+                var grd=$('#'+$('[name=tool]:checked').attr('id')+'Ground');
+                losh.uri=[
+                    grd.find('.ground0 .seled').index(),
+                    grd.find('.ground1 .seled').index(),
+                    grd.find('.ground2 .seled').index(),
+                ].join('.');
+                grd.find('.tasks .seled').each(function(i){
+                    losh.uri+=(i?'+':'.')+i;
+                });
+            }
+            
+
+           // console.log(losh);
+            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4), t=H_o('',losh);
+            //console.log(t,t.length);
             qrJPG(t,'#QRCODE',m);
             
             $('#QRCODE').fadeToggle();

@@ -42,7 +42,7 @@
 	}
 	
 	.editorText {
-		width: 85%;
+		width: 83%;
 		height: 180px;
 	}
 
@@ -75,7 +75,7 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel,#menu, #input0Preview ~ *,#iTextMain ~ *{
+  #panel,#menu, #input0Preview ~ *,#iTextMain ~ *,#iTextOpt{
   	display:none
   }
   #iTextMain{
