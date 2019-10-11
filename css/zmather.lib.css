@@ -950,13 +950,34 @@ img{
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 	padding-right:2px;
 }
-
+/*
 ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:a 0;}
 ol li:before {counter-increment:a;content:counters(a,".")" ";}
+*/
 
 #TOCcontents ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:b 0;}
 #TOCcontents ol li:before {counter-increment:b;content:counters(b,".")". ";padding-right: 5px}
 
+.disc{list-style-type:disc}
+.circle{list-style-type:circle}
+.square{list-style-type:square}
+.decimal{list-style-type:decimal}
+.decimal-leading-zero{list-style-type:decimal-leading-zero}
+.lower-roman{list-style-type:lower-roman}
+.upper-roman{list-style-type:upper-roman}
+.lower-alpha{list-style-type:lower-alpha}
+.upper-alpha{list-style-type:upper-alpha}
+.lower-greek{list-style-type:lower-greek}
+.lower-latin{list-style-type:lower-latin}
+.upper-latin{list-style-type:upper-latin}
+.hebrew{list-style-type:hebrew}
+.armenian{list-style-type:armenian}
+.georgian{list-style-type:georgian}
+.cjk-ideographic{list-style-type:cjk-ideographic}
+.hiragana{list-style-type:hiragana}
+.katakana{list-style-type:katakana}
+.hiragana-iroha{list-style-type:hiragana-iroha}
+.katakana-iroha{list-style-type:katakana-iroha}
 
 #menu {
     position: absolute;

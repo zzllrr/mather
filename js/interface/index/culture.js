@@ -3,8 +3,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-cultures={index:['Game','Comic','Joke',
-    'Report','Art'],
+cultures={index:['Game','Comic','Joke','Report','Art','Social'],
 
     'Game':[
 		{'Tessellation':[
@@ -96,5 +95,15 @@ cultures={index:['Game','Comic','Joke',
 
 		]},
 
-    ],
+	],
+	
+	'Social':[
+		{'Activity':[
+			'Festival',
+			'Carnival',//https://aperiodical.com/carnival-of-mathematics/
+		]},
+		{'Interest Group':[
+
+		]},
+	]
 };

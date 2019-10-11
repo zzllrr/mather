@@ -64,16 +64,23 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 			aB.html(html || '');
 			return Engin
 		}
+
 	}, git=function(x,githubio){
 		return Hs+(githubio?x+'.github.io/'+githubio:'github.com/'+x)
+
 	}, delivr=function(x,y,type){
 		return Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
-	}, unpkg=function(x,y,type){
+
+	}, unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js', unpkg=function(x,y,type){
 		return Hs+'unpkg.com/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
+
 	}, referf=function(x,y,type){
 		return type=='css'?'<link rel="stylesheet" href="' + x+'"'+(y||'')+'>':(
 			type=='js'||!type?'<script src="'+x+'"'+(y||'')+'></script>':''
 		)
+	}, refer=function(A){
+		return detail(gM('Reference'),ol(A))
+
 	}, jslib={
 		'echarts':referf(delivr('echarts'))+referf(unpkg('echarts-gl')),
 		// www.npmjs.com/package/echarts
@@ -482,7 +489,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 		//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
 		return '-webkit-linear-gradient(top, white, ' + t + ' 20%, ' + t + ' 80%, white)'
 	},
-	fcb = function (c, b, t) { return '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
+	fcb = function (c, b, t) { return isArr(t)?Arrf(function(x){return fcb(c,b,x)},t) : '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
 	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + (t||'') + '</textarea>' },
 	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return SCtv(t,x)},v)} return SC + '"' + t + '">' + (v || '') + sc },
 	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' }, itvc=function (c) {return itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace')},
@@ -864,7 +871,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 			var spA = A.join('').replace(/[^a-z]/g, '').split('').sort().join('').replace(/(.)\1+/g, '$1').split('').concat('=');	//Arrf(String.fromCharCode,seqA(97,26))
 			c = spA.length;
 			Arrf(function (x, i) {
-				consolelog(x, i, kx(x));
+				//consolelog(x, i, kx(x));
 				B[i] = split(kx(x), sp, 1);
 				if (B[i][0].length != c) {
 					for (var j = 0; j < c - 1; j++) {
@@ -1096,7 +1103,7 @@ array命令下		()	[]	\{\}	||	\|
 	*/
 		var al = arguments.length, r = v.length, c = (v[0] instanceof Array ? v[0] : '1').length, I = [], J = [], A;
 		if (parts) {
-			consolelog(parts);
+			//consolelog(parts);
 			A = Arrf(function (t) { return t instanceof Array ? t.join(' & ') : t }, v);
 			if (/I/.test(parts)) {
 				I = Arrf(Number, parts.match(/I\d+(_\d+)*/g)[0].substr(1).split('_'));
@@ -1127,13 +1134,13 @@ array命令下		()	[]	\{\}	||	\|
 				I = D;
 				if (/C/.test(parts)) {
 					var s = D.slice(-1)[0];
-					consolelog(s);
+					//consolelog(s);
 					J = Arrf(function (x) { return s - x }, D2).reverse();
 					J = J.slice(1).concat(s);
 				} else {
 					J = D2;
 				}
-				consolelog(J);
+				//consolelog(J);
 			}
 			var ls = parts.split(' '), hline = ls[2] || (J.length ? '.' : '_'), vline = ls[1] || (I.length < 1 || I.length * J.length ? ':' : '|');
 
@@ -2876,9 +2883,9 @@ function linear2nest(Arr) {//平面线性二维数组[[相对层级,内容]+] �
 				B[B.length - 1].push(a[i])
 			}
 		}
-		consolelog('B=', B.join(' ; '));
+	//	consolelog('B=', B.join(' ; '));
 		for (var i = 0, l = B.length; i < l; i++) {
-			consolelog(B[i][0][2], C.join(' ；'));
+		//	consolelog(B[i][0][2], C.join(' ；'));
 			if (B[i].length > 1) {
 				C.push([B[i][0][2]].concat(f(B[i].slice(1))));
 			} else {
@@ -2930,7 +2937,7 @@ function md2html(str, sep) {
 			return eval(t)
 			*/
 			try {
-				consolelog(t);
+				//consolelog(t);
 				return '$' + eval(t) + '$'
 			} catch (e) {
 				return t
@@ -2980,7 +2987,7 @@ function md2html(str, sep) {
 
 	if (/\n[ \t]*([\-\*\+]|\d+\.) .+/.test(s)) {//ol ul
 		var fou = function (str) {
-			consolelog('fou', str);
+			//consolelog('fou', str);
 			var listA = [], ouA = [];
 			var st = str.replace(/\n[ \t]*([\-\*\+]|\d+\.) .+/g, function (x) {
 				var t = x.trim(), n = x.split(/[\-\*\+]|\d+\./)[0].length - 1, ht = t.replace(/([\-\*\+]|\d+\.) */, '');
@@ -2991,7 +2998,7 @@ function md2html(str, sep) {
 
 
 			});
-			consolelog('st', st);
+			//consolelog('st', st);
 			while (/\n<[uo]lli\d+>\d+\n(?!<[uo]lli\d+>\d+)/.test(st)) {
 				st = st.replace(/\n<[uo]lli\d+>\d+\n.+/, function (x) {
 					var xA = x.trim().split('\n');
@@ -3004,20 +3011,20 @@ function md2html(str, sep) {
 				})
 			}
 
-			consolelog('st2', st);
+			//consolelog('st2', st);
 			st = st.replace(/(\n<[uo]lli\d+>\d+)#/g, '$1');
 			var ne = linear2nest(listA);
-			consolelog('ne', ne);
+			//consolelog('ne', ne);
 
-			consolelog('listA', listA);
+			//consolelog('listA', listA);
 
-			consolelog('ouA', ouA);
+			//consolelog('ouA', ouA);
 
 			var g = function (x) {
 				return x.replace(/^\[ \]/, strchkbx0 + 'disabled />').replace(/^\[x\]/i, strchkbx0 + 'disabled' + chked + ' />')
 			}, f = function (x) {
 				if (isArr(x)) {
-					consolelog('x[0]= ', x[0]);
+					//consolelog('x[0]= ', x[0]);
 					var s = g(listA[x[0]][1]), x1 = x.slice(1);
 
 					return s + (x.length > 1 ? (ouA[x[0] + 1] == 'ul' ? ul : ol)(Arrf(f, x1)) : '');
@@ -3045,7 +3052,7 @@ function md2html(str, sep) {
 				return t.replace(/^\||\|$/g, '').split('|')
 			}, x.replace(/^\n|\n$/g, '').split('\n')),
 				sepA = sep.replace(/^\||\|$/g, '').split('|'), cols = sepA.length;
-			consolelog(sep, A.slice(0, sepi));
+			//consolelog(sep, A.slice(0, sepi));
 			var c = '';
 			if (/^\|.+\|$/.test(sep)) {
 				c = 'TBrc'
@@ -3159,25 +3166,25 @@ function md2html(str, sep) {
 		})
 		.replace(/\[[^\]\^]+\] *\[[^\s\]\^]+\]/g, function (x) {
 			var t = x.replace(/^.|.$/g, '').split(/\] *\[/), lnkt = lnk[t[1]];
-			consolelog(t, lnk);
-			consolelog(t[1], lnkt);
+			//consolelog(t, lnk);
+			//consolelog(t[1], lnkt);
 			if (lnkt) {
 				var u = lnkt.split(' ')[0], tt = / /.test(lnkt) ? lnkt.replace(/\S+ /, '').replace(/"/g, '') : '', hf = uriRe.test(u) ? href : inhref;
 				return hf(u, t[0], tt)
 
 			} else {
-				consolelog(lnk, t[1]);
+				//consolelog(lnk, t[1]);
 				return x.replace(/\] *\[/, ']?[')
 			}
 		})
 		.replace(/\[\^[^\]]+\]/g, function (x) {
 			var t = x.replace(/^..|.$/g, ''), lnkt = footlnk[t];
-			consolelog(x, t);
-			consolelog(footlnk, lnkt);
+			//console.log(x, t);
+			//console.log(footlnk, lnkt);
 
 			if (lnkt) {
 				var ki = footlnkA.indexOf(t);
-				consolelog(footlnkA, ki);
+				//console.log(footlnkA, ki);
 				if (ki < 0) {
 					ki = footlnkA.length;
 					footlnkA.push(t);
@@ -3194,7 +3201,7 @@ function md2html(str, sep) {
 
 	if (/\[U?TOC\]/.test(s) && headA.length) {
 		var ne = linear2nest(headA), toc = SCtv('bold',gM('Contents'));
-		consolelog(headA, ne);
+		//consolelog(headA, ne);
 		var f = function (x, u) {
 			if (isArr(x)) {
 				var s = headA[x[0]][1], x1 = x.slice(1);
@@ -3245,7 +3252,7 @@ function md2html(str, sep) {
 
 		});
 	}
-	consolelog(s);
+	//consolelog(s);
 
 	//s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,function(t){setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
 	s=replaceNodeInner(s,'JS', function(t){setTimeout(function(){eval(t)},100);return ''});

@@ -1484,6 +1484,7 @@ lang['zh_cn'] = {
 	'Fermat': '费马',
 	'Cartesian': '笛卡尔',
 	'Diophantus':'丢番图',
+	'Diophantine':'丢番图',
 	'Platonic':'柏拉图',
 	'Archimedean':'阿基米德',
 	'Napoleon':'拿破仑',

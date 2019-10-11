@@ -36,8 +36,9 @@ VRlibjs={
 },
 ARlib='',
 ARlibjs={
-},unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js',
+},
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
+enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:x.replace(/_/g,' '))+', wikipedia'+(time?', '+time:'')},
 
 tooltip={
 },
@@ -74,6 +75,16 @@ oHTML=function(x,notMD,elem,cb){
     setTimeout(function(){
         $('#splash').remove();
         o.find('.wiki th.bds').click();
+        o.find('.katex0').each(function(){
+            if($(this).parents('.wiki').length<1){
+                var t=$(this).text();
+                katex.render(kx(t), this, {
+                    throwOnError: true,
+                    displayMode: $(this).is('div'),
+                });
+            }
+
+        });
         o.fadeIn();
         $('#panel').fadeIn();
         if(cb){

@@ -92,7 +92,7 @@ tooltip['API']=[
 			{'解析':'H_u H_w H_w1 H_W H_W1 H_d H_h H_a H_o urlTran picSrcNameExt'},
 			{'封装':'imgFav pathTxt fn0 fn1 fna fna0 fnb fnc fnd fne fnt fnx fnr fns'},
 			{'转换':'dataURItoBlob'},
-			{'接口':'FNS Admin txt2audio xhrcb csslib git jslib delivr referf'},
+			{'接口':'FNS Admin txt2audio xhrcb csslib git jslib delivr unpkgTmp unpkg referf'},
 		]},
 	
 	
@@ -114,7 +114,7 @@ tooltip['API']=[
 			{'Engin':'Engin'},
 			{'元素':[
 				{'过渡':'br hr prog'},
-				{'结构':'SCtv DCtv spanmi itv detail ol ul dl Options OptGrps optgrp subReg tmb Table fieldset fieldseth subtabs'},
+				{'结构':'SCtv DCtv spanmi itv detail ol ul dl Options OptGrps optgrp subReg tmb Table fieldset fieldseth subtabs refer'},
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num i18 I18 colorbx rng txa txtreadonly mark del href hrefA scHotk q_key sceg sceg2 scegc scegj zMath ruby'},
 			]},
@@ -251,9 +251,9 @@ tooltip['API']=[
 
 
 	{'htm / common.js':[
-		{'URL常量':'HOME GMAIL qrAli qrqq qrwx qrs VRlib VRlibjs ARlib ARlibjs unpkgTmp gitmd'},
+		{'URL常量':'HOME GMAIL qrAli qrqq qrwx qrs VRlib VRlibjs ARlib ARlibjs gitmd'},
 		{'URL变量':'loch losh ishome iscap isdoc isedi hascap'},
-		{'URL处理函数':'qrJPG sel questionA'},
+		{'URL处理函数':'qrJPG sel questionA enwiki'},
 		{'数值处理':'rng2 rng4 color2rgba atan'},
 		{'界面交互':'toolTip oHTML loadHTML all2html dayOrNight copy2clipboard shadow'},
 		{'函数简写':'MfS PfS PtS'},
