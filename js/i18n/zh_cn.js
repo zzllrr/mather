@@ -106,6 +106,8 @@ lang['zh_cn'] = {
 	'Teacher': '老师',
 	'Enthusiast': '爱好者',
 	'Geek': '极客',
+	'Author':'作者',
+	'Writer':'作家',
 	'Researcher': '科研工作者',
 	'Educator': '教育工作者',
 	'Scholar': '学者',
@@ -226,6 +228,8 @@ lang['zh_cn'] = {
 	'Divergent':'发散',
 
 	'Generalize':'推广',
+	'Generalising':'推广',
+
 	'Integrate':'整合',
 	'Reduction to Absurdity':'归谬',
 
@@ -239,6 +243,7 @@ lang['zh_cn'] = {
 	'Counterpose':'对立',
 	'Penetrate':'穿透',
 	'Abstract':'抽象',
+	'Abstraction':'抽象',
 
 	'Reasoning': '推理',
 
@@ -311,7 +316,11 @@ lang['zh_cn'] = {
 
 	'Institution': '机构',
 	'Organization': '组织',
+	'Faculty':'院系',
 
+	'Society':'社会',
+	'Math Society':'数学会',
+	'Association':'协会',
 
 
 
@@ -334,8 +343,9 @@ lang['zh_cn'] = {
 
 	'Library': '库',
 	'Industry': '行业',
-	'Project': '工程',
-
+	'Project': '项目',
+	'Feature':'特征',
+	'Features':'特色',
 
 
 
@@ -367,10 +377,16 @@ lang['zh_cn'] = {
 
 	'Culture':'文化',
 	'Game': '游戏',
+	'Toy':'玩具',
+	'Literature':'文学',
+
+	'Recreational':'消遣',
+	'Maze':'迷宫',
 	'Paper Cutting':'剪纸',
 	'Paper Folding':'折纸',
 	'Origami':'日本折纸',
 	'Rubik Cube':'魔方',
+	'Magic':'魔术',
 	'Sudoku':'数独',
 	'Tessellation':'镶嵌',
 	'Knot':'绳结',
@@ -380,11 +396,13 @@ lang['zh_cn'] = {
 	'Emoji':'表情',
 	'Minesweeper':'扫雷',
 
+	'Fine Art':'美术',
 	'Comic':'漫画',
 	'Cartoon':'卡通',
 	'Animation': '动画',
 	'Animate': '动画',
 	'Doodle': '涂鸦',
+	'Gifs':'动图',
 	'Joke':'笑话',
 	'Humor':'幽默',
 
@@ -399,15 +417,34 @@ lang['zh_cn'] = {
 	'Movie':'影视',
 	'Painting':'画',
 
+	'Chess':'棋',
+	'Cards':'牌',
+	'Poker':'扑克',
 
 	'Philosophy':'哲学',
 	'Art':'艺术',
 	'Architecture':'建筑',
 	'Sculpture':'雕塑',
+	'Photography':'摄影',
+	'Opera':'歌剧',
+	'Poem':'诗歌',
+	'Novel':'小说',
+	'Drama':'戏剧',
+	'Programme':'节目',
+	'TV':'电视',
+	'Radio':'广播',
 
 	'Piano':'钢琴',
 
+	'Social':'社交',
+	'Community':'社区',
 
+	'Activity':'活动',
+	'Interest':'兴趣',
+	'Festival':'节日',
+	'Carnival':'嘉年华',
+	'Museum':'博物馆',
+	'Camp':'营',
 
 	// 工程	
 
@@ -523,6 +560,7 @@ lang['zh_cn'] = {
 	'Reader': '阅读器',
 	'Camera': '摄像头',
 	'Video': '视频',
+	'Live':'直播',
 
 	'Media':'媒体',
 	'Audio': '音频',
@@ -791,6 +829,7 @@ lang['zh_cn'] = {
 	'Block': '块',
 	'Inline': '行内',
 	'Quote': '引用',
+	'Quotes':'名言',
 	'Blockquote': '块引用',
 
 	'Checkbox': '勾选框',
@@ -879,6 +918,7 @@ lang['zh_cn'] = {
 	'at last': '最终',
 	'Start': '开始',
 	'Finish': '完成',
+	'Yield':'生成',
 
 	'Need': '需要',
 	'Ignore': '忽略',

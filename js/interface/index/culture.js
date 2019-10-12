@@ -3,7 +3,71 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-cultures={index:['Game','Comic','Joke','Report','Art','Social'],
+cultures={index:['Art','Game','Toy','Ebook','Activity','Social'],
+
+	'Art':[
+
+		{'Museum':[
+		
+		]},
+
+		{'Architecture':[
+
+		]},
+		{'Painting':[
+
+		]},
+		{'Photography':[
+
+		]},
+		{'Sculpture':[
+			'3D Printing'
+		]},
+
+		{'Literature':[
+			'Poem',
+			'Novel',
+			'Fiction',
+			'Drama',
+			'Quotes', 
+			'Humor',
+
+		]},
+
+		{'Comic':[
+			'Cartoon',
+			'Animation',
+			'Doodle',
+			'Gifs',
+		]},
+		
+		{'Music':[
+
+		]},
+		
+		{'Movie':[
+
+		]},
+
+
+		{'Opera':[
+
+		]},
+
+
+		{'Programme':[
+			'TV Programme',
+			'Podcast',
+			'Vlog',
+		]},
+
+		{'Magic':[
+
+		]},
+
+
+	],
+
 
     'Game':[
 		{'Tessellation':[
@@ -15,9 +79,6 @@ cultures={index:['Game','Comic','Joke','Report','Art','Social'],
 		{'Sudoku':[
 
 		]},
-		{'Rubik Cube':[
-
-		]},
 
 		{'Origami':[
 
@@ -26,84 +87,53 @@ cultures={index:['Game','Comic','Joke','Report','Art','Social'],
 		{'Paper Cutting':[
 
         ]},
-        
+	   
+        {'Chess':[
+
+		]},
+
+        {'Cards':[
+			'Poker',
+			'Bridge'
+		]},
+
         {'Lottery':[
 
 		]},
 		
-		{'Puzzle':[
-
+		{'Puzzle Game':[
+			'Maze',
 		]},
     ],
-    
-    'Comic':[
-		{'Cartoon':[
+	
+	
+    'Toy':[
 
-		]},
-		{'Animation':[
-
-		]},
-		{'Doodle':[
+		{'Rubik Cube':[
 
 		]},
 
-    ],
-    
-    'Joke':[
-		{'Humor':[
-
-		]},
-
-
-    ],
-       
-    'Report':[
-		{'Interview':[
-
-		]},
-		{'Blog':[
-
-		]},
-		{'Vlog':[
-
-        ]},
-		{'Podcast':[
-
-		]},
-		{'Ebook':[
-
-		]},
-
-    ], 
-
-
-
-    'Art':[
-		{'Architecture':[
-
-		]},
-		{'Painting':[
-
-		]},
-		{'Sculpture':[
-			'3D Printing'
-        ]},
-		{'Movie':[
-
-        ]},
-		{'Music':[
-
-		]},
 
 	],
 	
-	'Social':[
-		{'Activity':[
-			'Festival',
-			'Carnival',//https://aperiodical.com/carnival-of-mathematics/
-		]},
-		{'Interest Group':[
 
-		]},
+
+	'Ebook':[
+
+	],
+
+	'Activity':[
+		'Festival',
+		'Carnival',
+		'Camp',
+
+	],
+
+	'Social':[
+		'Interest Group',
+		'Blog',
+		'Project',
 	]
+	
+
 };
