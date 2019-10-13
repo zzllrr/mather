@@ -3,7 +3,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-cultures={index:['Art','Game','Toy','Ebook','Activity','Social'],
+cultures={index:['Art','Game','Toy','Video Game','Activity'],
 
 	'Art':[
 
@@ -101,7 +101,7 @@ cultures={index:['Art','Game','Toy','Ebook','Activity','Social'],
 
 		]},
 		
-		{'Puzzle Game':[
+		{'Puzzle':[
 			'Maze',
 		]},
     ],
@@ -118,22 +118,21 @@ cultures={index:['Art','Game','Toy','Ebook','Activity','Social'],
 	
 
 
-	'Ebook':[
-
+	'Video Game':[
+		'Simulation',
 	],
 
 	'Activity':[
 		'Festival',
 		'Carnival',
 		'Camp',
-
-	],
-
-	'Social':[
-		'Interest Group',
-		'Blog',
+		'Contest',
 		'Project',
-	]
+		'Interest Group',
 	
+
+	]
+
+
 
 };

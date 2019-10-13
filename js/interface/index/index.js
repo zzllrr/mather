@@ -48,7 +48,7 @@ var toolSwitch=function(x){
 };
 
 $(function(){
-	var toolnames=ZLR('solve graphic show teaching wiki academic technology science culture');
+	var toolnames=ZLR('solve graphic show wiki teaching academic science technology culture');
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather')));
 	$('#zMather').prepend(

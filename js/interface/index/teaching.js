@@ -3,8 +3,8 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-teachings={index:['Course','Drill','Examination Paper',
-    'Exam','Quiz','Vote','Survey','Discuss','Q & A'],
+teachings={index:['Course','Assignment','Exam','Activity'
+    ],
 
     'Course':[
         {11:[]},
@@ -40,8 +40,22 @@ teachings={index:['Course','Drill','Examination Paper',
         {87:[]},
 
         {99:zlrA('99',seqA(10,4,'',10))},
+        {'Comprehensive':[]},
 
     ],
+    'Assignment':[
+        'Drill',
+        'Assign',
+        'Answer Checking',
+    ],
+    'Exam':[
+        'Test Question Library',
+        'Set Examination Paper',
+        'Online Exam',
+        'Quiz',
+    ],
+    'Activity':[
+        'Vote','Questionnaire','Discuss'
+    ]
     
-
 };

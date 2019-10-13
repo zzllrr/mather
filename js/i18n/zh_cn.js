@@ -162,6 +162,7 @@ lang['zh_cn'] = {
 
 
 	'Thesis':'论文',
+	'Theses':'论文',
 	'Monograph':'专著',
 	
 	'Theorem': '定理',
@@ -216,6 +217,8 @@ lang['zh_cn'] = {
 	'Holographic':'全息',
 	'Conservation':'守恒',
 	'Periodicity':'周期',
+	'Period':'周期',
+	'Comprehensive':'综合',
 	'Ergodic':'遍历',
 	'Ergodicity':'遍历',
 	'Reverse':'逆转',
@@ -251,8 +254,8 @@ lang['zh_cn'] = {
 	'Pattern.v': '图案',
 	'Paradigm':'范式',
 
-	'Pseudoscience':'伪科学',
-	'Potential Science':'潜科学',
+
+
 
 	'Topic': '课题',
 
@@ -261,11 +264,20 @@ lang['zh_cn'] = {
 
 	'Teaching': '教学',
 	'Course': '课程',
-	'Drill': '题库',
+	'Curriculum':'课程',
+	'Test Question Library':'试题库',
+	'Drill': '练习',
+	'Assign':'布置',
+	'Assignment':'作业',
+	'Checking':'检查',
+	'Task':'任务',
+
 	'Examination Paper':'试卷',
+	'Set Examination Paper':'出卷',
 
 	'Exam': '考试',
-	'Quiz':'测验',
+	'Quiz':'小测验',
+	'Online':'在线',
 
 	'Vote':'投票',
 	'Poll':'民测投票',
@@ -278,6 +290,7 @@ lang['zh_cn'] = {
 	'Discussion':'讨论',
 	
 	'Question':'问题',
+	'Problem':'难题',
 	'Answer':'答案',
 	'Q & A':'问答',
 
@@ -296,14 +309,40 @@ lang['zh_cn'] = {
 
 	'Document': '文档',
 	'Periodical':'期刊',
+	'Journal':'刊物',
+	'Preprint':'预印本',
+	'Annual':'每年',
+	'Monthly':'每月',
+	'Bimonthly':'双月',
+	'Quarterly':'季刊',
+	'Biannual':'一年两次',
+	'Biennial':'两年一次',
+	'Triennial':'三年一次',
+	'Quadrennial':'四年一次',
+	'Annals':'年鉴',
 
 	'Reference': '引用',
+	'Newsletter':'新闻通讯',
 
 	'Meeting':'会议',
 
 	'Academic':'学术',
 	'Seminar':'研讨会',
+	'Webinar':'网络研讨会',
+	'Workshop':'讲习',
 	'Conference':'会议',
+
+	'MSc':'理学硕士',
+	'M.S.':'理学硕士',
+	'Baccalaureate':'学士学位',
+	'Ph.D.':'博士学位',
+	'Sc.D.':'理学博士',
+	'B.S.':'理学学士',
+	'Undergraduate':'本科',
+	'Postgraduate':'研究生',
+	'University':'大学',
+	'Institue':'研究院',
+	'College':'学院',
 
 	'Race':'比赛',
 	'Contest':'竞赛',
@@ -313,6 +352,8 @@ lang['zh_cn'] = {
 	'Awards':'奖项',
 	'Award':'奖',
 	'Bonus':'奖金',
+	'Laureate':'获奖者',
+	'Medalist':'奖章获得者',
 
 	'Institution': '机构',
 	'Organization': '组织',
@@ -321,8 +362,9 @@ lang['zh_cn'] = {
 	'Society':'社会',
 	'Math Society':'数学会',
 	'Association':'协会',
+	'Founder':'创立者',
 
-
+	'Mascot':'吉祥物',
 
 	//技术
 
@@ -357,28 +399,48 @@ lang['zh_cn'] = {
 	'Scientific':'科学',
 	'Fiction':'幻想',
 	'Science Fiction':'科幻',
+	'Pseudoscience':'伪科学',
+	'Potential Science':'潜科学',
+	'Religion':'宗教',
+	'Superstition':'迷信',
 
 	'Universe':'宇宙',
 	'Life':'生命',
 	'Health':'健康',
-	'Environment':'环境',
+	'Environment': '环境',
+	'Climate':'气候',
+	'Polution':'污染',
+	'Waste':'废弃',
 	'Environmental Protection':'环保',
 	'Eco-Friendly': '环保的',
 
-
+	'Physics':'物理',
+	'Chemistry':'化学',
+	'Biology':'生物',
+	'Medicine':'药物',
 	'AI': '人工智能',
 	'Intelligent': '智能',
 	'Intelligence': '智能',
-	
+	'Psychology':'心理',
 
 
 
 	//文化
 
 	'Culture':'文化',
+	'Subculture':'亚文化',
+	'Humanism':'人文主义',
+	'Business':'商业',
+	'Politics':'政治',
+	'Economy':'经济',
 	'Game': '游戏',
 	'Toy':'玩具',
 	'Literature':'文学',
+
+	'Electronic':'电子',
+	'Video Game':'电玩',
+	'Simulation':'模拟',
+
 
 	'Recreational':'消遣',
 	'Maze':'迷宫',
@@ -388,6 +450,7 @@ lang['zh_cn'] = {
 	'Rubik Cube':'魔方',
 	'Magic':'魔术',
 	'Sudoku':'数独',
+	'Tangram':'七巧板',
 	'Tessellation':'镶嵌',
 	'Knot':'绳结',
 	'Plasticine':'橡皮泥',
@@ -454,6 +517,7 @@ lang['zh_cn'] = {
 
 	'Program': '项目',
 	'Tool':'工具',
+	'Toolset':'工具箱',
 	'File': '文件',
 	'Engine': '引擎',
 	'Subproject': '子项目',
@@ -474,7 +538,7 @@ lang['zh_cn'] = {
 	'Preview': '预览',
 
 
-
+	'Ubiquitous':'普遍存在的',
 
 	'Scope': '范围',
 	'Textarea': '文本框',
@@ -595,7 +659,7 @@ lang['zh_cn'] = {
 	'Brainstorm':'头脑风暴',
 	'Brainstorming':'集思',
 
-	'Environment': '环境',
+
 
 	'Result': '结果',
 	'Title': '标题',
@@ -896,6 +960,8 @@ lang['zh_cn'] = {
 	'String': '字符串',
 	'Region': '区域',
 	'Data': '数据',
+	'Database':'数据库',
+	'Data Base':'数据库',
 	'Opacity': '透明度',
 
 	'Width': '宽',
@@ -1167,6 +1233,8 @@ lang['zh_cn'] = {
 	'Logic': '逻辑',
 	'Algebra': '代数',
 	'Geometry': '几何',
+	'Straight-edge':'直尺',
+	'Compass':'圆规',
 	'Graph': '图',
 	'Graphing': '作图',
 
@@ -1338,7 +1406,8 @@ lang['zh_cn'] = {
 	'Domain': '定义域',
 	'Range': '值域',
 
-	'Factorization': '因数分解',
+	'Factorization': '分解',
+	'Factorize': '分解',
 	'Expansion': '展开',
 	'Sum': '求和',
 	'Prod': '求积',
@@ -1350,7 +1419,6 @@ lang['zh_cn'] = {
 	'Least Common Multiple': '最小公倍数',
 	'Division': '除法',
 
-	'Matrix Factorization': '矩阵分解',
 
 	'Base': '基',
 	'Product': '积',
@@ -1385,7 +1453,7 @@ lang['zh_cn'] = {
 	'Side Length': '边长',
 	'Perimeter':'周长',
 	'Area':'面积',
-	'Surfacearea':'表面积',
+	'Surface Area':'表面积',
 	'Similar':'相似',
 
 	'Contour':'等高线',
