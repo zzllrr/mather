@@ -10,17 +10,11 @@ academic['Toolset']=
 	Table([i18(ZLR('Name Type Features'))],[
 		[href(Hs+'www.lmfdb.org','LMFDB - L-functions and Modular Forms Database'),'','modern handbook including tables, formulas, links, and references for L-functions and their underlying objects'],
 		[href(H+'www.numbertheory.org','Number Theory Web'),'','a collection of links to online information of interest to number theorists '+href('www.numbertheory.org/ntw/additions.html','new listings')],
-		[href(H+'intranet.math.vt.edu/netmaps/','NET(Nearly Euclidean Thurston) Map'),'','contains papers, software and over 50,000 examples']
+		[href(H+'intranet.math.vt.edu/netmaps/','NET(Nearly Euclidean Thurston) Map'),'','contains papers, software and over 50,000 examples'],
 
-/*
-todo
-https://aimath.org/ projects
+		[href(Hs+'mathoverflow.net','MO - MathOverflow.net'),gM('Q & A'),'Another platform '+href(Hs+'math.stackexchange.com','MSE - Math.StackExchange.com')],
 
-https://globalmathproject.org/ friendlink
 
-https://mathinstitutes.org/
-
-*/
 
 	],'TBrc')
 ;

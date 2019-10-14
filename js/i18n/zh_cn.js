@@ -219,6 +219,8 @@ lang['zh_cn'] = {
 	'Periodicity':'周期',
 	'Period':'周期',
 	'Comprehensive':'综合',
+	'Holistic':'整体性',
+
 	'Ergodic':'遍历',
 	'Ergodicity':'遍历',
 	'Reverse':'逆转',
@@ -265,6 +267,7 @@ lang['zh_cn'] = {
 	'Teaching': '教学',
 	'Course': '课程',
 	'Curriculum':'课程',
+	'Curricula':'全部课程',
 	'Test Question Library':'试题库',
 	'Drill': '练习',
 	'Assign':'布置',
@@ -284,6 +287,7 @@ lang['zh_cn'] = {
 	'Survey':'调查',
 	'Investigation':'调查研究',
 	'Questionnaire':'问卷',
+	'Draft':'草稿',
 
 
 	'Discuss':'讨论',
@@ -303,6 +307,7 @@ lang['zh_cn'] = {
 	'Choice': '选择',
 	'Judgement': '判断',
 
+	'Semester':'学期',
 
 
 	//学术
@@ -311,6 +316,7 @@ lang['zh_cn'] = {
 	'Periodical':'期刊',
 	'Journal':'刊物',
 	'Preprint':'预印本',
+	'Bi-weekly':'双周',
 	'Annual':'每年',
 	'Monthly':'每月',
 	'Bimonthly':'双月',
@@ -331,13 +337,19 @@ lang['zh_cn'] = {
 	'Webinar':'网络研讨会',
 	'Workshop':'讲习',
 	'Conference':'会议',
+	'Lecture':'研究',
 
+	'FSc':'理学教员',
+	'BSc':'理学学士',
 	'MSc':'理学硕士',
+	'B.S.':'理学学士',
 	'M.S.':'理学硕士',
 	'Baccalaureate':'学士学位',
 	'Ph.D.':'博士学位',
 	'Sc.D.':'理学博士',
-	'B.S.':'理学学士',
+	'M.Phil.':'哲学硕士',
+	'Matric':'中学毕业学年',
+
 	'Undergraduate':'本科',
 	'Postgraduate':'研究生',
 	'University':'大学',
@@ -430,6 +442,13 @@ lang['zh_cn'] = {
 	'Culture':'文化',
 	'Subculture':'亚文化',
 	'Humanism':'人文主义',
+	'Humanity':'人性',
+	'Innumeracy':'数盲',
+	'Illiteracy':'文盲',
+	'Numeracy':'算数能力',
+	'Literacy':'读写能力',
+	'Phobias':'恐惧症',
+
 	'Business':'商业',
 	'Politics':'政治',
 	'Economy':'经济',
@@ -644,6 +663,7 @@ lang['zh_cn'] = {
 	'Effects': '特效',
 	'Action': '动作',
 	'Scene': '场景',
+	'Scenario':'场合',
 
 	'Gadget': '部件',
 	'Widget':'部件',

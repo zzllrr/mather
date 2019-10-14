@@ -14,13 +14,13 @@ var toolSwitch=function(x){
 
 	$('#preview.seled').click();
 
-	if(/solve|graphic|teaching/.test(x)){
+	if(/solve|graphic/.test(x)){
 		$('#iTextFold').not('.seled').click()
 	}else{
 		
 		$('#iTextFold.seled').click()
 	}
-	$('#go').toggle(/solve|graphic|show|teaching/.test(x));
+	$('#go').toggle(/solve|graphic|show/.test(x));
 
 	$('#send2textBox,.snippetSend').toggle(hasEditorTxt);
 

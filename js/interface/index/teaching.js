@@ -55,7 +55,7 @@ teachings={index:['Course','Assignment','Exam','Activity'
         'Quiz',
     ],
     'Activity':[
-        'Vote','Questionnaire','Discuss'
+        'Vote','Questionnaire','Discuss','Q & A'
     ]
     
 };

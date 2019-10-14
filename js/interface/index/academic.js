@@ -21,12 +21,14 @@ academics={index:['Toolset','Thesis','Monograph','Periodical',
     'Periodical':[
 
     ],
-    'Seminar':[
-
+    'Meeting':[
+        'Lecture',
+        'Workshop',
+        'Seminar',
+        'Webinar',
+        'Conference',
     ],
-    'Workshop':[
 
-    ],
     'Problem List':[
 
     ],

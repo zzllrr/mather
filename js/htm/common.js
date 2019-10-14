@@ -114,6 +114,8 @@ loadHTML=function (x) {
    }else if(t){
        oHTML(t,1,'',cb);
 
+   }else{
+       oHTML(DCtv('abscenter hue rem3',href(HOM.ZMather,gM('zzllrr Mather'))))
    }
 
 };
