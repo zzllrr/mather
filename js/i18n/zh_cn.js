@@ -268,6 +268,7 @@ lang['zh_cn'] = {
 	'Course': '课程',
 	'Curriculum':'课程',
 	'Curricula':'全部课程',
+	'Pedagogy':'教学法',
 	'Test Question Library':'试题库',
 	'Drill': '练习',
 	'Assign':'布置',
@@ -330,6 +331,10 @@ lang['zh_cn'] = {
 	'Reference': '引用',
 	'Newsletter':'新闻通讯',
 
+	'AMS':'美国数学学会',
+	'MAA':'美国数学协会',
+	'SIAM':'工业和应用数学学会',
+
 	'Meeting':'会议',
 
 	'Academic':'学术',
@@ -337,8 +342,9 @@ lang['zh_cn'] = {
 	'Webinar':'网络研讨会',
 	'Workshop':'讲习',
 	'Conference':'会议',
-	'Lecture':'研究',
+	'Lecture':'讲座',
 
+	'Syllabus':'教学大纲',
 	'FSc':'理学教员',
 	'BSc':'理学学士',
 	'MSc':'理学硕士',
@@ -349,12 +355,16 @@ lang['zh_cn'] = {
 	'Sc.D.':'理学博士',
 	'M.Phil.':'哲学硕士',
 	'Matric':'中学毕业学年',
+	'Doctor':'博士',
+	'Doctoral':'博士',
 
 	'Undergraduate':'本科',
 	'Postgraduate':'研究生',
 	'University':'大学',
 	'Institue':'研究院',
 	'College':'学院',
+
+	'Professor':'教授',
 
 	'Race':'比赛',
 	'Contest':'竞赛',

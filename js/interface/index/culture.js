@@ -102,7 +102,7 @@ cultures={index:['Art','Game','Toy','Video Game','Activity'],
 		]},
 		
 		{'Puzzle':[
-			'Maze',
+			
 		]},
     ],
 	

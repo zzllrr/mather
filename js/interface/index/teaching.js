@@ -3,10 +3,11 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-teachings={index:['Course','Assignment','Exam','Activity'
+teachings={index:['Course','Assignment','Exam','Activity','Pedagogy'
     ],
 
     'Course':[
+        {'K12':[]},
         {11:[]},
         {14:zlrA('14',seqA(10,6,'',10).concat(99))},
         {17:zlrA('17',seqA(10,8,'',10).concat(99))},
@@ -56,6 +57,9 @@ teachings={index:['Course','Assignment','Exam','Activity'
     ],
     'Activity':[
         'Vote','Questionnaire','Discuss','Q & A'
+    ],
+    'Pedagogy':[
+
     ]
     
 };

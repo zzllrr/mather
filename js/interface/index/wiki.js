@@ -5,7 +5,7 @@
  */
 
 wikis={
-	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking'],
+	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking','Glossary'],
 
 	'Theorem':[
 		{'Principle':[
@@ -162,7 +162,7 @@ wikis={
 
 	'Explore':[
 		{'from Formula':[
-			'Cuboid Surfacearea',
+			'Cuboid Surface Area',
 		]},
 		{'from Theorem':[
 			'费马大定理中的方程1解变6解',

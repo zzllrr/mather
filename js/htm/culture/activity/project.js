@@ -8,7 +8,6 @@
 
 culture['Project']=Table([i18(ZLR('Name Founder Features'))],[
 	[href(Hs+'maths.org','Millennium Mathematics Project - MMP'),'Cambridge University',hrefA('maths.org',ZLR('NRICH Plus Wild'),1).join(' ')],
-	[href(Hs+'globalmathproject.org','Global Math Project - GMP'),'',''],
 	[href(Hs+'www.think-maths.co.uk','Think Maths'),'',''],
 
 	[href(Hs+'goodthinkingsociety.org','Good Thinking'),'','a small charity that is pro-science and anti-pseudoscience, encouraging curious minds and promotion rational enquiry'],

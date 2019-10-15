@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Cuboid Surfacearea']=
+wiki['Cuboid Surface Area']=
 DCtv('floatl',
 	XML.wrapE('zdog',`
 	C.setAttribute('spinning',true);C.width=300;C.height=300;

@@ -4,8 +4,8 @@
  * Released under MIT License
  */
 academics={index:['Toolset','Thesis','Monograph','Periodical',
-    'Seminar','Workshop','Problem List',
-    'Awards','Organization'],
+    'Meeting','Problem List','Awards',
+    'Organization'],
 
     'Toolset':[
 
