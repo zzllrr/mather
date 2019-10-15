@@ -1401,7 +1401,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		s0=s0.trim();
 		if(/【.+】/.test(c)){
 			var A=c.match(/【.+】[^\n]+/g);
-			consolelog(A);
+			//consolelog(A);
 			eg2=Arrf(function(x){var x0=x.split('】')[0]+'】', x1=x.split('】 ')[1];return x0+sceg2(x1)}, A).join(br);
 			c=c.replace(/【.+】[^\n]+/g,'');
 		}
@@ -1419,7 +1419,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	var t='';
 	return Arrf(function(x){
 		var s='',u=[];
-		consolelog('x=',x);
+		//consolelog('x=',x);
 		$.each(x,function(jsname,funcA){
 			var tp=typeof funcA;
 			if(isArr(funcA)){
@@ -1427,7 +1427,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			}else if(tp ==  'object'){
 				$.each(funcA,function(grp,funcs){
 					if(isArr(funcs)){
-						consolelog(grp,funcs);
+						//consolelog(grp,funcs);
 						u.push(detail(grp,API(funcs)))
 					}else{
 						u.push(detail(grp,Arrf(function(i){return fun2str(i,eval(i))},ZLR(funcs)).join(br)));
@@ -1495,7 +1495,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	参数standard 指定按*,/ 标准写法
 	*/
 	if(standard){
-		consolelog(x);
+		//consolelog(x);
 		return x.replace(/[xⅹ╳‧×]/ig,'*').replace(/[÷／]/ig,'/')
 	}
 	return x.replace(/[xⅹ╳‧]/ig,'×')
@@ -1623,7 +1623,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		var Bi=[],Ai=A[i];
 		for(var j=0;j<n;j++){
 			var Aij=Ai[j],s='';
-			//consolelog(i,j,Aij);
+			////consolelog(i,j,Aij);
 			Bi.push(Aij.t?eval(Aij.t).toStr(Aij,Aij.typ||''):Aij)
 		}
 		B.push(Bi);
@@ -1686,7 +1686,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 		if(iTyp=='LaTeX'){
 
-//consolelog(t);
+////consolelog(t);
 			if(t){
 				if(t.indexOf('$')>-1){
 					t=t.replace(/^[^\$]+/g,'');
@@ -1741,13 +1741,13 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	}else if(iTyp=='LaTeX' && !isArr(t)){//字符	istd
 		var tl=SL[t];
 		
-//consolelog(tl,t);
+////consolelog(tl,t);
 		if(tl && !shft && t=='≠'){
 	//		t='=\\not\\mathrlap{}'	//fix bug of katex ≠
 		}else{
 			t=tl && !shft?(tl[0]=='^'?'':'\\')+tl+' ':t;
 		}
-//consolelog(tl,t);
+////consolelog(tl,t);
 	}
 		
 
@@ -1755,14 +1755,14 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	if(shft && sS!=sE){// fix bug of shift on textarea 
 		sS=sE
 	}
-//consolelog(iv,sS,sE);
+////consolelog(iv,sS,sE);
 
 
 
 	var v=iv.substr(0,sS+(t=='删'?-1:0))+(t=='删'?'':t)+(sE==iv.length?'':iv.substr(sE));
 	i.val(v).change();
 
-//consolelog(v,t);
+////consolelog(v,t);
 
 	t=sS+(t=='删'?-1:(t.length%2==0 && mult?t.length/2:(istd && /\{/.test(t) && !/\(/.test(t)?t.indexOf('{')+1:(/,/.test(t)?(/..,/.test(t)?t.indexOf(',')+1:1):t.length-(+(fn && !shft))))));
 
@@ -1778,7 +1778,7 @@ sbsTbl=function(){
 
 	var str='<table class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">',SL=SBS.Latex,SLF=ZLR(SL.func);
 	var strK=function(K,A){
-	//consolelog(A);
+	////consolelog(A);
 		var si=1,s='',n=Math.max(A[0].length,A[1].length), f=function(c){
 			if(c==' '){
 				return ''
@@ -1854,7 +1854,7 @@ sbsTbl=function(){
 	//STRUC
 	var str='<div class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
-	//consolelog(K,A);
+	////consolelog(K,A);
 		var s='<div class=Sts data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
 			var c=A[i];
@@ -1880,7 +1880,7 @@ sbsTbl=function(){
 
 			var K=S[j],A=STRUC[K];
 			//str+=strK(K,A);
-			consolelog(K,A);
+			//consolelog(K,A);
 			str+=Arrf(function(x){return strK(K,x)},A).join('');
 			
 			A=A[0];
@@ -2497,7 +2497,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 
 		$('.snippet.seled').attr('data-type',p);
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
-		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(Set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
+		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
 			i<0?[[0]]:[[0,2,4],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
 		)));
 		$('.inputTypeTip').remove();
@@ -2762,7 +2762,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 			A=[iv.substr(0,sS),iv.substring(sS,sE),iv.substr(sE)],t=sS, iT=$('#input0Type').val();
 			if(k==9 && !alt){
 			
-				consolelog(A);
+				//consolelog(A);
 				if(shft){
 					A[1]=A[1].replace(/^\t/,'').replace(/\n\t/g,'\n');
 				}else{
@@ -2775,9 +2775,9 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 				return false
 			}
 			
-			consolelog(k);
+			//consolelog(k);
 			if(ctrl && iT=='Markdown' && id=='input0' && [73,66,85,81,75].indexOf(k)>-1){
-				consolelog(sS,iv,sE);
+				//consolelog(sS,iv,sE);
 				if(k==73){
 					if(sS==sE){
 						A[1]='**';

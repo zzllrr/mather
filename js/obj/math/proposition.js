@@ -177,7 +177,7 @@ var Prop={//命题 本质上是dom（html）
 	},
 
 	opr2:function(op,A,B){//二元运算
-		var C=[],m=A.length,n=B.length,Cs=[], ar=arguments, arl=ar.length;C.t='Set';
+		var C=[],m=A.length,n=B.length,Cs=[], ar=arguments, arl=ar.length;C.t='set';
 
 		if(op=='∧'){//合取
 			if(D.is('.true')){

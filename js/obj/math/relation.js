@@ -16,10 +16,10 @@ var Rlt={//关系 本质上也是集合
 	build:{
 		obj:function(arr,s,src,mtrx,src1,src2){//直接构造对象 src是集合 【arr和mtrx二选一】 src1前域 src2陪域 src=src1 ∪ src2
 			//mtrx是布尔矩阵（元素仅为0或1）
-			var A=[].concat(arr);A.t='Rlt';A.s=s||'';A.src=src||(src1?Set.opr2('∪',src1,src2):'');A.m=mtrx||'';
+			var A=[].concat(arr);A.t='Rlt';A.s=s||'';A.src=src||(src1?set.opr2('∪',src1,src2):'');A.m=mtrx||'';
 			if(src1){
-				A.src1=Set.opr1('拷',src1);
-				A.src2=Set.opr1('拷',src2);
+				A.src1=set.opr1('拷',src1);
+				A.src2=set.opr1('拷',src2);
 			}
 			if(!arr){
 				return Rlt.fromMtrx(mtrx,A.src)
@@ -75,19 +75,19 @@ var Rlt={//关系 本质上也是集合
 				var m=A.length,n=B.length,t=m<=n;
 				if(!t){return 0}
 				for(var i=0;i<m;i++){
-					if(!Set.is.b2['∈'](A[i],B)){
+					if(!set.is.b2['∈'](A[i],B)){
 						return 0
 					}
 				}
 				return 1
 			},
-			"⊂":function(A,B){return +(A.length<B.length && Set.is.b2['⊆'](A,B))},
-			"⊇":function(A,B){return +Set.is.b2['⊆'](B,A)},
-			"⊃":function(A,B){return +(A.length>B.length && Set.is.b2['⊆'](B,A))},
-			"⊄":function(A,B){return +(!Set.is.b2['⊂'](A,B))},
-			"⊅":function(A,B){return +(!Set.is.b2['⊃'](A,B))},
-			"⊈":function(A,B){return +(!Set.is.b2['⊆'](A,B))},
-			"⊉":function(A,B){return +(!Set.is.b2['⊇'](A,B))},
+			"⊂":function(A,B){return +(A.length<B.length && set.is.b2['⊆'](A,B))},
+			"⊇":function(A,B){return +set.is.b2['⊆'](B,A)},
+			"⊃":function(A,B){return +(A.length>B.length && set.is.b2['⊆'](B,A))},
+			"⊄":function(A,B){return +(!set.is.b2['⊂'](A,B))},
+			"⊅":function(A,B){return +(!set.is.b2['⊃'](A,B))},
+			"⊈":function(A,B){return +(!set.is.b2['⊆'](A,B))},
+			"⊉":function(A,B){return +(!set.is.b2['⊇'](A,B))},
 		}
 	},
 	fromStr:function(s){
@@ -102,7 +102,7 @@ var Rlt={//关系 本质上也是集合
 		str=[];
 		for(var k=0;k<A.length;k++){
 			var Ak=A[k],i=src[Ak[0]],j=src[Ak[1]];
-			//其实需要将i,j进行toStr转换（如果是Mtrx，Set）
+			//其实需要将i,j进行toStr转换（如果是Mtrx，set）
 			//str+='<'+i+','+j+'>,';
 			str.push('&lt;'+i+','+j+'&gt;');
 		}
@@ -145,25 +145,25 @@ var Rlt={//关系 本质上也是集合
 			S=[].concat(R);
 			S.t='Rlt';
 			S.s=R.s||'';
-			S.src=Set.opr1('拷',R.src);
+			S.src=set.opr1('拷',R.src);
 			if(R.src1){
-				S.src1=Set.opr1('拷',R.src1);
+				S.src1=set.opr1('拷',R.src1);
 			}
 			if(R.src2){
-				S.src2=Set.opr1('拷',R.src2);
+				S.src2=set.opr1('拷',R.src2);
 			}
 			S.m=Mtrx.opr1('拷',R.m);
 		}
 		if(/^[DR]$/.test(op)){//定义域 值域
-			S=Set.opr1('拷',R.src);
+			S=set.opr1('拷',R.src);
 			var B=[],n=R.length;
 			for(var i=0;i<n;i++){
 				B.push(R[i][+(op=='R')])
 			}
-			return Set.opr2('取',S,B)
+			return set.opr2('取',S,B)
 		}
 		if(/^[前陪]$/.test(op)){//前域 陪域
-			return Set.opr1('拷',R['src'+(1+(op=='陪'))]||R.src);
+			return set.opr1('拷',R['src'+(1+(op=='陪'))]||R.src);
 		}
 		if(op=='逆'){
 			S=Rlt.opr1('拷',R);

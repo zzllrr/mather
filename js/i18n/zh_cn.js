@@ -309,7 +309,7 @@ lang['zh_cn'] = {
 	'Judgement': '判断',
 
 	'Semester':'学期',
-
+	'Glean':'费力搜集',
 
 	//学术
 
@@ -345,6 +345,7 @@ lang['zh_cn'] = {
 	'Lecture':'讲座',
 
 	'Syllabus':'教学大纲',
+	'Hons':'学士学位',
 	'FSc':'理学教员',
 	'BSc':'理学学士',
 	'MSc':'理学硕士',
@@ -365,6 +366,8 @@ lang['zh_cn'] = {
 	'College':'学院',
 
 	'Professor':'教授',
+	'Alumni':'校友',
+	'Prospectus':'简章',
 
 	'Race':'比赛',
 	'Contest':'竞赛',

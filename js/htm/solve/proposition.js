@@ -256,7 +256,7 @@ solve['proposition']=function(inputValue, uriA){
 		});
 //console.log(A);
 //console.log(C);
-		B=Set.opr2('-',seqA(0,Math.pow(2,N1)),C);
+		B=set.opr2('-',seqA(0,Math.pow(2,N1)),C);
 //console.log(B);
 		for(var i=Math.pow(2,N1)-1;i>-1;i--){
 			var s=('00'+i.toString(2)).substr(-N1),v0='';
@@ -275,7 +275,7 @@ solve['proposition']=function(inputValue, uriA){
 
 		}
 		
-		b=Set.opr2('-',seqA(0,Math.pow(2,N1)),c);
+		b=set.opr2('-',seqA(0,Math.pow(2,N1)),c);
 //console.log(A);
 //console.log(B);
 //console.log(C);

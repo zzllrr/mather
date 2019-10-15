@@ -10,13 +10,12 @@ var showTool = [
     'JS I18 EN YAML'
 ];
 shows = {
-    index: ZLR('Document Slide Speech Sound Music Image Video 3D VR AR'),
+    index: ZLR('Document Slide Speech Sound Image Video 3D VR AR'),
     tool: {
         'Document': showTool,
         'Slide': ['Slide section'].concat(showTool),
         'Speech': [],
         'Sound': [],
-        'Music': [],
         '3D': ['D3 D2 Zdog Canvas SVG Echarts'],
         'Image': [],
         'Video': [],

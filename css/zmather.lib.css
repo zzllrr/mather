@@ -710,7 +710,6 @@ summary ~ details summary{
 #splash div{
 	display: inline-block;
 	border-radius: 100%;
-    border: solid 10px white;
     padding: 20px;
 }
 

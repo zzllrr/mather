@@ -1269,7 +1269,7 @@ if(ia=='11' && jb=='23'){//
 		}
 	}
 
-	return pos1||neg1 ? A.filter(function(t){return nAis(t,'','',pos1||'',neg1||'')}) : A	// t 满射 posA		Set.is.b2('⊆',posA,t)
+	return pos1||neg1 ? A.filter(function(t){return nAis(t,'','',pos1||'',neg1||'')}) : A	// t 满射 posA		set.is.b2('⊆',posA,t)
 
 
 

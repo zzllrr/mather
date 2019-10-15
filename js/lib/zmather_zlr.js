@@ -549,7 +549,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 			strbtn + gM('Parameter') + '" class="katexv1" />')
 	},
 	mark = function (v, t) { return '<mark title=' + (t || 'API') + '>' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },
-	href = function (url, text, title) { return '<a href="' + url + '" target="_blank" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer">' + (text || url) + '</a>' },
+	href = function (url, text, title) { return '<a href="' + url + '" target="_blank" rel="external" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer">' + (text || url) + '</a>' },
 	hrefA= function(u,A,sub){return Arrf(function(X){var x=X.toLowerCase(); return href(Hs+(sub?x+'.'+u:(/@@/.test(u)?u.replace(/@@/g,x):u+'/'+x)),X.replace(/.+#/,''))},A)},
 	inhref = function (url, text, title) { return '<a href="' + url + '" ' + (title ? 'title="' + title + '" ' : '') + '>' + (text || url) + '</a>' },
 	ol = function (A, c, start) { return '<ol class="alignl ' + (c != null ? c : '') + '"' + (start != null ? ' start=' + start : '') + '>' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ol>' }, kol = function (A, c, start) { return ol(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c, start) },

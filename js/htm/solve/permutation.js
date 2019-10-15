@@ -97,7 +97,7 @@ solve['permutation']=function(inputValue, uriA){
 		rS=rS.concat(
 			Arrf(function(t){
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'2',odd=ij=='1',
-					tA=PfS(t), n=tA.length, A=seqA(1,n),C=Set.opr2('-',A,tA),
+					tA=PfS(t), n=tA.length, A=seqA(1,n),C=set.opr2('-',A,tA),
 					t1=t.replace('i',C[0]).replace('j',C[1]), t2=t.replace('i',C[1]).replace('j',C[0]),
 					B1=PfS(t1),B2=PfS(t2),n1=nInvOrder(B1),n2=nInvOrder(B2),k=+(odd && n1%2 || !odd && n1%2==0);
 				return kxA([t1+' = '+PtS(B1),'逆序数 = '+n1+', 是'+'偶奇'[n1%2]+'排列',

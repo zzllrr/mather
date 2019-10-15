@@ -74,6 +74,8 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	['Confucius',"Everything has beauty, but not everyone sees it."],
 	['Confucius',"He who asks a question is a fool for five minutes; he who does not ask a question remains a fool forever."],
 	['Confucius',"Learning without thought is labor lost; thought without learning is perilous."],
+	['David Hilbert',"Wir müssen wissen, wir werden wissen."],
+	['David Hilbert',"我们必须知道，我们必将知道。"],
 	['David Hilbert',"Mathematics is a game played according to certain simple rules with meaningless marks on paper."],
 	['David Hilbert',"The infinite! No other question has ever moved so profoundly the spirit of man."],
 	['David Hilbert',"Before beginning [to try to prove Fermat's Last Theorem] I should have to put in three years of intensive study, and I haven't that much time to squander on a probable failure."],
@@ -234,6 +236,8 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	['Montesquieu',"I have never known any distress that an hour's reading did not relieve."],
 	['Morris Kline',"Actually, most mathematics courses do not teach reasoning of any kind. Students are so baffled by the material that they are obliged to memorize in order to pass examinations."],
 	['Morris Kline',"Mathematicians create by acts of insights and intuition.  Logic then sanctions the conquests of intuition."],
+
+	['Napoleon','一个国家只有数学蓬勃发展，才能展现它国力的强大。数学的发展和至善和国家繁荣昌盛密切相关。'],
 	['Nathanael West',"Numbers constitute the only universal language."],
 	['Native American saying',"Tell me and I'll forget. Show me and I may not remember. Involve me, and I'll understand."],
 	['Nicolai Lobachevsky',"There is no branch of mathematics, however abstract, which may not someday be applied to the phenomena of the real world."],
@@ -330,6 +334,7 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	['unknown',"If you want to get something done, find a busy man."],
 	['unknown',"Physicists defer only to mathematicians, and mathematicians defer only to God."],
 	['unknown','Attitude is more an indicator of success than aptitude.'],
+
 
 ],'TBrc')+detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
 

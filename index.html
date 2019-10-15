@@ -14,23 +14,22 @@
 	
 	<link rel="stylesheet" href="css/zmather.io.css" />
 	<link rel="stylesheet" href="css/zmather.lib.css" />
-	<link rel="stylesheet" href="css/zmather.cap.css" />
+	<link rel="stylesheet" href="css/zmather.doodle.css" defer />
 
 	<!-- 引用第三方库 -->
 	<script src="js/lib/jquery.js"></script>
     <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
-	<script src="js/lib/js-yaml.js"></script>
-
-	<script src="js/lib/algebra.js"></script>
+	<script src="js/lib/js-yaml.js" defer></script>
 
     <!-- 富媒体 -->
     <script src="js/lib/katex.js"></script>
-    <script src="js/lib/zdog.js"></script>
-	<script src="js/lib/echarts.js"></script>
-	<script src="js/lib/echarts-gl.js"></script>
-	<script src="js/lib/effects.js"></script> <!-- js特效-->
+    <script src="js/lib/zdog.js" defer></script>
+	<script src="js/lib/echarts.js" defer></script>
+	<script src="js/lib/echarts-gl.js" defer></script>
+	<script src="js/lib/effects.js" defer></script> <!-- js特效-->
 	
-	<script src="js/lib/qrcode.js"></script>
+	<script src="js/lib/qrcode.js" defer></script>
+	
 	<script src="js/lib/qrcode-decoder.js"></script>
 	
 	<script src="js/lib/geogebra.js" defer></script>
@@ -47,39 +46,28 @@
 	<script src="js/lib/zmather_zlr.js"></script>
     <script src="js/lib/zmather_io.js"></script>
 
-	<!-- 底层对象 -->
-	<script src="js/obj/math/function.js"></script>
-	<script src="js/obj/math/num.js"></script>
-	<script src="js/obj/math/prime.js"></script>
-	<script src="js/obj/math/statistic.js"></script>
-	<script src="js/obj/math/geometry.js"></script>
-	<script src="js/obj/math/proposition.js"></script>
-	<script src="js/obj/math/set.js"></script>
-	<script src="js/obj/math/permutation.js"></script>
-	<script src="js/obj/math/matrix.js"></script>
-	<script src="js/obj/math/relation.js"></script>
-
-	<script src="js/obj/graphic/svg.js"></script>
-	<script src="js/obj/graphic/canvas.js"></script>
-
-
-	<!-- 底层对象封装 -->
-	<script src="js/obj/math.js"></script>
-	<script src="js/obj/graphic.js"></script>
-
-
-
+  
+  
+    <!-- 底层对象 -->
+    <script src="js/obj/math/function.js"></script>
+    <script src="js/obj/math/num.js"></script>
+    <script src="js/obj/math/prime.js"></script>
+    <script src="js/obj/math/statistic.js"></script>
+    <script src="js/obj/math/geometry.js"></script>
+    <script src="js/obj/math/proposition.js"></script>
+    <script src="js/obj/math/set.js"></script>
+    <script src="js/obj/math/permutation.js"></script>
+    <script src="js/obj/math/matrix.js"></script>
+    <script src="js/obj/math/relation.js"></script>
+  
+    <script src="js/obj/graphic/svg.js"></script>
+    <script src="js/obj/graphic/canvas.js"></script>
+  
 
 	<!-- 页面公有 -->
 	<script src="js/htm/common.js"></script>
 	
 
-	<!-- 界面语法提示  -->
-	<script src="js/tooltip/math.js"></script>
-	<script src="js/tooltip/graphic.js"></script>
-	<script src="js/tooltip/html.js"></script>
-	<script src="js/tooltip/xr.js"></script>
-	<script src="js/tooltip/api.js"></script>
 
 	<!-- 当前页面私有 -->
 
@@ -87,6 +75,7 @@
 
 	<script src="js/interface/index/solve.js"></script>
 	<script src="js/interface/index/graphic.js"></script>
+	
 	<script src="js/interface/index/show.js"></script>
 	<script src="js/interface/index/wiki.js"></script>
 	<script src="js/interface/index/teaching.js"></script>
@@ -96,27 +85,27 @@
 	<script src="js/interface/index/culture.js"></script>
 
 
-	<script src="js/htm/capture/cap.js"></script>
-	<script src="js/htm/capture/cap_mdn.js"></script>
-	<script src="js/htm/capture/cap_mmv.js"></script>
-	<script src="js/htm/capture/cap_mup.js"></script>
+	<!-- 界面语法提示  -->
+	<script src="js/tooltip/math.js" defer></script>
+	<script src="js/tooltip/graphic.js"></script>
+	<script src="js/tooltip/graphic/echarts.js" defer></script>
+	<script src="js/tooltip/html.js" defer></script>
+	<script src="js/tooltip/xr.js" defer></script>
+	<script src="js/tooltip/api.js" defer></script>
+
+	<!-- 涂鸦 -->
+	<script src="js/htm/doodle/doodle.js" defer></script>
+	<script src="js/htm/doodle/doodle_mdn.js" defer></script>
+	<script src="js/htm/doodle/doodle_mmv.js" defer></script>
+	<script src="js/htm/doodle/doodle_mup.js" defer></script>
   
-	<!-- 业务封装层 -->
-
-	<script src="js/run/go.js"></script>
-
-
-	<!-- fractal
-    <script src="js/lib/terrain.js"></script>
- -->
-
 
 
 </head>
 
 <body class=day>
 
-	<div id=splash class=abscenter><div class=rem3>zzllrr Mather</div></div>
+	<div id=splash class=abscenter><img src="img/logo.jpg" /></div>
 	<div id=zMather hidden></div>
 
 	<div id=panel></div>
@@ -126,41 +115,7 @@
 		<div id=oHTML></div>
 
 	</div>
-
-
-
-	<!-- 界面数据层 -->
-
-
-	<script src="js/interface/index/graphic.js"></script>
-	<script src="js/interface/graphic/echarts.js"></script>
-
 	
-
-	<!-- 业务逻辑层 -->
-
-	<!--
-    <script src="js/run/solve/function.js"></script>
-
-    <script src="js/run/solve/prime.js"></script>
-    <script src="js/run/solve/statistic.js"></script>
-    <script src="js/run/solve/geometry.js"></script>
--->
-
-
-	<script src="js/run/solve/number.js"></script>
-	<script src="js/run/solve/sequence.js"></script>
-
-	<script src="js/run/solve/matrix.js"></script>
-	<script src="js/run/solve/permutation.js"></script>
-	<script src="js/run/solve/vector.js"></script>
-
-	<script src="js/run/solve/set.js"></script>
-	<script src="js/run/solve/relation.js"></script>
-	<script src="js/run/solve/proposition.js"></script>
-
-
- 
 </body>
 
 

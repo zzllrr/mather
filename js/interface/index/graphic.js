@@ -78,7 +78,7 @@ graphics={
 		]},
 	],
 	'Statistics':[
-		'Echarts'
+		
 	],
 	'Fractal':[
 		'Mandelbrot','Julia','Cantor','Koch'

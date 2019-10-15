@@ -252,7 +252,7 @@ tooltip['API']=[
 
 	{'htm / common.js':[
 		{'URL常量':'HOME GMAIL qrAli qrqq qrwx qrs VRlib VRlibjs ARlib ARlibjs gitmd'},
-		{'URL变量':'loch losh ishome iscap isdoc isedi hascap'},
+		{'URL变量':'loch losh ishome isdoodle isdoc isedi hasdoodle'},
 		{'URL处理函数':'qrJPG sel questionA enwiki'},
 		{'数值处理':'rng2 rng4 color2rgba atan'},
 		{'界面交互':'toolTip oHTML loadHTML all2html dayOrNight copy2clipboard shadow'},

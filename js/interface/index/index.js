@@ -57,15 +57,19 @@ $(function(){
 			Arrf(function(i){
 				return SCtv('subhead'+(i=='home'?' seled':'')+'" id="'+i+'" title="'+gM(i),itv('',
 					{'home':'home',
-
 					'about':'info_outline',
-
-
-				//	'book':'local_library',
-				//	'wiki':'public'
 
 					}[i]))
 			},ZLR('home about')).join('')
+/*
+			+detail(
+				'<select id=searchBy>'+optgrp(gM('Search'), Options(ZLR('Concept QuestionType'),1).join(''))+'</select>'+
+				'<input type=search id=search list=searchlist />'+
+				'<datalist id=searchlist></datalist>',
+				'<div id=searchResults></div>',
+				'','id=searchTool hidden'
+			)
+*/
 		)+
 		'<div id=navbody>'+
 			DCtv('pd2" id="toolnav',
@@ -73,15 +77,8 @@ $(function(){
 					return XML.wrapE('label','<input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc)
 				},toolnames).join('')
 			)+
-/*
-			detail(
-				'<select id=searchBy>'+optgrp(gM('Search'), Options(ZLR('Concept QuestionType'),1).join(''))+'</select>'+
-				'<input type=search id=search list=searchlist />'+
-				'<datalist id=searchlist></datalist>',
-				'<div id=searchResults></div>',
-				'','id=searchTool hidden'
-			)+
-*/
+
+			
 			Arrf(function(i){
 				return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
 			},toolnames).join('')+

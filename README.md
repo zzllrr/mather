@@ -53,7 +53,7 @@ Compact, portable, powerful, customizable 软件体积小巧便携，但功能�
 |:--:|:--:|:--:|
 |index.html|Homepage首页|[Local本地](/index.html) [Online在线](https://zzllrr.github.io/mather/index.html)|
 |editor.html|Editor编辑器|[Local本地](/editor.html) [Online在线](https://zzllrr.github.io/mather/editor.html)|
-|cap.html|Doodle涂鸦|[Local本地](/cap.html) [Online在线](https://zzllrr.github.io/mather/cap.html)|
+|doodle.html|Doodle涂鸦|[Local本地](/doodle.html) [Online在线](https://zzllrr.github.io/mather/doodle.html)|
 |document.html|Document文档|[Local本地](/document.html) [Online在线](https://zzllrr.github.io/mather/document.html)|
 |slide.html|Slide幻灯片|[Local本地](/slide.html) [Online在线](https://zzllrr.github.io/mather/slide.html)|
 |speech.html|Speech语音|[Local本地](/speech.html) [Online在线](https://zzllrr.github.io/mather/speech.html)|

@@ -39,7 +39,7 @@ academics={index:['Toolset','Thesis','Monograph','Periodical',
     'Organization':[
         'Institution',
         'Association',
-        'Univesity',
+        'University',
         'Scholar',
     ],
 

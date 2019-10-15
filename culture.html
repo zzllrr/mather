@@ -7,7 +7,7 @@
  
     <title>Culture</title>
 
-    <link rel="shortcut icon" href="img/logo.jpg" />
+    <link rel="shortcut icon" href="img/small.png" />
 
     <link rel="stylesheet" href="css/katex.css" />
   
@@ -17,13 +17,14 @@
     <!-- 引用第三方库 -->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
-    <script src="js/lib/js-yaml.js"></script>
+    <script src="js/lib/js-yaml.js" defer></script>
 
     <!-- 富媒体 -->
-    <script src="js/lib/katex.js"></script>
-    <script src="js/lib/echarts.js"></script>
-    <script src="js/lib/echarts-gl.js"></script>
-    <script src="js/lib/qrcode.js"></script>
+    <script src="js/lib/katex.js" defer></script>
+    <script src="js/lib/zdog.js" defer></script>
+    <script src="js/lib/echarts.js" defer></script>
+    <script src="js/lib/echarts-gl.js" defer></script>
+    <script src="js/lib/qrcode.js" defer></script>
 
     <script src="js/lib/geogebra.js" defer></script>
     <script src="js/lib/geogebra_web3d.js" defer></script>
@@ -42,24 +43,24 @@
 
 
     <!-- 底层对象 -->
-    <script src="js/obj/math/function.js"></script>
-    <script src="js/obj/math/num.js"></script>
-    <script src="js/obj/math/prime.js"></script>
-    <script src="js/obj/math/statistic.js"></script>
-    <script src="js/obj/math/geometry.js"></script>
-    <script src="js/obj/math/proposition.js"></script>
-    <script src="js/obj/math/set.js"></script>
-    <script src="js/obj/math/permutation.js"></script>
-    <script src="js/obj/math/matrix.js"></script>
-    <script src="js/obj/math/relation.js"></script>
+    <script src="js/obj/math/function.js" defer></script>
+    <script src="js/obj/math/num.js" defer></script>
+    <script src="js/obj/math/prime.js" defer></script>
+    <script src="js/obj/math/statistic.js" defer></script>
+    <script src="js/obj/math/geometry.js" defer></script>
+    <script src="js/obj/math/proposition.js" defer></script>
+    <script src="js/obj/math/set.js" defer></script>
+    <script src="js/obj/math/permutation.js" defer></script>
+    <script src="js/obj/math/matrix.js" defer></script>
+    <script src="js/obj/math/relation.js" defer></script>
 
-    <script src="js/obj/graphic/svg.js"></script>
-    <script src="js/obj/graphic/canvas.js"></script>
+    <script src="js/obj/graphic/svg.js" defer></script>
+    <script src="js/obj/graphic/canvas.js" defer></script>
 
 
     <!-- 底层对象封装 -->
-    <script src="js/obj/math.js"></script>
-    <script src="js/obj/graphic.js"></script>
+    <script src="js/obj/math.js" defer></script>
+    <script src="js/obj/graphic.js" defer></script>
 
 
 
@@ -84,9 +85,8 @@
     <script src="js/htm/culture/activity/project.js"></script>
   </head>
   <body>
-      <div id=splash class=abscenter><div class=rem3>Culture</div></div>
       <div id=panel></div>
-      <div id=oHTML></div>
+      <div id=oHTML><div class=pd20><progress /></div></div>
 
   </body>
 </html>

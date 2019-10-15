@@ -3588,7 +3588,7 @@ consolelog(sim);
 	
 	*/
 	if(/[∍∌∋⋑⊋⊉⊇⊅⊃⊂⊄⊆⊈⊊⋐∈∉∊]/.test(o)){
-		return 'Set'
+		return 'set'
 	}
 	if(/[=≠≡≢≣≈≉≋≥>≰|≱<≤]/.test(o)){
 		return 'Num'

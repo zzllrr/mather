@@ -12,9 +12,9 @@ solve['relation']=function(inputValue, uriA){
 	if(sel(uriA,'关系类型')){
 		var A=v.replace(/｛/g,'{').replace(/｝/g,'}').replace(/，/g,',').split(' '), An=A.length,set=A[0],
 		bool=A[A.length-1],set2,Uset,rA=[],Rlt='{}',q,ra, rs='';
-		set=Set.fromStr(set);
+		set=set.fromStr(set);
 		if(An==1){//商集确定的等价关系
-			var Q=Set.fromStr(A[0].substr(4)),Ql=[],QA=[];
+			var Q=set.fromStr(A[0].substr(4)),Ql=[],QA=[];
 			for(var i=0;i<Q.length;i++){
 				var Qil=Q[i].length;
 				Ql.push(Qil);
@@ -27,8 +27,8 @@ solve['relation']=function(inputValue, uriA){
 			set2=set;
 			Uset=set;
 		}else{
-			set2=Set.fromStr(A[1]);
-			Uset=Set.opr2('∪',set,set2);
+			set2=set.fromStr(A[1]);
+			Uset=set.opr2('∪',set,set2);
 		}
 
 		var rn=Uset.length;
@@ -37,7 +37,7 @@ solve['relation']=function(inputValue, uriA){
 			for(var i=0;i<rn;i++){
 				for(var j=0;j<rn;j++){
 					if(M[i][j]){
-						Si.push('&lt;'+[Set.toStr(Uset[i]),Set.toStr(Uset[j])].join(',')+'&gt;')
+						Si.push('&lt;'+[set.toStr(Uset[i]),set.toStr(Uset[j])].join(',')+'&gt;')
 					}
 				}
 			}
@@ -45,7 +45,7 @@ solve['relation']=function(inputValue, uriA){
 		},Arr2RltSet=function(A){
 			var Si=[];
 			for(var i=0;i<A.length;i++){
-				Si.push(Set.toStr(Uset[A[i]]))
+				Si.push(set.toStr(Uset[A[i]]))
 			}
 			return '{'+Si.join(',')+'}'
 		};
@@ -55,10 +55,10 @@ solve['relation']=function(inputValue, uriA){
 		}else if(/^\{/.test(bool)){//关系是集合形式
 			//Rlt=bool;
 			rA=Mtrx.build.N(rn,rn,0,true);
-			var B=Set.fromStr(bool);
+			var B=set.fromStr(bool);
 			for(var k=0;k<B.length;k++){
-				var Bk=B[k], b0=Set.toStr(Bk[0]),b1=Set.toStr(Bk[1]);
-				rA[Set.opr2('搜',Uset,b0)][Set.opr2('搜',Uset,b1)]=1;
+				var Bk=B[k], b0=set.toStr(Bk[0]),b1=set.toStr(Bk[1]);
+				rA[set.opr2('搜',Uset,b0)][set.opr2('搜',Uset,b1)]=1;
 			}
 			
 		}else if(/^\[|I|diag\(/.test(bool)){//关系是矩阵形式
@@ -70,7 +70,7 @@ solve['relation']=function(inputValue, uriA){
 			//bool=Str2dom.arith(bool);
 			for(var i=0;i<rn;i++){
 				var si=Uset[i];
-				if(An>2 && Set.opr2('搜',set,si)<0){
+				if(An>2 && set.opr2('搜',set,si)<0){
 					rA.push(Mtrx.build.A(rn,0));
 				}else{
 					rA.push([]);
@@ -275,7 +275,7 @@ solve['relation']=function(inputValue, uriA){
 			for(var i=0;i<ni.length;i++){//节点文本
 				var Arr=[],nii=ni[i],niL=nii.length;
 				for(var j=0;j<niL;j++){
-					Arr.push(Set.toStr(Uset[nii[j]]));
+					Arr.push(set.toStr(Uset[nii[j]]));
 				}
 				nA.push(Arr);
 				

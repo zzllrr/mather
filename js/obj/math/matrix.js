@@ -264,13 +264,10 @@ consolelog(i,j,dir);
 			"0":function(A){return +(A.length<1 || /^(0,)*0$/.test(A))},//是否为零矩阵或空矩阵
 			"行阶梯":function(A){//特殊的上三角
 				var B=Mtrx.opr1('r1',A),iA=Arri(B,1),t=iA.join();
-				return +(iA.sort(sortBy.num).join()==t && Set.unique(iA).length==B.length)
+				return +(iA.sort(sortBy.num).join()==t && set.unique(iA).length==B.length)
 			},
 			"列阶梯":function(A){//特殊的下三角
-				/*
-				var B=Mtrx.opr1('c1',A),iA=Arri(B,1),t=iA.join();
-				return +(iA.sort(sortBy.num).join()==t && Set.unique(iA).length==B.length)
-				*/
+
 				return Mtrx.is.b1['行阶梯'](Mtrx.opr1('T',A))
 			},
 			"行最简":function(A){//特殊的行阶梯、上三角
@@ -1059,7 +1056,7 @@ console.log(op,' 结束',p);
 				}
 			}
  			B.t='Mtrx';B.toStr=function(p){return Mtrx.toStr(this,p)};
-			return [B,Set.opr2('-',seqA(1,n),B)]
+			return [B,set.opr2('-',seqA(1,n),B)]
 		}
 		if(op=='part'){/*矩阵分块（返回分块数组） 参数p是十字分割线 写法与Table边框线命令一样
 			I2_5J3_7表示用4条线（#）分成9块

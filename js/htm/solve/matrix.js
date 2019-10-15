@@ -13,7 +13,7 @@ solve['matrix']=function(inputValue, uriA){
 */
 	
 //Display
-consolelog(inputValue,uriA);
+//consolelog(inputValue,uriA);
 	if(sel(uriA,'A')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
@@ -32,7 +32,7 @@ consolelog(inputValue,uriA);
 				var ij=t.split(/&/)[1]||'r2c2', M=MfS(t), A=Mtrx.opr1('parts',M,ij);
 				return A
 		},VA));
-			//	consolelog(rS);
+			//consolelog(rS);
 	}
 
 	if(sel(uriA,'表示成三元组')){
@@ -388,9 +388,9 @@ consolelog(inputValue,uriA);
 				ij.push('1,1,1,1')
 			}
 			
-			consolelog(ij);
+			//consolelog(ij);
 			var isr=ij[0][0].toLowerCase()=='i',IJ=+ij[0].substr(1), M2=Mtrx.build.replace(M,ij[1].split(','),ij[0]);
-			consolelog(M2);
+			//consolelog(M2);
 			var A=Mtrx.opr1('detPTs',M2,'iU=;d;=');
 			return '|A|='+Mtrx.toStr(M)+eq('求题中各元素的'+(ij[0][0]=='i'?'代数':'')+'余子式之和','→','相当于原行列式第'+IJ+(isr?'行':'列')+'元素替换为'+ij[1])
 				+'|A\'|='+Mtrx.toStr(M2)+'\\\\ '+A[1].replace('A','A\'')
@@ -503,7 +503,7 @@ consolelog(inputValue,uriA);
 						frac(msup(pptd(k),M.length,'',''),detA,'')
 						]:[
 						Arrf(function(x){
-							consolelog(x,k);
+							//consolelog(x,k);
 
 							return pptd(plus([k=='0'?'0':k+'/'+pptd(x),	//k+'/'+pptd(x)
 						ij[4],
@@ -1126,7 +1126,7 @@ console.log('单位化？',oi,m,Q);
 			var M=MfS(/=/.test(t)?'Linear('+t+')':t),MI=Mtrx.opr1('PTs',M,'iS='),MI0=MI[0][0];
 
 			var	m=MI0.length,n=MI0[0].length,rA=Mtrx.opr1('秩',subMtrx(MI0,1,m,1,n-1)),rAb=Mtrx.opr1('秩',MI0);
-//	consolelog(rA,rAb);
+//consolelog(rA,rAb);
 			if(rA!=rAb){
 				return kxA(['增广矩阵化最简行',MI[1],'r(A)='+rA,'r(A|b)='+rAb,'两者不相等，因此方程组无解'])
 			}
@@ -1228,7 +1228,7 @@ console.log('单位化？',oi,m,Q);
 				A_b=Mtrx.opr2('-',A,Mtrx.build.I(m,'',ab[1])),A_bE=minus(['A',times([ab[1],'E'])]),
 				aA=Mtrx.opr2('*',A,ab[0]), eaA=times([ab[0],'A']),
 				X=Mtrx.opr1('invlPTs',Mtrx.build.B([[A_b,aA]]),'iS=');
-consolelog(X,aA,eaA);
+//consolelog(X,aA,eaA);
 			return kxA(['A'+B+'='+sums(ab,['A',B],[1,1]), 
 				times([A_bE,B],1)+'='+eaA,
 				B+'='+kfraczp(A_bE,'t','-1')+pptd(eaA),
@@ -1374,22 +1374,22 @@ y=x+特解
 			
 			var m=M.length,A=[];
 			for(var i=0;i<m;i++){
-				consolelog(tA[i],'x_'+(i+1)+'^2');
+				//consolelog(tA[i],'x_'+(i+1)+'^2');
 				A.push(times([tA[i],'x_'+(i+1)+'^2']));
 			}
-			consolelog(A.join(' ; ; '));
+			//consolelog(A.join(' ; ; '));
 			
 			for(var i=0;i<m;i++){
 				for(var j=i+1;j<m;j++){
 					/*	(m-1)+(m-2)+...+(m-1-i+1)+m = (m-1+m-i)*i/2+m
 						*/
-						consolelog(tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1));
+						//consolelog(tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1));
 					
 					A.push(times([tA[(m*2-1-i)*i/2+(j-i-1)+m],'x_'+(i+1)+'x_'+(j+1)]));//(m-1+m-i-2)*i/2+m-1+(j-i)
 				}
 			}
 			
-			consolelog(A.join(' ; ; '));
+			//consolelog(A.join(' ; ; '));
 			return '二次型'+plus(A,1)+', 对应系数矩阵：\\\\ '+kmtrx(M)
 		},VA));
 	}
@@ -1521,7 +1521,7 @@ https://zhidao.baidu.com/question/750762700228964772.html
 
 		var hasP=/&/.test(VA[1]),ij=hasP?VA[1].replace(/.+&/,''):'x';
 		if(ij=='x'){
-			consolelog(Mtrx.build.B([[P,C]]));
+			//consolelog(Mtrx.build.B([[P,C]]));
 			var Y=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,C]]),'iS='), y=subMtrx(Y[0][0],1,n,n+1,n+1);
 			rS.push('x='+Mtrx.toStr(C),'下面来求坐标：y = P^{-1}x',Y[1],'即，所求坐标：y ='+kmtrx(y));
 		}else{
@@ -1688,6 +1688,6 @@ https://zhidao.baidu.com/question/750762700228964772.html
 
 	}
 
-	consolelog(rS);
+	//consolelog(rS);
 	return rS;
 };

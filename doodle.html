@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
  
-    <title>Editor</title>
+    <title>Doodle</title>
 
-    <link rel="shortcut icon" href="img/small.png" />
+    <link rel="shortcut icon" href="img/small.png">
 
     <link rel="stylesheet" href="css/katex.css" />
   
-    <link rel="stylesheet" href="css/zmather.lib.css" />
     <link rel="stylesheet" href="css/zmather.io.css" />
 
+    <link rel="stylesheet" href="css/zmather.lib.css" />
+  
+    <link rel="stylesheet" href="css/zmather.doodle.css" />
 
 
     <!-- 引用第三方库 -->
@@ -26,6 +28,7 @@
     <script src="js/lib/zdog.js" defer></script>
     <script src="js/lib/echarts.js" defer></script>
     <script src="js/lib/echarts-gl.js" defer></script>
+    <script src="js/lib/effects.js" defer></script> <!-- js特效-->
     <script src="js/lib/qrcode.js" defer></script>
     <script src="js/lib/qrcode-decoder.js" defer></script>
 
@@ -43,7 +46,7 @@
     <script src="js/lib/zmather_zlr.js"></script>
     <script src="js/lib/zmather_io.js"></script>
 
-  
+
     <!-- 底层对象 -->
     <script src="js/obj/math/function.js" defer></script>
     <script src="js/obj/math/num.js" defer></script>
@@ -64,27 +67,31 @@
     <script src="js/obj/math.js"></script>
     <script src="js/obj/graphic.js"></script>
 
+
     <!-- 页面公有 -->
     <script src="js/htm/common.js"></script>
 
-	<!-- 界面语法提示  -->
-	<script src="js/tooltip/math.js" defer></script>
-	<script src="js/tooltip/graphic.js" defer></script>
-	<script src="js/tooltip/html.js" defer></script>
-	<script src="js/tooltip/xr.js" defer></script>
-	<script src="js/tooltip/api.js" defer></script>
+
+		<!-- 界面语法提示  -->
+    <script src="js/tooltip/math.js" defer></script>
+    <script src="js/tooltip/graphic.js" defer></script>
+    <script src="js/tooltip/html.js" defer></script>
+    <script src="js/tooltip/xr.js" defer></script>
+    <script src="js/tooltip/api.js" defer></script>
+
 
     <!-- 当前页面私有 -->
-    <script src="js/htm/editor/editor.js"></script>
 
-
+    <script src="js/htm/doodle/doodle.js"></script>
+    <script src="js/htm/doodle/doodle_mdn.js"></script>
+    <script src="js/htm/doodle/doodle_mmv.js"></script>
+    <script src="js/htm/doodle/doodle_mup.js"></script>
+  
 
   </head>
-  <body class="day">
-      <div id=zMather></div>
+  <body class=day>
 
+      <div class=phantom><div class="subhead"><i class=mi>1</i></div></div>
       <div id=panel></div>
-      <div id=oHTML class=pd20></div>
-
   </body>
 </html>
