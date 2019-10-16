@@ -231,7 +231,7 @@ $.each(lang,function(i,v){//扁平化处理i18n内部引用 @数字 @[a-z] @{键
 		}
 	});
 });
-lang['zh_tw']=JSON.parse(zh2big(JSON.stringify(lang['zh_cn'])));
+lang['zh_tw']=jSon(zh2big(jSoff(lang['zh_cn'])));
 if(!i18n || H_o().lang !=L.lang){i18n=lang[H_o().lang||L.lang||'zh_cn']}
 
 
@@ -713,16 +713,23 @@ $(function(){
 			if(tog){
                 $('#zMatherOn:contains(up)').click();
                 $('#iTextFold.seled').click();
-				$('#Caps').fadeIn();
+                $('#Caps').fadeIn();
+                $('#caps').css('z-index',1);
+
 			}else{
 				if(!$('#tileTool').is(':visible')){
 					$('#tileTool').fadeIn();
 					me.addClass('toggle');
 
-					tog=true;
+                    tog=true;
+                    $('#caps').css('z-index',1);
+
 				}else{
-					$('#zMatherOn:contains(down)').click();
-				}
+                    $('#zMatherOn:contains(down)').click();
+                    
+                    $('#caps').css('z-index',-1);
+                }
+                
 			}
 
         }

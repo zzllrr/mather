@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-teaching['Course/11']=
+teaching['Course/History of Mathematics']=
 
 Table([i18(ZLR('Name Type Author Summary'))],[
 

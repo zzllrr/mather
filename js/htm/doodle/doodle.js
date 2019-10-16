@@ -2245,7 +2245,7 @@ dc+
 
 	if(hasdoodle){
 		setTimeout(function(){
-			$('#Caps').show();
+			$('#Caps,#caps').show();
 		},1000);
 		if(isdoodle){
 			$('#tileTool').show();

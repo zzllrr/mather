@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-teaching['Course/99/9910']=
+teaching['Course/Other Disciplines/Mathematical Methods in Physics']=
 
 
 	

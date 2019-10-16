@@ -5,7 +5,7 @@
  */
 
 wiki['Diophantus']=Kx(
-	detail('$n=x^2+y^2+z^2$ Sums of three cubes',ksc(kmod('n','±4',9,1))+Table([$A(ZLR('n x y z'))],[
+	detail('$n=x^3+y^3+z^3$',ksc(kmod('n','±4',9,1))+Table([$A(ZLR('n x y z'))],[
 		
 [0,0,0,0],
 [0,'a','-a',0],

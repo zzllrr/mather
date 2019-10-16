@@ -61,7 +61,7 @@ DCtv('floatl',
 	//\frac1a+\frac1b+\frac1c=\frac{S}{2V}  $$kfrac('1/a+1/b+1/c',1)+'='+kfrac(['S','2V'])$$
 
 	XML.wrapE('MD',`
-## <i18>Cuboid Surfacearea</i18>
+## <i18>Cuboid Surface Area</i18>
 $$Eq([['S','2(ab+ac+bc)=2(a(b+c)+bc)'],'2abc'+zp(kfrac('1/a+1/b+1/c',1)),'2V'+zp(kfrac('1/a+1/b+1/c',1))])$$
 &nbsp;
 $\\frac1a+\\frac1b+\\frac1c=\\frac{S}{2V}$

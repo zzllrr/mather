@@ -222,7 +222,7 @@ function consolelog() {
 	}
 }
 function GM(txt,fromLang,toLang) {
-	var l0=fromLang||H_o().lang || L.lang, l1=toLang||'en';
+	var l0=fromLang||H_o().lang || L.lang || 'zh_cn', l1=toLang||'en';
 	//分词. 多源词.0 .1 .2 
 	if(isArr(txt)){
 		return Arrf(function (i) { return GM(i, l0, l1) }, txt) 
