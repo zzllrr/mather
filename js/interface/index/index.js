@@ -106,9 +106,8 @@ $(function(){
 		}else{
 			$('#menu > .toggle').click();
 			$('#navbody').hide();
-			OH('<iframe src="'+id+'.html" width="99%" height="'+
-			Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
-			'px" class="resize bd0"></iframe>');
+
+			OHiframe(id,{},1);
 			
 		}
 
@@ -380,10 +379,8 @@ $(function(){
 
 					if(iswikilike){
 
-						OH('<iframe src="'+tool+'.html?'+('q='+muri)+
-							'" width="99%" height="'+
-							Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
-							'px" class="resize bd0"></iframe>');
+
+						OHiframe(tool,{q:muri},1);
 						return;
 					}
 		
@@ -396,10 +393,8 @@ $(function(){
 			
 			if(iswikilike && istask){
 				if($('iframe[src="'+tool+'.html?q='+muri).length<1){
-					$('#oHTML').append('<iframe src="'+tool+'.html?'+('q='+muri)+
-					'" width="99%" height="'+
-					Math.max($(window).height()-$('#oContent').position().top+$('#zMather').height()-20,200)+
-					'px" class="resize bd0"></iframe>');
+					OHiframe(tool,{q:muri},1);
+	
 				}
 
 				return;

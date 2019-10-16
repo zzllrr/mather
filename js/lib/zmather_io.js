@@ -7,12 +7,7 @@
  * 依赖：
  * 需先加载 KaTeX
 */
-var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog',
-Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D2 D3 ZD',
-Mele2='LT LX LTX TEX IL YML',
-Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
-Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
-Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
+
 
 var SBSi=[zlr('Num',' 1 2 3'),
 	zlr('ABC',' 1 2'),
@@ -2020,9 +2015,28 @@ $(function(){
 
 	'<div id=iText>'+
 		'<div id=iTextMain>'+
-			DCtv('pd10" hidden contentEditable=true id="input0Preview')+
-			'<textarea id=input0>'+(L.snippet1||'')+'</textarea>'+
-			DCtv('opac" hidden id="input0Tool',
+			DCtv('pd10 resize" hidden contentEditable=true id="input0Preview')+
+			DCtv('resize','<textarea id=input0>'+(L.snippet1||'')+'</textarea>'+
+				'<div id=Snippets hidden>'+
+
+					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
+					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
+
+					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle_outline')+
+
+					
+					itvc('rotate180" id="tClear')+
+					'<input type="file" id=inputSnippetFile hidden />'+
+
+
+
+					'<div id=snippets class=resize>'+
+						Arrf(function(i){return snippet.Str(L['snippetName'+i]||gM('Snippet'),
+							L['snippetType'+i]||'LA',i==1)}, 
+							seqA(1,+L.snippets||1)).join('')+dc
+				+dc
+			)+
+			DCtv('opac" id="input0Tool',
 				itvc('" id=iClear hotkey="Ctrl + E')+
 
 				(isedi?'':itv('" id=send2textBox tip="copy2input','arrow_upward'))+
@@ -2059,16 +2073,15 @@ $(function(){
 					strbtn+':" id=lineSplit />'+
 					strbtn+'⋮" id=Condon class=tool hidden />'+
 
-					itv('tool" tip=Shift id="Shift','keyboard_capslock')+
-					
 					SCtv('iTextLaTeXon',
 						
 						strbtn+'α" id=sbson class=tool />'+
 						strbtn+'ƒ" id=funcson class=tool />'+
-						strbtn+'∑" id=strucon class=tool />'
+						strbtn+'∑" id=strucon class=tool />'+
+						itv('" id=editorLaunch tip="Launch','launch')
 		
 					)+
-					itv('tool" tip="More Snippet" id="Snippetson','subject')+
+					
 				dc+
 				
 				'<div id=ITextLaTeXBox>'+
@@ -2083,26 +2096,7 @@ $(function(){
 						DCtv('TextLaTeX" hidden id="struc')+
 					dc+
 					DCtv('clear')+
-				dc+
-				'<div id=Snippets hidden>'+
-
-					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
-					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
-
-					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle_outline')+
-
-					itv('" id=editorLaunch tip="Launch','launch')+
-					itvc('rotate180" id="tClear')+
-					'<input type="file" id=inputSnippetFile hidden />'+
-
-
-
-					'<div id=snippets class=resize>'+
-						Arrf(function(i){return snippet.Str(L['snippetName'+i]||gM('Snippet'),
-							L['snippetType'+i]||'LA',i==1)}, 
-							seqA(1,+L.snippets||1)).join('')+dc
-				+dc
-					
+				dc
 			)+
 
 			
@@ -2141,11 +2135,22 @@ $(function(){
 
 	dc
 
-)+(ishome || isedi?DCtv('pd2" id="iTextOpt',
-(ishome?itvc('oClear rotate270" id="oHClear')+
-	itv('seled" id=iTextFold tip="Snippet Editor','edit'):'')+
+)+
+
+(ishome || isedi?DCtv('pd2" id="iTextOpt',
+
+(ishome?itvc('oClear rotate270" id="oHClear'):'')+
+
 itv('tool seled" tip=Preview id="preview','remove_red_eye')+
-itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
+
+(ishome?itv('seled" id=iTextFold tip="Snippet Editor','edit'):'')+
+
+
+itv('tool" tip="More Snippet" id="Snippetson','subject')+
+itv('seled" id=input0Toolon tip="Toggle Editor Tool','functions')+
+
+itv('tool" tip=Shift id="Shift','keyboard_capslock')+
+
 (ishome?itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
 	itv('" id=launch tip="Launch','launch')+
 	itv('" id=qrcode tip="Share','share')+
@@ -2504,7 +2509,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 
 		var opti=$(this).find('option[value='+v+']').parent().index(),
 			width=Math.max($('#input0').width(),$('#input0Tool').width())||200,
-			height=Math.max($('#input0').height(),$('#input0Tool').height())||200,
+			height=Math.max($('#input0').height(),$('#input0Tool').height(),400),
 			strc='class="inputTip inputTypeTip" style="max-height:'+height+'px" data-tool="';
 
 		if(tv && it.length<1){
@@ -2649,13 +2654,14 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 	}).on('click','#iTextFold',function(){
 	
 		var me=$(this), sel=me.toggleClass('seled').is('.seled');
-		$('#preview,#input0Toolon').toggle(sel);
+		$('#preview,#input0Toolon,#Snippetson,#Shift').toggle(sel);
 		if(sel){
 			$('#iTextMain').show();
 
 			if($('#preview').is('.seled')){
 				$('#previewTool').show();
 			}
+
 		}else{
 			$('#preview.seled').click();
 			$('#iTextPreview').prevAll().hide();
@@ -2665,6 +2671,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 	}).on('click','#input0Toolon',function(){
 		var me=$(this), sel=me.toggleClass('seled').is('.seled');
 		$('#input0Tool').toggle(sel);
+
 
 	}).on('click','#displayOverCanvas',function(){
 		
@@ -2867,6 +2874,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','chrome_reader_mode')+
 	
 
 	});
-		
+	
+
 	$('#input0Type').val(Meleo[L.snippetType1]||L.snippetType1).change();
 });

@@ -44,7 +44,7 @@ $(function () {
 
 		}
 
-		$('#caps').show().nextAll().hide();
+		$('#caps').nextAll().hide();
 	}, 100)
 
 
@@ -2243,10 +2243,15 @@ dc+
 
 
 
-
-	if(isdoodle){
-		$('#Caps,#tileTool').show();
+	if(hasdoodle){
+		setTimeout(function(){
+			$('#Caps').show();
+		},1000);
+		if(isdoodle){
+			$('#tileTool').show();
+		}
 	}
+
 	
 });
 

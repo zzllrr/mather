@@ -75,7 +75,7 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel,#menu, #input0Preview ~ *,#iTextMain ~ *,#iTextOpt{
+  #panel,#menu, #zMather{
   	display:none
   }
   #iTextMain{
@@ -227,9 +227,7 @@ summary{
 	padding: 5px;
 }
 
-#input0Preview{
-	min-height:185px;
-}
+
 
 .collapse{border-collapse: collapse}
 
@@ -642,7 +640,7 @@ summary ~ details summary{
 .inputTip{
 	margin:0 5px;
 }
-.plot, .resize,.inputTip,#input0Preview{
+.plot, .resize,.inputTip{
 	overflow: auto;
     resize: auto;
 }
@@ -783,9 +781,7 @@ select,input:not([type="file"]), .rem13{
 textarea, .katexvrule{
 	background:transparent;
 }
-#input0Preview, #iTextPreview{
-	background: rgba(162,195,97,.1);
-}
+
 
 
 .audioPlay, .mediaPlay {

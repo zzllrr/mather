@@ -80,7 +80,7 @@ lang['zh_cn'] = {
 	'donatip': '需要您的支持！',
 	'donatip0': '万物皆数',
 	'Accnum': '收款账号',
-	'copiedtip': '已粘贴到剪贴板',
+	'copiedtip': '已复制到剪贴板',
 	'copied2Canvastip': '已复制到画布',
 	'resetAlert': '确定重置吗？',
 
@@ -108,6 +108,7 @@ lang['zh_cn'] = {
 	'Geek': '极客',
 	'Author':'作者',
 	'Writer':'作家',
+	'Research':'研究',
 	'Researcher': '科研工作者',
 	'Educator': '教育工作者',
 	'Scholar': '学者',

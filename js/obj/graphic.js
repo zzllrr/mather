@@ -24,7 +24,7 @@ var Graphic={
 	},
 	drawSVG:function(graphType,v,ID,DOM){
 		var g=graphType,gl=g.replace(/.+[/]/,''),d;
-consolelog('g=',g);
+//console.log('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
@@ -40,14 +40,14 @@ consolelog('g=',g);
 			}
 		
 			D.append(DCtv('echart0" style="width:'+(D.width()||600)+'px;height:'+(D.height()||600)+'px',''));
-consolelog(D.html());
+//console.log(D.html());
 			var myChart = echarts.init(D.children().last()[0]);
 
 	        //使用制定的配置项和数据显示图表
 	        myChart.setOption(o);
 			
 		}else{
-			
+			//console.log(v,g);
 			var ivs=v.split('\n'), str='';
 			for(var i=0;i<ivs.length;i++){
 				var ivi=ivs[i].trim();
@@ -65,6 +65,7 @@ consolelog(D.html());
 
 							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
 								var egs=$('.inputTip[data-uri*="Plane Coordinate System"] .eg');
+
 								
 								if(/^(Ellipse|Circle|Polygon|Polyline|Arc)$/.test(gl)){
 									gl=gl.toLowerCase()
@@ -86,6 +87,16 @@ consolelog(D.html());
 									}
 									
 								}
+
+								if(egs.length<1){
+									if(gl=='Semi Circle' && g.indexOf('/Shape/')>0){
+										egs=$('<div>'+tooltip.graphic['Plane Coordinate System.Math/Shape']+dc).find('.eg')
+									}else{
+										egs=$('<div>'+tooltip.graphic[g.replace(/\/[^\/]+$/,'')]+dc).find('.eg');
+										//'Plane Coordinate System.Math/Curve'
+									}
+									
+								}
 								
 
 								x+="shape('','"+gl+"','','";
@@ -101,7 +112,7 @@ consolelog(D.html());
 
 									var eg=split(egi.attr('data-eg')||'',/[a-z\d]+=/g);
 							
-							consolelog(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
+						//	consolelog(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
 									if(eg[0] && eg[0].length==1 && / /.test(ivi)){
 										ivi='"'+ivi+'"';
 										x+=eg[0]+ivi;
@@ -132,13 +143,13 @@ consolelog(D.html());
 							
 							
 						}
-consolelog(x);
+//console.log(x);
 						str+=eval(x);
 					}
 				}
 			}
 			var id='graphic'+(new Date().getTime());
-			//plot.plot(id,'<div id='+id+'>'+plot.shape(id+'_svg','svg',str)+dc);
+
 			plot.plot(id,plot.shape(id+'_svg','svg',str));
 
 			
@@ -158,7 +169,7 @@ consolelog(x);
 		var g=graphType,h;
 		if(g=='latex'){
 			var d=$(ID?'#'+ID:DOM);
-			consolelog(v||d.text());
+			//consolelog(v||d.text());
 			h=katex.renderToString(v||d.text());
 //这里使用原式JS，是因为jQuery对元素的大小写不敏感
 			h='<foreignObject x="'+(d.attr('x')||0)+'" y="'+(+(d.attr('y')||0)-10)+'" transform="'+(d.attr('transform')||'')+'" width="'+scrollW()+'" height="'+scrollH()+

@@ -45,9 +45,11 @@ tooltip={
 caps,ishome=/index\.html|mather\/$|^\/$/.test(location.pathname), 
 isdoodle=/doodle\.html/.test(loch), 
 isdoc=/document\.html/.test(loch),
+iswiki=/wiki\.html/.test(loch),
+issolve=/solve\.html/.test(loch),
 isedi=/editor\.html/.test(loch),
 
-hasdoodle=isdoodle || ishome || isdoc,
+hasdoodle=isdoodle || ishome || isdoc || iswiki || issolve,
 
 oHTML=function(x,notMD,elem,cb){
     var o=$(elem||'#oHTML').hide();
@@ -118,7 +120,17 @@ loadHTML=function (x) {
        oHTML(DCtv('abscenter hue rem3',imgSRC+'logo.jpg" />'))//gM('zzllrr Mather')
    }
 
+}, OHiframe=function(x,o,full){
+    OH('<iframe src="'+H_o(x+'.html',o)+'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top+(full?$('#zMather').height():0)-20,200)+'px" class="resize bd0"></iframe>')
 };
+
+
+var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog',
+Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D2 D3 ZD',
+Mele2='LT LX LTX TEX IL YML',
+Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
+Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
+Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
 
 var oH,navhead={},navheadThen={},
 
@@ -187,11 +199,18 @@ function sel(uriA,x,p,pp,ppp){
 	return 0
 }
 
-function questionA(){
+function questionA(t){
 	var A=[];
-	$('#solveGround .task.seled').each(function(){
+	$('#'+t+'Ground .task.seled').each(function(){
 		A.push(furi($(this))[0].join('/'))
-	});
+    });
+    if(A.length<1){
+        $('#'+t+'Ground .level.seled').each(function(){
+            A.push(furi($(this))[0].join('/'));
+            return false
+            console.log(A);
+        });
+    }
 	return A
 }
 
@@ -457,7 +476,7 @@ function toolTip(s){
     },3000);
 }
 
-$(function () {
+$(function(){
     var d=document.title;
     titleRe(gM(d)+' - '+gM('zzllrr Mather'));
 
@@ -631,10 +650,10 @@ $(function () {
             }
             o={ s:$('#solveGround .ground0 .seled').attr('data-i').toLowerCase(),
                 t:i0v,
-                qa:questionA().join(';')
+                qa:questionA('solve').join(';')
             };
 
-            OH('<iframe src="'+H_o('solve.html',o)+'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class=resize></iframe>');
+            OHiframe('solve',o);
 
 
 
@@ -651,6 +670,21 @@ $(function () {
 		if(tool=='graphic'){
 
             
+            if(!i0v){
+				var v=$('.inputTip .eg').last().attr('data-eg')||'';
+				i0.val(v);
+				i0v=v;
+            }
+
+
+            o={ s:$('#graphicGround .ground0 .seled').attr('data-i').toLowerCase(),
+                t:i0v,
+                qa:questionA('graphic').join(';')
+            };
+
+
+            OHiframe('graphic',o);
+
             /*
 			$('#oHTML').empty();
 			var dmid='outPlot'+(new Date()).getTime()+(Math.random()+'').substr(2), gs=$('#graphicGround .task.seled');
@@ -673,15 +707,10 @@ $(function () {
 				ss='slide';
 				o.type='image';
 			}
-			OH('<iframe src="'+H_o(ss+'.html',o)+'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top-20,200)+'px" class=resize></iframe>');
-			
+
+            OHiframe(ss,o);
 		}
 
-        /*
-        setTimeout(function(){
-			dayOrNight();
-		},200);
-        */
     });
     
 	$('body').on('click','#menu > svg,#Widget,#svgs,#langu,#qrcode',function(){

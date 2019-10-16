@@ -18,19 +18,21 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.10.13',
+			fieldseth('V2019.10.16',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
 						'<span id=ZMatherQR>'+sc+
 						DCtv('alignl',
-							'Demo: '+href(HOM.ZMATHER)+br+
-							'Github: '+href(HOM.ZMather)
+							'Demo '+href(HOM.ZMATHER)+br+
+							'Gitee '+href(HOM.ZMATHERcn)+br+
+							'Github '+href(HOM.ZMather)
 						)
 					)+
 					DCtv('Summarytip',
 						XML.wrapE('h4',
-							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'RESEARCH.md'),gM('Summary')))+' '+
+							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'README.md'),gM('Summary')))+' '+
+							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'RESEARCH.md'),gM('Research Background')))+' '+
 							spanmi('launch',href(location.pathname.replace(/[^\/]+$/,'api.html'),'API'))
 
 						)+

@@ -476,6 +476,7 @@ var HOM = {
 	'ZIGPic': Hs + 'img3.douban.com/view/photo/photo/public/p1376698902.jpg',
 	'ZRPic': Hs + 'img5.douban.com/view/photo/photo/public/p1990186399.jpg',
 	'ZMATHER': Hs + 'zzllrr.github.io/mather',
+	'ZMATHERcn': H + 'zzllrr.gitee.io/mather/',
 	'ZMather': Hs + 'github.com/zzllrr/mather'
 };
 

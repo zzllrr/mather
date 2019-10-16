@@ -125,9 +125,15 @@
 }
 
 #input0,#input1{
-	min-height:200px;
+	min-height:70px;
+}
+#input0Preview{
+	min-height:50px;
 }
 
+#input0Preview, #iTextPreview{
+	background: rgba(162,195,97,.1);
+}
 
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;

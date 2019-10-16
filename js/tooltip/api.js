@@ -255,8 +255,9 @@ tooltip['API']=[
 		{'URL变量':'loch losh ishome isdoodle isdoc isedi hasdoodle'},
 		{'URL处理函数':'qrJPG sel questionA enwiki'},
 		{'数值处理':'rng2 rng4 color2rgba atan'},
-		{'界面交互':'toolTip oHTML loadHTML all2html dayOrNight copy2clipboard shadow'},
+		{'界面交互':'toolTip oHTML OHiframe loadHTML all2html dayOrNight copy2clipboard shadow'},
 		{'函数简写':'MfS PfS PtS'},
+		{'元素':'Mele Meles Mele2 Meleo Melef'},
 
 		]},
 
