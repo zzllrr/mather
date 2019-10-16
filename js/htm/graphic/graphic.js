@@ -12,10 +12,12 @@ $(function () {
 	
 
 	if(t){
-//console.log(qa);
+//console.log(t.split('\n'));
 		Arrf(function(x){
 			//console.log(x,t);
-			Graphic.drawSVG(x,t,'oHTML');
+			Arrf(function(y){
+				Graphic.drawSVG(x,y,'oHTML');
+			},t.split('\n'))
 		},qa);
 
 

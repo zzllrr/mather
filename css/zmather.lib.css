@@ -25,9 +25,7 @@
 	animation: hue 12s linear infinite;
 
 }
-#inputTools{
-	background:rgba(50, 205, 50, 0.5);
-}
+
 
 
 @media screen and (max-width:800px){
@@ -305,7 +303,7 @@ li,#wiki{
 .relation{
 	margin:0 5px;
 }
-.ground > details,.ground summary,#searchTool{
+.ground > details,.ground summary{
 	margin-bottom:5px
 }
 
@@ -506,7 +504,7 @@ input[type=text],#wiki>span,.brad{
 
 #search{
 
-    width:30%;
+    width:88%;
     padding-left:10px;
     border-style: none none solid none;
     border-width: 1px;

@@ -655,17 +655,6 @@ $(function(){
 
             OHiframe('solve',o);
 
-
-
-            /*
-			OH(KxA(solve[$('#solveGround .ground0 .seled').attr('data-i').toLowerCase()](i0v,questionA())));
-			
-			setTimeout(function(){
-				$('#oHTML').find('.oLaTeX').eq(0).click();
-				Scroll('scrollB');
-				$('#zMatherHide:contains(up)').click();
-			},300);
-            */
 		}
 		if(tool=='graphic'){
 
@@ -678,27 +667,13 @@ $(function(){
 
 
             o={ s:$('#graphicGround .ground0 .seled').attr('data-i').toLowerCase(),
-                t:i0v,
+                t:i0v.replace(/\n/g,fn0),
                 qa:questionA('graphic').join(';')
             };
 
 
             OHiframe('graphic',o);
 
-            /*
-			$('#oHTML').empty();
-			var dmid='outPlot'+(new Date()).getTime()+(Math.random()+'').substr(2), gs=$('#graphicGround .task.seled');
-			if(gs.length<1){
-				gs=$('#graphicGround .level.seled').last();
-			}
-			if(i0v && gs.length){
-
-				gs.each(function(){
-					Graphic.drawSVG(furi($(this))[0].join('/'),i0v,'oHTML');
-				});
-
-            }
-            */
 			
 		}
 		if(tool=='show'){
@@ -749,9 +724,7 @@ $(function(){
 					$('#zMatherOn:contains(down)').click();
 				}
 			}
-			
-			
-			//$('#oHTML').toggle(!tog);
+
         }
 
         if(id=='langu'){
@@ -823,6 +796,9 @@ $(function(){
         if(isup){
             me.nextAll('select').hide();
             $('#langu').removeClass('toggle')
+        }else{
+            $('#search').hide();
+            $('.subhead').show();
         }
         $('#zMatherOn2').toggle(!isup);
     });
@@ -930,7 +906,7 @@ $(function(){
             //Scroll('scrollB');
         }
         
-    }).on('mouseover','#oHTML .katex, #oHTML svg[id]',function(e){
+    }).on('mouseover','#oHTML .katex',function(e){//, #oHTML svg[id]
         var me=$(this),pa=me.parents('th');
         if(pa.length<1){
 

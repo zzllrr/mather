@@ -2078,7 +2078,8 @@ $(function(){
 						strbtn+'α" id=sbson class=tool />'+
 						strbtn+'ƒ" id=funcson class=tool />'+
 						strbtn+'∑" id=strucon class=tool />'+
-						itv('" id=editorLaunch tip="Launch','launch')
+						itv('" id=editorLaunch tip="Launch','launch')+
+						itvc('rotate180" id="tClear2')
 		
 					)+
 					
@@ -2640,7 +2641,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		$('#input1').val('');
 
-	}).on('click','#tClear',function(){
+	}).on('click','#tClear,#tClear2',function(){
 
 		var t=$('.iTextLaTeXon .seled');
 		if(t.length){
@@ -2754,8 +2755,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 
 	}).on('click','#zMatherOn2',function(){
-		
+
 		$('#zMatherOn:contains(up)').click();
+		$('#panel').show()
 
 	}).on('keydown',function(e){
 

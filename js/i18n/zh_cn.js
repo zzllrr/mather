@@ -1337,6 +1337,8 @@ lang['zh_cn'] = {
 	'Oblique':'斜',
 
 	'Square': '正方形',
+	'Square.Alge':'平方',
+	
 	'Rectangle': '矩形',
 	'Rectangle.1': '长方形',
 
@@ -1430,6 +1432,7 @@ lang['zh_cn'] = {
 
 
 	'Cube':'正方体',
+	'Cube.Alge':'立方',
 
 
 	'Cuboid':'长方体',
