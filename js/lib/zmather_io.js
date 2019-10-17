@@ -912,7 +912,7 @@ SBS={
 
 }
 ,FUNCSi=[ZLR('Trigonometric Hyperbolic'),
-	ZLR('Arithmetic 17'),
+	['Arithmetic','Number Theory'],
 
 	ZLR('Algebraic Analytical'),
 	ZLR('Set Logistical'),
@@ -921,7 +921,7 @@ SBS={
 ]
 	
 ,FUNCS={
-	'17':['dr'],
+	'Number Theory':['dr'],
 	'Arithmetic':['gcd log Arg mod sign','lcm ln arg exp'],// ㏒ ㏑
 	'Algebraic':['r tr det dim','hom ker Pr diag'],
 	'Trigonometric':['sin tan sec','cos cot csc',
@@ -1301,10 +1301,10 @@ SBS={
 		ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
 	
 	],
-	
-	'Latin':[zlrA3('\\',ZLR('vec bar acute check grave'),'{a}'),
-		zlrA3('\\',ZLR('dot ddot mathring hat tilde'),'{a}'),
-		['\\breve{a}'].concat($A(["kancel(1)","kancel(1,'-')","kbox(1)","kbox('F','frak','math')"])),
+
+	'Latin':[zlrA3('\\',ZLR('vec dot ddot mathring'),'{a}'),
+		zlrA3('\\',ZLR('bar acute check grave'),'{a}'),
+		zlrA3('\\',ZLR('hat tilde'),'{a}').concat(['\\breve{a}']),
 	
 	],
 
@@ -1341,7 +1341,8 @@ SBS={
 		"$fcb('red','','A')$",
 		"$fcb('red','yellow','A')$",
 		"\\colorbox{aqua}{A}"
-		]
+		],
+		$A(["kancel(1)","kancel(1,'-')","kbox(1)","kbox('F','frak','math')"])
 	]
 
 },SBSFn=[],

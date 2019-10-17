@@ -5,9 +5,9 @@
  */
 
 technology['Software/Charts']=Table([i18(ZLR('Name Type Summary'))],[
-	[href(git('benfred/contour_plot'),i18('Contour')+' - Contour Plot'),'D3 Plugin','draw contour plots of 2D functions'],
-	[href(Hs+'kisonecat.com/phase-plot/',i18('Phase')+' - Phase Plot'),'JS + GLSL','Plot complex functions '+href(git('kisonecat/phase-plot'),'Github')],
-	[href(Hs+'observablehq.com',i18('Visualization Notebook')+' - Observable'),'JS + HTML','magic notebook for visualization '+href(Hs+'explorabl.es','Explorable Explanations')+' '+href(git('d3/d3/wiki/Gallery'),'D3 Gallery')],
+	[github('benfred/contour_plot','',i18('Contour')+' - Contour Plot'),'D3 Plugin','draw contour plots of 2D functions'],
+	[href(Hs+'kisonecat.com/phase-plot/',i18('Phase')+' - Phase Plot'),'JS + GLSL','Plot complex functions '+github('kisonecat/phase-plot')],
+	[href(Hs+'observablehq.com',i18('Visualization Notebook')+' - Observable'),'JS + HTML','magic notebook for visualization '+href(Hs+'explorabl.es','Explorable Explanations')+' '+github('d3/d3/wiki/Gallery')],
 	[href(Hs+'sketchfab.com',i18('3D Model')+' - Sketchfab'),'JS + HTML','publish, share and embed interactive 3D files'],
 	[href(Hs+'hightopo.com',i18('3D Model')+' - HighTopo图扑'),'JS + HTML','create cutting-edge 2D and 3D visualization '+href(H+'hightopo.com/demos/index.html','Examples')],
 
@@ -27,9 +27,18 @@ technology['Software/Charts']=Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'demo.bpmn.io/s/start','bpmn.io'),'JS + SVG',hrefA('demo.bpmn.io/@@/new',ZLR('BPMN CMMN DMN')).join(' ')],
 
-	[href(git('paveldogreat','WebGL-Fluid-Simulation'),'WebGL Fluid Simulation'),'JS + WebGL',href(git('PavelDoGreat/WebGL-Fluid-Simulation'),'Github')],
+	[github('paveldogreat','WebGL-Fluid-Simulation','WebGL Fluid Simulation'),'JS + WebGL',github('PavelDoGreat/WebGL-Fluid-Simulation')],
 
-	[href(Hs+'naotu.baidu.com','Mindmap by baidu'),'JS + SVG',href(git('PavelDoGreat/WebGL-Fluid-Simulation'),'Github')],
+	[href(Hs+'naotu.baidu.com','百度脑图'),'JS + SVG','Mindmap by baidu'],
+	[github('arguiot/Descartes'),'JS + PNG','A small plotting JavaScript library, made for '+github('arguiot/TheoremJS')+' - Math framework'],
+	[github('mathjax/MathJax-demos-web'),'JS + HTML + MathML + SVG','TEX CHTML SVG MathML'],
 
-],'TBrc');
+],'TBrc')+
+detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[href(Hs+'bestofjs.org','Best of JS'),'Nav','Best of JavaScript is a project by Michael Rambeau, made in Osaka, Japan'],
+
+
+	
+],'TBrc'),1);
 

@@ -39,6 +39,7 @@ ARlibjs={
 },
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
 enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:x.replace(/_/g,' '),'wikipedia" class="wikipedia')+(time?', '+time:'')},
+github=function(x,githubio,text){return href(git(x,githubio),(text||githubio||x).replace(/(.+\/){2}/,'$1').replace(/-/g,' '),'Github" class="github')},
 
 tooltip={
 },
@@ -743,6 +744,8 @@ $(function(){
         if(id=='qrcode'){
             me.removeClass('toggle');
 
+            var t;
+
             if($('#show').prop('checked')){
                 losh.t=fn0($('#showGround .editorText').val().substr(0,50));
             }else{
@@ -753,20 +756,30 @@ $(function(){
             }
 
             if(ishome){
-                var grd=$('#'+$('[name=tool]:checked').attr('id')+'Ground');
-                losh.uri=[
-                    grd.find('.ground0 .seled').index(),
-                    grd.find('.ground1 .seled').index(),
-                    grd.find('.ground2 .seled').index(),
-                ].join('.');
-                grd.find('.tasks .seled').each(function(i){
-                    losh.uri+=(i?'+':'.')+i;
-                });
+                var x=$('#oHTML iframe').attr('src')||'';//location.href
+
+                if(x){
+                    t=x
+
+                }else{
+
+                    var grd=$('#'+$('[name=tool]:checked').attr('id')+'Ground');
+                    losh.uri=[
+                        grd.find('.ground0 .seled').index(),
+                        grd.find('.ground1 .seled').index(),
+                        grd.find('.ground2 .seled').index(),
+                    ].join('.');
+                    grd.find('.tasks .seled').each(function(i){
+                        losh.uri+=(i?'+':'.')+i;
+                    });
+                }
             }
-            
+            if(!(ishome && x)){
+                t=H_o('',losh)
+            }
 
            // console.log(losh);
-            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4), t=H_o('',losh);
+            var m=Math.ceil(Math.min($(window).width(),$(window).height())*0.4);
             //console.log(t,t.length);
             qrJPG(t,'#QRCODE',m);
             
