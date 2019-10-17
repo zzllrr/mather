@@ -314,6 +314,12 @@ li,#wiki{
 
 }
 
+.wikipedia{
+	background: url(../img/wikipedia.ico) no-repeat;
+    padding-left: 1.5rem;
+    background-size: 1.5rem;
+}
+
 #swap{
 	text-shadow: 1px 1px 1px #666;
 	color: white;

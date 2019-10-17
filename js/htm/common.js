@@ -38,7 +38,7 @@ ARlib='',
 ARlibjs={
 },
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
-enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:x.replace(/_/g,' '))+', wikipedia'+(time?', '+time:'')},
+enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:x.replace(/_/g,' '),'wikipedia" class="wikipedia')+(time?', '+time:'')},
 
 tooltip={
 },
