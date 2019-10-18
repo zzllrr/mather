@@ -8,8 +8,7 @@ wiki['Rational Sequence']=Kx(
 
 	
 detail('有理数列',Table([ZLR('名称 定义 第n项 前n项 性质')],[
-	['素数','','','','详见课题'+href('topic_prime.html','《prime》')],
-	['整数','','','','详见课题'+href('topic_integer.html','《integer》')],
+
 	['等差数列\n算术数列\narithmetic progression','公差d',khrA([kxA(['递推关系：','a_1=a',piece(['a_n=a+(n-1)d','a_n=a_{n-1}+d','a_n-a_{n-1}=d'])])]),
 		kbrA(ZLR('a a+d a+2d a+3d ⋯ a+(n-1)d')),
 		kul(['前n项和：'+Eq([['S_n',frac('(a+a_n)n',2,'')],frac('(2a+(n-1)d)n',2,''),'na+'+frac('n(n-1)',2,'')+'d',frac('2a-d',2,'')+'n+'+frac('d',2,'')+'n^2'])+

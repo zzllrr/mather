@@ -6,10 +6,11 @@
 
 wiki['Integer']=Kx(
 detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
-	['数根\ndigital root','dr(n)',khrA(['反复求各位数之和，直至结果是个位数','dr(n)=1+((n-1) \\mod 9)',piece([[0,'当n=0时'],[9,'当n≠0且'+kmod('n',0,9)],['n \\mod 9','其余情况']])]),
-		ul([kbrA(['dr(n)=0 ⇔ n=0','dr(n)>0 ⇔ n>0','dr(n)=n ⇔ n是1位数','dr(n) < n ⇔ n≥10','dr(-n) = -dr(n)']),
-			kbrA([kmod('dr(n)','n',9),kmod('dr(a±b)','dr(a)±dr(b)',9),kmod('dr(a×b)','dr(a)×dr(b)',9),kmod('dr(a^n)','dr^n(a)',9)]),
-			Table([$A(['n','dr(n!)'])],$A([ZLR('1 1'),ZLR('2 2'),ZLR('3 6'),ZLR('4 6'),ZLR('5 3'),ZLR('≥6 9')]),'TBrc alignc'),
+	['数根\ndigital root','\\text{dr}(n)',khrA(['反复求各位数之和，直至结果是个位数','\\text{dr}(n)=1+((n-1) \\mod 9)',piece([[0,'当n=0时'],[9,'当n≠0且'+kmod('n',0,9)],['n \\mod 9','其余情况']])]),
+		ul([kbrA(['\\text{dr}(n)=0 ⇔ n=0','\\text{dr}(n)>0 ⇔ n>0','\\text{dr}(n)=n ⇔ n是1位数','\\text{dr}(n) < n ⇔ n≥10','\\text{dr}(-n) = -\\text{dr}(n)']),
+			kbrA([kmod('\\text{dr}(n)','n',9),kmod('\\text{dr}(a±b)','\\text{dr}(a)±dr(b)',9),kmod('\\text{dr}(a×b)','\\text{dr}(a)×dr(b)',9),kmod('\\text{dr}(a^n)','\\text{dr}^n(a)',9)]),
+
+			Table([['n','\\text{dr}(n!)']],[ZLR('1 1'),ZLR('2 2'),ZLR('3 6'),ZLR('4 6'),ZLR('5 3'),ZLR('≥6 9')],'TBrc alignc'),
 			'改变数位顺序得到新数，数根不变',
 			'乘数根：反复求数位之积，性质：'+br+
 				kul(['数位含0（或者含偶数和5），结果为0',
@@ -279,7 +280,7 @@ detail('整数（二元运算）',Table([ZLR('名称 记法 定义 性质')],[
 			['n+1','当m=0时'],
 			['A(m-1, 1)','当m>0且n=0时'],
 			['A(m-1, A(m, n-1))','当m>0且n>0时']
-		]),'《译丛》定义'+
+		]),'《普林斯顿数学指南》定义'+
 		piece([
 			['n+2','当m=1时'],
 			['2','当m>1且n=1时'],
@@ -287,7 +288,7 @@ detail('整数（二元运算）',Table([ZLR('名称 记法 定义 性质')],[
 		]),
 		
 		
-		])+br+'详见课题'+href('topic_recursive.html','《recursive》')
+		])
 		,''],
 
 
@@ -419,7 +420,7 @@ detail('整数（二元关系）',Table([ZLR('名称 记法 定义 性质')],[
 		])
 	],
 	['整除\ndivide\ndivisible','a|b',kul([''
-		]),ul(['偏序关系','详见课题'+href('topic_divide.html','《divide》')
+		]),ul(['偏序关系',
 		])
 	],
 	['互素\nco-prime','(a,b)=1',kul(['[a,b]=ab'

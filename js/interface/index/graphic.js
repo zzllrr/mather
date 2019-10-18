@@ -5,7 +5,7 @@
  */
  
 graphics={
-	index:['Plane Coordinate System.Math','Space Coordinate System.Math','Surface','Solid','81','Statistics','Fractal'],
+	index:['Plane Coordinate System.Math','Space Coordinate System.Math','Surface','Solid','Discrete Mathematics','Statistics','Fractal'],
 	'Plane Coordinate System.Math':[
 		
 		{'Curve':[
@@ -69,7 +69,7 @@ graphics={
 	'Solid':[
 		'2D','3D'
 	],
-	'81':[
+	'Discrete Mathematics':[
 		{'Relation':[
 			{'hasse':''},
 			{'venn':''},
@@ -397,7 +397,7 @@ tooltip.graphic={
 
 
 	
-	'81/Relation':[
+	'Discrete Mathematics/Relation':[
 		detail('【哈斯图】hasse(id,nA,rA,translates)',[
 			sceg("hasse('hasse0',[[24],[8,12],[4,6],[2,3],[1]],[[[1,1],[2,1]],[[1,1],[2,2]],[[2,1],[3,1]],[[2,2],[3,1]],[[2,2],[3,2]],[[3,1],[4,1]],[[3,2],[4,1]],[[3,2],[4,2]],[[4,1],[5,1]],[[4,2],[5,1]]])",20),
 			sceg("hasse('hasse1',[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]])")
@@ -428,12 +428,12 @@ tooltip.graphic={
 	
 	].join(br),
 
-	'81/Relation/hasse':['nA,rA',
+	'Discrete Mathematics/Relation/hasse':['nA,rA',
 		sceg("[[24],[8,12],[4,6],[2,3],[1]],[[[1,1],[2,1]],[[1,1],[2,2]],[[2,1],[3,1]],[[2,2],[3,1]],[[2,2],[3,2]],[[3,1],[4,1]],[[3,2],[4,1]],[[3,2],[4,2]],[[4,1],[5,1]],[[4,2],[5,1]]]",20),
 		sceg("[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]]")
 	].join(br),
 	
-	'81/Relation/venn':['texts,relations,rotate,RA,radiusA',
+	'Discrete Mathematics/Relation/venn':['texts,relations,rotate,RA,radiusA',
 		sceg("{n:['A','B'],r:['A∩B']},[[1,2,,'stroke=none']],[0],[[50,0,2]],[[70]]",20),
 		sceg("{n:['A','B','C','A∩B∩C'],r:['A∩B','A∩C','B∩C']},[[1,2,,'stroke=none'],[1,3,,'stroke=none'],[2,3,,'stroke=none']],[0],[[60,1/4,3],[0,0]],[[70],[70],[70],[0]]",20),
 		sceg("{n:{n:['A','B','C'],r:['A∩B','A∩C']},[[1,2,,'stroke=none'],[1,3,,'stroke=none']],[0,1/8,-1/8],[[70,0,3]],[[100],[60,80],[60,80]]",20),
@@ -443,12 +443,12 @@ tooltip.graphic={
 	].join(br),
 
 
-	'81/Relation/tree':['nA,rA',
+	'Discrete Mathematics/Relation/tree':['nA,rA',
 		sceg("[[1,2,3],['a','b','c']],[[[1,1],[2,2]],[[1,2],[2,3]]]")
 	].join(br),
 	
 
-	'81/Relation/pie':['nA,ratio,RA0,radius',
+	'Discrete Mathematics/Relation/pie':['nA,ratio,RA0,radius',
 	
 		'nA: 节点文本',
 		'ratio: [3.4,4,7,1,9] 省略%',

@@ -6,7 +6,7 @@
 
 wiki['Fermat Number']=Kx(
 
-detail('费马数表',Table([['$F_n='+msups([2,2,'n'],'')+'+1$____已知300多个费马合数'+href(H+'www.prothsearch.com/fermat.html','最新进展'),'位数','分解式','素真因子数']],[
+detail('费马数表',Table([['','$F_n='+msups([2,2,'n'],'')+'+1$____已知300多个费马合数'+href(H+'www.prothsearch.com/fermat.html','最新进展'),'位数','分解式','素真因子数']],[
 	['3','1','素数 = $M_2$','0'],
 	['5','1','素数','0'],
 	['17','2','素数','0'],

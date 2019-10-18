@@ -1295,7 +1295,7 @@ function copyA(s, n) {
 	return a;
 }
 
-function ZLR3(preA, sA, sufA, sep) {//拼接字符串
+function ZLR3(preA, sA, sufA, sep) {//拼接字符串 ⋯后面的指数忽略
 	var n = sA.length, s = '', PA = preA instanceof Array, SA = sufA instanceof Array, sp = sep === undefined ? ',' : sep;
 
 	for (var i = 0; i < n; i++) {
