@@ -32,9 +32,15 @@ var Graphic={
 			
 		}else if(/echarts/i.test(g)){
 
-			var id=ID||$(DOM).attr('id'),D=$('#'+id),
+			var id=ID||$(DOM).attr('id'),D=$('#'+id),o={};
 			//o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
-			o=isObj(v)?v:eval(fnv(v[0]=='{'?v:'{'+v+'}'));
+			try{
+				o=isObj(v)?v:eval(fnv(v[0]=='{'?v:'{'+v+'}'));
+				//console.log(o);
+			}catch{
+
+			}
+			
 			if(D.length<1){
 				D=$(DOM)
 			}
