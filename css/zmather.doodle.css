@@ -47,6 +47,9 @@
     background: darkslategray;
 }
 
+#svgTool2{
+	background:silver;
+}
 #svgToolOpt > *{
 	padding:5px;
 }

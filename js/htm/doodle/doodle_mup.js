@@ -29,9 +29,55 @@ function mUp(e,Last){
 
 	var drawLast=function(){
 		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
-		if(oOn('Zdog')){
+		if($('#Zdogon text').attr('fill')=='yellow'){
+//19820727/201055
+//solve.html?s=number&t=19820727/201055&0&qa=Number/Classification/Integer/竖式计算
+var s=
+`
+C.setAttribute('spinning',true);C.width=300;C.height=300;
+let isSpinning = true;
 
+let zo = new Zdog.Illustration({
+	element: C,
+	zoom: 1,
+	dragRotate: true,
+
+	onDragStart: function() {
+		isSpinning = false;
+	},
+	onDragMove: function(p,mx,my) {
+	},
+	onDragEnd: function() {
+		isSpinning = true;
+	},
+});
+`+`
+let rect = new Zdog.Rect({
+	addTo: zo,
+	width: 120,
+	height: 80,
+	stroke: 2,
+	color: '#E62',
+});
+`+`
+function animate() {
+	if ( isSpinning && C.getAttribute('spinning')=='true') {
+		zo.rotate.y += 0.03;
+	}
+	zo.updateRenderGraph();
+	requestAnimationFrame( animate );
+}
+animate()
 			
+			`;
+			s1='<zdog'+idStyle('',[lt-sw,tp-sw,WD+sw*2,HT+sw*2],shpNid+'Zdog',Z+6)+'">'+s+'</zdog>';
+
+
+			shpN.after(s1);
+			all2html('zdog','',shpNid+'Zdog');
+			shpN.remove();
+			return
+
 		}
 		
 		if(oOn('SymmetryAxis')){

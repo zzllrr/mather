@@ -64,21 +64,14 @@ $(function () {
 
 					svgf.id('ToolOpt" tip="Option',svgf.path('M8 10 H22 M8 15 H22 M8 20 H22'))+
 
+
 					svgf.id('Undo" tip="Undo / Redo" hotkey="U',svgf.path('M5 20 Q15 5 25 20 M5 13 V20 H12 M25 13 V20 H18'))+
 				
 					svgf.id('Copy" hotkey="Ctrl+V',svgf.path('M8 20 V5 H20 M13 10 V25 H25 V10 H13'))+
 
 					svgf.id('Eraser" hotkey="Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.circle(15,15,10))+
-					svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
 
 
-
-
-					svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
-					svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
-
-					//svgf.id('LayerToggle" hotkey="V',svgf.path('M15 5 L25 12 15 19 5 12Z" stroke-dasharray="2,1')+svgf.path('M5 18 L15 25 25 18'))+
-					//svgf.id('SVGhide" tip=Hide hotkey="Esc',svgf.path('M9 17 L15 11 21 17'))+
 					'<div id=svgToolOpt hidden>'+
 					'<div id=scrWH>'+
 						gM('W')+num('0" title=px id="scrW',1)+
@@ -515,8 +508,7 @@ dc
 								SCtv('','↦')+num('0" id="cssClipL')+
 								SCtv('','↤')+num('100" id="cssClipR')+br+
 								SCtv('','↧')+num('0" id="cssClipT')+
-								SCtv('','↥')+num('100" id="cssClipB')+dc+
-							'<label>'+strchkbx0+'id=Zdogon />3D (Zdog)</label>'
+								SCtv('','↥')+num('100" id="cssClipB')+dc
 						)+
 				
 						'<div id=fxTXT hidden>'+txa('','" id=fxTxt placeholder="Condition;Ox,Oy,x0,x1,y0,y1;color;opacity')+
@@ -1059,17 +1051,31 @@ dc+
 			dc+
 
 
+			'<div id=svgTool2>'+
+				svgf.id('SVGshift" tip="Shift',svgf.path('M8 17 L15 10 22 17 M8 21 H22'))+
+				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
 
+				svgf.id('LayerToggle" tip="LayerToggle',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
+
+
+				svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
+				
+				svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
+
+				svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+			
+			dc+
 			'<div id=svgTog>'+
 				svgf.id('svgPg1',svgf.line(10,15,20,15))+
 				svgf.id(zlrA('svgPg',seqA(2,4)),svgf.circle(15,15,5)).join('')+
 
+				
 			dc+
 dc+
 
 			'<div id=svgCode>'+
 				itv('" tip=Hide id="SVGhide','keyboard_arrow_up')+
-				itv('" tip=LayerToggle id="LayerToggle','layers')+
+
 				itv('" tip="SVG Code" id="outputSVGCode','code')+
 				itv('" tip=copy2clipboard id="copy2clipboard','library_books')+
 				(isdoodle?'':
@@ -1408,9 +1414,6 @@ dc+
 		}
 	});
 
-	$('#LayerToggle').on('click',function(){
-		$('#capsimg ~ *').toggle();
-	});
 
 	$('#copy2clipboard').on('click',function(){
 
@@ -1585,14 +1588,14 @@ dc+
 			caps.repaint();
 			//scrn('eraser');
 			
-		} else if (!shp.parent().is('#svgTool') || shp.is('#Pointer')) {
+		} else if (!shp.parent().is('#svgTool,#svgTool2') || shp.is('#Pointer')) {
 			RndColors(shpN);
 		}
 	});
 
 
 
-	$('#svgShape svg[id]').on('click', function (e) {
+	$('#svgShape svg[id], #svgTool2 svg[id]').on('click', function (e) {
 
 
 		var id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id);
@@ -1613,7 +1616,21 @@ dc+
 			$('#svgToolOpt').toggle();
 			return
 		}
+		if(id=='SVGshift'){
+			$(this).children('path').attr('stroke',function(){return $(this).attr('stroke')=='white'?'yellow':'white'});
+			
+			return
+		}
+		if(id=='Zdogon'){
+			$(this).children('text').attr('fill',function(){return $(this).attr('fill')=='white'?'yellow':'white'});
+			
+			return
+		}
 
+		if(id=='LayerToggle'){
+			$('#capsimg ~ *').toggle();
+			return
+		}
 
 		L.drawShape = id;
 		L.drawShapeNow = '';
@@ -1650,9 +1667,9 @@ dc+
 		$('#caps').css('cursor', 'crosshair')
 //		$('#caps').css('cursor', 'default');
 
-		$('#svgSel').toggle(!pa.is('#svgTool,#svgTog'));
+		$('#svgSel').toggle(!pa.is('#svgTool,#svgTool2,#svgTog'));
 
-		$('#svgCssTransform').toggle(!pa.is('#svgTool,#svgTog') || isCopy);
+		$('#svgCssTransform').toggle(!pa.is('#svgTool,#svgTool2,#svgTog') || isCopy);
 		$('#copyOpt').toggle(isCopy);
 
 
