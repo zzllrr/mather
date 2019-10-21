@@ -354,7 +354,7 @@ function all2html(type,V,dom){
 
     }else if(/JAVASCRIPT|JS/.test(iv)){
         try{
-            w.html(Arrf(eval,vA).join(br))
+            w.html(Arrfc([eval,XML.decode],vA).join(br))
         }catch(e){
             w.html(v)
         }
@@ -381,16 +381,16 @@ function all2html(type,V,dom){
             //var C=new ctt(cvs,300,300), c=C.ctx;
             var C=$('#'+id)[0];// work!
             //var C=w.children()[0];    fail!
-            //console.log(v);
-            eval(v);
+           // console.log(XML.decode(v));
+            eval(XML.decode(v));
         }catch(e){
             console.log(e);
             w.html(v)
         }
 
-
-    }else if(/D2/.test(iv)){//JXG
 /*
+    }else if(/D2/.test(iv)){//JXG
+
         try{
             var id=ivl+Random(12,1)+Time.now5();
             if(!w.is('div')){
@@ -421,7 +421,7 @@ function all2html(type,V,dom){
             }
             //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
             var C=new ctt(cvs,300,300), c=C.ctx;
-            eval(v);
+            eval(XML.decode(v));
         }catch(e){
             w.html(v)
         }
@@ -872,8 +872,8 @@ $(function(){
         if(hasdoodle){
             $('#caps ~ canvas').remove();
 
-        }else if(/canvas/i.test(act)){
-            if($(eos).parent('zdog').length){
+        //}else if(/canvas/i.test(act)){
+            if($(eos).parent('[id^=Zdog_]').length){
                 //console.log(e,act,act.id);
                 $(eos).attr('spinning',function(i,v){return v!='true'});
             }

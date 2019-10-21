@@ -17,6 +17,7 @@ function mDn(e){
 	console.log(e);
 	console.log(eos);
 	*/
+
 	var X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
 	 Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0));
 	L.X=X;
@@ -66,8 +67,10 @@ function mDn(e){
 		var isTxt=/Text/.test(shp);
 		//$('#svgTexts').toggle(isTxt);
 		if(/Pointer/.test(shp)){
-			var id=$(eos).closest('svg,textarea,span').attr('id');
-			
+			var id=$(eos).closest('svg,textarea,span,zdog').attr('id');
+		//	console.log(eos,id);
+
+
 			if(!id){
 			//if(shpN.length<1){
 				
@@ -626,8 +629,9 @@ function changeTextCSS(){
 
 
 function toggleSvg(){
-	$('#svgShape svg[id] [stroke=yellow]').attr('stroke','white');
-	$('#svgShape svg[id] [fill=yellow]').attr('fill','white');
+	var s=$('#svgShape,#svgTool2').find('svg[id!=SVGshift][id!=Zdogon]');
+	s.find('[stroke=yellow]').attr('stroke','white');
+	s.find('[fill=yellow]').attr('fill','white');
 
 	$('#svgTool ~ div svg').css('background-image','-webkit-linear-gradient(white, #ac0 20%, #ac0 80%, white)');
 	$('#'+L.drawShape).css('background','none').find('[stroke=white]').attr('stroke','yellow').end().find('[fill=white]').attr('fill','yellow');

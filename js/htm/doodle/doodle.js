@@ -1686,6 +1686,7 @@ dc+
 
 			if (id == 'Pointer') {
 				$('#caps').css('cursor', 'grab');
+				$('#Caps .zdog').children().toggle();
 			}
 
 			if(id=='Undo'){
@@ -1860,11 +1861,17 @@ dc+
 */
 
 
-	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mDn(e);
+	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) {
+		//console.log($(this).html());
+		mDn(e);
+
+
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
+
+
 		
 	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mMv(e);
 		e.preventDefault && e.preventDefault();

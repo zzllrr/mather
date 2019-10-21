@@ -32,9 +32,15 @@ function mUp(e,Last){
 		if($('#Zdogon text').attr('fill')=='yellow'){
 //19820727/201055
 //solve.html?s=number&t=19820727/201055&0&qa=Number/Classification/Integer/竖式计算
-var s=
+var s0=`let rect = new Zdog.Rect({
+	addTo: zo,
+	width: ${WD/2},
+	height: ${HT/2},
+	stroke: 2,
+	color: '#E62',
+});`, s=
 `
-C.setAttribute('spinning',true);C.width=300;C.height=300;
+C.setAttribute('spinning',true);C.width=${WD+sw*2};C.height=${HT+sw*2};
 let isSpinning = true;
 
 let zo = new Zdog.Illustration({
@@ -51,15 +57,9 @@ let zo = new Zdog.Illustration({
 		isSpinning = true;
 	},
 });
-`+`
-let rect = new Zdog.Rect({
-	addTo: zo,
-	width: 120,
-	height: 80,
-	stroke: 2,
-	color: '#E62',
-});
-`+`
+
+${s0}
+
 function animate() {
 	if ( isSpinning && C.getAttribute('spinning')=='true') {
 		zo.rotate.y += 0.03;
@@ -67,15 +67,21 @@ function animate() {
 	zo.updateRenderGraph();
 	requestAnimationFrame( animate );
 }
-animate()
+animate();
 			
-			`;
-			s1='<zdog'+idStyle('',[lt-sw,tp-sw,WD+sw*2,HT+sw*2],shpNid+'Zdog',Z+6)+'">'+s+'</zdog>';
+`;
+			var id='Zdog_'+shpNid+'_'+Time.now5()+(Math.random()+'').substr(2);
+			s1='<span class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+'</span>';
 
 
 			shpN.after(s1);
-			all2html('zdog','',shpNid+'Zdog');
+			all2html('zdog','','#'+id);
 			shpN.remove();
+			/*
+			console.log($('#'+id).html());
+			console.log($('#'+id).children().html());
+			*/
+
 			return
 
 		}

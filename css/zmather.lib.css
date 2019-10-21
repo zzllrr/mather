@@ -998,7 +998,11 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 	stroke:white;
 	fill:white;
 }
-#tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+#tileToolCap,svg:hover,.capfromTextarea:hover, .zdog:hover{
+	border-radius:5px;
+	background-color:rgba(0,0,0,0.1);
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)
+}
 #menu ~ div{
 	position: absolute;
 	top:3rem;
