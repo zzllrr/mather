@@ -58,7 +58,7 @@
 	}
 
 	input[type="number"]{
-		max-width: 3rem;
+		max-width: 4rem;
 	}
 	.tool:hover{
 		background:yellow;

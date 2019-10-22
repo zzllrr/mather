@@ -22,7 +22,9 @@ function mUp(e,Last){
 		X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
 	 	Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0)),
 		
-		pos=shpN.position(),lt=pos?pos.left:0,tp=pos?pos.top:0, zi=[2000],Z, chd=shpN.children(), chdm=chd.filter('.main'), chdmp=chdm.attr('points'), chdmd=chdm.attr('d'),
+		pos=shpN.position(),lt=pos?pos.left:0,tp=pos?pos.top:0, zi=[2000],Z,
+		chd=shpN.children(), chdm=chd.filter('.main'),
+		chdmp=chdm.attr('points')||'', chdmd=chdm.attr('d')||'',
 		w0=Math.abs(X-(+L.X0)), h0=Math.abs(Y-(+L.Y0)), sw=+$('#strkW').val(), d=Math.ceil(sw/2),
 		WD=shpN.width(),HT=shpN.height(), WgH=WD>HT, WD2=WD/2,HT2=HT/2, WH2=(WD+HT)/2, WH_2=Math.abs((WD-HT)/2);
 
@@ -32,15 +34,89 @@ function mUp(e,Last){
 		if($('#Zdogon text').attr('fill')=='yellow'){
 //19820727/201055
 //solve.html?s=number&t=19820727/201055&0&qa=Number/Classification/Integer/竖式计算
-var s0=`let rect = new Zdog.Rect({
+
+console.log(shp);
+
+var o={LRect:
+`let rect = new Zdog.Rect({
 	addTo: zo,
-	width: ${WD/2},
-	height: ${HT/2},
-	stroke: 2,
-	color: '#E62',
-});`, s=
+	width: ${WD+sw},
+	height: ${HT+sw},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`, ARect:
+`let rect = new Zdog.RoundedRect({
+	addTo: zo,
+	width: ${WD+sw},
+	height: ${HT+sw},
+	stroke: ${sw},
+	cornerRadius:${+chdm.attr('rx')},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`, Ellipse:
+`let rect = new Zdog.Ellipse({
+	addTo: zo,
+	width: ${+chdm.attr('rx')*2},
+	height: ${+chdm.attr('ry')*2},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`, PentagonT:
+`let rect = new Zdog.Polygon({
+	addTo: zo,
+	sides: 5,
+	radius: ${Math.hypot(+chdmp.split(' ')[0]-(+chdmp.split(' ')[1]),+chdmp.split(' ')[2]-(+chdmp[3]))},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`, LGonRndSq:
+`let rect = new Zdog.Polygon({
+	addTo: zo,
+	sides: 6,
+	radius: ${Math.hypot(+chdmd.split(' ')[1]-(+chdmd.split(' ')[2]),+chdmd.split(' ')[4]-(+chdmd[5]))},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`, TriangonIsoEqui:
+`let rect = new Zdog.Polygon({
+	addTo: zo,
+	sides:3,
+	radius: ${Math.hypot(+chdmp.split(' ')[0]-(+chdmp.split(' ')[1]),+chdmp.split(' ')[2]-(+chdmp[3]))},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+
+
+});`, conoidOV:
+`let rect = new Zdog.Cone({
+	addTo: zo,
+	diameter:${+chdm.attr('rx')*2},
+	length: ${Math.hypot(+chdm.eq(2).attr('d').split(' ')[0]-(+chdm.eq(2).attr('d').split(' ')[1]),+chdm.eq(2).attr('d').split(' ')[2]-(+chdm.eq(2).attr('d').split(' ')[2]))},
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+
+
+
+
+
+});`, path:
+`let rect = new Zdog.Shape({
+	addTo: zo,
+	path: '${chdmd}',
+	stroke: ${sw},
+	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
+	fill: ${chdm.attr('fill')!='none'},
+});`,
+
+
+
+}, s0=o[shp] || o[shp.replace(/Sq$/,'')] || o['path'];
+//console.log(s0);
+var s=
 `
-C.setAttribute('spinning',true);C.width=${WD+sw*2};C.height=${HT+sw*2};
+C.setAttribute('spinning',true);C.width=${WD+sw};C.height=${HT+sw};
 let isSpinning = true;
 
 let zo = new Zdog.Illustration({
@@ -70,17 +146,12 @@ function animate() {
 animate();
 			
 `;
-			var id='Zdog_'+shpNid+'_'+Time.now5()+(Math.random()+'').substr(2);
-			s1='<span class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+'</span>';
+			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
+			s1='<span class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
 
 
 			shpN.after(s1);
 			all2html('zdog','','#'+id);
-			shpN.remove();
-			/*
-			console.log($('#'+id).html());
-			console.log($('#'+id).children().html());
-			*/
 
 			return
 

@@ -809,7 +809,8 @@ function tileToolCap(t, val){
 		isGON2=isGON || /Ellipse(Sq)?$/.test(id), isGON3=isGON2 || /(fan|Moon|Star)Note/.test(id),
 		isgon=isGON && /LRect|gon/i.test(id), istrigon=/Triangon/.test(id),
 		iselip=/Ellips|cylinder|con/.test(id),
-		iseoid=/(Ellips|cylinder|con)oid/.test(id);
+		iseoid=/(Ellips|cylinder|con)oid/.test(id),
+		isZdog=/Zdog_/.test(id);
 
 	$('#SIDES').toggle(/Regulargon/.test(id));
 	$('#bWR,'+s+'R').toggle((/A|Rnd|arc|oid/.test(id) || txt) && !/LGonRndSq|cub/.test(id));
@@ -829,7 +830,7 @@ function tileToolCap(t, val){
 
 	$('#Angle').toggle(/Regulargon|Triangon|Trapegon|Line3YRight|lineangle|lineIso|Line3E/.test(shp+id));
 
-	$('#svgSel, #svgCssTransform').toggle(id && id!='Pointer');
+	$('#svgCssTransform').toggle(id && id!='Pointer');
 	$('#scrTool').toggle(id=='Pointer');
 	$('#svgLine').toggle(!txt);
 	$('#Dash').toggle(ln>0);
@@ -917,7 +918,11 @@ function tileToolCap(t, val){
 
 
 
-	$('#SvgOpt,#COLOR').show();
+	$('#SvgOpt').show();
+
+	$('#bW,#COLOR').toggle(!isZdog);
+	$('#svgSel').toggle(id && id!='Pointer' && !isZdog);
+	
 	$('#copyOpt').hide();
 	$('#scrWH').toggle(/scr|all|Crop/.test(id));
 	

@@ -1088,7 +1088,7 @@ let lnZ3D = new Zdog.Shape({
 
 
 		detail(gM('Transform'),[
-			gM('Translate')+sceg2('translate: { x: 40 }')+'| y | z ',
+			gM('Translate.Math')+sceg2('translate: { x: 40 }')+'| y | z ',
 			gM('Rotate Back')+sceg2('rotate: {x: Zdog.TAU/8}'),
 			gM('Rotate 45°')+sceg2('rotate: { z: -Zdog.TAU/8 }'),
 
@@ -1138,7 +1138,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 
 		detail('Zdog',[
 
-			sceg2('Zdog.TAU')+'= Math.PI',
+			sceg2('Zdog.TAU')+'= Math.PI * 2',
 			sceg2('Zdog.easeInOut( alpha, power||2 )'),
 			sceg2('Zdog.extend( obj1, obj2 )'),
 			gM('Lerp')+sceg2('Zdog.lerp( a, b, alpha )'),

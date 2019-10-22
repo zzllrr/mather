@@ -479,7 +479,7 @@ dc
 
 
 							
-							))+
+							),'','id=bW')+
 				
 				
 						DCtv('lightgray" id="MarginCopyOpt',
@@ -1622,7 +1622,10 @@ dc+
 			return
 		}
 		if(id=='Zdogon'){
-			$(this).children('text').attr('fill',function(){return $(this).attr('fill')=='white'?'yellow':'white'});
+			$(this).children('text').attr('fill',function(){var istog=$(this).attr('fill')=='white';
+				$('.zdog').children().attr('spinning',istog);
+				return istog?'yellow':'white'
+			});
 			
 			return
 		}
@@ -1686,7 +1689,7 @@ dc+
 
 			if (id == 'Pointer') {
 				$('#caps').css('cursor', 'grab');
-				$('#Caps .zdog').children().toggle();
+				$('#Caps .zdog').toggleClass('resize');
 			}
 
 			if(id=='Undo'){
