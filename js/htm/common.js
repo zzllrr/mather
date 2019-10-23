@@ -83,7 +83,7 @@ oHTML=function(x,notMD,elem,cb){
                 var t=$(this).text();
                 katex.render(kx(t), this, {
                     throwOnError: true,
-                    displayMode: $(this).is('div'),
+                    displayMode: $(this).is('div,td'),
                 });
             }
 
@@ -209,10 +209,10 @@ function questionA(t){
         $('#'+t+'Ground .level.seled').each(function(){
             A.push(furi($(this))[0].join('/'));
             return false
-            console.log(A);
+            
         });
     }
-	return A
+	return Arrf(fn0,A)
 }
 
 
@@ -979,9 +979,10 @@ $(function(){
                     if(c.length && c.not('br').length){// if(c.length && !(c.length==1 && c.is('br'))) 此处用于fix浏览器bug： contentEditable 复制粘贴文字时，会被chrome默认在td里面底部添加一个br
                         td.find('.katex0').each(function(){
                             var t=$(this).text();
+                           // console.log($(this).is('div,td'),);
                             katex.render(kx(t), this, {
                                 throwOnError: true,
-                                displayMode: $(this).is('div'),
+                                displayMode: $(this).is('div,td'),
                             });
                         });
                     }else if(!c.length){
@@ -989,7 +990,7 @@ $(function(){
                         if(td.length){
                             katex.render(kx(t), td[0], {
                                 throwOnError: true,
-                                displayMode: $(this).is('div'),
+                                displayMode: $(td).is('div,td'),
                             });
                         }
                         
@@ -1000,7 +1001,7 @@ $(function(){
                         var t=$(this).text();
                         katex.render(kx(t), this, {
                             throwOnError: true,
-                            displayMode: $(this).is('div'),
+                            displayMode: $(this).is('div,td'),
                         });
                     });
                 }else{

@@ -562,7 +562,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
 	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
-	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), itvc('oClear')]],[[Kx(A.join(kbr2)),'']], 'edit','','OHLaTeX bd0').replace('edit collapse mg10','edit') },
+	KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), itvc('oClear')]],[[Kx(A.join(kbr2)),'']], 'edit collapse','','OHLaTeX bd0').replace('edit collapse mg10','edit') },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))

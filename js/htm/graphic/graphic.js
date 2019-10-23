@@ -3,7 +3,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-var o=H_o(),s=o.s||'', t=o.t?fn1(o.t):'', qa=(o.qa||'').split(';');
+var o=H_o(),s=o.s||'', t=o.t?fn1(o.t):'', qa=Arrf(fn1,(o.qa||'').split(';'));
 
 $(function () {
 

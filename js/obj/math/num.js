@@ -111,7 +111,7 @@ var Integer={/*整数 (本质是字符串)
 				if(A=='0' || Integer.is.b2['<'](B,A)){return 0}
 				
 				if(A=='10'){return +(B.substr(-1)=='0')}//末位是0
-				consolelog(A,B);
+				//console.log(A,B);
 				if(/^10+$/.test(A)){return +/^0+$/.test(B.substr(1-A.length))}//末尾是连续的0
 
 				if(A=='2'){return 1-(+B.substr(-1) % 2)}//末位是偶数
@@ -213,7 +213,7 @@ var Integer={/*整数 (本质是字符串)
 			while(Integer.is.b2['≥'](a,b)){
 				
 				var B=Integer.oprs('/',[a,b]);//得到余数
-				//consolelog(a,b,A,B);
+				////console.log(a,b,A,B);
 				A.unshift(B[1]);
 				a=B[0]
 			}
@@ -399,12 +399,12 @@ var Integer={/*整数 (本质是字符串)
 				l=a.length;
 				if(p){//计算过程
 					A[1].push(a);
-					consolelog(A[1])
+					//console.log(A[1])
 				}
 			}
 			if(p){
 				A[0]=a;
-				consolelog(A);
+				//console.log(A);
 				return A
 			}else{
 				return a
@@ -454,20 +454,20 @@ var Integer={/*整数 (本质是字符串)
 			//下面算法仅支持两个正数相加
 			
 			var agb=Integer.is.b2['>'](aA0,aA1),a=agb?aA0:aA1,b=agb?aA1:aA0,al=a.length,bl=b.length,A=a.split('');
-//consolelog(a+' + '+b+' = ?');
+////console.log(a+' + '+b+' = ?');
 			for(var i=0;i<bl;i++){
 				var bi=+b[bl-i-1],ai=al-i-1;
 				
 				if(bi){
 					var si=bi+(+A[ai]);
-					//	consolelog('si='+si);
+					//	//console.log('si='+si);
 					if(si>9){
 
 						A[ai]=(''+si).substr(-1);
 						if(i==bl-1){
 							
 							if(ai<1){
-						//		consolelog('已经到达b的第1位，且a也达到第1位 '+a+' + '+b+' = ' +(''+si)[0]+A.join(''));
+						//		//console.log('已经到达b的第1位，且a也达到第1位 '+a+' + '+b+' = ' +(''+si)[0]+A.join(''));
 								return (''+si)[0]+A.join('')
 							}
 
@@ -475,9 +475,9 @@ var Integer={/*整数 (本质是字符串)
 						//	return Integer.oprs('+',[A.slice(0,ai).join(''),(''+si).substr(0,(''+si).length-1)])+A.slice(ai).join('')
 						}else{
 							var ai1=+A[ai-1]+(+(''+si)[0]);
-						//	consolelog('前一位' + A[ai-1]+ ' + '+(''+si)[0] + ' == '+ai1);
+						//	//console.log('前一位' + A[ai-1]+ ' + '+(''+si)[0] + ' == '+ai1);
 							if(ai1>9){
-//consolelog('ai1 = '+ai1+' 替换前2位，A[ai-2]为'+(+A[ai-2]+(+(''+ai1)[0])));
+////console.log('ai1 = '+ai1+' 替换前2位，A[ai-2]为'+(+A[ai-2]+(+(''+ai1)[0])));
 								return Integer.oprs('+',[A.slice(0,ai).join(''),(''+si)[0],b.substr(0,bl-i-1)])+A.slice(ai).join('')
 
 							}else{
@@ -487,13 +487,13 @@ var Integer={/*整数 (本质是字符串)
 						}
 						
 					}else{
-						//consolelog('si<9 直接替换A[ai] '+ A[ai]+' -> '+si);
+						////console.log('si<9 直接替换A[ai] '+ A[ai]+' -> '+si);
 						A[ai]=si;
 					}
 				}
 			}
 
-	//		consolelog(a+' + '+b+' = ' +A.join(''));
+	//		//console.log(a+' + '+b+' = ' +A.join(''));
 			return A.join('')
 
 		}
@@ -513,17 +513,17 @@ var Integer={/*整数 (本质是字符串)
 
 			for(var i=0;i<bl;i++){
 				var bi=+b[bl-i-1];
-						//consolelog(bi);
+						////console.log(bi);
 				if(bi){
 					var si=+A[al-i-1]-bi;
 					
-					//consolelog(bi,si);
+					////console.log(bi,si);
 					if(si<0){
-					//	consolelog(si);
+					//	//console.log(si);
 						si+=10;
 						A[al-i-1]=si;
-						//consolelog(si);
-						//consolelog(A.slice(al-i-1).join(''));
+						////console.log(si);
+						////console.log(A.slice(al-i-1).join(''));
 						if(i==bl-1){
 							return Integer.oprs('-',[A.slice(0,al-i-1).join(''),'1']).replace(/^0+/,'')+A.slice(al-i-1).join('')
 						}else{
@@ -535,7 +535,7 @@ var Integer={/*整数 (本质是字符串)
 					}
 				}
 			}
-		//	consolelog('- ',A);
+		//	//console.log('- ',A);
 			return A.join('').replace(/^0+/,'')
 
 		}
@@ -550,7 +550,7 @@ var Integer={/*整数 (本质是字符串)
 			for(var i=0;i<n;i++){
 				var ai=+A[n-i-1];
 
-				//consolelog('A='+A);
+				////console.log('A='+A);
 				var si=b*ai;
 				if(B[n-i-1]){
 					si+=B[n-i-1];
@@ -558,15 +558,15 @@ var Integer={/*整数 (本质是字符串)
 				
 				if(si>9){
 					if(i==n-1){
-						//consolelog(A);
+						////console.log(A);
 						return si+A.slice(1).join('')
 					}else{
-						//consolelog(si,A);
+						////console.log(si,A);
 						A[n-i-1]=(''+si).substr(-1);
-						//consolelog('A ='+A);
+						////console.log('A ='+A);
 						B[n-i-2]=+(''+si)[0];
-						//consolelog(B[n-i-2]);
-						//consolelog(' A='+A);
+						////console.log(B[n-i-2]);
+						////console.log(' A='+A);
 							
 					}
 					
@@ -618,7 +618,7 @@ var Integer={/*整数 (本质是字符串)
 			if(b=='1' || b=='0'){return [a,'0']}	//除数为0时，认为是1
 			if(a==b){return ['1','0']}
 			if(negCnt){
-			//	consolelog(a,b,aisNeg?a.substr(1):a, bisNeg?b.substr(1):b);
+			//	//console.log(a,b,aisNeg?a.substr(1):a, bisNeg?b.substr(1):b);
 				var A=Integer.oprs('/',[aisNeg?a.substr(1):a, bisNeg?b.substr(1):b]);
 				return [(negCnt>1 || a[0]=='0'?'':'-')+a[0],(!aisNeg && bisNeg?'':'-')+a[1]]
 			}
@@ -633,7 +633,7 @@ var Integer={/*整数 (本质是字符串)
 				bI.push(Integer.oprs('*1',[b,i]));
 			}
 			for(var i=n1;i<n0+1;i++){
-				//consolelog(i,n0+1);//Integer.oprs('/',['1232402135','10334302'])
+				////console.log(i,n0+1);//Integer.oprs('/',['1232402135','10334302'])
 				if(Integer.is.b2['>'](b,a0)){
 					if(q){q+='0'}
 				}else{
@@ -641,23 +641,23 @@ var Integer={/*整数 (本质是字符串)
 					
 					for(var j=9;j>0;j--){
 						var bj=bI[j-1];
-						//	consolelog('j='+j+', bj='+bj);
+						//	//console.log('j='+j+', bj='+bj);
 						if(bj==a0){
 							q+=j;
 							a0='';
-						//	consolelog('bj==a0, q='+q+', a0='+a0);
+						//	//console.log('bj==a0, q='+q+', a0='+a0);
 							break;
 						}
 						if(Integer.is.b2['<'](bj,a0)){
 							q+=j;
-						//	consolelog(a0,bj);
+						//	//console.log(a0,bj);
 							a0=Integer.oprs('-',[a0,bj]);
-						//	consolelog('bj<a0  q='+q+', a0='+a0);
+						//	//console.log('bj<a0  q='+q+', a0='+a0);
 							break;
 						}
 					}
 				}
-			//	consolelog(i,a[i-1],n0);
+			//	//console.log(i,a[i-1],n0);
 				if(i==n0){
 					return [q,a0||'0']
 				}
@@ -667,7 +667,7 @@ var Integer={/*整数 (本质是字符串)
 				}else{
 					a0+=a[i];
 				}
-			//	consolelog(i,'a0='+a0);
+			//	//console.log(i,'a0='+a0);
 			}
 
 		}
@@ -744,13 +744,13 @@ var Integer={/*整数 (本质是字符串)
 				return Integer.oprs('^',[a.replace(/0+$/,''),b])+ZLR(0,(+b)*(a.length-a.replace(/0+$/,'').length));
 			}
 			
-//			consolelog(b);
+//			//console.log(b);
 			if(b=='2'){
 				return Integer.oprs('*',[a,a]);
 			}
 			var f=(''+factor(b)).split('×'),fl=f.length,x=a;
-			consolelog('aA = ',aA);
-			consolelog(f, b, factor(b));
+			//console.log('aA = ',aA);
+			//console.log(f, b, factor(b));
 
 			for(var i=0;i<fl;i++){
 				x=Integer.oprs('^p',[x,f[i]])
@@ -782,7 +782,7 @@ var Integer={/*整数 (本质是字符串)
 			while(b!='0'){
 				//a=Integer.opr1('^2',a);
 				a=Integer.oprs('*',[a,a]);
-				//consolelog(b+ ' !!! '+a);
+				////console.log(b+ ' !!! '+a);
 				b=Integer.oprs('-',[b,1]);
 			}
 			
@@ -807,7 +807,7 @@ var Integer={/*整数 (本质是字符串)
 			while(b!='0'){
 				//a=Integer.opr1('^2',a);
 				a=Integer.oprs('*',[a,a]);
-				//consolelog(b+ ' !!! '+a);
+				////console.log(b+ ' !!! '+a);
 				b=Integer.oprs('-',[b,1]);
 			}
 			
@@ -831,7 +831,7 @@ var Integer={/*整数 (本质是字符串)
 			while(b!='0'){
 				//a=Integer.opr1('^2',a);
 				a=Integer.oprs('*',[a,a]);
-				//consolelog(b+ ' !!! '+a);
+				////console.log(b+ ' !!! '+a);
 				b=Integer.oprs('-',[b,1]);
 			}
 			
@@ -894,7 +894,7 @@ var Integer={/*整数 (本质是字符串)
 				d+=-s.split('.')[1].length;
 				s=s.replace('.','').replace(/^([-]?)0+/,'$1');
 			}
-			consolelog(s,d);
+			//console.log(s,d);
 			if(/[%‰‱]$/.test(t)){
 				d-='01%‰‱'.indexOf((''+t).substr(-1));
 			}
@@ -1032,7 +1032,7 @@ var Integer={/*整数 (本质是字符串)
 			}
 			
 			if(A[2]){//循环节长度
-				consolelog(str,A[2]);
+				//console.log(str,A[2]);
 				str=str.replace(new RegExp('(\\d\\.?){'+A[2]+'}$'),function(x){return x.replace(/\d/g,'\\dot$&')})
 			}
 		}
@@ -1083,14 +1083,14 @@ var Integer={/*整数 (本质是字符串)
 		}
 		
 		if(op=='r_0'){//四舍五入（不强制保留小数中尾0）	得到数组，	参数	p是小数位数（负数表示取整百整千...）
-			consolelog('小数位数 p=',p,' 原来小数点d在',d,'p+d+1= ',p+d+1);
+			//console.log('小数位数 p=',p,' 原来小数点d在',d,'p+d+1= ',p+d+1);
 
 			if(p+d+1<=0){//-p>=d+1
 				var I0=str.replace(/^-/,'').substr(0,I+p+d+1);
 				if(I0.length<p+1){
 					I0='0'.repeat(p+1-I0.length)+I0;
 				}
-consolelog('I0 = ',I0,'-p= ',-p)
+//console.log('I0 = ',I0,'-p= ',-p)
 				if(/[5-9]$/.test(I0)){
 					I0=Integer.oprs('+',[I0.substr(0,I0.length-1),1]);
 					if(I0.length<p+1){
@@ -1135,7 +1135,7 @@ consolelog('I0 = ',I0,'-p= ',-p)
 			
 			t=aA.slice(0,al).join(p)+'='+aA[al];
 			Arrf(function(x,i){aA[i]=(''+x).split('.')},aA);
-consolelog(aA.join(';'),max(Arri(aA,0)),max(Arri(aA,1)));
+//console.log(aA.join(';'),max(Arri(aA,0)),max(Arri(aA,1)));
 
 			var nl=(''+max(Arri(aA,0))).length,nr=(''+max(Arri(aA,1))).length;
 
@@ -1166,9 +1166,9 @@ $Decimal.oprs('竖式*',[0.002,0.01])$
 $Decimal.oprs('竖式*',[0.002,300])$
 */
 
-			consolelog(aA.join('; '));
+			//console.log(aA.join('; '));
 			var a=aA[0][0],b=aA[1][0], bl=b.length, nr0=max([aA[0][1], aA[1][1], aA[0][1]+aA[1][1], 0]);
-	consolelog(a,b,bl,nr0);
+	//console.log(a,b,bl,nr0);
 
 			t=Decimal.toStr(aA[0])+'×'+Decimal.toStr(aA[1])+'='+Decimal.toStr(Decimal.oprs('*',aA));
 
@@ -1186,17 +1186,17 @@ $Decimal.oprs('竖式*',[0.002,300])$
 				tA.push([Decimal.oprs('+',tA)[0],0]);
 				tA[tAl][0]=tA[tAl][0]+'0'.repeat(tA[tAl][1]);
 				tA[tAl][1]=0;
-				consolelog(tA.join(' ; '));
+				//console.log(tA.join(' ; '));
 			}else{
 				tAl--;
 				tA[tAl][0]=tA[tAl][0]+'0'.repeat(tA[tAl][1]);
 				tA[tAl][1]=0;
-				consolelog(tA.join(' ; '));
+				//console.log(tA.join(' ; '));
 			}
 			
 			var nl=max([tA.slice(-1)[0][0].length, -aA[0][0].length-aA[0][1]+1, -aA[1][0].length-aA[1][1]+1]),
 				d=Integer.oprs('+',[aA[0][1], aA[1][1]]), dA=[];
-consolelog(nl,d,'tA=',tA.join(' ; '));
+//console.log(nl,d,'tA=',tA.join(' ; '));
 			if(aA[0][1]<0){
 				aA[0][0]=Decimal.toStr(aA[0]);
 				dA.push(aA[0][1]);
@@ -1215,18 +1215,18 @@ consolelog(nl,d,'tA=',tA.join(' ; '));
 				
 				var t0=tA[tAl][0];
 				
-				consolelog('t0= ',t0,'tA[tAl][0]=',tA[tAl][0]);
+				//console.log('t0= ',t0,'tA[tAl][0]=',tA[tAl][0]);
 				tA[tAl][0]=t0.replace(new RegExp('(\\d{'+(-d)+'})$'),'.$1');
 				
 				t0=tA[tAl][0];
-				consolelog('t0= ',t0,'tA[tAl][0]=',tA[tAl][0]);
+				//console.log('t0= ',t0,'tA[tAl][0]=',tA[tAl][0]);
 				if(t0[0]=='.'){
 					tA[tAl][0]=0+t0;
 					nl++;
 				}else if(!/\./.test(t0)){
 					tA[tAl][0]='0.'+'0'.repeat(-d-t0.length)+t0.replace(/0+$/,function(t){return '∅'.repeat(t.length)});
 					
-					consolelog(tA[tAl]);
+					//console.log(tA[tAl]);
 					nl=-d+1;
 					
 				}
@@ -1235,22 +1235,22 @@ consolelog(nl,d,'tA=',tA.join(' ; '));
 				}
 			}
 			
-			consolelog(nl,tA.join('; '));
+			//console.log(nl,tA.join('; '));
 			Arrf(function(x){
-				consolelog('x=',x,' nl= ',nl,nr0,(''+x[0]).replace(/[\.①]/g,'').length,nl-(''+x[0]).replace(/[\.①]/g,'').length-x[1]);
+				//console.log('x=',x,' nl= ',nl,nr0,(''+x[0]).replace(/[\.①]/g,'').length,nl-(''+x[0]).replace(/[\.①]/g,'').length-x[1]);
 				
 				x[1]='⓪'.repeat(Math.max(nl-(''+x[0]).replace(/[\.①]/g,'').length-x[1],0))	//透明0
 					+x[0]
 					+'⓪'.repeat(x[1]+nr0);	//透明0
 				
-				consolelog('x[1]= ',x[1]);
+				//console.log('x[1]= ',x[1]);
 				if(/\./.test(x[1])){
 					x[1]=x[1].replace(/0+$/,function(t){return '∅'.repeat(t.length)})
 				}
 				x[0]='';
 			},tA);
 			
-			consolelog(aA.join(' aA= '));
+			//console.log(aA.join(' aA= '));
 			
 			aA[0]=['','⓪'.repeat(Math.max(nl-(''+aA[0][0]).replace(/[\.①]/g,'').length,0))
 						+aA[0][0]
@@ -1262,14 +1262,14 @@ consolelog(nl,d,'tA=',tA.join(' ; '));
 						+'⓪'.repeat(nr0-Math.max(aA[1][1],0))];
 
 
-			consolelog('dA ',dA, 'nl ',nl);
+			//console.log('dA ',dA, 'nl ',nl);
 			var dotf=function(x){
 				if(x[1].split('.').length-1<dA.length){
 					for(var i=dA.length-1;i>=0;i--){
 
 						var y=x[1].replace(/①/g,'.').replace(/⓪/g,'0'), yl=y.length;
 		
-						consolelog('y ',y,'nl-dA['+i+']= ',nl+dA[i]);
+						//console.log('y ',y,'nl-dA['+i+']= ',nl+dA[i]);
 
 						if(!(new RegExp('^([^\\.]\\.*){'+(nl+dA[i])+'}\\.')).test(y)){
 
@@ -1292,7 +1292,7 @@ consolelog(nl,d,'tA=',tA.join(' ; '));
 			if(+d>0){
 
 				tA[tAl][1]=tA[tAl][1].replace(new RegExp('(\\\\hphantom\\{0\\}){'+nr0+'}$'), '0'.repeat(d)+kancel(0).repeat(Math.max(nr0-d,0)));
-				consolelog(tA[tAl][1]);
+				//console.log(tA[tAl][1]);
 			}
 
 			return mtrx(aA.concat(tA),'.','.','','I2'+(bl>=2?'_'+(tA.length+1):''))+'\\\\ '+t;
@@ -1315,7 +1315,7 @@ $Decimal.oprs('竖式/',[0.002,300])$\\
 $Decimal.oprs('竖式/',[0.02,0.01])$\\
 */
 
-			consolelog(aA.join('; '));
+			//console.log(aA.join('; '));
 			var a=aA[0][0],b=aA[1][0],
 				al=a.length, bl=b.length,
 				atens=aA[0][1], btens=aA[1][1],
@@ -1376,9 +1376,9 @@ $Decimal.oprs('竖式/',[0.02,0.01])$\\
 			//  以下待续
 			var sl=sa.length, nop=p==undefined, fx=nop?8:p, fxi=0,r='',A='',IA='', tA=[sa];
 
-consolelog('sa= ',sa, '小数精度位数 fx = ',fx);
+//console.log('sa= ',sa, '小数精度位数 fx = ',fx);
 			for(var i=0;i<sl+fx+2;i++){
-consolelog('i= ',i, 'c= ',c,'r= ',r,'A= ',A,'IA =',IA);
+//console.log('i= ',i, 'c= ',c,'r= ',r,'A= ',A,'IA =',IA);
 
 
 				if(/^0+$/.test(rep4(r))){//余数为0
@@ -1386,7 +1386,7 @@ consolelog('i= ',i, 'c= ',c,'r= ',r,'A= ',A,'IA =',IA);
 				}
 
 				if(fxi>=fx+1){
-					consolelog('小数精度达标',fxi,' >= ',fx,'+1');
+					//console.log('小数精度达标',fxi,' >= ',fx,'+1');
 					
 					break;
 				}
@@ -1395,18 +1395,18 @@ consolelog('i= ',i, 'c= ',c,'r= ',r,'A= ',A,'IA =',IA);
 				var dos=0;
 
 				do{
-consolelog('do循环开始：i= ',i,'c= ',c);
+//console.log('do循环开始：i= ',i,'c= ',c);
 					var si=i<sl?sa[i]:(/[\.①③]/.test(sa) || i>sl?'0':'①');//'⓪':'①'
 					A+=si;
 					IA=repI(A);
 
 
-consolelog('小循环开始：i= ',i,'si= ',si, 'sa = ',sa, 'sl = ',sl);
+//console.log('小循环开始：i= ',i,'si= ',si, 'sa = ',sa, 'sl = ',sl);
 	
-consolelog('si = ',si,'sa= ',sa,'c= ',c,'A= ',A,'IA= ',IA,'fxi= ', fxi,'fx+1= ',fx+1,'(b,IA) = ',b,IA);
+//console.log('si = ',si,'sa= ',sa,'c= ',c,'A= ',A,'IA= ',IA,'fxi= ', fxi,'fx+1= ',fx+1,'(b,IA) = ',b,IA);
 					
 					if(/[\.①]/.test(si)){
-consolelog('si = ',si,'fx = ',fx,'c = ',c,'fxi = ',fxi);
+//console.log('si = ',si,'fx = ',fx,'c = ',c,'fxi = ',fxi);
 						if(!fx && si=='①'){
 							c=c.replace(/⓪$/,'0');
 							fxi=1;
@@ -1427,26 +1427,26 @@ consolelog('si = ',si,'fx = ',fx,'c = ',c,'fxi = ',fxi);
 						}
 					}
 
-consolelog('小循环尾声 i= ',i,'c= ',c);
+//console.log('小循环尾声 i= ',i,'c= ',c);
 					fxi=(rep4(c).split('.')[1]||'').length;
 					
 
 					i++;
 					dos=1;
-consolelog('商 c= ',c,' 小数位数 fxi= ',fxi,'此时i= ',i);
+//console.log('商 c= ',c,' 小数位数 fxi= ',fxi,'此时i= ',i);
 					
 				}while(Integer.is.b2['>'](b,IA) && fxi<fx+1)
 
-consolelog('i= ',i,'qr之前，c= ',c);
+//console.log('i= ',i,'qr之前，c= ',c);
 				var qr=Integer.oprs('/',[IA,b]);
-consolelog(IA,'/',b,' = qr= ',qr);
+//console.log(IA,'/',b,' = qr= ',qr);
 
-consolelog('i= ',i,'tA= ',tA,'A= ',A,'fxi= ',fxi,' fx+1 = ',fx, '+1');
+//console.log('i= ',i,'tA= ',tA,'A= ',A,'fxi= ',fxi,' fx+1 = ',fx, '+1');
 if(tA.length>1){
 	tA[tA.length-1]=A;
 }
 				if(qr[0]=='0' && fxi>=fx+1){
-					consolelog('精度足够，退出循环');
+					//console.log('精度足够，退出循环');
 					r=A;
 					break
 				}
@@ -1461,21 +1461,21 @@ if(tA.length>1){
 					c+=qr[0]
 				}
 				fxi=(rep4(c).split('.')[1]||'').length;
-consolelog('qr之后，c= ',c,'此时商的小数位数 fxi = ',fxi);
+//console.log('qr之后，c= ',c,'此时商的小数位数 fxi = ',fxi);
 
 				var pd=Integer.oprs('-',[IA,qr[1]]);
 				
-consolelog('pd= ',pd);
+//console.log('pd= ',pd);
 
 				var pdi=rep01(c).split('');
-consolelog('pdi= ',pdi.join(''),'c= ',c,'c.length',c.length);
+//console.log('pdi= ',pdi.join(''),'c= ',c,'c.length',c.length);
 				for(var j=c.length-1;j>-1;j--){
-consolelog('c[',j,'] = ',c[j], /[\.①③⑤]/.test(c[j]));
+//console.log('c[',j,'] = ',c[j], /[\.①③⑤]/.test(c[j]));
 					if(!/[\.①③⑤]/.test(c[j])){
 						pdi[j]=pd.slice(-1);
 						pd=pd.substr(0,pd.length-1);
 						
-consolelog('j= ',j,' pdi= ',pdi.join(''),' pd =', pd);
+//console.log('j= ',j,' pdi= ',pdi.join(''),' pd =', pd);
 						if(!pd){
 							break
 						}
@@ -1483,12 +1483,12 @@ consolelog('j= ',j,' pdi= ',pdi.join(''),' pd =', pd);
 					}
 				}
 				tA.push(pdi.join(''));
-consolelog('后来 pdi= ',pdi.join(''));
+//console.log('后来 pdi= ',pdi.join(''));
 				
 
 				
 				var ri=rep01(c).split(''), qr1=qr[1];
-consolelog('ri= ',ri.join(''));
+//console.log('ri= ',ri.join(''));
 				for(var j=c.length-1;j>-1;j--){
 					if(!/[\.①③⑤]/.test(c[j])){
 						ri[j]=qr1.slice(-1);
@@ -1501,16 +1501,16 @@ consolelog('ri= ',ri.join(''));
 				}
 				A=ri.join('');
 				IA=repI(A);
-consolelog('余数 A= ',A,'IA = ',IA);
+//console.log('余数 A= ',A,'IA = ',IA);
 				r=A;
 				if(i<sl){
-consolelog('局部余数= ',r,'A = ',A);
+//console.log('局部余数= ',r,'A = ',A);
 
 					r+=sa.substr(i);
-consolelog('整体余数= ',r);
+//console.log('整体余数= ',r);
 				}
 				
-consolelog('大循环尾声 i= ',i,'c= ',c,'r= ',r, 'sa= ',sa, 'fxi= ',fxi, 'fx+1=',fx,'+1',' dos= ',dos);
+//console.log('大循环尾声 i= ',i,'c= ',c,'r= ',r, 'sa= ',sa, 'fxi= ',fxi, 'fx+1=',fx,'+1',' dos= ',dos);
 
 //这里需要更新A, IA, C
 				tA.push(r);
@@ -1526,13 +1526,13 @@ consolelog('大循环尾声 i= ',i,'c= ',c,'r= ',r, 'sa= ',sa, 'fxi= ',fxi, 'fx+
 
 			if(c.length<sl){
 				
-				consolelog('此时 c=',c );
-				consolelog('sa= ',sa );
+				//console.log('此时 c=',c );
+				//console.log('sa= ',sa );
 				
 				//c+=rep01(sa.substr(c.length))
 				c+=rep01(sa.substr(c.length));
 				
-				consolelog('然后 c=',c );
+				//console.log('然后 c=',c );
 				
 				if(/⓪+$/.test(c)){
 					
@@ -1546,7 +1546,7 @@ consolelog('大循环尾声 i= ',i,'c= ',c,'r= ',r, 'sa= ',sa, 'fxi= ',fxi, 'fx+
 				if(x.length<cl){
 					tA[i]+=rep01(c.substr(x.length))
 				}
-				consolelog(tA[i]);
+				//console.log(tA[i]);
 
 				if(i%2){//需加下划线的行
 					if(/^\D*0.*\d/.test(tA[i+1])){
@@ -1556,14 +1556,14 @@ consolelog('大循环尾声 i= ',i,'c= ',c,'r= ',r, 'sa= ',sa, 'fxi= ',fxi, 'fx+
 						tA[i]=tA[i].replace(/(\d.*)*\d/,function(x){return kxu(x)})
 					}
 				}else{
-consolelog(tA[i]);
+//console.log(tA[i]);
 					if(/^\D*0.*\d/.test(tA[i])){
 						var l0=tA[i].replace(/[^0].*/,'').length;
 						//tA[i]=tA[i].replace(/^\D*0[0\D]*/, function(x){return x.replace(/0/g,'⓪')});
 					//	tA[i]=tA[i].replace(/^\D*00+/, function(x){var x0=x.split('0')[0]+0;return x0+x.substr(x0.length).replace(/0/g,'⓪')});
 						tA[i]=tA[i].replace(/00+$/, function(x){return x.replace(/0/g,'⓪').replace(/⓪$/,'0')});
 						tA[i]=tA[i].replace(/^\D*0+[1-9]/, function(x){return x.replace(/0/g,'⓪')});
-consolelog(tA[i]);
+//console.log(tA[i]);
 					}
 				}
 				
@@ -1575,10 +1575,10 @@ consolelog(tA[i]);
 
 			
 			c=rep4(c);
-consolelog('尾声r = ',r);
+//console.log('尾声r = ',r);
 if(r.length<sl){
 	r+=sa.substr(r.length);
-	consolelog('实际上 r = ',r);
+	//console.log('实际上 r = ',r);
 }
 
 			r=/[1-9]/.test(r)?repopa(/⑤/.test(r)?r.replace('⑤','.').replace('①',''):r.replace('①','.')):'0';//r=/[1-9]/.test(r)?rep4(r.replace(/⓪/g,'0').replace(/①/g,'.')).replace(/^0+/,''):'0';
@@ -1587,7 +1587,7 @@ if(r.length<sl){
 				r=0+r
 			}
 
-consolelog('最终r = ',r);
+//console.log('最终r = ',r);
 
 			t=Da+'÷'+Db+'='+c+
 				(r?'\\cdots '+r+(fx?'\\\\ '+Da+'÷'+Db+'≈'+Decimal.opr1('r',Decimal.build.D(c),fx)+'（保留'+fx+'位小数）':''):'');
@@ -1638,13 +1638,13 @@ consolelog('最终r = ',r);
 			if(al<2){return aA[0]}
 			
 			if(al>2){
-//consolelog(aA,al);
+////console.log(aA,al);
 				return Decimal.oprs('+',[Decimal.oprs('+',aA.slice(0,al-1)),aA[al-1]])
 
 			}else{
 				var a0=''+aA[0][0],a1=aA[0][1],b0=''+aA[1][0],b1=aA[1][1],isNega=a0[0]=='-',isNegb=b0[0]=='-',isNegSame=isNega==isNegb,
 					Ia=a0.replace(/^-/,'').length,Ib=b0.replace(/^-/,'').length,Na=a0.replace(/-/,''),Nb=b0.replace(/-/,'');
-//consolelog(Na,Nb);
+////console.log(Na,Nb);
 				
 				if(isNegSame){
 					
@@ -1666,7 +1666,7 @@ consolelog('最终r = ',r);
 						return Decimal.build.D((isNega?'-':'')+Integer.oprs('+',[Nb+ZLR(0,b1-a1),Na]),a1)
 					}
 				}else{
-					//consolelog(isNegb?[aA[0],[Nb,b1]]:[aA[1],[Na,a1]]);
+					////console.log(isNegb?[aA[0],[Nb,b1]]:[aA[1],[Na,a1]]);
 					return Decimal.oprs('-',isNegb?[aA[0],[Nb,b1]]:[aA[1],[Na,a1]])
 				}
 			}
@@ -1705,7 +1705,7 @@ consolelog('最终r = ',r);
 					}
 					
 					if(a1>b1){
-						//consolelog(Na+ZLR(0,a1-b1),Nb);
+						////console.log(Na+ZLR(0,a1-b1),Nb);
 						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na+ZLR(0,a1-b1),Nb]),b1)
 					}
 					if(a1<b1){
@@ -1915,11 +1915,11 @@ Decimal.opr1('/') 依赖于 Frac.build.D(A)
 				return Decimal.build.I(0)
 			}
 			a=a.replace('-','');
-			consolelog(a,b,'化小数对象');
+			//console.log(a,b,'化小数对象');
 			var al=a.length,q='',r='',qr=[],len=0;
 			while(!len || r!='0'){
 				var x=Integer.oprs('/',[a,b]),X=x.join();
-				consolelog(a,'/',b,' = ',x);
+				//console.log(a,'/',b,' = ',x);
 
 				r=x[1];
 				
@@ -2149,7 +2149,7 @@ Decimal.opr1('/') 依赖于 Frac.build.D(A)
 			a.push(c)
 		}
 		
-		//consolelog(a,b,c);
+		////console.log(a,b,c);
 		b=a.join('×').replace('-×','-')
 
 		return b
@@ -2296,7 +2296,7 @@ Decimal.opr1('/') 依赖于 Frac.build.D(A)
 		if(isStr(a)){
 			return a
 		}
-consolelog(a);
+//console.log(a);
 		var x=a.type;
 		if(x){
 			//return eval(x).toStr(a,p)
@@ -2481,9 +2481,9 @@ consolelog(a);
 	r=f3(t.substr(-3),caps);
 	tl=ks*3;
 	t=('00'+t).substr(-tl);
-	//consolelog(t);
+	////console.log(t);
 	for(var i=2;i<ks+1;i++){
-		//consolelog(t.substr(tl-i*3,3));
+		////console.log(t.substr(tl-i*3,3));
 		r=Arrfc(copyA(kxo,i-1),f3(t.substr(tl-i*3,3),caps))+r;
 	}
 	return r
@@ -2495,7 +2495,7 @@ consolelog(a);
 		*/
 		var tl=t.length,r;
 		if(tl){
-		//	consolelog(t);
+		//	//console.log(t);
 			var t0=t[0].toUpperCase(),t1=(t[1]||'').toUpperCase(),ti0=fi(t0),ti1=fi(t1),is5=/[VLD]/.test(t0),ten=Math.pow(10,(is5?'VLD':'IXCM').indexOf(t0));
 			if(is5){
 				r=ten*5;
@@ -2506,17 +2506,17 @@ consolelog(a);
 					r+=k2n(t.substr(1));
 				}
 			}else if(ti1==ti0+1){//^10 100
-		//		consolelog('^10 100');
+		//		//console.log('^10 100');
 				r=ten*9+k2n(t.substr(2))
 			}else if(ti1==ti0 && /[VLD]/.test(t1)){//^10 50
-		//		consolelog('^10 50');
+		//		//console.log('^10 50');
 				r=ten*4+k2n(t.substr(2))
 			}else if(t1==t0){//^10+
-		//		consolelog('^10+');
+		//		//console.log('^10+');
 				t1=t.replace(new RegExp('^'+t0+'+','i'),'');
 				r=ten*(tl-t1.length)+k2n(t1);
 			}else{
-		//		consolelog('^10 1 10*');
+		//		//console.log('^10 1 10*');
 				r=ten+k2n(t.substr(1));
 			}
 
@@ -2933,7 +2933,7 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 	*/
 
 	
-consolelog(o,x,y);
+//console.log(o,x,y);
 	var A=(''+FracReduct(x)).split('/'),B=(''+FracReduct(y)).split('/'),l=A.length+B.length,s,op=opreplace0(o,1),m=A.join('/'),n=B.join('/');
 
 	if(/[\|∤]/.test(op)){
@@ -2952,7 +2952,7 @@ consolelog(o,x,y);
 			return +/[≥>]/.test(op)
 		}
 	}
-consolelog(op,m,n);
+//console.log(op,m,n);
 	if(l==2){//整数运算
 		if(op=='/'){
 			return fracReduct(m,n)
@@ -2966,7 +2966,7 @@ consolelog(op,m,n);
 			return Integer.oprs(op,[m,n])
 
 		}else{
-			consolelog(m,op,n);
+			//console.log(m,op,n);
 			return eval(m+op+pp(n)) //加括号，防止n是负数时报错
 		}
 	}
@@ -2981,11 +2981,11 @@ consolelog(op,m,n);
 	B[0]=+B[0];B[1]=+B[1];//n的分子，分母
 
 	if(/[\+\-]/.test(op)){
-//		consolelog(A,B);
+//		//console.log(A,B);
 		s=lcm([A[1],B[1]]);
 		A[0]=s/A[1]*A[0];
 		B[0]=s/B[1]*B[0];
-//		consolelog(A,B);
+//		//console.log(A,B);
 		return fracReduct(A[0]+B[0]*(op=='+'?1:-1),s)
 
 	}else if(/[\*\/]/.test(op)){
@@ -3026,38 +3026,38 @@ consolelog(op,m,n);
 			A[0]=-A[0]
 		}
 
-		consolelog('有理数幂',A.join('/'),B.join('/'),A,B);
+		//console.log('有理数幂',A.join('/'),B.join('/'),A,B);
 		
 		//下面对A分子，分母分别进行因式分解，因子公重数(>1)，如果与B分母，可以约分，则化简
 		if(A[1]!=1){//分数的分数幂
 			var a=factorA(A[0]),ga=+gcd(a[1]);
 			var b=factorA(A[1]),gb=+gcd(b[1]);
-			consolelog('A: ','a=',a.join(' ;; '),'b=',b.join(' ;; '),'ga = ',ga,'gb = ',gb)
+			//console.log('A: ','a=',a.join(' ;; '),'b=',b.join(' ;; '),'ga = ',ga,'gb = ',gb)
 			if(gb>1){
 				var gab=A[0]==1?gb:+gcd([ga,gb]);
 				//var gab=+gcd([ga,gb]);
 				if(gab>1){
-					consolelog('gab= ',gab)
+					//console.log('gab= ',gab)
 					var gabc=+gcd([gab,B[1]]);
 					if(gabc>1){
 						
-						consolelog(A,B,'gabc = ',gabc);
-						consolelog('a = ',a.join(' ; '),'b = ',b.join(' ; '));
+						//console.log(A,B,'gabc = ',gabc);
+						//console.log('a = ',a.join(' ; '),'b = ',b.join(' ; '));
 						
 						a[1]=Arrf(function(x){return x=='1'?x:Integer.oprs('/',[x,gabc])[0]},a[1]);
-						consolelog('a = ',a[0],' ;;; ',a[1]);
+						//console.log('a = ',a[0],' ;;; ',a[1]);
 						a=factorA2n(a);
 						
 						
-						consolelog('a = ',a);
+						//console.log('a = ',a);
 						b[1]=Arrf(function(x){return x=='1'?x:Integer.oprs('/',[x,gabc])[0]},b[1]);
 						b=factorA2n(b);
 						
-						consolelog('b = ',b);
+						//console.log('b = ',b);
 						
 						A=[a,b];
 						
-						consolelog('A = ',A);
+						//console.log('A = ',A);
 						
 						B[1]/=gabc;
 						
@@ -3066,7 +3066,7 @@ consolelog(op,m,n);
 								return  isneg?isneg+(isneg=='-'?A.join('/'):pp(A.join('/'))):A.join('/')
 									
 							}else{//2^10 3^6 4^5 5^4 (6~10)^3 (11~32)^2
-								consolelog(A,B);
+								//console.log(A,B);
 								var m=max(A);
 								if(m<=32 && B[0]<=10 && Math.pow(m,B[0])<=1024){
 									Arrf(function(t){return Math.pow(t,B[0])},A);
@@ -3088,25 +3088,25 @@ consolelog(op,m,n);
 			var gabc=+gcd([ga,B[1]]);
 			if(gabc>1){//底数（分解因数后，因数公重数）与分数幂的分母可以约分
 				a[1]=Arrf(function(x){return x=='1'?x:Integer.oprs('/',[x,gabc])[0]},a[1]);
-				consolelog('a = ',a[0],' ;;; ',a[1]);
+				//console.log('a = ',a[0],' ;;; ',a[1]);
 				a=factorA2n(a);
 				A=[a,1];
 				
-				consolelog('A = ',A);
-				consolelog('B = ',B,'gabc= ',gabc);
+				//console.log('A = ',A);
+				//console.log('B = ',B,'gabc= ',gabc);
 				B[1]/=gabc;
 				if(B[1]==1){//整数幂
-					consolelog(isneg,op,[a,B[0]],Integer.oprs(op,[a,B[0]]));
+					//console.log(isneg,op,[a,B[0]],Integer.oprs(op,[a,B[0]]));
 					return isneg+Integer.oprs(op,[a,B[0]])
 				}
 			}
 			//var x=isneg+(/^1[234]$/.test(B.join(''))?
-			consolelog(isneg+A[0]+'^('+B.join('/')+')');
+			//console.log(isneg+A[0]+'^('+B.join('/')+')');
 			return isneg+A[0]+'^('+B.join('/')+')';
 		}
 
 
-	consolelog('最终 ',isneg+pp(A.join('/'))+'^('+B.join('/')+')');
+	//console.log('最终 ',isneg+pp(A.join('/'))+'^('+B.join('/')+')');
 		return isneg+pp(A.join('/'))+'^('+B.join('/')+')';
 	}
 

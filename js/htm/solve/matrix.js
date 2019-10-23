@@ -13,7 +13,7 @@ solve['matrix']=function(inputValue, uriA){
 */
 	
 //Display
-//consolelog(inputValue,uriA);
+//console.log(inputValue,uriA);
 	if(sel(uriA,'A')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
@@ -1116,6 +1116,7 @@ console.log('单位化？',oi,m,Q);
 			return kxA(['系数矩阵化最简行',A[1],'得到基础解系：'+Xs.join(', '),'~','因此通解是：'+Y.join(' + '),
 				'一个对偶方程组是：',piece(F)])
 		},VA));
+		console.log(rS);
 	}
 
 	if(sel(uriA,'AX=b')){

@@ -1380,7 +1380,7 @@ a b c d
 					A=nums.split(/[\+\-\×÷]/),B=[A[1],A[0]], opr=nums.replace(/[^\+\-\×÷]/g,'').replace(/^(.)\1+$/,'$1');
 				//	result=Num.opr1('竖式',nums,xs[1]?Zh2n(xs[1]):0);
 				
-				consolelog('xs=',xs,'nums=',nums,'A=', A,'opr=',opr);
+				//console.log('xs=',xs,'nums=',nums,'A=', A,'opr=',opr);
 				if(opr=='+' || opr=='-'){
 					return Decimal.oprs('竖式+-',A,opr);
 				}

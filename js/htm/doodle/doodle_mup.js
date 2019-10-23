@@ -32,87 +32,146 @@ function mUp(e,Last){
 	var drawLast=function(){
 		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
 		if($('#Zdogon text').attr('fill')=='yellow'){
-//19820727/201055
-//solve.html?s=number&t=19820727/201055&0&qa=Number/Classification/Integer/竖式计算
 
-console.log(shp);
+
+consolelog(shp);
+var color=chdm.attr('stroke'), fill=chdm.attr('fill')!='none', zshp='', lz=`let zz=new Zdog.`, wh=`
+	width: ${WD+sw},
+	height: ${HT+sw},
+`,scf=`
+	addTo: zo,
+	stroke: ${sw},
+	color: '${color}',
+	fill: ${fill},
+});
+`;
 
 var o={LRect:
-`let rect = new Zdog.Rect({
-	addTo: zo,
-	width: ${WD+sw},
-	height: ${HT+sw},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
-});`, ARect:
-`let rect = new Zdog.RoundedRect({
-	addTo: zo,
-	width: ${WD+sw},
-	height: ${HT+sw},
-	stroke: ${sw},
+
+`${lz}Rect({
+	${wh}
+	${scf}
+
+`, ARect:
+
+`${lz}RoundedRect({
 	cornerRadius:${+chdm.attr('rx')},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
-});`, Ellipse:
-`let rect = new Zdog.Ellipse({
-	addTo: zo,
+	${wh}
+	${scf}
+
+`, Ellipse:
+
+`${lz}Ellipse({
 	width: ${+chdm.attr('rx')*2},
 	height: ${+chdm.attr('ry')*2},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
-});`, PentagonT:
-`let rect = new Zdog.Polygon({
-	addTo: zo,
-	sides: 5,
-	radius: ${Math.hypot(+chdmp.split(' ')[0]-(+chdmp.split(' ')[1]),+chdmp.split(' ')[2]-(+chdmp[3]))},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
-});`, LGonRndSq:
-`let rect = new Zdog.Polygon({
-	addTo: zo,
-	sides: 6,
-	radius: ${Math.hypot(+chdmd.split(' ')[1]-(+chdmd.split(' ')[2]),+chdmd.split(' ')[4]-(+chdmd[5]))},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
-});`, TriangonIsoEqui:
-`let rect = new Zdog.Polygon({
-	addTo: zo,
+	${scf}
+
+`, TriangonIsoEqui:
+
+`${lz}Polygon({
 	sides:3,
-	radius: ${Math.hypot(+chdmp.split(' ')[0]-(+chdmp.split(' ')[1]),+chdmp.split(' ')[2]-(+chdmp[3]))},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
+	radius: Gon_radius,
+	${scf}
+
+`, PentagonT:
+
+`${lz}Polygon({
+	sides: 5,
+	radius: Gon_radius,
+	${scf}
+
+`, LGonRndSq:
+
+`${lz}Polygon({
+	sides: 6,
+	radius: LGonRndSq_radius,
+	${scf}
 
 
-});`, conoidOV:
-`let rect = new Zdog.Cone({
-	addTo: zo,
+
+
+`, conoidOH:
+
+`${lz}Cone({
 	diameter:${+chdm.attr('rx')*2},
-	length: ${Math.hypot(+chdm.eq(2).attr('d').split(' ')[0]-(+chdm.eq(2).attr('d').split(' ')[1]),+chdm.eq(2).attr('d').split(' ')[2]-(+chdm.eq(2).attr('d').split(' ')[2]))},
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
+	length: Cone_length,
+	${scf}
+
+`, conoidOV:
+
+`${lz}Cone({
+	diameter:${+chdm.attr('rx')*2},
+	length: Cone_length,
+	rotate: { z: -Math.PI/2 },
+	${scf}
+
+`, conoidIH:
+
+`${lz}Cone({
+	diameter:${+chdm.attr('rx')*2},
+	length: Cone_length,
+	${scf}
+
+`, conoidIV:
+
+`${lz}Cone({
+	diameter:${+chdm.attr('rx')*2},
+	length: Cone_length,
+	rotate: { z: -Math.PI/2 },
+	${scf}
+	
 
 
+`,cylinderoidH:
+
+`${lz}Cylinder({
+	diameter:${+chdm.attr('rx')*2},
+	length: Cylinder_length,
+	rotate: { z: -Math.PI/2 },
+	${scf}
+
+`,cylinderoidV:
+
+`${lz}Cylinder({
+	diameter:${+chdm.attr('rx')*2},
+	length: Cylinder_length,
+	rotate: { z: -Math.PI/2 },
+	${scf}
+	
 
 
+`, path:
 
-});`, path:
-`let rect = new Zdog.Shape({
-	addTo: zo,
+`${lz}Shape({
 	path: '${chdmd}',
-	stroke: ${sw},
-	color: '${chdm.attr('fill')!='none'?chdm.attr('fill'):chdm.attr('stroke')}',
-	fill: ${chdm.attr('fill')!='none'},
+	${scf}
 });`,
 
 
 
 }, s0=o[shp] || o[shp.replace(/Sq$/,'')] || o['path'];
+
+
+s0=s0.replace('Gon_radius',function(x){
+	var cs=chdmp.split(' ');
+	return Math.hypot(+cs[0]-(+cs[1]),+cs[2]-(+cs[3]))
+
+}).replace('LGonRndSq_radius',function(x){
+	var cs=chdmd.split(' ');
+	return Math.hypot(+cs[1]-(+cs[2]),+cs[4]-(+cs[5]))
+
+
+}).replace('Cone_length',function(x){
+	var cs=chdm.eq(2).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+
+}).replace('Cylinder_length',function(x){
+	var cs=chdm.eq(3).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+});
+
+
+
 //console.log(s0);
 var s=
 `
