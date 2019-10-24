@@ -2973,9 +2973,6 @@ function cng_popout(obj) {
 
 }
 
-function fixed4(d) {
-	return d.toFixed(4).replace(/(\.[^0]*)0+/, '$1').replace(/\.$/, '')
-}
 
 function errPath(t) {
 	return (t||'').replace(/^.*M *[LZ].+$/i,'').replace(/.+[ML] *z*$/i,'')

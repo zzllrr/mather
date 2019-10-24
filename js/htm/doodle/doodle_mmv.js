@@ -2042,6 +2042,7 @@ console.log('tp ',tp);
 
 			if(/Gon|Note|arrow/.test(shp) && !/A|Heart|Star/.test(shp) && tArr.length>3){
 				Arrf(function(x){var dA=gon(tArr.join(' '),x);
+				//console.log(x, dA)
 					if(dA.length>2){chd.filter('.'+x).attr('d',errPath(dA.join(' ')))}
 				},ZLR('Diagonal Medians MidPointLine OppositeMidPointLine Altitudes PerpendicularFootLine'));
 			}

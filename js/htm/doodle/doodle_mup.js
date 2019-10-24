@@ -38,14 +38,19 @@ consolelog(shp);
 var color=(chdm.attr('stroke')||'').replace('none',''),
 	color2=(chdm.attr('fill')||'').replace('none',''),
 	fill=chdm.attr('fill')!='none', 
-	lz=`let zz=new Zdog.`, wh=`
-	width: ${WD+sw},
-	height: ${HT+sw},
+	lz=`let zz=new Zdog.`, letz=function(x){return `let z${x}=new Zdog.`}, wh=`
+	width: ${WD},
+	height: ${HT},
 `,as=`
 	addTo: zo,
 	stroke: ${sw},
 });
-`;
+
+`,as2=`
+	addTo: zo,
+	stroke: false,
+});
+`;	//crispEdges 偏向更加清晰锐利的边缘的渲染。
 
 var o={LRect:
 
@@ -73,32 +78,7 @@ var o={LRect:
 	fill: ${fill},
 	${as}
 
-`, TriangonIsoEqui:
 
-`${lz}Polygon({
-	sides:3,
-	radius: Gon_radius,
-	color: '${color}',
-	fill: ${fill},
-	${as}
-
-`, PentagonT:
-
-`${lz}Polygon({
-	sides: 5,
-	radius: Gon_radius,
-	color: '${color}',
-	fill: ${fill},
-	${as}
-
-`, LGonRndSq:
-
-`${lz}Polygon({
-	sides: 6,
-	radius: LGonRndSq_radius,
-	color: '${color}',
-	fill: ${fill},
-	${as}
 
 
 
@@ -108,6 +88,9 @@ var o={LRect:
 `${lz}Cone({
 	diameter: Cone_diameter2,
 	length: Cone_length,
+	translate: {z: -Cone_lengthHalf},
+
+	backface: '${RandomColor()}',
 	color: '${color}',
 	fill: ${fill},
 	${as}
@@ -115,9 +98,12 @@ var o={LRect:
 `, conoidOV:
 
 `${lz}Cone({
-	diameter: Cone_diameter,
+	diameter: Cone_diameter3,
 	length: Cone_length,
-	rotate: { x: -Math.PI/2 },
+	rotate: { x: Math.PI/2 },
+	translate: {y: Cone_lengthHalf},
+
+	backface: '${RandomColor()}',
 	color: '${color}',
 	fill: ${fill},
 	${as}
@@ -127,6 +113,9 @@ var o={LRect:
 `${lz}Cone({
 	diameter: ${+chdm.attr('ry')*2},
 	length: Cone_length,
+	translate: {z: -Cone_lengthHalf},
+
+	backface: '${RandomColor()}',
 	color: '${color}',
 	fill: ${fill},
 	${as}
@@ -136,7 +125,10 @@ var o={LRect:
 `${lz}Cone({
 	diameter: ${+chdm.attr('rx')*2},
 	length: Cone_length,
-	rotate: { x: -Math.PI/2 },
+	rotate: { x: Math.PI/2 },
+	translate: {y: Cone_lengthHalf},
+
+	backface: '${RandomColor()}',
 	color: '${color}',
 	fill: ${fill},
 	${as}
@@ -148,8 +140,9 @@ var o={LRect:
 `${lz}Cylinder({
 	diameter: ${+chdm.eq(0).attr('ry')*2},
 	length: Cylinder_length,
-	frontface: '${color}',
-	backface: '${color}',
+
+	frontface: '${RandomColor()}',
+	backface: '${RandomColor()}',
 	color: '${color2||color}',
 	fill: ${fill},
 	${as}
@@ -160,57 +153,200 @@ var o={LRect:
 	diameter: ${+chdm.eq(0).attr('rx')*2},
 	length: Cylinder_length,
 	rotate: { x: Math.PI/2 },
-	frontface: '${color}',
-	backface: '${color}',
+
+	frontface: '${RandomColor()}',
+	backface: '${RandomColor()}',
 	color: '${color2||color}',
 	fill: ${fill},
 	${as}
 	
 
+`,cuboid:
+`${lz}Box({
+	cuboid_whd
+
+	leftFace: '${RandomColor()}',
+	rightFace: '${RandomColor()}',
+	frontFace: '${RandomColor()}',
+	rearFace: '${RandomColor()}',
+	topFace: ${fill?`'${RandomColor()}'`:fill},
+	bottomFace: '${RandomColor()}',
+
+	color: '${color2||color}',
+
+	${as2}
+
+
+
+
+`,Ellipsoid:
+
+`${lz}Hemisphere({
+	diameter: ${+chdm.eq(0).attr('rx')*2},
+	rotate: { y: Math.PI },
+
+	color: '${color2||color}',
+	backface: '${color}',
+	fill: ${fill},
+
+	${as2}
+${letz(1)}Hemisphere({
+	diameter: ${+chdm.eq(0).attr('ry')*2},
+
+	color: '${RandomColor()}',
+	backface: '${RandomColor()}',
+
+	${as2}
+
 
 `, path:
 
 `${lz}Shape({
-	path: '${chdmd}',
+	path: [
+		pathstr
+	],
+	closed: isclosed,
 	color: '${color}',
 	fill: ${fill},
 	${as}
-});`,
+`,
 
 
 
 }, s0=o[shp] || o[shp.replace(/Sq$/,'')] || o['path'];
 
-
-s0=s0.replace('Gon_radius',function(x){
+/*
+.replace('TriangonIsoEqui_radius',function(x){
 	var cs=chdmp.split(' ');
-	return Math.hypot(+cs[0]-(+cs[1]),+cs[2]-(+cs[3]))
+	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3]))/Math.sqrt(3))
 
+.replace('diagonSq_radius',function(x){
+	var cs=chdmp.split(' ');
+	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3])))*Math.SQRT1_2
+
+}).replace('PentagonT_radius',function(x){
+	var cs=chdmp.split(' ');
+	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3]))/Math.sin(Math.PI/5)/2)
+
+
+	
 }).replace('LGonRndSq_radius',function(x){
 	var cs=chdmd.split(' ');
-	return Math.hypot(+cs[1]-(+cs[2]),+cs[4]-(+cs[5]))
+	return fixed4(Math.hypot(+cs[1]-(+cs[2]),+cs[4]-(+cs[5])))
+
+})
+*/
+s0=s0.replace('pathstr',function(x){
+	
+	if(chdmp){
+		console.log('points=',chdmp);
+		return Arrf(function(t,i){return i%2?',y:'+(+t-HT2)+'},':'{x:'+(+t-WD2)}, chdmp.split(/[, +]/)).join('')
+	}
+	if(chdmd){
+		chdmd=chdmd.toUpperCase();
+		while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(chdmd)){
+			chdmd=chdmd.replace(/L *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'L$1 L$2')
+		}
+		console.log('d=',chdmd);
+		var cs=split(chdmd, /[A-Z]/g), cs0=cs[0],
+			cs1=[Arrf(Number,cs[1][0].replace(/M/,'').trim().split(/[ ,]+/))],
+			s='{x:'+(cs1[0][0]-WD2)+', y:'+(cs1[0][1]-HT2)+'},';
+		Arrf(function(y,i){
+			var p=y.trim().split(/[ ,]+/);
+//console.log(i,cs1[i-1]);
+			if(cs0[i]=='H'){
+				p=[p[0], cs1[i].slice(-1)[0]];
+			}
+			if(cs0[i]=='V'){
+				p=[cs1[i].slice(-2)[0], p[0]];
+			}
+
+			var dp=Arrf(function(t,j){return j%2?+t-HT2:+t-WD2}, p);
+
+
+			cs1.push(p);
+
+			if(cs0[i]=='M'){
+				s+='{move:{x:'+dp.join(', y:')+'}},'
+			}
+			if(/[LHV]/.test(cs0[i])){
+				s+='{x:'+dp.join(', y:')+'},'
+			}
+
+			
+			if(cs0[i]=='C'){
+				s+='{bezier:['+Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
+			}
+			if(cs0[i]=='S'){
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				s+='{bezier:[{x:'+(p0[2]*2-p0[0])+',y:'+(p0[3]*2-p0[1])+'},'+
+					Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
+			}
+
+
+			if(cs0[i]=='Q'){
+				s+='{bezier:['+Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
+			}
+			if(cs0[i]=='T'){
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				s+='{bezier:[{x:'+(p0[2]*2-p0[0])+',y:'+(p0[3]*2-p0[1])+'},'+
+					Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
+			}	
+
+			if(cs0[i]=='A'){
+				var p0=Arrf(Number,cs1[i].slice(-2));// Zdog使用Corner点（方角），而SVG Path中A命令不是，较复杂，这里未作修正
+				s+='{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'},';
+				//s+='{arc:[{x:'+(p0[0]-WD2)+', y:'+(p0[1]-HT2)+'},{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'}]},'
+			}
+
+
+		}, cs[1].slice(1));
+		return s
+	}
+
+
+}).replace('Cone_lengthHalf',function(x){
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	return fixed4(Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))/2)
 
 
 }).replace('Cone_length',function(x){
 	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
-	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+	return fixed4(Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1])))
 
 }).replace('Cone_diameter2',function(x){
-	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
-	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-3);
+	return fixed4(+cs[1]-(+cs2[0]))
+
+}).replace('Cone_diameter3',function(x){
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-4);
+	return fixed4(+cs[0]-(+cs2[0]))
 
 }).replace('Cone_diameter',function(x){
 	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
-	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+	return fixed4(Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1])))
 
 }).replace('Cylinder_length',function(x){
 	var cs=chdm.eq(1).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
-	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+	return fixed4(Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1])))
 
+
+}).replace('cuboid_whd',function(x){
+	var cs=Arrf(Number,chdmp.split(/[, +]/)),
+		cs2=Arrf(Number,chdm.eq(1).attr('points').split(/[, +]/)),
+		w=fixed4(Math.abs((cs[0]-cs[2]) || (cs[0]-cs[5])));
+	return /Sq/.test(shp)?ZLR('width height depth ').join(':'+w+','):'width:'+w+
+		',height:'+fixed4(Math.abs((cs[1]-cs[3]) || (cs[1]-cs[5])))+
+		',depth:'+fixed4(Math.hypot(Math.abs((cs2[1]-cs2[3]) || (cs2[1]-cs2[5])),Math.abs((cs2[0]-cs2[2]) || (cs2[0]-cs2[4]))))+','//这里涉及仿射几何，深度未严格计算
+
+
+
+}).replace('isclosed',function(x){
+	return !/lin/i.test(shp)
 });
 
 
-var rotatexyz=/cylinderoidV/.test(shp)?'x':'y';
+var rotatexyz=/cylinderoidV|conoid[IO]V/.test(shp)?'x':'y';
 console.log(s0);
 var s=
 `
@@ -246,6 +382,8 @@ animate();
 			
 `;
 			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
+			Z=Z||2001;
+			console.log(Z+6);
 			s1='<span data-code="'+s+'" class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
 
 
@@ -553,7 +691,7 @@ animate();
 				}
 			}
 			$('#Caps').children('svg,textarea,span').each(function(){zi.push(+$(this).css('z-index')||2000)});
-			Z=max(zi)+1;
+			Z=max(zi)+1 || 2001;
 
 			if(/Crop/.test(shp)){
 				

@@ -2873,6 +2873,11 @@ function ubb2html(t0, webview) {
 	return t;
 }
 
+
+function fixed4(d) {
+	return d.toFixed(4).replace(/(\.[^0]*)0+/, '$1').replace(/\.$/, '')
+}
+
 function linear2nest(Arr) {//平面线性二维数组[[相对层级,内容]+] 转成 立体嵌套对象[[索引,子对象数组[[索引,子对象数组[索引,索引]],[索引]]]+]
 	var A = Arrf(function (i, ii) { return i.concat(ii) }, Arr);//第三列添加自然索引（以0开始计数）
 	var f = function (a) {

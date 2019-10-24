@@ -46,14 +46,14 @@ $.each({
 			scegc('path d="M10 10 C 20 20, 40 20, 50 10" fill=none stroke=red', 4),
 
 			gM('Symmetric Cubic') + 'S x2 y2, x y | s dx2 dy2, dx dy',
-			'其中省略的第1个控制点，是前一个C或S命令中第2个控制点，关于终点的对称点',
+			'其中省略的第1个控制点，是前一个C或S命令中第2个控制点，关于(前)终点的对称点（即终点是两控制点的中点）',
 			scegc('path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke=black fill=transparent', 4),
 
 			gM('Quadratic') + 'Q x1 y1, x y | q dx1 dy1, dx dy',
 			scegc('path d="M10 80 Q 95 10 180 80" fill=none stroke=red', 4),
 
 			gM('Symmetric Quadratic') + 'T x y | t dx dy',
-			'其中省略的第1个控制点，是前一个Q或T命令中的控制点，关于终点的对称点',
+			'其中省略的第1个控制点，是前一个Q或T命令中的控制点，关于(前)终点的对称点（即终点是两控制点的中点）',
 			scegc('path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke=black fill=transparent', 4),
 
 
@@ -942,7 +942,19 @@ let bz = new Zdog.Shape({
 		].join('')),
 
 		detail('3D '+gM('Shape'),[
-						
+
+			
+			detail(gM('Sphere'),[
+				scegj(`
+let dome = new Zdog.Shape({
+	addTo: zo,
+	stroke: 80,
+	color: '#C25',
+
+})`,0),
+
+			].join(br)),
+
 			detail(gM('Hemi-sphere'),[
 				'new Zdog.Hemisphere()',
 				scegj(`
@@ -1089,6 +1101,7 @@ let lnZ3D = new Zdog.Shape({
 
 		detail(gM('Transform'),[
 			gM('Translate.Math')+sceg2('translate: { x: 40 }')+'| y | z ',
+			'旋转x,y,z分别是围绕x水平坐标轴，y竖直坐标轴，Z前后坐标轴旋转',
 			gM('Rotate Back')+sceg2('rotate: {x: Zdog.TAU/8}'),
 			gM('Rotate 45°')+sceg2('rotate: { z: -Zdog.TAU/8 }'),
 
