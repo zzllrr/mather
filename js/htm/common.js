@@ -796,8 +796,20 @@ $(function(){
         me.siblings('.toggle').removeClass('toggle');
         me.siblings('svg').removeAttr('class');
 		pa.nextAll('[for='+id+']').toggle(tog);
-		pa.nextAll().not('[for='+id+']').hide();
-	});
+        pa.nextAll().not('[for='+id+']').hide();
+        
+	}).on('mousewheel','.zdog canvas',function(e){
+        var d=Math.sign(e.originalEvent.wheelDelta), k=e.keyCode, shft=e.shiftKey || $('#Shift').is('.seled'), ctrl=e.ctrlKey, alt=e.altKey, 
+            me=$(this), pa=me.parent(), c=pa.attr('data-code');
+        if(d){
+            var c2=c.replace(/zoom: \d\.?\d*/,function(x){return 'zoom: '+
+                +Math.max(0.1,Math.min(2,(+x.split(' ')[1]+(shft?0.01:(ctrl?0.5:(k==91||k==92?1:0.1)))*d))).toFixed(2)});
+            pa.attr('data-code',c2).html(c2);
+			all2html('zdog','',pa);
+
+        }
+
+    });
 
 
 

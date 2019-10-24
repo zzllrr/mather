@@ -23,7 +23,7 @@ function mUp(e,Last){
 	 	Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0)),
 		
 		pos=shpN.position(),lt=pos?pos.left:0,tp=pos?pos.top:0, zi=[2000],Z,
-		chd=shpN.children(), chdm=chd.filter('.main'),
+		chd=shpN.children(), chdm=chd.filter('.main').not('.strokenone,.fillnone'),
 		chdmp=chdm.attr('points')||'', chdmd=chdm.attr('d')||'',
 		w0=Math.abs(X-(+L.X0)), h0=Math.abs(Y-(+L.Y0)), sw=+$('#strkW').val(), d=Math.ceil(sw/2),
 		WD=shpN.width(),HT=shpN.height(), WgH=WD>HT, WD2=WD/2,HT2=HT/2, WH2=(WD+HT)/2, WH_2=Math.abs((WD-HT)/2);
@@ -35,57 +35,70 @@ function mUp(e,Last){
 
 
 consolelog(shp);
-var color=chdm.attr('stroke'), fill=chdm.attr('fill')!='none', zshp='', lz=`let zz=new Zdog.`, wh=`
+var color=(chdm.attr('stroke')||'').replace('none',''),
+	color2=(chdm.attr('fill')||'').replace('none',''),
+	fill=chdm.attr('fill')!='none', 
+	lz=`let zz=new Zdog.`, wh=`
 	width: ${WD+sw},
 	height: ${HT+sw},
-`,scf=`
+`,as=`
 	addTo: zo,
 	stroke: ${sw},
-	color: '${color}',
-	fill: ${fill},
 });
 `;
 
 var o={LRect:
 
 `${lz}Rect({
+	color: '${color}',
+	fill: ${fill},
 	${wh}
-	${scf}
+	${as}
 
 `, ARect:
 
 `${lz}RoundedRect({
 	cornerRadius:${+chdm.attr('rx')},
+	color: '${color}',
+	fill: ${fill},
 	${wh}
-	${scf}
+	${as}
 
 `, Ellipse:
 
 `${lz}Ellipse({
 	width: ${+chdm.attr('rx')*2},
 	height: ${+chdm.attr('ry')*2},
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, TriangonIsoEqui:
 
 `${lz}Polygon({
 	sides:3,
 	radius: Gon_radius,
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, PentagonT:
 
 `${lz}Polygon({
 	sides: 5,
 	radius: Gon_radius,
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, LGonRndSq:
 
 `${lz}Polygon({
 	sides: 6,
 	radius: LGonRndSq_radius,
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 
 
@@ -93,50 +106,65 @@ var o={LRect:
 `, conoidOH:
 
 `${lz}Cone({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: Cone_diameter2,
 	length: Cone_length,
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, conoidOV:
 
 `${lz}Cone({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: Cone_diameter,
 	length: Cone_length,
-	rotate: { z: -Math.PI/2 },
-	${scf}
+	rotate: { x: -Math.PI/2 },
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, conoidIH:
 
 `${lz}Cone({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: ${+chdm.attr('ry')*2},
 	length: Cone_length,
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 
 `, conoidIV:
 
 `${lz}Cone({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: ${+chdm.attr('rx')*2},
 	length: Cone_length,
-	rotate: { z: -Math.PI/2 },
-	${scf}
+	rotate: { x: -Math.PI/2 },
+	color: '${color}',
+	fill: ${fill},
+	${as}
 	
 
 
 `,cylinderoidH:
 
 `${lz}Cylinder({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: ${+chdm.eq(0).attr('ry')*2},
 	length: Cylinder_length,
-	rotate: { z: -Math.PI/2 },
-	${scf}
+	frontface: '${color}',
+	backface: '${color}',
+	color: '${color2||color}',
+	fill: ${fill},
+	${as}
 
 `,cylinderoidV:
 
 `${lz}Cylinder({
-	diameter:${+chdm.attr('rx')*2},
+	diameter: ${+chdm.eq(0).attr('rx')*2},
 	length: Cylinder_length,
-	rotate: { z: -Math.PI/2 },
-	${scf}
+	rotate: { x: Math.PI/2 },
+	frontface: '${color}',
+	backface: '${color}',
+	color: '${color2||color}',
+	fill: ${fill},
+	${as}
 	
 
 
@@ -144,7 +172,9 @@ var o={LRect:
 
 `${lz}Shape({
 	path: '${chdmd}',
-	${scf}
+	color: '${color}',
+	fill: ${fill},
+	${as}
 });`,
 
 
@@ -162,17 +192,26 @@ s0=s0.replace('Gon_radius',function(x){
 
 
 }).replace('Cone_length',function(x){
-	var cs=chdm.eq(2).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+
+}).replace('Cone_diameter2',function(x){
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+
+}).replace('Cone_diameter',function(x){
+	var cs=chdm.filter('path').attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
 	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
 
 }).replace('Cylinder_length',function(x){
-	var cs=chdm.eq(3).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
+	var cs=chdm.eq(1).attr('d').replace(/[Mz]/gi,'').replace(/[AL]/gi,' ').split(' '), cs2=cs.slice(-2);
 	return Math.hypot(+cs[0]-(+cs2[0]),+cs[1]-(+cs2[1]))
+
 });
 
 
-
-//console.log(s0);
+var rotatexyz=/cylinderoidV/.test(shp)?'x':'y';
+console.log(s0);
 var s=
 `
 C.setAttribute('spinning',true);C.width=${WD+sw};C.height=${HT+sw};
@@ -197,7 +236,8 @@ ${s0}
 
 function animate() {
 	if ( isSpinning && C.getAttribute('spinning')=='true') {
-		zo.rotate.y += 0.03;
+		zo.rotate.${rotatexyz} = (zo.rotate.${rotatexyz}+0.03) % (Math.PI*2);
+
 	}
 	zo.updateRenderGraph();
 	requestAnimationFrame( animate );
@@ -206,7 +246,7 @@ animate();
 			
 `;
 			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
-			s1='<span class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
+			s1='<span data-code="'+s+'" class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
 
 
 			shpN.after(s1);
