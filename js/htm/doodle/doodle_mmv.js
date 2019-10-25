@@ -31,7 +31,8 @@ function mMv(e,repaint){
 		shpN=$('#'+(L.drawShapeNow||'unknown')), chd=shpN.children(),
 		x0=+L.X0, y0=+L.Y0, offX=X-x0, offY=Y-y0, rnd=/A|Rnd/.test(shp), lt=offX<0?X:x0, tp=offY<0?Y:y0,
 		MCO=$('[name=MarginCopyOpt]:checked').val(),isMargin=MCO=='w',isCpy=MCO=='copy', n=+$('#copyNum').val(),
-		l=+$('#Arc3on').parent().next().val(), lR=+$('#Rton').parent().next().val();
+		l=+$('#Arc3on').parent().next().val(), lR=+$('#Rton').parent().next().val(),
+		shifton=$('#SVGshift path').attr('stroke')=='yellow', shiftpath=[];
 
 	if(L.drawEnd=='no'){
 
@@ -1225,7 +1226,7 @@ function mMv(e,repaint){
 
 			}
 
-			if(/Regular/.test(shp)){
+			if(/Regular/.test(shp)){ // 正多边形 
 				var sides=+$('#Sides').val(), R=Math.hypot(w,h), ang=Math.atan2(offY,offX), C=[0,0], mp=[0,0], Mp=[0,0];
 //console.log('ang ',-offY,offX, ang);
 				deg=+(Math.atan2(-offY,offX)*180/Math.PI).toFixed(2);
@@ -1253,15 +1254,21 @@ console.log('Center ',C);
 console.log('min ',mp);
 console.log('max ',Mp);
 */
+
 				w=Mp[0]-mp[0];
 				h=Mp[1]-mp[1];
 				/*
 console.log('w ',w);
 console.log('h ',h);
 				*/
+
 				for(var i=0;i<sides;i++){
 					pnt[i*2]+=d-mp[0];
 					pnt[i*2+1]+=d-mp[1];
+
+					if(shifton){
+						shiftpath.push('M'+(+w/2)+' '+(h/2)+'L'+pnt[i*2]+' '+pnt[i*2+1]);
+					}
 				}
 				lt=x0+mp[0];
 				tp=y0+mp[1];
@@ -1375,6 +1382,10 @@ console.log('tp ',tp);
 			shpN.css(ltwh([lt,tp,WD,HT]));
 			//console.log(pnt);
 			chd.filter('polygon.main').attr({points:pnt.join(' ')});
+			
+			if(shifton && shiftpath.length){
+				chd.filter('path.main').attr('d',errPath(shiftpath.join(' ')))
+			}
 			
 
 				Arrf(function(x){chd.filter('.'+x).attr('d',errPath(gon(pnt,x).join(' ')))}, ZLR('Diagonal Medians Altitudes '+
@@ -1966,7 +1977,7 @@ console.log('tp ',tp);
 
 				if(!dd){$(svgid+'='+L.drawShape+']').click();return}
 
-				var tArr=dd.replace(/[MLz]/g,'').split(' '),tArr0=[],tArr1=[], Shp;
+				var tArr=dd.replace(/[MLz]/ig,'').split(' '),tArr0=[],tArr1=[], Shp;
 
 				if(/Free/.test(shp)){
 					tArr.push(+tArr.slice(-2,-1)+offX,+tArr.slice(-1)+offY);

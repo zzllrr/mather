@@ -108,6 +108,7 @@ function mDn(e){
 
 
 		var lnJoin=$(s+'LnJoin').val(), nv=+$('#svgText').val(), rndColor=$('#RandomColorson').is('.seled'),
+			shifton=$('#SVGshift path').attr('stroke')=='yellow',
 			fg=rndColor?RandomColor():$('#FGC').val(), bg=rndColor?RandomColor():$('#BGC').val(), fgOpa=$('#OpaFGC').val(), bgOpa=$('#OpaBGC').val();
 
 		strk=strks(/Crop/.test(shp)?shp:'',fg,bg);
@@ -173,7 +174,7 @@ function mDn(e){
 					(/Right/.test(shp)?' Rt ':' ')+zlr2('Ortho In Circum','centerLine')+' ':'')+
 					(/gon/i.test(shp)?'Altitudes Medians '+zlr2('MidPoint OppositeMidPoint PerpendicularFoot Centroid','Line'):'')+
 					(/gon/i.test(shp) && !istrigon?' Diagonal OppositeMidPointLine':'');
-			$('#Caps').append('<svg'+sty+'">'+shps(/Gon|Note|arrow/.test(shp)?'path':'polygon','main'+(/StarNote/.test(shp)?'':oOn('VertexLine',1)))+(/A/.test(shp)||!ostr?'':
+			$('#Caps').append('<svg'+sty+'">'+shps(/Gon|Note|arrow/.test(shp) || shifton && /Regulargon/.test(shp)?'path':'polygon','main'+(/StarNote/.test(shp)?'':oOn('VertexLine',1)))+(/A/.test(shp)||!ostr?'':
 				Arrf(function(x){return shps('',oOn(x,1))},ZLR(ostr)).join(''))+
 				'</svg>');
 		}

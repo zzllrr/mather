@@ -2432,8 +2432,8 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 	//下列涉及排序、去重
 
-}, Uniq = function (s) {//字符或数字（数组，逗号隔开）去重，结果会自动排序
-	return (s.split(',').sort().join(',') + ',').replace(/(.+,)\1+/g, '$1').replace(/,$/, '')
+}, Uniq = function (s) {//字符或数字（数组，逗号隔开）去重，结果会自动排序	此方法去重不彻底，换成 Array.from(new Set([])).sort().join(',')
+	return (','+s.split(',').sort().join(',,') + ',').replace(/(,[^,]+,)\1+/g, '$1').replace(/,{2,}/g, ',').replace(/^,|,$/g, '')
 
 }, sortBy = {
 	numInt: function (a, b) { var r = (BigInt(a) - BigInt(b)).toString(); return /^-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//大整数数字大小排序

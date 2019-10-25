@@ -31,8 +31,8 @@ var plot={
 	},
 
 	shape:function(id,type,content,attrs,style,translateA){//id,type,content,attrs,style,translateA
-consolelog(id,type,content);
-consolelog(attrs,style,translateA);
+//consolelog(id,type,content);
+//consolelog(attrs,style,translateA);
 		var typ=type, attr=attr2jSon(attrs||''), arrow='trig diamond square circle', ems=ZLR(' v '+zlr2(arrow,'Hollow')+' '+zlr2(arrow,'Solid')), trA=translateA, tra='', t0='', tP=typ=='textPath';
 
 
@@ -46,7 +46,7 @@ consolelog(attrs,style,translateA);
 				trA[0]+=translateA[0];
 				trA[1]+=translateA[1];
 			}
-consolelog(trA);
+//consolelog(trA);
 			tra=' transform=translate('+trA.join()+')';
 		}
 		if(type=='Square'){
@@ -231,7 +231,7 @@ consolelog(trA);
 		var relaA=[];
 		for(var i=0;i<relations.length;i++){
 			var ri=relations[i], x=ri[0], y=ri[1], z=ri[2],xisA=x[0] instanceof Array,yisA=y[0] instanceof Array,zisA=z instanceof Array,jA=[],mA=[];
-		//	consolelog(x,y,z);
+		//	//consolelog(x,y,z);
 			if(xisA || yisA){
 				mA=Arrf(function(a){var A=ri.slice(2);A.unshift(xisA?x[a[0]]:x,yisA?y[a[1]]:y);return A},cartestian([seqA(0,xisA?x.length:1),seqA(0,yisA?y.length:1)]));
 				/*
@@ -273,7 +273,7 @@ consolelog(trA);
 		var rows=nodes.length;
 
 		nodeM=Arrf(Math.max,Arrf(function(a){return a.length},nodes),'cp2');//有最多节点数所在行的节点数
-consolelog(nodeAttr);
+//consolelog(nodeAttr);
 		var attrs=attr2jSon(nodeAttr), trsl=translates||[0,0,0,0,0,0,0,0,0,0],tra='transform=translate(';
 		if(!attrs['stroke-width']){
 			attrs['stroke-width']=2;
@@ -302,7 +302,7 @@ consolelog(nodeAttr);
 			}
 			return [x,y,att.split(' ')]
 		}, nodeWHR=function(node,sw){
-			consolelog(node,sw);
+			//consolelog(node,sw);
 			var T=node[0],Att=node[1],w,h,SW=sw||0;
 			if(/circle|Polygon/.test(T)){
 				w=(+Att.r)*2+SW;
@@ -368,12 +368,12 @@ consolelog(nodeAttr);
 		};
 
 //计算节点宽高半径
-consolelog(attrs);
+//consolelog(attrs);
 //if(!attrs)
 		var nodewhr=nodeWHR([nT,attrs],sw);
 
 		var w=nodewhr[0], h=nodewhr[1], rx=nodewhr[2],ry=nodewhr[3];
-consolelog(nodewhr,rx,ry,w,h);
+//consolelog(nodewhr,rx,ry,w,h);
 
 //计算节点中心坐标
 
@@ -503,7 +503,7 @@ consolelog(nodewhr,rx,ry,w,h);
 		}
 
 		
-consolelog(nodeXY, nodeAttr);
+//consolelog(nodeXY, nodeAttr);
 
 //获取每个节点的属性
 		var nodeTypesA=[];
@@ -513,7 +513,7 @@ consolelog(nodeXY, nodeAttr);
 				var xy=XY[j], NT=nT, Attr=' '+jSon2attr(attrs).replace(/"/g,''), nStyle=nodeStyle||'';
 				var irx=rx, iry=ry;
 				
-consolelog(xy,irx,iry);
+//consolelog(xy,irx,iry);
 //consolelog(sN);
 				if(sN){//有特殊节点
 					for(var k=0;k<sN.length;k++){
@@ -586,7 +586,7 @@ consolelog(xy,irx,iry);
 
 
 				if(/ transform=/.test(Attr)){
-			//		consolelog(Attr, xy)
+			//		//consolelog(Attr, xy)
 					if(/translate\(/.test(Attr)){
 						Attr=Attr.replace(/translate\([^\)]+/,'translate('+xy[0]+','+xy[1]);
 					}else{
@@ -804,7 +804,7 @@ consolelog(xy,irx,iry);
 			
 			if(riisP){
 				if(!attr.transform){
-					consolelog('x1,y1=',x1+','+y1);
+					//consolelog('x1,y1=',x1+','+y1);
 					attr.transform='translate('+x1+','+y1+')'
 				}
 			}
@@ -1194,7 +1194,7 @@ consolelog(xy,irx,iry);
 	
 	},
 	plot:function(id,v){
-consolelog(id,v);
+//consolelog(id,v);
 		$('#oHTML').append(v); //jQuery不支持大写节点
 		//$('#oHTML').children().last()[0].outerHTML=v;
 		//consolelog($('#oHTML').children().last()[0].outerHTML);
@@ -1206,15 +1206,15 @@ consolelog(id,v);
 				var BCR=dm[0].getBoundingClientRect(),dml=parseInt(BCR.left),dmt=parseInt(BCR.top),dmw=BCR.width,dmh=BCR.height;
 				dm.children().not('defs').each(function(){
 					var t=this.getBoundingClientRect();
-					consolelog(this.id,t.right,t.bottom,t);
+					//consolelog(this.id,t.right,t.bottom,t);
 				//	w=Math.max(w,parseInt(t.right));
 				//	h=Math.max(h,parseInt(t.bottom));
 					w=Math.max(w,parseInt(t.width+t.left));
 					h=Math.max(h,parseInt(t.height+t.top));
 				
-					consolelog('w , h',w,h);
+					//consolelog('w , h',w,h);
 				});
-				consolelog(w,h);
+				//consolelog(w,h);
 				dm.attr({width:w,height:h});
 			}
 		},100);
