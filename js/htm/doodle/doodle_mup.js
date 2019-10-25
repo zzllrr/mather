@@ -141,10 +141,10 @@ var o={LRect:
 	diameter: ${+chdm.eq(0).attr('ry')*2},
 	length: Cylinder_length,
 
-	frontface: '${RandomColor()}',
-	backface: '${RandomColor()}',
+	frontFace: '${RandomColor()}',
+	backface: ${fill?`'${RandomColor()}'`:fill},
 	color: '${color2||color}',
-	fill: ${fill},
+
 	${as}
 
 `,cylinderoidV:
@@ -154,10 +154,10 @@ var o={LRect:
 	length: Cylinder_length,
 	rotate: { x: Math.PI/2 },
 
-	frontface: '${RandomColor()}',
-	backface: '${RandomColor()}',
+	frontFace: '${RandomColor()}',
+	backface: ${fill?`'${RandomColor()}'`:fill},
 	color: '${color2||color}',
-	fill: ${fill},
+
 	${as}
 	
 
@@ -182,16 +182,15 @@ var o={LRect:
 `,Ellipsoid:
 
 `${lz}Hemisphere({
-	diameter: ${+chdm.eq(0).attr('rx')*2},
+	diameter: ${Math.min(+chdm.attr('rx'),+chdm.attr('ry'))*2},
 	rotate: { y: Math.PI },
 
 	color: '${color2||color}',
 	backface: '${color}',
-	fill: ${fill},
 
 	${as2}
 ${letz(1)}Hemisphere({
-	diameter: ${+chdm.eq(0).attr('ry')*2},
+	diameter: ${Math.min(+chdm.attr('rx'),+chdm.attr('ry'))*2},
 
 	color: '${RandomColor()}',
 	backface: '${RandomColor()}',
@@ -215,27 +214,7 @@ ${letz(1)}Hemisphere({
 
 }, s0=o[shp] || o[shp.replace(/Sq$/,'')] || o['path'];
 
-/*
-.replace('TriangonIsoEqui_radius',function(x){
-	var cs=chdmp.split(' ');
-	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3]))/Math.sqrt(3))
 
-.replace('diagonSq_radius',function(x){
-	var cs=chdmp.split(' ');
-	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3])))*Math.SQRT1_2
-
-}).replace('PentagonT_radius',function(x){
-	var cs=chdmp.split(' ');
-	return fixed4(Math.hypot(+cs[0]-(+cs[2]),+cs[1]-(+cs[3]))/Math.sin(Math.PI/5)/2)
-
-
-	
-}).replace('LGonRndSq_radius',function(x){
-	var cs=chdmd.split(' ');
-	return fixed4(Math.hypot(+cs[1]-(+cs[2]),+cs[4]-(+cs[5])))
-
-})
-*/
 s0=s0.replace('pathstr',function(x){
 	
 	if(chdmp){
@@ -260,6 +239,10 @@ s0=s0.replace('pathstr',function(x){
 			if(cs0[i]=='V'){
 				p=[cs1[i].slice(-2)[0], p[0]];
 			}
+			if(cs0[i]=='Z'){
+				p=[cs1[0]];
+				console.log(p)
+			}
 
 			var dp=Arrf(function(t,j){return j%2?+t-HT2:+t-WD2}, p);
 
@@ -269,7 +252,7 @@ s0=s0.replace('pathstr',function(x){
 			if(cs0[i]=='M'){
 				s+='{move:{x:'+dp.join(', y:')+'}},'
 			}
-			if(/[LHV]/.test(cs0[i])){
+			if(/[LHVZ]/.test(cs0[i])){
 				s+='{x:'+dp.join(', y:')+'},'
 			}
 
@@ -295,8 +278,9 @@ s0=s0.replace('pathstr',function(x){
 
 			if(cs0[i]=='A'){
 				var p0=Arrf(Number,cs1[i].slice(-2));// Zdog使用Corner点（方角），而SVG Path中A命令不是，较复杂，这里未作修正
-				s+='{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'},';
-				//s+='{arc:[{x:'+(p0[0]-WD2)+', y:'+(p0[1]-HT2)+'},{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'}]},'
+				//s+='{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'},';
+				s+='{arc:[{x:'+(cs[1][0].split(/ +/)[3]=='0'?[p0[0]-WD2,dp.slice(-1)[0]]:[dp.slice(-2)[0],p0[1]-HT2]).join(', y:')+
+					'},{x:'+dp.slice(-2)[0]+', y:'+dp.slice(-1)[0]+'}]},'
 			}
 
 

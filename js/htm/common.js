@@ -808,7 +808,8 @@ $(function(){
 			all2html('zdog','',pa);
 
         }
-
+	}).on('click','.zdog canvas',function(e){
+        L.drawShapeNow=$(this).parent().attr('id')
     });
 
 

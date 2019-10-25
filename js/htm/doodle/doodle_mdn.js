@@ -12,17 +12,19 @@ function mDn(e){
 	if(act!='CANVAS'){e.stopPropagation()}
 
 	var et=e.type;
+	
 	/*
 	console.log(et);
 	console.log(e);
 	console.log(eos);
-	*/
-
+	
+	console.log(act);
+*/
 	var X=document.documentElement.scrollLeft+(e.clientX||(ect?ect[0].clientX:0)),
 	 Y=document.documentElement.scrollTop+(e.clientY||(ect?ect[0].clientY:0));
 	L.X=X;
 	L.Y=Y;
-
+	//console.log(act);
 
 	var shp=L.drawShape, shp2=/Crop/.test(shp), shp3=/Paral|Trape|(lineangle|Triangon)[HV]|Line3YRight|cub/.test(shp);
 	if(L.drawEnd=='no'){
@@ -67,7 +69,7 @@ function mDn(e){
 		var isTxt=/Text/.test(shp);
 		//$('#svgTexts').toggle(isTxt);
 		if(/Pointer/.test(shp)){
-			var id=$(eos).closest('svg,textarea,span,zdog').attr('id');
+			var id=$(eos).closest('svg,textarea,span').attr('id');
 		//	console.log(eos,id);
 
 
@@ -93,7 +95,7 @@ function mDn(e){
 		}
 
 
-		if(/Eraser|Copy/.test(shp) || /textarea|span/.test(act.toLowerCase())){return}
+		if(/Eraser|Copy/.test(shp) || /textarea/.test(act.toLowerCase()) || $(eos).is('span:not(.zdog)')){return}
 
 		var tim=Time.now5(), shpN=shp+tim, s_='stroke-', s='#strk', sw=+$(s+'W').val(), d=Math.ceil(sw/2), r=+$(s+'R').val(), ry=+$(s+'Ry').val(), WD=1+sw, HT=1+sw;
 
