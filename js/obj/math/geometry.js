@@ -7,6 +7,7 @@
 
 var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代次数或嵌套参数（次数cnt或[marginx,marginy]）
 	var S=[],M=[],B=[],A,A0, Cn=[0,0], C, err=function(x){
+		return x
 		for(var i=0,l=x.length;i<l;i++){
 			if(isNaN(x[i])){
 				return []
@@ -15,6 +16,10 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 
 		return x
 	};
+	// console.log(typ);
+
+	
+
 	if(isArr(Arr) && Arr[0]!='M'){
 		A=[].concat(Arr);
 		A0=[].concat(Arr);
@@ -266,6 +271,7 @@ var gon=function(Arr,typ,o){//多边形，返回内线path点集		o指明迭代�
 				B.push('M',A[i*2],A[i*2+1], 'L',A[((i+2+j)%n)*2],A[((i+2+j)%n)*2+1])
 			}
 		}
+	//	console.log(typ, B);
 		return err(B)
 	}
 

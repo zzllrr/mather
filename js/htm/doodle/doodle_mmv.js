@@ -86,11 +86,56 @@ function mMv(e,repaint){
 		lt=offX<0?X:x0;
 		tp=offY<0?Y:y0;
 
+
+
+
+		if(shifton){
+			if(/Rect|Crop|Grid|gon|note|arrow|Wav|Curve|Lattice|Ellips/i.test(shp)){
+				lt-=+(offX>0)*w;
+				tp-=+(offY>0)*h;
+				w2=w;
+				h2=h;
+				w*=2;
+				h*=2;
+
+				px=offX<0?w:0;
+				py=offY<0?h:0;
+	
+			}
+
+			if(/cylinderoid|conoid/.test(shp)){
+				if(hv){
+					
+					tp-=+(offY>0)*h;
+					h2=h;
+					h*=2;
+
+					lt-=+(offX>0)*r;
+					w+=r;
+
+				}else{
+
+					lt-=+(offX>0)*w;
+					w2=w;
+					w*=2;
+
+					tp-=+(offY>0)*r;
+					h+=r;
+				}
+			}
+
+		}
+
 		if(/Rect|Crop|Grid/.test(shp)){
 			var isCrop=/Crop/.test(shp);
 
+
+
 			WD=w+(isCrop?2:sw);
 			HT=h+(isCrop?2:sw);
+
+
+
 			shpN.css(ltwh([lt+(isCrop?-2:0),tp+(isCrop?-2:0),WD,HT]));
 			chd.filter('rect').attr({width:w,height:h});
 			
@@ -123,6 +168,10 @@ function mMv(e,repaint){
 		}
 
 		if(/Ellips/.test(shp)){
+
+
+
+
 			WD=w+sw*2;
 			HT=h+sw*2;
 			shpN.css(ltwh([lt,tp,WD,HT]));
@@ -141,6 +190,7 @@ function mMv(e,repaint){
 
 
 		if(/conoid/.test(shp)){
+
 			WD=w+sw*2;
 			HT=h+sw*2;
 			shpN.css(ltwh([lt,tp,WD,HT]));
@@ -205,6 +255,7 @@ function mMv(e,repaint){
 
 
 		if(/cylinderoid/.test(shp)){
+
 			WD=w+sw*2;
 			HT=h+sw*2;
 			shpN.css(ltwh([lt,tp,WD,HT]));
@@ -1388,7 +1439,13 @@ console.log('tp ',tp);
 			}
 			
 
-				Arrf(function(x){chd.filter('.'+x).attr('d',errPath(gon(pnt,x).join(' ')))}, ZLR('Diagonal Medians Altitudes '+
+				Arrf(function(x){chd.filter('.'+x).attr('d',errPath(gon(pnt,x).join(' ')));
+					if(x=='Diagonal'){
+						// console.log(x,chd.filter('.'+x).attr('d'),pnt,x=='Diagonal',gon(pnt,x))
+					}
+					
+				}, 
+					ZLR('Diagonal Medians Altitudes '+
 					zlr2('MidPoint OppositeMidPoint PerpendicularFoot Centroid '+zlr2('Ortho In Circum','center'),'Line')));
 				
 				if(/Triangon/.test(shp)){

@@ -172,9 +172,12 @@ function mDn(e){
 			var istrigon=/Triangon/.test(shp), ostr=(istrigon?Arrf(function(x){return zlr(x,'1 2 3')},
 				ZLR('Arc Median Altitude AngleBisector Midline')).join(' ')+
 					(/Right/.test(shp)?' Rt ':' ')+zlr2('Ortho In Circum','centerLine')+' ':'')+
+
 					(/gon/i.test(shp)?'Altitudes Medians '+zlr2('MidPoint OppositeMidPoint PerpendicularFoot Centroid','Line'):'')+
+
 					(/gon/i.test(shp) && !istrigon?' Diagonal OppositeMidPointLine':'');
-			$('#Caps').append('<svg'+sty+'">'+shps(/Gon|Note|arrow/.test(shp) || shifton && /Regulargon/.test(shp)?'path':'polygon','main'+(/StarNote/.test(shp)?'':oOn('VertexLine',1)))+(/A/.test(shp)||!ostr?'':
+			$('#Caps').append('<svg'+sty+'">'+shps(/Gon|Note|arrow/.test(shp) || shifton && /Regulargon/.test(shp)?'path':'polygon','main'+(/StarNote/.test(shp)?'':oOn('VertexLine',1)))+
+				(/A/.test(shp)||!ostr?'':
 				Arrf(function(x){return shps('',oOn(x,1))},ZLR(ostr)).join(''))+
 				'</svg>');
 		}
@@ -399,7 +402,9 @@ function drawEnd(e){
 	//tileToolCode(shpN);
 }
 
-function oOn(t,hdn){var c=min(Arrf(function(x){return +$('#'+x+'on').prop('checked')}, ZLR(t)));return hdn?' '+t+(c?'':' hidden'):c}
+function oOn(t,hdn){var c=min(Arrf(function(x){return +$('#'+x+'on').prop('checked')}, ZLR(t)));
+	return hdn?' '+t+(c?'':' hidden'):c}
+
 
 function CapsTip(){$('#tileTool').attr('tip','← '+gM('hotkey')+' Esc →')}
 
