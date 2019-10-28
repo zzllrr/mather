@@ -261,7 +261,7 @@ lang['zh_cn'] = {
 
 
 	'Topic': '课题',
-
+	'Foldable':'可折叠',
 
 	//教学
 
