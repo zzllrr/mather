@@ -163,6 +163,7 @@ wikis={
 	'Explore':[
 		{'from Formula':[
 			'Cuboid Surface Area',
+			'Cuboid Foldable',
 		]},
 		{'from Theorem':[
 			'费马大定理中的方程1解变6解',
