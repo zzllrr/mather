@@ -50,7 +50,7 @@
 #svgTool2{
 	background:silver;
 }
-#svgToolOpt > *{
+#svgToolOpt > *, .tool[name=codeout]{
 	padding:5px;
 }
 

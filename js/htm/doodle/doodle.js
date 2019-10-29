@@ -83,7 +83,7 @@ $(function () {
 							'<label id=margin>'+strchkbx0+chked+' />'+gM('Margin')+num('10" id=copyMargin title="px')+'</label>'+
 							'<label id=copyTileOn hidden>'+gM('Tile') + ' '+strchkbx0+'id=copyTile /></label></p>'+
 				
-						'<p><label>'+strchkbx0+'id=Transform /></label></p>'+dc+
+						'<p><label>'+strchkbx0+'id=Transform />'+gM('Transform')+'</label></p>'+dc+
 				
 					'<div id=eraserOpt>'+gM('Delete')+' '+gM('Direction')+
 						'<p><select id=eraserDir multiple=multiple class=hmulti size=1 title=Ctrl>'+Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')+'</select></p>'+dc+
@@ -1076,7 +1076,7 @@ dc+
 			'<div id=svgCode>'+
 				itv('" tip=Hide id="SVGhide','keyboard_arrow_up')+
 
-				itv('" tip="SVG Code" id="outputSVGCode','code')+
+				itv('" tip=Code id="outputCode','code')+
 				itv('" tip=copy2clipboard id="copy2clipboard','library_books')+
 				(isdoodle?'':
 				itv('" tip=copy2input id="copy2input','library_add')+
@@ -1087,8 +1087,18 @@ dc+
 				itv('" tip="Download HTML File" id="SVGDownload','file_download')+
 				itv('" tip=Launch id="launchCap','launch')+
 
-				'<div id=SVGCode hidden><label>'+strchkbx0+'id=ignoreHiddenElement'+chked+' /></label>'+
-				txa('','" id="SVGcode')+
+				'<div id=CodeOut hidden>'+
+					SCtv('tool radio seled" name=codeout id="code_API','API')+
+					SCtv('tool radio" name=codeout id="code_Native',gM('Native'))+
+					SCtv('tool radio" name=codeout id="code_UserInput',gM('User Input'))+
+
+					detail(gM('Option'),[
+						'<label>'+strchkbx0+'id=ignoreHiddenElement'+chked+' />'+gM('ignoreHiddenElement')+'</label>',
+						'<label>'+strchkbx0+'id=svg2path />'+gM('Transform to Path')+'</label>',
+						].join(br)
+					)
+				+
+				txa('','" id="codetext')+
 				dc+
 				
 
@@ -1142,7 +1152,7 @@ dc+
 
 
 	$('.Grad').after(gM('Gradient'));
-	$('#Transform,#ignoreHiddenElement').after(function () { return gM(this.id) });
+
 
 	$('[name=FGradType],[name=BGradType],[name=SGradType]').before(function () { var v = this.value; return gM(v) });
 
@@ -1417,10 +1427,15 @@ dc+
 
 	$('#copy2clipboard').on('click',function(){
 
-		$('#outputSVGCode').click();
-		$('#SVGcode').select();
+		//$('#outputCode').click();
+		tileToolCode($('#'+L.drawShapeNow));
+		$('#CodeOut').addClass('opa0').show();
+
+		$('#codetext').select();
 		document.execCommand('copy', false, null);
 		toolTip(gM('copiedtip'));
+
+		$('#CodeOut').hide().removeClass('opa0');
 
 	})
 	$('#copy2input').on('click',function(){
@@ -1428,7 +1443,7 @@ dc+
 		if(!/Markdown|HTML|SVG/.test(iT.val())){
 			iT.val('SVG').change()
 		}
-		$('#input0').val(function(i,v){return v+$('#SVGcode').val()}).change();
+		$('#input0').val(function(i,v){return v+$('#codetext').val()}).change();
 
 	})
 	$('#copyAll2input').on('click',function(){
@@ -1447,13 +1462,26 @@ dc+
 
 	})
 
-	$('#outputSVGCode').on('click',function(){
-		if($('#SVGCode').is(':visible')){
-			$('#SVGCode').fadeOut();
+	$('#outputCode').on('click',function(){
+		var me=$(this);
+		if($('#CodeOut').is(':visible')){
+			$('#CodeOut').fadeOut();
+			me.removeClass('seled');
 		}else{
 			tileToolCode($('#'+L.drawShapeNow));
-			$('#SVGCode').fadeIn();
+			$('#CodeOut').fadeIn();
+			me.addClass('seled');
 		}
+	});
+
+	$('.radio[name=codeout], #CodeOut input').on('click',function(){
+		var me=$(this);
+		if(me.is('.radio')){
+			me.addClass('seled').siblings('.radio').removeClass('seled')
+		}
+
+		tileToolCode($('#'+L.drawShapeNow));
+
 	});
 
 	$('#SVGUpload').on('click',function(){

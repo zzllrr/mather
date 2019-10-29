@@ -1710,8 +1710,77 @@ var svgf = {
 		}else if(isArr(id)){
 			return Arrf(function(x){return svgf.id(x,v,noVieWBox,w)},id)
 		}
-		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+v+'</svg>'
-	}
+		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+(v||'')+'</svg>'
+	},
+	obj2js: function (obj, path, haschd) {
+		var o=$(obj), os={
+			marker:function(){
+				var id=o.attr('id'), rx=o.attr('refX'), ry=o.attr('refY'), w=o.attr('markerWidth'), h=o.attr('markerHeight'), vBox=o.attr('viewBox'),
+					chd=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'markerplaceholder';
+				return `svgf.marker('${id}',${rx},${ry},${w},${h},'${vBox}',${chd})`
+
+			},
+			path: function () {
+				var d=o.attr('d'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				return `svgf.path('${d}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			polygon: function () {
+				var d=o.attr('points'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				if(path){
+					return `svgf.path('${Arrf(function(x,i){i?(i==2?'L'+x:x):'M'+x},d.split(/[ ,]+/)).join(' ')+'z'}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				}
+				return `svgf.polygon('${d}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			text: function () {
+				var text=o.text(), yxSize=[o.attr('y'),o.attr('x'),o.attr('font-size')], strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				return `svgf.text('${text.replace(/'/g,"\\'")}',[${yxSize}],'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			rect: function () {
+				var x=+o.attr('x'), y=+o.attr('y'),w=+o.attr('width'),h=+o.attr('height'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				if(path){
+					return `svgf.path('M${x} ${y} H${x+w} V${y+h} H${x} V${y}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				}
+				return `svgf.rect(${x},${y},${w},${h},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			circle: function () {
+				var cx=+o.attr('cx'), cy=+o.attr('cy'),r=+o.attr('r'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				if(path){
+					return `svgf.path('M${cx} ${cy-r} A${r} ${r} 0 1 1 ${cx} ${cy+r}  ${r} ${r} 0 1 1 ${cx} ${cy-r}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				}
+				return `svgf.circle(${cx},${cy},${r},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			line: function () {
+				var x1=o.attr('x1'), y1=o.attr('y1'),x2=o.attr('x2'),y2=o.attr('y2'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				if(path){
+					return `svgf.path('M${x1} ${y1} L${x2} ${y2}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				}
+				return `svgf.line(${x1},${y1},${x2},${y2},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+
+			}, 
+			ellipse: function () {
+				var cx=+o.attr('cx'), cy=+o.attr('cy'),rx=+o.attr('rx'),ry=+o.attr('ry'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				if(path){
+					return `svgf.path('M${cx} ${cy-ry} A${rx} ${ry} 0 1 1 ${cx} ${cy+ry}  ${rx} ${ry} 0 1 1 ${cx} ${cy-ry}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				}
+				return `svgf.ellipse(${cx},${cy},${rx},${ry},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+			}, 
+			svg: function () {
+				var id=o.attr('id'), wd=o.attr('width')||o.width(), ht=o.attr('height')||o.height(), w=o.attr('stroke-width')||'', vBox=o.attr('viewBox'), 
+					v=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'childplaceholder', strk=o.attr('stroke')||'',fil=o.attr('fil'), tf=o.attr('transform');
+				return `svgf.id('${id+(wd||ht?'" width="'+wd+'" height="'+ht+'"':'')}',${v},'${vBox||1}','${w}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`.replace(/,'','',''\)$/,')')
+
+			},
+		};
+		
+		//console.log(o[0].tagName.toLowerCase(), os[o[0].tagName.toLowerCase()]);
+		return os[o[0].tagName.toLowerCase()]()
+	},
+
 }, svgs = {
 	imgr: svgf.path('M11 5 H19 V15 H25 L15 25 5 15 H11 V5z')
 	, home: svgf.path('M7 25 H23 V13 L15 5 7 13 V25 M12 25 V18 H18 V25z')

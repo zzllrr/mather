@@ -2683,8 +2683,15 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 	}).on('click','.tool', function(e){
 
-		var me=$(this).toggleClass('seled'),id=me.attr('id'),se=me.is('.seled');
+		var me=$(this).toggleClass('seled'),id=me.attr('id'),se=me.is('.seled'), nm=me.attr('name');
 
+		if(nm){
+			me.siblings('.seled.tool[name='+nm+']').removeClass('seled')
+		}
+		if(me.is('.radio')){
+			se=1;
+			me.addClass('seled');
+		}
 
 		if(/on/.test(id)){
 			var Id=id.replace(/on$/,'');
@@ -2712,6 +2719,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			}
 
 		}
+
 
 		if(id=='preview'){
 			var v=$('#input0').val().trim();

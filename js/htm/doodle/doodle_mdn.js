@@ -1152,3 +1152,73 @@ function tileToolCap(t, val){
 	}
 }
 
+
+
+function tileToolCode(obj,returnValue){
+	var a=[],o=$(obj),t, nohid=$('#ignoreHiddenElement').prop('checked'), spath=$('#svg2path').prop('checked'),
+		jsf=$('#code_API').is('.seled'), nat=$('#code_Native').is('.seled'), user=$('#code_UserInput').is('.seled');
+	if(o.is('svg')){
+
+		/*
+		jQuery bug 选择器 ':visible' 针对SVG中元素，无法区分是否可见（都认为是可见）
+
+		*/
+		o.children().filter(function(){var me=$(this); return !nohid || !me.is('.hidden') || me.css('display')=='inline'}).each(function(){//不能使用 .hidden 否则无法选到未隐藏的此类元素
+			//a.push(this.outerHTML.replace(/\n/g,''))
+			a.push(jsf?svgf.obj2js(this,spath):this.outerHTML.replace(/\n/g,''))
+	
+		});
+		//t='<svg viewBox="0 0 '+o.width()+' '+o.height()+'" width=90% height=200px>'+a.join('')+'</svg>';
+		t=jsf?svgf.obj2js(o).replace('childplaceholder','\n'+a.join('+\n')+'\n'):'<svg viewBox="0 0 '+o.width()+' '+o.height()+'" width=90% height=200px>'+a.join('')+'</svg>';
+
+	}else if(o.is('span.zdog')){
+
+		t=nat?o[0].outerHTML:unescape(o.attr('data-code'))
+
+	}else if(o.is('.capfromTextarea')){
+		var ot=o.attr('data-texttype'), oc=unescape(o.attr('data-code')), oc2=oc.replace(/'/g,'\\$&'), id=o.attr('id');
+		$('#TextBoxType').val(ot);
+		$('#TextBox').val(oc);
+		if(nat){
+			t=o[0].outerHTML
+		}else if(user){
+			t=oc
+		}else{
+			if(ot=='LaTeX'){
+				t=`katex.render('${oc2}', '#${id}', {
+					throwOnError: false,
+					displayMode: ${o.children().is('.katex-display')}
+				});`
+
+			}else if(ot=='Markdown'){
+				t=`md2html('${oc2}')`
+
+			}else if(ot=='Canvas'){
+				t=`
+var C=new ctt(cvs,300,300), c=C.ctx;
+eval('${oc2}');
+				`
+			}else if(ot=='HTML'){
+				t=o[0].outerHTML
+
+			}else if(ot=='SVG'){
+				t=o[0].outerHTML
+
+			}else{
+
+				t=o[0].outerHTML
+			}
+
+
+		}
+
+	}
+	if(returnValue){
+		return t
+	}
+	
+	$('#codetext').val(t);
+
+
+}
+
