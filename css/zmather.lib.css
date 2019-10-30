@@ -1051,3 +1051,89 @@ input[len="2"]{
 input[type=checkbox]{
 	zoom: 2;
 }
+
+
+.lstin{list-style-position: inside;}
+.lstout{list-style-position: outside;}
+
+.lst0c{list-style-type: circle}
+
+.lst0d{list-style-type: disc}
+.lst0s{list-style-type: square}
+
+.lsta1{list-style-type: arabic-indic;}
+.lsta2{list-style-type: armenian;}
+.lstb1{list-style-type: bengali}
+
+
+.lstc1{list-style-type: cambodian}
+.lstc2{list-style-type: cjk-earthly-branch}
+.lstc3{list-style-type: cjk-heavenly-stem}
+.lstc4{list-style-type: cjk-ideographic}
+
+.lstd1{list-style-type: decimal}
+.lstd2{list-style-type: decimal-leading-zero}
+.lstd3{list-style-type: devanagari}
+
+.lste1{list-style-type: ethiopic-halehame}
+.lste2{list-style-type: ethiopic-halehame-am}
+.lste3{list-style-type: ethiopic-halehame-ti-er}
+.lste4{list-style-type: ethiopic-halehame-ti-et}
+
+
+.lstg1{list-style-type: georgian}
+.lstg2{list-style-type: gujarati}
+.lstg3{list-style-type: gurmukhi}
+
+.lsth1{list-style-type: hangul}
+.lsth2{list-style-type: hangul-consonant}
+.lsth3{list-style-type: hebrew}
+.lsth4{list-style-type: hiragana}
+.lsth5{list-style-type: hiragana-iroha}
+
+.lstk1{list-style-type: kannada}
+.lstk2{list-style-type: katakana}
+.lstk3{list-style-type: katakana-iroha}
+.lstk4{list-style-type: khmer}
+.lstk5{list-style-type: korean-hangul-formal}
+.lstk6{list-style-type: korean-hanja-formal}
+.lstk7{list-style-type: korean-hanja-informal}
+
+
+
+.lstl1{list-style-type: lao}
+.lstl2{list-style-type: lower-alpha}
+.lstl3{list-style-type: lower-armenian}
+.lstl4{list-style-type: lower-greek}
+.lstl5{list-style-type: lower-latin}
+.lstl6{list-style-type: lower-roman}
+
+
+
+.lstm1{list-style-type: malayalam}
+.lstm2{list-style-type: mongolian}
+.lstm3{list-style-type: myanmar}
+
+
+.lsto1{list-style-type:oriya}
+
+.lstp1{list-style-type:persian}
+
+
+.lsts1{list-style-type:simp-chinese-formal}
+.lsts2{list-style-type:simp-chinese-informal}
+
+
+.lstt1{list-style-type: telugu}
+.lstt2{list-style-type: thai}
+.lstt3{list-style-type: tibetan}
+.lstt4{list-style-type: trad-chinese-formal}
+.lstt5{list-style-type: trad-chinese-informal}
+
+
+
+.lstu1{list-style-type: upper-alpha}
+.lstu2{list-style-type: upper-armenian}
+.lstu3{list-style-type: upper-latin}
+.lstu4{list-style-type: upper-roman}
+.lstu5{list-style-type: urdu}
