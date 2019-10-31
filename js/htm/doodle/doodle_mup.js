@@ -276,7 +276,7 @@ s0=s0.replace('pathstr',function(){
 
 
 var rotatexyz=/cylinderoidV|conoid[IO]V/.test(shp)?'x':'y';
-console.log(s0);
+// console.log(s0);
 var s=
 `
 C.setAttribute('spinning',true);C.width=${WD+sw};C.height=${HT+sw};
@@ -312,7 +312,7 @@ animate();
 `;
 			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
 			Z=Z||2001;
-			console.log(Z+6);
+		//	console.log(Z+6);
 			s1='<span data-code="'+s+'" class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
 
 

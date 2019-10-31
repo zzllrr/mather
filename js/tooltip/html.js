@@ -173,8 +173,30 @@ E|F|G
 			['JavaScript eval ('+gM('Formula')+')',sceg('$$2+3$$')].join(''),
 			['JavaScript eval ('+gM('Instant')+')',sceg('<js>1+2+3</js>'),sceg("<js>svgf.id('',svgf.circle(15,15,10,'red'))</js>",4)].join(''),
 			['JavaScript eval ('+gM('Timeout')+')',sceg('<JS>1+2+3</JS>')].join(''),
-			[ruby('汉语拼音','','ha1n yu3 pi1n yi1n'),sceg("<js>ruby('小乐数学','','xia3o le4 shu4 xue2')</js>")].join(''),
-		].join(br))+
+
+
+			'HTML '+XML.encode('<tag>'),
+
+		//	[ruby('汉语拼音','','ha1n yu3 pi1n yi1n'),sceg("<js>ruby('小乐数学','','xia3o le4 shu4 xue2')</js>")].join(''),
+
+
+
+		].concat(Arrf(function(x){
+			return [eval(x)+sceg(XML.wrapE('js',x),10), gM('Native')+' '+sceg(eval(x),0)]
+		},['meter(50)', "ruby('汉语拼音','','ha1n yu3 pi1n yi1n')", "ruby('小乐数学','','xia3o le4 shu4 xue2')",
+			"zlrA3('<label><input type=radio name=name2 /> ',['A','B','C','D'],'</label>').join(' ')",
+			"XML.wrapE('label','<input type=checkbox />')",
+			'rng(5,0,10)',
+			"num(5,0,'9\" step=\"1')",
+			"XML.wrapE('select',Options([1,2,3,4]).join(''))",
+			"XML.wrapE('select',Options(['A','B','C','D']).join(''))",
+			"'<input type=color value=\"red\" />'",
+			"'<input type=time value=\"06:00\" />'",
+			"'<input type=date value=\"2020-02-20\" />'",
+			"'<input type=text value=\"123\" />'",
+			"XML.wrapE('textarea')",
+
+		])).join(br))+
 
 		detail(gM('Canvas'),[
 	

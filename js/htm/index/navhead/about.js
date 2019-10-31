@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.10.16',
+			fieldseth('V2019.10.31',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -233,7 +233,7 @@ Table('',[
 							'#'+gM(ZLR('Reusable Hierarchical Functional')).join(', #')],
 					
 						[gM('Academic'),meter(4),
-							'#'+gM(ZLR('Flexible Intelligent i10n')).join(', #')],
+							'#'+gM(ZLR('Flexible Intelligent l10n')).join(', #')],
 							
 						[gM('Technology'),meter(2),
 							'#'+gM(ZLR('Extendable Customizable Efficient')).join(', #')],
@@ -253,7 +253,7 @@ Table('',[
 							'#'+ZLR('LaTeX Markdown MathML HTML Unicode/AsciiMath').join(', #')],
 						
 						[gM('Offline Automatic Translator'),meter(20),
-							'#'+gM(ZLR('Glossary Grammar Corpus Context Linguistics i10n i18n')).join(', #')],
+							'#'+gM(ZLR('Glossary Grammar Corpus Context Linguistics l10n i18n')).join(', #')],
 							
 						[gM('Semantical Information Compression'),meter(30),
 							'#'+gM(ZLR('Parameterization Functionalization Programmatic Semantical')).join(', #')],

@@ -15,7 +15,8 @@ function mMv(e,repaint){
 	//console.log(e.type);
 	//console.log(e);
 	if(!repaint){
-		var eos=e.originalEvent.srcElement, act=eos.tagName;
+		var eos=e.originalEvent.srcElement, act=eos.tagName, me=$(eos), pa=me.parent();
+	//	console.log(act);
 		if(act!='CANVAS'){e.stopPropagation()}
 	}
 	
@@ -2119,6 +2120,7 @@ console.log('tp ',tp);
 
 	}else{
 		if(shp=='Pointer'){
+
 			if(L.drawMove=='yes'){
 				
 				if(shpN.length){
@@ -2143,7 +2145,6 @@ console.log('tp ',tp);
 		}
 
 	}
-
 
 	if(shpN.length && (L.drawEnd || L.drawMove || act=='TEXTAREA')){
 

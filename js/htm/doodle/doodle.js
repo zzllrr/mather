@@ -30,8 +30,10 @@ $(function () {
 
 	setTimeout(function () {
 
-		$('#Pointer').click();
+		//$('#Pointer').click();
 		//$('#allEraser').click();
+		//$('#LayerToggle').click();
+
 		$('#color' + (L.night == 'false' ? 0 : 3)).click();
 
 		if ($('#svgs').length < 1) {
@@ -93,7 +95,21 @@ $(function () {
 					detail('<input type=button id=clrTextBox value="'+gM('Clear All')+'" />'+
 						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />',
 						txa('','" id="TextBox')+
-						detail(gM('Editor'),DCtv('hidden" for="Canvas',tooltip.Canvas+
+						detail(gM('Editor'),
+						
+						DCtv('hidden" for="HTML', [].concat(
+							Arrf(function(x){return XML.wrapE('label',x)}, zlrA3('<input type=',['radio name=name1','checkbox'],' />')).join('')+meter(50),
+							rng(5,0,10),
+							num(0,0,'9" step="1')+XML.wrapE('select',Options([1,2,3,4]).join(''))+XML.wrapE('select',Options(['A','B','C','D']).join('')),
+
+							zlrA3('<input type=',['color','time','date','text'],' />'),
+							
+							XML.wrapE('textarea')
+						).join(br)
+						
+						)+
+						
+						DCtv('hidden" for="Canvas',tooltip.Canvas+
 DCtv('pd10" id="canvasMenu',
 	itv('" id=bg tip="bg','photo_size_select_actual')+
 	itv('" id=grid tip="Grid','grid_on')+
@@ -1055,7 +1071,11 @@ dc+
 				svgf.id('SVGshift" tip="Shift',svgf.path('M8 17 L15 10 22 17 M8 21 H22'))+
 				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
 
-				svgf.id('LayerToggle" tip="LayerToggle',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
+				svgf.id('LayerToggle" tip="Layer Toggle',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
+
+
+				svgf.id('CanvasToggle" tip="Background Canvas Toggle',svgf.path('M5 28 L25 2')+svgf.rect(5,7,20,16))+
+
 
 
 				svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
@@ -1269,7 +1289,24 @@ dc+
 		}
 	});
 
-	$('#TextBoxTool').on('click','.mi-span',function(){
+
+	$('#TextBoxTool [for=HTML]').on('click','input, select,textarea,label,meter',function(){
+		var me=$(this),pa=me.parent(), t=this.outerHTML;
+		if(pa.is('label')){
+			t=XML.wrapE('label', t.replace(/input /, '$&'+(!me.prop('checked')?'checked ':'')));
+		}else if(me.is('label')){
+			t=t.replace(/input /, '$&'+(!me.children().prop('checked')?'checked ':''));
+
+		}else if(me.is('input')){
+			t=/value/.test(t)?t.replace(/value="[^"]*"/, 'value="'+me.val()+'"'):t.replace(/input /, '$&value="'+me.val()+'" ');
+		}else if(me.is('select')){
+			t=t.replace('value="'+me.val()+'"', 'value="'+me.val()+'" selected');
+		}
+		
+		$('#TextBox').val(t);
+
+	});
+	$('#TextBoxTool [for=Canvas]').on('click','.mi-span',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle'),nx=me.next('[for='+id+']');
 		
 		if(nx.length){
@@ -1663,6 +1700,12 @@ dc+
 			return
 		}
 
+		if(id=='CanvasToggle'){
+			var isv=$('#caps').toggle().is(':visible');
+			$(this).children('path').attr('stroke',isv?'white':'yellow');
+			return
+		}
+
 		L.drawShape = id;
 		L.drawShapeNow = '';
 		toggleSvg();
@@ -1894,27 +1937,34 @@ dc+
 
 	$('#Caps').on('mousedown touchstart', 'svg, textarea, span[id]', function (e) {
 		//console.log($(this).html());
+		var me=$(this),pa=me.parent(), shifton=$('#SVGshift path').attr('stroke')=='yellow';
 		mDn(e);
 
+/*
+		if(pa.is('#Caps') && shifton){
+			e.preventDefault && e.preventDefault();
+			e.returnValue=false;
+			e.stopPropagation && e.stopPropagation();
+			return false;
 
-		e.preventDefault && e.preventDefault();
-		e.returnValue=false;
-		e.stopPropagation && e.stopPropagation();
-		return false;
-
+		}
+*/
 
 		
 	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mMv(e);
+	/*
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
-		
+		*/
 	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mUp(e);	
+	/*
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
+		*/
 	});
 
 
