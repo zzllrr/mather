@@ -97,7 +97,16 @@ oHTML=function(x,notMD,elem,cb){
 
 },
 loadHTML=function (x) {
-   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],cb=function(){},t='';
+   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],refreshheads=function(){
+    $('.mkdnhead:contains(#)').each(function(i){
+        var me=$(this), v='_'+i;
+        me.attr('href', me.attr('href')+v);
+        me.next().attr('href', function(x,y){return y+v});
+        me.parent().attr('id', function(x,y){return y+v});
+    });
+   },cb=function(){
+        refreshheads()
+   },t='';
    if(u){
        var A=u.replace(/#.*/,'').split('/'),w=x;
        t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
@@ -105,7 +114,13 @@ loadHTML=function (x) {
         titleRe(gM(A.slice(-1)[0])+' - '+gM('zzllrr Mather'));
         if(/#.+/.test(u)){
             cb=function(){
-                $('.mkdnhead[href=#'+u.replace(/.+#/,'')+']').click();
+                refreshheads();
+                var hs=$('.mkdnhead[href=#'+u.replace(/.+#/,'')+']');
+                hs.parents('details').attr('open','');
+                setTimeout(function(){
+
+                    hs.click();
+                },2000);
             }
         }
    }
@@ -382,7 +397,13 @@ function all2html(type,V,dom){
             var C=$('#'+id)[0];// work!
             //var C=w.children()[0];    fail!
            // console.log(XML.decode(v));
+
+
+         //  console.log(v);
+
             eval(XML.decode(v));
+
+            w.addClass('zdog');
         }catch(e){
             console.log(e);
             w.html(v)
@@ -476,6 +497,63 @@ function toolTip(s){
 		$('#bar').empty();
     },3000);
 }
+
+
+function zdogs(w,h,s0,rotatexyz){
+    return `
+C.setAttribute('spinning',true);C.width=${w||100};C.height=${h||100};
+let isSpinning = true;
+
+let zo = new Zdog.Illustration({
+	element: C,
+	zoom: 1,
+	dragRotate: true,
+
+	onDragStart: function() {
+		isSpinning = false;
+	},
+	onDragMove: function(p,mx,my) {
+	},
+	onDragEnd: function() {
+		isSpinning = true;
+	},
+});
+
+${s0||`let zz=new Zdog.Box({
+    width:40,height:40,depth:40,
+
+    leftFace: '${RandomColor()}',
+    rightFace: '${RandomColor()}',
+    frontFace: '${RandomColor()}',
+    rearFace: '${RandomColor()}',
+    topFace: '${RandomColor()}',
+    bottomFace: '${RandomColor()}',
+
+    color: '${RandomColor()}',
+
+    addTo: zo,
+    stroke: false,
+});`}
+
+function animate() {
+    ${rotatexyz===0?'':`
+	if ( isSpinning && C.getAttribute('spinning')=='true') {
+		zo.rotate.${rotatexyz||'y'} = (zo.rotate.${rotatexyz||'y'}+0.03) % (Math.PI*2);
+
+    }
+    `}
+	zo.updateRenderGraph();
+	requestAnimationFrame( animate );
+}
+animate();
+			
+`
+}
+
+
+
+
+
 
 $(function(){
     var d=document.title;
@@ -800,7 +878,7 @@ $(function(){
         
 	}).on('mousewheel','.zdog canvas',function(e){
         var d=Math.sign(e.originalEvent.wheelDelta), k=e.keyCode, shft=e.shiftKey || $('#Shift').is('.seled'), ctrl=e.ctrlKey, alt=e.altKey, 
-            me=$(this), pa=me.parent(), c=pa.attr('data-code');
+            me=$(this), pa=me.parent(), c=pa.attr('data-code')||'';
         if(d){
             var c2=c.replace(/zoom: \d\.?\d*/,function(x){return 'zoom: '+
                 +Math.max(0.1,Math.min(2,(+x.split(' ')[1]+(shft?0.01:(ctrl?0.5:(k==91||k==92?1:0.1)))*d))).toFixed(2)});
@@ -886,7 +964,7 @@ $(function(){
             $('#caps ~ canvas').remove();
 
         //}else if(/canvas/i.test(act)){
-            if($(eos).parent('[id^=Zdog_]').length){
+            if($(eos).parent('[id^=Zdog_],.zdog').length){
                 //console.log(e,act,act.id);
                 $(eos).attr('spinning',function(i,v){return v!='true'});
             }

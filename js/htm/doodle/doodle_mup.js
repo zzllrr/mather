@@ -277,39 +277,8 @@ s0=s0.replace('pathstr',function(){
 
 var rotatexyz=/cylinderoidV|conoid[IO]V/.test(shp)?'x':'y';
 // console.log(s0);
-var s=
-`
-C.setAttribute('spinning',true);C.width=${WD+sw};C.height=${HT+sw};
-let isSpinning = true;
+var s=zdogs(WD+sw,HT+sw,s0,rotatexyz);
 
-let zo = new Zdog.Illustration({
-	element: C,
-	zoom: 1,
-	dragRotate: true,
-
-	onDragStart: function() {
-		isSpinning = false;
-	},
-	onDragMove: function(p,mx,my) {
-	},
-	onDragEnd: function() {
-		isSpinning = true;
-	},
-});
-
-${s0}
-
-function animate() {
-	if ( isSpinning && C.getAttribute('spinning')=='true') {
-		zo.rotate.${rotatexyz} = (zo.rotate.${rotatexyz}+0.03) % (Math.PI*2);
-
-	}
-	zo.updateRenderGraph();
-	requestAnimationFrame( animate );
-}
-animate();
-			
-`;
 			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
 			Z=Z||2001;
 		//	console.log(Z+6);
