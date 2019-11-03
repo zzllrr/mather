@@ -5,6 +5,11 @@
  */
 
 wiki['Foldable Solids'] =
+ul(['平面拼接图的定义：各面形状重新排列拼接后，满足：是单个完整图（不允许断开），且相邻面必共边（不能只满足共点），且所共边恰好都是相邻面的原来的边（不能一长一短，针对长方形等情况）',
+'平面展开图的定义：多面体图形沿某些边剪开（但不完全剪断），展开得到的一张平面图（可通过折叠还原为原立体形状）',
+'平面展开图的同构定义：全等（镜像翻转（水平、垂直），旋转（水平，竖直，中心对称），平移），即可以完全重合'
+])+
+
 detail('正方体的平面展开图（可折叠还原为正方体）共11种。（不可折叠数23种，异构总数34种）',
 	[	
 		XML.wrapE('zdog',zdogs())+svgf.id('cuboid0" class="vam" width="40" height="40',
@@ -161,9 +166,12 @@ detail('正方体的平面展开图（可折叠还原为正方体）共11种。�
 					svgf.path('M0 0 H40 V20 H60 V40 H80 V60 H40 V40 H20 V20 H0 V0 M20 0 V20 H40 V40 H60 V60', 'red" transform="translate(10,10)') +
 
 
+					svgf.path('M0 0 H60 V40 H0 V0 M40 0 V40 M20 0 V40 M0 20 H60', 'silver" transform="translate(320,10)'),
+
 					1, 1),
 				'1+2+2+1（逐列）'
 			].join(br),
+			
 
 		], 'lsts2')
 
@@ -298,6 +306,43 @@ detail('长方体（高=深≠宽）的平面展开图共11种。（不可折叠
 						'2+2+2（逐列），2+1+3（逐列）',
 					].join(br),
 
+					[
+						scbox('6=2+1[竖]+3（逐行）','bold'),
+
+							
+						svgf.id('cuboidHD3_2_b1" width="240" height="100',
+							svgf.path('M0 0 H60 V30 H0 V0 M20 0 V30 M40 0 V30 M0 0 V-30 H20 V0  M20 -30 V-50 H-20 V-30 H0 V-50', 'silver" transform="translate(30,60)') +
+							svgf.path('M0 0 H60 V30 H0 V0 M20 0 V30 M40 0 V30 M20 0 V-30 H40 V0  M40 -30 V-50 H0 V-30 H20 V-50', 'silver" transform="translate(100,60)') +
+							svgf.path('M0 0 H60 V30 H0 V0 M20 0 V30 M40 0 V30 M40 0 V-30 H60 V0  M60 -30 V-50 H20 V-30 H40 V-50', 'silver" transform="translate(170,60)'),
+							1, 1),
+
+						svgf.id('cuboidHD3_2_b2" width="270" height="100',
+							svgf.path('M0 0 H70 V20 H0 V0 M20 0 V20 M40 0 V20 M0 0 V-30 H20 V0  M20 -30 V-60 H-20 V-30 H0 V-60', 'silver" transform="translate(30,70)') +
+
+							svgf.path('M0 0 H70 V20 H0 V0 M20 0 V20 M40 0 V20 M20 0 V-30 H40 V0  M40 -30 V-60 H0 V-30 H20 V-60', 'silver" transform="translate(110,70)') +
+							svgf.path('M-10 0 H60 V20 H-10 V0 M10 0 V20 M40 0 V20 M40 0 V-30 H60 V0  M60 -30 V-60 H20 V-30 H40 V-60', 'silver" transform="translate(200,70)'),
+							1, 1),
+
+						svgf.id('cuboidHD3_2_b3" width="270" height="100',
+
+							svgf.path('M0 0 H70 V20 H0 V0 M20 0 V20 M50 0 V20 M0 0 V-30 H20 V0  M20 -30 V-60 H-20 V-30 H0 V-60', 'silver" transform="translate(30,70)') +
+
+							svgf.path('M0 0 H70 V20 H0 V0 M30 0 V20 M50 0 V20 M30 0 V-30 H50 V0  M50 -30 V-60 H10 V-30 H30 V-60', 'silver" transform="translate(110,70)')+
+							svgf.path('M-10 0 H60 V20 H-10 V0 M20 0 V20 M40 0 V20 M40 0 V-30 H60 V0  M60 -30 V-60 H20 V-30 H40 V-60', 'silver" transform="translate(200,70)'),
+							1, 1),
+
+						svgf.id('cuboidHD3_2_b4" width="310" height="90',
+							svgf.path('M0 0 H80 V20 H0 V0 M20 0 V20 M50 0 V20 M0 0 V-30 H20 V0  M20 -30 V-50 H-30 V-30 H0 V-50', 'silver" transform="translate(40,60)') +
+							svgf.path('M0 0 H80 V20 H0 V0 M30 0 V20 M50 0 V20 M30 0 V-30 H50 V0  M50 -30 V-50 H0 V-30 H30 V-50', 'silver" transform="translate(130,60)') +
+							svgf.path('M0 0 H80 V20 H0 V0 M30 0 V20 M60 0 V20 M60 0 V-30 H80 V0  M80 -30 V-50 H30 V-30 H60 V-50', 'silver" transform="translate(220,60)'),
+							1, 1),
+
+						'1+3+1+1（逐列），2\'+3+1（逐列），1+2\'+3（逐列）',
+						'变体',
+
+
+					].join(br),
+
 /*
 					[
 						scbox('6=2+1[横]+3（逐行）','bold'),
@@ -319,16 +364,16 @@ detail('长方体（高=深≠宽）的平面展开图共11种。（不可折叠
 
 */
 					[
-						scbox('6=1+2+3（逐行）','bold'),
+						scbox('6=1+2[竖]+3（逐行）','bold'),
 						
-						svgf.id('cuboidHD3_3_b" width="330" height="80',
+						svgf.id('cuboidHD3_3_b" width="290" height="100',
 
-							svgf.path('M0 0 V60 H20 V0 H0 M0 20 H40 V40 H0 M0 40 H-40 V60 H0 M-20 40 V60  M25 50 H35 M30 45 L35 50 30 55', 'silver" transform="translate(50,10)') +
+							svgf.path('M0 0 V70 H20 V0 H0 M0 20 H40 V50 H0 M0 50 H-60 V70 H0 M-30 50 V70', 'silver" transform="translate(70,10)') +
 
-							svgf.path('M0 0 V60 H40 V40 H0 M0 0 H20 V60 M0 20 H40 V40 M0 40 H-20 V60 H0', 'cyan" transform="translate(120,10)') +
-							svgf.path('M0 0 V60 H60 V40 H0 M0 0 H20 V60 M0 20 H40 V60', 'silver" transform="translate(170,10)') +
 
-							svgf.path('M0 0 V40 H80 V60 H20 M0 0 H20 V60 M0 20 H40 V60 M60 40 V60', 'silver" transform="translate(240,10)'),
+							svgf.path('M0 0 V80 H70 V60 H0 M0 0 H20 V80 M0 30 H40 V80', 'silver" transform="translate(120,10)') +
+
+							svgf.path('M0 0 V50 H100 V70 H20 M0 0 H20 V70 M0 20 H40 V70 M70 50 V70', 'silver" transform="translate(180,10)'),
 							1, 1),
 
 						'1+1+3+1（逐列），1+3+2（逐列，重复），3+2+1（逐列），2+2+1+1（逐列）',
@@ -339,15 +384,12 @@ detail('长方体（高=深≠宽）的平面展开图共11种。（不可折叠
 					[
 						scbox('6=3+3（逐行）','bold'),
 						
-						svgf.id('cuboidHD3_4_b" width="280" height="60',
+						svgf.id('cuboidHD3_4_b" width="310" height="80',
 
-							svgf.path('M0 0 H60 V20 H0 M20 0 V40 H-40 V20 H0 M0 0 V40 M40 0 V20 M-20 20 V40', 'red" transform="translate(50,10)') +
+							svgf.path('M0 -10 H60 V20 H0 M20 -10 V40 H-50 V20 H0 M0 -10 V40 M40 -10 V20 M-30 20 V40', 'red" transform="translate(60,20)') +
 
-							svgf.path('M25 30 H35 M30 25 L35 30 30 35', 'silver" transform="translate(50,10)') +
-
-							svgf.path('M0 0 H60 V20 H-20 M40 0 V40 M20 0 V40 M0 0 V40 M-20 20 V40 H40', 'silver" transform="translate(140,10)') +
-
-							svgf.path('M0 0 H60 V40 H0 V0 M40 0 V40 M20 0 V40 M0 20 H60', 'silver" transform="translate(210,10)'),
+svgf.path('M0 -10 H60 V20 H0 M20 -10 V40 H-50 V20 H0 M0 -10 V40 M40 -10 V20 M-20 20 V40', 'silver" transform="translate(140,30)') +
+							svgf.path('M0 0 H60 V30 H-30 M40 0 V50 M20 0 V50 M0 0 V50 M-30 30 V50 H40', 'silver" transform="translate(240,10)') +
 
 							1, 1),
 
@@ -357,15 +399,20 @@ detail('长方体（高=深≠宽）的平面展开图共11种。（不可折叠
 				],'lstl6')
 			].join(br),
 
+
 			['最长链 = 2 （异构数：1；可折叠数：1）',
 				scbox('6=2+2+2（逐行）','bold'),
-				svgf.id('cuboidHD3_5_b" width="100" height="80',
+				svgf.id('cuboidHD3_5_b" width="270" height="100',
 
-					svgf.path('M0 0 H40 V20 H60 V40 H80 V60 H40 V40 H20 V20 H0 V0 M20 0 V20 H40 V40 H60 V60', 'red" transform="translate(10,10)') +
+					svgf.path('M0 0 H40 V20 H60 V50 H80 V80 H40 V50 H20 V20 H0 V0 M20 0 V20 H40 V50 H60 V80', 'silver" transform="translate(10,10)') +
 
+					svgf.path('M0 0 H40 V30 H60 V50 H80 V80 H40 V50 H20 V30 H0 V0 M20 0 V30 H40 V50 H60 V80', 'silver" transform="translate(80,10)') +
+
+					svgf.path('M0 0 H40 V80 H0 V0 M 0 20 H40 M 0 50 H40 M20 0 V80', 'silver" transform="translate(170,10)')+
+					svgf.path('M0 0 H40 V80 H0 V0 M 0 30 H40 M 0 50 H40 M20 0 V80', 'silver" transform="translate(220,10)'),
 
 					1, 1),
-				'1+2+2+1（逐列）'
+				'1+2+2+1（逐列），3+3（逐列）'
 			].join(br),
 
 		], 'lsts2')
