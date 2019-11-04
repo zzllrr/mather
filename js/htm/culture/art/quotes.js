@@ -144,7 +144,7 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	['George Polya',"The first rule of discovery is to have brains and good luck.  The second rule of discovery is to sit tight and wait till you get a bright idea."],
 	['George Polya',"There are many questions which fools can ask that wise men cannot answer."],
 	['George Polya',"When introduced at the wrong time or place, good logic may be the worst enemy of good teaching."],
-	['George Polya','Beauty in mathematics is seeing the truth without effort.'],
+
 	['George Santayana',"The great difficulty in education is to get experience out of ideas."],
 	['Godfrey Harold Hardy',"Beauty is the first test: there is no permanent place in the world for ugly mathematics."],
 	['Gustave Flaubert',"Poetry is as exact a science as geometry."],
@@ -248,7 +248,7 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	['P.J. Davis',"One of the endlessly alluring aspects of mathematics is that its thorniest paradoxes have a way of blooming into beautiful theories."],
 	['Pappas',"Bees … by virtue of a certain geometrical forethought … know that the hexagon is greater than the square and the triangle, and will hold more honey for the same expenditure of material."],
 	['Paul Brodeur',"Statistics are human beings with the tears wiped away."],
-	['Paul Erdos',"It will be another million years, at least, before we understand the primes."],
+	['Paul Erdös',"It will be another million years, at least, before we understand the primes."],
 	['Paul Erdös',"I will know I really am in trouble when I forget the name Alzheimer's."],
 	['Paul Erdös',"A mathematician is a machine for turning coffee into theorems."],
 	['Paul Erdös',"When I was a child, the Earth was said to be two billion years old. Now scientists say it's four and a half billion. So that makes me two and a half billion."],
@@ -330,10 +330,11 @@ culture['Quotes']=Table([i18(ZLR('Author Content'))],[
 	["inscription above Plato's Academy","Let no one ignorant of geometry enter here."],
 	['unknown',"Any teacher that can be replaced by a computer should be replaced by a computer."],
 	['unknown',"Confidence is not about being always right, but always knowing what to do when things go wrong."],
-	['unknown',"If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is."],
+	['John von Neumann',"If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is."],
 	['unknown',"If you want to get something done, find a busy man."],
-	['unknown',"Physicists defer only to mathematicians, and mathematicians defer only to God."],
+	['Leon M. Lederman',"Physicists defer only to mathematicians, and mathematicians defer only to God."],
 	['unknown','Attitude is more an indicator of success than aptitude.'],
+	['Zig Ziglar','It is your attitude, more than your aptitude, that will determine your altitude.'],
 
 
 ],'TBrc')+detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[

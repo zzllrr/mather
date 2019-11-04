@@ -569,7 +569,7 @@ $(function(){
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
         itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up')+
-        (ishome?'':itv('" id=home tip="Home','home'))+
+        (ishome?'':itv('" id=home tip="Home','home')+itv('" id=searchC tip="Search Content','youtube_searched_for'))+
         (hasdoodle?itv('" id=svgs tip="Doodle" hotkey="Esc','palette'):'')+
 
         itv('" tip=Widget id="Widget','widgets')+
@@ -607,7 +607,7 @@ $(function(){
 
 
         '<div id=widget>'+dc
-    )
+    )+(ishome?'':DCtv('" id=searchContent hidden for="searchC','<input type=search id=searchCbox placeholder="'+gM('Search Content')+'" /><div id=searchCresult>'+dc))
     );
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
@@ -767,7 +767,7 @@ $(function(){
 
     });
     
-	$('body').on('click','#menu > svg,#Widget,#svgs,#langu,#qrcode',function(){
+	$('body').on('click','#menu > svg,#Widget,#svgs,#langu,#qrcode,#searchC',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle');
         if(me.is('svg')){
             tog=!tog;
@@ -890,6 +890,16 @@ $(function(){
         L.drawShapeNow=$(this).parent().attr('id')
     });
 
+
+
+    $('#searchCbox').on('change',function(){
+        var A=[];
+		$('#searchCresult').html(ol(A));
+    });
+    $('#searchContent').on('click','.searchCresult',function(){
+        var t='';
+		OH(t);
+    });
 
 
 	$('#zMatherHide').on('click',function(){

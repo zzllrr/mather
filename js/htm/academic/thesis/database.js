@@ -16,9 +16,12 @@ academic['Database']=
 		[href(Hs+'www.portico.org','Portico'),'',"a community-supported digital archive, preserves over 564,000 e-books and e-journals for future scholars"],
 		[href(Hs+'artstor.org','Artstor'),'',"provides 2+ million high-quality images and digital asset management software to enhance scholarship and teaching"],
 	
+		[href(H+'www.emis.de/MATH/JFM/full.html','ERAM'),'',"ERAM - Electronic Research Archive for Mathematics, Jahrbuch Database"],
 
+		[href(Hs+'zbmath.org','Zentralblatt MATH (zbMATH)'),'','the world’s most comprehensive and longest-running abstracting and reviewing service in pure and applied mathematics. It is edited by the European Mathematical Society (EMS), the Heidelberg Academy of Sciences and Humanities and FIZ Karlsruhe.']
 
-
+		[inhref('academic.html?q=Toolset','Academic Toolset'),'',''],
+		[inhref('dictionary.html?q=Enclyclopedia','Enclyclopedia'),'',''],
 
 	],'TBrc')
 ;

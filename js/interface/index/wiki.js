@@ -7,6 +7,19 @@
 wikis={
 	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking','Glossary'],
 
+	'Dictionary':[
+		{'Glossary':[
+
+
+
+		]},
+		{'Enclyclopedia':[
+
+		]},
+
+	],
+
+
 	'Theorem':[
 		{'Principle':[
 
