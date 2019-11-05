@@ -1827,7 +1827,7 @@ sbsTbl=function(){
 		for(var i=0;i<n;i++){
 			var c=A[i],hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,'');
 
-			s+='<div class="Fns td" title="'+c+'">'+SCtv('symboln',zx((SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+c0+'}')+(hassbl?c.replace(/^[a-z]+/i,''):'')))+dc;
+			s+=DCtv('Fns td" title="'+c, SCtv('symboln',zx((SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+c0+'}')+(hassbl?c.replace(/^[a-z]+/i,''):''))));
 		}
 		s+=DCtv('clear')+dc;
 		return s
@@ -1858,12 +1858,12 @@ sbsTbl=function(){
 				c=c.split('{')[0].substr(1)+c
 			}
 
-			s+='<div class="Sts td" title="'+c.replace(/.backslash./,'')
+			s+=DCtv('Sts td" title="'+c.replace(/.backslash./,'')
 				.replace(/^[a-z]{4,}/g,'')
 				.replace('\\tilde~','~')
-				.replace(/^(\*|\[b\])/,'')
-				+'">'+SCtv('symboln',zx(c.replace(/math(.lap)/,'$1').replace(/phantom/,'p')
-				))+dc;
+				.replace(/^(\*|\[b\])/,''),
+				SCtv('symboln',zx(c.replace(/math(.lap)/,'$1').replace(/phantom/,'p')
+				)));
 		}
 		s+=DCtv('clear')+dc;
 		return s
@@ -2030,11 +2030,11 @@ $(function(){
 					'<input type="file" id=inputSnippetFile hidden />'+
 
 
-
-					'<div id=snippets class=resize>'+
+					DCtv('resize" id="snippets',
 						Arrf(function(i){return snippet.Str(L['snippetName'+i]||gM('Snippet'),
 							L['snippetType'+i]||'LA',i==1)}, 
-							seqA(1,+L.snippets||1)).join('')+dc
+						seqA(1,+L.snippets||1)).join('')
+					)
 				+dc
 			)+
 			DCtv('opac" id="input0Tool',
@@ -2070,35 +2070,47 @@ $(function(){
 				
 
 				'<div id=inputTools>'+
-					strbtn+'." id=lineMerge />'+
-					strbtn+':" id=lineSplit />'+
-					strbtn+'⋮" id=Condon class=tool hidden />'+
 
+					strbtn+'T" id=editTexton class=tool tip=EditText />'+
+					strbtn+'⋮" id=Condon class=tool hidden />'+
 					SCtv('iTextLaTeXon',
 						
-						strbtn+'α" id=sbson class=tool />'+
-						strbtn+'ƒ" id=funcson class=tool />'+
-						strbtn+'∑" id=strucon class=tool />'+
+						strbtn+'α" id=sbson tip=UnicodeCharacter class=tool />'+
+						strbtn+'ƒ" id=funcson tip=Function class=tool />'+
+						strbtn+'∑" id=strucon tip=Structure class=tool />'+
 						itv('" id=editorLaunch tip="Launch','launch')+
 						itvc('rotate180" id="tClear2')
 		
 					)+
 					
 				dc+
-				
-				'<div id=ITextLaTeXBox>'+
-					'<div id=iTextLaTeXBox class=TextLaTeXBox>'+
+				DCtv('onbox" hidden id="editText',
+					gM('Line.1 Merge')+
+					strbtn+'." id=lineMerge tip="Merge Line.1" />'+
+					strbtn+':" id=lineSplit tip="Split Line.1" />'+
+					strbtn+'1" id=lineUnique tip="Unique Line.1" />'+
+					br+
+					gM('Line.1 Sort')+
+					strbtn+'↑" id=lineSortUp tip=AscendingSort />'+
+					strbtn+'↓" id=lineSortDown tip=DescendingSort />'+
+					strbtn+'?" id=lineSortRandom tip=RandomSort />'+
+					br+XML.wrapE('label',gM('Repeat Line.1')+' '+strchkbx0+'id=RepeatSelection />')+br+
+					Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join('')
+				)+
+				DCtv('onbox" id="ITextLaTeXBox',
+					DCtv('TextLaTeXBox" id="iTextLaTeXBox',
 						DCtv('iTextLaTeX" hidden id="isbs')+
 						DCtv('iTextLaTeX" hidden id="ifuncs')+
-						DCtv('iTextLaTeX" hidden id="istruc')+
-					dc+
-					'<div id=TextLaTeXBox class=TextLaTeXBox>'+
+						DCtv('iTextLaTeX" hidden id="istruc')
+					)+
+
+					DCtv('TextLaTeXBox" id="TextLaTeXBox',
 						DCtv('TextLaTeX" hidden id="sbs')+
 						DCtv('TextLaTeX" hidden id="funcs')+
-						DCtv('TextLaTeX" hidden id="struc')+
-					dc+
-					DCtv('clear')+
-				dc
+						DCtv('TextLaTeX" hidden id="struc')
+					)+
+					DCtv('clear')
+				)
 			)+
 
 			
@@ -2161,7 +2173,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 ):''));
 	sbsTbl();//
-	$('#input0Tool input,#preview').not('.Clear').attr('tip',function(){return this.id});
+	$('#input0Tool input,#preview').not('.Clear,[tip]').attr('tip',function(){return this.id});
 
 
 	$('#input0Tip').attr('title',gM('Help')+' | '+gM('Example')).on('click','button',function(){
@@ -2439,6 +2451,68 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}else{
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'')});
 		}
+
+	}).on('click','#lineUnique',function(){
+
+		var v=$('#input0').val(),vA=v.split('\n'),n=vA.length, B=[], C=[], caseOn=$('#Shift').is('.seled');//是否区分大小写
+		if(caseOn){
+			for(var i=0;i<n;i++){
+				var t=vA[i];
+				if(B.indexOf(t)<0){
+					B.push(t)
+				}
+			}
+		}else{
+			var uA=v.toLowerCase().split('\n');
+			for(var i=0;i<n;i++){
+				var t=uA[i];
+				if(C.indexOf(t)<0){
+					C.push(t);
+					B.push(vA[i]);
+				}
+			}
+		}
+		$('#input0').val(B.join('\n'));
+
+
+	}).on('click','#lineSortUp,#lineSortDown,#lineSortRandom',function(){
+
+		var v=$('#input0').val(),vA=v.split('\n'), B=[], C=[], tp=this.id.substr(8), caseOn=$('#Shift').is('.seled');//是否按每行字符数长短（而不是按字母表）排序
+		if(tp=='Random'){
+			vA.sort(sortBy.random)
+		}else{
+			if(caseOn){
+				vA.sort(sortBy.lenchr)
+			}else{
+				vA.sort()
+			}
+			if(tp=='Down'){
+				vA.reverse()
+			}
+		}
+
+		$('#input0').val(vA.join('\n'));
+
+
+	}).on('click',zlr('#Repeat','2 3 5 7 11',','),function(){
+		
+		var sel=$('#RepeatSelection').prop('checked'), i=$('#input0'), iv=i.val(), caseOn=$('#Shift').is('.seled'), n=+this.id.substr(6)+(+caseOn);//是否新增n次（而不是n-1次）
+		if(sel){
+			var sS=i[0].selectionStart, sE=i[0].selectionEnd, t=iv.substring(sS, sE);
+			i.val(iv.substr(0,sS)+t.repeat(n)+(sE==iv.length?'':iv.substr(sE)));
+			var s2=sS+t.length*n;
+			//i.focus();
+			setTimeout(function(){
+				i[0].selectionStart=sS;
+				i[0].selectionEnd=s2;
+			},200);
+
+
+		}else{
+			i.val(iv.replace(/[^\n]+(\n|$)/g,function(x){return x.repeat(n)}));
+
+		}
+
 
 	}).on('click','#DownloadSnippetFile',function(e){
 

@@ -1015,7 +1015,15 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 	color: rgb(27, 24, 24);
 }
 
+.onbox{
+	border:solid yellow 1px;
+}
 
+#searchCresult{
+	background: gainsboro;
+    padding: 10px;
+
+}
 
 input[len="2"]{
 	width:5rem;

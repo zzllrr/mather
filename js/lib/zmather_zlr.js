@@ -549,7 +549,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 			'<input type=text class=katexf data-katexf="' + f + '" placeholder="' + A.join(';') + '" value="' + A[0] + '" />' +
 			strbtn + gM('Parameter') + '" class="katexv1" />')
 	},
-	mark = function (v, t) { return '<mark title=' + (t || 'API') + '>' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },
+	mark = function (v, t) { return '<mark title="' + (t || 'API') + '">' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },
 	href = function (url, text, title) { return '<a href="' + url + '" target="_blank" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer external">' + (text || url) + '</a>' },
 	hrefA= function(u,A,sub){return Arrf(function(X){var x=X.toLowerCase(); return href(Hs+(sub?x+'.'+u:(/@@/.test(u)?u.replace(/@@/g,x):u+'/'+x)),X.replace(/.+#/,''))},A)},
 	inhref = function (url, text, title) { return '<a href="' + url + '" ' + (title ? 'title="' + title + '" ' : '') + '>' + (text || url) + '</a>' },
@@ -2505,6 +2505,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	return (','+s.split(',').sort().join(',,') + ',').replace(/(,[^,]+,)\1+/g, '$1').replace(/,{2,}/g, ',').replace(/^,|,$/g, '')
 
 }, sortBy = {
+	random: function(a,b){return Random(3)-2},	//随机排序
 	numInt: function (a, b) { var r = (BigInt(a) - BigInt(b)).toString(); return /^-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//大整数数字大小排序
 	num: function (a, b) { var r = minus ? minus([a, b]) : a - b; return /-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//普通数字大小排序
 	abs: function (a, b) { var t = Math.abs(+a) - Math.abs(+b); return t || (+a) - (+b) },	//数字绝对值大小排序

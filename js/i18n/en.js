@@ -27,11 +27,8 @@ lang['en']={
 	
 	'nodesXY':'Cartesian Nodes',
 	'nodesPolar':'Polar Nodes',
-		
-	'sbson':'Unicode Character',
-	'funcson':'Function',
-	'strucon':'Structure',
-	'Condon':'Condition',
+
+
 	'thtip':'Click table heads to display/edit LaTeX',
 	'sbsontip':'@{clickWithShift}get Unicode char@{notLaTeX}',
 	'funcsontip':"@{clickWithShift}get function name without () followed",

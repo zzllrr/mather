@@ -893,12 +893,56 @@ $(function(){
 
 
     $('#searchCbox').on('change',function(){
-        var A=[];
-		$('#searchCresult').html(ol(A));
+        var t=$(this).val().trim(), l=loch.split('?')[0].split('.html')[0].replace(/.+\//,''), el=eval(l), A=[], Anmax=0, isreg=/^\/.+\//.test(t);
+        if(t.length<3){
+            return 0
+        }
+
+
+
+        //console.log(el);
+        $.each(el,function(k,v){
+            if(isreg){
+                var BA=split(v,eval(t)), b=BA[0], a=BA[1];
+
+                if(isStr(BA)){
+                    return 1
+                }
+            }else{
+
+                var a=v.split(t), b=[t];
+            }
+            
+            var n=a.length;
+
+            if(n>1){
+                Anmax=Math.max(Anmax,n);
+                A.push([n,k,
+                    Arrf(function(x){
+                        var xl=x.length;
+                        return XML.encode(xl>20?x.substr(0,10)+'...'+x.substr(-10):x)},a),
+                    (isreg?b:copyA(t,n-1))
+                    
+                ]);
+            }
+        });
+      //  console.log(A);
+        if(A.length<1){
+            $('#searchCresult').html(mark(gM('Not Found'),'Sorry'));
+            return 1;
+        }
+        sort2(A);
+        A.reverse();
+        console.log(b);
+        var m=mark(XML.encode(b[0]),gM('Snippet'));
+        $('#searchCresult').html(ol(Arrf(function(x){return inhref(l+'.html?q='+x[1],meter(parseInt(x[0]*100/Anmax))+gM(x[1]))+
+            (x[2].length>2?detail(x[2].slice(0,2).join(m),
+                Arrf(function(y,i){return x[2][i+1]+(isreg?mark(XML.encode(b[i+1]),gM('Snippet')):m)+x[2][i+2]},x[2].slice(2)).join('')
+            ):DCtv('searchCresult',x[2].join(m)))},A)));
     });
-    $('#searchContent').on('click','.searchCresult',function(){
-        var t='';
-		OH(t);
+    $('#searchContent').on('dblclick','.searchCresult',function(){
+        var me=$(this), a=me.prev('a').attr('href')||me.parent().prev('a').attr('href');
+		OHiframe(a.split('?')[0].split('.html')[0].replace(/.+\//,''), {q:a.split('.html?q=')[1]}, 1);
     });
 
 

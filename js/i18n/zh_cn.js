@@ -48,23 +48,19 @@ lang['zh_cn'] = {
 	'Sq': '平方',
 	'Cb': '立方',
 
-	'Run': '运行',
+
 	'Launch': '在新窗口运行',
 	'Lang': '语言',
 	'Del': '删除',
-	'lineSplit': '分行',
-	'lineMerge': '合行',
+
 	'Linebreak': '换行',
 
 	'nodesXY': '笛卡尔节点',
 	'nodesPolar': '极坐标节点',
 	'MidPointLine': '中点连线',
 	'MidPointLineon': '中点连线',
-	'sbson': '字符',
-	'funcson': '函数',
-	'strucon': '结构',
 
-	'Condon': '条件',
+
 	'thtip': '点击表头，可以显示/编辑LaTeX',
 	'sbsontip': '@{clickWithShift}则得到Unicode字符@{notLaTeX}',
 	'funcsontip': "@{clickWithShift}则函数后面不自动加(括号)",
@@ -221,6 +217,9 @@ lang['zh_cn'] = {
 	'Period':'周期',
 	'Comprehensive':'综合',
 	'Holistic':'整体性',
+
+	'Unique':'唯一',
+	'Repeat':'重复',
 
 	'Ergodic':'遍历',
 	'Ergodicity':'遍历',
@@ -546,7 +545,9 @@ lang['zh_cn'] = {
 
 
 
-
+	'Run': '运行',
+	'Split': '分开',
+	'Merge': '合并',
 
 	'Program': '项目',
 	'Tool':'工具',
@@ -980,6 +981,7 @@ lang['zh_cn'] = {
 	'Pally': '亲密的',
 	'Peace-loving': '爱好和平的',
 
+	'Only':'只',
 	'Smooth': '平滑',
 	'Offline': '离线',
 	'Local': '本地',
@@ -1088,6 +1090,8 @@ lang['zh_cn'] = {
 	'Concretize':'具体化',
 	'Counter-example':'反例',
 	'Search': '搜索',
+	'Not Found':'未找到',
+
 	'Contact': '联系',
 	'Donate': '捐助',
 
@@ -1122,6 +1126,7 @@ lang['zh_cn'] = {
 	'Decrease': '减少',
 
 	'Select': '选择',
+	'Selection':'已选中部分',
 
 	'Printing':'打印',
 	'Bet':'注',
@@ -1221,7 +1226,9 @@ lang['zh_cn'] = {
 	'Nineteenth':'第十九',
 	'Twentyth':'第二十',
 
-
+	'Sort':'排序',
+	'Ascending':'升序',
+	'Descending':'降序',
 
 	'Number': '数',
 	'Prime Mersenne Number': '梅森素数',
@@ -1318,6 +1325,9 @@ lang['zh_cn'] = {
 
 
 	'Line': '线',
+	
+	'Line.1': '行',
+
 	'Line Segment': '线段',
 
 	'Angle': '角',
