@@ -314,6 +314,13 @@ li,#wiki{
 
 }
 
+a:visited{
+	color:dodgerblue
+}
+a:not(:visited){
+	color:limegreen
+}
+
 .wikipedia{
 	background: url(../img/wikipedia.ico) no-repeat;
     padding-left: 1.4rem;
@@ -1019,9 +1026,9 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 	border:solid yellow 1px;
 }
 
-#searchCresult{
+#searchContent{
 	background: gainsboro;
-    padding: 10px;
+	max-width: 80%;
 
 }
 

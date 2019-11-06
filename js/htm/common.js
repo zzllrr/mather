@@ -137,7 +137,9 @@ loadHTML=function (x) {
    }
 
 }, OHiframe=function(x,o,full){
-    OH('<iframe src="'+H_o(x+'.html',o)+'" width="99%" height="'+Math.max($(window).height()-$('#oContent').position().top+(full?$('#zMather').height():0)-20,200)+'px" class="resize bd0"></iframe>')
+    var oC=$('#oContent'), zM=$('#zMather');
+    OH('<iframe src="'+H_o(x+'.html',o)+'" width="98%" height="'+Math.max($(window).height()-(oC.length?oC.position().top:0)+
+        (full && zM.length?zM.height():0)-20,200)+'px" class="resize bd0"></iframe>')
 };
 
 
@@ -568,8 +570,8 @@ $(function(){
     $('#panel').prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
-        itv('" id=zMatherOn tip="Collapse','keyboard_arrow_up')+
-        (ishome?'':itv('" id=home tip="Home','home')+itv('" id=searchC tip="Search Content','youtube_searched_for'))+
+        itv('" id="zMatherOn','keyboard_arrow_up')+
+        (ishome?'':itv('" id=home tip="Home','home'))+itv('" id=searchC tip="Search Content','search')+
         (hasdoodle?itv('" id=svgs tip="Doodle" hotkey="Esc','palette'):'')+
 
         itv('" tip=Widget id="Widget','widgets')+
@@ -597,7 +599,7 @@ $(function(){
         '<svg id=DesmosGraphingCalculator tip="Desmos Graphing" viewBox="0 0 24 24"><defs><style>.des_c1{fill:#007090}.des_c2{fill:#333}.des_c3{fill:#666}</style></defs><title>Graphing</title><path d="M2.5 21.5C4.13 10.64 7.89.56 12 12s7.76 1.36 9.51-9.5" fill="none" stroke="#666" stroke-miterlimit="10" stroke-width="1.3"></path><circle class="des_c1" cx="8.5" cy="6.5" r="2.5"></circle><circle class="des_c1" cx="15.5" cy="17.5" r="2.5"></circle><path class="des_c2" d="M15.5 15a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM8.5 4A2.5 2.5 0 1 0 11 6.5 2.5 2.5 0 0 0 8.5 4zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path></svg>'+
         '<svg id=DesmosGeometry tip="Desmos Geometry" viewBox="0 0 24 24">title>Geometry</title><path class="des_c1" d="M14 4.02L20.27 15H7.72L14 4.02z"></path><circle class="des_c1" cx="9" cy="15" r="6"></circle><path class="des_c3" d="M14 2L6 16h16zm0 2l6.27 11H7.72z"></path><path class="des_c3" d="M9 8a7 7 0 1 0 7 7 7 7 0 0 0-7-7zm0 13a6 6 0 1 1 6-6 6 6 0 0 1-6 6z"></path><path d="M15 15H7.72L11 9.33A6 6 0 0 1 15 15z" fill="green"></path><path d="M11.47 8.46a6.93 6.93 0 0 0-1-.3L6 16h9.92a6.92 6.92 0 0 0-4.46-7.54zM7.72 15L11 9.33A6 6 0 0 1 15 15z" class="des_c2"></path></svg>'+
 
-        '<svg id=DesmosFourFunctionCalculator tip="Desmos Four Function Calculator" viewBox="0 0 512 512"><g clip-path="url(#I)"><path class="des_c1" d="M0 0h150v512H0z"/><path d="M360.488 347.088h-56.055l-39.307-62.55-36.572 62.55h-52.637l62.55-93.652-56.397-81.348h55.713l34.52 51.61 29.737-51.61h52.295l-55.03 81.348 61.183 93.652zM512 239.947H376.174V219.38H512v20.567zM512 301H376.174v-20.895H512V301z" class="des_c3"/></g></svg>'+
+        '<svg id=DesmosFourFunctionCalculator tip="Desmos Function Calculator" viewBox="0 0 512 512"><g clip-path="url(#I)"><path class="des_c1" d="M0 0h150v512H0z"/><path d="M360.488 347.088h-56.055l-39.307-62.55-36.572 62.55h-52.637l62.55-93.652-56.397-81.348h55.713l34.52 51.61 29.737-51.61h52.295l-55.03 81.348 61.183 93.652zM512 239.947H376.174V219.38H512v20.567zM512 301H376.174v-20.895H512V301z" class="des_c3"/></g></svg>'+
         '<svg id=DesmosScientificCalculator tip="Desmos Scientific Calculator" viewBox="0 0 512 512"><title>Scientific Calculator</title><g clip-path="url(#scientific_svg__clip-path)"><path class="des_c1" d="M0 331.1h512V475H0z"></path><path class="des_c3" d="M0-.77h512v513.54H0zm467 82.89C467 59.41 453.59 46 430.88 46H82.12C59.41 46 46 59.41 46 82.12v348.76C46 453.59 59.41 467 82.12 467h348.76c22.71 0 36.12-13.41 36.12-36.12z"></path><path class="des_c3" d="M0 173.67h512v18H0zM0 320.33h512v18H0z"></path></g><path class="des_c3" d="M159.5 99.66v-38h19v38h38.25v19.68H178.5v38h-19v-38h-38.25V99.66zM121.2 246.08h95.6v19.67h-95.6z"></path><path d="M216.8 371.88v19.67h-95.6v-19.67zm0 41.4V433h-95.6v-19.72z" class="des_c2"></path></svg>'+
       
       
@@ -607,7 +609,8 @@ $(function(){
 
 
         '<div id=widget>'+dc
-    )+(ishome?'':DCtv('" id=searchContent hidden for="searchC','<input type=search id=searchCbox placeholder="'+gM('Search Content')+'" /><div id=searchCresult>'+dc))
+    )+DCtv('" id=searchContent hidden for="searchC',
+        '<input type=search id=searchCbox placeholder="'+gM('Search Content')+'" title="'+gM('Support Regexp')+'" /><div id=searchCresult>'+dc)
     );
     $(':button').not('[value]').val(function(){return gM(this.id)});
     $('.Clear').attr('tip','Clear');
@@ -893,24 +896,42 @@ $(function(){
 
 
     $('#searchCbox').on('change',function(){
-        var t=$(this).val().trim(), l=loch.split('?')[0].split('.html')[0].replace(/.+\//,''), el=eval(l), A=[], Anmax=0, isreg=/^\/.+\//.test(t);
-        if(t.length<3){
+        var t=$(this).val().trim(), l=loch.split('?')[0].split('.html')[0].replace(/.+\//,''), A=[], el, Anmax=0, isreg=/^\/.+\//.test(t),b=[];
+        if(t.length<1){
+            $('#searchCresult').empty();
             return 0
         }
 
+        if(l=='editor' || l=='index' || l=='doodle'){
+            el={STRUC:jSoff(STRUC),SBSFn:jSoff(SBSFn),SBS:jSoff(SBS), FUNCS:jSoff(FUNCS), SBSFUN:SBSFUN, H5Colors:H5Colors, i18n:jSoff(i18n), fontHan:fontHan};
+
+
+        }else if(l=='graphic'){
+            el={Index:jSoff(graphics)};
+
+        }else if(l=='solve'){
+            el={Index:jSoff(solves)};
+        }else{
+            el=eval(l);
+        }
+        
 
 
         //console.log(el);
         $.each(el,function(k,v){
             if(isreg){
-                var BA=split(v,eval(t)), b=BA[0], a=BA[1];
+                var BA=split(v,eval(t)), a=BA[1];
 
                 if(isStr(BA)){
                     return 1
                 }
+               // console.log(BA);
+                b=BA[0];
+
             }else{
 
-                var a=v.split(t), b=[t];
+                var a=v.split(t);
+                b=[t];
             }
             
             var n=a.length;
@@ -920,7 +941,7 @@ $(function(){
                 A.push([n,k,
                     Arrf(function(x){
                         var xl=x.length;
-                        return XML.encode(xl>20?x.substr(0,10)+'...'+x.substr(-10):x)},a),
+                        return XML.encode(xl>30?x.substr(0,15)+'...'+x.substr(-15):x)},a),
                     (isreg?b:copyA(t,n-1))
                     
                 ]);
@@ -933,11 +954,11 @@ $(function(){
         }
         sort2(A);
         A.reverse();
-        console.log(b);
+        //console.log(b);
         var m=mark(XML.encode(b[0]),gM('Snippet'));
-        $('#searchCresult').html(ol(Arrf(function(x){return inhref(l+'.html?q='+x[1],meter(parseInt(x[0]*100/Anmax))+gM(x[1]))+
+        $('#searchCresult').html(ol(Arrf(function(x){return inhref(l+'.html?q='+x[1],meter(parseInt(x[0]*100/Anmax),'"0" tip="'+gM('Search Score')+'"')+gM(x[1]))+
             (x[2].length>2?detail(x[2].slice(0,2).join(m),
-                Arrf(function(y,i){return x[2][i+1]+(isreg?mark(XML.encode(b[i+1]),gM('Snippet')):m)+x[2][i+2]},x[2].slice(2)).join('')
+                DCtv('searchCresult',Arrf(function(y,i){return (isreg?mark(XML.encode(x[3][i+1]),gM('Snippet')):m)+x[2][i+2]},x[2].slice(2)).join(br))   //x[2][i+1]+
             ):DCtv('searchCresult',x[2].join(m)))},A)));
     });
     $('#searchContent').on('dblclick','.searchCresult',function(){

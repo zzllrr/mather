@@ -2085,16 +2085,16 @@ $(function(){
 					
 				dc+
 				DCtv('onbox" hidden id="editText',
-					gM('Line.1 Merge')+
+					gM('Line.1 Merge')+' '+
 					strbtn+'." id=lineMerge tip="Merge Line.1" />'+
 					strbtn+':" id=lineSplit tip="Split Line.1" />'+
 					strbtn+'1" id=lineUnique tip="Unique Line.1" />'+
 					br+
-					gM('Line.1 Sort')+
+					gM('Line.1 Sort')+' '+
 					strbtn+'↑" id=lineSortUp tip=AscendingSort />'+
 					strbtn+'↓" id=lineSortDown tip=DescendingSort />'+
 					strbtn+'?" id=lineSortRandom tip=RandomSort />'+
-					br+XML.wrapE('label',gM('Repeat Line.1')+' '+strchkbx0+'id=RepeatSelection />')+br+
+					br+XML.wrapE('label',gM('Repeat Line.1')+' / '+gM('Selection')+strchkbx0+'id=RepeatSelection />')+br+
 					Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join('')
 				)+
 				DCtv('onbox" id="ITextLaTeXBox',

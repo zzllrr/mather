@@ -1091,6 +1091,8 @@ lang['zh_cn'] = {
 	'Counter-example':'反例',
 	'Search': '搜索',
 	'Not Found':'未找到',
+	'Index':'索引',
+	'Regexp':'正则表达式',
 
 	'Contact': '联系',
 	'Donate': '捐助',

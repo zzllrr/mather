@@ -18,7 +18,7 @@ academic['Database']=
 	
 		[href(H+'www.emis.de/MATH/JFM/full.html','ERAM'),'',"ERAM - Electronic Research Archive for Mathematics, Jahrbuch Database"],
 
-		[href(Hs+'zbmath.org','Zentralblatt MATH (zbMATH)'),'','the world’s most comprehensive and longest-running abstracting and reviewing service in pure and applied mathematics. It is edited by the European Mathematical Society (EMS), the Heidelberg Academy of Sciences and Humanities and FIZ Karlsruhe.']
+		[href(Hs+'zbmath.org','Zentralblatt MATH (zbMATH)'),'','the world’s most comprehensive and longest-running abstracting and reviewing service in pure and applied mathematics. It is edited by the European Mathematical Society (EMS), the Heidelberg Academy of Sciences and Humanities and FIZ Karlsruhe.'],
 
 		[inhref('academic.html?q=Toolset','Academic Toolset'),'',''],
 		[inhref('dictionary.html?q=Enclyclopedia','Enclyclopedia'),'',''],

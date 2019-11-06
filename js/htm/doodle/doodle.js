@@ -1244,7 +1244,7 @@ dc+
 
 
 	$('#TextBoxType').on('change',function(){
-		var f=$('#TextBoxTool > div[for]').hide().filter('[for='+this.value+']');
+		var f=$('#TextBoxTool > div[for]').hide().filter('[for="'+this.value+'"]');
 		if(f.length){
 			f.show().parent().show()
 
@@ -2324,7 +2324,7 @@ dc+
 	}, false);
 
 	$(document).on('click', 'legend,button,:button,:checkbox' +
-		zlr(',#', 'Tiles W H S E cssTransOpt cssClip cssCut') +
+		zlr(',#', 'Tiles W H S E cssTransOpt cssClip cssCut') +','+
 
 		zlr3('#', 'fontCSS', 'span').replace(/span/g, ' $&,') +
 		'#shape img,#COLOR input:text,#tileTool :radio', function () {
@@ -2518,7 +2518,7 @@ function clk_popout(obj) {
 	var shpN = L.drawShapeNow || 'unknown', isTxt = /Text/.test(shpN);
 
 
-
+	//console.log(id, pid);
 	//non id
 	if (pid == 'fontCSS') {
 		var i = me.index(), txta = $('textarea#' + shpN);

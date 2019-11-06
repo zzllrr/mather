@@ -32,13 +32,13 @@ shows = {
                     '<input type=checkbox id=slideSwapV />'),
                 gM('Foot')+'<textarea id=slidefoot tip="'+gM('input')+' HTML"></textarea>'
         ],
-        'Speech': zlrA('<input type=text class=btntxt readonly value="',[
-                gM('Engine')+'" /><select id=audioEngine data-d=0>'+Options([0,1,2,3,4],['Baidu','Sogou','QQ','Bing','Youdao']).join('')+'</select>',
-                gM('Language')+'" /><select id=audioLanguage data-d=0>'+Options([0,1,2,3,4],['zh-CN','zh-HK','zh-TW','en-US','en-GB']).join('')+'</select>',
-                gM('Speed')+'" />'+num('6" id=audioSpeed data-d=6 class="btnnum',0,9),
-                gM('Pitch')+'" />'+num('5" id=audioPitch data-d=5 class="btnnum',0,9),
-                gM('Person')+'" />'+num('0" id=audioPerson data-d=0 class="btnnum',0,4),
-        ]),
+        'Speech': [
+                SCtv('btntxt',gM('Engine'))+' <select id=audioEngine data-d=0>'+Options([0,1,2,3,4],['Baidu','Sogou','QQ','Bing','Youdao']).join('')+'</select>',
+                SCtv('btntxt',gM('Language'))+' <select id=audioLanguage data-d=0>'+Options([0,1,2,3,4],['zh-CN','zh-HK','zh-TW','en-US','en-GB']).join('')+'</select>',
+                SCtv('btntxt',gM('Speed'))+' '+num('6" id=audioSpeed data-d=6 class="btnnum',0,9)+rng(6,0,9),
+                SCtv('btntxt',gM('Pitch'))+' '+num('5" id=audioPitch data-d=5 class="btnnum',0,9)+rng(5,0,9),
+                SCtv('btntxt',gM('Person'))+' '+num('0" id=audioPerson data-d=0 class="btnnum',0,4)+rng(0,0,4),
+        ],
         'Sound': [],
         'Music': [],
         '3D': [],
@@ -150,6 +150,7 @@ function showThen(T) {
     $(sT+' .btntxt').on('click', function(){
         var me=$(this), nx=me.next(), d=nx.attr('data-d');//data-default
         nx.val(d);
+        nx.next().val(d);
         L[nx.attr('id')]=d;
 
     });
@@ -169,6 +170,13 @@ function showThen(T) {
 
 
     });
+    $(sT+' :range').on('change', function () {
+        var me=$(this), v = me.val();
+        me.prev(':number.btnnum').val(v).change();
+
+    });
+
+
     $(sT+' :file').on('change',function () {
         var v = $(this).val();
         if (v) {

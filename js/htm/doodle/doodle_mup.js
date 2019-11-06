@@ -765,7 +765,7 @@ function SVGPath2Zdog(x,WD2,HT2,ispoints){
 		xs=xs.replace(/C *(([-\d\.]+ +){7})([-\d\.])/g,'C$1 C$3')
 	}
 
-console.log('d=',xs);
+//console.log('d=',xs);
 
 	var cs=split(xs, /[A-Z]/g), cs0=cs[0],
 		cs1=[Arrf(Number,cs[1][0].replace(/M/,'').trim().split(/[ ,]+/))],

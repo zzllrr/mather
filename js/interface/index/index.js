@@ -62,7 +62,7 @@ $(function(){
 					}[i]))
 			},ZLR('home about')).join('')
 			+SCtv('',
-				itv('" id="Search','search')+
+				itv('" id="Search','youtube_searched_for')+
 				'<input type=search id=search list=searchlist hidden />'+
 				'<datalist id=searchlist></datalist>'
 			)
@@ -121,9 +121,9 @@ $(function(){
 	$('[tip]').attr('title',function(){return gM($(this).attr('tip'))});
 	
 
-	$('#search').attr('placeholder',gM('search')).on('change keyup',function(){
+	$('#search').attr('placeholder',gM('Search Index')).on('keyup',function(){
 		var me=$(this), by=$('[name=tool]:checked').val(), v=me.val().trim(), sl=$('#searchlist'),r=[];
-		if(!v){
+		if(!v || /^[a-z\d]{1}$/i.test(v)){
 			//sl.empty();
 			return
 		}
@@ -215,11 +215,25 @@ $(function(){
 			}
 
 			if(s.match(/"/g).length > t.length*2){
-			//	console.log(s);
+
 				t=(s+str+'"').match(/"[^"]+"/g);
+
+
+				if(/^"?[a-z]/.test(t[0])){
+					t.shift()
+				}
+				if(t.length<1){
+					return []
+				}
 				return t.join('/').replace(/"/g,'').split('/')
 			}
-		//	console.log(t.join(' // '));
+
+			if(/^"?[a-z]/.test(t[0])){
+				t.shift()
+			}
+			if(t.length<1){
+				return [str]
+			}
 			return t.join('/').replace(/"/g,'').split('/').concat(str);
 
 		};
@@ -227,8 +241,13 @@ $(function(){
 		rg=new RegExp('"[^"]*'+v+'[^"]*"','gi'), t;
 		
 		while ((t = rg.exec(st)) != null)  {
-			//console.log('1',r.join(';'));
+
+			if(/<[a-z]/.test(t[0])){
+
+				break;
+			}
 			r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'')))
+			
 		}
 
 		if(r.length<1){
@@ -236,7 +255,11 @@ $(function(){
 
 			st=st.replace(/"[a-z\d ]+"/gi, function(x){return '"'+gM(x.split('"')[1])+'"'});
 			while ((t = rg.exec(st)) != null)  {
-				//console.log('2',r.join(';'));
+
+				if(/<[a-z]/.test(t[0])){
+					console.log(t[0]);
+					break;
+				}
 				r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'')))
 			}
 
@@ -244,10 +267,12 @@ $(function(){
 
 		t='';
 		if(r.length){
-			//console.log('3',r.join(';'));
-			t=Arrf(function(x){return '<option value="'+x.join('/')+'"></option>'},r).join('');
+
+			var sA=[];
+			t=Arrf(function(x){var y=x.join('/'), isnew=sA.indexOf(y)<0;if(isnew){sA.push(y)}
+				return isnew?'<option value="'+y+'"></option>':''},r).join('');
 		}
-		if(t){
+		if(t && $('#searchlist').html()!=t){
 
 			$('#searchlist').html(t);
 		}
