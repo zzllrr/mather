@@ -896,7 +896,7 @@ $(function(){
 
 
     $('#searchCbox').on('change',function(){
-        var t=$(this).val().trim(), l=loch.split('?')[0].split('.html')[0].replace(/.+\//,''), A=[], el, Anmax=0, isreg=/^\/.+\//.test(t),b=[];
+        var t=$(this).val().trim(), l=loch.split('?')[0].split('.html')[0].replace(/.+\//,'')||'index', A=[], el, Anmax=0, isreg=/^\/.+\//.test(t),b=[];
         if(t.length<1){
             $('#searchCresult').empty();
             return 0
