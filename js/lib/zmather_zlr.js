@@ -947,6 +947,10 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 					TBi2b
 				TBi2j3_TBi4j2 多个单元格，用下划线_隔开
 	
+
+				colspan 合并多列
+				rowspan 合并多行
+
 	bds 指定线条风格
 			
 				dashed	虚线

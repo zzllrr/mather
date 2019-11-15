@@ -438,6 +438,13 @@ input[type=text],#wiki>span,.brad{
 }
 
 
+details:not(:hover){
+	border:solid transparent 1px
+}
+details:hover{
+	border:solid gainsboro 1px
+}
+
 .subtools details[open]{
 	border: solid 1px;
 }

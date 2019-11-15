@@ -273,7 +273,11 @@ function dayOrNight(){
 }
 
 function copy2clipboard(t){
-    toolTip('<input type=text value="'+t+'" />');
+
+    //toolTip('<input type=text value="'+t+'" />');
+    toolTip('<input type=text value="" />');
+    
+	$('#bar input').eq(0).val(t);
     $('#bar input').select();
     document.execCommand('copy', false, null);
     $('#bar input').remove();
