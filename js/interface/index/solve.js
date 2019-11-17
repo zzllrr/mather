@@ -59,7 +59,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 
 			
 			{'Natural':[
-				{'排列组合':['排列','组合']},
+				{'排列组合':['Permutation Number','Combination Number']},
 				{'Factorial':['$n!$','$n!!$—双阶乘', '$n!的末零数$…n']},
 				{'Digit':['数根dr']},
 			]},

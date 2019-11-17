@@ -1463,6 +1463,8 @@ lang['zh_cn'] = {
 	'Harmonic': '调和',
 
 	'Combination': '组合',
+	'Combination Number':'组合数',
+	'Permutation Number':'排列数',
 	'Factorial': '阶乘',
 	'Greatest Common Divisor': '最大公约数',
 	'Least Common Multiple': '最小公倍数',

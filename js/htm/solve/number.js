@@ -415,7 +415,12 @@ solve['number']=function(inputValue, uriA){
 	
 	
 	
-	
+	if(sel(uriA,'Permutation Number')){
+		rS=rS.concat(Arrf(function(x){var a=x.split(/[ ,&]/);return 'A_{'+a[0]+'}^{'+a[1]+'} = '+frac(a[0]+'!','('+a[0]+'-'+a[1]+')!','')+' = '+Permut(a[0],a[1])},VA));
+	}
+	if(sel(uriA,'Combination Number')){
+		rS=rS.concat(Arrf(function(x){var a=x.split(/[ ,&]/);return 'C_{'+a[0]+'}^{'+a[1]+'} = '+frac(a[0]+'!','('+a[0]+'-'+a[1]+')!⋅'+a[1]+'!','')+' = '+Combin(a[0],a[1])},VA));
+	}
 	
 	
 	if(sel(uriA,'p_n\\#')){
