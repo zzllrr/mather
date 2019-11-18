@@ -3,11 +3,11 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-academics={index:['Toolset','Thesis','Monograph','Periodical',
+academics={index:['Topic','Thesis','Monograph','Periodical',
     'Meeting','Problem List','Awards',
     'Organization'],
 
-    'Toolset':[
+    'Topic':[
 
     ],
 

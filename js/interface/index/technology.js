@@ -6,6 +6,9 @@
 technologys={index:['Software','Hardware',
     'Standardization','Modeling'],
     Software:[
+        {'Math':[
+
+        ]},
         {'Charts':[
 
         ]},

@@ -147,7 +147,9 @@ lang['zh_cn'] = {
 
 	// 百科
 
+	'Dictionary':'辞典',
 	'Wiki': '百科',
+	'Enclyclopedia':'百科全书',
 	
 	'Concept': '概念',
 	'Name': '名称',
@@ -725,6 +727,7 @@ lang['zh_cn'] = {
 	'or': '或',
 	'About': '关于',
 	'Anti': '反',
+	'Non':'非',
 	'Co': '互',
 	'By': '按',
 	'From': '从',
@@ -862,6 +865,7 @@ lang['zh_cn'] = {
 
 	// adj.	prep.
 
+	'Discrete':'离散',
 	'Big': '大',
 	'Small': '小',
 	'Double': '双',
@@ -1179,6 +1183,8 @@ lang['zh_cn'] = {
 
 	'Classic':'经典',
 	'Classical':'古典',
+
+	'Commercial':'商业',
 	//Math concept
 
 	// noun
@@ -1536,6 +1542,7 @@ lang['zh_cn'] = {
 	'Mapping': '映射',
 
 
+
 	// adj
 
 	//代数
@@ -1566,6 +1573,9 @@ lang['zh_cn'] = {
 	'Coprime': '互素',
 	'Recursive': '递归',
 	'Cross': '交叉',
+
+	'Commutative':'交换',
+	'Associative':'结合',
 
 	'Parentheses': '括号',
 	'Nest': '嵌套',

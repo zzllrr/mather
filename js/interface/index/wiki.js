@@ -5,7 +5,7 @@
  */
 
 wikis={
-	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking','Glossary'],
+	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking','Dictionary'],
 
 	'Dictionary':[
 		{'Glossary':[
