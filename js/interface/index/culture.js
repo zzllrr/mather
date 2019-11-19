@@ -40,30 +40,18 @@ cultures={index:['Art','Game','Toy','Video Game','Activity'],
 			'Doodle',
 			'Gifs',
 		]},
-		
-		{'Music':[
-
-		]},
-		
-		{'Movie':[
-
-		]},
-
-
-		{'Opera':[
-
-		]},
-
 
 		{'Programme':[
-			'TV Programme',
+			'Music',
+			'Movie',
+			'Opera',
+			'Magic',
 			'Podcast',
 			'Vlog',
-		]},
-
-		{'Magic':[
+			'TV Programme',
 
 		]},
+
 
 
 	],
@@ -81,9 +69,8 @@ cultures={index:['Art','Game','Toy','Video Game','Activity'],
 		]},
 
 		{'Origami':[
-
 		]},
-
+		
 		{'Paper Cutting':[
 
         ]},

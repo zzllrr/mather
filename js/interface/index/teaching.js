@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 teachings = {
-  index: ["Course", "Assignment", "Exam", "Activity", "Pedagogy"],
+  index: ["Course", "Assignment", "Exam", "Activity", "Pedagogy", "MOOC"],
   Course: [
     { K12: [] },
     { "History of Mathematics": [] },
@@ -279,5 +279,6 @@ teachings = {
     "Quiz"
   ],
   Activity: ["Vote", "Questionnaire", "Discuss", "Q & A"],
-  Pedagogy: []
+  Pedagogy: [],
+  MOOC:[]
 };

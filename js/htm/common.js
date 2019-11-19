@@ -108,8 +108,10 @@ loadHTML=function (x) {
         refreshheads()
    },t='';
    if(u){
-       var A=u.replace(/#.*/,'').split('/'),w=x;
-       t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
+       var A=Arrf(fn1,u.replace(/#.*/,'').split('/')),w=x;
+  //     console.log(A);
+       //t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
+       t=w[A.slice(-1)[0]] || w[A.slice(-2).join('/')]  || w[A.slice(-2).reverse().join('/')] || w[A.join('/')] || w[u];
 //console.log(t,w);
         titleRe(gM(A.slice(-1)[0])+' - '+gM('zzllrr Mather'));
         if(/#.+/.test(u)){

@@ -4,20 +4,18 @@
  * Released under MIT License
  */
 
-teaching['Assignment/Assign']=Table([i18(ZLR('Tool Type Summary Features'))],[
+teaching['Assignment/Assign']=detail(gM('Random Making'),Table([i18(ZLR('Tool Type Features'))],[
 
-	[href(Hs+'www.mathway.com/worksheet','MathWay worksheet'),'Web','',''],
+	[href(Hs+'www.mathway.com/worksheet','MathWay worksheet'),'',''],
 
-],'TBrc')+
+],'TBrc'))+
 
+detail(gM('Image'),
+Table([i18(ZLR('Tool Type Features'))],[
 
-	
-detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
+	[href(Hs+'www.math-drills.com','Math Drill'),'',''],
 
+],'TBrc'))
 
-	[]
-
-	
-],'TBrc'),1)
 
 ;

@@ -263,9 +263,12 @@ lang['zh_cn'] = {
 
 	'Topic': '课题',
 	'Foldable':'可折叠',
+	'Folding':'折叠',
+
 
 	//教学
 
+	'MOOC':'慕课',
 	'Teaching': '教学',
 	'Course': '课程',
 	'Curriculum':'课程',
@@ -545,8 +548,8 @@ lang['zh_cn'] = {
 
 	// 工程	
 
-
-
+	'Making':'制作',
+	'Client':'客户端',
 	'Run': '运行',
 	'Split': '分开',
 	'Merge': '合并',
@@ -661,6 +664,7 @@ lang['zh_cn'] = {
 	'Camera': '摄像头',
 	'Video': '视频',
 	'Live':'直播',
+	'Replay':'回放',
 
 	'Media':'媒体',
 	'Audio': '音频',
@@ -1590,6 +1594,9 @@ lang['zh_cn'] = {
 	'Counterclockwise': '逆时针',
 
 	'Infinite': '无限',
+	'Finite':'有限',
+
+
 
 	'Unary': '一元',
 	'Binary': '二元',
@@ -1599,6 +1606,8 @@ lang['zh_cn'] = {
 	'Quadratic': '二次',
 	'Quadric': '二次',
 	'Cubic': '三次',
+
+	'Regression':'回归',
 
 	//几何
 
@@ -1994,6 +2003,9 @@ lang['zh_cn'] = {
 "Mathematical Methods in Physics": "数学物理方法",
 "Big Data": "大数据",
 "Programming Algorithm": "编程算法",
+'Finite Element':'有限元',
+'Finite Element Analysis':'有限元分析',
+'Combinatorics':'组合学',
 //"AI": "人工智能",
 	'Summarytip': '小乐数学zzllrr Mather，是小乐原创开源实现的一款跨平台可离线运行并满足多用户背景、多场景需要的数学软件。' +
 		'目前这是一个Demo版本（雏形演示），功能上只实现了数学公式显示，初等代数、线性代数、离散数学等学科的部分解题，' +
