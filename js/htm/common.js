@@ -38,7 +38,7 @@ ARlib='',
 ARlibjs={
 },
 gitmd=Hs+'raw.githubusercontent.com/zzllrr/mather/master/',
-enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:x.replace(/_/g,' '),'wikipedia" class="wikipedia')+(time?', '+time:'')},
+enwiki=function(x,time,txt){return href(Hs+'en.wikipedia.org/wiki/'+x,txt?txt:fn1(x.replace(/_/g,' ')),'wikipedia" class="wikipedia')+(time?', '+time:'')},
 github=function(x,githubio,text){return href(git(x,githubio),(text||githubio||x).replace(/(.+\/){2}/,'$1').replace(/-/g,' '),'Github" class="github')},
 
 tooltip={

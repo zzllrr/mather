@@ -636,7 +636,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 	boxed = function (t) { return '\\boxed{' + t + '}' }, hp = function (t) { return '\\hphantom{' + (t || 0) + '}' },
 	kbox = function (t, p, pfx) { return boxed(kxc(t, p || 'bf', pfx || 'text')) },
 
-	ksc = function (t) { return SCtv('katex0', t) }, kdc = function (t) { return DCtv('katex0', t) },
+	ksc = function (t) { return isArr(t)?Arrf(ksc,t):SCtv('katex0', t) }, kdc = function (t) { return isArr(t)?Arrf(kdc,t):DCtv('katex0', t) },
 	ksz = function (t, n) { return '\\' + ['tiny', 'scriptsize', 'footnotesize', 'small', 'normalsize', 'large', 'Large', 'LARGE', 'huge', 'Huge'][(n || 0) + 4] + ' ' + t },
 
 

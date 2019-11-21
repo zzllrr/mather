@@ -44,15 +44,47 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 
 	[github('benfred/contour_plot','','Contour Plot'),'D3 Plugin',gM('Contour')+' - draw contour plots of 2D functions'],
 
-	[href(H+'sylvester.jcoglan.com/docs.html','Sylvester'),'','Vector, Matrix, Line, Plane'],
+	[href(H+'sylvester.jcoglan.com/docs.html','Sylvester'),'','Vector, Matrix, Line, Plane '+github('jcoglan/sylvester')],
 
+	[github('Khan/KAS'), 'KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
+
+
+	[github('HarryStevens/geometric'),'','Geometric.js - library for doing geometry'],
+
+
+	[github('lvandeve/jmat'),'','jmat.js - Complex special functions, numerical linear algebra and statistics '+href(Hs+'lodev.org/jmat/jmat_demo.html','Demo')],
+
+
+	[href(H+'victorjs.org','victor.js'),'','2D vector maths library'],
+
+	
+	[href(H+'algebrite.org','Algebrite.js'),'','symbolic computation'],
+
+	[github('nicolewhite/algebra.js'),'','Build, display, and solve algebraic equations'],
+
+	[github('numbers/numbers.js'),'','Basic calculations, Calculus, Matrix Operations, Prime Numbers, Statistics'],
+
+	[github('silentmatt/expr-eval'),'','Mathematical expression evaluator'],
+
+	[github('infusion/Fraction.js'),'',gM('Fraction')],
+
+	[github('infusion/Polynomial.js'),'',gM('Polynomial')],
+
+
+	[github('socraticorg/mathsteps'),'','mathsteps from socratic - Step by step math solutions'],
+
+	
+	
+
+	[github('toji/gl-matrix'),'','glMatrix - perform vector and matrix operations stupidly fast! By hand-tuning each function for maximum performance and encouraging efficient usage patterns through API conventions, glMatrix will help you get the most out of your browsers Javascript engine'],
+	
 ],'TBrc'))+
 
 detail('LaTeX',Table([i18(ZLR('Tool Type Summary'))],[
 
 
 	[github('arguiot/Descartes'),'JS + PNG','A small plotting JavaScript library, made for '+github('arguiot/TheoremJS')+' - Math framework'],
-	[href(Hs+'katex.org','Phase Plot'),'JS','可汗学院出品的数学公式渲染库，也可以在线编辑公式 '+github('KaTeX/KaTeX')],
+	[href(Hs+'katex.org','KaTeX'),'JS','可汗学院出品的数学公式渲染库，也可以在线编辑公式 '+github('KaTeX/KaTeX')],
 	[github('pandao','editor.md/examples/katex.html','KaTeX Editor'),gM('Web'),'KaTeX的一个开源实现，支持Markdown'],
 	[href(Hs+'mathjax.org','MathJax'),'JS','美国数学会的开源引擎库'],
 
@@ -67,11 +99,18 @@ detail('LaTeX',Table([i18(ZLR('Tool Type Summary'))],[
 	[href(Hs+'webdemo.myscript.com/views/math/index.html','myscript'),gM('Web'),'手写识别公式（MathML、LaTeX、可视化输出）'],
 
 	[href(Hs+'www.mathquill.com','mathquill'),gM('Web'),'所见即所得 '+github('mathquill/mathquill')],
+
+	[github('Khan/math-input'),gM('Web'),'math-input = react + redux + mathquill '],
+	[href(Hs+'mathlive.io/examples/','MathLive'),'JS',github('arnog/mathlive')],
+
+
+
+
 ],'TBrc'))+
 
 detail(gM('Client'),Table([i18(ZLR('Tool Type Summary'))],[
 
-	[href(Hs+'sagecell.sagemath.org','Sage'),gM(['Web + Client']),github('sagemath/sage')],
+	[href(Hs+'sagecell.sagemath.org','Sage'),gM(['Web + Client']),github('sagemath/sage')+' '+github('sagemath/sagecell')+' Sage Math Cell,	easy-to-use web interface to SageMath. It allows embedding Sage computations into any webpage'],
 
 	[href(H+'www.open-axiom.org','Open Axiom')+' V2013.4.1',gM(['Client']),github('GabrielDosReis/open-axiom')],
 	[href(H+'speqmath.com','SpeQ Mathematics'),gM(['Client']),'SpeQ is a small, extensive mathematics program with a simple, intuitive interface. All calculations are entered in a sheet. In there you can freely add, edit and execute calculations. SpeQ supports all common functions, constants, and units. Furthermore, you can define custom variables and functions, and plot graphs of your functions.'],

@@ -5,7 +5,117 @@
  */
 
 wiki['Diophantus']=Kx(
-	detail('$n=x^3+y^3+z^3$',ksc(kmod('n','±4',9,1))+Table([$A(ZLR('n x y z'))],[
+
+	detail('$n=x^2+y^2$ 两平方和 Sums of two squares' ,
+	
+	ksc(['p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
+	refer([
+		enwiki('Fermat%27s_theorem_on_sums_of_two_squares','2019-11-21'),
+
+	]))+
+
+
+	detail('$n=x^2+y^2+z^2$ 三平方和 Sums of three squares' ,
+	
+	ksc(['n=x^2+y^2+z^2 ⇔ n ≠ 4^a(8b+7) 其中a,b非负整数'])+scbox("Legendre's three-square theorem")+
+	refer([
+		enwiki('Legendre%27s_three-square_theorem','2019-11-21'),
+
+	]))+
+
+
+	detail('$n=x^2+y^2+z^2+w^2$ 四平方和 Sums of four squares' ,
+	
+	ksc(['∀n∈ℤ, n=x^2+y^2+z^2+w^2 其中x,y,z,w∈ℤ'])+scbox("Lagrange's four-square theorem")+
+	XML.wrapE('p','表示的方法数可能不止一种')+
+	ksc('表示种数r_4(n)='+piece([['8\\sum _{m|n}m','n是奇数'],['24\\sum _{奇数m|n}m','n是偶数']])+
+	'=8\\sum _{m|n,4∤m}m')+scbox("Jacobi's four-square theorem")+br+
+	ksc('特别地，当n是素数p时，r_4(p)=8(p+1)')+
+	refer([
+		enwiki('Lagrange%27s_four-square_theorem','2019-11-21'),
+		enwiki('Jacobi%27s_four-square_theorem','2019-11-21'),
+
+	]))+
+
+
+
+
+
+	detail('$n=x^3+y^3+z^3$ 三立方和 Sums of three cubes' ,detail(ksc(kmod('n','±4',9,1)),
+ksc(['∵',
+	kmod('x^3≡(x \\mod 9)^3','0,±1',9),
+	kmod('y^3≡(y \\mod 9)^3','0,±1',9),
+	kmod('z^3≡(z \\mod 9)^3','0,±1',9),
+	'∴'+kmod('n=x^3+y^3+z^3','±4',9,1),
+]).concat(
+	'附录：'+ksc('∀k∈ℤ, '),
+	'使用下方JS代码',
+	sceg("Arrf(function(y){return Arrf(function(x){return Mod(x**2,y)+''},seqA(1,20))},seqA(2,20))"),
+	'易得知'
+).concat(ksc([
+	kmod('k^2','0,1','2,3,4'),
+	kmod('k^2','0,±1','5'),
+	kmod('k^2','0,1,-2,3','6'),
+	kmod('k^2','0,1,-3,2','7'),
+	kmod('k^2','0,1,4','8'),
+	kmod('k^2','0,1,4,-2','9'),
+	kmod('k^2','0,±1,±4,5','10'),
+	kmod('k^2','0,1,4,-2,5,3','11'),
+	kmod('k^2','0,1,4,-3','12'),
+	kmod('k^2','0,±1,±3,±4','13'),
+])).concat(
+	'使用下方JS代码',
+	sceg("Arrf(function(y){return Arrf(function(x){return Mod(x**3,y)+''},seqA(1,20))},seqA(2,20))"),
+	'易得知'
+).concat(ksc([
+	kmod('k^3','0,1','2'),
+	kmod('k^3','0,±1','3,4,7,9'),
+	kmod('k^3','0,±1,±2','5'),
+	kmod('k^3','0,±1,±2,3','6'),
+	kmod('k^3','0,±1,±3','8'),
+	kmod('k^3','0,±1,±2,±3,±4,5','10'),
+
+	kmod('k^3','0,±1,±2,±3,±4,±5','11'),
+	kmod('k^3','0,±1,±3,±4,±5','12'),
+	kmod('k^3','0,±1,±5','13'),
+	kmod('k^3','0,±1,±6,7','14'),
+	kmod('k^3','0,±1,±2,±3,±4,±5,±6,±7','15'),
+
+])).concat(
+	'使用下方JS代码',
+	sceg("Arrf(function(y){return Arrf(function(x){return Mod(x**4,y)+''},seqA(1,20))},seqA(2,20))"),
+	'易得知'
+
+).concat(ksc([
+	kmod('k^4','0,1','2,3,4,5,8,16'),
+	kmod('k^4','0,1,-2,3','6'),
+	kmod('k^4','0,1,2,-3','7'),
+	kmod('k^4','0,1,2,-4','9'),
+	kmod('k^4','0,1,-4,5','10,20'),
+
+	kmod('k^4','0,1,-2,3,4,5','11'),
+	kmod('k^4','0,1,4,-3','12'),
+	kmod('k^4','0,1,-4,3','13'),
+	kmod('k^4','0,1,2,-3,4,-5,-6,7','14'),
+	kmod('k^4','0,1,6,-5','15'),
+	kmod('k^4','0,±1,±4','17'),
+
+
+
+
+])).join(br))+
+detail('$1=x^3+y^3+z^3$ Fermat cubic' ,
+		
+	'参数解如下：'+
+
+
+	
+	refer([
+		enwiki('Fermat_cubic','2019-11-21'),
+
+]))+
+
+Table([$A(ZLR('n x y z'))],[
 		
 [0,0,0,0],
 [0,'a','-a',0],
@@ -118,9 +228,11 @@ ZLR('⋮ ⋮ ⋮ ⋮'),
 [1000,'','','']
 
 	],'wiki').replace(/____/g,br)+refer([
-		enwiki('Sums_of_three_cubes','2019-10-11'),
+		enwiki('Sums_of_three_cubes','2019-11-21'),
+		enwiki('Sums_of_powers','2019-11-21'),
 		href(H+'www.xikuang.ren/science/181.html','整数 42 被攻破，数学猜想的证明获得重大推进')+', 西狂, 2019-9-8',
-		href(H+'www.asahi-net.or.jp/~KC2H-MSM/mathland/math04/matb0100.htm','chapter 4')+', Hisanori Mishima, 2019-10-11'
+		href(H+'www.asahi-net.or.jp/~KC2H-MSM/mathland/math04/matb0100.htm','chapter 4')+', Hisanori Mishima, 2019-10-11',
+		href(H+'math.mit.edu/~drew/Waterloo2019.pdf')+', 2019-11-21',
 	]))
 	
 	

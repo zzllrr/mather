@@ -161,16 +161,3 @@ textarea.seled,.snippet.seled{
 	counter-reset:cnt 0;
 	min-height: 4rem;
 }
-.eg:hover{
-	text-decoration: underline;
-}
-.eg{
-	cursor: pointer;
-}
-.eg,.obj{
-	background:silver;
-	padding:2px 5px;
-	font-size:14px;
-	color: black;
-	border-radius: 5px;
-}
