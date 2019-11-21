@@ -1,8 +1,8 @@
-![zzllrr Mather Logo](https://github.com/zzllrr/mather/blob/master/img/logo.jpg)
+![zzllrr Mather Logo](https://github.com/zzllrr/mather/raw/master/img/logo.jpg)
 
 # zzllrr Mather - An open-sourced Web APP for Mathematics
 
-![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/blob/master/img/zzllrr-mather-demo.jpg)
+![zzllrr Mather Demo Version Screenshot](https://github.com/zzllrr/mather/raw/master/img/zzllrr-mather-demo.jpg)
 
 小乐数学，一款基于web网页的覆盖数学全部学科的数学开源软件。
  
@@ -12,7 +12,7 @@ For Chinese users国内用户请访问 <http://zzllrr.gitee.io/mather/>
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://mit-license.org/) [![Donate](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
 
-| [About 关于](https://zzllrr.github.io/mather/about.html "简介") | [API](https://zzllrr.github.io/mather/api.html) | [Background 背景](https://github.com/zzllrr/mather/blob/master/RESEARCH.md) | [MIT License 许可证](https://github.com/zzllrr/mather/blob/master/LICENSE) | [Credits 鸣谢](https://zzllrr.github.io/mather/api.html?sub=3rd-party) |
+| [About 关于](https://zzllrr.github.io/mather/about.html "简介") | [API](https://zzllrr.github.io/mather/api.html) | [Background 背景](https://github.com/zzllrr/mather/raw/master/RESEARCH.md) | [MIT License 许可证](https://github.com/zzllrr/mather/raw/master/LICENSE) | [Credits 鸣谢](https://zzllrr.github.io/mather/api.html?sub=3rd-party) |
 
 ## Aims 宗旨
 Make mathematics easier to learn, practice, teach, study, appreciate, play, show, spread and reach.
@@ -51,23 +51,23 @@ Compact, portable, powerful, customizable 软件体积小巧便携，但功能�
 
 |Filename文件名|Application用途|Entrance入口|
 |:--:|:--:|:--:|
-|index.html|Homepage首页|[Local本地](/index.html) [Online在线](https://zzllrr.github.io/mather/index.html)|
-|editor.html|Editor编辑器|[Local本地](/editor.html) [Online在线](https://zzllrr.github.io/mather/editor.html)|
-|doodle.html|Doodle涂鸦|[Local本地](/doodle.html) [Online在线](https://zzllrr.github.io/mather/doodle.html)|
-|document.html|Document文档|[Local本地](/document.html) [Online在线](https://zzllrr.github.io/mather/document.html)|
-|slide.html|Slide幻灯片|[Local本地](/slide.html) [Online在线](https://zzllrr.github.io/mather/slide.html)|
-|speech.html|Speech语音|[Local本地](/speech.html) [Online在线](https://zzllrr.github.io/mather/speech.html)|
-|3d.html|3D三维立体|[Local本地](/3d.html) [Online在线](https://zzllrr.github.io/mather/3d.html)|
-|vr.html|VR虚拟现实|[Local本地](/vr.html) [Online在线](https://zzllrr.github.io/mather/vr.html)|
-|ar.html|AR增强现实|[Local本地](/ar.html) [Online在线](https://zzllrr.github.io/mather/ar.html)|
-|wiki.html|Wiki百科|[Local本地](/wiki.html) [Online在线](https://zzllrr.github.io/mather/wiki.html)|
-|teaching.html|Teaching教学|[Local本地](/teaching.html) [Online在线](https://zzllrr.github.io/mather/teaching.html)|
-|academic.html|Academic学术|[Local本地](/academic.html) [Online在线](https://zzllrr.github.io/mather/academic.html)|
-|technology.html|Technology技术|[Local本地](/technology.html) [Online在线](https://zzllrr.github.io/mather/technology.html)|
-|science.html|Science科学|[Local本地](/science.html) [Online在线](https://zzllrr.github.io/mather/science.html)|
-|culture.html|Culture文化|[Local本地](/culture.html) [Online在线](https://zzllrr.github.io/mather/culture.html)|
-|about.html|About关于|[Local本地](/about.html) [Online在线](https://zzllrr.github.io/mather/about.html)|
-|api.html|API接口|[Local本地](/api.html) [Online在线](https://zzllrr.github.io/mather/api.html)|
+|index.html|Homepage首页|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/index.html) [Local本地](/index.html) [Online在线](https://zzllrr.github.io/mather/index.html)|
+|editor.html|Editor编辑器|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/editor.html) [Local本地](/editor.html) [Online在线](https://zzllrr.github.io/mather/editor.html)|
+|doodle.html|Doodle涂鸦|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/doodle.html) [Local本地](/doodle.html) [Online在线](https://zzllrr.github.io/mather/doodle.html)|
+|document.html|Document文档|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/document.html) [Local本地](/document.html) [Online在线](https://zzllrr.github.io/mather/document.html)|
+|slide.html|Slide幻灯片|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/slide.html) [Local本地](/slide.html) [Online在线](https://zzllrr.github.io/mather/slide.html)|
+|speech.html|Speech语音|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/speech.html) [Local本地](/speech.html) [Online在线](https://zzllrr.github.io/mather/speech.html)|
+|3d.html|3D三维立体|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/3d.html) [Local本地](/3d.html) [Online在线](https://zzllrr.github.io/mather/3d.html)|
+|vr.html|VR虚拟现实|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/vr.html) [Local本地](/vr.html) [Online在线](https://zzllrr.github.io/mather/vr.html)|
+|ar.html|AR增强现实|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/ar.html) [Local本地](/ar.html) [Online在线](https://zzllrr.github.io/mather/ar.html)|
+|wiki.html|Wiki百科|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/wiki.html) [Local本地](/wiki.html) [Online在线](https://zzllrr.github.io/mather/wiki.html)|
+|teaching.html|Teaching教学|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/editeaching.html) [Local本地](/teaching.html) [Online在线](https://zzllrr.github.io/mather/teaching.html)|
+|academic.html|Academic学术|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/academic.html) [Local本地](/academic.html) [Online在线](https://zzllrr.github.io/mather/academic.html)|
+|technology.html|Technology技术|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/technology.html) [Local本地](/technology.html) [Online在线](https://zzllrr.github.io/mather/technology.html)|
+|science.html|Science科学|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/science.html) [Local本地](/science.html) [Online在线](https://zzllrr.github.io/mather/science.html)|
+|culture.html|Culture文化|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/culture.html) [Local本地](/culture.html) [Online在线](https://zzllrr.github.io/mather/culture.html)|
+|about.html|About关于|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/about.html) [Local本地](/about.html) [Online在线](https://zzllrr.github.io/mather/about.html)|
+|api.html|API接口|[For Chinese Users国内用户](https://zzllrr.gitee.io/mather/api.html) [Local本地](/api.html) [Online在线](https://zzllrr.github.io/mather/api.html)|
 
 
 ## Function 功能模块
@@ -250,4 +250,4 @@ https://chrome.google.com/webstore/detail/aphanomkkjgledipighdfjnilhfenpam?hl=zh
 * Donate 捐赠小乐
 [![Donate](https://img.shields.io/badge/donate-Paypal-green)](https://www.paypal.me/zzllrr/8)
 
-![Donate zzllrr via Wechat](https://github.com/zzllrr/mather/blob/master/img/F1weixinPay.jpg)
+![Donate zzllrr via Wechat](https://github.com/zzllrr/mather/raw/master/img/F1weixinPay.jpg)
