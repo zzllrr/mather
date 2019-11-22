@@ -962,12 +962,14 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
-.mi:not(.Clear):not(.Del):not(.remove):hover, th.bds:hover, summary{
+.mi:not(.Clear):not(.Del):not(.remove):hover, th.bds:hover, details:not([open]) > summary{
 
 	color:limegreen;
 }
 
-
+details[open] > summary{
+	font-weight: bold;
+}
 #panel div > span.toggle{
 	vertical-align: middle;
 	font-weight:bold;

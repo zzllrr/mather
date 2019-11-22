@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Rational Sequence']=Kx(
+wiki['Concept/Number/Sequence/Rational']=Kx(
 
 	
 detail('有理数列',Table([ZLR('名称 定义 第n项 前n项 性质')],[

@@ -55,7 +55,10 @@ wikis={
 
 	'Formula':[
 		{'Sequence':[
+			'Sum',
+			'Combination',
 
+			
 		]},
 
 		{'Function':[
@@ -205,7 +208,6 @@ wikis={
 			'Complex',
 			{'Sequence':[
 				'Rational',
-				'Sum',
 				'Combination',
 				'Amicable Numbers',
 				

@@ -1265,7 +1265,9 @@ lang['zh_cn'] = {
 	'Analytic': '解析式',
 	'Limit': '极限',
 
+	'Encompass':'包含',
 
+	'Consecutive':'连续',
 	'Derivative': '导数',
 	'Partial Derivative': '偏导数',
 
@@ -1659,6 +1661,7 @@ lang['zh_cn'] = {
 
 	'Euler': '欧拉',
 	'Bezier': '贝塞尔',
+	'Bernoulli':'伯努利',
 	'Fermat': '费马',
 	'Cartesian': '笛卡尔',
 	'Diophantus':'丢番图',

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Amicable Numbers']=Kx(
+wiki['Concept/Number/Sequence/Amicable Numbers']=Kx(
 
 detail('亲和数表',Table([ZLR('m n m形式 n形式 ')],[
 	['220','284','','',''],
