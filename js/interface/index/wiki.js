@@ -60,13 +60,24 @@ wikis={
 
 			
 		]},
-
+		{'Polynomial':[
+			'Identity',
+			
+		]},
 		{'Function':[
-
+			'Trigonometric',
+			'Derivative',
+			'Integral',
 		]},
 
 		{'Equation':[
 			'Diophantus'
+		]},
+
+		{'Matrix':[
+			'Inverse',
+			'Determinant',
+
 		]},
 
 		{'Geometry':[
@@ -224,8 +235,7 @@ wikis={
 			'Unary Operation',
 			'Binary Operation',
 			'Binary Relation',
-			'Matrix Factorization',
-			'Determinant',
+			'Factorization',
 			
 		]},
 		

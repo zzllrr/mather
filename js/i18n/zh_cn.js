@@ -144,7 +144,7 @@ lang['zh_cn'] = {
 
 	'WeChat': '微信公众号',
 
-
+	'Other':'其他',
 	// 百科
 
 	'Dictionary':'辞典',
@@ -1266,7 +1266,7 @@ lang['zh_cn'] = {
 	'Limit': '极限',
 
 	'Encompass':'包含',
-
+	'Identity':'恒等式',
 	'Consecutive':'连续',
 	'Derivative': '导数',
 	'Partial Derivative': '偏导数',

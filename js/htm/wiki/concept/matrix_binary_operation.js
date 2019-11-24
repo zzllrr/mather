@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Matrix Binary Operation']=Kx(
+wiki['Concept/Matrix/Binary Operation']=Kx(
 
 
 detail('矩阵（二元运算）',Table([ZLR('名称 记法 定义 性质')],[

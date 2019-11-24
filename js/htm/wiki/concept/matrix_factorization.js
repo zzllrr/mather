@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Matrix Factorization']=Kx(
+wiki['Concept/Matrix/Factorization']=Kx(
 
 detail('矩阵分解 Factorization, Decompostion',Table([ZLR('算法 适用于 结果 说明')],[
 

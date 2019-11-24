@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Matrix Type']=Kx(
+wiki['Concept/Matrix/Type']=Kx(
 
 detail('矩阵类型', Table([ZLR('名称 记法 定义 性质')],[
 	ZLR('矩阵\nMatrix____'+khrA(['A','A_{m×n}','(a_{ij})_{m×n}','[a_{ij}]_{m×n}'])+'____m行×n列元素____','','____'),

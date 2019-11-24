@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Matrix Binary Relation']=Kx(
+wiki['Concept/Matrix/Binary Relation']=Kx(
 
 
 detail('矩阵（二元关系）',Table([ZLR('名称 记法 充要条件 性质')],[
