@@ -359,7 +359,7 @@ function fromTextarea(typ,v,A,sty){
 	var fg=$('#FGC').val(), bg=$('#BGC').val(), fgOpa=$('#OpaFGC').val(), bgOpa=$('#OpaBGC').val(),sw=+$('#strkW').val();
 
 	return SCtv('cap'+type+' capfromTextarea" data-texttype="'+typ+'"'+(sty?sty:idStyle('',A))+';font-size:'+sz+'px;'+
-		'z-index:'+($('#Caps').children('svg, textarea, span').length+2001)+';'+
+		'z-index:'+($('#Caps').children('svg, textarea, span').length+2001)+';padding:20px;'+
 		'background:transparent;color:'+hex2rgba(fg,fgOpa)+';border-style:solid;border-color:'+hex2rgba(bg,bgOpa)+';border-width:'+
 		(sty?sw:0)+'px;opacity:'+(sty?fgOpa:1)+';text-align:'+(sty?pos:'center')+
 		(v && /Markdown|Canvas|Echarts/.test(typ)?'" data-text="'+escape(v):''),'')

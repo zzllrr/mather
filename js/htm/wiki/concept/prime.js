@@ -5,7 +5,7 @@
  */
 
 
-wiki['Prime']=Kx(
+wiki['Concept/Number/Prime/Prime']=Kx(
 
 detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质')],[
 	['素数____质数____Prime','只能被1和自身整除','P_n \\\\ p_n',

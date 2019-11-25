@@ -5,7 +5,7 @@
  */
 
 
-wiki['Prime Structure']=Kx(
+wiki['Concept/Number/Prime/Structure']=Kx(
 
 
 detail('素数表'+num('1" id="primeBegin',1,50000)+'~'+num('100" id="primeEnd',1,50000)+'<label>'+strchkbx0+'id=primeNO />序号</label>'+

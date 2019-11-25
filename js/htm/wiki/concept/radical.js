@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Radical']=Kx(
+wiki['Concept/Analytic/Radical']=Kx(
 
 
 

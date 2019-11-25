@@ -316,6 +316,8 @@ lang['zh_cn'] = {
 	'Semester':'学期',
 	'Glean':'费力搜集',
 
+	'Choose':'选择',
+
 	//学术
 
 	'Document': '文档',
@@ -1252,6 +1254,18 @@ lang['zh_cn'] = {
 	'Array': '数组',
 	'Integer': '整数',
 	'Fraction': '分数',
+
+	'Mixed Fraction':'带分数',
+	'Propper':'真',
+	'Impropper':'假',
+
+	'Reducible':'可约',
+	'Irreducible':'既约',
+
+	'Sign':'符号',
+	'Digits':'位数',
+	'Quantity':'数量',
+	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
 	'Polynomial': '多项式',

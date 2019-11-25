@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Prime Mersenne Number']=Kx(
+wiki['Concept/Number/Prime/Prime Mersenne Number']=Kx(
 
 
 detail('梅森素数表',Table([['','p性质','p','M_p=2^p-1','位数','证明年代']],[

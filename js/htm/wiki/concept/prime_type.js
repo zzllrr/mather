@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Prime Type']=Kx(
+wiki['Concept/Number/Prime/Type']=Kx(
 
 detail('素数（按自身数学性质）',Table([ZLR('名称 定义(满足条件) 第n项 前n项 性质')],[
 

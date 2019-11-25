@@ -92,17 +92,18 @@ $(function () {
 				
 					'<div id=svgTextDetail>'+txa('','" id="svgTextDetails')+dc+
 				
-					detail('<input type=button id=clrTextBox value="'+gM('Clear All')+'" />'+
-						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />',
+					detail('<input type=button id=clrTextBox value="'+gM('Clear')+'" />'+
+						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />'+strbtn+' + " id=TextBoxGo2 />',
 						txa('','" id="TextBox')+
 						detail(gM('Editor'),
 						
 						DCtv('hidden" for="HTML', [].concat(
+							'iframe: ','<input type=text class="iframesrc" value="" placeholder="solve.html?" />',
 							Arrf(function(x){return XML.wrapE('label',x)}, zlrA3('<input type=',['radio name=name1','checkbox'],' />')).join('')+meter(50),
 							rng(5,0,10),
 							num(0,0,'9" step="1')+XML.wrapE('select',Options([1,2,3,4]).join(''))+XML.wrapE('select',Options(['A','B','C','D']).join('')),
 
-							zlrA3('<input type=',['color','time','date','text'],' />'),
+							zlrA3('<input type=',['color','time','date','text','button value="'+gM('Button')+'"'],' />'),
 							
 							XML.wrapE('textarea')
 						).join(br)
@@ -434,7 +435,7 @@ dc+
 dc
 				
 				),'','id=TextBoxTool hidden'),
-						'','id=svgTEXTBox')+
+						1,'id=svgTEXTBox')+
 				
 					'<div id=svgSel>'+
 						detail('<select id=svgText>'+Options(seqA(0,11),ZLR(
@@ -1102,7 +1103,7 @@ dc+
 				itv('" tip=copy2input id="copy2input','library_add')+
 				itv('" tip=copyAll2input id="copyAll2input','photo_library'))+
 
-				itv('" tip="Upload HTML File" id="SVGUpload','file_upload')+
+				itv('" tip="Upload HTML File" id="','file_upload')+
 				'<input type=file id=SVGUploadFile hidden />'+
 				itv('" tip="Download HTML File" id="SVGDownload','file_download')+
 				itv('" tip=Launch id="launchCap','launch')+
@@ -1298,7 +1299,12 @@ dc+
 			t=t.replace(/input /, '$&'+(!me.children().prop('checked')?'checked ':''));
 
 		}else if(me.is('input')){
-			t=/value/.test(t)?t.replace(/value="[^"]*"/, 'value="'+me.val()+'"'):t.replace(/input /, '$&value="'+me.val()+'" ');
+			if(me.is('.iframesrc')){
+				t='<iframe src="'+$(this).val()+'" width=300 height=600 style="border:0"></iframe>'
+			}else{
+				t=/value/.test(t)?t.replace(/value="[^"]*"/, 'value="'+me.val()+'"'):t.replace(/input /, '$&value="'+me.val()+'" ');
+			}
+			
 		}else if(me.is('select')){
 			t=t.replace('value="'+me.val()+'"', 'value="'+me.val()+'" selected');
 		}
@@ -1521,11 +1527,7 @@ dc+
 
 	});
 
-	$('#SVGUpload').on('click',function(){
-		
 
-
-	});
 	$('#SVGUpload').on('click',function(){
 		$('#SVGUploadFile').click()
 	});
@@ -1553,7 +1555,12 @@ dc+
 		}
 	});
 	$('#SVGDownload').on('click',function(){
-		saveText(L.cap1,gM('zzllrr Mather')+'-'+gM('Graphic')+'_'+Time.now()+'.html');
+		//saveText(L.cap1,gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
+		var x=[];
+		$('#capsdiv').nextAll().each(function(){
+			x.push(this.outerHTML)
+		});
+		saveText(x.join('\n'),gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
 	});
 
 
@@ -2643,7 +2650,7 @@ function clk_popout(obj) {
 			eval(v);
 		}
 	}
-	if (id == 'TextBoxGo') {
+	if (id == 'TextBoxGo' || id == 'TextBoxGo2') {
 		var iT = $('#TextBoxType').val(), it = iT.toLowerCase(),v = $('#TextBox').val().trim(), shpNid = L.drawShapeNow || 'unknown', shpN = $('#' + shpNid), frTextarea, 
 		//A = [100, 200, 300, 200];
 		A = [$('#cssX').val(),$('#cssY').val(),$('#ContainerW').val(),$('#ContainerH').val()];
@@ -2699,7 +2706,7 @@ function clk_popout(obj) {
 
 			}
 
-			if (frTextarea) {
+			if (id == 'TextBoxGo' && frTextarea) {
 				shpN.remove();
 			}
 

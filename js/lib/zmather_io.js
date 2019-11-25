@@ -967,7 +967,7 @@ SBS={
 			"[3,4]",
 			"'1/2+3/4+5/6',1",
 			
-		],")")),
+		],")")).concat('{$Random(100)$}\\/{$Random(100)$} $\'+-×÷\'[Random(4)-1]$ {$Random(100)$}\\/{$Random(100)$}'),
 		['1\\/2'].concat(zlrA3('\\',['','t'],'frac{1}{2}'),
 		zlrA3('\\',['','t'],'frac{1}{1+\\frac{1}{2}}')),
 		[
@@ -1685,11 +1685,18 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 ////consolelog(t);
 			if(t){
 				if(t.indexOf('$')>-1){
+					if(!shft){
+						t=t.replace(/\$[^\$]+\$/g,function(x){return eval(x.replace(/\$/g,''))});
+					}else{
+
+					}
+					/*
 					t=t.replace(/^[^\$]+/g,'');
 					if(!shft){
 						t=eval(t.replace(/\$/g,''))
 					}
 					t=tl.replace(/\$.+/,'')+t;
+					*/
 				}else{
 				//	t=(/^[\{\d\\]/.test(tl)?'':'\\')+tl;
 					//t=/^[a-z]/i.test(t)?t.replace(/^[a-z]+/ig,''):t;
