@@ -197,15 +197,121 @@ tooltip[tool].k，存储提示工具栏	键使用路径URI
 
 
 
- 		mooc.js
-		 		有数学内容的网络公开课平台Coursera、Udacity、edX、khan academy
 		 		
 */
 
 
 
 
-;
+, RandomNumber={
+    'sign':function(signA){
+        var sn0=1, sn1=0;
+        signA && (sn0=signA[0]);
+        signA && signA.length>1 && (sn1=signA[1]);
+        return sn0 && sn1?(Random(2)>1?'-':''):(sn1?'-':'')
+    },
+    'opr4':function(oprs){
+        var s=oprs || '+-×÷';
+        return s[Random(s.length)-1]
+    },
+
+    'isMixedFrac':function(t){
+        return /\(\d+\)\d+\/\d+/.test(t)
+    },
+    'randN':function(digiAA,signAA, numberTypeA){
+        var nA=numberTypeA || ['Integer','Fraction','Fraction Unit',
+        'Propper Fraction','Impropper Fraction',//'Mixed Fraction',
+        'Reducible Fraction','Irreducible Fraction',
+        'Decimal','Pure Decimal'], nl=nA.length;
+        var x=Random(nl)-1;
+        return RandomNumber[nA[x]](isArr(digiAA,1)?digiAA[x]:digiAA, isArr(signAA,1)?signAA[x]:signAA)
+    },
+    'Opr4':function(digiAA,signAA, numberTypeA, layerA, oprs){
+        var s=RandomNumber.randN(), l0=1,l1=1;
+
+        layerA && (l0=layerA[0]);
+        layerA && (layerA.length>1) && (l1=layerA[1]);
+        var l=l0+Random(l1-l0+1)-1;
+        for(var i=0;i<l;i++){
+            var A=['('+s+')', RandomNumber.randN()];
+            if(Random(2)>1){
+                A.reverse();
+            }
+            s=A.join(RandomNumber.opr4(oprs))
+        }
+
+
+        return Mfn.fromStr(s)
+    },
+
+    'Integer':function(digiA,signA){
+        var d0=1, d1=3;
+        digiA && (d0=digiA[0]);
+        digiA && digiA.length>1 && (d1=digiA[1]);
+
+        return RandomNumber.sign(signA)+(Random(10**d1-10**(d0-1))+10**(d0-1)-1)
+    },
+    'Fraction':function(digiA,signA){
+        return RandomNumber.sign(signA)+[RandomNumber.Integer(digiA),RandomNumber.Integer(digiA)].join('/')
+    },
+    'Fraction Unit':function(digiA,signA){
+        return RandomNumber.sign(signA)+[1,RandomNumber.Integer(digiA)].join('/')
+    },
+    'Propper Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(+X[1]<+X[0]){X.reverse()}
+
+            if(+X[0]<+X[1]){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Impropper Fraction':function(digiA,signA){
+        var s=RandomNumber.sign(signA);
+        var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+        if(+X[0]<+X[1]){X.reverse()}
+
+        return s+X.join('/')
+    },
+    'Mixed Fraction':function(digiA,signA){
+        var s=RandomNumber.sign(signA);
+        var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+
+        return s+X[0]+'+00+'+X.slice(1).join('/') //s+X[0]+frac(X[1],X[2],'')
+    },
+    'Reducible Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(FracReduct(X)!=X.join('/')){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Irreducible Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(FracReduct(X)==X.join('/')){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Decimal':function(digiA,signA){
+        var s=RandomNumber.sign(signA), X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+        return s+X.join('.')
+    },
+    'Pure Decimal':function(digiA,signA){
+        var s=RandomNumber.sign(signA), x=RandomNumber.Integer(digiA);
+
+        return s+'0.'+x
+    },
+
+    
+
+};
 
 
 function sel(uriA,x,p,pp,ppp){

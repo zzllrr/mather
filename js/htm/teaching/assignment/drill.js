@@ -4,8 +4,8 @@
  * Released under MIT License
  */
 
-teaching['Assignment/Drill']=detail(gM('Random Number'),Table([i18(ZLR('Select Type Sign Digits Quantity Tool'))], Arrf(function(x){
-    return [strchkbx0+'>',gM(x), '<label>+ '+strchkbx0+chked+'> <label>- '+strchkbx0+'>',
+teaching['Assignment/Drill']=detail(gM('Random Number'),Table([[strchkbx0+'title="'+gM('Select All')+'" />'].concat(gM(ZLR('Type Sign Digits Quantity Tool')))], Arrf(function(x,i){
+    return [strchkbx0+'data-type="'+x+'"'+(i?'':chked)+' class=selNumTyp>',gM(x), '<label>+ '+strchkbx0+chked+'> <label>- '+strchkbx0+'>',
         num(1,1,20)+' ~ '+num(2,1,20), num(10,1,1000), strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
 },['Integer','Fraction','Fraction Unit',
     'Propper Fraction','Impropper Fraction','Mixed Fraction',
@@ -13,10 +13,19 @@ teaching['Assignment/Drill']=detail(gM('Random Number'),Table([i18(ZLR('Select T
     'Decimal','Pure Decimal'
 ])
  
-,'TBrc')+gM('Number Operation')+Table([i18(ZLR('Operation Layers Quantity Tool'))], Arrf(function(x){
-    return ['<label>+ '+strchkbx0+chked+'> <label>- '+strchkbx0+'> <label>× '+strchkbx0+'> <label>÷ '+strchkbx0+'>',
-    num(1,1,20)+' ~ '+num(2,1,20),num(10,1,1000), strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
-},[4])
+,'TBrc" id="numberType')+gM('Number Operation')+Table([i18(ZLR('Operation Layers Quantity Tool'))], Arrf(function(x){
+    return [zlrA3('<label>',['+','-','×','÷'],' '+strchkbx0+chked+'></label>').join(''),
+    num(1,1,20)+' ~ '+num(2,1,20),num(10,1,1000), 
+    strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+
+    strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
+},['Opr4'])
+ 
+,'TBrc')+gM('Matrix')+Table([i18(ZLR('RowsColumns Quantity Tool'))], Arrf(function(x){
+    return [
+    num(3,2,2000)+' ~ '+num(3,2,2000),num(10,1,1000), 
+    strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+
+    strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
+},['Mtrx'])
  
 ,'TBrc'))
 ;
@@ -26,98 +35,36 @@ $(function(){
 
         var me=$(this), pa=me.parent(), 
             sn=pa.prev().prev().prev().find('input'),sn0=sn.eq(0).prop('checked'),sn1=sn.eq(1).prop('checked'),
-            digi=pa.prev().prev().find('input'), 
+            digi=pa.prev().prev().find('input'), d0=digi.eq(0).val(), d1=digi.eq(1).val(),
             quan=+pa.prev().find('input').val()||1, tp=me.attr('data-type'), isJS=me.is('.copyJS'), t;
 
-        if(tp=='Integer'){
-            //t='{$Random(100)$}\/{$Random(100)$} $'+-×÷'[Random(4)-1]$ {$Random(100)$}\/{$Random(100)$}'
-
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''); return s+(Random(10**d1-10**(d0-1))+10**(d0-1)-1)}, seqA(1,${quan}))`;
-        }
-
-
-
-        if(tp=='Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''); return s+frac(Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1,'')}, seqA(1,${quan}))`;
-        }
-
-        if(tp=='Fraction Unit'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''); return s+frac(1, Random(10**d1-10**(d0-1))+10**(d0-1)-1,'')}, seqA(1,${quan}))`;
-        }
-
-        if(tp=='Propper Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1];if(X[1]<X[0]){X[1]=X[0]+X[2]} if(X[1]==X[0]){X[1]+=X[2]} return s+frac(X[0],X[1],'')}, seqA(1,${quan}))`;
-        }
-
-
-
-        if(tp=='Impropper Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1];if(X[0]<X[1]){X[0]=X[1]+X[2]} return s+frac(X[0],X[1],'')}, seqA(1,${quan}))`;
-        }
 
         if(tp=='Mixed Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1]; return s+X[0]+frac(X[1],X[2],'')}, seqA(1,${quan}))`;
-        }
+            t=`Arrf(function(){return RandomNumber[tp]([${d0}, ${d1}], [${sn0},${sn1}])}, seqA(1,${quan}))`;
 
-        if(tp=='Reducible Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(2)+1]; if(FracReduct(X)==X.slice(0,2).join('/')){X[0]*=X[2]; X[1]*=X[2];} return s+frac(X[0],X[1],'')}, seqA(1,${quan}))`;
-        }
-
-        if(tp=='Irreducible Fraction'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1]; if(X[0]==X[1]){X[1]++} if(FracReduct(X)!=X.join('/')){X[0]++;X[1]++} return s+frac(X[0],X[1],'')}, seqA(1,${quan}))`;
-        }
-
-
-        if(tp=='Decimal'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''), X=[Random(10**d1-10**(d0-1))+10**(d0-1)-1,Random(10**d1-10**(d0-1))+10**(d0-1)-1]; return s+X.join('.')}, seqA(1,${quan}))`;
-        }
-
-        if(tp=='Pure Decimal'){
-            t=`Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s=${sn0 && sn1}?(Random(2)>1?'-':''):(${sn1}?'-':''); return s+'0.'+(Random(10**d1-10**(d0-1))+10**(d0-1)-1)}, seqA(1,${quan}))`;
-        }
-
-
-        if(tp=='4'){
-            var o4=`var ntp={
-                'Integer':function(){
-
-                },
-                'Fraction':function(){
-
-                },
-                'Fraction Unit':function(){
-
-                },
-                'Propper Fraction':function(){
-
-                },
-                'Impropper Fraction':function(){
-
-                },
-                'Mixed Fraction':function(){
-
-                },
-                'Reducible Fraction':function(){
-
-                },
-                'Irreducible Fraction':function(){
-
-                },
-                'Decimal':function(){
-
-                },
-                'Pure Decimal':function(){
-
-                },
-
-
-            };`,oprs='';
+        }else if(tp=='Opr4'){
+            var oprs='', nA=[], digiAA=[], signAA=[];
             sn.each(function(i){
                 if($(this).prop('checked')){
                     oprs+='+-×÷'[i]
                 }
             });
-            t=`${o4}Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s='';for(var i=0,l=Random(d1-d0+1);i<d1+l;i++){s} return Mfn.fromStr(s).toStr(1)}, seqA(1,${quan}))`;
+            $('#numberType tr:gt(0)').each(function(){
+                var ip=$(this).find('input'), chk=ip.eq(0);
+                if(chk.prop('checked')){
+                    nA.push(chk.attr('data-type'));
+                    digiAA.push([ip.filter(':number').eq(0).val(), ip.filter(':number').eq(1).val()]);
+                    signAA.push([+ip.eq(1).prop('checked'), +ip.eq(2).prop('checked')]);
+                }
+                
+            });
+            t=`Arrf(function(){return RandomNumber[tp](${jSoff(digiAA)}, ${jSoff(signAA)}, ${jSoff(nA)},[${d0}, ${d1}], '${oprs}').toStr4()}, seqA(1,${quan}))`;
+
+        }else if(tp=='Mtrx'){
+
+        }else{
+            t=`Arrf(function(){return Mfn.fromStr(RandomNumber[tp]([${d0}, ${d1}], [${sn0},${sn1}])).toStr(1)}, seqA(1,${quan}))`;
+
         }
 
         
@@ -125,6 +72,8 @@ $(function(){
             t=eval(t);
         }
         copy2clipboard(t);
+    }).on('click','#numberType :checkbox:eq(0)',function(){
+        $('#numberType .selNumTyp').prop('checked',$(this).prop('checked'))
     });
 
 });

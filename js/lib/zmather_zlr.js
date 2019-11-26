@@ -989,7 +989,7 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 			}
 			th = '<thead' + (theadClass ? ' class="' + theadClass +'"' : '') + '>' + th + '</thead>'; //class=cnt
 		}
-		var a = '<table class="' + (bd || 'bd0') + ' collapse mg10">' + th + '<tbody' + (tbodyClass ? ' class="' + tbodyClass + '"' : '') + '>';
+		var a = '<table class="collapse mg10 ' + (bd || 'bd0') + '">' + th + '<tbody' + (tbodyClass ? ' class="' + tbodyClass + '"' : '') + '>';
 		if (bd && /TB[CD]/.test(bd)) {
 			var isC = /TBC/.test(bd), iA = bd.split(' ')[0].split('D')[1].split('_'), iAn = iA.length, jA = iA.join(',').split(',').reverse();
 

@@ -760,7 +760,8 @@ lang['zh_cn'] = {
 	'Shape': '形状',
 	'Row': '行',
 	'Column': '列',
-
+	'Rows': '行数',
+	'Columns': '列数',
 	'Pitch': '音调',
 
 	'Progress': '进度',
@@ -1139,6 +1140,7 @@ lang['zh_cn'] = {
 	'Decrease': '减少',
 
 	'Select': '选择',
+	'Select All':'全选',
 	'Selection':'已选中部分',
 
 	'Printing':'打印',

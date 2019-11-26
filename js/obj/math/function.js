@@ -86,7 +86,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			tmp['@'+i]={'f':tif, 'c':tic};
 			i++;
 		}
-		consolelog(t,tmp,i);
+		// consolelog(t,tmp,i);
 		var f=function(str){
 			if(/@\d/.test(str)){
 				var a=[],ts=tmp[str];
@@ -140,14 +140,14 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		},
 		NumC:function(t){//著名常数 eπγi
 			var a=['@0$',{'c':t, 'f':'num', 'v':c},['']];
-			a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.ref=function(r){return Mfn.ref(this,r)};
+			a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(){return Mfn.toStr4(this)};a.ref=function(r){return Mfn.ref(this,r)};
 			return a
 		},
 		Polynomial:function(a){
 			
 		},
 		A:function(A,ref){//A是已知Mfn对象		ref是某一个子表达式的引用(@\d+$)
-			var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.ref=function(r){return Mfn.ref(this,r)};
+			var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(){return Mfn.toStr4(this)};a.ref=function(r){return Mfn.ref(this,r)};
 			if(ref){
 				a[0]=ref;
 			}
@@ -192,7 +192,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		if(ref){
 			var i=+ref.replace(/\D/g,'');
 			if(p=='()'){
-				consolelog(ref,A[2],A);
+				// consolelog(ref,A[2],A);
 				var ref1='@'+i+'$';
 				if(!A[1][ref1]){
 					ref1='@'+i+'&'
@@ -202,16 +202,16 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			}
 			
 			var f=function(x){return x.replace(new RegExp(regReg(ref),'g'), ref2)};
-consolelog('下面开始替换()',ref,'替换成',ref2);
+// consolelog('下面开始替换()',ref,'替换成',ref2);
 			for(var k=0;k<l;k++){
 				if(A[2][k].indexOf(ref)>-1){
-consolelog('k = ',k,' A[2][k]= ',A[2][k]);
+// consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 					A[2][k]=f(A[2][k]);
 					var r='@'+k+'&', o=A[1][r];
 					if(!o){
 						r='@'+k+'$';o=A[1][r];
 					}
-					consolelog(o);
+					// consolelog(o);
 					o.c=f(o.c);
 					
 					if(o.v && isArr(o.v)){
@@ -259,7 +259,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 			if(!A[1][ref2]){
 				ref2='@'+j+'$'
 			}
-			consolelog('表达式含有 ',ref2,' 都要替换成 ',ref1);
+			// consolelog('表达式含有 ',ref2,' 都要替换成 ',ref1);
 			var f=function(x){return x.replace(new RegExp(regReg(ref2),'g'), ref1)};
 			
 			A[2][j]='';	//替换为空值
@@ -273,7 +273,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 				if(k!=i && k!=j){
 					var t=A[2][k];
 					
-					consolelog('遍历k =',k,'表达式 t = ',t);
+					// consolelog('遍历k =',k,'表达式 t = ',t);
 					if(t.indexOf(ref2)>-1){//表达式含有无效需替换的引用
 						A[2][k]=f(t);
 						var r='@'+k+'&', o=A[1][r];
@@ -308,7 +308,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 	
 	
 	ref:function(A,str){//获取索引（如不存在，则创建）
-		consolelog('ref ',str);
+		// consolelog('ref ',str);
 		if(/^@\d+.$/.test(str)){
 			return str
 		}
@@ -332,7 +332,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 
 				
 			}else if(/[×÷]/.test(S)){
-				consolelog('S = ',S);
+				// consolelog('S = ',S);
 				A[1][r]={'f':'tds','c':S,'v':split(S,/[×÷]/g)};
 
 				
@@ -359,7 +359,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 			return r
 		}
 			
-	consolelog(S,S0);
+	// consolelog(S,S0);
 		S=S.replace('-','');
 		var SA=S.split('/');
 		if(S.indexOf('/')>0){//S是有理数
@@ -387,7 +387,7 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 			A[2][j]=S;
 
 		}
-	consolelog('u = ',u);
+	// consolelog('u = ',u);
 		
 		if(S0=='-'){
 			var i=A[2].indexOf('-'+u), j=i>-1?i:A[2].length, v='@'+j+'&';
@@ -578,10 +578,10 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 			*/
 		var x=(''+s).replace(/^-0$/,'0'),AAA=[],tmp={},tmpA=[],i=0;
 		
-		consolelog('Mfn.fromStr    ',x);
+		// consolelog('Mfn.fromStr    ',x);
 		
 		
-		AAA.type='Mfn';AAA.toStr=function(l,p){return Mfn.toStr(this,l,p)};AAA.ref=function(r){return Mfn.ref(this,r)};
+		AAA.type='Mfn';AAA.toStr=function(l,p){return Mfn.toStr(this,l,p)};AAA.toStr4=function(){return Mfn.toStr4(this)};AAA.ref=function(r){return Mfn.ref(this,r)};
 		
 		if(isVar(x)){
 			AAA.push('@0&',{'@0&':{f: 'var', c: x, v: x}},[x]);
@@ -751,31 +751,31 @@ consolelog('k = ',k,' A[2][k]= ',A[2][k]);
 		
 	var cache=function(x){
 			var t=x;
-consolelog('cache开始 t = ',t);
+// consolelog('cache开始 t = ',t);
 
 		if(/^@\(\d+\)[\$&]$/i.test(t)){
 			i++;
 			
 			t=t.replace(/[\(\)]/g,'');
 			tmpA.push(t);
-			consolelog('直接输出 ',t);
+			// consolelog('直接输出 ',t);
 			return t
 		}
 
 
 
 		while(/\(.*\)/.test(t)){
-consolelog('缓存括号',t);
+// consolelog('缓存括号',t);
 			var ti=t.match(/\([^\(\)]*\)/ig)[0], tif='()', tic=ti.split('(')[1].split(')')[0].trim().replace(/ *, */g,','), tiv='',
 				tai=tmpA.indexOf(ti), rg=new RegExp(ti.replace(/[\(\)\+\-\^\$]/g,' *\\$& *'),'g');
 			if(/^\d+$/.test(tic)){
 				tif='num';
 				tiv=Decimal.build.D(tic);
 			}
-			consolelog('缓存括号ing,  t =  ', t, rg,tic,tiv);
+			// consolelog('缓存括号ing,  t =  ', t, rg,tic,tiv);
 			t=t.replace(rg,'@'+(tai<0?i:tai)+'$');
 			if(tai<0){
-				consolelog('缓存括号迭代,  t =  ', t,' i = ', i);
+				// consolelog('缓存括号迭代,  t =  ', t,' i = ', i);
 			
 				i++;
 				
@@ -792,14 +792,14 @@ consolelog('缓存括号',t);
 					tmp['@'+j+'$']={'f':tif, 'c':ct, 'v':tiv};
 				}
 				
-				consolelog('tif= ',tif, 'tic= ',tic, 'ti= ',ti);
+				// consolelog('tif= ',tif, 'tic= ',tic, 'ti= ',ti);
 			}
 		}
 
 
 
 		while(/[a-zα-ω]_(@\d+\$|[a-zα-ω])/i.test(t)){
-consolelog('缓存下标',t);
+// consolelog('缓存下标',t);
 			var ti=t.match(/[a-zα-ω]_(@\d+\$|[a-zα-ω])/ig)[0].replace(/\s/g,''), tif='_', tiv=ti.split('_'), tic=ti,
 				tai=tmpA.indexOf(tic), rg=new RegExp(' *'+ti.replace(/[\(\)\$]/g,' *\\$& *').replace(/[_]/g,' *$& *'),'g');
 
@@ -824,24 +824,24 @@ consolelog('缓存下标',t);
 
 
 		if(/,/.test(t)){
-consolelog('缓存逗号',t);
+// consolelog('缓存逗号',t);
 			var tA=t.split(','),tif=',',tiv=[];
 			for(var j=0,l=tA.length;j<l;j++){
-				consolelog('i= ',i);
+				// consolelog('i= ',i);
 				tiv.push(cache(tA[j]));
-				consolelog('i = ',i);
+				// consolelog('i = ',i);
 			}
 			var tic=tiv.join();
 			tmp['@'+i+'$']={'f':tif, 'c':tic, 'v':tiv};	//tiv是数组
 			tmpA.push(tic);
 			i++;
-consolelog('tiv=',tiv,'@'+(i-1)+'$');
+// consolelog('tiv=',tiv,'@'+(i-1)+'$');
 			return '@'+(i-1)+'$'
 		}
 
 
 		while(/\./.test(t)){
-consolelog('缓存小数',t);
+// consolelog('缓存小数',t);
 			var ti=t.match(/@\d+\$\.@\d+\$/g)[0], tiA=ti.split('.'), tif='num', tic=ti,ticc=tic.replace(/@\d+\$/g,function(x){return tmp[x].c}), tiv=Decimal.build.D(ticc),
 				tai=tmpA.indexOf(tic), rg=new RegExp(ti.replace(/[\.\$]/g,'\\$&'),'g');
 
@@ -854,7 +854,7 @@ consolelog('缓存小数',t);
 		}
 		
 		while(/\$[%‰‱]/.test(t)){
-consolelog('缓存百分数（含符号%‰‱）',t);
+// consolelog('缓存百分数（含符号%‰‱）',t);
 			var ti=t.match(/@\d+\$[%‰‱]/g)[0], tif='num', tic=tmp[ti.replace(/.$/,'')].c+ti.substr(-1), tiv=Decimal.build.D(tic),
 				tai=tmpA.indexOf(tic), rg=new RegExp(ti.replace(/(\$[%‰‱])/,'\\$1 *'),'g');
 
@@ -867,7 +867,7 @@ consolelog('缓存百分数（含符号%‰‱）',t);
 		}
 
 		while(/[!‼#]/.test(t)){//		后缀前面只可能是：括号@1$  纯数字	单个字母(拉丁、希腊)
-consolelog('缓存后缀',t);
+// consolelog('缓存后缀',t);
 			var ti=t.match(/([a-zα-ω]|@\d+[\$&]) *[!‼#]+/ig)[0].replace(/\s/g,''), tic=ti, tif=ti.substr(-1),
 				tai=tmpA.indexOf(tic), rg=new RegExp(' *'+ti.replace(/([!‼#])/g,' *$1 *').replace(/[\$]/g,'\\$&'),'g');
 
@@ -895,7 +895,7 @@ consolelog('缓存后缀',t);
 
 
 		var A=ZLR(SBSFUN);	//缓存三角双曲、及其他数学函数前缀
-consolelog('缓存函数前',t);
+// consolelog('缓存函数前',t);
 		for(var k=0,l=A.length;k<l;k++){
 			var Ak=A[k].replace(/⁻¹/,'⁼');
 			while(t.indexOf(Ak)>-1){
@@ -911,7 +911,7 @@ consolelog('缓存函数前',t);
 			}
 		}
 
-consolelog('缓存函数之后',t);
+// consolelog('缓存函数之后',t);
 		while(/⁼/.test(t)){
 			tmp['@'+i+'$']={'f':'num', 'c':'1', 'v':Decimal.fromStr(1)};
 			tmpA.push('1');
@@ -926,7 +926,7 @@ consolelog('缓存函数之后',t);
 		
 		
 		while(/[√∛∜] *([a-zα-ω]|@\d+[\$&])/i.test(t)){
-consolelog('缓存根号（后及单变量）',t);
+// consolelog('缓存根号（后及单变量）',t);
 			var ti=t.match(/[√∛∜] *([a-zα-ω]|@\d+[\$&])/ig)[0].replace(/\s/g,''), tif=ti[0], tic=ti.substr(1),
 				tai=tmpA.indexOf(tic), rg=new RegExp(ti.replace(/[√∛∜]/,' *$& *').replace(/[\$]/g,'\\$&'),'g');
 
@@ -952,7 +952,7 @@ consolelog('缓存根号（后及单变量）',t);
 			}
 		}
 		while(/[√∛∜]/.test(t)){
-consolelog('替换根号为无参函数',t);
+// consolelog('替换根号为无参函数',t);
 			var ti=t.match(/[√∛∜]/g)[0], tif=ti.trim(), tic='',
 				tai=i, rg=new RegExp(' *'+tif+' *','g');
 
@@ -963,10 +963,10 @@ consolelog('替换根号为无参函数',t);
 				i++;
 		//	}
 		}
-consolelog(tmpA.join(';'),tmp['@1$']);
+// consolelog(tmpA.join(';'),tmp['@1$']);
 
 		while(/([a-zα-ω]|@\d+[&\$]) *\^ *([a-zα-ω]|@\d+[&\$])/i.test(t)){
-consolelog('指数函数',t);
+// consolelog('指数函数',t);
 			var ti=t.match(/([a-zα-ω]|@\d+[&\$]) *\^ *([a-zα-ω]|@\d+[&\$])/ig)[0].replace(/\s/g,''), tif='pow', tic=ti.replace('^',','), tiv=tic.split(','),
 				tai=tmpA.indexOf(ti), rg=new RegExp(' *'+ti.replace(/[\$\^]/g,'\\$&'),'g');
 
@@ -1001,7 +1001,7 @@ consolelog('指数函数',t);
 		}
 
 		while(/# *\^ *([a-zα-ω]|@\d+[&\$])/i.test(t)){
-consolelog('无参函数的幂	变成复合无参函数',t);
+// consolelog('无参函数的幂	变成复合无参函数',t);
 			var ti=t.match(/@\d+# *\^ *([a-zα-ω]|@\d+[&\$])/ig)[0].replace(/\s/g,''), tif='pow', tic=ti.replace('^',','), tiv=tic.split(','),
 				tai=tmpA.indexOf(ti), rg=new RegExp(' *'+ti.replace(/[\$\^]/g,'\\$&'),'g');
 
@@ -1028,19 +1028,19 @@ consolelog('无参函数的幂	变成复合无参函数',t);
 
 
 		while(/(@\d+#)+ *((@\d+[\$&]|[a-zα-ω]) *)+/i.test(t)){
-consolelog('无参变有参（#可能是一阶无参函数，也可能是复合无参函数）',t);
+// consolelog('无参变有参（#可能是一阶无参函数，也可能是复合无参函数）',t);
 			var ti=t.match(/(@\d+#)+ *((@\d+[\$&]|[a-zα-ω]) *)+/ig)[0].replace(/\s/g,''), tif=ti.replace(/[^#]+$/,''), tic=ti.replace(/^.*#/,''),
 				tai=tmpA.indexOf(ti), rg=new RegExp(' *'+ti.replace(/[\$]/g,' *\\$ *'));
 				//这里不使用全局g，是因为替换#x时，会污染#xy
 			t=t.replace(rg,'@'+(tai<0?i:tai)+'&');
-consolelog(t,tmp,tmpA);
+// consolelog(t,tmp,tmpA);
 			if(tai<0){
 				var tm=tmp[tif];
-consolelog('tif = ',tif, 'tmp =', tmp);
+// consolelog('tif = ',tif, 'tmp =', tmp);
 				if(tm){
-					consolelog('一阶无参函数');
+					// consolelog('一阶无参函数');
 					if(tm.c && tm.f!='()'){
-						consolelog('无参函数的幂',tm.c,'tm.v = ',tm.v);
+						// consolelog('无参函数的幂',tm.c,'tm.v = ',tm.v);
 						//var tmc=tm.c.split(',');
 						var tmc=tm.v;
 						tif=tmp[tmc[0]].f;
@@ -1066,7 +1066,7 @@ consolelog('tif = ',tif, 'tmp =', tmp);
 						
 						
 					}else{
-						consolelog('无参函数',tm);
+						// consolelog('无参函数',tm);
 						tif=tm.f;
 						
 						var t1=tic,t0=isVar(t1) && tmpA.indexOf(t1)<0;
@@ -1088,7 +1088,7 @@ consolelog('tif = ',tif, 'tmp =', tmp);
 
 					
 				}else{
-					consolelog('复合无参函数（高阶）');
+					// consolelog('复合无参函数（高阶）');
 					var tifs=tif.replace(/#$/,'').split('#');
 					for(var j=0,l=tifs.length;j<l;j++){
 						var tj=tifs[j]+'#', tmj=tmp[tj], tmjf=tmj.f, tmjc=tmj.c, tmjv=tmj.v;
@@ -1106,7 +1106,7 @@ consolelog('tif = ',tif, 'tmp =', tmp);
 				i++;
 			}
 			if(/(@\d+[\$&]|[a-zα-ω]){2}/i.test(tic)){
-				consolelog('隐式乘法',tic);
+				// consolelog('隐式乘法',tic);
 				var ticA=split(tic,/(@\d+[\$&]|[a-zα-ω])/ig), tiv=snake(ticA);
 				tic=tiv.join('');
 
@@ -1143,7 +1143,7 @@ consolelog('tif = ',tif, 'tmp =', tmp);
 			}
 		}
 		while(/(@\d+[\$&] *|[a-zα-ω] *){2,}/i.test(t)){
-consolelog('处理隐式乘法',t);
+// consolelog('处理隐式乘法',t);
 			var ti=t.match(/(@\d+[\$&] *|[a-zα-ω] *){2,}/ig)[0].replace(/\s/g,''), tif='times', tic=ti,
 				tai=tmpA.indexOf(tic), rg=new RegExp(' *'+ti.replace(/[\$]/g,' *\\$ *'));
 				//这里不使用全局g，是因为替换xy时，会污染zxy
@@ -1185,7 +1185,7 @@ consolelog('处理隐式乘法',t);
 		}
 
 		while(/(@\d+[\$&]|[a-zα-ω]) *([×÷] *(@\d+[\$&]|[a-zα-ω]) *)+/i.test(t)){
-consolelog('乘除',t);
+// consolelog('乘除',t);
 			var ti=t.match(/(@\d+[\$&]|[a-zα-ω]) *([×÷] *(@\d+[\$&]|[a-zα-ω]) *)+/ig)[0].replace(/\s/g,''), tif='tds', tic=ti, tiv=split(tic,/[×÷]/g);
 
 			var tai=tmpA.indexOf(ti), rg=new RegExp(ti.replace(/\D/g,' *$& *').replace(/[\$]/g,' *\\$ *'));
@@ -1226,19 +1226,19 @@ consolelog('乘除',t);
 		}
 
 		while(/[\+-]?(@\d+[\$&]|[a-zα-ω]) *([\+-] *(@\d+[\$&]|[a-zα-ω]) *)+/i.test(t)){
-consolelog('表达式含+-',t);
+// consolelog('表达式含+-',t);
 			var ti=t.match(/[\+-]?(@\d+[\$&]|[a-zα-ω]) *([\+-] *(@\d+[\$&]|[a-zα-ω]) *)+/ig)[0].replace(/\s/g,''), tif='pms', tic=ti, tiv=split(tic,/[\+-]/g);
-consolelog('ti=',ti);
+// consolelog('ti=',ti);
 			var tai=tmpA.indexOf(ti), rg=new RegExp(ti.replace(/[@a-zα-ω]/ig,' *$& *').replace(/[\$\+\-]/g,' *\\$& *'));
 				//这里不使用全局g，是因为替换x+y时，会污染z-x+y 、-x+y
 			t=t.replace(rg,'@'+(tai<0?i:tai)+'&');
-consolelog('t=',t);
+// consolelog('t=',t);
 			if(tai<0){
 				var ti0=tiv[1][0];
 				
 				tmpA.push(tic);
 				var tA=[].concat(tiv[1]),ti0=0,j=i+1;
-consolelog(tA);
+// consolelog(tA);
 				if(/[a-zα-ω]|-@/i.test(tA.join())){
 					for(var k=0,l=tA.length;k<l;k++){
 						var tk=tA[k], t0=tmpA.indexOf(tk);
@@ -1302,7 +1302,7 @@ consolelog(tA);
 		}
 
 		if(/^-(@\d+[&\$]|[a-zα-ω])$/i.test(t)){
-consolelog(' - 只剩一个负项  ',t)
+// consolelog(' - 只剩一个负项  ',t)
 			var tic=t.substr(1),t0=1;
 			t='@'+i+'&';
 			
@@ -1334,16 +1334,36 @@ consolelog(' - 只剩一个负项  ',t)
 			i++;
 		}
 
-		consolelog('t,tmp,i,tmpA = ',t,tmp,i,tmpA);
+		// consolelog('t,tmp,i,tmpA = ',t,tmp,i,tmpA);
 		return t;
 	};	
 	//return cache(x);
 		
 	AAA.push(cache(x), tmp, tmpA);
-	consolelog('Mfn.fromStr后 ',AAA);
+	// consolelog('Mfn.fromStr后 ',AAA);
 	return AAA;
 
 	
+	},
+
+
+	toStr4:function(A){// 简单情况下的四则运算 latex  补充省略的×号，\d/\d识别为分数线 /识别为÷
+		//console.log(A.toStr(1));
+		return A.toStr(1).replace(/(\d+)((\\left)?\()/g,'$1×$2').replace(/(\) *)(\d+)/g,'$1×$2')	// 显示隐藏的×号
+		.replace(/\\left\( (\d+[\/\.\d]*\d+)\\right\) /g,'{$1}')	// 去多余的分数括号
+
+		.replace(/\\left\( (\\frac\{\\displaystyle\{\}\d+\}\{\\displaystyle\{\}\d+\})\\right\) /g,'{$1}')	// 去多余的分数括号
+		//.replace(/\\left\( (\d+)\+00\+(\d+)\/(\d+)\\right\) /g,'$1\\frac{\\displaystyle{}$2}{\\displaystyle{}$3}')	// 带分数
+
+		.replace(/\\left\( (\d+)\+00\+(\\frac\{\\displaystyle\{\}\d+\}\{\\displaystyle\{\}\d+\})\\right\) /g,'$1$2')	// 带分数
+
+		.replace(/(\d+\.\d+)\/(\d+)/g,'$1÷$2')	// 小数
+		.replace(/(\d+)\/(\d+\.\d+)/g,'$1÷$2')	// 小数
+
+		.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')	// 分数
+		.replace(/\//g,'÷')
+		.replace(/\+00\+/g,'')
+
 	},
 	toStr:function(A, latex, p){/*A → 数学表达式str (unicode Math)		latex指定返回LaTeX格式	p指定是否添加括号
 			如果A本身就是字符串，则认为是数学表达式，转成LaTeX输出
@@ -1354,7 +1374,7 @@ consolelog(' - 只剩一个负项  ',t)
 		var A0=A[0];
 		var f=function(x0,nop){//参数nop，指定不保留括号
 			var x=x0;
-consolelog('toStr: x = ',x,A[2].join(';'),A);
+// consolelog('toStr: x = ',x,A[2].join(';'),A);
 			if(/^@\d+.$/.test(x) && !A[1][x]){
 				
 				if(/^@\d+\$$/.test(x)){
@@ -1363,7 +1383,7 @@ consolelog('toStr: x = ',x,A[2].join(';'),A);
 					x=x.replace(/.$/,'$')
 				}
 				if(!A[1][x]){
-					consolelog('查不到索引',x,A);
+					// consolelog('查不到索引',x,A);
 					return ''
 
 				}
@@ -1375,7 +1395,7 @@ consolelog('toStr: x = ',x,A[2].join(';'),A);
 				var o=A[1][x],of=o.f,oc=''+o.c,ov=o.v;
 		//	if(!of){return ''}
 				
-				consolelog(of, oc, ov,A[1]);
+				// consolelog(of, oc, ov,A[1]);
 				
 				
 				if(of=='num'){
@@ -1385,7 +1405,7 @@ consolelog('toStr: x = ',x,A[2].join(';'),A);
 					return oc
 				}
 				if(of=='_'){
-					consolelog(ov);
+					// consolelog(ov);
 					var fx=f(ov[0],1)+'_', i=f(ov[1],1);
 					if(!latex && /\D\D/.test(i)){
 						i=pp(i)
@@ -1397,7 +1417,7 @@ consolelog('toStr: x = ',x,A[2].join(';'),A);
 				
 				
 				if(of=='-'){
-consolelog('负项 ',A[1][oc].c);
+// consolelog('负项 ',A[1][oc].c);
 					if(/@/.test(A[1][oc].c) && A[1][oc].f=='pms'){//添加必要的括号
 						return of+(latex?zp:pp)(f(oc,1))
 					}
@@ -1448,7 +1468,7 @@ consolelog('负项 ',A[1][oc].c);
 
 					if(!latex && /^1[/][234]$/.test(x1)){
 						
-						consolelog('x0=',x0,'X0 =',X0);
+						// consolelog('x0=',x0,'X0 =',X0);
 						return '√∛∜'[+x1.substr(2)-2]+X0
 						
 						
@@ -1473,7 +1493,7 @@ consolelog('负项 ',A[1][oc].c);
 				}				
 				if(of=='pms'){
 					var s=ov[1][0];
-					consolelog('x=',x,'s= ',s,A[1],A[2]);
+					// consolelog('x=',x,'s= ',s,A[1],A[2]);
 					if(/@/.test(s) && A[1][s].f=='()'){//去除加减式，首项不必要的括号
 						ov[1][0]=A[1][s].c
 					}
@@ -1488,7 +1508,7 @@ consolelog('负项 ',A[1][oc].c);
 										if(tf=='pms'){//加减式
 											var tt=A[1][t].v[1][0];
 											if(/@/.test(tt) && A[1][tt].f!='-'){
-												consolelog('以非负数为首项的加减式，不需要括号',A[1][tt]);
+												// consolelog('以非负数为首项的加减式，不需要括号',A[1][tt]);
 												py=0;
 											}
 											
@@ -1508,16 +1528,16 @@ consolelog('负项 ',A[1][oc].c);
 								}
 
 							}else if(sf=='-' || sf=='pms' && !(oi=='+' && sv && isArr(sv,1) && /@/.test(sv[1][0]) && A[1][sv[1][0]].f!='-' )){//需要额外加括号
-consolelog(A, 't = ',t, 'sf = ',sf, 'oi = ',oi, 'sv = ',sv);
+// consolelog(A, 't = ',t, 'sf = ',sf, 'oi = ',oi, 'sv = ',sv);
 								ov[1][i+1]=(latex?zp:pp)(f(s,1));
 							}
 						}
 
 					}
 					
-consolelog(A, 'ov[0] = ',ov[0],'ov[1] = ',ov[1]);
+// consolelog(A, 'ov[0] = ',ov[0],'ov[1] = ',ov[1]);
 					var a0=ov[0],a1=Arrf(f,ov[1]);
-consolelog(A, 'a0 = ',a0,'a1 = ',a1);
+// consolelog(A, 'a0 = ',a0,'a1 = ',a1);
 					return snake([a0,a1]).join('')
 				}
 
@@ -1529,12 +1549,12 @@ consolelog(A, 'a0 = ',a0,'a1 = ',a1);
 
 					var s=ov[1][0];//乘积的首项
 					
-consolelog('首项',s,A);
+// consolelog('首项',s,A);
 					if(/@/.test(s)){
 						var sf=A[1][s].f, t=A[1][s].c;
 						if(sf=='()' && /@/.test(t)){
 							var tf=A[1][t].f, tc=A[1][t].c;
-							consolelog(tf);
+							// consolelog(tf);
 							if(tf!='pms' && !(tf=='-' && A[1][tc].f=='tds')){//去除乘除式，首项不必要的括号		if(['-','pms'].indexOf(tf)<0 )
 								ov[1][0]=t
 							}
@@ -1551,7 +1571,7 @@ consolelog('首项',s,A);
 								ov[1][0]=pp(f(s,1))
 							}
 							//ov[1][0]=(latex?zp:pp)(f(s,1));
-	consolelog('此时 ',latex, ov[1][0]);
+	// consolelog('此时 ',latex, ov[1][0]);
 						}
 					}
 					for(var i=0,l=ov[1].length;i<l-1;i++){
@@ -1559,12 +1579,12 @@ consolelog('首项',s,A);
 						if(/@/.test(s)){
 							var sf=A[1][s].f, t=A[1][s].c;
 							
-							consolelog('乘除的每一项（',(i+1),'项）',s, sf, t, A, oi);
+							// consolelog('乘除的每一项（',(i+1),'项）',s, sf, t, A, oi);
 							
 							if(sf=='()'){//后面跟括号表达式
 								if(/@/.test(t)){
 									var tf=A[1][t].f;
-									consolelog('tf = ',tf);
+									// consolelog('tf = ',tf);
 									if(oi=='×'){
 										if(tf=='tds'){//乘除式
 											var tt=A[1][t].v[1][0];
@@ -1607,9 +1627,9 @@ consolelog('首项',s,A);
 
 					}
 					
-				consolelog('latex',latex,' ov[] = ',ov[0], ov[1],A);
+				// consolelog('latex',latex,' ov[] = ',ov[0], ov[1],A);
 					var a0=ov[0],a1=Arrf(f,ov[1]);
-				consolelog(' a0 = ',a0, ' a1 = ',a1);
+				// consolelog(' a0 = ',a0, ' a1 = ',a1);
 					for(var i=0,l=a1.length;i<l-1;i++){//简化乘法符号
 						var a=a1[i],b=a1[i+1],oi=a0[i], av=isVar(a), bv=isVar(b),
 						//	an=a[0]=='@' && A[1][a].f=='num', bn=b[0]=='@' && A[1][b].f=='num',
@@ -1618,13 +1638,13 @@ consolelog('首项',s,A);
 							ap=a[0]=='(' || /\^/.test(a), bp=b[0]=='(' || /\^/.test(b);
 						
 						if(oi=='×'){
-					consolelog(' a = ',a, ' b = ',b);
+					// consolelog(' a = ',a, ' b = ',b);
 							//if(av || ap || bp || (av || an) && bv || av && bn){
 							//if(av || ap || bp || avi && bv || av && bn){
 							
-							if(!(/\d$/.test(a) &&  /^\d/.test(b))){
+							if(!(/\d$/.test(a) &&  /^\d/.test(b)) && 0){
 								a0[i]='';
-				consolelog(' a0 = ',a0);
+				// consolelog(' a0 = ',a0);
 							}
 							
 						}
@@ -1636,13 +1656,13 @@ consolelog('首项',s,A);
 					return /^-?\d+\/\d+$/.test(y) && latex?kfrac(y):y
 				}// tds结束
 
-consolelog(of);
+// consolelog(of);
 
 				var isinv=/⁼/.test(of),of0=of.replace(/⁼/,''), fx=latex?(ZLR(SBS.Latex.func).indexOf(of.replace(/⁼/,''))<0?kxf(of0):'\\'+of0)+(isinv?'^{-1}':''):' ', s=oc;
 				
 				if(/@/.test(s)){
-					consolelog('s = ',s,' A[1][s] == ',A[1][s],'A[1] = ',A[1]);
-					consolelog('oc =  ',oc,'o = ',o);
+					// consolelog('s = ',s,' A[1][s] == ',A[1][s],'A[1] = ',A[1]);
+					// consolelog('oc =  ',oc,'o = ',o);
 					var sf=A[1][s].f, t=A[1][s].c;
 					if(/@/.test(t)){
 						if(sf=='()'){
@@ -1670,14 +1690,14 @@ consolelog(of);
 		};
 		//return f(A0)
 		
-		return p?(latex?zp:pp)(f(A0,1)):f(A0,1)
+		return (p?(latex?zp:pp)(f(A0,1)):f(A0,1))
 	},
 
 
 	opr1:function(op,arr,sim,p){//一元运算(结果)	sim是参数，指定是否递归化简			p是参数
-		consolelog('Mfn.opr1 op = ',op,'arr = ',arr,' p =',p);
+		// consolelog('Mfn.opr1 op = ',op,'arr = ',arr,' p =',p);
 		var A=isArr(arr)?Mfn.build.A(arr):Mfn.fromStr(arr), A0=A[0], oA=A[1][A0],of=oA.f,oc=oA.c,ov=oA.v;
-		consolelog('A = ',A);
+		// consolelog('A = ',A);
 		if(op=='type'){//公式类型（最外层的运算）
 			return A[1][A[0]].f
 		}
@@ -1831,7 +1851,7 @@ consolelog(of);
 
 
 		if(op=='='){//普通化简（尽量不涉及递归运算）		此时参数p，指定数学对象环境（数域Num，矩阵Mtrx，布尔逻辑Bool）
-consolelog(' = 开始化简 A',A,' of = ',of);
+// consolelog(' = 开始化简 A',A,' of = ',of);
 			if(of=='num' || of=='var' || of=='_'){
 				
 				return A
@@ -1853,12 +1873,12 @@ consolelog(' = 开始化简 A',A,' of = ',of);
 					return A
 				}
 				if(cof=='tds' && cov[0].length+cov[1].length==3 && cov[0][0]=='÷' && A[1][cov[1][0]].f=='num' && A[1][cov[1][1]].f=='num'){
-					consolelog(A[1][cov[1][0]].c, A[1][cov[1][1]].c);
+					// consolelog(A[1][cov[1][0]].c, A[1][cov[1][1]].c);
 					return Mfn.fromStr('-'+FracReduct([A[1][cov[1][0]].c, A[1][cov[1][1]].c]))
 				}
 				
 				
-				consolelog('负值化简','co = ',co,' cof = ',cof,' coc = ',coc,' cov = ',cov,'arr = ',arr);
+				// consolelog('负值化简','co = ',co,' cof = ',cof,' coc = ',coc,' cov = ',cov,'arr = ',arr);
 				
 				if(cof=='-'){
 					A[0]=coc;
@@ -1882,10 +1902,10 @@ consolelog(' = 开始化简 A',A,' of = ',of);
 				}else if(cof=='pms'){
 					cov[0]=Arrf(opinv,cov[0]);// - (a-b+c)  →  (a+b-c)	→  (-a+b-c)
 					var c0=cov[1][0], o0=A[1][c0], o0f=o0.f, o0c=o0.c, o0v=o0.v;
-consolelog('o0 =', o0, 'cov = ',cov);
+// consolelog('o0 =', o0, 'cov = ',cov);
 					if(o0f=='-'){
 						
-consolelog('o0f==- o0c = ', o0c);
+// consolelog('o0f==- o0c = ', o0c);
 						cov[1][0]=o0c;
 						
 					}else{
@@ -1911,7 +1931,7 @@ consolelog('o0f==- o0c = ', o0c);
 					return Mfn.opr1('-',Mfn.opr1('=',A))
 				}
 				
-				consolelog('=化简 - ',A);
+				// consolelog('=化简 - ',A);
 				return Mfn.opr1('=',A)
 			}
 			
@@ -1971,7 +1991,7 @@ consolelog('o0f==- o0c = ', o0c);
 
 
 			if(of=='pms'){// 加减式化简
-consolelog('pms 化简 ov=',ov.join(' ; '));
+// consolelog('pms 化简 ov=',ov.join(' ; '));
 				for(var i=0;i<ov[1].length;i++){/*平面化	a-(b-c+d)+e	变成 a-b+c-d+e		a+(b-c+d)+e	变成 a+b-c+d+e
 							a-(-b-c+d)+e	变成 a+b+c-d+e			a+(-b-c+d)+e	变成 a-b-c+d+e
 					*/
@@ -2027,7 +2047,7 @@ consolelog('pms 化简 ov=',ov.join(' ; '));
 				
 				var i=ov[0].indexOf('+'),o0=A[1][ov[1][0]];
 				if(i>-1 && o0.f=='-'){//-a...+b	变成 b-a...
-consolelog('-a...+b	变成 b-a...');
+// consolelog('-a...+b	变成 b-a...');
 					ov[0][i]='-';
 					ov[1][0]=ov[1][i+1];
 					ov[1][i+1]=o0.c;
@@ -2036,11 +2056,11 @@ consolelog('-a...+b	变成 b-a...');
 				
 				A[1][A0].v=ov;
 	
-consolelog('平面化后 ov = ',ov.join(' ;;; '));
+// consolelog('平面化后 ov = ',ov.join(' ;;; '));
 	
 				var B0=[],B1=[],B2=0;//分别记录有理常数系数，含变量（以及根式常数等）表达式	有理数
 				
-consolelog('ov = ',ov);
+// consolelog('ov = ',ov);
 				for(var i=0;i<ov[1].length;i++){//把每一项（加减元），分离常数和变量[常数, 变量]
 					var o1i=ov[1][i],oi=A[1][o1i], oif=oi.f, oic=oif=='var'||oif=='_'?'1×'+o1i:oi.c, oiv=oi.v, B1i=B1.indexOf(oic), neg0=!i && oif=='-', negi=i && ov[0][i-1]=='-' || neg0;
 					
@@ -2063,10 +2083,10 @@ consolelog('ov = ',ov);
 						
 					}
 					
-					consolelog('i = ',i);
+					// consolelog('i = ',i);
 					
-					consolelog('B1i = ',B1i,' B1[] = ',B1.join(' ; '));
-					consolelog('o1i = ',o1i,'oic = ',oic);
+					// consolelog('B1i = ',B1i,' B1[] = ',B1.join(' ; '));
+					// consolelog('o1i = ',o1i,'oic = ',oic);
 					if(neg0){//负项（且不是首项）
 						o1i=oic;
 						oi=A[1][o1i];
@@ -2077,7 +2097,7 @@ consolelog('ov = ',ov);
 					}
 
 					
-					consolelog('i = ',i,'oif = ',oif,'oic = ',oic);
+					// consolelog('i = ',i,'oif = ',oif,'oic = ',oic);
 
 					if(oif=='num'){
 						B2=fracOpr(negi?'-':'+',B2,oic)
@@ -2178,8 +2198,8 @@ consolelog('ov = ',ov);
 						if(k=='0'){
 							
 						}else if(newV[0].length){
-					consolelog('k = ',k);
-							consolelog('中缀运算符数组	元素数组 newV = ',newV.join(' ; ; '));
+					// consolelog('k = ',k);
+							// consolelog('中缀运算符数组	元素数组 newV = ',newV.join(' ; ; '));
 							
 							newV[1].unshift(1);
 							
@@ -2203,13 +2223,13 @@ consolelog('ov = ',ov);
 						
 					}else{//Mfn.has.var(A,o1i)	oif=='var'
 					
-						consolelog('非乘积形式或单常数、单变量形式的表达式 B1i = ',B1i,' B1 = ',B1.join(' ; '),' B0 = ',B0.join(' ; '));
+						// consolelog('非乘积形式或单常数、单变量形式的表达式 B1i = ',B1i,' B1 = ',B1.join(' ; '),' B0 = ',B0.join(' ; '));
 						if(B1i>-1){
 							B0[B1i]=fracOpr(negi?'-':'+',B0[B1i],1)
 							
 						}else{
 							
-							consolelog('oif = ',oif,'oic = ',oic,'o1i=',o1i);
+							// consolelog('oif = ',oif,'oic = ',oic,'o1i=',o1i);
 						//	B1.push(oif=='var'?o1i:oic);
 							B1.push(o1i);
 							B0.push(negi?-1:1)
@@ -2224,7 +2244,7 @@ consolelog('ov = ',ov);
 				
 				B2=''+B2;
 				
-				consolelog('有理常数系数 B0 = ',B0, '复杂表达式 B1 = ',B1,' 有理数 B2 = ',B2,'A = ',A);
+				// consolelog('有理常数系数 B0 = ',B0, '复杂表达式 B1 = ',B1,' 有理数 B2 = ',B2,'A = ',A);
 				
 				var C=[[],[]];//正项 负项
 				for(var i=0;i<B0.length;i++){//B0有理系数数组，B1未知表达式数组
@@ -2236,7 +2256,7 @@ consolelog('ov = ',ov);
 							//[123] 1/x ; 2/3 1/x
 						}
 						var B1i=B1[i];//表达式 
-						consolelog('单个复杂表达式 B1i = ',B1i,'有理系数数组 B0 = ',B0, '未知表达式数组B1 = ',B1, 'i = ',i,'相应有理系数B0i = ',B0i);
+						// consolelog('单个复杂表达式 B1i = ',B1i,'有理系数数组 B0 = ',B0, '未知表达式数组B1 = ',B1, 'i = ',i,'相应有理系数B0i = ',B0i);
 						if(/1×.+÷/.test(B1i)){
 							
 							if(B0i=='1'){
@@ -2279,7 +2299,7 @@ consolelog('ov = ',ov);
 					
 				}
 				
-				consolelog('正负项数组：C = ',C,'B0 = ',B0, 'B1 = ',B1,  'B2 = ',B2);
+				// consolelog('正负项数组：C = ',C,'B0 = ',B0, 'B1 = ',B1,  'B2 = ',B2);
 
 				if(C[0].length && C[1].length){
 					
@@ -2357,16 +2377,16 @@ consolelog('ov = ',ov);
 			
 			if(of=='tds' || of=='times'){// 乘除式化简
 				
-consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
+// consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
 				if(of=='tds' && ov[0].length+ov[1].length==3 && ov[0][0]=='÷' && A[1][ov[1][0]].f=='num' && A[1][ov[1][1]].f=='num'){// 是分数
-					consolelog(A[1][ov[1][0]].c, A[1][ov[1][1]].c);
+					// consolelog(A[1][ov[1][0]].c, A[1][ov[1][1]].c);
 					return Mfn.fromStr(FracReduct([A[1][ov[1][0]].c, A[1][ov[1][1]].c]))
 				}
 
 				if(of=='tds' && ov[0].length==1 && /[×÷]/.test(ov[0][0]) &&
 					A[1][ov[1][0]].f=='√' && A[1][ov[1][1]].f=='√' && 
 					A[1][A[1][ov[1][0]].c].f=='num' && A[1][A[1][ov[1][1]].c].f=='num'){// 是两个根数
-					consolelog(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c);
+					// consolelog(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c);
 					return Sqrt(fracOpr(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c),1)
 
 				}
@@ -2454,7 +2474,7 @@ consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
 				}
 				k=''+k;
 				
-				consolelog('k = ',k);
+				// consolelog('k = ',k);
 				
 				
 				var newV=[[],[]],isnegk=0;// newV[中缀运算符A，元素A]
@@ -2463,11 +2483,11 @@ consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
 					
 					if(Mfn.is.b1.frac(A,o1j)){
 						
-						consolelog('乘积的一项，是有理数，A = ',A,'o1j = ',o1j,'A[1][o1j] = ',A[1][o1j],'o0j = ',o0j);
+						// consolelog('乘积的一项，是有理数，A = ',A,'o1j = ',o1j,'A[1][o1j] = ',A[1][o1j],'o0j = ',o0j);
 						var kj=Mfn.toStr(Mfn.build.A(A,o1j));
-				consolelog('k = ',k,'j = ',j, 'kj = ',kj,'j = ',j,'o0j = ', o0j,'dividej = ',dividej);
+				// consolelog('k = ',k,'j = ',j, 'kj = ',kj,'j = ',j,'o0j = ', o0j,'dividej = ',dividej);
 						k=fracOpr(dividej?'/':'*',k,kj);
-				consolelog('k = ',k,'j = ',j, 'kj = ',kj);
+				// consolelog('k = ',k,'j = ',j, 'kj = ',kj);
 				
 					}else if(A[1][o1j].f=='times'){
 						
@@ -2480,15 +2500,15 @@ consolelog('化简 ',of,'ov = ',ov.join(' ;; '),A);
 							}else{//num
 								var kj=Mfn.toStr(Mfn.build.A(A,om));
 								k=fracOpr(dividej?'/':'*',k,kj);
-				consolelog('k = ',k,'j = ',j,' m = ',m);
+				// consolelog('k = ',k,'j = ',j,' m = ',m);
 								if(''+k=='0'){
 									break 
 								}
 							}
 							
 						}
-consolelog('中缀运算符数组',newV[0].join('；'));
-consolelog('乘积项数组 ',newV[1].join('；'));
+// consolelog('中缀运算符数组',newV[0].join('；'));
+// consolelog('乘积项数组 ',newV[1].join('；'));
 
 
 /*
@@ -2511,8 +2531,8 @@ consolelog('乘积项数组 ',newV[1].join('；'));
 
 				}
 
-consolelog('中缀运算符数组 变成',newV[0].join('；'));
-consolelog('乘积项数组 变成',newV[1].join('；'));
+// consolelog('中缀运算符数组 变成',newV[0].join('；'));
+// consolelog('乘积项数组 变成',newV[1].join('；'));
 
 				if(k=='0'){
 					return Mfn.fromStr(0)
@@ -2530,12 +2550,12 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 							}
 							
 							nVP[mi].push(A.ref(isn0mTime?1:-1));
-							consolelog('查到索引（显然一定是底）',nVP.join(' ;; '),A[2].join(' ---- '));
+							// consolelog('查到索引（显然一定是底）',nVP.join(' ;; '),A[2].join(' ---- '));
 
 						}else if(ismop){//是幂形式
 							var mov0=mo.v[0], mov1=mo.v[1];
 							
-							consolelog('是幂形式 mov0=',mov0,'mov1=',mov1);
+							// consolelog('是幂形式 mov0=',mov0,'mov1=',mov1);
 							if(A[2][+mov0.replace(/\D/g,'')]=='0'){
 								return Mfn.fromStr(0)
 							}
@@ -2547,7 +2567,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 								mi=nV.length;
 								nV.push(mov0);
 								nVP.push([]);
-								consolelog('是幂形式',nVP.join(' ;; '),A[2].join(' ---- '));
+								// consolelog('是幂形式',nVP.join(' ;; '),A[2].join(' ---- '));
 							}
 							
 							
@@ -2560,29 +2580,29 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 							}
 							
 							*/
-							consolelog('mi = ',mi);
+							// consolelog('mi = ',mi);
 							
 							nVP[mi].push(isn0mTime?mov1:A.ref('-'+mov1))
 							
-							consolelog(nVP.join(' ;; '),'A[2] = ',A[2].join(' ---- '));
+							// consolelog(nVP.join(' ;; '),'A[2] = ',A[2].join(' ---- '));
 							
 						}else{//是底，未查到索引
 							nV.push(n1m);
 							nVP.push([A.ref(isn0mTime?1:-1)]);
 
-							consolelog('是底，未查到索引',nVP.join(' ;; '));
+							// consolelog('是底，未查到索引',nVP.join(' ;; '));
 						}
 					}
 					
 					
-					consolelog('底，nV=',nV.join(' ; '),'相应幂次数组 nVP=',nVP.join(' ; '),A,'k = ',k);
+					// consolelog('底，nV=',nV.join(' ; '),'相应幂次数组 nVP=',nVP.join(' ; '),A,'k = ',k);
 					
 					var nV0=[],nV1=[];//乘元，除元
 					for(var m=0,n=nV.length;m<n;m++){
 						var nm=nV[m], nmP=nVP[m], //底，幂数组
 							nmo=A[1][nm],nmof=nmo.f,nmoc=nmo.c,nmov=nmo.v; //底
 
-						consolelog('m=',m,'底 = ',nm,'幂数组 = ',nmP);
+						// consolelog('m=',m,'底 = ',nm,'幂数组 = ',nmP);
 						if(nmof=='num'){//底是数
 							if(nmoc=='1'){//1的任何次幂都是1
 								nVP[m]=nm
@@ -2599,7 +2619,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 						
 						if(isArr(nmP)){
 							if(nmP.length>1){
-								consolelog('幂数组 ，做一次加法');
+								// consolelog('幂数组 ，做一次加法');
 						
 								var B=Mfn.build.A(A), Bi=B[2].length;
 								B[0]='@'+Bi+'&';
@@ -2607,17 +2627,17 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 								B[2].push(nmP.join('+'));
 								
 								var mo={};
-								consolelog(B,A,'B[2] = ',B[2].join(' ; '));
+								// consolelog(B,A,'B[2] = ',B[2].join(' ; '));
 								
-								consolelog(B[0]);
+								// consolelog(B[0]);
 								
 								
 								mo[B[0]]=Mfn.opr1('=',B,1).toStr();
 								
-								consolelog(mo);
+								// consolelog(mo);
 								Mfn.opr1(':',A,1,mo);
 								nmP=B[0];
-								consolelog('化简为表达式，外换元后 A=',A,'nm = ',nm);
+								// consolelog('化简为表达式，外换元后 A=',A,'nm = ',nm);
 			
 								
 								
@@ -2627,7 +2647,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 							
 							var nmPo=A[1][nmP],nmPof=nmPo.f,nmPoc=nmPo.c,nmPov=nmPo.v; //幂
 							
-							consolelog('幂 nmPof=',nmPo.f,'nmPoc=',nmPo.c,'nmPov=',nmPo.v,'A =', A);
+							// consolelog('幂 nmPof=',nmPo.f,'nmPoc=',nmPo.c,'nmPov=',nmPo.v,'A =', A);
 							
 							if(nmPof=='num'){
 								if(nmPoc=='0'){
@@ -2718,7 +2738,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 					}
 					*/
 					
-			consolelog('乘法交换律处理：newV[1] = ',newV[1], 'newV[0] = ',newV[0], '乘元 nV0 = ',nV0, ' 除元 nV1 = ',nV1);
+			// consolelog('乘法交换律处理：newV[1] = ',newV[1], 'newV[0] = ',newV[0], '乘元 nV0 = ',nV0, ' 除元 nV1 = ',nV1);
 					
 					
 					if(nV0.length){
@@ -2754,9 +2774,9 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 				
 				
 				
-				consolelog('k = ',k);
+				// consolelog('k = ',k);
 
-				consolelog('newV = ',newV.join('；'));
+				// consolelog('newV = ',newV.join('；'));
 				
 
 				
@@ -2772,7 +2792,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 					}
 					
 					
-					consolelog('有中缀运算符 newV = ',newV.join(' ----- '));
+					// consolelog('有中缀运算符 newV = ',newV.join(' ----- '));
 					
 					
 					
@@ -2780,7 +2800,7 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 					//乘法结合律	相邻项相同，或是同底的幂（幂合并）
 						var nV0=[],nV1=[];//乘元，除元
 
-				consolelog('结合律处理完毕');
+				// consolelog('结合律处理完毕');
 					
 				
 					
@@ -2798,14 +2818,14 @@ consolelog('乘积项数组 变成',newV[1].join('；'));
 					var ojc=snake(newV).join('');// 1×a÷b	 1×a	 1÷b
 					
 					var B1i=ojc;
-					consolelog('B1i = ',B1i,'k = ',k, 'k = ',k,'A = ',A);
+					// consolelog('B1i = ',B1i,'k = ',k, 'k = ',k,'A = ',A);
 					if(/1×.+÷/.test(B1i)){
-consolelog(B1i);
+// consolelog(B1i);
 						if(k=='1'){
 							B1i=B1i.substr(2);
 						}
 						var t0=A.ref(B1i),t=t0;
-consolelog('t=',t, 'k=',k);
+// consolelog('t=',t, 'k=',k);
 						if(k!='1'){//有理系数
 
 							t=A.ref(k);
@@ -2817,31 +2837,31 @@ consolelog('t=',t, 'k=',k);
 
 					}else if(/1÷/.test(B1i)){//1÷
 						B1i=B1i.substr(2);
-consolelog('B1i = ',B1i,'k = ',k);
+// consolelog('B1i = ',B1i,'k = ',k);
 						var t=A.ref(k);
-consolelog('t = ',t);
+// consolelog('t = ',t);
 						A[0]=A.ref(t+'÷'+B1i);
-consolelog(A[0],A);
+// consolelog(A[0],A);
 					}else{//纯引用	或/1×/.test(B1i)
 
 						if(/1×/.test(B1i)){
 							B1i=B1i.substr(2);
 						}
 						
-consolelog(k,B1i);
+// consolelog(k,B1i);
 						
 						if(k=='1'){
 							A[0]=B1i;
 
 						}else{
 							var t=A.ref(k);
-consolelog('A.ref(k) = ',t,'A[2] = ',A[2]);//bug divide(['5^n',3])
+// consolelog('A.ref(k) = ',t,'A[2] = ',A[2]);//bug divide(['5^n',3])
 							A[0]=A.ref(t+B1i);
 						}
 					}
 					
 					if(isnegk){
-consolelog(A[0]);
+// consolelog(A[0]);
 						A[0]=A.ref('-'+A[0]);
 					}
 					
@@ -2859,7 +2879,7 @@ consolelog(A[0]);
 			
 			
 			if(of=='pow'){
-consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
+// consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 				
 				var o0=A[1][ov[0]], o0c=o0.c, o0v=o0.v, o0f=o0.f,
 					o1=A[1][ov[1]], o1c=o1.c, o1v=o1.v, o1f=o1.f;
@@ -2917,7 +2937,7 @@ consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 				
 				if(Mfn.is.b1.frac(A,ov[0]) && Mfn.is.b1.frac(A,ov[1])){//有理数幂		bug 01110-31-30 求特征值
 					var a=Mfn.build.A(A,ov[0]).toStr(),b=Mfn.build.A(A,ov[1]).toStr();
-					consolelog(a,b,fracOpr('^',a,b));
+					// consolelog(a,b,fracOpr('^',a,b));
 					return Mfn.fromStr(fracOpr('^',a,b))
 				}else{
 					
@@ -2939,7 +2959,7 @@ consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 
 
 		if(op==':num'){//内换元（数值）赋值或换数		参数p对象{'x':1, 'y':'2%', 'z':'0.73', '@4$':'6.8', 'π':'3.1415926', '2%':'4.5'}	键(变量单字母、@\d$引用、num值)：值（num值，非负整数、非负（百分）小数）
-				consolelog(':num内换元  p = ',p,'A = ',A);
+				// consolelog(':num内换元  p = ',p,'A = ',A);
 			var iA=[];
 			$.each(p,function(i,v){
 				if((i+'')[0]=='@'){
@@ -2950,19 +2970,19 @@ consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 			});
 			for(var i=0,l=iA.length;i<l;i++){
 				var i0=iA[i][0], ii='@'+i0+'&',iv=iA[i][1];
-				consolelog('num内换元ii , iv ',ii,iv);
+				// consolelog('num内换元ii , iv ',ii,iv);
 				if(!A[1][ii]){
 					ii='@'+i0+'$'	//注意，这里从num转变成var, 键没跟着改（@$ → @&），是因为会影响其他表达式的引用
 				}
 				if(A[1][ii]){
-					consolelog('num内换元',A[1][ii]);
+					// consolelog('num内换元',A[1][ii]);
 					A[1][ii]={'f':'num','c':iv,'v':Decimal.fromStr(iv)};
 					A[2][i0]=iv;
-					consolelog('数值替换 ',iv);
+					// consolelog('数值替换 ',iv);
 				}
 				
 			}
-			consolelog(':num A[2] = ',A[2].join(' ; '),'p: ',p);
+			// consolelog(':num A[2] = ',A[2].join(' ; '),'p: ',p);
 			return A
 		}
 		
@@ -2977,7 +2997,7 @@ consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 					iA.push([A[2].indexOf(i+''),v])
 				}
 			});
-			consolelog('内换元 iA = ',iA.join('; '));
+			// consolelog('内换元 iA = ',iA.join('; '));
 			for(var i=0,l=iA.length;i<l;i++){
 				var i0=iA[i][0], ii='@'+i0+'&',iv=iA[i][1];
 				if(!A[1][ii]){
@@ -2987,7 +3007,7 @@ consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 					A[1][ii]={'f':'var','c':iv,'v':iv};
 					A[2][i0]=iv;
 				}
-consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
+// consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 			//	Mfn.uniRef(A,iv);		此处不能用，因为换元后，精简变量（无法确定后续是否有操作），可能影响后续的引用
 
 
@@ -3006,7 +3026,7 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 				}
 			});
 			
-			consolelog('内换元 （引用） iA = ',iA.join('; '));
+			// consolelog('内换元 （引用） iA = ',iA.join('; '));
 			for(var i=0,l=iA.length;i<l;i++){
 				var i0=iA[i][0], ii='@'+i0+'&',iv=iA[i][1];
 				if(!A[1][ii]){
@@ -3024,7 +3044,7 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 
 
 		if(op=='::'){//外换元（对象），从外面引进Mfn对象		参数p对象{'x':A, 'a':B, '@2$':C, '@3&':D, '2.71828':E}键(变量单字母、@引用、num值)：值（Mfn对象）
-			consolelog('::外换元',p);
+			// consolelog('::外换元',p);
 			var iA=[];
 			$.each(p,function(i,v){
 				if((i+'')[0]=='@'){
@@ -3039,13 +3059,13 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 					ii='@'+i0+'$'	//注意，这里从num转变成var, 键没跟着改（@$ → @&），是因为会影响其他表达式的引用
 				}
 				
-				consolelog('i = ',i,'外换元（对象），从外面引进Mfn对象 iv = ',iv,' 此时A[2] = ',A[2].join(' ; '));
+				// consolelog('i = ',i,'外换元（对象），从外面引进Mfn对象 iv = ',iv,' 此时A[2] = ',A[2].join(' ; '));
 
 				if(A[1][ii]){//查到@ 索引
-					consolelog(iv[0]);
-					consolelog(iv[1]);
+					// consolelog(iv[0]);
+					// consolelog(iv[1]);
 					
-					consolelog(iv[1][iv[0]]);
+					// consolelog(iv[1][iv[0]]);
 					
 					var y=iv[1][iv[0]], yf=y.f, yc=y.c, yt=iv[2][+iv[0].replace(/\D/g,'')], Al=A[2].length;
 					
@@ -3063,14 +3083,14 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 							A[1][ii]=y;
 							A[2].push(iv);
 						*/
-			consolelog('外换元（对象）数值、变量 yc = ',yc);
+			// consolelog('外换元（对象）数值、变量 yc = ',yc);
 						A[1][ii]=A[1][A.ref(yc)];
 					
 					}else{//其它复合表达式	直接嫁接到A
 						$.each(iv[1],function(k,v){//遍历外部Mfn的索引关系
 							var vf=v.f, k2=k.replace(/\d+/,function(x){return +x+Al});
 							
-	consolelog('外部Mfn 索引 ',k,' 值 ',v);
+	// consolelog('外部Mfn 索引 ',k,' 值 ',v);
 							
 
 							if(vf=='num' || vf=='var'){// || vf=='_'){
@@ -3079,12 +3099,12 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 								v.c=v.c.replace(/@\d+[&\$]/g,function(r){return r.replace(/\d+/g,function(x){return +x+Al})})
 								if(v.v && isArr(v.v)){
 									if(isArr(v.v,1)){
-										consolelog('二维中缀数组 v.v = ', v.v.join(' ; '));
+										// consolelog('二维中缀数组 v.v = ', v.v.join(' ; '));
 										v.v[1]=Arrf(function(r){return r.replace(/\d+/g,function(x){return +x+Al})},v.v[1]);
 										
 									}else{
 
-										consolelog('数组 v.v = ', v.v.join(' ; '));
+										// consolelog('数组 v.v = ', v.v.join(' ; '));
 
 										v.v=Arrf(function(r){return r.replace(/\d+/g,function(x){return +x+Al})},v.v);
 									}
@@ -3092,7 +3112,7 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 							}
 							A[1][k2]=v;
 							
-	consolelog('变成内部 索引 ',k2,' 值 ',v);
+	// consolelog('变成内部 索引 ',k2,' 值 ',v);
 						});
 						
 						
@@ -3103,7 +3123,7 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 
 						A[2][i0]=A[2][+iv.replace(/\D/g,'')];
 						
-						consolelog('开始统一变量别称 uniRef, A[2] = ',A[2].join(' '));
+						// consolelog('开始统一变量别称 uniRef, A[2] = ',A[2].join(' '));
 						//Mfn.uniRef(A);
 					}
 
@@ -3116,13 +3136,13 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 
 		
 		if(op==':'){//外换元，换函数，换数，赋值等			参数p对象{'x':'y', 'a':'-a', 'sin':'cos'}	键(变量单字母、@引用、num值、函数名)：值（Mfn对象、变量单字母、num数值、表达式字符串、内部引用@、函数名）
-			consolelog('外换元: 开始 A[2] = ',A[2].join(' ; '),'p = ',p);
+			// consolelog('外换元: 开始 A[2] = ',A[2].join(' ; '),'p = ',p);
 		
 			$.each(p,function(i,v){
 				var o={};
 				o[i]=v;
 				
-			consolelog('新值 v = ', v, isArr(v),isVar(v),/@/.test(v),/\d+(\.?\d)*[%‰‱]?$/.test(v));
+			// consolelog('新值 v = ', v, isArr(v),isVar(v),/@/.test(v),/\d+(\.?\d)*[%‰‱]?$/.test(v));
 				if(isArr(v)){//数组，即Mfn对象
 
 					A=Mfn.opr1('::',A,sim,o)
@@ -3134,12 +3154,12 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 					A=Mfn.opr1(':@',A,sim,o)
 					
 				}else if(/^\d+(\.?\d)*[%‰‱]?$/.test(v)){
-					consolelog('外换元p:',p,'i= ',i,'v= ',v,'A = ',A);
+					// consolelog('外换元p:',p,'i= ',i,'v= ',v,'A = ',A);
 					A=Mfn.opr1(':num',A,sim,o)
 						
 				}else if(ZLR(SBSFUN.replace(/⁻¹/g,'⁼')).indexOf((''+v).replace(/⁻¹/g,'⁼'))>-1){
 					var v0=(''+v).replace(/⁻¹/g,'⁼'), i0=i.replace(/⁻¹/g,'⁼');
-					consolelog('是函数:',v0);
+					// consolelog('是函数:',v0);
 					
 					$.each(A[1],function(k,vv){
 						if(vv.f==i0){
@@ -3149,12 +3169,12 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 					});
 					
 				}else{//表达式字符串
-					consolelog('换元 表达式字符串',v);
+					// consolelog('换元 表达式字符串',v);
 					o[i]=Mfn.fromStr(v);
 					A=Mfn.opr1('::',A,sim,o)
 				}
 			});
-			consolelog(':外换元结束', A);
+			// consolelog(':外换元结束', A);
 			
 		//	return Mfn.fromStr(1)
 			return A
@@ -3170,12 +3190,12 @@ consolelog('A[1][',ii,'] = ',A[1][ii],'A[2][',i0,'] = ',A[2][i0],A[2],A[1]);
 		}
 		
 
-consolelog('op = ',op);
+// consolelog('op = ',op);
 		if(Mfn.is.b1.frac(A)){
 			var Fr=FracReduct(Mfn.toStr(A));//bug 这里需弃用toStr	嫌慢
-			consolelog('A是有理数 ',Fr);
+			// consolelog('A是有理数 ',Fr);
 			var s=Frac.opr1(op,Fr,p);
-			consolelog('有理数一元运算结果 ',s);
+			// consolelog('有理数一元运算结果 ',s);
 			return Mfn.fromStr(isStr(s)?s:s.toStr())
 		}
 
@@ -3210,13 +3230,13 @@ consolelog('op = ',op);
 				A[0]=oc;
 				return A
 			}
-consolelog('相反数 ',A);
+// consolelog('相反数 ',A);
 			//一般情况下 -x
 			
 
 			A[0]=A.ref('-'+A0);
 
-consolelog('相反数后 ',A);
+// consolelog('相反数后 ',A);
 			return A
 
 		}
@@ -3224,7 +3244,7 @@ consolelog('相反数后 ',A);
 
 			if(of=='-'){// 1/(-x) = -(1/x)
 				
-consolelog('1/- ',A[0]);
+// consolelog('1/- ',A[0]);
 				
 				A[0]=oc;
 				return Mfn.opr1('-',Mfn.opr1('1/',A,sim),sim)
@@ -3232,7 +3252,7 @@ consolelog('1/- ',A[0]);
 			
 			if(of=='tds' && ov[0].length==1 && ov[0][0]=='÷' && ov[1].length==2){
 				
-consolelog('1/ , tds ov=',ov);
+// consolelog('1/ , tds ov=',ov);
 				if(ov[1][0][0]=='@' && A[1][ov[1][0]].f=='num' && A[1][ov[1][0]].c=='1'){// 1/ (1/x)  = x
 					A[0]=ov[1][1];
 					return A
@@ -3501,11 +3521,11 @@ consolelog('1/ , tds ov=',ov);
 
 */
 
-consolelog(sim);
+// consolelog(sim);
 		var l=arr.length, isAop=isArr(op), ops=isAop?[].concat(op):copyA(op,l-1), a=seqA(0,l),B=[];
 
 
-//	consolelog('oprs  :     ',op,'arr = ',arr,'str = ',snake([ops,seqA(0,l)]).join('')); 
+//	// consolelog('oprs  :     ',op,'arr = ',arr,'str = ',snake([ops,seqA(0,l)]).join('')); 
 
 		var o={};
 
@@ -3517,15 +3537,15 @@ consolelog(sim);
 				o['@'+i+'$']=''+arr[i]
 			}
 		}
-		consolelog('oprs  :     ',op,'准备换元  o =',o);
+		// consolelog('oprs  :     ',op,'准备换元  o =',o);
 		
 		
 		
 
 		var A=Mfn.opr1(':',Mfn.fromStr(snake([ops,a]).join('')),'',o);
-		consolelog('下面去括号');
+		// consolelog('下面去括号');
 		Mfn.simp(A,'','()');//去括号
-	consolelog('oprs 结束之后   A=  ',A,'sim = ',sim);
+	// consolelog('oprs 结束之后   A=  ',A,'sim = ',sim);
 	
 /*		bug [λ-a+1 1;2 λ-a]&i1-=i2;i1/=	
 		
@@ -3636,12 +3656,12 @@ consolelog(sim);
 		}
 	}
 
-consolelog(x);
+// consolelog(x);
 
 	if(x=='pms' || x=='-' && !atFirst){//加括号
 		return Mfn.toStr(A,!notlatex,1)
 	}
-consolelog(A,!notlatex);
+// consolelog(A,!notlatex);
 	return Mfn.toStr(A,!notlatex)
 
 },pppow=function(t,notlatex){//指数的底数环境（阶乘环境也适用）	t是Mfn对象或者字符串 	返回字符串
@@ -4327,20 +4347,20 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 		X.push(frac(-A[1],A[0],''));
 	}
 
-//consolelog(S);
+//// consolelog(S);
 	if(l==2){//ax+b≡0
 		if(A[0]=='0'){//退化
 			if(A[1]!='0'){
 				if(dtl){
 					S.push('方程无解');
 				}
-				//consolelog(S);
+				//// consolelog(S);
 				return [[],S]
 			}
 			if(dtl){
 				S.push('方程有任意整数解');
 			}
-			//	consolelog(S);
+			//	// consolelog(S);
 			return ['ℤ',S]
 		}
 
@@ -4354,7 +4374,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 			return [[],S]
 		}
 
-//consolelog(fr);
+//// consolelog(fr);
 		fr=fracReduct(-A[1],A[0]);
 		if(!/\//.test(fr)){
 			fr=Mod(fr,M);
@@ -4431,7 +4451,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 	参数 p 指定变量名 （此时会返回步骤数组）
 	*/
 	
-	consolelog('一元多次方程',K);//bug 5 1 0 1 1 -1 0 -1 2求特征值 undefined	equationA([1, -8, 16, -3]) https://zhidao.baidu.com/question/1772342166371113060.html?entry=qb_uhome_search
+	// consolelog('一元多次方程',K);//bug 5 1 0 1 1 -1 0 -1 2求特征值 undefined	equationA([1, -8, 16, -3]) https://zhidao.baidu.com/question/1772342166371113060.html?entry=qb_uhome_search
 	var A=Arrf(FracReduct,K),l=A.length, X=[], S=[];
 
 	if(p){
@@ -4475,7 +4495,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 			}
 			
 			var delta=minus([square(A[1]),times([4,A[0],A[2]])]);
-			consolelog('判别式Δ = ',delta);
+			// consolelog('判别式Δ = ',delta);
 			if(/^0$/.test(delta)){//判别式=0
 				delta=divide([neg(A[1]),times(2,A[0])]);
 				
@@ -4491,9 +4511,9 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 
 				}else{
 					//x=(-b+-√Δ)/(2a)
-					consolelog('Δ = ',delta);
+					// consolelog('Δ = ',delta);
 					delta=na2n(sqrt(neg(delta)),'i');
-					consolelog('√Δ = ',delta);
+					// consolelog('√Δ = ',delta);
 					X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
 					if(p){
 						S.push(
@@ -4532,7 +4552,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 		}
 		var m=gcd(A);
 		if(m!='1'){//约分
-			consolelog(m,A);
+			// consolelog(m,A);
 			A=Arrf(function(s){return divide([s,m])},A);
 			if(p){
 				S.push(eq0(sump(A,p,-l)));
@@ -4548,8 +4568,8 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 		if(p){
 			S.push('判别式Δ = '+delta);
 		}
-		consolelog('系数',A);
-		consolelog('3p=',p3,'2q=',q2,'q=',q,'p^3=',P3,'q^2=',Q2,'Δ = ',delta,'-a/3 = ',_a);
+		// consolelog('系数',A);
+		// consolelog('3p=',p3,'2q=',q2,'q=',q,'p^3=',P3,'q^2=',Q2,'Δ = ',delta,'-a/3 = ',_a);
 		if(/^0$/.test(delta)){//3个实根（其中2个相等）
 			var q_3=cbrt(q);
 			X.push(plus([_a,q_3]));
