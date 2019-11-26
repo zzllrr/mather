@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Algebra']=Kx(
+wiki['Concept/Algebra/Algebra']=Kx(
 
 
 detail('代数系统（1个二元运算）',Table([['名称','记法','定义','性质']],[

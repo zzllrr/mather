@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Function']=Kx(
+wiki['Concept/Function/Function']=Kx(
 
 
 detail('数学表达式类型 Expression',Table([['分类','算术表达式\nArithmetic','多项式\nPolynomial','代数式\nAlgebraic','封闭式\nClosed-form','解析式\nAnalytic','数学表达式\nMathematical']],[

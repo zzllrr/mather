@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Graph Type']=Kx(
+wiki['Concept/Graph/Type']=Kx(
 
 
 detail('图类型',Table([ZLR('名称 记法 定义 性质')],[

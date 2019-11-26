@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Compatible Relation']=Kx(
+wiki['Concept/Relation/Compatible']=Kx(
 
 detail('相容关系',Table([ZLR('名称 记法 定义 性质')],[
 	ZLR('相容类____C____子集（任意两元素满足相容关系）____','','____'),

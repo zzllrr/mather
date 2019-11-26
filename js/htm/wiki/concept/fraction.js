@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Fraction']=Kx(
+wiki['Concept/Analytic/Fraction']=Kx(
 
 
 	

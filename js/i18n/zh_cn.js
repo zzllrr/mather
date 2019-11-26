@@ -713,6 +713,7 @@ lang['zh_cn'] = {
 
 	'Keyword': '关键词',
 	'Layer': '层',
+	'Layers': '层数',
 	'Pointer': '指针',
 	'Eraser': '橡皮擦',
 	'Tab': '制表符',

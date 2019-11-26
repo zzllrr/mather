@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Integral']=Kx(
+wiki['Concept/Integral/Integral']=Kx(
 
 
 detail('积分类型',Table([ZLR('名称 记法 定义 性质')],[

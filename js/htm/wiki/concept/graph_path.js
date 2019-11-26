@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Path']=Kx(
+wiki['Concept/Graph/Path']=Kx(
 
 detail('路径类型',Table([ZLR('名称 记法 定义 性质')],[
 

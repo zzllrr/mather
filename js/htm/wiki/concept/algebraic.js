@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Algebraic']=Kx(
+wiki['Concept/Number/Algebraic']=Kx(
 
 detail('整系数代数方程',Table([ZLR('解形式 等价方程 简化方程 方程解')],[
 

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Vector']=Kx(
+wiki['Concept/Vector/Vector']=Kx(
 
 detail('向量（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['模','|a|',kroot('(a,a)'),''],

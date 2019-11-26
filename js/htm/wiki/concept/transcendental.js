@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Transcendental']=Kx(
+wiki['Concept/Number/Transcendental']=Kx(
 
 detail('超越数定义与性质',Table([ZLR('名称 定义 性质')],[
 	['超越数____transcendental number','不是代数数的实数或复数____不满足有理系数代数方程',ul([

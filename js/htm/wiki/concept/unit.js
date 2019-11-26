@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Unit']=//Kx(
+wiki['Concept/Number/Unit']=//Kx(
 
 	detail('数量级',Table([ZLR('数量级 中文 梵语 英文（美） 英文（英）')],[
 		['10^{-24}','[幺]','涅盘寂静','',''],

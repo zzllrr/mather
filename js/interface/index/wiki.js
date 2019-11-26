@@ -240,9 +240,12 @@ wikis={
 		]},
 		
 		{'Analytic':[
+			'Analytic',
 			'Polynomial',
 			'Fraction',
 			'Radical',
+			'Trigonometric',
+			'Hyperbolic',
 			'Infinite Series',
 			
 		]},

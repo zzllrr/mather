@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Graph Unary Operation']=Kx(
+wiki['Concept/Graph/Unary Operation']=Kx(
 
 
 detail('图（一元运算）',Table([ZLR('名称 记法 定义 性质')],[

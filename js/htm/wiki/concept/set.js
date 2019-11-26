@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Set']=Kx(
+wiki['Concept/Set/Set']=Kx(
 
 detail('集合（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['补集\n',khrA(['C(A)']),

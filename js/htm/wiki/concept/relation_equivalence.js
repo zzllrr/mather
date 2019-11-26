@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Equivalence']=Kx(
+wiki['Concept/Relation/Equivalence']=Kx(
 
 detail('等价关系',Table([ZLR('名称 记法 定义 性质')],[
 	

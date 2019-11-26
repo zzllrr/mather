@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Tensor']=Kx(
+wiki['Concept/Vector/Tensor']=Kx(
 
 detail('张量',Table([ZLR('名称 记法 定义 性质')],[
 	['(真)标量____Scalar','','','空间反演下不改变符号'],

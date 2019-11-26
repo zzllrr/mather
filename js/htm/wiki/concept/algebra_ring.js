@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Ring']=Kx(
+wiki['Concept/Algebra/Ring']=Kx(
 
 
 	

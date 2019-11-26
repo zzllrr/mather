@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Relation Type']=Kx(
+wiki['Concept/Relation/Type']=Kx(
 
 
 detail('关系类型',Table([ZLR('名称 记法 定义 关系矩阵 关系图 性质')],[

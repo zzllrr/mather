@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Point']=Kx(
+wiki['Concept/Geometry/Point']=Kx(
 
 
 detail('点的类型',Table([ZLR('名称 记法 定义 性质')],[

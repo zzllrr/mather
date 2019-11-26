@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Partial Order']=Kx(
+wiki['Concept/Relation/Partial Order']=Kx(
 
 detail('偏序关系',Table([ZLR('名称 记法 定义 性质')],[
 

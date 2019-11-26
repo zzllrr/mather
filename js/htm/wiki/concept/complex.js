@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Complex']=Kx(
+wiki['Concept/Number/Complex']=Kx(
 
 
 detail('复数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[

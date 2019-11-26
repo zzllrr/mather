@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Logic']=Kx(
+wiki['Concept/Logic/Logic']=Kx(
 
 
 detail('逻辑恒等式',Table([ZLR('恒等式 名称')],[

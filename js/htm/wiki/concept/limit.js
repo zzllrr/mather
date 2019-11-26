@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Limit']=Kx(
+wiki['Concept/Limit/Limit']=Kx(
 
 detail('极限类型',Table([ZLR('名称 记法 定义 性质')],[
 

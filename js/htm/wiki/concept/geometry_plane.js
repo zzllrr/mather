@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Plane']=Kx(
+wiki['Concept/Geometry/Plane']=Kx(
 
 
 detail('平面几何图形的类型',Table([ZLR('名称 记法 定义 性质')],[

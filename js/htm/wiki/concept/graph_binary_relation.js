@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Graph Binary Relation']=Kx(
+wiki['Concept/Graph/Binary Relation']=Kx(
 
 
 detail('图（二元关系）',Table([ZLR('名称 记法 定义 充要条件 性质')],[

@@ -13,10 +13,10 @@ teaching['Assignment/Drill']=detail(gM('Random Number'),Table([i18(ZLR('Select T
     'Decimal','Pure Decimal'
 ])
  
-,'TBrc')+gM('Number Operation')+Table([i18(ZLR('Operation Quantity Tool'))], Arrf(function(x){
-    return ['<label>+ '+strchkbx0+chked+'> <label>- '+strchkbx0+'> <label>× '+strchkbx0+'> <label>÷ '+strchkbx0+'> <label>() '+strchkbx0+'>',
-        num(10,1,1000), strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
-},[1])
+,'TBrc')+gM('Number Operation')+Table([i18(ZLR('Operation Layers Quantity Tool'))], Arrf(function(x){
+    return ['<label>+ '+strchkbx0+chked+'> <label>- '+strchkbx0+'> <label>× '+strchkbx0+'> <label>÷ '+strchkbx0+'>',
+    num(1,1,20)+' ~ '+num(2,1,20),num(10,1,1000), strbtn+gM('Copy JS Code')+'" class=copyJS data-type="'+x+'" />'+' '+strbtn+gM('Copy Result')+'" class=copyResult data-type="'+x+'" />']
+},[4])
  
 ,'TBrc'))
 ;
@@ -77,6 +77,48 @@ $(function(){
         }
 
 
+        if(tp=='4'){
+            var o4=`var ntp={
+                'Integer':function(){
+
+                },
+                'Fraction':function(){
+
+                },
+                'Fraction Unit':function(){
+
+                },
+                'Propper Fraction':function(){
+
+                },
+                'Impropper Fraction':function(){
+
+                },
+                'Mixed Fraction':function(){
+
+                },
+                'Reducible Fraction':function(){
+
+                },
+                'Irreducible Fraction':function(){
+
+                },
+                'Decimal':function(){
+
+                },
+                'Pure Decimal':function(){
+
+                },
+
+
+            };`,oprs='';
+            sn.each(function(i){
+                if($(this).prop('checked')){
+                    oprs+='+-×÷'[i]
+                }
+            });
+            t=`${o4}Arrf(function(){var d0=${digi.eq(0).val()}, d1=${digi.eq(1).val()}, s='';for(var i=0,l=Random(d1-d0+1);i<d1+l;i++){s} return Mfn.fromStr(s).toStr(1)}, seqA(1,${quan}))`;
+        }
 
         
         if(!isJS){

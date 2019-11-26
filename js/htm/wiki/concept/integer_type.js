@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Integer Type']=Kx(
+wiki['Concept/Number/Integer/Type']=Kx(
 
 detail('整数（按自身数学性质）',Table([ZLR('名称 定义 前$n$项 性质')],[
 

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Lattice']=Kx(
+wiki['Concept/Algebra/Lattice']=Kx(
 
 
 	

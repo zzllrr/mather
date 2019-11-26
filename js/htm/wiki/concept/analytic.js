@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Analytic']=Kx(
+wiki['Concept/Analytic/Analytic']=Kx(
 
 
 

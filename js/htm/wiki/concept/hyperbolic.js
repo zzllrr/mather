@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Hyperbolic']=Kx(
+wiki['Concept/Analytic/Hyperbolic']=Kx(
 
 
 	

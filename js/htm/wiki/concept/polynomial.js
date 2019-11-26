@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Polynomial']=Kx(
+wiki['Concept/Analytic/Polynomial']=Kx(
 
 detail('多项式',Table([ZLR('名称 记法 定义 性质')],[
 

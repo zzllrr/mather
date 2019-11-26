@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-wiki['Group']=Kx(
+wiki['Concept/Algebra/Group.Math']=Kx(
 
 
 detail('群 Group',Table([['名称','记法','定义','性质']],[
