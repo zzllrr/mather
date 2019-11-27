@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Sudoku']=XML.wrapE('style',
+culture['Game/Sudoku']=XML.wrapE('style',
 		`.sudoku td:not(.red){
 			color:white
 		}

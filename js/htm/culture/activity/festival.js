@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Festival']=Table([i18(ZLR('Name Type Summary'))],[
+culture['Activity/Festival']=Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'www.nationalmathfestival.org','National Math Festival'),'All Age / biyearly','by '+[
 			href(Hs+'www.msri.org','Mathematical Sciences Research Institute (MSRI)'),
 			href('www.ias.edu','Institute for Advanced Study (IAS)'),

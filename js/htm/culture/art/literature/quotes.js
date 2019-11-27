@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Quotes']=Table([i18(ZLR('Author Content'))],[
+culture['Art/Literature/Quotes']=Table([i18(ZLR('Author Content'))],[
 
 
 

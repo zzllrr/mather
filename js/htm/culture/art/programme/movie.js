@@ -6,7 +6,7 @@
 
  
 
-culture['Movie']=detail(gM('Science'),Table([i18(ZLR('Name Type Summary'))],[
+culture['Art/Programme/Movie']=detail(gM('Science'),Table([i18(ZLR('Name Type Summary'))],[
 
     [href(Hs+'scienceandfilm.org','Sloan Science & Film'),'','科普影片'],
 

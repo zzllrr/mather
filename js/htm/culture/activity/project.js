@@ -6,7 +6,7 @@
 
  
 
-culture['Project']=detail(gM('Math'),Table([i18(ZLR('Name Founder Features'))],[
+culture['Activity/Project']=detail(gM('Math'),Table([i18(ZLR('Name Founder Features'))],[
 	[href(Hs+'maths.org','MMP - Millennium Mathematics Project'),'Cambridge University',hrefA('maths.org',ZLR('NRICH Plus Wild'),1).join(' ')],
 	[href(Hs+'www.think-maths.co.uk','Think Maths'),'','英国科普团队 Think Maths'],
 	[href(Hs+'www.globalmathproject.org','GMP - Global Math Project'),'',''],

@@ -6,7 +6,7 @@
 
  
 
-teaching['MOOC']=
+teaching['MOOC/MOOC']=
 	Table([i18(ZLR('Name Type Features'))],[
 
         [href(Hs+'www.icourse163.org','中国大学Mooc'),'',''],

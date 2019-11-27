@@ -6,7 +6,7 @@
 
  
 
-academic['Seminar']=
+academic['Meeting/Seminar']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 

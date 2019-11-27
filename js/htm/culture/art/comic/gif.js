@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Gifs']=Table([i18(ZLR('Name Author Features'))],[
+culture['Art/Comic/Gifs']=Table([i18(ZLR('Name Author Features'))],[
 
 
 

@@ -27,7 +27,7 @@ if(/[024]/.test(T[0]) && (T[6]<21 || T[6]==21 && T[7]<=15)){
 
 */
 
-culture['Lottery']=XML.wrapE('style',
+culture['Game/Lottery']=XML.wrapE('style',
 		`.ltr_txta{min-width:400px;height:300px}`
 	)+
 	detail('双色球（6红+1蓝）',

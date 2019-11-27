@@ -6,7 +6,7 @@
 
  
 
-culture['Knot']=
+culture['Game/Knot']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 

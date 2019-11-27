@@ -6,7 +6,7 @@
 
  
 
-culture['Tessellation']=
+culture['Game/Tessellation']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 

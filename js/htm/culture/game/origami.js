@@ -6,7 +6,7 @@
 
  
 
-culture['Origami']=
+culture['Game/Origami']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 
