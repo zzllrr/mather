@@ -164,6 +164,9 @@ solve['matrix']=function(inputValue, uriA){
 		rS=rS.concat(
 			Arrf(function(t){
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'0', M=MfS(t), A=Mtrx.opr2('+',M,ij);
+				return kxA(Arrf(function(k){
+					return kmtrx(M)+' + ['+k+']_{'+M.length+'}='+kmtrx(Mtrx.opr1('.^',M,k))
+				},seqsA(ij)))
 				return kmtrx(M)+' + ['+ij+']_{'+M.length+'}='+kmtrx(A)
 			},VA)
 		);
@@ -195,8 +198,6 @@ solve['matrix']=function(inputValue, uriA){
 	if(sel(uriA,'数幂')){//矩阵&数幂 	每个元素求同样的幂
 		rS=rS.concat(
 			Arrf(function(t){
-				//var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t), A=Mtrx.opr1('.^',M,ij);
-
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t);
 				return kxA(Arrf(function(k){
 						return kmtrx(M)+'^{..'+k+'}(数幂)='+kmtrx(Mtrx.opr1('.^',M,k))
@@ -274,7 +275,7 @@ solve['matrix']=function(inputValue, uriA){
 				'且'+C.join(', ')+
 						'是一个极大线性无关组，','是向量空间的一组基，其维数是'+r,
 						r==n?'':kxA(Arrf(function(s){
-								return 'αβ'[+(s>n-k)]+(k==1 && s>n-k?'':sub(s>n-k?s-(n-k):s,''))+'='+sums(Arri(A00,s-1),C)
+								return 'αβ'[+(s>n-k)]+(k==1 && s>n-k?'':sub(s>n-k?s-(n-k):s,''))+'='+opfrac(optrim(sums(Arri(A00,s-1),C)))
 							},B[1]))
 					])
 		},VA));
@@ -1114,7 +1115,7 @@ console.log('单位化？',oi,m,Q);
 				Y.push('C'+(n-m>1?sub(i+1,''):'')+Xs[i])
 			}
 			return kxA(['系数矩阵化最简行',A[1],'得到基础解系：'+Xs.join(', '),'~','因此通解是：'+Y.join(' + '),
-				'一个对偶方程组是：',piece(F)])
+				'一个对偶方程组是：',optrim(piece(F))])
 		},VA));
 		console.log(rS);
 	}
@@ -1516,15 +1517,20 @@ https://zhidao.baidu.com/question/750762700228964772.html
 		}
 	}
 
-	if(sel(uriA,'标准正交基ⅠP=基Ⅱ，坐标[xy]，求坐标[yx]【过渡矩阵P，X=PY】')){//第1行：P	第2行：坐标&[xy]
+	if(sel(uriA,'标准正交基Ⅰ基Ⅱ=P，坐标[xy]，求坐标[yx]【过渡矩阵P，X=PY】')){//第1行：P	第2行：坐标&[xy]
 		var P=MfS(VA[0]),n=P.length,C=MfS(VA[1],'vT');
-		rS.push(kxA(['('+zlr('α_',seqA(1,n).join(' '),',')+')=('+zlr('ε_',seqA(1,4).join(' '),',')+')P','其中ε_i是标准正交基','过渡矩阵P = '+kmtrx(P)]));
+		rS.push(kxA(['('+zlr('α_',seqA(1,n).join(' '),',')+')=('+zlr('ε_',seqA(1,n).join(' '),',')+')P',
+			'其中ε_i是标准正交基',
+			'从标准正交基到这组基的过渡矩阵是P = '+kmtrx(P),
+			'~',
+			'从这组基到标准正交基的过渡矩阵是P^{-1} = '+kmtrx(Mtrx.opr1('逆',P))
+		]));
 
 		var hasP=/&/.test(VA[1]),ij=hasP?VA[1].replace(/.+&/,''):'x';
 		if(ij=='x'){
-			//consolelog(Mtrx.build.B([[P,C]]));
+			//console.log(Mtrx.build.B([[P,C]]));
 			var Y=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,C]]),'iS='), y=subMtrx(Y[0][0],1,n,n+1,n+1);
-			rS.push('x='+Mtrx.toStr(C),'下面来求坐标：y = P^{-1}x',Y[1],'即，所求坐标：y ='+kmtrx(y));
+			rS.push('向量在标准正交基下的坐标','x='+Mtrx.toStr(C),'下面来求在这组基下的坐标：y = P^{-1}x',Y[1],'则所求坐标：y ='+kmtrx(y));
 		}else{
 			rS.push('所求坐标：x = Py = '+kmtrx(Mtrx.opr2('*',P,C)));
 		}
@@ -1631,6 +1637,7 @@ https://zhidao.baidu.com/question/750762700228964772.html
 	if(sel(uriA,'基[ⅠⅡ]，坐标xy，求过渡矩阵、基[ⅡⅠ]【β=αP，X=PY】')){//第1行：基&[12]	第2行：坐标x	第3行：坐标y
 		//基1x=基2y 能求出基2吗？
 		var hasP=/&/.test(VA[0]),ij=hasP?VA[0].replace(/.+&/,''):'1';
+		console.log(VA);
 		var B1=MfS(VA[0]),n=B1.length,X=MfS(VA[1]),Y=MfS(VA[2]);
 		var P=subMtrx(B[0][0],1,n,n+1,2*n);
 		rS.push(B[1], '过渡矩阵P = α^{-1}β = '+kmtrx(P));

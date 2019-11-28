@@ -97,7 +97,7 @@ oHTML=function(x,notMD,elem,cb){
 
 },
 loadHTML=function (x) {
-   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['q'],refreshheads=function(){
+   var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['qa']||o['q'],refreshheads=function(){
     $('.mkdnhead:contains(#)').each(function(i){
         var me=$(this), v='_'+i;
         me.attr('href', me.attr('href')+v);
@@ -843,7 +843,7 @@ $(function(){
 				i0v=v;
             }
             o={ s:$('#solveGround .ground0 .seled').attr('data-i').toLowerCase(),
-                t:i0v,
+                t:i0v.replace(/&/g,fn0).replace(/\n/g,fn0),
                 qa:questionA('solve').join(';')
             };
 

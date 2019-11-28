@@ -218,7 +218,7 @@ tooltip['API']=[
 	{'zmather_io.js':[
 		{'输入':[
 			{'字符集':'SBS SBSi'},
-			{'规范化':'n2sub sub2n asc2unicode opreplace opreplace0 opreplace1 opreplace2 opreplace3 opreplace6 opreplace7 opreNumRlt opreplace16 opreSeqsA simOpr'},
+			{'规范化':'n2sub sub2n asc2unicode optrim opfrac opreplace opreplace0 opreplace1 opreplace2 opreplace3 opreplace6 opreplace7 opreNumRlt opreplace16 opreSeqsA simOpr'},
 			{'编码':'$2v'},
 			{'提取':'exp2arr exp2coe'}
 		]},

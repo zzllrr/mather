@@ -1472,6 +1472,12 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	
 	return t
 
+	
+},opfrac=function(x){//分数显式表示
+	return x.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')	// 分数
+
+},optrim=function(x){//省略运算符
+	return x.replace(/(\d)[×‧](\D)/g,'$1$2') //省略数与非数之间的乘号
 
 },opreplace=function(x){//运算符规范化预处理	算术运算
 	return x.replace(/[]/g,'').replace(/​/g,'')	//不可见字符

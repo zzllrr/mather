@@ -453,6 +453,10 @@ var Integer={/*整数 (本质是字符串)
 			
 			//下面算法仅支持两个正数相加
 			
+			if(BigInt){
+				return BigInt(aA0)+BigInt(aA1)+''
+			}
+
 			var agb=Integer.is.b2['>'](aA0,aA1),a=agb?aA0:aA1,b=agb?aA1:aA0,al=a.length,bl=b.length,A=a.split('');
 ////console.log(a+' + '+b+' = ?');
 			for(var i=0;i<bl;i++){
@@ -498,7 +502,10 @@ var Integer={/*整数 (本质是字符串)
 
 		}
 		if(op=='-'){//减法
-
+			
+			if(BigInt){
+				return BigInt(aA0)-BigInt(aA1)+''
+			}
 			if(aA0==aA1){return '0'}
 			var agb=Integer.is.b2['>'](aA0,aA1);
 
@@ -540,6 +547,10 @@ var Integer={/*整数 (本质是字符串)
 
 		}
 		if(op=='*1'){//仅计算乘数b是个位数的情况，仅限2元运算	【只考虑非负数a】
+			
+			if(BigInt){
+				return BigInt(aA0)*BigInt(aA1)+''
+			}
 
 			var b=+aA[1];
 			if(!b){
@@ -580,6 +591,11 @@ var Integer={/*整数 (本质是字符串)
 		}
 
 		if(op=='*'){//乘法
+			
+			if(BigInt){
+				return BigInt(aA0)*BigInt(aA1)+''
+			}
+
 			if(aA.indexOf('0')>-1){return '0'}
 			if(al>2){
 
@@ -624,6 +640,14 @@ var Integer={/*整数 (本质是字符串)
 			}
 
 			if(Integer.is.b2['<'](a,b)){return ['0',a]}
+
+			
+			if(BigInt){
+				return [BigInt(aA0)/BigInt(aA1)+'',BigInt(aA0) % BigInt(aA1)+'']
+			}
+
+
+
 			var n0=a.length,n1=b.length,q='',a0=a.substr(0,n1),bI=[];
 			/*
 				方法1【累减法】：被除数减去除数（减法若干次，次数是商），直至余数小于除数
@@ -681,6 +705,11 @@ var Integer={/*整数 (本质是字符串)
 			对于其他素数p，用a的p-1次幂，乘以a
 			
 			*/
+
+			if(BigInt){
+				return BigInt(aA0) ** BigInt(aA1)+''
+			}
+
 			var b=aA1;
 			if(b=='2'){
 				//return Integer.oprs('2^',[aA0,aA1])
@@ -748,6 +777,12 @@ var Integer={/*整数 (本质是字符串)
 			if(b=='2'){
 				return Integer.oprs('*',[a,a]);
 			}
+
+
+			if(BigInt){
+				return BigInt(aA0) ** BigInt(aA1)+''
+			}
+
 			var f=(''+factor(b)).split('×'),fl=f.length,x=a;
 			//console.log('aA = ',aA);
 			//console.log(f, b, factor(b));
@@ -779,6 +814,8 @@ var Integer={/*整数 (本质是字符串)
 				
 			}
 			
+	
+
 			while(b!='0'){
 				//a=Integer.opr1('^2',a);
 				a=Integer.oprs('*',[a,a]);
@@ -797,24 +834,12 @@ var Integer={/*整数 (本质是字符串)
 			
 			
 			*/
-			var a=aA0,b=aA1;
-			if(a=='0' || a=='1' || b=='0'){return a}
-			if(/^10+$/.test(a)){
-				return '1'+ZLR(0,Integer.oprs('*',[Integer.oprs('^',[2,b]),a.length-1]));
-				
+			if(BigInt){
+				return BigInt(aA0) % BigInt(aA1)+''
 			}
-			
-			while(b!='0'){
-				//a=Integer.opr1('^2',a);
-				a=Integer.oprs('*',[a,a]);
-				////console.log(b+ ' !!! '+a);
-				b=Integer.oprs('-',[b,1]);
-			}
-			
-			return a
-
+			return (+aA0) % (+aA1)+''
 		}
-		if(op=='^%'){/*	a^b p 求幂余数		仅限2元运算
+		if(op=='^%'){/*	a^b mod p 求幂余数		仅限2元运算
 			p是素数情况下，
 				a^p≡a (mod p) 
 				a^(p-1)≡1 (mod p) 费马小定理
@@ -822,20 +847,25 @@ var Integer={/*整数 (本质是字符串)
 				a^b≡a^(k(p-1)+t)≡a^(1+t) (mod p) 
 			*/
 			var a=aA0,b=aA1;
-			if(a=='0' || a=='1' || b=='0'){return a}
-			if(/^10+$/.test(a)){
-				return '1'+ZLR(0,Integer.oprs('*',[Integer.oprs('^',[2,b]),a.length-1]));
-				
+			if(a=='0' || a=='1'){return a}
+			if( b=='0'){return '1'}
+
+
+			if(isPrime(p)){
+				if(b==p){
+					return Integer.oprs('%',[a,p])
+				}
+				if(b==Integer.oprs('-',[p,1])){
+					return '1'
+				}
+				//if(Integer.is.b2['>'](b,p-1)){
+				b=Integer.oprs('%',[b,Integer.oprs('-',[p,1])]);
+				return Integer.oprs('^%',[a,Integer.oprs('+',[b,1])],p)
+
+			}else{
+
+				Integer.oprs('%',[Integer.oprs('^',[a,b]),p]);
 			}
-			
-			while(b!='0'){
-				//a=Integer.opr1('^2',a);
-				a=Integer.oprs('*',[a,a]);
-				////console.log(b+ ' !!! '+a);
-				b=Integer.oprs('-',[b,1]);
-			}
-			
-			return a
 
 		}
 

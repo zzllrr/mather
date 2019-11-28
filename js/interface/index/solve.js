@@ -288,7 +288,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 		
 		
 		
-		{'Matrix & Number':['数加“1 2 3 4&5','数减“1 2 3 4&5','数乘“1 2 3 4&5','数除“1 2 3 4&5','数幂“1 2 3 4&5']},
+		{'Matrix & Number':['数加“1 2 3 4&1~5','数减“1 2 3 4&1~5','数乘“1 2 3 4&1~5','数除“1 2 3 4&1~5','数幂“1 2 3 4&1~5']},
 
 
 		{'Elementary Transformation':[
@@ -483,7 +483,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 				'$基[ⅠⅡ]，过渡矩阵P，坐标[xy]，求基[ⅡⅠ]、坐标[yx]【β=αP，X=PY】$…第1行：基&[12]\n第2行：P\n第3行：坐标&[xy]其中xy标明坐标是x，还是y',
 				'$基ⅠⅡ，坐标[xy]，求过渡矩阵、坐标[yx]【β=αP，X=PY】$…第1行：基1\n第2行：基2\n第3行：坐标&[xy]',
 				'$基ⅠS=基ⅡT，坐标[xy]，求过渡矩阵、坐标[yx]【S=PT，X=PY】$…第1行：S\n第2行：T\n第3行：坐标&[xy]',
-				'$标准正交基ⅠP=基Ⅱ，坐标[xy]，求坐标[yx]【过渡矩阵P，X=PY】$…第1行：过渡矩阵P\n第2行：坐标&[xy]',
+				'$标准正交基Ⅰ基Ⅱ=P，坐标[xy]，求坐标[yx]【过渡矩阵P，X=PY】$…第1行：过渡矩阵P\n第2行：坐标&[xy]',
 			]},
 			{'求过渡矩阵':[
 					

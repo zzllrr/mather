@@ -423,7 +423,7 @@ console.log('b'+(12+l));
 
 			}
 		}
-		var dms=$('#oHTML .sudoku');
+		var dms=$('#oHTML .sudoku').not('#sudokuTable');
 //着色
 //console.log(sn,cn,!/p\d=\n1/.test(i0.val()));RandomCombinA(colorA,1)
 		if(sn==0 || cn==0 && !/p\d=.?\n1/.test(i0.val())){
@@ -1003,7 +1003,7 @@ document.getElementsByTagName('body')[0].appendChild(img);
 			doSolve(dm);
 
 		};
-		$('#oHTML .sudoku').each(function(){
+		$('#oHTML .sudoku').not('#sudokuTable').each(function(){
 			f($(this))
 		});
 

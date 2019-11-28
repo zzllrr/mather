@@ -69,7 +69,7 @@ var Mtrx={	//矩阵
 		B:function(M){//分块：M为矩阵块组成的矩阵（4层数组） 
 			//同一行的矩阵块之间, 行数要一致（列数可不作要求），才能拼接
 			var A=[];A.t='Mtrx',m=M.length;A.toStr=function(p){return Mtrx.toStr(this,p)};
-consolelog(M);
+//consolelog(M);
 			for(var i=0;i<m;i++){
 				var Mi=M[i], n=Mi.length, Mi0=Mi[0];
 				if(!isArr(Mi)){	//M是一维数组
@@ -207,7 +207,7 @@ consolelog(M);
 					dir='v'
 				}
 			}
-consolelog(i,j,dir);
+//consolelog(i,j,dir);
 			
 			for(var k=0;k<arr.length;k++){
 				var di=/h/.test(dir)?0:(/-$/.test(dir)?-1:1)*k,
@@ -534,7 +534,7 @@ consolelog(i,j,dir);
 		}
 		if(/^c?diag\(/.test(s)){//对角 副对角
 			var isC=/^c/.test(s), D=exp2arr(s.substr(+isC+5,s.length-6-(+isC)));
-			consolelog(s.substr(+isC+5,s.length-6-(+isC)),D);
+			//consolelog(s.substr(+isC+5,s.length-6-(+isC)),D);
 
 		//diag(345,678,diag(13,56),diag(1,2,4,diag(3,4,5,diag(6,7))))	这里有递归！
 			//return Mtrx.build.D(Arrf(Mtrx.fromStr,D),isC);
@@ -566,11 +566,11 @@ consolelog(i,j,dir);
 		if(/^QF\(/.test(s)){//二次型 （含变量二次项）	typ=='co'，最终也返回系数数组
 			var s0=s.split('QF(')[1].replace(/\)$/,''),deg=+fmax(s0.match(/x\d/ig).join(',').replace(/x/ig,'').split(',')),
 				tA=Arrf(function(x){return exp2coe(s0,'x'+x+'\\^2')}, seqA(1,deg));
-consolelog(deg,tA);
+//consolelog(deg,tA);
 				for(var i=1;i<=deg;i++){
 					tA=tA.concat(Arrf(function(j){return plus([exp2coe(s,'x'+i+'x'+j),exp2coe(s,'x'+j+'x'+i)])}, seqA(i+1,deg-i)))
 				}
-consolelog(tA);
+//consolelog(tA);
 			var M=Mtrx.fromStr('S2('+tA.join(' ')+')');
 
 			return typ=='co'?[M,tA]:M
@@ -588,7 +588,7 @@ consolelog(tA);
 				}
 				M.push(tA)
 			}
-consolelog(tA);
+//consolelog(tA);
 			
 			M.t='Mtrx';M.toStr=function(p){return Mtrx.toStr(this,p)};
 
@@ -601,7 +601,7 @@ consolelog(tA);
 		if(/^Sparse/.test(s)){//三元组表示的稀疏矩阵
 			var M=s.replace(/^[^\(]+\(|\)[^\)]*$/g,'').split(';'), mn=s.replace(/.+\)/,'').split(','),m=+mn[0],n=mn.length<2?m:+mn[1];
 			A=Mtrx.build.N(m,n,0);
-			consolelog(M);
+			//consolelog(M);
 			for(var i=0;i<M.length;i++){
 				var Mi=M[i];
 				if(/,/.test(Mi)){
@@ -609,10 +609,10 @@ consolelog(tA);
 				}else{
 					Mi=[Mi[0],Mi[1],Mi.substr(2)];
 				}
-			consolelog(Mi);
+			//consolelog(Mi);
 				A[+Mi[0]-1][+Mi[1]-1]=Mi[2]
 			}
-			consolelog(A);
+			//consolelog(A);
 			return A
 		}
 
@@ -628,7 +628,7 @@ consolelog(tA);
 			
 		}else{
 			if(typ=='sq' || !/\[/.test(s) && !/I|diag/.test(s)){
-				consolelog(s);
+				//consolelog(s);
 				e=s.replace(/ +/g,' ').trim().replace(/^\||\|$/g,'').replace(/[;,] */g,' ');//不用ntrim，因为会把开头的零去掉
 
 				A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
@@ -637,10 +637,10 @@ consolelog(tA);
 				
 				
 				if(!/ /.test(e)){//不含空格
-	consolelog(e);
+	//consolelog(e);
 					if(/-/.test(e) || /^0/.test(e) || /\/.+\//.test(e) || !/\D/.test(e)){//[\da-zα-ω](?=\d|-)
 						ij=e.replace(/[\da-zα-ω](?![\/\.;,])/ig,'$& ').trim().split(' ')
-	consolelog(ij);
+	//consolelog(ij);
 					}else{
 						ij=e
 					}
@@ -661,7 +661,7 @@ consolelog(tA);
 				if(isArr(ij)){
 				
 					m=Math.sqrt(ij.length);
-					consolelog(ij.length,m);
+					//consolelog(ij.length,m);
 					if(m%1){//根号开不尽？
 						m=ij.length;
 						rect=1;
@@ -729,7 +729,7 @@ consolelog(tA);
 			v矢量（行向量）
 		*/
 		
-consolelog(A,A[0]);
+//consolelog(A,A[0]);
 		var type=typ||(A.typ?A.typ:'mtrx'),txt=type=='txt',sft=type=='soft',a=txt||sft?'':SC+'"inblk '+type+'">',b=txt||sft?'':sc,n=A.length,m=isArr(A[0])?A[0].length:0,sepc=txt?'\t':(sft?',':''),sepr=txt?'\n':(sft?';':''),r=[];
 		if(txt||sft){
 			for(var i=0;i<n;i++){
@@ -741,7 +741,7 @@ consolelog(A,A[0]);
 		}else if(typ=='vT'){//列向量
 			return '('+kfrac(A.join(', '),1,'t')+')^T'
 		}else{
-			consolelog(A);
+			//consolelog(A);
 			return kmtrx(A)
 		}
 
@@ -749,7 +749,7 @@ consolelog(A,A[0]);
 
 	opr1:function(op,A,p){
 //矩阵一元运算 p是可选参数
-consolelog('矩阵 opr1 ',op,A,p);
+//consolelog('矩阵 opr1 ',op,A,p);
 
 
 		var B=[],m=A.length,n=A[0].length,minmn=Math.min(m,n), ar=arguments, arl=ar.length;
@@ -901,6 +901,9 @@ consolelog('矩阵 opr1 ',op,A,p);
 							B[i][j]=times([B[i][j],l]);
 						}
 						if(g!=1){
+							console.log(B[i][j],g);
+							console.log(i,j,B);
+
 							B[i][j]=divide([B[i][j],g]);
 						}
 						Bj.push(B[i][j]);
@@ -951,7 +954,7 @@ console.log(op,' 结束',p);
 			if(ar[3]){
 				if(ar[3]=='d'){//对角阵求幂
 					for(var i=0;i<m;i++){
-						consolelog(A[i][i],p);
+						//consolelog(A[i][i],p);
 						B.push(pow([A[i][i],p]))
 					}
 					
@@ -1259,7 +1262,7 @@ console.log(op,' 结束',p);
 
 
 */
-consolelog('pt开始 p=',p);
+//consolelog('pt开始 p=',p);
 			var ps=p.split(';');
 			for(var j=0;j<ps.length;j++){
 				var psj=ps[j],
@@ -1277,12 +1280,12 @@ consolelog('pt开始 p=',p);
 					isfs=/^fs/.test(psj), isfsh=/^fsh/.test(psj), isfsi=/^fsi/.test(psj);
 				
 				B[1]=1;
-consolelog(j,'psj = ',psj,A);
+//consolelog(j,'psj = ',psj,A);
 				if(isd){//对角线相乘
 					var isd_=/^d-/.test(psj);//副对角线
 					B[0]=[[times(Mtrx.opr1('取',A,(isd_?'-':'')+'D'))]];
 					B[2]=times(Mtrx.opr1('取',A,(isd_?'-':'')+'D'),1);
-consolelog(B[0]);
+//consolelog(B[0]);
 					return B
 				}
 				if(/^0/.test(psj)){
@@ -1296,7 +1299,7 @@ consolelog(B[0]);
 				}
 				if(isS){//对角线法则展开
 					var Sar=Mtrx.opr1('detSar',A);
-					consolelog('对角线法则展开',Sar[0]);
+					//consolelog('对角线法则展开',Sar[0]);
 					B[0]=[[Sar[0]]];
 					B[2]=Sar[1];
 					return B
@@ -1322,7 +1325,7 @@ consolelog(B[0]);
 						//齐次 返回n行 n+(n-r)列	
 					var r=Mtrx.opr1('秩',A),IA=[],mj=n;
 					if(isfsi && r==n-1){//非齐次	只有唯一解
-				//		consolelog(A.join('\n'))
+				//		//consolelog(A.join('\n'))
 						//return subMtrx(A,1,r,1,n)
 					//	return Mtrx.opr1('拷',A)
 						B[0]=Mtrx.opr1('拷',A);
@@ -1351,39 +1354,39 @@ consolelog(B[0]);
 							mj++;
 						}
 					}
-				consolelog(B.join('\n'))
+				//consolelog(B.join('\n'))
 					return B
 				}
-consolelog('此时psj = ',psj);
+//consolelog('此时psj = ',psj);
 				var pA=psj.split(/(.=|≈)/g),ops=pA[1][0],
 					kA=isk?seqsA(pA[2].split('k=')[1]):'',isSelf=!/[\+\-≈]/.test(ops),
 					pA0=isk?kA:seqsA(pA[0].replace(/[ij]/g,'')),pA1A=pA[2].replace(/ .+|[LU]/,'').split('×'),	//被改的行或列，索引
 					pA1=isSelf?'':(isk?pA1A[0].replace(/[ij]/g,''):seqsA(pA1A[0].replace(/[ij]/g,''))),		//参与的行或列，索引
 					pA2=isSelf?seqsA(pA1A[0]):seqsA(pA1A[1]||'1');											//倍数
 				
-	consolelog(pA1,pA1A[0]);
-consolelog('pA0 ',pA0.length);
-consolelog('pA1 ',pA1.length);
-consolelog('pA2 ',pA2.length);
-consolelog(pA,'pA0 ',pA0)
-consolelog('pA2 =[ ',pA2.join(''))
+	//consolelog(pA1,pA1A[0]);
+//consolelog('pA0 ',pA0.length);
+//consolelog('pA1 ',pA1.length);
+//consolelog('pA2 ',pA2.length);
+//consolelog(pA,'pA0 ',pA0)
+//consolelog('pA2 =[ ',pA2.join(''))
 				B[1]=isSwap?1-2*(pA0.length%2):1;
 
 
 				for(var pi=0;pi<pA0.length;pi++){
-consolelog('pi=',pi+' / '+pA0.length);
+//consolelog('pi=',pi+' / '+pA0.length);
 
 					var pa0=pA0[pi]-1, pa1=pA1, pi2=pA2.length<pi+1?pA2[0]:pA2[pi];
-consolelog('pi2=',pi2,'isk = ',isk,pA1,pA1);
+//consolelog('pi2=',pi2,'isk = ',isk,pA1,pA1);
 					if(isk){
 						pa1=Arrf(eval,'['+pA1+']');
 					}
 					
-consolelog('pa1=',pa1);
-consolelog('ops=',ops);
-consolelog('isSelf=',isSelf);
+//consolelog('pa1=',pa1);
+//consolelog('ops=',ops);
+//consolelog('isSelf=',isSelf);
 					if(isSelf){
-consolelog('自乘 pi2=',pi2);
+//consolelog('自乘 pi2=',pi2);
 						
 						var isTime=/[×\*]/.test(ops);
 						for(var i=0;i<(isi?n:m);i++){
@@ -1392,7 +1395,7 @@ consolelog('自乘 pi2=',pi2);
 							if(!(/[×\*\/÷]/.test(ops) && /^0$/.test(B[0][s][t]))){
 								if(!pi2){
 									pi2=B[0][s][t];
-consolelog('省略了 pi2',pi2);
+//consolelog('省略了 pi2',pi2);
 								}
 
 								B[0][s][t]=(isTime?times:divide)([B[0][s][t],pi2])
@@ -1405,31 +1408,31 @@ consolelog('省略了 pi2',pi2);
 						for(var k=0;k<pa1.length;k++){
 
 							var pi1=+(pa1.length<pi+1?pa1[k]:pa1[k])-1;
-consolelog('pi1=',pi1);
+//consolelog('pi1=',pi1);
 
 								
 if(pA0.length==1 && pA2.length>1){
-consolelog('pi2=','pA2[k]',pA2[k]);
+//consolelog('pi2=','pA2[k]',pA2[k]);
 	pi2=pA2[k];
 }
 		
 
 							for(var i=0;i<(isi?n:m);i++){
-consolelog('i=',i);
+//consolelog('i=',i);
 								var s=isi?pa0:i,t=isi?i:pa0, u=isi?pi1:i,v=isi?i:pi1;
-consolelog('s t u v',s,t,u,v,B[0][u]);
+//consolelog('s t u v',s,t,u,v,B[0][u]);
 
 								if(isSwap){
 									var st=B[0][s][t],uv=B[0][u][v];
-consolelog(uv);
+//consolelog(uv);
 									B[0][s][t]=uv;
 									B[0][u][v]=st;
 								}else{
 									if(!/^0$/.test(B[0][u][v])){
-consolelog('ops = ',ops,'B0st = ',B[0][s][t],'B[0][u][v] = ',B[0][u][v], 'pi2 = ',pi2);
+//console.log('ops = ',ops,'B0st = ',B[0][s][t],'B[0][u][v] = ',B[0][u][v], 'pi2 = ',pi2);
 										B[0][s][t]=Mfn.oprs(ops,[B[0][s][t],times([B[0][u][v],pi2])],1).toStr()
 
-consolelog('B[0][s][t] = ',B[0][s][t]);
+//consolelog('B[0][s][t] = ',B[0][s][t]);
 									}
 
 								}
@@ -1451,6 +1454,7 @@ consolelog('B[0][s][t] = ',B[0][s][t]);
 			
 			*/
 			var R=[];
+			//console.log(A);
 			B=Mtrx.opr1('pt',A,p);//[矩阵(不化简)，系数，过程]
 
 			R.push(Mtrx.opr1('eval',B[0]),times([ar[3]||1, B[1]]));
@@ -1514,7 +1518,7 @@ consolelog('B[0][s][t] = ',B[0][s][t]);
 				coe=[], Coe=1, Bini=Mtrx.opr1('/',A),//化成分数
 
 				TB=isinv||iscong||isfsi?(isfsi?'J'+(n-1):(isBc?'J'+n:(iscong?'I'+m:(isinvl?'J'+m:'I'+n+'  .')))):'';	//'j'+m+'r':'i'+n+'b'
-				consolelog(TB);
+				//consolelog(TB);
 				
 			//var ps=(p||(isBr?'jL':'iU')+'='+(isdet?';d;=':'')).split(';');
 			var ps=(p||'iU='+(isdet?';d;=':'')).split(';');
@@ -1527,13 +1531,13 @@ consolelog('B[0][s][t] = ',B[0][s][t]);
 			}
 			var B=[[Bini,1], ar[3]?'':(isdet?'|A| = '+kdet(A):(isBc||isBr?'增广矩阵~':'')+kmtrx(isBc||isBr?Bini:A, '',isinv||iscong||isfsi?TB:''))],
 				As=[B[1]],noteA=[];
-			consolelog(isBc,isBr,B[1]);
+			//consolelog(isBc,isBr,B[1]);
 
 			//扩行 Mtrx.opr1('拷',A).concat(Mtrx.build.I(m))
-consolelog('变换：',ps,'参数p',p);
+//consolelog('变换：',ps,'参数p',p);
 			for(var j=0;j<ps.length;j++){
-consolelog('变换 j ',j,'/',ps.length,' ps = ',ps.join(' ；'));
-if(j>30){consolelog('初等变换超过30次循环，强制break');break}//防止死循环
+//consolelog('变换 j ',j,'/',ps.length,' ps = ',ps.join(' ；'));
+if(j>30){break}//防止死循环 //consolelog('初等变换超过30次循环，强制break');
 
 /*
 	8-2-3-28-3-3-33
@@ -1561,7 +1565,7 @@ n
 
 				var psj=ps[j],B00=B[0][0],m=B00.length,n=B00[0].length,nextj='',end='',pts=0;
 
-consolelog(j,psj,'行m 列n',m,n);
+//consolelog(j,psj,'行m 列n',m,n);
 				var p0=psj[0],
 					isi=p0=='i',//行变换
 					isU=/iU=/.test(psj),isL=/jL=/.test(psj),isUL=isU||isL,//三角阵	不一定是行（列）阶梯
@@ -1573,45 +1577,45 @@ consolelog(j,psj,'行m 列n',m,n);
 					
 
 				var viA=Mtrx.opr1('cr'[+isi]+1,B00), viv=Arri(viA,0), vii=Arri(viA,1), ui=[],uv=[], BmaybeE=1, headIndexUnique=1;
-			/*	consolelog('viv = \n',viv);
-				consolelog('viA = \n',viA);
+			/*	//consolelog('viv = \n',viv);
+				//consolelog('viA = \n',viA);
 				
 			*/
 				for(var i=0;i<vii.length;i++){
-				consolelog(i,vii[i]);
+				//consolelog(i,vii[i]);
 					if(vii[i]>-1){
-					consolelog(i,vii[i]);
+					//consolelog(i,vii[i]);
 						if(headIndexUnique && ui.indexOf(vii[i])>-1){
 							headIndexUnique=0
 						}
 						ui.push(vii[i]);
 						uv.push(viv[i]);
 					}
-				consolelog(BmaybeE);
+				//consolelog(BmaybeE);
 					if(BmaybeE && i && (vii[i-1]>vii[i] && vii[i]>-1 || vii[i-1]<vii[i] && vii[i-1]<0)){
 						BmaybeE=0
 					}
-			//		consolelog(vii,i,(vii[i-1]>vii[i] && vii[i]>-1 || vii[i-1]<vii[i] && vii[i-1]<0));
+			//		//consolelog(vii,i,(vii[i-1]>vii[i] && vii[i]>-1 || vii[i-1]<vii[i] && vii[i-1]<0));
 				}
 
 				var BisU=Mtrx.is.b1.U(B00), BisL=Mtrx.is.b1.L(B00), BisD=BisU && BisL,
 					BisE=BmaybeE && headIndexUnique, BisS=BisE && Mtrx.is.b1['列行'[+isi]+'最简'](B00), BisI=BisD && BisS && Mtrx.is.b1['行列'[+isi]+'最简'](B00);//与Mtrx.is.b1.I(B00)是准单位阵不同
 
-consolelog(vii.join());
+//consolelog(vii.join());
 				if(isU && BisU || isL && BisL || isD && BisD || isE && BisE || isS && BisS || isI && BisI){
 					continue;
 				}
 
-consolelog(B00, BisE);
-consolelog('B00矩阵 = ');
-consolelog(B00.join('\n'));
-BisD && consolelog('是对角阵吗？', BisD);
-BisE && consolelog('是'+'列行'[+isi]+'阶梯型吗？', BisE, BisE?'':['索引集有逆序吗？',BmaybeE,'索引集有重复吗？',headIndexUnique,'索引集: ',viA.join('\n')].join('\n'));
-BisS && consolelog('是'+'列行'[+isi]+'最简形吗？', BisS);
-BisI && consolelog('是标准型形吗？', BisI);
+//consolelog(B00, BisE);
+//consolelog('B00矩阵 = ');
+//consolelog(B00.join('\n'));
+//BisD && consolelog('是对角阵吗？', BisD);
+//BisE && consolelog('是'+'列行'[+isi]+'阶梯型吗？', BisE, BisE?'':['索引集有逆序吗？',BmaybeE,'索引集有重复吗？',headIndexUnique,'索引集: ',viA.join('\n')].join('\n'));
+//BisS && consolelog('是'+'列行'[+isi]+'最简形吗？', BisS);
+//BisI && consolelog('是标准型形吗？', BisI);
 
 				if(isU || isD && !BisU){
-				consolelog('化上三角');
+				//consolelog('化上三角');
 					for(var i=0;i<m-1;i++){
 						var v1=Arri(B00,i).slice(i+1);
 						if(/[^0]/.test(v1.join(''))){
@@ -1622,16 +1626,16 @@ BisI && consolelog('是标准型形吗？', BisI);
 								for(var k=i+1;k<m;k++){
 									var vk=''+viv[k];
 									/*
-										consolelog('k = \n',k);
-										consolelog('viv = \n',viv);
-										consolelog('vk = \n',vk);
-										consolelog('vii[k] = \n',vii[k]);
-										consolelog('i = \n',i);
+										//consolelog('k = \n',k);
+										//consolelog('viv = \n',viv);
+										//consolelog('vk = \n',vk);
+										//consolelog('vii[k] = \n',vii[k]);
+										//consolelog('i = \n',i);
 										*/
 									if(vii[k]==i){
 										if(vk=='1'){
 											psi.push('i'+(i+1)+'~~'+'i'+(k+1));
-										consolelog(ps);
+										//consolelog(ps);
 											pts++;
 											nextj=1;
 											break;
@@ -1649,12 +1653,12 @@ BisI && consolelog('是标准型形吗？', BisI);
 								
 								if(Bii=='0'){
 									
-									consolelog('kvA = ',kvA);
-									consolelog('kA = ',kA);
+									//consolelog('kvA = ',kvA);
+									//consolelog('kA = ',kA);
 									
 									ps.splice(j+1,0,'i'+(i+1)+'~~'+'i'+(kA[kvA.indexOf(''+fmin(kvA))]+1));
 									
-									consolelog(ps);
+									//consolelog(ps);
 									pts++;
 									nextj=1;
 									break;
@@ -1676,7 +1680,7 @@ BisI && consolelog('是标准型形吗？', BisI);
 								nextj=1;
 								break;
 							}
-						consolelog('kvA = \n',kvA.join('\n'));
+						//consolelog('kvA = \n',kvA.join('\n'));
 						
 						
 							var psi=[];
@@ -1700,7 +1704,7 @@ BisI && consolelog('是标准型形吗？', BisI);
 
 
 				if(isL || isD && !BisL){
-				consolelog('化下三角');
+				//consolelog('化下三角');
 					for(var i=0;i<n-1;i++){
 						var v1=B00[i].slice(i+1);
 						if(/[^0]/.test(v1.join(''))){
@@ -1773,19 +1777,19 @@ BisI && consolelog('是标准型形吗？', BisI);
 
 
 				if(isE || (isS||isI) && !BisE){
-				consolelog('化阶梯');
+				//consolelog('化阶梯');
 					for(var i=0,l=(isi?m:n);i<l;i++){
 						if(vii[i]<0){vii[i]=(isi?n:m)}
 						var i1=vii.slice(i+1).filter(function(t){return t>-1}),	mi1=fmin(i1);
 //[0 0 -1 -1;1 4 -1 0;-1 -4 2 -1]
-		//				consolelog('i = '+i,' vii=',vii.slice(i+1));
+		//				//consolelog('i = '+i,' vii=',vii.slice(i+1));
 						if(isArr(mi1)){//下面行全是0，这一条件不需要判断？
-							consolelog('下面行全是0？');
+							//consolelog('下面行全是0？');
 							//nextj=1;
 						//	end=1;
 							break;
 						}
-		//				consolelog(mi1, vii[i]);
+		//				//consolelog(mi1, vii[i]);
 						if(mi1<=vii[i]){
 							var Bii=''+B00[isi?i:mi1][isi?mi1:i],kvA=[],kA=[];
 							if(Bii=='0' || Bii!='1'){//vii[i]>i 从剩下的非零元，找1，或非零数
@@ -1854,7 +1858,7 @@ BisI && consolelog('是标准型形吗？', BisI);
 
 
 				if(isS && BisE || isI && !BisS){
-				consolelog('化最简',ps.join(' ; '));
+				//consolelog('化最简',ps.join(' ; '));
 					var psi=[];
 					for(var i=0,l=(isi?m:n);i<l;i++){
 						if(!/^[01]$/.test(viv[i])){
@@ -1889,8 +1893,8 @@ BisI && consolelog('是标准型形吗？', BisI);
 				}
 
 				if(isI){
-consolelog('后续的变换有：',ps.slice(j).join(';'));
-//				consolelog('下面的变换是 化标准型（准单位阵）');
+//consolelog('后续的变换有：',ps.slice(j).join(';'));
+//				//consolelog('下面的变换是 化标准型（准单位阵）');
 
 						ps.splice(j+1,0,psj.replace(/[ij]/,'ij'[+isi]));
 						continue
@@ -1901,9 +1905,9 @@ consolelog('后续的变换有：',ps.slice(j).join(';'));
 
 
 
-consolelog(ps.join(';'));
+//consolelog(ps.join(';'));
 				if(!end){
-consolelog('开始变换',ps.slice(j).join(';'));
+//consolelog('开始变换',ps.slice(j).join(';'));
 					var psj=ps[j].replace(/~~/g,'≈')
 
 					.replace(/j\d+.=i\d+[LU]?/g,function(t){//将j列（除i行外），都化为0
@@ -1912,10 +1916,10 @@ consolelog('开始变换',ps.slice(j).join(';'));
 							if(i!=ti && !/^0$/.test(C[i][tj])){
 								ts.push('i'+(i+1));
 								
-								consolelog(ti,tj,C[ti][tj],C);
+								//consolelog(ti,tj,C[ti][tj],C);
 								
 								ks.push(Mfn.oprs(['*','/'],[(+is_)*2-1,C[i][tj],C[ti][tj]],1).toStr());
-	consolelog(ks.join(' ; '));
+	//consolelog(ks.join(' ; '));
 							}
 						}
 						
@@ -1927,10 +1931,10 @@ consolelog('开始变换',ps.slice(j).join(';'));
 							if(i!=tj && !/^0$/.test(C[ti][i])){
 								ts.push('j'+(i+1));
 								
-								consolelog(ti,tj,C[ti][tj],C);
+								//consolelog(ti,tj,C[ti][tj],C);
 								
 								ks.push(Mfn.oprs(['*','/'],[(+is_)*2-1,C[ti][i],C[ti][tj]],1).toStr());
-	consolelog(ks.join(' ; '));
+	//consolelog(ks.join(' ; '));
 							}
 						}
 						return ts.join()+'+-'[+is_]+'=j'+(tj+1)+'×'+(ks.join()||0)
@@ -1944,14 +1948,14 @@ consolelog('开始变换',ps.slice(j).join(';'));
 							/÷ 各行（列）单位化（首个非零元素，化为1）
 							*× 各行（列）整数化（元素都化为整数）	同时针对特解（方阵后一列）化为整数（只考虑基础解系中只有1个解向量的情况）
 						*/
-						consolelog(t);
+						//consolelog(t);
 						var isi=/^i/.test(t), isS=/S/.test(t), isB=/B/.test(t), isb=/b/.test(t), istime=/[\*×]/.test(t),C=B[0][0],ks=[],ts=[],tejie='',
 							m=B[0][0].length,n=B[0][0][0].length, minmn=Math.min(m,n);
 						
-consolelog('新 m,n',m,n);
+//consolelog('新 m,n',m,n);
 						
 						if(istime){
-	//						consolelog(t,isb);
+	//						//consolelog(t,isb);
 							if(isi){
 
 								for(var i=(isB||isb?minmn+(+isb):0);i<(isS?minmn:m);i++){
@@ -1966,9 +1970,9 @@ consolelog('新 m,n',m,n);
 
 var newj=0;
 								for(var i=(isB||isb?minmn+(+isb):0);i<(isS?minmn:n);i++){
-consolelog(i,n,'minmn=',minmn,m,n);
+//consolelog(i,n,'minmn=',minmn,m,n);
 									var Cij=lcmFrac(Arri(C,i));
-	consolelog(Arri(C,i),'Cij = ',Cij,'\n',A.join('\n'));
+	//consolelog(Arri(C,i),'Cij = ',Cij,'\n',A.join('\n'));
 									if(Cij==1){
 										continue;
 									}
@@ -1977,15 +1981,15 @@ consolelog(i,n,'minmn=',minmn,m,n);
 									newj++;
 								}
 								
-consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
+//consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
 							//	if(!newj && isb && m+2<=n){
 								if(isb && m+2<=n){
 								//	var jm1=Arri(C,minmn+1);
 									var jm1=Arri(C,m);
-									consolelog('jm1 ',jm1);
+									//consolelog('jm1 ',jm1);
 									if(/\//.test(jm1)){
 										Cij=lcmFrac(jm1);
-										consolelog('Cij ',Cij);
+										//consolelog('Cij ',Cij);
 										if(Cij>1){
 											//tejie=';j'+(m+1)+'+=j'+n+'×1/'+Cij
 											
@@ -2008,7 +2012,7 @@ consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
 							}
 						}else{
 							if(isi){
-							consolelog(m,n);
+							//consolelog(m,n);
 								for(var i=(isB||isb?minmn+(+isb):0);i<(isS?minmn:m);i++){
 									for(var k=0;k<n;k++){
 										var Cij=C[i][k];
@@ -2016,7 +2020,7 @@ consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
 											break
 										}
 										if(!/^[01]$/.test(Cij)){
-										consolelog(i,k,Cij);
+										//consolelog(i,k,Cij);
 											ts.push('i'+(i+1));
 
 											ks.push(Cij);
@@ -2032,7 +2036,7 @@ consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
 											break
 										}
 										if(!/^[01]$/.test(Cij)){
-						consolelog(Cij);
+						//consolelog(Cij);
 											ts.push('j'+(i+1));
 
 											ks.push(Cij);
@@ -2043,11 +2047,11 @@ consolelog(newj,'newj = ',newj,'\n','isb = ',isb,' m+2 = ', m+2,'n =',n);
 							}
 						}
 
-	consolelog(ts.join()+'/*'[+istime]+'='+(ks.join()||0));
+	//consolelog(ts.join()+'/*'[+istime]+'='+(ks.join()||0));
 						return ts.join()+'/*'[+istime]+'='+(ks.join()||0)+tejie
 
 					}).replace(/.+\?[LU]?/g,function(t){//自动计算倍数，将其余指定行列，化为0
-consolelog('？');
+//consolelog('？');
 						var isi=/^i/.test(t), tA=t.replace(/[ijLU]/g,'').split(/.=/),is_=/-=/.test(t),isL=/L/.test(t),isU=/U/.test(t);
 							ks=[],ts=seqsA(tA[0]),ij=+tA[1].replace(/\D/g,'')-1,C=B[0][0];
 						for(var i=0;i<ts.length;i++){
@@ -2073,20 +2077,20 @@ consolelog('？');
 						}
 						return ks.join(';')
 					});
-	consolelog(B[0],psj);
-consolelog('\n矩阵是\n',B[0][0].join('\n'));
+	//consolelog(B[0],psj);
+//consolelog('\n矩阵是\n',B[0][0].join('\n'));
 					if(/[\+\-]=.+×-/.test(psj)){
-	consolelog('原来',psj);
+	//consolelog('原来',psj);
 						psj=psj.split('=')[0].replace(/[\+\-]$/,opinv)+'='+
 							psj.split('=')[1].replace(/[×,]./g,function(t){return t[0]+opneg(t[1])});
 						
-	consolelog('后来',psj);
+	//consolelog('后来',psj);
 						
 					}
 					psj=psj.replace(/×1(,1)*$/,'');
 
 
-	consolelog('接下来变换：',psj);
+	//consolelog('接下来变换：',psj);
 					if(/[×\*\/÷\+\-=]0/.test(psj)){//无需变换
 						continue
 					}
@@ -2099,10 +2103,10 @@ consolelog('\n矩阵是\n',B[0][0].join('\n'));
 
 
 					if(/^=/.test(psj)){
-					consolelog(B[0]);
+					//consolelog(B[0]);
 
 						B[0]=times([B[0][0][0][0],B[0][1]]);
-consolelog(psj);
+//consolelog(psj);
 						if(!ar[3]){
 							if(B[0]!=As.slice(-1)[0]){
 								As.push(B[0]);
@@ -2112,14 +2116,14 @@ consolelog(psj);
 						}
 						break;
 					}
-					consolelog(psj);
+					//consolelog(psj);
 					if(/[ij][ULDESI]/.test(psj)){
-	consolelog('继续 ',psj);
+	//consolelog('继续 ',psj);
 						continue;
 					}
 
 					B[0]=Mtrx.opr1('PT',B[0][0],psj,B[0][1]||1);//[结果矩阵，系数]
-	consolelog(psj,B[0]);
+	//consolelog(psj,B[0]);
 
 				}
 
@@ -2137,7 +2141,7 @@ consolelog(psj);
 						TB='J'+(/^fsi/.test(psj)?(n-1)+(B00[0].length>n?'_'+n:''):n);
 					}
 
-consolelog('B00 =',B00);
+//consolelog('B00 =',B00);
 					var Asi=isdet?(B00.length>1?times([Coe,'x']).replace('x',kdet(B00)):times([Coe,B00[0][0]])):
 
 						kmtrx(B00,'',isinv||iscong||TB?TB:'');
@@ -2145,11 +2149,11 @@ consolelog('B00 =',B00);
 						As.push(Asi);
 
 
-					consolelog(psj);
+					//consolelog(psj);
 						noteA.push(kfrac(Mtrx.note.PT(psj),1,'t'));
 					}
 
-					consolelog(psj);
+					//consolelog(psj);
 				}
 			}//j循环结束
 
@@ -2169,27 +2173,27 @@ consolelog('B00 =',B00);
 				As.push('秩是'+kfrac(Mtrx.opr1('秩',B00),1));
 				noteA.push('数一下非零行的行数');
 			}
-consolelog('求逆：'+isinv,psj,j+1,'/',ps.length);
+//consolelog('求逆：'+isinv,psj,j+1,'/',ps.length);
 			//if((isinv||iscong) && j+1>=ps.length){
 		//	if(!(isrank || isdet) && j+1>=ps.length && B00[0].length > m){
-		consolelog(m,n,op,isBr,'ps,j+1 = ',ps,j+1,'n列,m行 = ',n,m);
+		//consolelog(m,n,op,isBr,'ps,j+1 = ',ps,j+1,'n列,m行 = ',n,m);
 		
-		consolelog(op,!(isrank || isdet || op=='PTs'), j+1>=ps.length, isTc && n<m, !isBr && n>m);
+		//consolelog(op,!(isrank || isdet || op=='PTs'), j+1>=ps.length, isTc && n<m, !isBr && n>m);
 		
 			if(!(isrank || isdet || op=='PTs') && j+1>=ps.length && (isTc && n<m || !isBr && n>m)){
-				consolelog(B00,1,m,m+1,n);
-				consolelog(B00,n+1,m,1,n);
+				//consolelog(B00,1,m,m+1,n);
+				//consolelog(B00,n+1,m,1,n);
 
-			consolelog(isinvr,iscong);
-			consolelog(1,m,A[0].length+(isfsi?0:1));
+			//consolelog(isinvr,iscong);
+			//consolelog(1,m,A[0].length+(isfsi?0:1));
 				As.push(kmtrx(isinvr||iscong?subMtrx(B00,n+1,isBr?B00.length:m,1,n):subMtrx(B00,1,m, isinvl?m+1:A[0].length+(isfsi?0:1))));
-consolelog(end,'求逆或合同',psj);
+//consolelog(end,'求逆或合同',psj);
 				noteA.push('得到'+(isinv && !isinvl && !isinvr?(A.length!=A[0].length?'可':'')+'逆':'')+'矩阵');//+(isinvl?'A左除B A\\B':(isinvr?'A右除B B/A':''))
 			}
 
 			B[1]=Eq(As,noteA,'',isdet?'':'xrightarrow');
 			B[2]=psA;
-consolelog(psA);
+//consolelog(psA);
 
 
 			return B
@@ -2284,12 +2288,12 @@ consolelog(psA);
 			},p.split(';')).join(';').split(';');
 			for(var bi=0;bi<ps.length;bi++){
 				var ij=ps[bi].replace(/[ij]/g,'').split(','),K=ij.length/2,KA=[];
-consolelog(ij);
+//consolelog(ij);
 				var Bi=[Mtrx.opr1('拷',A),'',1-2*(eval(ij.join('+'))%2),ij];	//1-2*(eval(ij.join('+'))%2)
 				KA.t='Mtrx';
 				KA.typ='det';
-	consolelog(A);
-	consolelog(K);
+	//consolelog(A);
+	//consolelog(K);
 				for(var i=0;i<K;i++){
 
 					Bi[0].splice(+ij[i]-1-i,1);//挖行
@@ -2299,13 +2303,13 @@ consolelog(ij);
 
 					var KAi=[];
 					for(var j=0;j<K;j++){
-						consolelog(ij,);
+						//consolelog(ij,);
 						KAi.push(A[+ij[i]-1][+ij[j+K]-1])
 					}
 					KA.push(KAi);
 				}
 				if(K==1){
-					consolelog(K);
+					//consolelog(K);
 					Bi[1]=KA[0][0]
 				}else{
 					Bi[1]=KA;
@@ -2327,10 +2331,10 @@ consolelog(ij);
 			for(var i=0;i<m;i++){
 				B.push([]);
 				for(var j=0;j<n;j++){
-consolelog(j,i);
+//consolelog(j,i);
 					var Aji=Mtrx.opr1('Aij',A,[j+1,i+1]);
-					consolelog(Mtrx.opr1('det',Aji[0]));
-					consolelog(Aji[2]);
+					//consolelog(Mtrx.opr1('det',Aji[0]));
+					//consolelog(Aji[2]);
 					B[i].push(times([Mtrx.opr1('det',Aji[0]),Aji[2]]))
 
 				}
@@ -2362,12 +2366,12 @@ consolelog(j,i);
 			返回：[解集数组R, 变换数组C[[行列式,步骤]+], 步骤数组S]  解集用空数组表示无解
 			*/
 			var B=Mtrx.opr1('cramer',A), n=B[0].length,C=[],R=[],vars=ar[3]||'x1',ms=seqA(1,m);
-		consolelog(B);
+		//consolelog(B);
 			C.push(Mtrx.opr1('detPTs',B[0],(arl>2?p[0]:'')||(n<3?'S':'iU=;d;=')));
 
 			var d=C[0][0];
 
-consolelog(d);
+//consolelog(d);
 			if(/\d/.test(vars)){
 				ms=seqA(+vars.replace(/\D/g,''),m);
 				var indx=Arrf(function(t){return '_{'+t+'}'},ms);
@@ -2379,7 +2383,7 @@ consolelog(d);
 				
 				
 			}else{//唯一解
-				consolelog('唯一解');
+				//consolelog('唯一解');
 				
 				
 				
@@ -2396,7 +2400,7 @@ consolelog(d);
 						'=',Arrf(function(k){return frac(C[k][0]||'0',d,'')},ms),
 						'=',R));
 	
-				consolelog(S);
+				//consolelog(S);
 				return [R,C,S]
 			}
 
@@ -2447,7 +2451,7 @@ consolelog(d);
 
 			}
 			if(p){
-			consolelog(R[1]);
+			//consolelog(R[1]);
 				R[1]=kdet(A)+' = '+R[1]+' = '+ R[0]
 			}
 			return R
@@ -2491,7 +2495,7 @@ consolelog(d);
 			
 			
 	//		if(m<=3){
-				consolelog(A,Mtrx.opr1('detSar',A).join('+'));
+				//consolelog(A,Mtrx.opr1('detSar',A).join('+'));
 				//return Mtrx.opr1('eval',[[Arrf(nWrap,Mtrx.opr1('detSar',A)).join('+')]])[0][0]
 				
 				
@@ -2504,7 +2508,7 @@ consolelog(d);
 		}
 		if(op=='r'){//rank秩	使用初等变换求秩
 			var B00=Mtrx.opr1('rankPTs',A,'iE=',1)[0][0];
-			consolelog(B00);
+			//consolelog(B00);
 			//return +Mtrx.opr1('秩',B00)[0][0][0][0]
 			return Mtrx.opr1('秩',B00)
 		}
@@ -2523,7 +2527,7 @@ consolelog(d);
 			return ''
 		}
 		if(op=='特征矩阵'){
-	//		consolelog(op);
+	//		//consolelog(op);
 			return Mtrx.opr2('-',Mtrx.build.D(copyA('λ',m)),A)
 		}
 
@@ -2544,30 +2548,30 @@ consolelog(d);
 			}
 			
 			var trA=Mtrx.opr1('tr',A),tr=trA,r=Mtrx.opr1('r',A);
-			consolelog('求出迹',trA,tr,r);
+			//consolelog('求出迹',trA,tr,r);
 			
 			var dete=r<m?0:Mtrx.opr1('detPTs',A,'iU=;d;=')[0];
 			if(esn){
-				consolelog('已知特征值：',p,es);
+				//consolelog('已知特征值：',p,es);
 				tr=minus([tr,plus(es)]);
 			}
 			var f=function(i,k){//给出特征值i, 以及重数k，添加到集合中
 				var l=k-es.filter(function(t){return t==''+i}).length;
 				if(l){
-					consolelog('此前 迹',tr);
-					consolelog('特征值',i,' 遗漏重数',l);
+					//consolelog('此前 迹',tr);
+					//consolelog('特征值',i,' 遗漏重数',l);
 					es=es.concat(copyA(''+i,l));
 					esn+=l;
 					if(''+dete!='0'){
-						consolelog('行列式',dete);
+						//consolelog('行列式',dete);
 						dete=divide([dete,pow([i,l])]);
 					}
 					if((''+i)!='0'){
-						consolelog('迹',tr);
+						//consolelog('迹',tr);
 						tr=minus([tr,times([i,l])]);
 					}
 					if(esn+1==m){
-						consolelog('最后1个特征值是 '+tr);
+						//consolelog('最后1个特征值是 '+tr);
 						es.unshift(tr);
 						esn++;
 					}
@@ -2575,10 +2579,10 @@ consolelog(d);
 			};
 
 			if(''+dete=='0'){
-				consolelog('行列式为0，有特征值0');
+				//consolelog('行列式为0，有特征值0');
 				f(0,m-r);
 				if(ar[3]){
-					consolelog('行列式为0，秩为'+r+',则含有特征值0（'+(m-r)+'重）');
+					//consolelog('行列式为0，秩为'+r+',则含有特征值0（'+(m-r)+'重）');
 					C.push('行列式为0，秩为'+r+',则含有特征值0（'+(m-r)+'重）');
 				}
 				/*
@@ -2639,7 +2643,7 @@ consolelog(d);
 					Aj.splice(i,1);
 					if(/^0*$/.test(Ai.join('')) || /^0*$/.test(Aj.join(''))){
 						var r0=Mtrx.opr1('r',Mtrx.opr2('-',Mtrx.build.D(copyA(Aii,m)),A));
-						consolelog('主对角线 有特征值 '+Aii,' 迹：',tr);
+						//consolelog('主对角线 有特征值 '+Aii,' 迹：',tr);
 						//f(Aii,r0);
 						f(Aii,m-r0);
 						if(r[3]){
@@ -2653,7 +2657,7 @@ consolelog(d);
 				for(var i=1;i<10;i++){
 					if(esn==m){break}
 					if(es.indexOf(''+i)<0){
-						consolelog('猜测特征值 ',i);
+						//consolelog('猜测特征值 ',i);
 						var r0=Mtrx.opr1('r',Mtrx.opr2('-',Mtrx.build.D(copyA(i,m)),A));
 						if(r0<m){//m-r0就是该特征值的重数
 							f(i,m-r0);
@@ -2662,7 +2666,7 @@ consolelog(d);
 					
 					if(esn==m){break}
 					if(es.indexOf('-'+i)<0){
-						consolelog('猜测特征值 -',i);
+						//consolelog('猜测特征值 -',i);
 						var r0=Mtrx.opr1('r',Mtrx.opr2('+',Mtrx.build.D(copyA(i,m)),A));
 						if(r0<m){//m-r0就是该特征值的重数
 							f(-i,m-r0);
@@ -2674,13 +2678,13 @@ consolelog(d);
 				if(Mtrx.is.b1['列正交'](A) && Mtrx.is.b1['列等模'](A)){/*列正交向量单位化，会得到正交矩阵Q（特征值是±1） AP=Q 或A/x=Q	特征值是±列向量模x
 					数量实正交矩阵kQ，特征值是±k，其中负特征值的个数s满足tr(kQ) = k(n-2s)  |kQ| = (-1)^s k^n
 					*/
-					consolelog('列正交  列等模');
+					//consolelog('列正交  列等模');
 					
 					var k=Mtrx.opr1('向量模1',Arri(A,0));
-					consolelog('向量模1',k);
+					//consolelog('向量模1',k);
 					if(es.indexOf(''+k)<0){
 						var s=minus([m,divide([trA,k])])/2;
-						consolelog('重数s= ',s);
+						//consolelog('重数s= ',s);
 						
 						if(/√/.test(k)){//出现开方√，除法运算出现死循环，特别处理一下，直接添加成对±k，未考虑重数>1的情况
 							es.unshift(k,neg(k));
@@ -2690,11 +2694,11 @@ consolelog(d);
 						}else{
 						
 							f(k,m-s);
-							consolelog('es= ',es,'esn= ',esn,'m= ',m);
+							//consolelog('es= ',es,'esn= ',esn,'m= ',m);
 							f(neg(k),s);
-							consolelog('es= ',es,'esn= ',esn,'m= ',m);
+							//consolelog('es= ',es,'esn= ',esn,'m= ',m);
 							if(r[3]){
-								consolelog('数量实正交矩阵kQ，','则有特征值是±'+k);
+								//consolelog('数量实正交矩阵kQ，','则有特征值是±'+k);
 								C.push('数量实正交矩阵kQ，','则有特征值是±'+k);
 							}
 						}
@@ -2705,7 +2709,7 @@ consolelog(d);
 			if(esn<m){
 				if(Mtrx.is.b1['列等和'](A)){/*列向量和相等，则此和必为特征值
 					*/
-					consolelog('列等和 ');
+					//consolelog('列等和 ');
 					var k=plus(A[0]);
 					if(es.indexOf(''+k)<0){
 						var r0=Mtrx.opr1('r',Mtrx.opr2('-',Mtrx.build.D(copyA(k,m)),A));
@@ -2717,7 +2721,7 @@ consolelog(d);
 				}
 				if(Mtrx.is.b1['行等和'](A)){/*行向量和相等，则此和必为特征值
 					*/
-					consolelog('行等和 ');
+					//consolelog('行等和 ');
 					var k=plus(Arri(A,0));
 					if(es.indexOf(''+k)<0){
 						var r0=Mtrx.opr1('r',Mtrx.opr2('-',Mtrx.build.D(copyA(k,m)),A));
@@ -2738,12 +2742,12 @@ consolelog(d);
 							也即-A的伴随矩阵的迹 tr((-A)*) = tr( (-1)^(n-1)A* ) = (-1)^(n-1) tr(A*)
 						*/
 						dete=Mtrx.opr1('tr',Mtrx.opr1('*',Mtrx.opr1('-',A)));
-						consolelog('tr((-A)*) = ',dete);
+						//consolelog('tr((-A)*) = ',dete);
 						
 						
 					}
 					
-					consolelog('二次方程求根');
+					//consolelog('二次方程求根');
 					var last2=equationA([1,neg(tr),dete]);
 					es.push(last2[0][0],last2[0][1]);
 					esn=m;
@@ -2753,7 +2757,7 @@ consolelog(d);
 					var f1=Mtrx.opr1('detPTs',Mtrx.opr2('-',Mtrx.build.D(copyA(1,m)),A),'iU=;d;=')[0],
 						f_1=Mtrx.opr1('detPTs',Mtrx.opr2('-',Mtrx.build.D(copyA(-1,m)),A),'iU=;d;=')[0],
 						a1=divide([minus([f1,f_1]),2]);
-					consolelog('3次方程1次项系数是',a1);
+					//consolelog('3次方程1次项系数是',a1);
 
 					var last3=equationA([1,neg(tr),a1,neg(dete)]);
 					es.push(last3[0][0],last3[0][2],last3[0][3]);
@@ -2769,7 +2773,7 @@ consolelog(d);
 					
 				}
 			}
-			consolelog(C.join('\n\n'));
+			//consolelog(C.join('\n\n'));
 			if(es.filter(function(t){return nisn(t,'',0)}).length==m){//全是整数，进行排序
 				es.sort(sortBy.num);
 			}
@@ -2805,13 +2809,13 @@ consolelog(d);
 				var esC1=Mtrx.opr1('尝试求特征值',A,es,ar[3]);
 				es=esC1[0];
 			}
-			consolelog(es);
+			//consolelog(es);
 			if(ar[3]){
 				var eM=Mtrx.opr1('特征矩阵',A), eP=Mtrx.opr1('特征多项式',A,es,ar[3]);
 				C.push('|λI-A|',kdet(eM),eP[0],0);
 				var esA=countA(es);//[特征值去重数组，相应重数数组]
-			console.log(esA);
-			consolelog(esA.join('\n'));
+	//		console.log(esA);
+			//consolelog(esA.join('\n'));
 				esA[0]=Arrf(Mfn.toStr,esA[0]);
 				C=['A='+kmtrx(A)+', '+C.join('='),'解得λ = '+count2pow(esA,2)];//, '备注：',esC1[1]];
 
@@ -2858,9 +2862,11 @@ consolelog(d);
 			}
 
 			var esA=countA(es),esA0=esA[0],esA1=esA[1], eVA=[], CA=[];
-	//		consolelog('统计特征值',esA.join('\n'))
+	//		//consolelog('统计特征值',esA.join('\n'))
 			for(var i=0;i<esA0.length;i++){//遍历不同的特征值
 				//Mtrx.opr2('*',Mtrx.build.I(m),p[i])
+
+				console.log(i, Mtrx.opr2('-',Mtrx.build.I(m,m,esA0[i]),A));
 				var Bi=Mtrx.opr1('fshPTs',Mtrx.opr2('-',Mtrx.build.I(m,m,esA0[i]),A),'iS=;fsh;iS=;jB*=',!ar[3]), Bi00=Bi[0][0];//[[结果矩阵，系数],过程html]
 				var ei=subMtrx(Bi00,1,m,m+1),ein=ei[0].length,eiv=[],eivs=[];
 				B.push(ei);//特征向量组
@@ -2879,7 +2885,7 @@ consolelog(d);
 					diaged=0
 				}
 				
-			consolelog('几何重数：',ein,'\n','代数重数：',esA1[i]);
+			//consolelog('几何重数：',ein,'\n','代数重数：',esA1[i]);
 				if(ar[3]){
 					//CA.push(['将特征值'+kfrac(esA0[i],1)+'代入特征方程(λI-A)x=0',Bi[1],'得到属于特征值'+esA0[i]+'的特征向量'+kfrac(eivs.join(', '),1)]);
 					CA.push(['将特征值'+kfrac(esA0[i],1)+'代入特征方程(λI-A)x=0',Bi[1],'得到属于特征值'+esA0[i]+'的特征向量'+Arrf(kmtrx,eivs).join(', ')]);
@@ -2982,7 +2988,7 @@ consolelog(d);
 			
 			for(var i=0;i<10;i++){
 				var Bi=Mtrx.opr2('*',B[i],A);
-				consolelog(i,Bi,Mtrx.toStr(Bi));
+				//consolelog(i,Bi,Mtrx.toStr(Bi));
 				if(Mtrx.is.b1[0](Bi)){
 					break
 				}else{
@@ -3023,7 +3029,7 @@ consolelog(d);
 			
 
 				var a=ar[3], B0=[[a]],B1=[[]];
-				consolelog(a);
+				//consolelog(a);
 				for(var i=0;i<m;i++){
 
 					B1[0].push(divide([A[0][i],a]));
@@ -3041,14 +3047,14 @@ consolelog(d);
 			if(p=='ps'){/*分解为初等矩阵的乘积	
 				返回 [初等矩阵数组, 步骤, 变换命令组]
 				*/
-				consolelog(ar[3]);
+				//consolelog(ar[3]);
 				var B=Mtrx.opr1('invlPTs',A,'iS=',!ar[3]);
-				consolelog(B,m);
+				//consolelog(B,m);
 				
 				B[0]=Mtrx.pt.ps2invAs(B[2],m);
 				
 				if(ar[3]){
-					consolelog(B);
+					//consolelog(B);
 					var l=B[0].length, Qs=Mtrx.pt.ps2As(B[2],m),S=seqA(1,l),R=seqA(1,l).reverse();
 					B[1]+=['','上述每一步,相应初等变换矩阵分别是',
 					concat(ZLR(ZLR3('P_{',S,'}',' ')), copyA('=',l), Arrf(zmtrx,Qs)),
@@ -3098,7 +3104,7 @@ consolelog(d);
 //矩阵二元运算
 //当A、B中有1个是矩阵，另一个是数字，则对矩阵作相应的位操作
 //求负矩阵 opr2('-',0,B) opr2('*',A,-1) opr2('*',-1,B) opr2('/',A,-1)
-consolelog(op,A,B);
+//consolelog(op,A,B);
 		var C=[],AA=isArr(A),BB=isArr(B),Ar=A.length,Ac=AA?A[0].length:1,Br=B.length,Bc=BB?B[0].length:1,ars=$.makeArray(arguments).slice(1),arl=ars.length;
 		C.t='Mtrx';
 
@@ -3260,7 +3266,7 @@ consolelog(op,A,B);
 
 	note:{
 		PT:function(t){//初等变换 步骤说明
-			consolelog(t);
+			//consolelog(t);
 			return t.replace(/(\d)[LUDI]/g,'$1').replace(/^0/,'显然为0：').replace(/:([ij]\d+)/,'、$1成比例')
 				.replace(/fs[hi]/,'增行增列，求基础解系').replace(/[ij]U=/g,'化上三角').replace(/[ij]L=/g,'化下三角').replace(/[ij]D=/g,'化对角阵').replace(/[ij]I=/g,'化最简形')
 				.replace(/i(\d+)/g, '第$1行').replace(/j(\d+)/g, '第$1列').replace(/≈|~~/g,'交换').replace(/~/g,'到')
@@ -3305,7 +3311,7 @@ Mtrx.pt={
 		return A
 	},
 	pinv:function(p){//单个变换，返回逆变换命令
-		consolelog(p);
+		//consolelog(p);
 		var q='';
 		if(/≈/.test(p)){
 			q=p
