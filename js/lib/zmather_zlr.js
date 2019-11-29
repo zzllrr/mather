@@ -949,8 +949,10 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 				TBi2j3_TBi4j2 多个单元格，用下划线_隔开
 	
 
-				colspan 合并多列
-				rowspan 合并多行
+				span[i2j3][i4j6] 合并单元格(第2行第3列，至第4行第6列的单元格区域)
+
+				Span[i2j3][i4j6] 合并单元格(单元格区域内，有连续相同值的子区域时，才按需合并)
+				
 
 	bds 指定线条风格
 			
@@ -971,6 +973,8 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 
 		var th = '', b = '</tbody></table>', colh = '', edi = /edit/.test(bd),
 			bds = /dash|dot|dou|set|ridge|solid/.test(bd) ? bd.match(/solid|dash|dot|double|groove|inset|outset|ridge/g).join(' ') : '',
+			span=/spani\d+j\d+/.test(bd)?Arrf(function(x){return Arrf(Number,x.split(/\D+/g))}, bd.match(/spani\d+j\d+i\d+j\d+/g)):'',
+			Span=/Spani\d+j\d+/.test(bd)?Arrf(function(x){return Arrf(Number,x.split(/\D+/g))}, bd.match(/Spani\d+j\d+i\d+j\d+/g)):'',
 			r = [], isA = t instanceof Array, A = isA ? t : t.split('\n'), n = A.length, m = (isA ? (n?A[0]:[]) : A[0].split('\t')).length;
 
 		if (thead) {
@@ -1017,6 +1021,99 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 
 		}
 
+
+		if(Span){
+			var SpanA=[], Arr=[];
+
+
+			for (var i = 0; i < n; i++) {
+				var ri = [], Ai = isA ? A[i] : A[i].split('\t');
+				Arr.push(Ai)
+			}
+
+			for(var k=0;k<Span.length;k++){
+				var Sk=Span[k];
+				if(Sk[1]==Sk[3]){
+					for(j=Sk[2]-1;j<Sk[4]-1;j++){
+						if(Arr[Sk[1]-1][j]!=Arr[Sk[1]-1][j+1]){
+							Sk[2]=j+1;
+						}
+					}
+					if(Sk[2]!=Sk[4]){
+						SpanA.push(Sk)
+					}
+
+				}else if(Sk[2]==Sk[4]){
+					for(i=Sk[1]-1;i<Sk[3]-1;i++){
+						if(Arr[i][Sk[2]-1]!=Arr[i+1][Sk[2]-1]){
+							Sk[1]=i+1;
+						}
+					}
+					if(Sk[1]!=Sk[3]){
+						SpanA.push(Sk)
+					}
+				}else if(Arr[Sk[1]-1][Sk[2]-1]!=Arr[Sk[1]][Sk[2]]){
+					
+					Span.splice(k,0,['',Sk[1], Sk[2], Sk[1], Sk[4]], ['',Sk[1], Sk[2], Sk[3], Sk[2]],  ['',Sk[1]+1, Sk[2]+1, Sk[3], Sk[4]])
+
+				}else if(Arr[Sk[1]-1][Sk[2]-1]!=Arr[Sk[1]-1][Sk[2]]){
+
+					Span.splice(k,0,['',Sk[1], Sk[2]+1, Sk[1], Sk[4]], ['',Sk[1], Sk[2], Sk[3], Sk[2]],  ['',Sk[1]+1, Sk[2]+1, Sk[3], Sk[4]])
+					
+				}else if(Arr[Sk[1]-1][Sk[2]-1]!=Arr[Sk[1]][Sk[2]-1]){
+
+					Span.splice(k,0,['',Sk[1], Sk[2], Sk[1], Sk[4]], ['',Sk[1]+1, Sk[2], Sk[3], Sk[2]],  ['',Sk[1]+1, Sk[2]+1, Sk[3], Sk[4]])
+				}else{
+					var bk=0;
+					for(j=Sk[2];j<Sk[4]-1;j++){
+						
+						for(var i=Sk[1]-1;i<Sk[3]-1;i++){
+							if(Arr[i][j]!=Arr[Sk[1]-1][Sk[2]-1]){
+								Sk[4]=j;
+								bk=1;
+								break;
+							}
+						}
+						if(bk){
+							break
+						}
+					}
+
+
+
+					var bk=0;
+					for(i=Sk[1];i<Sk[3]-1;i++){
+						
+						for(var j=Sk[2]-1;j<Sk[4]-1;j++){
+							if(Arr[i][j]!=Arr[Sk[1]-1][Sk[2]-1]){
+								Sk[3]=i;
+								SpanA.push(Sk);
+								bk=1;
+								break;
+							}
+						}
+						if(bk){
+							break
+						}
+					}
+					if(!bk){
+						SpanA.push(Sk);
+					}
+
+				}
+
+
+			}
+
+			if(span){
+				span=span.concat(SpanA);
+			}else{
+				span=SpanA;
+			}
+		}
+
+
+		//console.log(span);
 		for (var i = 0; i < n; i++) {
 			var ri = [], Ai = isA ? A[i] : A[i].split('\t');
 			for (var j = 0; j < m; j++) {
@@ -1079,7 +1176,24 @@ var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strb
 
 				}
 				//console.log(Ai[j]);
-				ri.push('<td class="' + (c ? zlr2(c, bds || '').trim() : 'bd0') + (edi ? '" contenteditable="true' : '') + '">' + (Ai[j] == undefined ? '' : Ai[j]) + '</td>')
+				var s='', same='';
+				for(var k=0;k< span.length;k++){
+					var si=span[k];
+					if(i+1 == si[1] && j+1 == si[2]){
+
+						s=(si[3]>si[1] ?' rowspan='+(si[3]-si[1]+1):'')+(si[4]>si[2] ?' colspan='+(si[4]-si[2]+1):'');
+						break;
+					}
+					if(i+1 >= si[1] && j+1 >= +si[2] && i+1 <= +si[3] && j+1 <= +si[4] ){
+						s='inRange';
+						break
+					}
+
+				}
+				if(s!='inRange'){
+					ri.push('<td'+s+' class="' + (c ? zlr2(c, bds || '').trim() : 'bd0') + (edi ? '" contenteditable="true' : '') + '">' + (Ai[j] == undefined ? '' : Ai[j]) + '</td>')
+				}
+				
 			}
 			r.push(XML.wrapE('tr', (colh ? '<th class="bdr bdt' +
 				(/TBr?c/.test(bd) || (new RegExp('I(\\d+_)*' + (i + 1), '')).test(bd) ? ' bdl bdb' : '') +
