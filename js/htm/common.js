@@ -218,13 +218,13 @@ tooltip[tool].k，存储提示工具栏	键使用路径URI
     'isMixedFrac':function(t){
         return /\(\d+\)\d+\/\d+/.test(t)
     },
-    'randN':function(digiAA,signAA, numberTypeA){
+    'randN':function(digiAA,signAA, numberTypeA, latex){
         var nA=numberTypeA || ['Integer','Fraction','Fraction Unit',
         'Propper Fraction','Impropper Fraction',//'Mixed Fraction',
         'Reducible Fraction','Irreducible Fraction',
         'Decimal','Pure Decimal'], nl=nA.length;
         var x=Random(nl)-1;
-        return RandomNumber[nA[x]](isArr(digiAA,1)?digiAA[x]:digiAA, isArr(signAA,1)?signAA[x]:signAA)
+        return RandomNumber[nA[x]](isArr(digiAA,1)?digiAA[x]:digiAA, isArr(signAA,1)?signAA[x]:signAA, latex)
     },
     'Opr4':function(digiAA,signAA, numberTypeA, layerA, oprs){
         var s=RandomNumber.randN(), l0=1,l1=1;
@@ -251,51 +251,53 @@ tooltip[tool].k，存储提示工具栏	键使用路径URI
 
         return RandomNumber.sign(signA)+(Random(10**d1-10**(d0-1))+10**(d0-1)-1)
     },
-    'Fraction':function(digiA,signA){
-        return RandomNumber.sign(signA)+[RandomNumber.Integer(digiA),RandomNumber.Integer(digiA)].join('/')
+    'Fraction':function(digiA,signA,latex){
+        var A=[RandomNumber.Integer(digiA),RandomNumber.Integer(digiA)];
+        return RandomNumber.sign(signA)+(latex?kfrac(A):A.join('/'))
     },
-    'Fraction Unit':function(digiA,signA){
-        return RandomNumber.sign(signA)+[1,RandomNumber.Integer(digiA)].join('/')
+    'Fraction Unit':function(digiA,signA,latex){
+        var A=[1,RandomNumber.Integer(digiA)];
+        return RandomNumber.sign(signA)+(latex?kfrac(A):A.join('/'))
     },
-    'Propper Fraction':function(digiA,signA){
+    'Propper Fraction':function(digiA,signA,latex){
         var x=1, s=RandomNumber.sign(signA);
         while(x){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(+X[1]<+X[0]){X.reverse()}
 
             if(+X[0]<+X[1]){
-                return s+X.join('/')
+                return s+(latex?kfrac(X):X.join('/'))
             }
         }
     },
-    'Impropper Fraction':function(digiA,signA){
+    'Impropper Fraction':function(digiA,signA,latex){
         var s=RandomNumber.sign(signA);
         var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
         if(+X[0]<+X[1]){X.reverse()}
 
-        return s+X.join('/')
+        return s+(latex?kfrac(X):X.join('/'))
     },
-    'Mixed Fraction':function(digiA,signA){
+    'Mixed Fraction':function(digiA,signA,latex){
         var s=RandomNumber.sign(signA);
         var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
 
-        return s+X[0]+'+00+'+X.slice(1).join('/') //s+X[0]+frac(X[1],X[2],'')
+        return s+X[0]+(latex?kfrac(X.slice(1)):'+00+'+X.slice(1).join('/')) //s+X[0]+frac(X[1],X[2],'')
     },
-    'Reducible Fraction':function(digiA,signA){
+    'Reducible Fraction':function(digiA,signA,latex){
         var x=1, s=RandomNumber.sign(signA);
         while(x){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(FracReduct(X)!=X.join('/')){
-                return s+X.join('/')
+                return s+(latex?kfrac(X):X.join('/'))
             }
         }
     },
-    'Irreducible Fraction':function(digiA,signA){
+    'Irreducible Fraction':function(digiA,signA,latex){
         var x=1, s=RandomNumber.sign(signA);
         while(x){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(FracReduct(X)==X.join('/')){
-                return s+X.join('/')
+                return s+(latex?kfrac(X):X.join('/'))
             }
         }
     },

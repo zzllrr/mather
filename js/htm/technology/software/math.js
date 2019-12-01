@@ -29,6 +29,14 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 	[href(Hs+'www.wolframalpha.com','Wolfram Alpha'),gM('Web'),''],
 	[href(Hs+'www.mathnotepad.com','Math Notepad'),gM(['Web']),'Math Notebook'],
 
+
+
+	[href(Hs+'www.sosmath.com','SOS Math'),gM(['Web']),'free resource for math review material from Algebra to Differential Equations! The perfect study site for high school, college students and adult learners. Get help to do your homework, refresh your memory, '+
+		href(Hs+'www.sosmath.com/cyberexam/cyber.html','prepare for a test')+', ....'],
+
+
+	[href(H+'www.mathcurve.com','Math Curve'),gM('Web'),''],
+	[href(H+'www.2dcurves.com','2D Curves'),gM('Web'),''],
 	[href(Hs+'jsxgraph.org','JSXGraph'),gM('Web'),'interactive geometry, function plotting, charting, and data visualization'+href(Hs+('jsxgraph.org/wiki/index.php/Category:Examples'),'Examples')],
 	[href(Hs+'start.sketchometry.org','Sketchometry'),gM('Web'),'Sketch Geometry - Sketchometry,convert hand drawings into geometric constructions'],
 ],'TBrc'))+
@@ -40,13 +48,13 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 
 	[github('arguiot/Descartes'),'JS + PNG','A small plotting JavaScript library, made for '+github('arguiot/TheoremJS')+' - Math framework'],
 	[href(Hs+'kisonecat.com/phase-plot/','Phase Plot'),'JS + GLSL','Plot complex functions'+github('kisonecat/phase-plot')],
-	[href(Hs+'mathjs.org/docs/reference/functions.html','math.js'),'',github('josdejong/mathjs')+' 数学JS插件，支持多种运算，有各种扩展增强版本 '+href(Hs+'jsbin.com/devacu/edit?html,output','在线演示')],
+	[github('josdejong/mathjs'),'',href(Hs+'mathjs.org/docs/reference/functions.html',gM('Function'))+' 数学JS插件，支持多种运算，有各种扩展增强版本 '+href(Hs+'jsbin.com/devacu/edit?html,output','在线演示')],
 
 	[github('benfred/contour_plot','','Contour Plot'),'D3 Plugin',gM('Contour')+' - draw contour plots of 2D functions'],
 
 	[href(H+'sylvester.jcoglan.com/docs.html','Sylvester'),'','Vector, Matrix, Line, Plane '+github('jcoglan/sylvester')],
 
-	[github('Khan/KAS'), 'KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
+	[github('Khan/KAS'), '','KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
 
 
 	[github('HarryStevens/geometric'),'','Geometric.js - library for doing geometry'],
@@ -58,7 +66,7 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 	[href(H+'victorjs.org','victor.js'),'','2D vector maths library'],
 
 	
-	[href(H+'algebrite.org','Algebrite.js'),'','symbolic computation'],
+	[href(H+'algebrite.org','Algebrite.js'),'','symbolic computation '+href(H+'algebrite.org/docs/latest-stable/reference.html',gM('Function'))],
 
 	[github('nicolewhite/algebra.js'),'','Build, display, and solve algebraic equations'],
 
@@ -74,7 +82,7 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 	[github('socraticorg/mathsteps'),'','mathsteps from socratic - Step by step math solutions'],
 
 	
-	
+	[href(H+'jsdraw2dx.jsfiction.com','jsDraw2DX'),'','SVG Graphics Library'],
 
 	[github('toji/gl-matrix'),'','glMatrix - perform vector and matrix operations stupidly fast! By hand-tuning each function for maximum performance and encouraging efficient usage patterns through API conventions, glMatrix will help you get the most out of your browsers Javascript engine'],
 	
@@ -103,9 +111,16 @@ detail('LaTeX',Table([i18(ZLR('Tool Type Summary'))],[
 	[github('Khan/math-input'),gM('Web'),'math-input = react + redux + mathquill '],
 	[href(Hs+'mathlive.io/examples/','MathLive'),'JS',github('arnog/mathlive')],
 
+	[href(H+'www.jmeditor.com/jme/demo.html','JMEditor'),'JS','在线公式编辑器'],
 
+	[href(Hs+'mathscribe.com/author/jqmath.html','jqMath'),'JS','a JavaScript module that makes it easy to put formatted mathematical expressions in web pages'],
 
+	[href(H+'www.forkosh.com/mathtex.html','mathTeX'),'CGI','a program that displays math on the web'],
+	[href(H+'www.ams.org/publications/authors/tex/amslatex','AMS-LaTeX'),'','an extension package for LaTeX'],
 
+	[ul([href(H+'www.unics.uni-hannover.de/nhtcapri/mathematics.html','Formula in HTML4'),
+	href(H+'www.unics.uni-hannover.de/nhtcapri/mathematics.html','HTML with CSS'),
+	href(Hs+'mathscribe.com/mathscribe/test/tests.html?!perf','MathML Test')]),'HTML4',gM('Deprecated')],
 ],'TBrc'))+
 
 detail(gM('Client'),Table([i18(ZLR('Tool Type Summary'))],[
@@ -134,6 +149,8 @@ detail(gM('Client'),Table([i18(ZLR('Tool Type Summary'))],[
 	[github('Macaulay2/M2'),gM('Client'),gM(['Algebraic Geometry','Commutative Algebra'])+' '+href(H+'macaulay2.com','Macaulay2')],
 
 	[github('gap-system/gap'),gM('Client'),'GAP - Groups, Algorithms, Programming. '+gM('Computational Discrete Algebra')],
+
+	[href(H+'www.mathgrapher.com','mathgrapher'),gM(['Client']),'The mathematical graphing tool for students, scientists and engineers. Draw and analyse Functions and Data in 2D and 3D. Draw surface graphs, contour plots and cross-sections through contour plots. Includes linear and nonlinear curve fitting, integration and analysis of coupled ordinary differential equations, iteration and analysis of multi-dimensional maps, matrix operations, Lindenmayer systems and soms cellalar automata.'],
 
 ],'TBrc'))+
 
