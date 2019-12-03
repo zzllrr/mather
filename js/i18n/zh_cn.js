@@ -35,6 +35,7 @@ lang['zh_cn'] = {
 	"rotate3": "逆转90°",
 	'Preserve 3D':'保持3D',
 	'Perspective':'透视',
+	'Nav':'导航',
 
 	'copy2input': '复制到命令输入框',
 	'copyAll2input': '复制所有到命令输入框',
@@ -638,6 +639,7 @@ lang['zh_cn'] = {
 	'Scatter': '散点',
 	'Flow':'流',
 
+	'Interactive':'交互',
 	'Inspiration':'灵感',
 	'Compilation':'编纂',
 
@@ -1195,6 +1197,11 @@ lang['zh_cn'] = {
 	'Classical':'古典',
 
 	'Commercial':'商业',
+
+	'Resource':'资源',
+
+	'Deprecated':'不推荐',
+
 	//Math concept
 
 	// noun
@@ -1344,7 +1351,7 @@ lang['zh_cn'] = {
 	'Perpendicular Foot': '垂足',
 	'Foci': '焦点',
 
-
+	'Quadrant':'象限',
 	'Over': '上',
 	'Under': '下',
 
@@ -1674,7 +1681,7 @@ lang['zh_cn'] = {
 	'Indefinite': '不定',
 	'Definite': '定',
 
-	'Theory':'论',
+	'Theory':'理论',
 	// 人名
 
 	'Euler': '欧拉',

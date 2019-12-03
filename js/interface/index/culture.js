@@ -107,6 +107,7 @@ cultures={index:['Art','Game','Toy','Video Game','Activity'],
 
 	'Video Game':[
 		'Simulation',
+		'Interactive Art',
 	],
 
 	'Activity':[

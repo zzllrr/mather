@@ -7,6 +7,7 @@ teachings = {
   index: ["Course", "Assignment", "Exam", "Activity", "Pedagogy", "MOOC"],
   Course: [
     { K12: [] },
+    {'University':[]},
     { "History of Mathematics": [] },
     {
       "Math Logic and Math Basis": [
