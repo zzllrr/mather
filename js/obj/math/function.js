@@ -140,14 +140,14 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		},
 		NumC:function(t){//著名常数 eπγi
 			var a=['@0$',{'c':t, 'f':'num', 'v':c},['']];
-			a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(){return Mfn.toStr4(this)};a.ref=function(r){return Mfn.ref(this,r)};
+			a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(p){return Mfn.toStr4(this,p)};a.ref=function(r){return Mfn.ref(this,r)};
 			return a
 		},
 		Polynomial:function(a){
 			
 		},
 		A:function(A,ref){//A是已知Mfn对象		ref是某一个子表达式的引用(@\d+$)
-			var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(){return Mfn.toStr4(this)};a.ref=function(r){return Mfn.ref(this,r)};
+			var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(p){return Mfn.toStr4(this,p)};a.ref=function(r){return Mfn.ref(this,r)};
 			if(ref){
 				a[0]=ref;
 			}
@@ -581,7 +581,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		// consolelog('Mfn.fromStr    ',x);
 		
 		
-		AAA.type='Mfn';AAA.toStr=function(l,p){return Mfn.toStr(this,l,p)};AAA.toStr4=function(){return Mfn.toStr4(this)};AAA.ref=function(r){return Mfn.ref(this,r)};
+		AAA.type='Mfn';AAA.toStr=function(l,p){return Mfn.toStr(this,l,p)};AAA.toStr4=function(p){return Mfn.toStr4(this,p)};AAA.ref=function(r){return Mfn.ref(this,r)};
 		
 		if(isVar(x)){
 			AAA.push('@0&',{'@0&':{f: 'var', c: x, v: x}},[x]);
@@ -1351,12 +1351,13 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	},
 
 
-	toStr4:function(A){// 简单情况下的四则运算 latex  补充省略的×号，\d/\d识别为分数线 /识别为÷
+	toStr4:function(A,p){// 简单情况下的四则运算 latex  补充省略的×号，\d/\d识别为分数线 /识别为÷		参数p 控制/识别为分数线
 		//console.log(A.toStr(1));
-		return A.toStr(1).replace(/(\d+)((\\left)?\()/g,'$1×$2').replace(/(\) *)(\d+)/g,'$1×$2')	// 显示隐藏的×号
-		.replace(/\\left\( (\d+[\/\.\d]*\d+)\\right\) /g,'{$1}')	// 去多余的分数括号
+		var x=A.toStr(1).replace(/(\d+)((\\left)?\()/g,'$1×$2').replace(/(\) *)(\d+)/g,'$1×$2')	// 显示隐藏的×号
+		.replace(/\\left\( ([a-z\d]+\/[a-z\d]+)\\right\) /g,'{$1}')	// 去多余的分数括号
 
-		.replace(/\\left\( (\\frac\{\\displaystyle\{\}\d+\}\{\\displaystyle\{\}\d+\})\\right\) /g,'{$1}')	// 去多余的分数括号
+
+		.replace(/\\left\( (\\frac\{\\displaystyle\{\}[a-z\d]+\}\{\\displaystyle\{\}[a-z\d]+\})\\right\) /gi,'{$1}')	// 去多余的分数括号
 		//.replace(/\\left\( (\d+)\+00\+(\d+)\/(\d+)\\right\) /g,'$1\\frac{\\displaystyle{}$2}{\\displaystyle{}$3}')	// 带分数
 
 		.replace(/\\left\( (\d+)\+00\+(\\frac\{\\displaystyle\{\}\d+\}\{\\displaystyle\{\}\d+\})\\right\) /g,'$1$2')	// 带分数
@@ -1364,9 +1365,17 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		.replace(/(\d+\.\d+)\/(\d+)/g,'$1÷$2')	// 小数
 		.replace(/(\d+)\/(\d+\.\d+)/g,'$1÷$2')	// 小数
 
-		.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')	// 分数
-		.replace(/\//g,'÷')
+		.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}');	// 分数
+
+		if(p && !/^-?[a-z]\/[a-z]$/i.test(x)){
+			x=x.replace(/([a-z\d+])\/([a-z])/gi,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')
+			;	// 分数
+		}
+		
+		x=x.replace(/\//g,'÷')
 		.replace(/\+00\+/g,'')
+
+		return x
 
 	},
 	toStr:function(A, latex, p){/*A → 数学表达式str (unicode Math)		latex指定返回LaTeX格式	p指定是否添加括号
@@ -4650,3 +4659,152 @@ sump([1,neg("(1/24)(4√14i-8)")],'x',-2)
 
 
 */
+var RandomNumber={
+    'sign':function(signA){
+        var sn0=1, sn1=0;
+        signA && (sn0=signA[0]);
+        signA && signA.length>1 && (sn1=signA[1]);
+        return sn0 && sn1?(Random(2)>1?'-':''):(sn1?'-':'')
+    },
+    'opr4':function(oprs){
+        var s=oprs || '+-×÷';
+        return s[Random(s.length)-1]
+    },
+
+    'isMixedFrac':function(t){
+        return /\(\d+\)\d+\/\d+/.test(t)
+    },
+    'randN':function(digiAA,signAA, numberTypeA){
+        var nA=numberTypeA || ['Integer','Fraction','Fraction Unit',
+        'Propper Fraction','Impropper Fraction',//'Mixed Fraction',
+        'Reducible Fraction','Irreducible Fraction',
+        'Decimal','Pure Decimal'], nl=nA.length;
+        var x=Random(nl)-1;
+        return RandomNumber[nA[x]](isArr(digiAA,1)?digiAA[x]:digiAA, isArr(signAA,1)?signAA[x]:signAA)
+    },
+    'Opr4':function(digiAA,signAA, numberTypeA, layerA, oprs){
+        var s=RandomNumber.randN(digiAA,signAA, numberTypeA), l0=1,l1=1;
+
+        layerA && (l0=layerA[0]);
+        layerA && (layerA.length>1) && (l1=layerA[1]);
+        var l=l0+Random(l1-l0+1)-1;
+        for(var i=0;i<l;i++){
+            var A=['('+s+')', RandomNumber.randN(digiAA,signAA, numberTypeA)];
+            if(Random(2)>1){
+                A.reverse();
+            }
+            s=A.join(RandomNumber.opr4(oprs))
+        }
+
+
+        return Mfn.fromStr(s)
+    },
+
+    'Integer':function(digiA,signA){
+        var d0=1, d1=3;
+        digiA && (d0=digiA[0]);
+        digiA && digiA.length>1 && (d1=digiA[1]);
+
+        return RandomNumber.sign(signA)+(Random(10**d1-10**(d0-1))+10**(d0-1)-1)
+    },
+    'Fraction':function(digiA,signA){
+        return RandomNumber.sign(signA)+[RandomNumber.Integer(digiA),RandomNumber.Integer(digiA)].join('/')
+    },
+    'Fraction Unit':function(digiA,signA){
+        return RandomNumber.sign(signA)+[1,RandomNumber.Integer(digiA)].join('/')
+    },
+    'Propper Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(+X[1]<+X[0]){X.reverse()}
+
+            if(+X[0]<+X[1]){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Impropper Fraction':function(digiA,signA){
+        var s=RandomNumber.sign(signA);
+        var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+        if(+X[0]<+X[1]){X.reverse()}
+
+        return s+X.join('/')
+    },
+    'Mixed Fraction':function(digiA,signA){
+        var s=RandomNumber.sign(signA);
+        var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+
+        return s+X[0]+'+00+'+X.slice(1).join('/') //s+X[0]+frac(X[1],X[2],'')
+    },
+    'Reducible Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(FracReduct(X)!=X.join('/')){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Irreducible Fraction':function(digiA,signA){
+        var x=1, s=RandomNumber.sign(signA);
+        while(x){
+            var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+            if(FracReduct(X)==X.join('/')){
+                return s+X.join('/')
+            }
+        }
+    },
+    'Decimal':function(digiA,signA){
+        var s=RandomNumber.sign(signA), X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
+        return s+X.join('.')
+    },
+    'Pure Decimal':function(digiA,signA){
+        var s=RandomNumber.sign(signA), x=RandomNumber.Integer(digiA);
+
+        return s+'0.'+x
+    },
+
+    
+
+}, RandomCharacter={
+
+    'randN':function(digiAA,signAA, charAA, numberTypeA){
+        var nA=numberTypeA || ['Integer','Fraction','Fraction Unit'], nl=nA.length;
+        var x=Random(nl)-1;
+        return RandomCharacter[nA[x]](isArr(digiAA,1)?digiAA[x]:digiAA, isArr(signAA,1)?signAA[x]:signAA, isArr(charAA,1)?charAA[x]:charAA)
+    },
+    'Opr4':function(digiAA,signAA,charAA, numberTypeA, layerA, oprs){
+        var s=RandomCharacter.randN(digiAA,signAA,charAA, numberTypeA), l0=1,l1=1;
+
+        layerA && (l0=layerA[0]);
+        layerA && (layerA.length>1) && (l1=layerA[1]);
+        var l=l0+Random(l1-l0+1)-1;
+        for(var i=0;i<l;i++){
+            var A=['('+s+')', RandomCharacter.randN(digiAA,signAA,charAA, numberTypeA)];
+            if(Random(2)>1){
+                A.reverse();
+            }
+            s=A.join(RandomNumber.opr4(oprs))
+        }
+
+
+        return Mfn.fromStr(s)
+    },
+
+    'Integer':function(digiA,signA, charA){
+        var d0=1, d1=3;
+        digiA && (d0=digiA[0]);
+        digiA && digiA.length>1 && (d1=digiA[1]);
+        var cA=charA||seqsA('a~z').slice(d0-1,d1)
+
+        return RandomNumber.sign(signA)+cA[Random(cA.length)-1]
+    },
+    'Fraction':function(digiA,signA, charA){
+        return RandomNumber.sign(signA)+[RandomCharacter.Integer(digiA,'', charA),RandomCharacter.Integer(digiA,'', charA)].join('/')
+    },
+    'Fraction Unit':function(digiA,signA, charA){
+        return RandomNumber.sign(signA)+[1,RandomCharacter.Integer(digiA,'', charA)].join('/')
+    }    
+
+};

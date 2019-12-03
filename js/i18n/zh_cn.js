@@ -198,7 +198,8 @@ lang['zh_cn'] = {
 	'Formulae': '公式',
 	'Formulas': '公式',
 
-
+	'Letter':'字母',
+	'Letters':'字母数',
 
 	'Thought': '思想',
 
