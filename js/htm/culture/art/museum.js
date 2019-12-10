@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Museum']=Table([i18(ZLR('Name Type Features'))],[
+culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 
 	[href(Hs+'momath.org/explore/exhibits/','Museum of Mathematics - MoMath'),'',href(Hs+'momath.org/gallery/','Photo Gallery')+' '+href(Hs+'mathmidway.org/mm2go/exhibits.php','Math Midway 2 Go - mm2go (Exhibits)')],
 

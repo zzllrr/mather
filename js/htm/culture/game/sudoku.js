@@ -87,7 +87,8 @@ culture['Game/Sudoku']=XML.wrapE('style',
 	'<textarea id=input0></textarea>'+'<textarea id=input1></textarea>'+
 	DCtv('pd2 inblk" id="iTextOpt',
 		itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
-		itv('" id=launch tip="Launch','launch')
+		itv('" id=launch tip="Launch','launch')+
+		itvc('rotate270" id="clearResult')
 	)+
 	detail(gM('Sudoku Order')+': '+zlr3('<label><input type=radio name=sudokuPls ','checked=true@/>9x9 />6x6 />8x6','</label>','').replace(/@/g,' '),
 		DCtv('sudokuForm','<table id=sudokuTable class=sudoku><tbody>'+'xxyxxyxxx'.replace(/x/g,'<tr>001001000</tr>').replace(/y/g,'<tr>223223222</tr>')
@@ -156,6 +157,13 @@ $(function(){
 			var t=$(this).parent().next().text();
 			i1.val(function(i,v){return (v=='\n'?'':v+'\n')+t})
 		});
+
+
+
+	}).on('click','#clearResult',function(){
+
+		$('#input1Tip ~ table').remove();
+
 
 	}).on('click','#go',function(){
 

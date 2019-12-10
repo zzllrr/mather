@@ -2014,6 +2014,7 @@ var OverCanvas=function(t){
 	}else if(o=='H'){
 		w.add('#previewTool').show();
 		if(v){
+			$('#input0Preview').css('min-height',$('#input0').height()-15+'px');
 			all2html(iv,v,w);
 
 		}else{
