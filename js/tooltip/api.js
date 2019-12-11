@@ -203,7 +203,7 @@ tooltip['API']=[
 
 
 		
-		{'时间':'Time'},
+		{'时间':'Time sTo sTi'},
 
 		{'计算':[
 			{'矩阵':'fMatrixPly fMatrix tableT'},
