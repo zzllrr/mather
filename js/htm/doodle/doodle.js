@@ -1560,7 +1560,7 @@ dc+
 		$('#capsdiv').nextAll().each(function(){
 			x.push(this.outerHTML)
 		});
-		saveText(x.join('\n'),gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
+		saveText(csslib.markdown+x.join('\n'),gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
 	});
 
 

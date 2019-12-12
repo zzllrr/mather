@@ -6,11 +6,25 @@
 
 var echref=function(text,gl,u,theme){return href(Hs+'www.echartsjs.com/examples/zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
 tooltip.graphic=tooltip.graphic || {};
-tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网')+'暂不支持LaTeX',
-	br,
+tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网'),[
+	'暂不支持LaTeX',
 	'JS代码片段用$美元符号$括起来'+sceg2('$1+2$'),
+	'回归分析'+github('ecomfe/echarts-stat'),
 
-	detail('【折线图】line',[
+	'暂无收录的图形案例'+ul(Arrf(function(x){return href(Hs+'www.echartsjs.com/examples/index.html#chart-type-'+x.replace(/ [a-z]$/i,''),x.replace(/.+ /,'').toLowerCase())},
+	[
+		'地理坐标/地图 GEO / Map',
+		'K 线图 Candlestick',
+		'盒须图 Boxplot',
+		'路径图 Lines',
+
+
+
+	]))
+].join(br)),
+	
+
+	detail('【折线图】Line',[
 	echref('Line Simple')+
 	sceg(`o={
 		xAxis: {
@@ -178,7 +192,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}`,0),
 
 
-	echref('Area-Simple')+
+	echref('Area Simple')+
 	sceg(`var base = +new Date(1968, 9, 3);
 	var oneDay = 24 * 3600 * 1000;
 	var date = [];
@@ -833,7 +847,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	'平行坐标系 Parallel'+
+	'平行坐标系'+echref('Parallel Simple')+
 	sceg(`o={
 	    parallelAxis: [
 	        {dim: 0, name: 'Price'},
@@ -857,6 +871,158 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            [20, 120, 60, 'Excellent']
 	        ]
 	    }
+	}`,0),
+
+	echref('Parallel Nutrients'),
+
+	echref('Parallel AQI')+
+	sceg(`// Schema:
+	// date,AQIindex,PM2.5,PM10,CO,NO2,SO2
+	var dataBJ = [
+		[1,55,9,56,0.46,18,6,"良"],
+		[2,25,11,21,0.65,34,9,"优"],
+		[3,56,7,63,0.3,14,5,"良"],
+	];
+	
+	var dataGZ = [
+		[1,26,37,27,1.163,27,13,"优"],
+		[2,85,62,71,1.195,60,8,"良"],
+		[3,78,38,74,1.363,37,7,"良"],
+	];
+	
+	var dataSH = [
+		[1,91,45,125,0.82,34,23,"良"],
+		[2,65,27,78,0.86,45,29,"良"],
+		[3,83,60,84,1.09,73,27,"良"],
+	];
+	
+	var schema = [
+		{name: 'date', index: 0, text: '日期'},
+		{name: 'AQIindex', index: 1, text: 'AQI'},
+		{name: 'PM25', index: 2, text: 'PM2.5'},
+		{name: 'PM10', index: 3, text: 'PM10'},
+		{name: 'CO', index: 4, text: ' CO'},
+		{name: 'NO2', index: 5, text: 'NO2'},
+		{name: 'SO2', index: 6, text: 'SO2'},
+		{name: '等级', index: 7, text: '等级'}
+	];
+	
+	var lineStyle = {
+		normal: {
+			width: 1,
+			opacity: 0.5
+		}
+	};
+	
+	option = {
+		backgroundColor: '#333',
+		legend: {
+			bottom: 30,
+			data: ['北京', '上海', '广州'],
+			itemGap: 20,
+			textStyle: {
+				color: '#fff',
+				fontSize: 14
+			}
+		},
+		tooltip: {
+			padding: 10,
+			backgroundColor: '#222',
+			borderColor: '#777',
+			borderWidth: 1,
+			formatter: function (obj) {
+				var value = obj[0].value;
+				return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+					+ obj[0].seriesName + ' ' + value[0] + '日期：'
+					+ value[7]
+					+ '</div>'
+					+ schema[1].text + '：' + value[1] + '<br>'
+					+ schema[2].text + '：' + value[2] + '<br>'
+					+ schema[3].text + '：' + value[3] + '<br>'
+					+ schema[4].text + '：' + value[4] + '<br>'
+					+ schema[5].text + '：' + value[5] + '<br>'
+					+ schema[6].text + '：' + value[6] + '<br>';
+			}
+		},
+		// dataZoom: {
+		//     show: true,
+		//     orient: 'vertical',
+		//     parallelAxisIndex: [0]
+		// },
+		parallelAxis: [
+			{dim: 0, name: schema[0].text, inverse: true, max: 31, nameLocation: 'start'},
+			{dim: 1, name: schema[1].text},
+			{dim: 2, name: schema[2].text},
+			{dim: 3, name: schema[3].text},
+			{dim: 4, name: schema[4].text},
+			{dim: 5, name: schema[5].text},
+			{dim: 6, name: schema[6].text},
+			{dim: 7, name: schema[7].text,
+			type: 'category', data: ['优', '良', '轻度污染', '中度污染', '重度污染', '严重污染']}
+		],
+		visualMap: {
+			show: true,
+			min: 0,
+			max: 150,
+			dimension: 2,
+			inRange: {
+				color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
+				// colorAlpha: [0, 1]
+			}
+		},
+		parallel: {
+			left: '5%',
+			right: '18%',
+			bottom: 100,
+			parallelAxisDefault: {
+				type: 'value',
+				name: 'AQI指数',
+				nameLocation: 'end',
+				nameGap: 20,
+				nameTextStyle: {
+					color: '#fff',
+					fontSize: 12
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#aaa'
+					}
+				},
+				axisTick: {
+					lineStyle: {
+						color: '#777'
+					}
+				},
+				splitLine: {
+					show: false
+				},
+				axisLabel: {
+					textStyle: {
+						color: '#fff'
+					}
+				}
+			}
+		},
+		series: [
+			{
+				name: '北京',
+				type: 'parallel',
+				lineStyle: lineStyle,
+				data: dataBJ
+			},
+			{
+				name: '上海',
+				type: 'parallel',
+				lineStyle: lineStyle,
+				data: dataSH
+			},
+			{
+				name: '广州',
+				type: 'parallel',
+				lineStyle: lineStyle,
+				data: dataGZ
+			}
+		]
 	}`,0),
 
 	'多个X轴'+echref('Multiple X Axis')+
@@ -987,7 +1153,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	),
 
 
-	detail('【极坐标图】polar',[
+	detail('【极坐标图】Polar',[
 	'爱心 Heart'+echref('Line Polar')+		
 	sceg(`o={
 	    title: {
@@ -1164,11 +1330,106 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}`,0),
 		
 		
+	echref('Custom Polar Heatmap')+
+	sceg(`function renderItem(params, api) {
+		var values = [api.value(0), api.value(1)];
+		var coord = api.coord(values);
+		var size = api.size([1, 1], values);
+		return {
+			type: 'sector',
+			shape: {
+				cx: params.coordSys.cx,
+				cy: params.coordSys.cy,
+				r0: coord[2] - size[0] / 2,
+				r: coord[2] + size[0] / 2,
+				startAngle: -(coord[3] + size[1] / 2),
+				endAngle: -(coord[3] - size[1] / 2)
+			},
+			style: api.style({
+				fill: api.visual('color')
+			})
+		};
+	}
+	
+	var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+			'7a', '8a', '9a','10a','11a',
+			'12p', '1p', '2p', '3p', '4p', '5p',
+			'6p', '7p', '8p', '9p', '10p', '11p'];
+	var days = ['Saturday', 'Friday', 'Thursday',
+			'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+	
+	var data = [[0,0,5],[0,1,1],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8,0],[0,9,0],[0,10,0],[0,11,2],[0,12,4],[0,13,1],[0,14,1],[0,15,3],[0,16,4],[0,17,6],[0,18,4],[0,19,4],[0,20,3],[0,21,3],[0,22,2],[0,23,5],[1,0,7],[1,1,0],[1,2,0],[1,3,0],[1,4,0],[1,5,0],[1,6,0],[1,7,0],[1,8,0],[1,9,0],[1,10,5],[1,11,2],[1,12,2],[1,13,6],[1,14,9],[1,15,11],[1,16,6],[1,17,7],[1,18,8],[1,19,12],[1,20,5],[1,21,5],[1,22,7],[1,23,2],[2,0,1],[2,1,1],[2,2,0],[2,3,0],[2,4,0],[2,5,0],[2,6,0],[2,7,0],[2,8,0],[2,9,0],[2,10,3],[2,11,2],[2,12,1],[2,13,9],[2,14,8],[2,15,10],[2,16,6],[2,17,5],[2,18,5],[2,19,5],[2,20,7],[2,21,4],[2,22,2],[2,23,4],[3,0,7],[3,1,3],[3,2,0],[3,3,0],[3,4,0],[3,5,0],[3,6,0],[3,7,0],[3,8,1],[3,9,0],[3,10,5],[3,11,4],[3,12,7],[3,13,14],[3,14,13],[3,15,12],[3,16,9],[3,17,5],[3,18,5],[3,19,10],[3,20,6],[3,21,4],[3,22,4],[3,23,1],[4,0,1],[4,1,3],[4,2,0],[4,3,0],[4,4,0],[4,5,1],[4,6,0],[4,7,0],[4,8,0],[4,9,2],[4,10,4],[4,11,4],[4,12,2],[4,13,4],[4,14,4],[4,15,14],[4,16,12],[4,17,1],[4,18,8],[4,19,5],[4,20,3],[4,21,7],[4,22,3],[4,23,0],[5,0,2],[5,1,1],[5,2,0],[5,3,3],[5,4,0],[5,5,0],[5,6,0],[5,7,0],[5,8,2],[5,9,0],[5,10,4],[5,11,1],[5,12,5],[5,13,10],[5,14,5],[5,15,7],[5,16,11],[5,17,6],[5,18,0],[5,19,5],[5,20,3],[5,21,4],[5,22,2],[5,23,0],[6,0,1],[6,1,0],[6,2,0],[6,3,0],[6,4,0],[6,5,0],[6,6,0],[6,7,0],[6,8,0],[6,9,0],[6,10,1],[6,11,0],[6,12,2],[6,13,1],[6,14,3],[6,15,4],[6,16,0],[6,17,0],[6,18,0],[6,19,0],[6,20,1],[6,21,2],[6,22,2],[6,23,6]];
+	var maxValue = echarts.util.reduce(data, function (max, item) {
+		return Math.max(max, item[2]);
+	}, -Infinity);
+	
+	option = {
+		legend: {
+			data: ['Punch Card']
+		},
+		polar: {},
+		tooltip: {
+		},
+		visualMap: {
+			type: 'continuous',
+			min: 0,
+			max: maxValue,
+			top: 'middle',
+			dimension: 2,
+			calculable: true
+		},
+		angleAxis: {
+			type: 'category',
+			data: hours,
+			boundaryGap: false,
+			splitLine: {
+				show: true,
+				lineStyle: {
+					color: '#ddd',
+					type: 'dashed'
+				}
+			},
+			axisLine: {
+				show: false
+			}
+		},
+		radiusAxis: {
+			type: 'category',
+			data: days,
+			z: 100
+		},
+		series: [{
+			name: 'Punch Card',
+			type: 'custom',
+			coordinateSystem: 'polar',
+			itemStyle: {
+				normal: {
+					color: '#d14a61'
+				}
+			},
+			renderItem: renderItem,
+			data: data
+		}]
+	}`,0),
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	].join(br)
 	),
 
 
-	detail('【柱状图】bar',[
+	detail('【柱状图】Bar',[
 
 	echref('Bar Simple')+
 	sceg(`o={
@@ -1610,6 +1871,379 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	            }
 	        }
 	    ]
+	}`,0),
+
+
+
+
+
+
+	echref('Custom Bar Trend')+
+	sceg(`var yearCount = 7;
+	var categoryCount = 30;
+	
+	var xAxisData = [];
+	var customData = [];
+	var legendData = [];
+	var dataList = [];
+	
+	legendData.push('trend');
+	var encodeY = [];
+	for (var i = 0; i < yearCount; i++) {
+		legendData.push((2010 + i) + '');
+		dataList.push([]);
+		encodeY.push(1 + i);
+	}
+	
+	for (var i = 0; i < categoryCount; i++) {
+		var val = Math.random() * 1000;
+		xAxisData.push('category' + i);
+		var customVal = [i];
+		customData.push(customVal);
+	
+		var data = dataList[0];
+		for (var j = 0; j < dataList.length; j++) {
+			var value = j === 0
+				? echarts.number.round(val, 2)
+				: echarts.number.round(Math.max(0, dataList[j - 1][i] + (Math.random() - 0.5) * 200), 2);
+			dataList[j].push(value);
+			customVal.push(value);
+		}
+	}
+	
+	function renderItem(params, api) {
+		var xValue = api.value(0);
+		var currentSeriesIndices = api.currentSeriesIndices();
+		var barLayout = api.barLayout({
+			barGap: '30%', barCategoryGap: '20%', count: currentSeriesIndices.length - 1
+		});
+	
+		var points = [];
+		for (var i = 0; i < currentSeriesIndices.length; i++) {
+			var seriesIndex = currentSeriesIndices[i];
+			if (seriesIndex !== params.seriesIndex) {
+				var point = api.coord([xValue, api.value(seriesIndex)]);
+				point[0] += barLayout[i - 1].offsetCenter;
+				point[1] -= 20;
+				points.push(point);
+			}
+		}
+		var style = api.style({
+			stroke: api.visual('color'),
+			fill: null
+		});
+	
+		return {
+			type: 'polyline',
+			shape: {
+				points: points
+			},
+			style: style
+		};
+	}
+	
+	option = {
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			data: legendData
+		},
+		dataZoom: [{
+			type: 'slider',
+			start: 50,
+			end: 70
+		}, {
+			type: 'inside',
+			start: 50,
+			end: 70
+		}],
+		xAxis: {
+			data: xAxisData
+		},
+		yAxis: {},
+		series: [{
+			type: 'custom',
+			name: 'trend',
+			renderItem: renderItem,
+			itemStyle: {
+				normal: {
+					borderWidth: 2
+				}
+			},
+			encode: {
+				x: 0,
+				y: encodeY
+			},
+			data: customData,
+			z: 100
+		}].concat(echarts.util.map(dataList, function (data, index) {
+			return {
+				type: 'bar',
+				animation: false,
+				name: legendData[index + 1],
+				itemStyle: {
+					normal: {
+						opacity: 0.5
+					}
+				},
+				data: data
+			};
+		}))
+	}`,0),
+
+
+
+
+
+	echref('Custom Error Bar')+
+	sceg(`var categoryData = [];
+	var errorData = [];
+	var barData = [];
+	var dataCount = 100;
+	for (var i = 0; i < dataCount; i++) {
+		var val = Math.random() * 1000;
+		categoryData.push('category' + i);
+		errorData.push([
+			i,
+			echarts.number.round(Math.max(0, val - Math.random() * 100)),
+			echarts.number.round(val + Math.random() * 80)
+		]);
+		barData.push(echarts.number.round(val, 2));
+	}
+	
+	function renderItem(params, api) {
+		var xValue = api.value(0);
+		var highPoint = api.coord([xValue, api.value(1)]);
+		var lowPoint = api.coord([xValue, api.value(2)]);
+		var halfWidth = api.size([1, 0])[0] * 0.1;
+		var style = api.style({
+			stroke: api.visual('color'),
+			fill: null
+		});
+	
+		return {
+			type: 'group',
+			children: [{
+				type: 'line',
+				shape: {
+					x1: highPoint[0] - halfWidth, y1: highPoint[1],
+					x2: highPoint[0] + halfWidth, y2: highPoint[1]
+				},
+				style: style
+			}, {
+				type: 'line',
+				shape: {
+					x1: highPoint[0], y1: highPoint[1],
+					x2: lowPoint[0], y2: lowPoint[1]
+				},
+				style: style
+			}, {
+				type: 'line',
+				shape: {
+					x1: lowPoint[0] - halfWidth, y1: lowPoint[1],
+					x2: lowPoint[0] + halfWidth, y2: lowPoint[1]
+				},
+				style: style
+			}]
+		};
+	}
+	
+	option = {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow'
+			}
+		},
+		title: {
+			text: 'Error bar chart'
+		},
+		legend: {
+			data: ['bar', 'error']
+		},
+		dataZoom: [{
+			type: 'slider',
+			start: 50,
+			end: 70
+		}, {
+			type: 'inside',
+			start: 50,
+			end: 70
+		}],
+		xAxis: {
+			data: categoryData
+		},
+		yAxis: {},
+		series: [{
+			type: 'bar',
+			name: 'bar',
+			data: barData,
+			itemStyle: {
+				normal: {
+					color: '#77bef7'
+				}
+			}
+		}, {
+			type: 'custom',
+			name: 'error',
+			itemStyle: {
+				normal: {
+					borderWidth: 1.5
+				}
+			},
+			renderItem: renderItem,
+			encode: {
+				x: 0,
+				y: [1, 2]
+			},
+			data: errorData,
+			z: 100
+		}]
+	}`,0),
+
+
+
+	echref('Custom Profit')+
+	sceg(`var data = [[10, 16, 3, 'A'], [16, 18, 15, 'B'], [18, 26, 12, 'C'], [26, 32, 22, 'D'], [32, 56, 7, 'E'], [56, 62, 17, 'F']];
+	var colorList = ['#4f81bd', '#c0504d', '#9bbb59', '#604a7b', '#948a54', '#e46c0b'];
+	
+	data = echarts.util.map(data, function (item, index) {
+		return {
+			value: item,
+			itemStyle: {
+				normal: {
+					color: colorList[index]
+				}
+			}
+		};
+	});
+	
+	function renderItem(params, api) {
+		var yValue = api.value(2);
+		var start = api.coord([api.value(0), yValue]);
+		var size = api.size([api.value(1) - api.value(0), yValue]);
+		var style = api.style();
+	
+		return {
+			type: 'rect',
+			shape: {
+				x: start[0],
+				y: start[1],
+				width: size[0],
+				height: size[1]
+			},
+			style: style
+		};
+	}
+	
+	option = {
+		title: {
+			text: 'Profit',
+			left: 'center'
+		},
+		tooltip: {
+		},
+		xAxis: {
+			scale: true
+		},
+		yAxis: {
+		},
+		series: [{
+			type: 'custom',
+			renderItem: renderItem,
+			label: {
+				normal: {
+					show: true,
+					position: 'top'
+				}
+			},
+			dimensions: ['from', 'to', 'profit'],
+			encode: {
+				x: [0, 1],
+				y: 2,
+				tooltip: [0, 1, 2],
+				itemName: 3
+			},
+			data: data
+		}]
+	}`,0),
+
+	echref('Bar Histogram')+
+	sceg(`var girth = [8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, 11.4, 11.4, 11.7, 12.0, 12.9, 12.9, 13.3, 13.7, 13.8, 14.0, 14.2, 14.5, 16.0, 16.3, 17.3, 17.5, 17.9, 18.0, 18.0, 20.6];
+	var bins = ecStat.histogram(girth);
+	
+	var interval;
+	var min = Infinity;
+	var max = -Infinity;
+	
+	data = echarts.util.map(bins.data, function (item, index) {
+		var x0 = bins.bins[index].x0;
+		var x1 = bins.bins[index].x1;
+		interval = x1 - x0;
+		min = Math.min(min, x0);
+		max = Math.max(max, x1);
+		return [x0, x1, item[1]];
+	});
+	
+	function renderItem(params, api) {
+		var yValue = api.value(2);
+		var start = api.coord([api.value(0), yValue]);
+		var size = api.size([api.value(1) - api.value(0), yValue]);
+		var style = api.style();
+	
+		return {
+			type: 'rect',
+			shape: {
+				x: start[0] + 1,
+				y: start[1],
+				width: size[0] - 2,
+				height: size[1]
+			},
+			style: style
+		};
+	}
+	
+	option = {
+		title: {
+			text: 'Girths of Black Cherry Trees',
+			subtext: 'By ecStat.histogram',
+			sublink: '',
+			left: 'center',
+			top: 10
+		},
+		color: ['rgb(25, 183, 207)'],
+		grid: {
+			top: 80,
+			containLabel: true
+		},
+		xAxis: [{
+			type: 'value',
+			min: min,
+			max: max,
+			interval: interval
+		}],
+		yAxis: [{
+			type: 'value',
+		}],
+		series: [{
+			name: 'height',
+			type: 'custom',
+			renderItem: renderItem,
+			label: {
+				normal: {
+					show: true,
+					position: 'insideTop'
+				}
+			},
+			encode: {
+				x: [0, 1],
+				y: 2,
+				tooltip: 2,
+				label: 2
+			},
+			data: data
+		}]
 	}`,0),
 
 
@@ -2543,6 +3177,60 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}`,0),
 
 
+
+
+
+
+		
+	echref('Custom Profile')+
+	sceg(`o={
+	    dataset: {
+	        source: [
+	            ['score', 'amount', 'product'],
+	            [89.3, 58212, 'Matcha Latte'],
+	            [57.1, 78254, 'Milk Tea'],
+	            [74.4, 41032, 'Cheese Cocoa'],
+	            [50.1, 12755, 'Cheese Brownie'],
+	            [89.7, 20145, 'Matcha Cocoa'],
+	            [68.1, 79146, 'Tea'],
+	            [19.6, 91852, 'Orange Juice'],
+	            [10.6, 101852, 'Lemon Juice'],
+	            [32.7, 20112, 'Walnut Brownie']
+	        ]
+	    },
+	    grid: {containLabel: true},
+	    xAxis: {name: 'amount'},
+	    yAxis: {type: 'category'},
+	    visualMap: {
+	        orient: 'horizontal',
+	        left: 'center',
+	        min: 10,
+	        max: 100,
+	        text: ['High Score', 'Low Score'],
+	        // Map the score column to color
+	        dimension: 0,
+	        inRange: {
+	            color: ['#D7DA8B', '#E15457']
+	        }
+	    },
+	    series: [
+	        {
+	            type: 'bar',
+	            encode: {
+	                // Map the "amount" column to X axis.
+	                x: 'amount',
+	                // Map the "product" column to Y axis
+	                y: 'product'
+	            }
+	        }
+	    ]
+
+	}`,0),
+
+
+
+
+
 	'富文本'+echref('Bar Rich Text')+
 	sceg(`var weatherIcons = {
 		'Sunny': '',
@@ -2699,9 +3387,9 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	),
 
 
-	detail('【饼图】pie',[
+	detail('【饼图】Pie',[
 		
-	'半径一致'+
+	'半径一致'+echref('Pie Simple')+
 	sceg(`o={
 	    title : {
 	        text: '某站点用户访问来源',
@@ -2742,7 +3430,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 	}`,0),
 		
-	'半径不一致'+
+	'半径不一致'+echref('Pie-Custom')+
 	sceg(`o={
 	    backgroundColor: '#2c343c',
 
@@ -2820,7 +3508,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}`,0),
 		
 		
-	'南丁格尔玫瑰图'+
+	echref('南丁格尔玫瑰图','','pie-roseType')+
 	sceg(`o={
 	    title : {
 	        text: '南丁格尔玫瑰图',
@@ -2907,7 +3595,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 	}`,0),
 
-	'多个饼图'+
+	'多个饼图'+echref('Dataset-Default')+
 	sceg(`o={
 	    legend: {},
 	    tooltip: {},
@@ -2953,7 +3641,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 		
 	}`,0),
 
-	'Doughnut环形图'+
+	'Doughnut环形图'+echref('Pie-Doughnut')+
 	sceg(`o={
 	    tooltip: {
 	        trigger: 'item',
@@ -3002,7 +3690,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	'环形图 + 饼图 / '+echref('嵌套环形图','','pie-nest')+
+	'嵌套环形图'+echref('Pie-Nest')+
 	sceg(`o={
 	    tooltip: {
 	        trigger: 'item',
@@ -3097,12 +3785,1111 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	        }
 	    ]
 	}`,0),
+
+
+
+	'可滚动图例'+echref('Pie-Legend')+
+	sceg(`function genData(count) {
+		var nameList = [
+			'赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许', '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章', '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳', '酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常', '乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹', '姚', '邵', '湛', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞', '熊', '纪', '舒', '屈', '项', '祝', '董', '梁', '杜', '阮', '蓝', '闵', '席', '季', '麻', '强', '贾', '路', '娄', '危'
+		];
+		var legendData = [];
+		var seriesData = [];
+		var selected = {};
+		for (var i = 0; i < 50; i++) {
+			name = Math.random() > 0.65
+				? makeWord(4, 1) + '·' + makeWord(3, 0)
+				: makeWord(2, 1);
+			legendData.push(name);
+			seriesData.push({
+				name: name,
+				value: Math.round(Math.random() * 100000)
+			});
+			selected[name] = i < 6;
+		}
+	
+		return {
+			legendData: legendData,
+			seriesData: seriesData,
+			selected: selected
+		};
+	
+		function makeWord(max, min) {
+			var nameLen = Math.ceil(Math.random() * max + min);
+			var name = [];
+			for (var i = 0; i < nameLen; i++) {
+				name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
+			}
+			return name.join('');
+		}
+	}
+	var data = genData(50);
+	
+	option = {
+		title : {
+			text: '同名数量统计',
+			subtext: '纯属虚构',
+			x:'center'
+		},
+		tooltip : {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			type: 'scroll',
+			orient: 'vertical',
+			right: 10,
+			top: 20,
+			bottom: 20,
+			data: data.legendData,
+	
+			selected: data.selected
+		},
+		series : [
+			{
+				name: '姓名',
+				type: 'pie',
+				radius : '55%',
+				center: ['40%', '50%'],
+				data: data.seriesData,
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	}`,0),
+
+
+
+
+
+
+	'饼图富文本'+echref('Pie-Rich Text')+
+	sceg(`var weatherIcons = {
+		'Sunny': 'img/logo.jpg',
+		'Cloudy': 'img/github.svg',
+		'Showers': 'img/zzllrr.gif'
+	};
+	
+	option = {
+		title: {
+			text: '天气情况统计',
+			subtext: '虚构数据',
+			left: 'center'
+		},
+		tooltip : {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			// orient: 'vertical',
+			// top: 'middle',
+			bottom: 10,
+			left: 'center',
+			data: ['西凉', '益州','兖州','荆州','幽州']
+		},
+		series : [
+			{
+				type: 'pie',
+				radius : '65%',
+				center: ['50%', '50%'],
+				selectedMode: 'single',
+				data:[
+					{
+						value:1548,
+						name: '幽州',
+						label: {
+							normal: {
+								formatter: [
+									'{title|{b}}{abg|}',
+									'  {weatherHead|天气}{valueHead|天数}{rateHead|占比}',
+									'{hr|}',
+									'  {Sunny|}{value|202}{rate|55.3%}',
+									'  {Cloudy|}{value|142}{rate|38.9%}',
+									'  {Showers|}{value|21}{rate|5.8%}'
+								].join('\n'),
+								backgroundColor: '#eee',
+								borderColor: '#777',
+								borderWidth: 1,
+								borderRadius: 4,
+								rich: {
+									title: {
+										color: '#eee',
+										align: 'center'
+									},
+									abg: {
+										backgroundColor: '#333',
+										width: '100%',
+										align: 'right',
+										height: 25,
+										borderRadius: [4, 4, 0, 0]
+									},
+									Sunny: {
+										height: 30,
+										align: 'left',
+										backgroundColor: {
+											image: weatherIcons.Sunny
+										}
+									},
+									Cloudy: {
+										height: 30,
+										align: 'left',
+										backgroundColor: {
+											image: weatherIcons.Cloudy
+										}
+									},
+									Showers: {
+										height: 30,
+										align: 'left',
+										backgroundColor: {
+											image: weatherIcons.Showers
+										}
+									},
+									weatherHead: {
+										color: '#333',
+										height: 24,
+										align: 'left'
+									},
+									hr: {
+										borderColor: '#777',
+										width: '100%',
+										borderWidth: 0.5,
+										height: 0
+									},
+									value: {
+										width: 20,
+										padding: [0, 20, 0, 30],
+										align: 'left'
+									},
+									valueHead: {
+										color: '#333',
+										width: 20,
+										padding: [0, 20, 0, 30],
+										align: 'center'
+									},
+									rate: {
+										width: 40,
+										align: 'right',
+										padding: [0, 10, 0, 0]
+									},
+									rateHead: {
+										color: '#333',
+										width: 40,
+										align: 'center',
+										padding: [0, 10, 0, 0]
+									}
+								}
+							}
+						}
+					},
+					{value:535, name: '荆州'},
+					{value:510, name: '兖州'},
+					{value:634, name: '益州'},
+					{value:735, name: '西凉'}
+				],
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	}`,0),
+
+	'饼图纹理'+echref('Pie-Pattern')+
+	sceg(`var piePatternSrc = 'img/small.png';
+	var bgPatternSrc = 'img/logo.jpg';
+	
+	var piePatternImg = new Image();
+	piePatternImg.src = piePatternSrc;
+	var bgPatternImg = new Image();
+	bgPatternImg.src = bgPatternSrc;
+	
+	var itemStyle = {
+		normal: {
+			opacity: 0.7,
+			color: {
+				image: piePatternImg,
+				repeat: 'repeat'
+			},
+			borderWidth: 3,
+			borderColor: '#235894'
+		}
+	};
+	option = {
+		backgroundColor: {
+			image: bgPatternImg,
+			repeat: 'repeat'
+		},
+		title: {
+			text: '饼图纹理',
+			textStyle: {
+				color: '#235894'
+			}
+		},
+		tooltip: {},
+		series: [{
+			name: 'pie',
+			type: 'pie',
+			selectedMode: 'single',
+			selectedOffset: 30,
+			clockwise: true,
+			label: {
+				normal: {
+					textStyle: {
+						fontSize: 18,
+						color: '#235894'
+					}
+				}
+			},
+			labelLine: {
+				normal: {
+					lineStyle: {
+						color: '#235894'
+					}
+				}
+			},
+			data:[
+				{value:335, name:'直接访问'},
+				{value:310, name:'邮件营销'},
+				{value:234, name:'联盟广告'},
+				{value:135, name:'视频广告'},
+				{value:1548, name:'搜索引擎'}
+			],
+			itemStyle: itemStyle
+		}]
+	}`,0),
+
+
+
 	].join(br)
 	),
 	
-	
-	detail('【散点图】scatter',[
 
+
+
+	detail('【旭日图】Sunburst',[
+		
+		echref('Sunburst Simple')+
+		sceg(`var data = [{
+			name: 'Grandpa',
+			children: [{
+				name: 'Uncle Leo',
+				value: 15,
+				children: [{
+					name: 'Cousin Jack',
+					value: 2
+				}, {
+					name: 'Cousin Mary',
+					value: 5,
+					children: [{
+						name: 'Jackson',
+						value: 2
+					}]
+				}, {
+					name: 'Cousin Ben',
+					value: 4
+				}]
+			}, {
+				name: 'Father',
+				value: 10,
+				children: [{
+					name: 'Me',
+					value: 5
+				}, {
+					name: 'Brother Peter',
+					value: 1
+				}]
+			}]
+		}, {
+			name: 'Nancy',
+			children: [{
+				name: 'Uncle Nike',
+				children: [{
+					name: 'Cousin Betty',
+					value: 1
+				}, {
+					name: 'Cousin Jenny',
+					value: 2
+				}]
+			}]
+		}];
+		
+		option = {
+			series: {
+				type: 'sunburst',
+				// highlightPolicy: 'ancestor',
+				data: data,
+				radius: [0, '90%'],
+				label: {
+					rotate: 'radial'
+				}
+			}
+		}`,0),
+
+
+
+
+
+		
+		echref('Sunburst-Book')+
+		sceg(`var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+		var bgColor = '#2E2733';
+		
+		var itemStyle = {
+			star5: {
+				color: colors[0]
+			},
+			star4: {
+				color: colors[1]
+			},
+			star3: {
+				color: colors[2]
+			},
+			star2: {
+				color: colors[3]
+			}
+		};
+		
+		var data = [{
+			name: '虚构',
+			itemStyle: {
+				normal: {
+					color: colors[1]
+				}
+			},
+			children: [{
+				name: '小说',
+				children: [{
+					name: '5☆',
+					children: [{
+						name: '疼'
+					}, {
+						name: '楼下的房客'
+					}]
+				}, {
+					name: '4☆',
+					children: [{
+						name: '虚无的十字架'
+					}, {
+						name: '童年的终结'
+					}]
+				}, {
+					name: '3☆',
+					children: [{
+						name: '疯癫老人日记'
+					}]
+				}]
+			}, {
+				name: '其他',
+				children: [{
+					name: '5☆',
+					children: [{
+						name: '纳博科夫短篇小说全集'
+					}]
+		
+				}, {
+					name: '3☆',
+					children: [{
+						name: '比起爱你，我更需要你'
+					}]
+				}]
+			}]
+		}, {
+			name: '非虚构',
+			itemStyle: {
+				color: colors[2]
+			},
+			children: [{
+				name: '设计',
+				children: [{
+					name: '5☆',
+					children: [{
+						name: '无界面交互'
+					}]
+				}, {
+					name: '4☆',
+					children: [{
+						name: '数字绘图的光照与渲染技术'
+					}, {
+						name: '日本建筑解剖书'
+					}]
+				}, {
+					name: '3☆',
+					children: [{
+						name: '奇幻世界艺术'
+					}]
+				}]
+			}, {
+				name: '社科',
+				children: [{
+					name: '5☆',
+					children: [{
+						name: '痛点'
+					}]
+				}, {
+					name: '4☆',
+					children: [{
+						name: '卓有成效的管理者'
+					}, {
+						name: '后物欲时代的来临',
+					}]
+				}, {
+					name: '3☆',
+					children: [{
+						name: '疯癫与文明'
+					}]
+				}]
+			}, {
+				name: '心理',
+				children: [{
+					name: '5☆',
+					children: [{
+						name: '我们时代的神经症人格'
+					}]
+		
+				}, {
+					name: '3☆',
+				}, {
+					name: '2☆',
+					children: [{
+						name: '迷恋'
+					}]
+				}]
+			}]
+		}];
+		
+		for (var j = 0; j < data.length; ++j) {
+			var level1 = data[j].children;
+			for (var i = 0; i < level1.length; ++i) {
+				var block = level1[i].children;
+				var bookScore = [];
+				var bookScoreId;
+				for (var star = 0; star < block.length; ++star) {
+					var style = (function (name) {
+						switch (name) {
+							case '5☆':
+								bookScoreId = 0;
+								return itemStyle.star5;
+							case '4☆':
+								bookScoreId = 1;
+								return itemStyle.star4;
+							case '3☆':
+								bookScoreId = 2;
+								return itemStyle.star3;
+							case '2☆':
+								bookScoreId = 3;
+								return itemStyle.star2;
+						}
+					})(block[star].name);
+		
+					block[star].label = {
+						color: style.color,
+						downplay: {
+							opacity: 0.5
+						}
+					};
+		
+					if (block[star].children) {
+						style = {
+							opacity: 1,
+							color: style.color
+						};
+						block[star].children.forEach(function (book) {
+							book.value = 1;
+							book.itemStyle = style;
+		
+							book.label = {
+								color: style.color
+							};
+		
+							var value = 1;
+							if (bookScoreId === 0 || bookScoreId === 3) {
+								value = 5;
+							}
+		
+							if (bookScore[bookScoreId]) {
+								bookScore[bookScoreId].value += value;
+							}
+							else {
+								bookScore[bookScoreId] = {
+									color: colors[bookScoreId],
+									value: value
+								};
+							}
+						});
+					}
+				}
+		
+				level1[i].itemStyle = {
+					color: data[j].itemStyle.color
+				};
+			}
+		}
+		
+		option = {
+			backgroundColor: bgColor,
+			color: colors,
+			series: [{
+				type: 'sunburst',
+				center: ['50%', '48%'],
+				data: data,
+				sort: function (a, b) {
+					if (a.depth === 1) {
+						return b.getValue() - a.getValue();
+					}
+					else {
+						return a.dataIndex - b.dataIndex;
+					}
+				},
+				label: {
+					rotate: 'radial',
+					color: bgColor
+				},
+				itemStyle: {
+					borderColor: bgColor,
+					borderWidth: 2
+				},
+				levels: [{}, {
+					r0: 0,
+					r: 40,
+					label: {
+						rotate: 0
+					}
+				}, {
+					r0: 40,
+					r: 105
+				}, {
+					r0: 115,
+					r: 140,
+					itemStyle: {
+						shadowBlur: 2,
+						shadowColor: colors[2],
+						color: 'transparent'
+					},
+					label: {
+						rotate: 'tangential',
+						fontSize: 10,
+						color: colors[0]
+					}
+				}, {
+					r0: 140,
+					r: 145,
+					itemStyle: {
+						shadowBlur: 80,
+						shadowColor: colors[0]
+					},
+					label: {
+						position: 'outside',
+						textShadowBlur: 5,
+						textShadowColor: '#333',
+					},
+					downplay: {
+						label: {
+							opacity: 0.5
+						}
+					}
+				}]
+			}]
+		}`,0),
+
+
+
+
+
+		echref('可视化地图','sunburst-visualMap')+
+		sceg(`var data = [{
+			name: 'Grandpa',
+			children: [{
+				name: 'Uncle Leo',
+				value: 15,
+				children: [{
+					name: 'Cousin Jack',
+					value: 2
+				}, {
+					name: 'Cousin Mary',
+					value: 5,
+					children: [{
+						name: 'Jackson',
+						value: 2
+					}]
+				}, {
+					name: 'Cousin Ben',
+					value: 4
+				}]
+			}, {
+				name: 'Aunt Jane',
+				children: [{
+					name: 'Cousin Kate',
+					value: 4
+				}]
+			}, {
+				name: 'Father',
+				value: 10,
+				children: [{
+					name: 'Me',
+					value: 5,
+					itemStyle: {
+						color: 'red'
+					}
+				}, {
+					name: 'Brother Peter',
+					value: 1
+				}]
+			}]
+		}, {
+			name: 'Mike',
+			children: [{
+				name: 'Uncle Dan',
+				children: [{
+					name: 'Cousin Lucy',
+					value: 3
+				}, {
+					name: 'Cousin Luck',
+					value: 4,
+					children: [{
+						name: 'Nephew',
+						value: 2
+					}]
+				}]
+			}]
+		}, {
+			name: 'Nancy',
+			children: [{
+				name: 'Uncle Nike',
+				children: [{
+					name: 'Cousin Betty',
+					value: 1
+				}, {
+					name: 'Cousin Jenny',
+					value: 2
+				}]
+			}]
+		}];
+		
+		option = {
+			visualMap: {
+				type: 'continuous',
+				min: 0,
+				max: 10,
+				inRange: {
+					color: ['#2D5F73', '#538EA6', '#F2D1B3', '#F2B8A2', '#F28C8C']
+				}
+			},
+			series: {
+				type: 'sunburst',
+				data: data,
+				radius: [0, '90%'],
+				label: {
+					rotate: 'radial'
+				}
+			}
+		}`,0),
+
+
+		echref('Sunburst-Monochrome')+
+		sceg(`var item1 = {
+			color: '#F54F4A'
+		};
+		var item2 = {
+			color: '#FF8C75'
+		};
+		var item3 = {
+			color: '#FFB499'
+		};
+		
+		var data = [{
+			children: [{
+				value: 5,
+				children: [{
+					value: 1,
+					itemStyle: item1
+				}, {
+					value: 2,
+					children: [{
+						value: 1,
+						itemStyle: item2
+					}]
+				}, {
+					children: [{
+						value: 1
+					}]
+				}],
+				itemStyle: item1
+			}, {
+				value: 10,
+				children: [{
+					value: 6,
+					children: [{
+						value: 1,
+						itemStyle: item1
+					}, {
+						value: 1
+					}, {
+						value: 1,
+						itemStyle: item2
+					}, {
+						value: 1
+					}],
+					itemStyle: item3
+				}, {
+					value: 2,
+					children: [{
+						value: 1
+					}],
+					itemStyle: item3
+				}, {
+					children: [{
+						value: 1,
+						itemStyle: item2
+					}]
+				}],
+				itemStyle: item1
+			}],
+			itemStyle: item1
+		}, {
+			value: 9,
+			children: [{
+				value: 4,
+				children: [{
+					value: 2,
+					itemStyle: item2
+				}, {
+					children: [{
+						value: 1,
+						itemStyle: item1
+					}]
+				}],
+				itemStyle: item1
+			}, {
+				children: [{
+					value: 3,
+					children: [{
+						value: 1
+					}, {
+						value: 1,
+						itemStyle: item2
+					}]
+				}],
+				itemStyle: item3
+			}],
+			itemStyle: item2
+		}, {
+			value: 7,
+			children: [{
+				children: [{
+					value: 1,
+					itemStyle: item3
+				}, {
+					value: 3,
+					children: [{
+						value: 1,
+						itemStyle: item2
+					}, {
+						value: 1
+					}],
+					itemStyle: item2
+				}, {
+					value: 2,
+					children: [{
+						value: 1
+					}, {
+						value: 1,
+						itemStyle: item1
+					}],
+					itemStyle: item1
+				}],
+				itemStyle: item3
+			}],
+			itemStyle: item1
+		}, {
+			children: [{
+				value: 6,
+				children: [{
+					value: 1,
+					itemStyle: item2
+				}, {
+					value: 2,
+					children: [{
+						value: 2,
+						itemStyle: item2
+					}],
+					itemStyle: item1
+				}, {
+					value: 1,
+					itemStyle: item3
+				}],
+				itemStyle: item3
+			}, {
+				value: 3,
+				children: [{
+					value: 1,
+				}, {
+					children: [{
+						value: 1,
+						itemStyle: item2
+					}]
+				}, {
+					value: 1
+				}],
+				itemStyle: item3
+			}],
+			itemStyle: item1
+		}];
+		
+		option = {
+			series: {
+				radius: ['15%', '80%'],
+				type: 'sunburst',
+				sort: null,
+				highlightPolicy: 'ancestor',
+				data: data,
+				label: {
+					rotate: 'radial'
+				},
+				levels: [],
+				itemStyle: {
+					color: '#ddd',
+					borderWidth: 2
+				}
+			}
+		}`,0),
+
+		echref('Sunburst-Label Rotate')+
+		sceg(`option = {
+			silent: true,
+			series: {
+				radius: ['15%', '80%'],
+				type: 'sunburst',
+				sort: null,
+				highlightPolicy: 'ancestor',
+				data: [{
+					value: 8,
+					children: [{
+						value: 4,
+						children: [{
+							value: 2
+						}, {
+							value: 1
+						}, {
+							value: 1
+						}, {
+							value: 0.5
+						}]
+					}, {
+						value: 2
+					}]
+				}, {
+					value: 4,
+					children: [{
+						children: [{
+							value: 2
+						}]
+					}]
+				}, {
+					value: 4,
+					children: [{
+						children: [{
+							value: 2
+						}]
+					}]
+				}, {
+					value: 3,
+					children: [{
+						children: [{
+							value: 1
+						}]
+					}]
+				}],
+				label: {
+					color: '#fff',
+					textBorderColor: '#666',
+					textBorderWidth: 2,
+					borderColor: '#999',
+					borderWidth: 1,
+					formatter: function (param) {
+						var depth = param.treePathInfo.length;
+						if (depth === 2) {
+							return 'radial';
+						}
+						else if (depth === 3) {
+							return 'tangential';
+						}
+						else if (depth === 4) {
+							return '0';
+						}
+					}
+				},
+				levels: [{}, {
+					itemStyle: {
+						color: 'red'
+					},
+					label: {
+						rotate: 'radial'
+					}
+				}, {
+					itemStyle: {
+						color: 'orange'
+					},
+					label: {
+						rotate: 'tangential'
+					}
+				}, {
+					itemStyle: {
+						color: 'yellow'
+					},
+					label: {
+						rotate: 0
+					}
+				}]
+			}
+		}`,0),
+
+
+
+
+
+
+
+		echref('Sunburst-Drink')+
+		sceg(`var data = [{
+			name: 'Flora',
+			itemStyle: {
+				color: '#da0d68'
+			},
+			children: [{
+				name: 'Black Tea',
+				value: 1,
+				itemStyle: {
+					color: '#975e6d'
+				}
+			}, {
+				name: 'Floral',
+				itemStyle: {
+					color: '#e0719c'
+				},
+				children: [{
+					name: 'Chamomile',
+					value: 1,
+					itemStyle: {
+						color: '#f99e1c'
+					}
+		
+				}, {
+					name: 'Jasmine',
+					value: 1,
+					itemStyle: {
+						color: '#f7f1bd'
+					}
+				}]
+			}]
+		
+		
+		}, {
+			name: 'Sweet',
+			itemStyle: {
+				color: '#e65832'
+			},
+			children: [{
+				name: 'Brown Sugar',
+				itemStyle: {
+					color: '#d45a59'
+				},
+				children: [{
+					name: 'Molasses',
+					value: 1,
+					itemStyle: {
+						color: '#310d0f'
+					}
+		
+				}, {
+					name: 'Honey',
+					value: 1,
+					itemStyle: {
+						color: '#da5c1f'
+					}
+				}]
+			}, {
+				name: 'Vanilla',
+				value: 1,
+				itemStyle: {
+					color: '#f89a80'
+				}
+			}, {
+				name: 'Sweet Aromatics',
+				value: 1,
+				itemStyle: {
+					color: '#d0545f'
+				}
+			}]
+		}];
+		
+		option = {
+			title: {
+				text: 'WORLD COFFEE RESEARCH SENSORY LEXICON',
+				subtext: 'Source: ',
+				textStyle: {
+					fontSize: 14,
+					align: 'center'
+				},
+				subtextStyle: {
+					align: 'center'
+				},
+				sublink: 'http'
+			},
+			series: {
+				type: 'sunburst',
+				highlightPolicy: 'ancestor',
+				data: data,
+				radius: [0, '95%'],
+				sort: null,
+				levels: [{}, {
+					r0: '15%',
+					r: '35%',
+					itemStyle: {
+						borderWidth: 2
+					},
+					label: {
+						rotate: 'tangential'
+					}
+				}, {
+					r0: '35%',
+					r: '70%',
+					label: {
+						align: 'right'
+					}
+				}, {
+					r0: '70%',
+					r: '72%',
+					label: {
+						position: 'outside',
+						padding: 3,
+						silent: false
+					},
+					itemStyle: {
+						borderWidth: 3
+					}
+				}]
+			}
+		}`,0),
+
+
+	].join(br)
+	),
+	
+
+
+
+	
+	detail('【散点图】Scatter',[
+
+	echref('Scatter Simple')+
 	sceg(`o={
 	    xAxis: {},
 	    yAxis: {},
@@ -3127,7 +4914,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	}`,0),
 
 
-	'气泡图 Bubble'+
+	'气泡图'+echref('Bubble Gradient')+
 	sceg(`o={
 
 	    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
@@ -3225,7 +5012,61 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	`,0),
 
 
-	'Anscombe\'s quartet'+
+
+
+	echref('Scatter Single Axis')+
+	sceg(`var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+			'7a', '8a', '9a','10a','11a',
+			'12p', '1p', '2p', '3p', '4p', '5p',
+			'6p', '7p', '8p', '9p', '10p', '11p'];
+		var days = ['Saturday', 'Friday', 'Thursday',
+			'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+		var data = [[0,0,5],[1,0,7],[1,1,0],[1,23,2],[2,13,9],[3,10,5],[4,21,7],[5,8,2],[6,18,0]];
+
+		option = {
+		tooltip: {
+			position: 'top'
+		},
+		title: [],
+		singleAxis: [],
+		series: []
+		};
+
+		echarts.util.each(days, function (day, idx) {
+		option.title.push({
+			textBaseline: 'middle',
+			top: (idx + 0.5) * 100 / 7 + '%',
+			text: day
+		});
+		option.singleAxis.push({
+			left: 150,
+			type: 'category',
+			boundaryGap: false,
+			data: hours,
+			top: (idx * 100 / 7 + 5) + '%',
+			height: (100 / 7 - 10) + '%',
+			axisLabel: {
+				interval: 2
+			}
+		});
+		option.series.push({
+			singleAxisIndex: idx,
+			coordinateSystem: 'singleAxis',
+			type: 'scatter',
+			data: [],
+			symbolSize: function (dataItem) {
+				return dataItem[1] * 4;
+			}
+		});
+		});
+
+		echarts.util.each(data, function (dataItem) {
+		option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+		});
+		option`,0),
+
+	echref('Scatter-Anscombe Quartet')+
 	sceg(`o={
 
 	    title: {
@@ -3441,7 +5282,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
-	'扩散特效'+
+	'扩散特效'+echref('Scatter Effect')+
 	sceg(`o={
 	    xAxis: {
 	        scale: true
@@ -3469,13 +5310,4332 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 
 
 
+	echref('Scatter-Matrix')+
+	sceg(`// Schema:
+	// date,AQIindex,PM2.5,PM10,CO,NO2,SO2
+	var schema = [
+		{name: 'AQIindex', index: 1, text: 'AQI'},
+		{name: 'PM25', index: 2, text: 'PM 2.5'},
+		{name: 'PM10', index: 3, text: 'PM 10'},
+		{name: 'CO', index: 4, text: 'CO'},
+		{name: 'NO2', index: 5, text: 'NO₂'},
+		{name: 'SO2', index: 6, text: 'SO₂'},
+		{name: '等级', index: 7, text: '等级'}
+	];
+	
+	var rawData = [
+		[55,9,56,0.46,18,6,"良", "北京"],
+		[25,11,21,0.65,34,9,"优", "北京"],
+		[56,7,63,0.3,14,5,"良", "北京"],
+	
+		[26,37,27,1.163,27,13,"优", "广州"],
+		[85,62,71,1.195,60,8,"良", "广州"],
+		[78,38,74,1.363,37,7,"良", "广州"],
+	
+		[91,45,125,0.82,34,23,"良", "上海"],
+		[65,27,78,0.86,45,29,"良", "上海"],
+		[83,60,84,1.09,73,27,"良", "上海"],
+	];
+	
+	var CATEGORY_DIM_COUNT = 6;
+	var GAP = 1;
+	var BASE_LEFT = 5;
+	var BASE_TOP = 10;
+	// var GRID_WIDTH = 220;
+	// var GRID_HEIGHT = 220;
+	var GRID_WIDTH = (100 - BASE_LEFT - GAP) / CATEGORY_DIM_COUNT - GAP;
+	var GRID_HEIGHT = (100 - BASE_TOP - GAP) / CATEGORY_DIM_COUNT - GAP;
+	var CATEGORY_DIM = 7;
+	var SYMBOL_SIZE = 3;
+	
+	function retrieveScatterData(data, dimX, dimY) {
+		var result = [];
+		for (var i = 0; i < data.length; i++) {
+			var item = [data[i][dimX], data[i][dimY]];
+			item[CATEGORY_DIM] = data[i][CATEGORY_DIM];
+			result.push(item);
+		}
+		return result;
+	}
+	
+	function generateGrids(option) {
+		var index = 0;
+	
+		for (var i = 0; i < CATEGORY_DIM_COUNT; i++) {
+			for (var j = 0; j < CATEGORY_DIM_COUNT; j++) {
+				if (CATEGORY_DIM_COUNT - i + j >= CATEGORY_DIM_COUNT) {
+					continue;
+				}
+	
+				option.grid.push({
+					left: BASE_LEFT + i * (GRID_WIDTH + GAP) + '%',
+					top: BASE_TOP + j * (GRID_HEIGHT + GAP) + '%',
+					width: GRID_WIDTH + '%',
+					height: GRID_HEIGHT + '%'
+				});
+	
+				option.brush.xAxisIndex && option.brush.xAxisIndex.push(index);
+				option.brush.yAxisIndex && option.brush.yAxisIndex.push(index);
+	
+				option.xAxis.push({
+					splitNumber: 3,
+					position: 'top',
+					axisLine: {
+						show: j === 0,
+						onZero: false
+					},
+					axisTick: {
+						show: j === 0,
+						inside: true
+					},
+					axisLabel: {
+						show: j === 0
+					},
+					type: 'value',
+					gridIndex: index,
+					scale: true
+				});
+	
+				option.yAxis.push({
+					splitNumber: 3,
+					position: 'right',
+					axisLine: {
+						show: i === CATEGORY_DIM_COUNT - 1,
+						onZero: false
+					},
+					axisTick: {
+						show: i === CATEGORY_DIM_COUNT - 1,
+						inside: true
+					},
+					axisLabel: {
+						show: i === CATEGORY_DIM_COUNT - 1
+					},
+					type: 'value',
+					gridIndex: index,
+					scale: true
+				});
+	
+				option.series.push({
+					type: 'scatter',
+					symbolSize: SYMBOL_SIZE,
+					xAxisIndex: index,
+					yAxisIndex: index,
+					data: retrieveScatterData(rawData, i, j)
+				});
+	
+				option.visualMap.seriesIndex.push(option.series.length - 1);
+	
+				index++;
+			}
+		}
+	}
+	
+	
+	var option = {
+		animation: false,
+		brush: {
+			brushLink: 'all',
+			xAxisIndex: [],
+			yAxisIndex: [],
+			inBrush: {
+				opacity: 1
+			}
+		},
+		visualMap: {
+			type: 'piecewise',
+			categories: ["北京", "上海", "广州"],
+			dimension: CATEGORY_DIM,
+			orient: 'horizontal',
+			top: 0,
+			left: 'center',
+			inRange: {
+				color: ['#c23531','#2f4554', '#61a0a8']
+			},
+			outOfRange: {
+				color: '#ddd'
+			},
+			seriesIndex: [0]
+		},
+		tooltip: {
+			trigger: 'item'
+		},
+		parallelAxis: [
+			{dim: 0, name: schema[0].text},
+			{dim: 1, name: schema[1].text},
+			{dim: 2, name: schema[2].text},
+			{dim: 3, name: schema[3].text},
+			{dim: 4, name: schema[4].text},
+			{dim: 5, name: schema[5].text},
+			{dim: 6, name: schema[6].text,
+				type: 'category', data: ['优', '良', '轻度', '中度', '重度', '严重']
+			}
+		],
+		parallel: {
+			bottom: '5%',
+			left: '5%',
+			height: '31%',
+			width: '55%',
+			parallelAxisDefault: {
+				type: 'value',
+				name: 'AQI指数',
+				nameLocation: 'end',
+				nameGap: 20,
+				splitNumber: 3,
+				nameTextStyle: {
+					fontSize: 14
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#555'
+					}
+				},
+				axisTick: {
+					lineStyle: {
+						color: '#555'
+					}
+				},
+				splitLine: {
+					show: false
+				},
+				axisLabel: {
+					textStyle: {
+						color: '#555'
+					}
+				}
+			}
+		},
+		grid: [],
+		xAxis: [],
+		yAxis: [],
+		series: [
+			{
+				name: 'parallel',
+				type: 'parallel',
+				smooth: true,
+				lineStyle: {
+					normal: {
+						width: 1,
+						opacity: 0.3
+					}
+				},
+				data: rawData
+			}
+		]
+	};
+	
+	generateGrids(option);
+	option`,0),
+
+	echref('Scatter-Stream Visual'),
+
+	echref('Scatter-Weight')+
+	sceg(`option = {
+		title : {
+			text: '男性女性身高体重分布',
+			subtext: '抽样调查来自: Heinz  2003'
+		},
+		grid: {
+			left: '3%',
+			right: '7%',
+			bottom: '3%',
+			containLabel: true
+		},
+		tooltip : {
+			// trigger: 'axis',
+			showDelay : 0,
+			formatter : function (params) {
+				if (params.value.length > 1) {
+					return params.seriesName + ' :<br/>'
+					+ params.value[0] + 'cm '
+					+ params.value[1] + 'kg ';
+				}
+				else {
+					return params.seriesName + ' :<br/>'
+					+ params.name + ' : '
+					+ params.value + 'kg ';
+				}
+			},
+			axisPointer:{
+				show: true,
+				type : 'cross',
+				lineStyle: {
+					type : 'dashed',
+					width : 1
+				}
+			}
+		},
+		toolbox: {
+			feature: {
+				dataZoom: {},
+				brush: {
+					type: ['rect', 'polygon', 'clear']
+				}
+			}
+		},
+		brush: {
+		},
+		legend: {
+			data: ['女性','男性'],
+			left: 'center'
+		},
+		xAxis : [
+			{
+				type : 'value',
+				scale:true,
+				axisLabel : {
+					formatter: '{value} cm'
+				},
+				splitLine: {
+					show: false
+				}
+			}
+		],
+		yAxis : [
+			{
+				type : 'value',
+				scale:true,
+				axisLabel : {
+					formatter: '{value} kg'
+				},
+				splitLine: {
+					show: false
+				}
+			}
+		],
+		series : [
+			{
+				name:'女性',
+				type:'scatter',
+				data: [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
+					[172.5, 55.2], [170.9, 54.2], [172.9, 62.5], [153.4, 42.0], [160.0, 50.0],
+				],
+				markArea: {
+					silent: true,
+					itemStyle: {
+						normal: {
+							color: 'transparent',
+							borderWidth: 1,
+							borderType: 'dashed'
+						}
+					},
+					data: [[{
+						name: '女性分布区间',
+						xAxis: 'min',
+						yAxis: 'min'
+					}, {
+						xAxis: 'max',
+						yAxis: 'max'
+					}]]
+				},
+				markPoint : {
+					data : [
+						{type : 'max', name: '最大值'},
+						{type : 'min', name: '最小值'}
+					]
+				},
+				markLine : {
+					lineStyle: {
+						normal: {
+							type: 'solid'
+						}
+					},
+					data : [
+						{type : 'average', name: '平均值'},
+						{ xAxis: 160 }
+					]
+				}
+			},
+			{
+				name:'男性',
+				type:'scatter',
+				data: [[174.0, 65.6], [175.3, 71.8], [180.3, 83.2], [180.3, 83.2]
+				],
+				markArea: {
+					silent: true,
+					itemStyle: {
+						normal: {
+							color: 'transparent',
+							borderWidth: 1,
+							borderType: 'dashed'
+						}
+					},
+					data: [[{
+						name: '男性分布区间',
+						xAxis: 'min',
+						yAxis: 'min'
+					}, {
+						xAxis: 'max',
+						yAxis: 'max'
+					}]]
+				},
+				markPoint : {
+					data : [
+						{type : 'max', name: '最大值'},
+						{type : 'min', name: '最小值'}
+					]
+				},
+				markLine : {
+					lineStyle: {
+						normal: {
+							type: 'solid'
+						}
+					},
+					data : [
+						{type : 'average', name: '平均值'},
+						{ xAxis: 170 }
+					]
+				}
+			}
+		]
+	}`,0),
+
+
+	echref('百度地图-空气质量','','effectScatter-bmap'),
+
+	echref('Scatter AQI Color')+
+	sceg(`var dataBJ = [
+		[1,55,9,56,0.46,18,6,"良"],
+		[2,25,11,21,0.65,34,9,"优"],
+		[3,56,7,63,0.3,14,5,"良"],
+		[4,33,7,29,0.33,16,6,"优"],
+		[5,42,24,44,0.76,40,16,"优"],
+	
+	];
+	
+	var dataGZ = [
+		[1,26,37,27,1.163,27,13,"优"],
+		[2,85,62,71,1.195,60,8,"良"],
+		[3,78,38,74,1.363,37,7,"良"],
+		[4,21,21,36,0.634,40,9,"优"],
+		[5,41,42,46,0.915,81,13,"优"],
+	
+	];
+	
+	var dataSH = [
+		[1,91,45,125,0.82,34,23,"良"],
+		[2,65,27,78,0.86,45,29,"良"],
+		[3,83,60,84,1.09,73,27,"良"],
+		[4,109,81,121,1.28,68,51,"轻度污染"],
+		[5,106,77,114,1.07,55,51,"轻度污染"],
+	
+	];
+	
+	var schema = [
+		{name: 'date', index: 0, text: '日'},
+		{name: 'AQIindex', index: 1, text: 'AQI指数'},
+		{name: 'PM25', index: 2, text: 'PM2.5'},
+		{name: 'PM10', index: 3, text: 'PM10'},
+		{name: 'CO', index: 4, text: '一氧化碳（CO）'},
+		{name: 'NO2', index: 5, text: '二氧化氮（NO2）'},
+		{name: 'SO2', index: 6, text: '二氧化硫（SO2）'}
+	];
+	
+	
+	var itemStyle = {
+		normal: {
+			opacity: 0.8,
+			shadowBlur: 10,
+			shadowOffsetX: 0,
+			shadowOffsetY: 0,
+			shadowColor: 'rgba(0, 0, 0, 0.5)'
+		}
+	};
+	
+	option = {
+		backgroundColor: '#404a59',
+		color: [
+			'#dd4444', '#fec42c', '#80F1BE'
+		],
+		legend: {
+			y: 'top',
+			data: ['北京', '上海', '广州'],
+			textStyle: {
+				color: '#fff',
+				fontSize: 16
+			}
+		},
+		grid: {
+			x: '10%',
+			x2: 150,
+			y: '18%',
+			y2: '10%'
+		},
+		tooltip: {
+			padding: 10,
+			backgroundColor: '#222',
+			borderColor: '#777',
+			borderWidth: 1,
+			formatter: function (obj) {
+				var value = obj.value;
+				return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+					+ obj.seriesName + ' ' + value[0] + '日：'
+					+ value[7]
+					+ '</div>'
+					+ schema[1].text + '：' + value[1] + '<br>'
+					+ schema[2].text + '：' + value[2] + '<br>'
+					+ schema[3].text + '：' + value[3] + '<br>'
+					+ schema[4].text + '：' + value[4] + '<br>'
+					+ schema[5].text + '：' + value[5] + '<br>'
+					+ schema[6].text + '：' + value[6] + '<br>';
+			}
+		},
+		xAxis: {
+			type: 'value',
+			name: '日期',
+			nameGap: 16,
+			nameTextStyle: {
+				color: '#fff',
+				fontSize: 14
+			},
+			max: 31,
+			splitLine: {
+				show: false
+			},
+			axisLine: {
+				lineStyle: {
+					color: '#eee'
+				}
+			}
+		},
+		yAxis: {
+			type: 'value',
+			name: 'AQI指数',
+			nameLocation: 'end',
+			nameGap: 20,
+			nameTextStyle: {
+				color: '#fff',
+				fontSize: 16
+			},
+			axisLine: {
+				lineStyle: {
+					color: '#eee'
+				}
+			},
+			splitLine: {
+				show: false
+			}
+		},
+		visualMap: [
+			{
+				left: 'right',
+				top: '10%',
+				dimension: 2,
+				min: 0,
+				max: 250,
+				itemWidth: 30,
+				itemHeight: 120,
+				calculable: true,
+				precision: 0.1,
+				text: ['圆形大小：PM2.5'],
+				textGap: 30,
+				textStyle: {
+					color: '#fff'
+				},
+				inRange: {
+					symbolSize: [10, 70]
+				},
+				outOfRange: {
+					symbolSize: [10, 70],
+					color: ['rgba(255,255,255,.2)']
+				},
+				controller: {
+					inRange: {
+						color: ['#c23531']
+					},
+					outOfRange: {
+						color: ['#444']
+					}
+				}
+			},
+			{
+				left: 'right',
+				bottom: '5%',
+				dimension: 6,
+				min: 0,
+				max: 50,
+				itemHeight: 120,
+				calculable: true,
+				precision: 0.1,
+				text: ['明暗：二氧化硫'],
+				textGap: 30,
+				textStyle: {
+					color: '#fff'
+				},
+				inRange: {
+					colorLightness: [1, 0.5]
+				},
+				outOfRange: {
+					color: ['rgba(255,255,255,.2)']
+				},
+				controller: {
+					inRange: {
+						color: ['#c23531']
+					},
+					outOfRange: {
+						color: ['#444']
+					}
+				}
+			}
+		],
+		series: [
+			{
+				name: '北京',
+				type: 'scatter',
+				itemStyle: itemStyle,
+				data: dataBJ
+			},
+			{
+				name: '上海',
+				type: 'scatter',
+				itemStyle: itemStyle,
+				data: dataSH
+			},
+			{
+				name: '广州',
+				type: 'scatter',
+				itemStyle: itemStyle,
+				data: dataGZ
+			}
+		]
+	}`,0),
+
+
+	echref('Scatter-Clustering Process'),
+
+	echref('Scatter-Linear Regression'),
+	echref('Scatter-Logarithmic Regression'),
+	echref('Scatter-Exponential Regression'),
+	echref('Scatter-Polynomial Regression'),
+
+	echref('Scatter-Large')+
+	sceg(`function genData(len, offset) {
+		var lngRange = [-10.781327, 131.48];
+		var latRange = [18.252847, 52.33];
+	
+		var arr = new Float32Array(len * 2);
+		var off = 0;
+	
+		for (var i = 0; i < len; i++) {
+			var x = +Math.random() * 10;
+			var y = +Math.sin(x) - x * (len % 2 ? 0.1 : -0.1) * Math.random() + (offset || 0) / 10;
+			arr[off++] = x;
+			arr[off++] = y;
+		}
+		return arr;
+	}
+	
+	var data1 = genData(105);
+	var data2 = genData(105, 10);
+	
+	option = {
+		title: {
+			text: echarts.format.addCommas(data1.length / 2 + data2.length / 2) + ' Points'
+		},
+		tooltip: {},
+		toolbox: {
+			left: 'center',
+			feature: {
+				dataZoom: {}
+			}
+		},
+		legend: {
+			orient: 'vertical',
+			right: 10
+		},
+		xAxis: [{
+		}],
+		yAxis: [{
+		}],
+		dataZoom: [{
+			type: 'inside'
+		}, {
+			type: 'slider'
+		}],
+		animation: false,
+		series : [{
+			name: 'A',
+			type: 'scatter',
+			data: data1,
+			dimensions: ['x', 'y'],
+			symbolSize: 3,
+			itemStyle: {
+				opacity: 0.4
+			},
+			large: true
+		}, {
+			name: 'B',
+			type: 'scatter',
+			data: data2,
+			dimensions: ['x', 'y'],
+			symbolSize: 3,
+			itemStyle: {
+				opacity: 0.4
+			},
+			large: true
+		}]
+	}`,0),
+
+
+	echref('Punch Card','','scatter-punchCard')+
+	sceg(`var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+			'7a', '8a', '9a','10a','11a',
+			'12p', '1p', '2p', '3p', '4p', '5p',
+			'6p', '7p', '8p', '9p', '10p', '11p'];
+	var days = ['Saturday', 'Friday', 'Thursday',
+			'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+	
+	var data = [[0,0,5],[0,1,1],];
+	data = data.map(function (item) {
+		return [item[1], item[0], item[2]];
+	});
+	
+	option = {
+		title: {
+			text: 'Punch Card of Github',
+		},
+		legend: {
+			data: ['Punch Card'],
+			left: 'right'
+		},
+		tooltip: {
+			position: 'top',
+			formatter: function (params) {
+				return params.value[2] + ' commits in ' + hours[params.value[0]] + ' of ' + days[params.value[1]];
+			}
+		},
+		grid: {
+			left: 2,
+			bottom: 10,
+			right: 10,
+			containLabel: true
+		},
+		xAxis: {
+			type: 'category',
+			data: hours,
+			boundaryGap: false,
+			splitLine: {
+				show: true,
+				lineStyle: {
+					color: '#999',
+					type: 'dashed'
+				}
+			},
+			axisLine: {
+				show: false
+			}
+		},
+		yAxis: {
+			type: 'category',
+			data: days,
+			axisLine: {
+				show: false
+			}
+		},
+		series: [{
+			name: 'Punch Card',
+			type: 'scatter',
+			symbolSize: function (val) {
+				return val[2] * 2;
+			},
+			data: data,
+			animationDelay: function (idx) {
+				return idx * 5;
+			}
+		}]
+	}`,0)+
+
+	echref('极坐标','','scatter-polar-punchCard')+
+	sceg(`var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+			'7a', '8a', '9a','10a','11a',
+			'12p', '1p', '2p', '3p', '4p', '5p',
+			'6p', '7p', '8p', '9p', '10p', '11p'];
+	var days = ['Saturday', 'Friday', 'Thursday',
+			'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+	
+	var data = [[0,0,5],[0,1,1],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8,0],[0,9,0],[0,10,0],[0,11,2],[0,12,4],[0,13,1],[0,14,1],[0,15,3],[0,16,4],[0,17,6],[0,18,4]];
+	
+	option = {
+		title: {
+			text: 'Punch Card of Github',
+			link: git('pissang/echarts-next/graphs/punch-card')
+		},
+		legend: {
+			data: ['Punch Card'],
+			left: 'right'
+		},
+		polar: {},
+		tooltip: {
+			formatter: function (params) {
+				return params.value[2] + ' commits in ' + hours[params.value[1]] + ' of ' + days[params.value[0]];
+			}
+		},
+		angleAxis: {
+			type: 'category',
+			data: hours,
+			boundaryGap: false,
+			splitLine: {
+				show: true,
+				lineStyle: {
+					color: '#999',
+					type: 'dashed'
+				}
+			},
+			axisLine: {
+				show: false
+			}
+		},
+		radiusAxis: {
+			type: 'category',
+			data: days,
+			axisLine: {
+				show: false
+			},
+			axisLabel: {
+				rotate: 45
+			}
+		},
+		series: [{
+			name: 'Punch Card',
+			type: 'scatter',
+			coordinateSystem: 'polar',
+			symbolSize: function (val) {
+				return val[2] * 2;
+			},
+			data: data,
+			animationDelay: function (idx) {
+				return idx * 5;
+			}
+		}]
+	}`,1),
+
+	echref('Scatter-Life Expectancy Timeline'),
+
+	echref('Scatter-Nebula'),
+	echref('Scatter-Nutrients'),
+	echref('Scatter-Nutrients Matrix'),
+	echref('Scatter-Painter Choice'),
+
+
+	echref('Custom Error Scatter')+
+	sceg(`// Prime Costs and Prices for ACME Fashion 	Collection "Spring-Summer, 2016"
+	// Data from https://playground.anychart.com/gallery/7.12.0/Error_Charts/Marker_Chart
+	var dimensions = [
+		'name', 'Price', 'Prime cost', 'Prime cost min', 'Prime cost max', 'Price min', 'Price max'
+	];
+	var data = [
+		['Blouse "Blue Viola"', 101.88, 99.75, 76.75, 116.75, 69.88, 119.88],
+		['Dress "Daisy"', 155.8, 144.03, 126.03, 156.03, 129.8, 188.8],
+		['Trousers "Cutesy Classic"', 203.25, 173.56, 151.56, 187.56, 183.25, 249.25],
+		['Dress "Morning Dew"', 256, 120.5, 98.5, 136.5, 236, 279],
+		['Turtleneck "Dark Chocolate"', 408.89, 294.75, 276.75, 316.75, 385.89, 427.89],
+		['Jumper "Early Spring"', 427.36, 430.24, 407.24, 452.24, 399.36, 461.36],
+		['Breeches "Summer Mood"', 356, 135.5, 123.5, 151.5, 333, 387],
+		['Dress "Mauve Chamomile"', 406, 95.5, 73.5, 111.5, 366, 429],
+		['Dress "Flying Tits"', 527.36, 503.24, 488.24, 525.24, 485.36, 551.36],
+		['Dress "Singing Nightingales"', 587.36, 543.24, 518.24, 555.24, 559.36, 624.36],
+		['Sundress "Cloudy weather"', 603.36, 407.24, 392.24, 419.24, 581.36, 627.36],
+		['Sundress "East motives"', 633.36, 477.24, 445.24, 487.24, 594.36, 652.36],
+		['Sweater "Cold morning"', 517.36, 437.24, 416.24, 454.24, 488.36, 565.36],
+		['Trousers "Lavender Fields"', 443.36, 387.24, 370.24, 413.24, 412.36, 484.36],
+		['Jumper "Coffee with Milk"', 543.36, 307.24, 288.24, 317.24, 509.36, 574.36],
+		['Blouse "Blooming Cactus"', 790.36, 277.24, 254.24, 295.24, 764.36, 818.36],
+		['Sweater "Fluffy Comfort"', 790.34, 678.34, 660.34, 690.34, 762.34, 824.34]
+	];
+	
+	function renderItem(params, api) {
+		var children = [];
+		var coordDims = ['x', 'y'];
+	
+		for (var baseDimIdx = 0; baseDimIdx < 2; baseDimIdx++) {
+			var otherDimIdx = 1 - baseDimIdx;
+			var encode = params.encode;
+			var baseValue = api.value(encode[coordDims[baseDimIdx]][0]);
+			var param = [];
+			param[baseDimIdx] = baseValue;
+			param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][1]);
+			var highPoint = api.coord(param);
+			param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][2]);
+			var lowPoint = api.coord(param);
+			var halfWidth = 5;
+	
+			var style = api.style({
+				stroke: api.visual('color'),
+				fill: null
+			});
+	
+			children.push({
+				type: 'line',
+				shape: makeShape(
+					baseDimIdx,
+					highPoint[baseDimIdx] - halfWidth, highPoint[otherDimIdx],
+					highPoint[baseDimIdx] + halfWidth, highPoint[otherDimIdx]
+				),
+				style: style
+			}, {
+				type: 'line',
+				shape: makeShape(
+					baseDimIdx,
+					highPoint[baseDimIdx], highPoint[otherDimIdx],
+					lowPoint[baseDimIdx], lowPoint[otherDimIdx]
+				),
+				style: style
+			}, {
+				type: 'line',
+				shape: makeShape(
+					baseDimIdx,
+					lowPoint[baseDimIdx] - halfWidth, lowPoint[otherDimIdx],
+					lowPoint[baseDimIdx] + halfWidth, lowPoint[otherDimIdx]
+				),
+				style: style
+			});
+		}
+	
+		function makeShape(baseDimIdx, base1, value1, base2, value2) {
+			var shape = {};
+			shape[coordDims[baseDimIdx] + '1'] = base1;
+			shape[coordDims[1 - baseDimIdx] + '1'] = value1;
+			shape[coordDims[baseDimIdx] + '2'] = base2;
+			shape[coordDims[1 - baseDimIdx] + '2'] = value2;
+			return shape;
+		}
+	
+		return {
+			type: 'group',
+			children: children
+		};
+	}
+	
+	option = {
+		tooltip: {
+		},
+		legend: {
+			data: ['bar', 'error']
+		},
+		dataZoom: [{
+			type: 'slider',
+			height: 8,
+			bottom: 20,
+			borderColor: 'transparent',
+			backgroundColor: '#e2e2e2',
+			handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
+			handleSize: 20,
+			handleStyle: {
+				shadowBlur: 6,
+				shadowOffsetX: 1,
+				shadowOffsetY: 2,
+				shadowColor: '#aaa'
+			}
+		}, {
+			type: 'inside'
+		}],
+		grid: {
+			bottom: 80
+		},
+		xAxis: {},
+		yAxis: {},
+		series: [{
+			type: 'scatter',
+			name: 'error',
+			data: data,
+			dimensions: dimensions,
+			encode: {
+				x: 2,
+				y: 1,
+				tooltip: [2, 1, 3, 4, 5, 6],
+				itemName: 0
+			},
+			itemStyle: {
+				normal: {
+					color: '#77bef7'
+				}
+			}
+		}, {
+			type: 'custom',
+			name: 'error',
+			renderItem: renderItem,
+			dimensions: dimensions,
+			encode: {
+				x: [2, 3, 4],
+				y: [1, 5, 6],
+				tooltip: [2, 1, 3, 4, 5, 6],
+				itemName: 0
+			},
+			data: data,
+			z: 100
+		}]
+	}`,0),
+
+
+
+		echref('Custom Hexbin'),
+
+
+
+		echref('Cycle Plot')+
+		sceg(`var rawData = [
+			[2010, 26, 35, 46, 40, 47, 61, 47, 41, 20, 18, 9, 10],
+			[2011, 29, 39, 55, 38, 55, 67, 53, 41, 19, 20, 11, 11],
+			[2012, 38, 48, 60, 49, 57, 79, 62, 54, 26, 26, 13, 11]
+		];
+		
+		var dataByMonth = [];
+		var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		echarts.util.each(rawData, function (entry, yearIndex) {
+			echarts.util.each(entry, function (value, index) {
+				if (index) {
+					var monthIndex = index - 1;
+					var monthItem = dataByMonth[monthIndex] = dataByMonth[monthIndex] || [];
+					monthItem[0] = monthIndex;
+					monthItem[yearIndex + 1] = value;
+				}
+			});
+		});
+		var averageByMonth = [];
+		echarts.util.each(dataByMonth, function (entry, index) {
+			var sum = 0;
+			echarts.util.each(entry, function (value, index) {
+				index && (sum += value);
+			});
+			averageByMonth.push([index, sum / (entry.length - 1)]);
+		});
+		
+		function renderTrendItem(params, api) {
+			var categoryIndex = api.value(0);
+			var unitBandWidth = api.size([0, 0])[0] * 0.85 / (rawData.length - 1);
+		
+			var points = echarts.util.map(rawData, function (entry, index) {
+				var value = api.value(index + 1);
+				var point = api.coord([categoryIndex, value]);
+				point[0] += unitBandWidth * (index - rawData.length / 2);
+				return point;
+			});
+		
+			return {
+				type: 'polyline',
+				shape: {
+					points: points
+				},
+				style: api.style({
+					fill: null,
+					stroke: api.visual('color'),
+					lineWidth: 2
+				})
+			};
+		}
+		
+		function renderAverageItem(param, api) {
+			var categoryIndex = api.value(0);
+			var bandWidth = api.size([0, 0])[0] * 0.85;
+			var point = api.coord([api.value(0), api.value(1)]);
+		
+			return {
+				type: 'line',
+				shape: {
+					x1: point[0] - bandWidth / 2,
+					x2: point[0] + bandWidth / 2,
+					y1: point[1],
+					y2: point[1]
+				},
+				style: api.style({
+					fill: null,
+					stroke: api.visual('color'),
+					lineWidth: 2
+				})
+			};
+		}
+		
+		option = {
+			tooltip: {
+			},
+			title: {
+				text: 'Sales Trends by Year within Each Month',
+				subtext: 'Sample of Cycle Plot',
+				left: 'center'
+			},
+			legend: {
+				top: 70,
+				data: ['Trend by year (2010 - 2012)', 'Average']
+			},
+			dataZoom: [{
+				type: 'slider',
+				showDataShadow: false,
+				bottom: 10,
+				height: 20,
+				borderColor: 'transparent',
+				backgroundColor: '#e2e2e2',
+				handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
+				handleSize: 20,
+				handleStyle: {
+					shadowBlur: 6,
+					shadowOffsetX: 1,
+					shadowOffsetY: 2,
+					shadowColor: '#aaa'
+				},
+				labelFormatter: ''
+			}, {
+				type: 'inside'
+			}],
+			grid: {
+				bottom: 70,
+				top: 120,
+			},
+			xAxis: {
+				data: months
+			},
+			yAxis: {
+				boundaryGap: [0, '20%']
+			},
+			series: [{
+				type: 'custom',
+				name: 'Average',
+				renderItem: renderAverageItem,
+				encode: {
+					x: 0,
+					y: 1
+				},
+				data: averageByMonth
+			}, {
+				type: 'custom',
+				name: 'Trend by year (2010 - 2012)',
+				renderItem: renderTrendItem,
+				encode: {
+					x: 0,
+					y: echarts.util.map(rawData, function (entry, index) {
+						return index + 1;
+					})
+				},
+				data: dataByMonth
+			}]
+		}`,0),
+
+
+
+		echref('Wind Barb'),
+
+
 	].join(br)
 	),
 	
 	
 	
+
+
+
+
+
+	
+	detail('【雷达图】Radar',[
+	
+		echref('Radar')+
+		sceg(`option = {
+			title: {
+				text: '基础雷达图'
+			},
+			tooltip: {},
+			legend: {
+				data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+			},
+			radar: {
+				// shape: 'circle',	//极坐标样式
+				name: {
+					textStyle: {
+						color: '#fff',
+						backgroundColor: '#999',
+						borderRadius: 3,
+						padding: [3, 5]
+				   }
+				},
+				indicator: [
+				   { name: '销售（sales）', max: 6500},
+				   { name: '管理（Administration）', max: 16000},
+				   { name: '信息技术（Information Techology）', max: 30000},
+				   { name: '客服（Customer Support）', max: 38000},
+				   { name: '研发（Development）', max: 52000},
+				   { name: '市场（Marketing）', max: 25000}
+				]
+			},
+			series: [{
+				name: '预算 vs 开销（Budget vs spending）',
+				type: 'radar',
+				// 雷达面积图：
+				// areaStyle: {normal: {}},
+				data : [
+					{
+						value : [4300, 10000, 28000, 35000, 50000, 19000],
+						name : '预算分配（Allocated Budget）'
+					},
+					 {
+						value : [5000, 14000, 28000, 31000, 42000, 21000],
+						name : '实际开销（Actual Spending）'
+					}
+				]
+			}]
+		}`,0),
 		
-	detail('【关系图】relation',[
+		
+	
+		echref('Radar AQI')+
+		sceg(`// Schema:
+		// date,AQIindex,PM2.5,PM10,CO,NO2,SO2
+		var dataBJ = [
+			[55,9,56,0.46,18,6,1],
+			[25,11,21,0.65,34,9,2],
+			[56,7,63,0.3,14,5,3],
+		];
+		
+		var dataGZ = [
+			[26,37,27,1.163,27,13,1],
+			[85,62,71,1.195,60,8,2],
+			[78,38,74,1.363,37,7,3],
+		];
+		
+		var dataSH = [
+			[91,45,125,0.82,34,23,1],
+			[65,27,78,0.86,45,29,2],
+			[83,60,84,1.09,73,27,3],
+		];
+		
+		var lineStyle = {
+			normal: {
+				width: 1,
+				opacity: 0.5
+			}
+		};
+		
+		option = {
+			backgroundColor: '#161627',
+			title: {
+				text: 'AQI - 雷达图',
+				left: 'center',
+				textStyle: {
+					color: '#eee'
+				}
+			},
+			legend: {
+				bottom: 5,
+				data: ['北京', '上海', '广州'],
+				itemGap: 20,
+				textStyle: {
+					color: '#fff',
+					fontSize: 14
+				},
+				selectedMode: 'single'
+			},
+			// visualMap: {
+			//     show: true,
+			//     min: 0,
+			//     max: 20,
+			//     dimension: 6,
+			//     inRange: {
+			//         colorLightness: [0.5, 0.8]
+			//     }
+			// },
+			radar: {
+				indicator: [
+					{name: 'AQI', max: 300},
+					{name: 'PM2.5', max: 250},
+					{name: 'PM10', max: 300},
+					{name: 'CO', max: 5},
+					{name: 'NO2', max: 200},
+					{name: 'SO2', max: 100}
+				],
+				shape: 'circle',
+				splitNumber: 5,
+				name: {
+					textStyle: {
+						color: 'rgb(238, 197, 102)'
+					}
+				},
+				splitLine: {
+					lineStyle: {
+						color: [
+							'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
+							'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
+							'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
+						].reverse()
+					}
+				},
+				splitArea: {
+					show: false
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'rgba(238, 197, 102, 0.5)'
+					}
+				}
+			},
+			series: [
+				{
+					name: '北京',
+					type: 'radar',
+					lineStyle: lineStyle,
+					data: dataBJ,
+					symbol: 'none',
+					itemStyle: {
+						normal: {
+							color: '#F9713C'
+						}
+					},
+					areaStyle: {
+						normal: {
+							opacity: 0.1
+						}
+					}
+				},
+				{
+					name: '上海',
+					type: 'radar',
+					lineStyle: lineStyle,
+					data: dataSH,
+					symbol: 'none',
+					itemStyle: {
+						normal: {
+							color: '#B3E4A1'
+						}
+					},
+					areaStyle: {
+						normal: {
+							opacity: 0.05
+						}
+					}
+				},
+				{
+					name: '广州',
+					type: 'radar',
+					lineStyle: lineStyle,
+					data: dataGZ,
+					symbol: 'none',
+					itemStyle: {
+						normal: {
+							color: 'rgb(238, 197, 102)'
+						}
+					},
+					areaStyle: {
+						normal: {
+							opacity: 0.05
+						}
+					}
+				}
+			]
+		}`,0),
+		
+		
+
+
+
+		echref('Radar Custom')+
+		sceg(`option = {
+			title: {
+				text: '自定义雷达图'
+			},
+			legend: {
+				data: ['图一','图二', '张三', '李四']
+			},
+			radar: [
+				{
+					indicator: [
+						{ text: '指标一' },
+						{ text: '指标二' },
+						{ text: '指标三' },
+						{ text: '指标四' },
+						{ text: '指标五' }
+					],
+					center: ['25%', '50%'],
+					radius: 120,
+					startAngle: 90,
+					splitNumber: 4,
+					shape: 'circle',
+					name: {
+						formatter:'【{value}】',
+						textStyle: {
+							color:'#72ACD1'
+						}
+					},
+					splitArea: {
+						areaStyle: {
+							color: ['rgba(114, 172, 209, 0.2)',
+							'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
+							'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
+							shadowColor: 'rgba(0, 0, 0, 0.3)',
+							shadowBlur: 10
+						}
+					},
+					axisLine: {
+						lineStyle: {
+							color: 'rgba(255, 255, 255, 0.5)'
+						}
+					},
+					splitLine: {
+						lineStyle: {
+							color: 'rgba(255, 255, 255, 0.5)'
+						}
+					}
+				},
+				{
+					indicator: [
+						{ text: '语文', max: 150 },
+						{ text: '数学', max: 150 },
+						{ text: '英语', max: 150 },
+						{ text: '物理', max: 120 },
+						{ text: '化学', max: 108 },
+						{ text: '生物', max: 72 }
+					],
+					center: ['75%', '50%'],
+					radius: 120
+				}
+			],
+			series: [
+				{
+					name: '雷达图',
+					type: 'radar',
+					itemStyle: {
+						emphasis: {
+							// color: 各异,
+							lineStyle: {
+								width: 4
+							}
+						}
+					},
+					data: [
+						{
+							value: [100, 8, 0.40, -80, 2000],
+							name: '图一',
+							symbol: 'rect',
+							symbolSize: 5,
+							lineStyle: {
+								normal: {
+									type: 'dashed'
+								}
+							}
+						},
+						{
+							value: [60, 5, 0.30, -100, 1500],
+							name: '图二',
+							areaStyle: {
+								normal: {
+									color: 'rgba(255, 255, 255, 0.5)'
+								}
+							}
+						}
+					]
+				},
+				{
+					name: '成绩单',
+					type: 'radar',
+					radarIndex: 1,
+					data: [
+						{
+							value: [120, 118, 130, 100, 99, 70],
+							name: '张三',
+							label: {
+								normal: {
+									show: true,
+									formatter:function(params) {
+										return params.value;
+									}
+								}
+							}
+						},
+						{
+							value: [90, 113, 140, 30, 70, 60],
+							name: '李四',
+							areaStyle: {
+								normal: {
+									opacity: 0.9,
+									color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+										{
+											color: '#B8D3E4',
+											offset: 0
+										},
+										{
+											color: '#72ACD1',
+											offset: 1
+										}
+									])
+								}
+							}
+						}
+					]
+				}
+			]
+		}`,0),
+		
+
+		echref('Radar Multiple')+
+		sceg(`option = {
+			title: {
+				text: '多雷达图'
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				x: 'center',
+				data:['某软件','某主食手机','某水果手机','降水量','蒸发量']
+			},
+			radar: [
+				{
+					indicator: [
+						{text: '品牌', max: 100},
+						{text: '内容', max: 100},
+						{text: '可用性', max: 100},
+						{text: '功能', max: 100}
+					],
+					center: ['25%','40%'],
+					radius: 80
+				},
+				{
+					indicator: [
+						{text: '外观', max: 100},
+						{text: '拍照', max: 100},
+						{text: '系统', max: 100},
+						{text: '性能', max: 100},
+						{text: '屏幕', max: 100}
+					],
+					radius: 80,
+					center: ['50%','60%'],
+				},
+				{
+					indicator: (function (){
+						var res = [];
+						for (var i = 1; i <= 12; i++) {
+							res.push({text:i+'月',max:100});
+						}
+						return res;
+					})(),
+					center: ['75%','40%'],
+					radius: 80
+				}
+			],
+			series: [
+				{
+					type: 'radar',
+					 tooltip: {
+						trigger: 'item'
+					},
+					itemStyle: {normal: {areaStyle: {type: 'default'}}},
+					data: [
+						{
+							value: [60,73,85,40],
+							name: '某软件'
+						}
+					]
+				},
+				{
+					type: 'radar',
+					radarIndex: 1,
+					data: [
+						{
+							value: [85, 90, 90, 95, 95],
+							name: '某主食手机'
+						},
+						{
+							value: [95, 80, 95, 90, 93],
+							name: '某水果手机'
+						}
+					]
+				},
+				{
+					type: 'radar',
+					radarIndex: 2,
+					itemStyle: {normal: {areaStyle: {type: 'default'}}},
+					data: [
+						{
+							name: '降水量',
+							value: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3],
+						},
+						{
+							name:'蒸发量',
+							value:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 62.2, 32.6, 20.0, 6.4, 3.3]
+						}
+					]
+				}
+			]
+		}`,0),
+
+
+
+
+
+		echref('Radar2')+
+		sceg(`option = {
+			title: {
+				text: '浏览器占比变化',
+				subtext: '纯属虚构',
+				top: 10,
+				left: 10
+			},
+			tooltip: {
+				trigger: 'item',
+				backgroundColor : 'rgba(0,0,250,0.2)'
+			},
+			legend: {
+				type: 'scroll',
+				bottom: 10,
+				data: (function (){
+					var list = [];
+					for (var i = 1; i <=28; i++) {
+						list.push(i + 2000 + '');
+					}
+					return list;
+				})()
+			},
+			visualMap: {
+				top: 'middle',
+				right: 10,
+				color: ['red', 'yellow'],
+				calculable: true
+			},
+			radar: {
+			   indicator : [
+				   { text: 'IE8-', max: 400},
+				   { text: 'IE9+', max: 400},
+				   { text: 'Safari', max: 400},
+				   { text: 'Firefox', max: 400},
+				   { text: 'Chrome', max: 400}
+				]
+			},
+			series : (function (){
+				var series = [];
+				for (var i = 1; i <= 28; i++) {
+					series.push({
+						name:'浏览器（数据纯属虚构）',
+						type: 'radar',
+						symbol: 'none',
+						lineStyle: {
+							width: 1
+						},
+						emphasis: {
+							areaStyle: {
+								color: 'rgba(0,250,0,0.3)'
+							}
+						},
+						data:[
+						  {
+							value:[
+								(40 - i) * 10,
+								(38 - i) * 4 + 60,
+								i * 5 + 10,
+								i * 9,
+								i * i /2
+							],
+							name: i + 2000 + ''
+						  }
+						]
+					});
+				}
+				return series;
+			})()
+		}`,0),
+
+
+
+
+
+			].join(br)
+		),
+
+
+
+
+	detail('【热力图】Heatmap',[
+		echref('Heatmap-Cartesian')+
+		sceg(`var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+			'7a', '8a', '9a','10a','11a',
+			'12p', '1p', '2p', '3p', '4p', '5p',
+			'6p', '7p', '8p', '9p', '10p', '11p'];
+			var days = ['Saturday', 'Friday', 'Thursday',
+					'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+			var data = [[0,0,5],[0,1,1],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8,0],[0,9,0],[0,10,0],[0,11,2],[0,12,4],[0,13,1],[0,14,1],[0,15,3],[0,16,4],[0,17,6],[0,18,4],[0,19,4],[0,20,3],[0,21,3],[0,22,2],[0,23,5],[1,0,7],[1,1,0],[1,2,0],[1,3,0],[1,4,0],[1,5,0],[1,6,0],[1,7,0],[1,8,0],[1,9,0],[1,10,5],[1,11,2],[1,12,2],[1,13,6],[1,14,9],[1,15,11],[1,16,6],[1,17,7],[1,18,8],[1,19,12],[1,20,5],[1,21,5],[1,22,7],[1,23,2],[2,0,1],[2,1,1],[2,2,0],[2,3,0],[2,4,0],[2,5,0],[2,6,0],[2,7,0],[2,8,0],[2,9,0],[2,10,3],[2,11,2],[2,12,1],[2,13,9],[2,14,8],[2,15,10],[2,16,6],[2,17,5],[2,18,5],[2,19,5],[2,20,7],[2,21,4],[2,22,2],[2,23,4],[3,0,7],[3,1,3],[3,2,0],[3,3,0],[3,4,0],[3,5,0],[3,6,0],[3,7,0],[3,8,1],[3,9,0],[3,10,5],[3,11,4],[3,12,7],[3,13,14],[3,14,13],[3,15,12],[3,16,9],[3,17,5],[3,18,5],[3,19,10],[3,20,6],[3,21,4],[3,22,4],[3,23,1],[4,0,1],[4,1,3],[4,2,0],[4,3,0],[4,4,0],[4,5,1],[4,6,0],[4,7,0],[4,8,0],[4,9,2],[4,10,4],[4,11,4],[4,12,2],[4,13,4],[4,14,4],[4,15,14],[4,16,12],[4,17,1],[4,18,8],[4,19,5],[4,20,3],[4,21,7],[4,22,3],[4,23,0],[5,0,2],[5,1,1],[5,2,0],[5,3,3],[5,4,0],[5,5,0],[5,6,0],[5,7,0],[5,8,2],[5,9,0],[5,10,4],[5,11,1],[5,12,5],[5,13,10],[5,14,5],[5,15,7],[5,16,11],[5,17,6],[5,18,0],[5,19,5],[5,20,3],[5,21,4],[5,22,2],[5,23,0],[6,0,1],[6,1,0],[6,2,0],[6,3,0],[6,4,0],[6,5,0],[6,6,0],[6,7,0],[6,8,0],[6,9,0],[6,10,1],[6,11,0],[6,12,2],[6,13,1],[6,14,3],[6,15,4],[6,16,0],[6,17,0],[6,18,0],[6,19,0],[6,20,1],[6,21,2],[6,22,2],[6,23,6]];
+
+			data = data.map(function (item) {
+				return [item[1], item[0], item[2] || '-'];
+			});
+
+			option = {
+				tooltip: {
+					position: 'top'
+				},
+				animation: false,
+				grid: {
+					height: '50%',
+					y: '10%'
+				},
+				xAxis: {
+					type: 'category',
+					data: hours,
+					splitArea: {
+						show: true
+					}
+				},
+				yAxis: {
+					type: 'category',
+					data: days,
+					splitArea: {
+						show: true
+					}
+				},
+				visualMap: {
+					min: 0,
+					max: 10,
+					calculable: true,
+					orient: 'horizontal',
+					left: 'center',
+					bottom: '15%'
+				},
+				series: [{
+					name: 'Punch Card',
+					type: 'heatmap',
+					data: data,
+					label: {
+						normal: {
+							show: true
+						}
+					},
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}]
+			}`,0),
+
+		echref('Heatmap-Large'),
+		echref('Heatmap-Large Piecewise')+
+		sceg(`
+		var noise = getNoiseHelper();
+		var xData = [];
+		var yData = [];
+		noise.seed(Math.random());
+		function generateData(theta, min, max) {
+			var data = [];
+			for (var i = 0; i <= 20; i++) {
+				for (var j = 0; j <= 100; j++) {
+					// var x = (max - min) * i / 200 + min;
+					// var y = (max - min) * j / 100 + min;
+					data.push([i, j, noise.perlin2(i / 40, j / 20) + 0.5]);
+					// data.push([i, j, normalDist(theta, x) * normalDist(theta, y)]);
+				}
+				xData.push(i);
+			}
+			for (var j = 0; j < 100; j++) {
+				yData.push(j);
+			}
+			return data;
+		}
+		var data = generateData(2, -5, 5);
+		
+		option = {
+			tooltip: {},
+			grid: {
+				right: 10,
+				left: 140
+			},
+			xAxis: {
+				type: 'category',
+				data: xData
+			},
+			yAxis: {
+				type: 'category',
+				data: yData
+			},
+			visualMap: {
+				type: 'piecewise',
+				min: 0,
+				max: 1,
+				calculable: true,
+				realtime: false,
+				splitNumber: 8,
+				inRange: {
+					color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				}
+			},
+			series: [{
+				name: 'Gaussian',
+				type: 'heatmap',
+				data: data,
+				itemStyle: {
+					emphasis: {
+						borderColor: '#333',
+						borderWidth: 1
+					}
+				},
+				progressive: 1000,
+				animation: false
+			}]
+		};
+		
+		
+		
+		///////////////////////////////////////////////////////////////////////////
+		// Simplex and perlin noise helper from https://github.com/josephg/noisejs
+		///////////////////////////////////////////////////////////////////////////
+		function getNoiseHelper(global) {
+		
+		  var module = {};
+		
+		  function Grad(x, y, z) {
+			this.x = x; this.y = y; this.z = z;
+		  }
+		
+		  Grad.prototype.dot2 = function(x, y) {
+			return this.x*x + this.y*y;
+		  };
+		
+		  Grad.prototype.dot3 = function(x, y, z) {
+			return this.x*x + this.y*y + this.z*z;
+		  };
+		
+		  var grad3 = [new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
+					   new Grad(1,0,1),new Grad(-1,0,1),new Grad(1,0,-1),new Grad(-1,0,-1),
+					   new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)];
+		
+		  var p = [151,160,137,91,90,15,225,140,36,103,30,69,142,8];
+		  // To remove the need for index wrapping, double the permutation table length
+		  var perm = new Array(512);
+		  var gradP = new Array(512);
+		
+		  // This isn't a very good seeding function, but it works ok. It supports 2^16
+		  // different seed values. Write something better if you need more seeds.
+		  module.seed = function(seed) {
+			if(seed > 0 && seed < 1) {
+			  // Scale the seed out
+			  seed *= 65536;
+			}
+		
+			seed = Math.floor(seed);
+			if(seed < 256) {
+			  seed |= seed << 8;
+			}
+		
+			for(var i = 0; i < 256; i++) {
+			  var v;
+			  if (i & 1) {
+				v = p[i] ^ (seed & 255);
+			  } else {
+				v = p[i] ^ ((seed>>8) & 255);
+			  }
+		
+			  perm[i] = perm[i + 256] = v;
+			  gradP[i] = gradP[i + 256] = grad3[v % 12];
+			}
+		  };
+		
+		  module.seed(0);
+		
+		  /*
+		  for(var i=0; i<256; i++) {
+			perm[i] = perm[i + 256] = p[i];
+			gradP[i] = gradP[i + 256] = grad3[perm[i] % 12];
+		  }*/
+		
+		  // Skewing and unskewing factors for 2, 3, and 4 dimensions
+		  var F2 = 0.5*(Math.sqrt(3)-1);
+		  var G2 = (3-Math.sqrt(3))/6;
+		
+		  var F3 = 1/3;
+		  var G3 = 1/6;
+		
+		  // 2D simplex noise
+		  module.simplex2 = function(xin, yin) {
+			var n0, n1, n2; // Noise contributions from the three corners
+			// Skew the input space to determine which simplex cell we're in
+			var s = (xin+yin)*F2; // Hairy factor for 2D
+			var i = Math.floor(xin+s);
+			var j = Math.floor(yin+s);
+			var t = (i+j)*G2;
+			var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+			var y0 = yin-j+t;
+			// For the 2D case, the simplex shape is an equilateral triangle.
+			// Determine which simplex we are in.
+			var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+			if(x0>y0) { // lower triangle, XY order: (0,0)->(1,0)->(1,1)
+			  i1=1; j1=0;
+			} else {    // upper triangle, YX order: (0,0)->(0,1)->(1,1)
+			  i1=0; j1=1;
+			}
+			// A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
+			// a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
+			// c = (3-sqrt(3))/6
+			var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+			var y1 = y0 - j1 + G2;
+			var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
+			var y2 = y0 - 1 + 2 * G2;
+			// Work out the hashed gradient indices of the three simplex corners
+			i &= 255;
+			j &= 255;
+			var gi0 = gradP[i+perm[j]];
+			var gi1 = gradP[i+i1+perm[j+j1]];
+			var gi2 = gradP[i+1+perm[j+1]];
+			// Calculate the contribution from the three corners
+			var t0 = 0.5 - x0*x0-y0*y0;
+			if(t0<0) {
+			  n0 = 0;
+			} else {
+			  t0 *= t0;
+			  n0 = t0 * t0 * gi0.dot2(x0, y0);  // (x,y) of grad3 used for 2D gradient
+			}
+			var t1 = 0.5 - x1*x1-y1*y1;
+			if(t1<0) {
+			  n1 = 0;
+			} else {
+			  t1 *= t1;
+			  n1 = t1 * t1 * gi1.dot2(x1, y1);
+			}
+			var t2 = 0.5 - x2*x2-y2*y2;
+			if(t2<0) {
+			  n2 = 0;
+			} else {
+			  t2 *= t2;
+			  n2 = t2 * t2 * gi2.dot2(x2, y2);
+			}
+			// Add contributions from each corner to get the final noise value.
+			// The result is scaled to return values in the interval [-1,1].
+			return 70 * (n0 + n1 + n2);
+		  };
+		
+		  // 3D simplex noise
+		  module.simplex3 = function(xin, yin, zin) {
+			var n0, n1, n2, n3; // Noise contributions from the four corners
+		
+			// Skew the input space to determine which simplex cell we're in
+			var s = (xin+yin+zin)*F3; // Hairy factor for 2D
+			var i = Math.floor(xin+s);
+			var j = Math.floor(yin+s);
+			var k = Math.floor(zin+s);
+		
+			var t = (i+j+k)*G3;
+			var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+			var y0 = yin-j+t;
+			var z0 = zin-k+t;
+		
+			// For the 3D case, the simplex shape is a slightly irregular tetrahedron.
+			// Determine which simplex we are in.
+			var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
+			var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
+			if(x0 >= y0) {
+			  if(y0 >= z0)      { i1=1; j1=0; k1=0; i2=1; j2=1; k2=0; }
+			  else if(x0 >= z0) { i1=1; j1=0; k1=0; i2=1; j2=0; k2=1; }
+			  else              { i1=0; j1=0; k1=1; i2=1; j2=0; k2=1; }
+			} else {
+			  if(y0 < z0)      { i1=0; j1=0; k1=1; i2=0; j2=1; k2=1; }
+			  else if(x0 < z0) { i1=0; j1=1; k1=0; i2=0; j2=1; k2=1; }
+			  else             { i1=0; j1=1; k1=0; i2=1; j2=1; k2=0; }
+			}
+			// A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
+			// a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
+			// a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
+			// c = 1/6.
+			var x1 = x0 - i1 + G3; // Offsets for second corner
+			var y1 = y0 - j1 + G3;
+			var z1 = z0 - k1 + G3;
+		
+			var x2 = x0 - i2 + 2 * G3; // Offsets for third corner
+			var y2 = y0 - j2 + 2 * G3;
+			var z2 = z0 - k2 + 2 * G3;
+		
+			var x3 = x0 - 1 + 3 * G3; // Offsets for fourth corner
+			var y3 = y0 - 1 + 3 * G3;
+			var z3 = z0 - 1 + 3 * G3;
+		
+			// Work out the hashed gradient indices of the four simplex corners
+			i &= 255;
+			j &= 255;
+			k &= 255;
+			var gi0 = gradP[i+   perm[j+   perm[k   ]]];
+			var gi1 = gradP[i+i1+perm[j+j1+perm[k+k1]]];
+			var gi2 = gradP[i+i2+perm[j+j2+perm[k+k2]]];
+			var gi3 = gradP[i+ 1+perm[j+ 1+perm[k+ 1]]];
+		
+			// Calculate the contribution from the four corners
+			var t0 = 0.6 - x0*x0 - y0*y0 - z0*z0;
+			if(t0<0) {
+			  n0 = 0;
+			} else {
+			  t0 *= t0;
+			  n0 = t0 * t0 * gi0.dot3(x0, y0, z0);  // (x,y) of grad3 used for 2D gradient
+			}
+			var t1 = 0.6 - x1*x1 - y1*y1 - z1*z1;
+			if(t1<0) {
+			  n1 = 0;
+			} else {
+			  t1 *= t1;
+			  n1 = t1 * t1 * gi1.dot3(x1, y1, z1);
+			}
+			var t2 = 0.6 - x2*x2 - y2*y2 - z2*z2;
+			if(t2<0) {
+			  n2 = 0;
+			} else {
+			  t2 *= t2;
+			  n2 = t2 * t2 * gi2.dot3(x2, y2, z2);
+			}
+			var t3 = 0.6 - x3*x3 - y3*y3 - z3*z3;
+			if(t3<0) {
+			  n3 = 0;
+			} else {
+			  t3 *= t3;
+			  n3 = t3 * t3 * gi3.dot3(x3, y3, z3);
+			}
+			// Add contributions from each corner to get the final noise value.
+			// The result is scaled to return values in the interval [-1,1].
+			return 32 * (n0 + n1 + n2 + n3);
+		
+		  };
+		
+		  // ##### Perlin noise stuff
+		
+		  function fade(t) {
+			return t*t*t*(t*(t*6-15)+10);
+		  }
+		
+		  function lerp(a, b, t) {
+			return (1-t)*a + t*b;
+		  }
+		
+		  // 2D Perlin Noise
+		  module.perlin2 = function(x, y) {
+			// Find unit grid cell containing point
+			var X = Math.floor(x), Y = Math.floor(y);
+			// Get relative xy coordinates of point within that cell
+			x = x - X; y = y - Y;
+			// Wrap the integer cells at 255 (smaller integer period can be introduced here)
+			X = X & 255; Y = Y & 255;
+		
+			// Calculate noise contributions from each of the four corners
+			var n00 = gradP[X+perm[Y]].dot2(x, y);
+			var n01 = gradP[X+perm[Y+1]].dot2(x, y-1);
+			var n10 = gradP[X+1+perm[Y]].dot2(x-1, y);
+			var n11 = gradP[X+1+perm[Y+1]].dot2(x-1, y-1);
+		
+			// Compute the fade curve value for x
+			var u = fade(x);
+		
+			// Interpolate the four results
+			return lerp(
+				lerp(n00, n10, u),
+				lerp(n01, n11, u),
+			   fade(y));
+		  };
+		
+		  // 3D Perlin Noise
+		  module.perlin3 = function(x, y, z) {
+			// Find unit grid cell containing point
+			var X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
+			// Get relative xyz coordinates of point within that cell
+			x = x - X; y = y - Y; z = z - Z;
+			// Wrap the integer cells at 255 (smaller integer period can be introduced here)
+			X = X & 255; Y = Y & 255; Z = Z & 255;
+		
+			// Calculate noise contributions from each of the eight corners
+			var n000 = gradP[X+  perm[Y+  perm[Z  ]]].dot3(x,   y,     z);
+			var n001 = gradP[X+  perm[Y+  perm[Z+1]]].dot3(x,   y,   z-1);
+			var n010 = gradP[X+  perm[Y+1+perm[Z  ]]].dot3(x,   y-1,   z);
+			var n011 = gradP[X+  perm[Y+1+perm[Z+1]]].dot3(x,   y-1, z-1);
+			var n100 = gradP[X+1+perm[Y+  perm[Z  ]]].dot3(x-1,   y,   z);
+			var n101 = gradP[X+1+perm[Y+  perm[Z+1]]].dot3(x-1,   y, z-1);
+			var n110 = gradP[X+1+perm[Y+1+perm[Z  ]]].dot3(x-1, y-1,   z);
+			var n111 = gradP[X+1+perm[Y+1+perm[Z+1]]].dot3(x-1, y-1, z-1);
+		
+			// Compute the fade curve value for x, y, z
+			var u = fade(x);
+			var v = fade(y);
+			var w = fade(z);
+		
+			// Interpolate
+			return lerp(
+				lerp(
+				  lerp(n000, n100, u),
+				  lerp(n001, n101, u), w),
+				lerp(
+				  lerp(n010, n110, u),
+				  lerp(n011, n111, u), w),
+			   v);
+		  };
+		
+		
+		  return module;
+		}`,0),
+
+		echref('Heatmap-Cartesian')+
+		sceg(`o={
+		}`,0),
+
+		echref('Heatmap-Cartesian')+
+		sceg(`o={
+		}`,0),
+
+	].join(br)
+	),
+
+
+	detail('【桑基图】Sankey',[
+		echref('Sankey Simple')+
+		sceg(`option = {
+			series: {
+				type: 'sankey',
+				layout:'none',
+				focusNodeAdjacency: 'allEdges',
+				data: [{
+					name: 'a'
+				}, {
+					name: 'b'
+				}, {
+					name: 'a1'
+				}, {
+					name: 'a2'
+				}, {
+					name: 'b1'
+				}, {
+					name: 'c'
+				}],
+				links: [{
+					source: 'a',
+					target: 'a1',
+					value: 5
+				}, {
+					source: 'a',
+					target: 'a2',
+					value: 3
+				}, {
+					source: 'b',
+					target: 'b1',
+					value: 8
+				}, {
+					source: 'a',
+					target: 'b1',
+					value: 3
+				}, {
+					source: 'b1',
+					target: 'a1',
+					value: 1
+				}, {
+					source: 'b1',
+					target: 'c',
+					value: 2
+				}]
+			}
+		}`,0),
+
+
+
+		echref('Sankey Vertical')+
+		sceg(`option = {
+			color: [
+				'#67001f', '#b2182b', '#d6604d', '#f4a582', '#fddbc7', '#d1e5f0', '#92c5de', '#4393c3', '#2166ac', '#053061'
+			],
+			tooltip: {
+				trigger: 'item',
+				triggerOn: 'mousemove'
+			},
+			animation: false,
+			series: [
+				{
+					type: 'sankey',
+					bottom: '10%',
+					focusNodeAdjacency: 'allEdges',
+					data: [
+						{name: 'a'},
+						{name: 'b'},
+						{name: 'a1'},
+						{name: 'b1'},
+						{name: 'c'},
+						{name: 'e'}
+					],
+					links: [
+						{source: 'a', target: 'a1', value: 5},
+						{source: 'e', target: 'b', value: 3},
+						{source: 'a', target: 'b1', value: 3},
+						{source: 'b1', target: 'a1', value: 1},
+						{source: 'b1', target: 'c', value: 2},
+						{source: 'b', target: 'c', value: 1}
+					],
+					//orient: 'vertical',
+					label: {
+						position: 'top'
+					},
+					lineStyle: {
+						normal: {
+							color: 'source',
+							curveness: 0.5
+						}
+					}
+				}
+			]
+		}`,0),
+
+
+
+
+		echref('Align Left','','sankey-nodeAlign-left'),
+		echref('Align Right','','sankey-nodeAlign-right'),
+
+		echref('Sankey Levels'),
+
+
+		echref('Sankey Itemstyle'),
+
+
+		echref('Sankey Energy'),
+
+
+	].join(br)
+	),
+
+	
+	detail('【漏斗图】Funnel',[
+		echref('Funnel')+
+		sceg(`option = {
+			title: {
+				text: '漏斗图',
+				subtext: '纯属虚构'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c}%"
+			},
+			toolbox: {
+				feature: {
+					dataView: {readOnly: false},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			legend: {
+				data: ['展现','点击','访问','咨询','订单']
+			},
+			calculable: true,
+			series: [
+				{
+					name:'漏斗图',
+					type:'funnel',
+					left: '10%',
+					top: 60,
+					//x2: 80,
+					bottom: 60,
+					width: '80%',
+					// height: {totalHeight} - y - y2,
+					min: 0,
+					max: 100,
+					minSize: '0%',
+					maxSize: '100%',
+					sort: 'descending',
+					gap: 2,
+					label: {
+						show: true,
+						position: 'inside'
+					},
+					labelLine: {
+						length: 10,
+						lineStyle: {
+							width: 1,
+							type: 'solid'
+						}
+					},
+					itemStyle: {
+						borderColor: '#fff',
+						borderWidth: 1
+					},
+					emphasis: {
+						label: {
+							fontSize: 20
+						}
+					},
+					data: [
+						{value: 60, name: '访问'},
+						{value: 40, name: '咨询'},
+						{value: 20, name: '订单'},
+						{value: 80, name: '点击'},
+						{value: 100, name: '展现'}
+					]
+				}
+			]
+		}`,0),
+
+
+		echref('Funnel Align')+
+		sceg(`option = {
+			title: {
+				text: '漏斗图(对比)',
+				subtext: '纯属虚构',
+				left: 'left',
+				top: 'bottom'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c}%"
+			},
+			toolbox: {
+				show: true,
+				orient: 'vertical',
+				top: 'center',
+				feature: {
+					dataView: {readOnly: false},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+				data: ['产品A','产品B','产品C','产品D','产品E']
+			},
+			calculable: true,
+			series: [
+				{
+					name: '漏斗图',
+					type: 'funnel',
+					width: '40%',
+					height: '45%',
+					left: '5%',
+					top: '50%',
+					funnelAlign: 'right',
+		
+					center: ['25%', '25%'],  // for pie
+		
+					data:[
+						{value:60, name:'产品C'},
+						{value:30, name:'产品D'},
+						{value:10, name:'产品E'},
+						{value:80, name:'产品B'},
+						{value:100, name:'产品A'}
+					]
+				},
+				{
+					name: '金字塔',
+					type:'funnel',
+					width: '40%',
+					height: '45%',
+					left: '5%',
+					top: '5%',
+					sort: 'ascending',
+					funnelAlign: 'right',
+		
+					center: ['25%', '75%'],  // for pie
+		
+					data:[
+						{value:60, name:'产品C'},
+						{value:30, name:'产品D'},
+						{value:10, name:'产品E'},
+						{value:80, name:'产品B'},
+						{value:100, name:'产品A'}
+					]
+				},
+				{
+					name:'漏斗图',
+					type:'funnel',
+					width: '40%',
+					height: '45%',
+					left: '55%',
+					top: '5%',
+					funnelAlign: 'left',
+		
+					center: ['75%', '25%'],  // for pie
+		
+					data: [
+						{value: 60, name: '产品C'},
+						{value: 30, name: '产品D'},
+						{value: 10, name: '产品E'},
+						{value: 80, name: '产品B'},
+						{value: 100, name: '产品A'}
+					]
+				},
+				{
+					name: '金字塔',
+					type:'funnel',
+					width: '40%',
+					height: '45%',
+					left: '55%',
+					top: '50%',
+					sort: 'ascending',
+					funnelAlign: 'left',
+		
+					center: ['75%', '75%'],  // for pie
+		
+					data: [
+						{value: 60, name: '产品C'},
+						{value: 30, name: '产品D'},
+						{value: 10, name: '产品E'},
+						{value: 80, name: '产品B'},
+						{value: 100, name: '产品A'}
+					]
+				}
+			]
+		}`,0),
+
+
+		echref('Funnel Multiple')+
+		sceg(`option = {
+			title: {
+				text: '漏斗图',
+				subtext: '纯属虚构',
+				left: 'left',
+				top: 'bottom'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c}%"
+			},
+			toolbox: {
+				orient: 'vertical',
+				top: 'center',
+				feature: {
+					dataView: {readOnly: false},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+				data: ['展现','点击','访问','咨询','订单']
+			},
+			calculable: true,
+			series: [
+				{
+					name: '漏斗图',
+					type: 'funnel',
+					width: '40%',
+					height: '45%',
+					left: '5%',
+					top: '50%',
+					data:[
+						{value: 60, name:'访问'},
+						{value: 30, name:'咨询'},
+						{value: 10, name:'订单'},
+						{value: 80, name:'点击'},
+						{value: 100, name:'展现'}
+					]
+				},
+				{
+					name: '金字塔',
+					type: 'funnel',
+					width: '40%',
+					height: '45%',
+					left: '5%',
+					top: '5%',
+					sort: 'ascending',
+					data:[
+						{value: 60, name:'访问'},
+						{value: 30, name:'咨询'},
+						{value: 10, name:'订单'},
+						{value: 80, name:'点击'},
+						{value: 100, name:'展现'}
+					]
+				},
+				{
+					name: '漏斗图',
+					type:'funnel',
+					width: '40%',
+					height: '45%',
+					left: '55%',
+					top: '5%',
+					label: {
+						normal: {
+							position: 'left'
+						}
+					},
+					data:[
+						{value: 60, name: '访问'},
+						{value: 30, name: '咨询'},
+						{value: 10, name: '订单'},
+						{value: 80, name: '点击'},
+						{value: 100, name: '展现'}
+					]
+				},
+				{
+					name: '金字塔',
+					type:'funnel',
+					width: '40%',
+					height: '45%',
+					left: '55%',
+					top: '50%',
+					sort: 'ascending',
+					label: {
+						normal: {
+							position: 'left'
+						}
+					},
+					data:[
+						{value: 60, name: '访问'},
+						{value: 30, name: '咨询'},
+						{value: 10, name: '订单'},
+						{value: 80, name: '点击'},
+						{value: 100, name: '展现'}
+					]
+				}
+			]
+		}`,0),
+
+		echref('Funnel Customize')+
+		sceg(`option = {
+			title: {
+				text: '漏斗图',
+				subtext: '纯属虚构'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c}%"
+			},
+			toolbox: {
+				feature: {
+					dataView: {readOnly: false},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			legend: {
+				data: ['展现','点击','访问','咨询','订单']
+			},
+			series: [
+				{
+					name: '预期',
+					type: 'funnel',
+					left: '10%',
+					width: '80%',
+					label: {
+						normal: {
+							formatter: '{b}预期'
+						},
+						emphasis: {
+							position:'inside',
+							formatter: '{b}预期: {c}%'
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					itemStyle: {
+						normal: {
+							opacity: 0.7
+						}
+					},
+					data: [
+						{value: 60, name: '访问'},
+						{value: 40, name: '咨询'},
+						{value: 20, name: '订单'},
+						{value: 80, name: '点击'},
+						{value: 100, name: '展现'}
+					]
+				},
+				{
+					name: '实际',
+					type: 'funnel',
+					left: '10%',
+					width: '80%',
+					maxSize: '80%',
+					label: {
+						normal: {
+							position: 'inside',
+							formatter: '{c}%',
+							textStyle: {
+								color: '#fff'
+							}
+						},
+						emphasis: {
+							position:'inside',
+							formatter: '{b}实际: {c}%'
+						}
+					},
+					itemStyle: {
+						normal: {
+							opacity: 0.5,
+							borderColor: '#fff',
+							borderWidth: 2
+						}
+					},
+					data: [
+						{value: 30, name: '访问'},
+						{value: 10, name: '咨询'},
+						{value: 5, name: '订单'},
+						{value: 50, name: '点击'},
+						{value: 80, name: '展现'}
+					]
+				}
+			]
+		}`,0),
+
+	].join(br)
+	),
+
+
+	detail('【仪表盘】Gauge',[
+		echref('Gauge')+
+		sceg(`option = {
+			tooltip : {
+				formatter: "{a} <br/>{b} : {c}%"
+			},
+			toolbox: {
+				feature: {
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			series: [
+				{
+					name: '业务指标',
+					type: 'gauge',
+					detail: {formatter:'{value}%'},
+					data: [{value:75, name: '完成率'}]
+				}
+			]
+		}`,0),
+
+		echref('Gauge-Car')+
+		sceg(`option = {
+			tooltip : {
+				formatter: "{a} <br/>{c} {b}"
+			},
+			toolbox: {
+				show: true,
+				feature: {
+					restore: {show: true},
+					saveAsImage: {show: true}
+				}
+			},
+			series : [
+				{
+					name: '速度',
+					type: 'gauge',
+					z: 3,
+					min: 0,
+					max: 220,
+					splitNumber: 11,
+					radius: '50%',
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							width: 10
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						length: 15,        // 属性length控制线长
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: 'auto'
+						}
+					},
+					splitLine: {           // 分隔线
+						length: 20,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							color: 'auto'
+						}
+					},
+					axisLabel: {
+						backgroundColor: 'auto',
+						borderRadius: 2,
+						color: '#eee',
+						padding: 3,
+						textShadowBlur: 2,
+						textShadowOffsetX: 1,
+						textShadowOffsetY: 1,
+						textShadowColor: '#222'
+					},
+					title : {
+						// 其余属性默认使用全局文本样式，详见TEXTSTYLE
+						fontWeight: 'bolder',
+						fontSize: 20,
+						fontStyle: 'italic'
+					},
+					detail : {
+						// 其余属性默认使用全局文本样式，详见TEXTSTYLE
+						formatter: function (value) {
+							value = (value + '').split('.');
+							value.length < 2 && (value.push('00'));
+							return ('00' + value[0]).slice(-2)
+								+ '.' + (value[1] + '00').slice(0, 2);
+						},
+						fontWeight: 'bolder',
+						borderRadius: 3,
+						backgroundColor: '#444',
+						borderColor: '#aaa',
+						shadowBlur: 5,
+						shadowColor: '#333',
+						shadowOffsetX: 0,
+						shadowOffsetY: 3,
+						borderWidth: 2,
+						textBorderColor: '#000',
+						textBorderWidth: 2,
+						textShadowBlur: 2,
+						textShadowColor: '#fff',
+						textShadowOffsetX: 0,
+						textShadowOffsetY: 0,
+						fontFamily: 'Arial',
+						width: 100,
+						color: '#eee',
+						rich: {}
+					},
+					data:[{value: 40, name: 'km/h'}]
+				},
+				{
+					name: '转速',
+					type: 'gauge',
+					center: ['20%', '55%'],    // 默认全局居中
+					radius: '35%',
+					min:0,
+					max:7,
+					endAngle:45,
+					splitNumber:7,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							width: 8
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						length:12,        // 属性length控制线长
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: 'auto'
+						}
+					},
+					splitLine: {           // 分隔线
+						length:20,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							color: 'auto'
+						}
+					},
+					pointer: {
+						width:5
+					},
+					title: {
+						offsetCenter: [0, '-30%'],       // x, y，单位px
+					},
+					detail: {
+						// 其余属性默认使用全局文本样式，详见TEXTSTYLE
+						fontWeight: 'bolder'
+					},
+					data:[{value: 1.5, name: 'x1000 r/min'}]
+				},
+				{
+					name: '油表',
+					type: 'gauge',
+					center: ['77%', '50%'],    // 默认全局居中
+					radius: '25%',
+					min: 0,
+					max: 2,
+					startAngle: 135,
+					endAngle: 45,
+					splitNumber: 2,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							width: 8
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						splitNumber: 5,
+						length: 10,        // 属性length控制线长
+						lineStyle: {        // 属性lineStyle控制线条样式
+							color: 'auto'
+						}
+					},
+					axisLabel: {
+						formatter:function(v){
+							switch (v + '') {
+								case '0' : return 'E';
+								case '1' : return 'Gas';
+								case '2' : return 'F';
+							}
+						}
+					},
+					splitLine: {           // 分隔线
+						length: 15,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							color: 'auto'
+						}
+					},
+					pointer: {
+						width:2
+					},
+					title : {
+						show: false
+					},
+					detail : {
+						show: false
+					},
+					data:[{value: 0.5, name: 'gas'}]
+				},
+				{
+					name: '水表',
+					type: 'gauge',
+					center : ['77%', '50%'],    // 默认全局居中
+					radius : '25%',
+					min: 0,
+					max: 2,
+					startAngle: 315,
+					endAngle: 225,
+					splitNumber: 2,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							width: 8
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						show: false
+					},
+					axisLabel: {
+						formatter:function(v){
+							switch (v + '') {
+								case '0' : return 'H';
+								case '1' : return 'Water';
+								case '2' : return 'C';
+							}
+						}
+					},
+					splitLine: {           // 分隔线
+						length: 15,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							color: 'auto'
+						}
+					},
+					pointer: {
+						width:2
+					},
+					title: {
+						show: false
+					},
+					detail: {
+						show: false
+					},
+					data:[{value: 0.5, name: 'gas'}]
+				}
+			]
+		}`,0),
+
+
+		echref('Gauge-Car Dark')+
+		sceg(`option = {
+			backgroundColor: '#1b1b1b',
+			tooltip : {
+				formatter: "{a} <br/>{c} {b}"
+			},
+			toolbox: {
+				show : true,
+				feature : {
+					mark : {show: true},
+					restore : {show: true},
+					saveAsImage : {show: true}
+				}
+			},
+			series : [
+				{
+					name:'速度',
+					type:'gauge',
+					min:0,
+					max:220,
+					splitNumber:11,
+					radius: '50%',
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+							width: 3,
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisLabel: {            // 坐标轴小标记
+						textStyle: {       // 属性lineStyle控制线条样式
+							fontWeight: 'bolder',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						length :15,        // 属性length控制线长
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: 'auto',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					splitLine: {           // 分隔线
+						length :25,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							width:3,
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					pointer: {           // 分隔线
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5
+					},
+					title : {
+						textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+							fontWeight: 'bolder',
+							fontSize: 20,
+							fontStyle: 'italic',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					detail : {
+						backgroundColor: 'rgba(30,144,255,0.8)',
+						borderWidth: 1,
+						borderColor: '#fff',
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5,
+						offsetCenter: [0, '50%'],       // x, y，单位px
+						textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+							fontWeight: 'bolder',
+							color: '#fff'
+						}
+					},
+					data:[{value: 40, name: 'km/h'}]
+				},
+				{
+					name:'转速',
+					type:'gauge',
+					center : ['25%', '55%'],    // 默认全局居中
+					radius : '30%',
+					min:0,
+					max:7,
+					endAngle:45,
+					splitNumber:7,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: [[0.29, 'lime'],[0.86, '#1e90ff'],[1, '#ff4500']],
+							width: 2,
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisLabel: {            // 坐标轴小标记
+						textStyle: {       // 属性lineStyle控制线条样式
+							fontWeight: 'bolder',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						length :12,        // 属性length控制线长
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: 'auto',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					splitLine: {           // 分隔线
+						length :20,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							width:3,
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					pointer: {
+						width:5,
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5
+					},
+					title : {
+						offsetCenter: [0, '-30%'],       // x, y，单位px
+						textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+							fontWeight: 'bolder',
+							fontStyle: 'italic',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					detail : {
+						//backgroundColor: 'rgba(30,144,255,0.8)',
+					   // borderWidth: 1,
+						borderColor: '#fff',
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5,
+						width: 80,
+						height:30,
+						offsetCenter: [25, '20%'],       // x, y，单位px
+						textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+							fontWeight: 'bolder',
+							color: '#fff'
+						}
+					},
+					data:[{value: 1.5, name: 'x1000 r/min'}]
+				},
+				{
+					name:'油表',
+					type:'gauge',
+					center : ['75%', '50%'],    // 默认全局居中
+					radius : '30%',
+					min:0,
+					max:2,
+					startAngle:135,
+					endAngle:45,
+					splitNumber:2,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: [[0.2, 'lime'],[0.8, '#1e90ff'],[1, '#ff4500']],
+							width: 2,
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						length :12,        // 属性length控制线长
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: 'auto',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisLabel: {
+						textStyle: {       // 属性lineStyle控制线条样式
+							fontWeight: 'bolder',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						},
+						formatter:function(v){
+							switch (v + '') {
+								case '0' : return 'E';
+								case '1' : return 'Gas';
+								case '2' : return 'F';
+							}
+						}
+					},
+					splitLine: {           // 分隔线
+						length :15,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							width:3,
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					pointer: {
+						width:2,
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5
+					},
+					title : {
+						show: false
+					},
+					detail : {
+						show: false
+					},
+					data:[{value: 0.5, name: 'gas'}]
+				},
+				{
+					name:'水表',
+					type:'gauge',
+					center : ['75%', '50%'],    // 默认全局居中
+					radius : '30%',
+					min:0,
+					max:2,
+					startAngle:315,
+					endAngle:225,
+					splitNumber:2,
+					axisLine: {            // 坐标轴线
+						lineStyle: {       // 属性lineStyle控制线条样式
+							color: [[0.2, 'lime'],[0.8, '#1e90ff'],[1, '#ff4500']],
+							width: 2,
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					axisTick: {            // 坐标轴小标记
+						show: false
+					},
+					axisLabel: {
+						textStyle: {       // 属性lineStyle控制线条样式
+							fontWeight: 'bolder',
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						},
+						formatter:function(v){
+							switch (v + '') {
+								case '0' : return 'H';
+								case '1' : return 'Water';
+								case '2' : return 'C';
+							}
+						}
+					},
+					splitLine: {           // 分隔线
+						length :15,         // 属性length控制线长
+						lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+							width:3,
+							color: '#fff',
+							shadowColor : '#fff', //默认透明
+							shadowBlur: 10
+						}
+					},
+					pointer: {
+						width:2,
+						shadowColor : '#fff', //默认透明
+						shadowBlur: 5
+					},
+					title : {
+						show: false
+					},
+					detail : {
+						show: false
+					},
+					data:[{value: 0.5, name: 'gas'}]
+				}
+			]
+		}`,0),
+
+	].join(br)
+	),
+
+
+	detail('【日历】Calendar',[
+		echref('Calendar Simple')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate(year + '-12-31');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time <= end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 10000)
+				]);
+			}
+			return data;
+		}
+		
+		option = {
+			visualMap: {
+				show: false,
+				min: 0,
+				max: 10000
+			},
+			calendar: {
+				range: '2019'
+			},
+			series: {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				data: getVirtulData(2019)
+			}
+		}`,0),
+
+
+
+
+		echref('Calendar Horizontal')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 1000)
+				]);
+			}
+			return data;
+		}
+		
+		
+		
+		option = {
+			tooltip: {
+				position: 'top'
+			},
+			visualMap: {
+				min: 0,
+				max: 1000,
+				calculable: true,
+				orient: 'horizontal',
+				left: 'center',
+				top: 'top'
+			},
+		
+			calendar: [
+			{
+				range: '2019',
+				cellSize: ['auto', 20]
+			},
+			{
+				top: 260,
+				range: '2018',
+				cellSize: ['auto', 20]
+			},
+			{
+				top: 450,
+				range: '2017',
+				cellSize: ['auto', 20],
+				right: 5
+			}],
+		
+			series: [{
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 0,
+				data: getVirtulData(2019)
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 1,
+				data: getVirtulData(2018)
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 2,
+				data: getVirtulData(2017)
+			}]
+		
+		}`,0),
+
+
+
+
+
+		echref('Calendar Vertical')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 1000)
+				]);
+			}
+			return data;
+		}
+		
+		
+		option = {
+			tooltip: {
+				position: 'top',
+				formatter: function (p) {
+					var format = echarts.format.formatTime('yyyy-MM-dd', p.data[0]);
+					return format + ': ' + p.data[1];
+				}
+			},
+			visualMap: {
+				min: 0,
+				max: 1000,
+				calculable: true,
+				orient: 'vertical',
+				left: '670',
+				top: 'center'
+			},
+		
+			calendar: [
+			{
+				orient: 'vertical',
+				range: '2017'
+			},
+			{
+				left: 300,
+				orient: 'vertical',
+				range: '2018'
+			},
+			{
+				left: 520,
+				cellSize: [20, 'auto'],
+				bottom: 10,
+				orient: 'vertical',
+				range: '2019',
+				dayLabel: {
+					margin: 5
+				}
+			}],
+		
+			series: [{
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 0,
+				data: getVirtulData(2017)
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 1,
+				data: getVirtulData(2018)
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 2,
+				data: getVirtulData(2019)
+			}]
+		}`,0),
+
+
+
+
+
+		echref('Calendar Charts')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2017';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 1000)
+				]);
+			}
+			return data;
+		}
+		
+		var graphData = [
+			[
+				1485878400000,
+				260
+			],
+			[
+				1486137600000,
+				200
+			],
+			[
+				1486569600000,
+				279
+			],
+			[
+				1486915200000,
+				847
+			],
+			[
+				1487347200000,
+				241
+			],
+			[
+				1487779200000,
+				411
+			],
+			[
+				1488124800000,
+				985
+			]
+		];
+		
+		var links = graphData.map(function (item, idx) {
+			return {
+				source: idx,
+				target: idx + 1
+			};
+		});
+		links.pop();
+		
+		option = {
+			tooltip: {
+				position: 'top'
+			},
+		
+			visualMap: [{
+				min: 0,
+				max: 1000,
+				calculable: true,
+				seriesIndex: [2, 3, 4],
+				orient: 'horizontal',
+				left: '55%',
+				bottom: 20
+			}, {
+				min: 0,
+				max: 1000,
+				inRange: {
+					color: ['grey'],
+					opacity: [0, 0.3]
+				},
+				controller: {
+					inRange: {
+						opacity: [0.3, 0.6]
+					},
+					outOfRange: {
+						color: '#ccc'
+					}
+				},
+				calculable: true,
+				seriesIndex: [1],
+				orient: 'horizontal',
+				left: '10%',
+				bottom: 20
+			}],
+		
+			calendar: [
+			{
+				orient: 'vertical',
+				yearLabel: {
+					margin: 40
+				},
+				monthLabel: {
+					nameMap: 'cn',
+					margin: 20
+				},
+				dayLabel: {
+					firstDay: 1,
+					nameMap: 'cn'
+				},
+				cellSize: 40,
+				range: '2017-02'
+			},
+			{
+				orient: 'vertical',
+				yearLabel: {
+					margin: 40
+				},
+				monthLabel: {
+					margin: 20
+				},
+				cellSize: 40,
+				left: 460,
+				range: '2017-01'
+			},
+			{
+				orient: 'vertical',
+				yearLabel: {
+					margin: 40
+				},
+				monthLabel: {
+					margin: 20
+				},
+				cellSize: 40,
+				top: 350,
+				range: '2017-03'
+			},
+			{
+				orient: 'vertical',
+				yearLabel: {
+					margin: 40
+				},
+				dayLabel: {
+					firstDay: 1,
+					nameMap: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+				},
+				monthLabel: {
+					nameMap: 'cn',
+					margin: 20
+				},
+				cellSize: 40,
+				top: 350,
+				left: 460,
+				range: '2017-04'
+			}],
+		
+			series: [{
+				type: 'graph',
+				edgeSymbol: ['none', 'arrow'],
+				coordinateSystem: 'calendar',
+				links: links,
+				symbolSize: 10,
+				calendarIndex: 0,
+				data: graphData
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				data: getVirtulData(2017)
+			}, {
+				type: 'effectScatter',
+				coordinateSystem: 'calendar',
+				calendarIndex: 1,
+				symbolSize: function (val) {
+					return val[1] / 40;
+				},
+				data: getVirtulData(2017)
+			}, {
+				type: 'scatter',
+				coordinateSystem: 'calendar',
+				calendarIndex: 2,
+				symbolSize: function (val) {
+					return val[1] / 60;
+				},
+				data: getVirtulData(2017)
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				calendarIndex: 3,
+				data: getVirtulData(2017)
+			}]
+		}`,0),
+	
+
+
+		echref('Calendar Graph')+
+		sceg(`var graphData = [
+			[
+				// Consider timeoffset, add two days to avoid overflow.
+				1485878400000 + 3600 * 24 * 1000 * 2,
+				260
+			],
+			[
+				1486137600000,
+				200
+			],
+			[
+				1486569600000,
+				279
+			],
+			[
+				1486915200000,
+				847
+			],
+			[
+				1487347200000,
+				241
+			],
+			[
+				1487779200000 + 3600 * 24 * 1000 * 15,
+				411
+			],
+			[
+				1488124800000 + 3600 * 24 * 1000 * 23,
+				985
+			]
+		];
+		
+		var links = graphData.map(function (item, idx) {
+			return {
+				source: idx,
+				target: idx + 1
+			};
+		});
+		links.pop();
+		
+		function getVirtulData(year) {
+			year = year || '2017';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 1000)
+				]);
+			}
+			return data;
+		}
+		
+		
+		option = {
+			tooltip : {},
+			calendar: {
+				top: 'middle',
+				left: 'center',
+				orient: 'vertical',
+				cellSize: 40,
+				yearLabel: {
+					margin: 50,
+					textStyle: {
+						fontSize: 30
+					}
+				},
+				dayLabel: {
+					firstDay: 1,
+					nameMap: 'cn'
+				},
+				monthLabel: {
+					nameMap: 'cn',
+					margin: 15,
+					textStyle: {
+						fontSize: 20,
+						color: '#999'
+					}
+				},
+				range: ['2017-02', '2017-03-31']
+			},
+			visualMap: {
+				min: 0,
+				max: 1000,
+				type: 'piecewise',
+				left: 'center',
+				bottom: 20,
+				inRange: {
+					color: ['#5291FF', '#C7DBFF']
+				},
+				seriesIndex: [1],
+				orient: 'horizontal'
+			},
+			series: [{
+				type: 'graph',
+				edgeSymbol: ['none', 'arrow'],
+				coordinateSystem: 'calendar',
+				links: links,
+				symbolSize: 15,
+				calendarIndex: 0,
+				itemStyle: {
+					normal: {
+						color: 'yellow',
+						shadowBlue: 9,
+						shadowOffsetX: 1.5,
+						shadowOffsetY: 3,
+						shadowColor: '#555'
+					}
+				},
+				lineStyle: {
+					normal: {
+						color: '#D10E00',
+						width: 1,
+						opacity: 1
+					}
+				},
+				data: graphData,
+				z: 20
+			}, {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				data: getVirtulData(2017)
+			}]
+		}`,0),
+	
+
+
+
+
+		'日历饼图'+echref('Calendar Pie')+
+		sceg(`var cellSize = [80, 80];
+		var pieRadius = 30;
+			var pieInitialized;
+			sTo(function () {
+				pieInitialized = true;
+				myChart.setOption({
+					series: getPieSeries(scatterData, myChart)
+				});
+		
+			myChart.onresize=function () {
+				if (pieInitialized) {
+					myChart.setOption({
+						series: getPieSeriesUpdate(scatterData, myChart)
+					});
+				}
+			};
+		
+			}, 10);
+		
+		function getVirtulData() {
+			var date = +echarts.number.parseDate('2020-02-01');
+			var end = +echarts.number.parseDate('2020-03-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 10000)
+				]);
+			}
+			return data;
+		}
+		
+		function getPieSeries(scatterData, chart) {
+			return echarts.util.map(scatterData, function (item, index) {
+				var center = chart.convertToPixel('calendar', item);
+				return {
+					id: index + 'pie',
+					type: 'pie',
+					center: center,
+					label: {
+						normal: {
+							formatter: '{c}',
+							position: 'inside'
+						}
+					},
+					radius: pieRadius,
+					data: [
+						{name: '工作', value: Math.round(Math.random() * 24)},
+						{name: '娱乐', value: Math.round(Math.random() * 24)},
+						{name: '睡觉', value: Math.round(Math.random() * 24)}
+					]
+				};
+			});
+		}
+		
+		function getPieSeriesUpdate(scatterData, chart) {
+			return echarts.util.map(scatterData, function (item, index) {
+				var center = chart.convertToPixel('calendar', item);
+				return {
+					id: index + 'pie',
+					center: center
+				};
+			});
+		}
+		
+		var scatterData = getVirtulData();
+		
+		option = {
+			tooltip : {},
+			legend: {
+				data: ['工作', '娱乐', '睡觉'],
+				bottom: 20
+			},
+			calendar: {
+				top: 'middle',
+				left: 'center',
+				orient: 'vertical',
+				cellSize: cellSize,
+				yearLabel: {
+					show: false,
+					textStyle: {
+						fontSize: 30
+					}
+				},
+				dayLabel: {
+					margin: 20,
+					firstDay: 1,
+					nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+				},
+				monthLabel: {
+					show: false
+				},
+				range: ['2020-02']
+			},
+			series: [{
+				id: 'label',
+				type: 'scatter',
+				coordinateSystem: 'calendar',
+				symbolSize: 1,
+				label: {
+					normal: {
+						show: true,
+						formatter: function (params) {
+							return echarts.format.formatTime('dd', params.value[0]);
+						},
+						offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+						textStyle: {
+							color: '#000',
+							fontSize: 14
+						}
+					}
+				},
+				data: scatterData
+			}]
+		}`,0),
+
+
+
+		echref('Calendar-Lunar')+
+		sceg(`var dateList = [
+			['2019-1-1', '初四'],
+			['2019-1-2', '初五'],
+			['2019-1-3', '初六'],
+			['2019-1-4', '初七'],
+			['2019-1-5', '初八', '小寒'],
+			['2019-1-6', '初九'],
+			['2019-1-7', '初十'],
+			['2019-1-8', '十一'],
+			['2019-1-9', '十二'],
+			['2019-1-10', '十三'],
+			['2019-1-11', '十四'],
+			['2019-1-12', '十五'],
+			['2019-1-13', '十六'],
+			['2019-1-14', '十七'],
+			['2019-1-15', '十八'],
+			['2019-1-16', '十九'],
+			['2019-1-17', '二十'],
+			['2019-1-18', '廿一'],
+			['2019-1-19', '廿二'],
+			['2019-1-20', '廿三', '大寒'],
+			['2019-1-21', '廿四'],
+			['2019-1-22', '廿五'],
+		];
+		
+		var heatmapData = [];
+		var lunarData = [];
+		for (var i = 0; i < dateList.length; i++) {
+			heatmapData.push([
+				dateList[i][0],
+				Math.random() * 300
+			]);
+			lunarData.push([
+				dateList[i][0],
+				1,
+				dateList[i][1],
+				dateList[i][2]
+			]);
+		}
+		
+		
+		option = {
+			tooltip: {
+				formatter: function (params) {
+					return '降雨量: ' + params.value[1].toFixed(2);
+				}
+			},
+		
+			visualMap: {
+				show: false,
+				min: 0,
+				max: 300,
+				calculable: true,
+				seriesIndex: [2],
+				orient: 'horizontal',
+				left: 'center',
+				bottom: 20,
+				inRange: {
+					color: ['#e0ffff', '#006edd'],
+					opacity: 0.3
+				},
+				controller: {
+					inRange: {
+						opacity: 0.5
+					}
+				}
+			},
+		
+			calendar: [{
+				left: 'center',
+				top: 'middle',
+				cellSize: [70, 70],
+				yearLabel: {show: false},
+				orient: 'vertical',
+				dayLabel: {
+					firstDay: 1,
+					nameMap: 'cn'
+				},
+				monthLabel: {
+					show: false
+				},
+				range: '2019-01'
+			}],
+		
+			series: [{
+				type: 'scatter',
+				coordinateSystem: 'calendar',
+				symbolSize: 1,
+				label: {
+					normal: {
+						show: true,
+						formatter: function (params) {
+							var d = echarts.number.parseDate(params.value[0]);
+							return d.getDate() + '\n\n' + params.value[2] + '\n\n';
+						},
+						textStyle: {
+							color: '#000'
+						}
+					}
+				},
+				data: lunarData
+			}, {
+				type: 'scatter',
+				coordinateSystem: 'calendar',
+				symbolSize: 1,
+				label: {
+					normal: {
+						show: true,
+						formatter: function (params) {
+							return '\n\n\n' + (params.value[3] || '');
+						},
+						textStyle: {
+							fontSize: 14,
+							fontWeight: 700,
+							color: '#a00'
+						}
+					}
+				},
+				data: lunarData
+			}, {
+				name: '降雨量',
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				data: heatmapData
+			}]
+		}`,0),
+
+
+
+
+
+
+		echref('Calendar-Heatmap')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 10000)
+				]);
+			}
+			return data;
+		}
+		
+		option = {
+			title: {
+				top: 30,
+				left: 'center',
+				text: '2019年某人每天的步数'
+			},
+			tooltip : {},
+			visualMap: {
+				min: 0,
+				max: 10000,
+				type: 'piecewise',
+				orient: 'horizontal',
+				left: 'center',
+				top: 65,
+				textStyle: {
+					color: '#000'
+				}
+			},
+			calendar: {
+				top: 120,
+				left: 30,
+				right: 30,
+				cellSize: ['auto', 13],
+				range: '2016',
+				itemStyle: {
+					normal: {borderWidth: 0.5}
+				},
+				yearLabel: {show: false}
+			},
+			series: {
+				type: 'heatmap',
+				coordinateSystem: 'calendar',
+				data: getVirtulData(2016)
+			}
+		}`,0),
+
+
+
+		echref('Calendar-EffectScatter')+
+		sceg(`function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					Math.floor(Math.random() * 10000)
+				]);
+			}
+			return data;
+		}
+		
+		var data = getVirtulData(2019);
+		
+		option = {
+			backgroundColor: '#404a59',
+		
+			title: {
+				top: 30,
+				text: '2019年某人每天的步数',
+				subtext: '数据纯属虚构',
+				left: 'center',
+				textStyle: {
+					color: '#fff'
+				}
+			},
+			tooltip : {
+				trigger: 'item'
+			},
+			legend: {
+				top: '30',
+				left: '100',
+				data:['步数', 'Top 12'],
+				textStyle: {
+					color: '#fff'
+				}
+			},
+			calendar: [{
+				top: 100,
+				left: 'center',
+				range: ['2019-01-01', '2019-06-30'],
+				splitLine: {
+					show: true,
+					lineStyle: {
+						color: '#000',
+						width: 4,
+						type: 'solid'
+					}
+				},
+				yearLabel: {
+					formatter: '{start}  1st',
+					textStyle: {
+						color: '#fff'
+					}
+				},
+				itemStyle: {
+					normal: {
+						color: '#323c48',
+						borderWidth: 1,
+						borderColor: '#111'
+					}
+				}
+			}, {
+				top: 270,
+				left: 'center',
+				range: ['2019-07-01', '2019-12-31'],
+				splitLine: {
+					show: true,
+					lineStyle: {
+						color: '#000',
+						width: 4,
+						type: 'solid'
+					}
+				},
+				yearLabel: {
+					formatter: '{start}  2nd',
+					textStyle: {
+						color: '#fff'
+					}
+				},
+				itemStyle: {
+					normal: {
+						color: '#323c48',
+						borderWidth: 1,
+						borderColor: '#111'
+					}
+				}
+			}],
+			series : [
+				{
+					name: '步数',
+					type: 'scatter',
+					coordinateSystem: 'calendar',
+					data: data,
+					symbolSize: function (val) {
+						return val[1] / 500;
+					},
+					itemStyle: {
+						normal: {
+							color: '#ddb926'
+						}
+					}
+				},
+				{
+					name: '步数',
+					type: 'scatter',
+					coordinateSystem: 'calendar',
+					calendarIndex: 1,
+					data: data,
+					symbolSize: function (val) {
+						return val[1] / 500;
+					},
+					itemStyle: {
+						normal: {
+							color: '#ddb926'
+						}
+					}
+				},
+				{
+					name: 'Top 12',
+					type: 'effectScatter',
+					coordinateSystem: 'calendar',
+					calendarIndex: 1,
+					data: data.sort(function (a, b) {
+						return b[1] - a[1];
+					}).slice(0, 12),
+					symbolSize: function (val) {
+						return val[1] / 500;
+					},
+					showEffectOn: 'render',
+					rippleEffect: {
+						brushType: 'stroke'
+					},
+					hoverAnimation: true,
+					itemStyle: {
+						normal: {
+							color: '#f4e925',
+							shadowBlur: 10,
+							shadowColor: '#333'
+						}
+					},
+					zlevel:1
+				},
+				{
+					name: 'Top 12',
+					type: 'effectScatter',
+					coordinateSystem: 'calendar',
+					data: data.sort(function (a, b) {
+						return b[1] - a[1];
+					}).slice(0, 12),
+					symbolSize: function (val) {
+						return val[1] / 500;
+					},
+					showEffectOn: 'render',
+					rippleEffect: {
+						brushType: 'stroke'
+					},
+					hoverAnimation: true,
+					itemStyle: {
+						normal: {
+							color: '#f4e925',
+							shadowBlur: 10,
+							shadowColor: '#333'
+						}
+					},
+					zlevel: 1
+				}
+			]
+		}`,0),
+
+
+
+		echref('Custom Calendar Icon')+
+		sceg(`var layouts = [
+			[[0, 0]],
+			[[-0.25, 0], [0.25, 0]],
+			[[0, -0.2], [-0.2, 0.2], [0.2, 0.2]],
+			[[-0.25, -0.25], [-0.25, 0.25], [0.25, -0.25], [0.25, 0.25]]
+		];
+		var pathes = [
+		
+			'M533 268q33-41 71-75 32-27 74-50t86-19',
+			'M741 733c8-29 20-40 14-162',
+			'M848 939 571 939 571 653 34 0 0 222'
+		];
+		var colors = [
+			'#c4332b', '#16B644', '#6862FD', '#FDC763'
+		];
+		
+		function getVirtulData(year) {
+			year = year || '2019';
+			var date = +echarts.number.parseDate(year + '-01-01');
+			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+			var dayTime = 3600 * 24 * 1000;
+			var data = [];
+			for (var time = date; time < end; time += dayTime) {
+				var items = [];
+				var eventCount = Math.round(Math.random() * pathes.length);
+				for (var i = 0; i < eventCount; i++) {
+					items.push(Math.round(Math.random() * (pathes.length - 1)));
+				}
+				data.push([
+					echarts.format.formatTime('yyyy-MM-dd', time),
+					items.join('|')
+				]);
+			}
+			return data;
+		}
+		
+		function renderItem(params, api) {
+			var cellPoint = api.coord(api.value(0));
+			var cellWidth = params.coordSys.cellWidth;
+			var cellHeight = params.coordSys.cellHeight;
+		
+			var value = api.value(1);
+			var events = value && value.split('|');
+		
+			if (isNaN(cellPoint[0]) || isNaN(cellPoint[1])) {
+				return;
+			}
+		
+			var group = {
+				type: 'group',
+				children: echarts.util.map(layouts[events.length - 1], function (itemLayout, index) {
+					return {
+						type: 'path',
+						shape: {
+							pathData: pathes[events[index]],
+							x: -8,
+							y: -8,
+							width: 16,
+							height: 16
+						},
+						position:[
+							cellPoint[0] + echarts.number.linearMap(itemLayout[0], [-0.5, 0.5], [-cellWidth / 2, cellWidth / 2]),
+							cellPoint[1] + echarts.number.linearMap(itemLayout[1], [-0.5, 0.5], [-cellHeight / 2 + 20, cellHeight / 2])
+						],
+						style: api.style({
+							fill: colors[events[index]]
+						})
+					};
+				}) || []
+			};
+		
+			group.children.push({
+				type: 'text',
+				style: {
+					x: cellPoint[0],
+					y: cellPoint[1] - cellHeight / 2 + 15,
+					text: echarts.format.formatTime('dd', api.value(0)),
+					fill: '#777',
+					textFont: api.font({fontSize: 14})
+				}
+			});
+		
+			return group;
+		}
+		
+		option = {
+			tooltip: {
+			},
+			calendar: [{
+				left: 'center',
+				top: 'middle',
+				cellSize: [70, 70],
+				yearLabel: {show: false},
+				orient: 'vertical',
+				dayLabel: {
+					firstDay: 1,
+					nameMap: 'cn'
+				},
+				monthLabel: {
+					show: false
+				},
+				range: '2019-03'
+			}],
+			series: [{
+				type: 'custom',
+				coordinateSystem: 'calendar',
+				renderItem: renderItem,
+				dimensions: [null, {type: 'ordinal'}],
+				data: getVirtulData(2019)
+			}]
+		}`,0),
+
+
+	].join(br)
+	),
+
+
+	detail('【主题河流图】ThemeRiver',[
+		echref('基础','','themeRiver-basic')+
+		sceg(`option = {
+		
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'line',
+					lineStyle: {
+						color: 'rgba(0,0,0,0.2)',
+						width: 1,
+						type: 'solid'
+					}
+				}
+			},
+		
+			legend: {
+				data: ['DQ', 'TY', 'SS', 'QG', 'SY', 'DD']
+			},
+		
+			singleAxis: {
+				top: 50,
+				bottom: 50,
+				axisTick: {},
+				axisLabel: {},
+				type: 'time',
+				axisPointer: {
+					animation: true,
+					label: {
+						show: true
+					}
+				},
+				splitLine: {
+					show: true,
+					lineStyle: {
+						type: 'dashed',
+						opacity: 0.2
+					}
+				}
+			},
+		
+			series: [
+				{
+					type: 'themeRiver',
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 20,
+							shadowColor: 'rgba(0, 0, 0, 0.8)'
+						}
+					},
+					data: [['2019/11/08',10,'DQ'],['2019/11/09',15,'DQ'],['2019/11/10',35,'DQ'],
+					['2019/11/11',38,'DQ'],['2019/11/12',22,'DQ'],['2019/11/13',16,'DQ'],
+					['2019/11/14',7,'DQ'],['2019/11/15',2,'DQ'],['2019/11/16',17,'DQ']]
+				}
+			]
+		}`,0),
+
+
+		echref('LastFM','','themeRiver-lastfm'),
+
+
+
+		echref('Custom Cartesian Polygon')+
+		sceg(`
+		var data = [];
+		var dataCount = 7;
+		for (var i = 0; i < dataCount; i++) {
+			var val = Math.random() * 1000;
+			data.push([
+				echarts.number.round(Math.random() * 100),
+				echarts.number.round(Math.random() * 400)
+			]);
+		}
+		
+		function renderItem(params, api) {
+			if (params.context.rendered) {
+				return;
+			}
+			params.context.rendered = true;
+		
+			var points = [];
+			for (var i = 0; i < data.length; i++) {
+				points.push(api.coord(data[i]));
+			}
+			var color = api.visual('color');
+		
+			return {
+				type: 'polygon',
+				shape: {
+					points: echarts.graphic.clipPointsByRect(points, {
+						x: params.coordSys.x,
+						y: params.coordSys.y,
+						width: params.coordSys.width,
+						height: params.coordSys.height
+					})
+				},
+				style: api.style({
+					fill: color,
+					stroke: echarts.color.lift(color)
+				})
+			};
+		}
+		
+		option = {
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data: ['bar', 'error']
+			},
+			dataZoom: [{
+				type: 'slider',
+				filterMode: 'none',
+				height: 8,
+				bottom: 20,
+				borderColor: 'transparent',
+				backgroundColor: '#e2e2e2',
+				handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
+				handleSize: 20,
+				handleStyle: {
+					shadowBlur: 6,
+					shadowOffsetX: 1,
+					shadowOffsetY: 2,
+					shadowColor: '#aaa'
+				}
+			}, {
+				type: 'inside',
+				filterMode: 'none'
+			}],
+			xAxis: {},
+			yAxis: {},
+			series: [{
+				type: 'custom',
+				renderItem: renderItem,
+				data: data
+			}]
+		}`,0),
+
+
+
+	].join(br)
+	),
+
+
+	detail('【关系图】Relation',[
 		echref('Graph Simple')+
 		sceg(`o={
 			title: {
@@ -3686,135 +9846,11 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 				]
 			};`,0),
 
-
-			echref('Calendar Graph')+
-			sceg(`var graphData = [
-				[
-					// Consider timeoffset, add two days to avoid overflow.
-					1485878400000 + 3600 * 24 * 1000 * 2,
-					260
-				],
-				[
-					1486137600000,
-					200
-				],
-				[
-					1486569600000,
-					279
-				],
-				[
-					1486915200000,
-					847
-				],
-				[
-					1487347200000,
-					241
-				],
-				[
-					1487779200000 + 3600 * 24 * 1000 * 15,
-					411
-				],
-				[
-					1488124800000 + 3600 * 24 * 1000 * 23,
-					985
-				]
-			];
-			
-			var links = graphData.map(function (item, idx) {
-				return {
-					source: idx,
-					target: idx + 1
-				};
-			});
-			links.pop();
-			
-			function getVirtulData(year) {
-				year = year || '2017';
-				var date = +echarts.number.parseDate(year + '-01-01');
-				var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-				var dayTime = 3600 * 24 * 1000;
-				var data = [];
-				for (var time = date; time < end; time += dayTime) {
-					data.push([
-						echarts.format.formatTime('yyyy-MM-dd', time),
-						Math.floor(Math.random() * 1000)
-					]);
-				}
-				return data;
-			}
-			
-			
-			option = {
-				tooltip : {},
-				calendar: {
-					top: 'middle',
-					left: 'center',
-					orient: 'vertical',
-					cellSize: 40,
-					yearLabel: {
-						margin: 50,
-						textStyle: {
-							fontSize: 30
-						}
-					},
-					dayLabel: {
-						firstDay: 1,
-						nameMap: 'cn'
-					},
-					monthLabel: {
-						nameMap: 'cn',
-						margin: 15,
-						textStyle: {
-							fontSize: 20,
-							color: '#999'
-						}
-					},
-					range: ['2017-02', '2017-03-31']
-				},
-				visualMap: {
-					min: 0,
-					max: 1000,
-					type: 'piecewise',
-					left: 'center',
-					bottom: 20,
-					inRange: {
-						color: ['#5291FF', '#C7DBFF']
-					},
-					seriesIndex: [1],
-					orient: 'horizontal'
-				},
-				series: [{
-					type: 'graph',
-					edgeSymbol: ['none', 'arrow'],
-					coordinateSystem: 'calendar',
-					links: links,
-					symbolSize: 15,
-					calendarIndex: 0,
-					itemStyle: {
-						normal: {
-							color: 'yellow',
-							shadowBlue: 9,
-							shadowOffsetX: 1.5,
-							shadowOffsetY: 3,
-							shadowColor: '#555'
-						}
-					},
-					lineStyle: {
-						normal: {
-							color: '#D10E00',
-							width: 1,
-							opacity: 1
-						}
-					},
-					data: graphData,
-					z: 20
-				}, {
-					type: 'heatmap',
-					coordinateSystem: 'calendar',
-					data: getVirtulData(2017)
-				}]
-			}`,0),
 		
+
+
+
+
 			'笛卡尔坐标系上的关系图 '+echref('Graph Grid')+
 			sceg(`var axisData = ['周一','周二','周三','很长很长的周四','周五','周六','周日'];
 			var data = axisData.map(function (item, i) {
@@ -3877,134 +9913,340 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 	
 	
 	
-	detail('【树形图】tree',[
+	detail('【树形图】Tree',[
 	
-	'矩形树图'+
+	echref('Tree Simple')+
 	sceg(`o={
-	    series: [{
-	        type: 'treemap',
-	        data: [{
-	            name: 'nodeA',            // First tree
-	            value: 10,
-	            children: [{
-	                name: 'nodeAa',       // First leaf of first tree
-	                value: 4
-	            }, {
-	                name: 'nodeAb',       // Second leaf of first tree
-	                value: 6
-	            }]
-	        }, {
-	            name: 'nodeB',            // Second tree
-	            value: 20,
-	            children: [{
-	                name: 'nodeBa',       // Son of first tree
-	                value: 20,
-	                children: [{
-	                    name: 'nodeBa1',  // Granson of first tree
-	                    value: 20
-	                }]
-	            }]
-	        }]
-	    }]
-		
-		
-		
+		tooltip: {
+			trigger: 'item',
+			triggerOn: 'mousemove'
+		},
+		legend: {
+			top: '2%',
+			left: '3%',
+			orient: 'vertical',
+			data: [{
+				name: 'tree1',
+				icon: 'rectangle'
+			} ,
+			{
+				name: 'tree2',
+				icon: 'rectangle'
+			}],
+			borderColor: '#c23531'
+		},
+		series:[
+			{
+				type: 'tree',
+				name: 'tree2',
+				data: [{
+					"name": "flare",
+					"children": [
+						{
+							"name": "flex",
+							"children": [
+								{"name": "FlareVis", "value": 4116}
+							]
+						},
+						{
+							"name": "scale",
+							"children": [
+								{"name": "IScaleMap", "value": 2105},
+								{"name": "LinearScale", "value": 1316},
+								{"name": "LogScale", "value": 3151},
+								{"name": "OrdinalScale", "value": 3770},
+								{"name": "QuantileScale", "value": 2435},
+								{"name": "QuantitativeScale", "value": 4839},
+								{"name": "RootScale", "value": 1756},
+								{"name": "Scale", "value": 4268},
+								{"name": "ScaleType", "value": 1821},
+								{"name": "TimeScale", "value": 5833}
+						]
+						},
+						{
+							"name": "display",
+							"children": [
+								{"name": "DirtySprite", "value": 8833}
+						]
+						}
+					]
+				}],
+
+				top: '10%',
+				left: '20%',
+				bottom: '22%',
+				right: '28%',
+
+				symbolSize: 7,
+
+				label: {
+					normal: {
+						position: 'left',
+						verticalAlign: 'middle',
+						align: 'right'
+					}
+				},
+
+				leaves: {
+					label: {
+						normal: {
+							position: 'right',
+							verticalAlign: 'middle',
+							align: 'left'
+						}
+					}
+				},
+
+				expandAndCollapse: true,
+
+				animationDuration: 550,
+				animationDurationUpdate: 750
+			}
+		]
 	}`,0),
 	
 	
-	'横向树图'+
-	sceg(`o={
-    tooltip: {
-        trigger: 'item',
-        triggerOn: 'mousemove'
-    },
-    legend: {
-        top: '2%',
-        left: '3%',
-        orient: 'vertical',
-        data: [{
-            name: 'tree1',
-            icon: 'rectangle'
-        } ,
-        {
-            name: 'tree2',
-            icon: 'rectangle'
-        }],
-        borderColor: '#c23531'
-    },
-    series:[
-          {
-            type: 'tree',
-            name: 'tree2',
-            data: [{
-			    "name": "flare",
-			    "children": [
-			        {
-			            "name": "flex",
-			            "children": [
-			                {"name": "FlareVis", "value": 4116}
-			            ]
-			        },
-			        {
-			            "name": "scale",
-			            "children": [
-			                {"name": "IScaleMap", "value": 2105},
-			                {"name": "LinearScale", "value": 1316},
-			                {"name": "LogScale", "value": 3151},
-			                {"name": "OrdinalScale", "value": 3770},
-			                {"name": "QuantileScale", "value": 2435},
-			                {"name": "QuantitativeScale", "value": 4839},
-			                {"name": "RootScale", "value": 1756},
-			                {"name": "Scale", "value": 4268},
-			                {"name": "ScaleType", "value": 1821},
-			                {"name": "TimeScale", "value": 5833}
-			           ]
-			        },
-			        {
-			            "name": "display",
-			            "children": [
-			                {"name": "DirtySprite", "value": 8833}
-			           ]
-			        }
-			    ]
+	echref('Tree Legend')+
+	sceg(`var data1 = {
+		"name": "flare",
+		"children": [
+			{
+				"name": "data",
+				"children": [
+					{
+						 "name": "converters",
+						 "children": [
+						  {"name": "Converters", "value": 721},
+						  {"name": "DelimitedTextConverter", "value": 4294}
+						 ]
+					},
+					{
+						"name": "DataUtil",
+						"value": 3322
+					}
+				]
+			},
+			{
+				"name": "display",
+				"children": [
+					{"name": "DirtySprite", "value": 8833},
+					{"name": "LineSprite", "value": 1732},
+					{"name": "RectSprite", "value": 3623}
+			   ]
+			},
+			{
+				"name": "flex",
+				"children": [
+					{"name": "FlareVis", "value": 4116}
+				]
+			},
+			{
+			   "name": "query",
+			   "children": [
+				{"name": "AggregateExpression", "value": 1616},
+				{"name": "And", "value": 1027},
+	
+				{
+				 "name": "methods",
+				 "children": [
+				  {"name": "add", "value": 593},
+				  {"name": "and", "value": 330},
+				  {"name": "_", "value": 264}
+				 ]
+				},
+				{"name": "Minimum", "value": 843},
+				{"name": "Not", "value": 1554},
+			   ]
+			  },
+			{
+			   "name": "scale",
+			   "children": [
+				{"name": "IScaleMap", "value": 2105},
+				{"name": "TimeScale", "value": 5833}
+			   ]
+			}
+		]
+	};
+	
+	var data2 = {
+		"name": "flare",
+		"children": [
+			{
+				"name": "flex",
+				"children": [
+					{"name": "FlareVis", "value": 4116}
+				]
+			},
+			{
+				"name": "scale",
+				"children": [
+					{"name": "IScaleMap", "value": 2105},
+					{"name": "Scale", "value": 4268},
+					{"name": "ScaleType", "value": 1821},
+					{"name": "TimeScale", "value": 5833}
+			   ]
+			},
+			{
+				"name": "display",
+				"children": [
+					{"name": "DirtySprite", "value": 8833}
+			   ]
+			}
+		]
+	};
+	
+	
+	
+	option = {
+		tooltip: {
+			trigger: 'item',
+			triggerOn: 'mousemove'
+		},
+		legend: {
+			top: '2%',
+			left: '3%',
+			orient: 'vertical',
+			data: [{
+				name: 'tree1',
+				icon: 'rectangle'
+			} ,
+			{
+				name: 'tree2',
+				icon: 'rectangle'
 			}],
+			borderColor: '#c23531'
+		},
+		series:[
+			{
+				type: 'tree',
+	
+				name: 'tree1',
+	
+				data: [data1],
+	
+				top: '5%',
+				left: '7%',
+				bottom: '2%',
+				right: '60%',
+	
+				symbolSize: 7,
+	
+				label: {
+					normal: {
+						position: 'left',
+						verticalAlign: 'middle',
+						align: 'right'
+					}
+				},
+	
+				leaves: {
+					label: {
+						normal: {
+							position: 'right',
+							verticalAlign: 'middle',
+							align: 'left'
+						}
+					}
+				},
+	
+				expandAndCollapse: true,
+	
+				animationDuration: 550,
+				animationDurationUpdate: 750
+	
+			},
+			{
+				type: 'tree',
+				name: 'tree2',
+				data: [data2],
+	
+				top: '20%',
+				left: '60%',
+				bottom: '22%',
+				right: '18%',
+	
+				symbolSize: 7,
+	
+				label: {
+					normal: {
+						position: 'left',
+						verticalAlign: 'middle',
+						align: 'right'
+					}
+				},
+	
+				leaves: {
+					label: {
+						normal: {
+							position: 'right',
+							verticalAlign: 'middle',
+							align: 'left'
+						}
+					}
+				},
+	
+				expandAndCollapse: true,
+	
+				animationDuration: 550,
+				animationDurationUpdate: 750
+			}
+		]
+	}`,0),
 
-            top: '10%',
-            left: '20%',
-            bottom: '22%',
-            right: '28%',
+	echref('Tree Orient Right Left'),
 
-            symbolSize: 7,
+	echref('Tree Orient Bottom Top'),
 
-            label: {
-                normal: {
-                    position: 'left',
-                    verticalAlign: 'middle',
-                    align: 'right'
-                }
-            },
-
-            leaves: {
-                label: {
-                    normal: {
-                        position: 'right',
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
-                }
-            },
-
-            expandAndCollapse: true,
-
-            animationDuration: 550,
-            animationDurationUpdate: 750
-        }
-    ]
-
-		}`,0),
-
+	echref('Tree Orient Vertical'),
+	echref('Tree Orient Radial')+sceg2(`layout: 'radial',`),
 		].join(br)
 	),
+
+
+
+
+	detail('【矩形树图】TreeMap',[
+	
+		echref('Treemap Simple')+
+		sceg(`o={
+			series: [{
+				type: 'treemap',
+				data: [{
+					name: 'nodeA',            // First tree
+					value: 10,
+					children: [{
+						name: 'nodeAa',       // First leaf of first tree
+						value: 4
+					}, {
+						name: 'nodeAb',       // Second leaf of first tree
+						value: 6
+					}]
+				}, {
+					name: 'nodeB',            // Second tree
+					value: 20,
+					children: [{
+						name: 'nodeBa',       // Son of first tree
+						value: 20,
+						children: [{
+							name: 'nodeBa1',  // Granson of first tree
+							value: 20
+						}]
+					}]
+				}]
+			}]
+			
+			
+			
+		}`,0),
+		
+	
+			].join(br)
+		),
+	
+	
+	
+	
+
 
 
 
@@ -5055,7 +11297,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 					bounding: 'raw',
 					origin: [75, 75],
 					style: {
-					   // image: 'http://.png',
+					    image: 'img/small.png',
 						width: 150,
 						height: 150,
 						opacity: 0.4
@@ -6271,7 +12513,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 					}
 				}
 			}]
-		};`,0),
+		}`,0),
 
 
 		echref('Surface Mollusc Shell',1)+
@@ -6593,7 +12835,7 @@ tooltip.graphic['Statistics/Echarts']=[href(Hs+'www.echartsjs.com/examples/index
 			}]
 		
 		
-		};`,0),
+		}`,0),
 
 		echref('GraphGL-Large Internet',1,'','dark'),
 		echref('GraphGL-NPM Dep',1,'','dark')

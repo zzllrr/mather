@@ -187,7 +187,9 @@ body:not(.night) .bdb{
 	margin:20px
 }
 
-
+.hidden{
+	display:none
+}
 	`),
 	};
 
