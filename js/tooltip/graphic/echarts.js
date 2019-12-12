@@ -7,11 +7,11 @@
 var echref=function(text,gl,u,theme){return href(Hs+'www.echartsjs.com/examples/zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
 tooltip.graphic=tooltip.graphic || {};
 tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网'),[
-	'暂不支持LaTeX',
-	'JS代码片段用$美元符号$括起来'+sceg2('$1+2$'),
+	href(Hs+'www.echartsjs.com/zh/api.html','API')+'暂不支持LaTeX',
+	'JS代码片段','用$美元符号$括起来'+sceg2('$1+2$'),
 	'回归分析'+github('ecomfe/echarts-stat'),
 
-	'暂无收录的图形案例'+ul(Arrf(function(x){return href(Hs+'www.echartsjs.com/examples/index.html#chart-type-'+x.replace(/ [a-z]$/i,''),x.replace(/.+ /,'').toLowerCase())},
+	'暂不收录的图形案例'+ul(Arrf(function(x){return href(Hs+'www.echartsjs.com/examples/index.html#chart-type-'+x.replace(/ [a-z]$/i,''),x.replace(/.+ /,'').toLowerCase())},
 	[
 		'地理坐标/地图 GEO / Map',
 		'K 线图 Candlestick',
@@ -1218,40 +1218,104 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 	}`,0),
 	
 	'堆叠柱状图1'+echref('Bar Polar-Real Estate')+
-	sceg(`o={
-	    angleAxis: {
-	    },
-	    radiusAxis: {
-	        type: 'category',
-	        data: ['周一', '周二', '周三', '周四'],
-	        z: 10
-	    },
-	    polar: {
-	    },
-	    series: [{
-	        type: 'bar',
-	        data: [1, 2, 3, 4],
-	        coordinateSystem: 'polar',
-	        name: 'A',
-	        stack: 'a'
-	    }, {
-	        type: 'bar',
-	        data: [2, 4, 6, 8],
-	        coordinateSystem: 'polar',
-	        name: 'B',
-	        stack: 'a'
-	    }, {
-	        type: 'bar',
-	        data: [1, 2, 3, 4],
-	        coordinateSystem: 'polar',
-	        name: 'C',
-	        stack: 'a'
-	    }],
-	    legend: {
-	        show: true,
-	        data: ['A', 'B', 'C']
-	    }
-
+	sceg(`
+	var data = [
+		[5000, 10000, 6785.71],
+		[4000, 10000, 6825],
+		[3000, 6500, 4463.33],
+		[2500, 5600, 3793.83],
+		[2000, 4000, 3060],
+		[2000, 4000, 3222.33],
+		[2500, 4000, 3133.33],
+		[1800, 4000, 3100],
+		[2000, 3500, 2750],
+		[2000, 3000, 2500],
+		[1800, 3000, 2433.33],
+		[2000, 2700, 2375],
+		[1500, 2800, 2150],
+		[1500, 2300, 2100],
+	
+	];
+	var cities = ['北京', '上海', '深圳', '广州', '苏州', '杭州', '南京', '福州', '青岛', '济南', '长春', '大连', '温州', '郑州', '武汉', '成都', '东莞', '沈阳', '烟台'];
+	var barHeight = 50;
+	
+	option = {
+		title: {
+			text: '在中国租个房子有多贵？',
+			subtext: '市中心一室月租费'
+		},
+		legend: {
+			show: true,
+			data: ['价格范围', '均值']
+		},
+		grid: {
+			top: 100
+		},
+		angleAxis: {
+			type: 'category',
+			data: cities
+		},
+		tooltip: {
+			show: true,
+			formatter: function (params) {
+				var id = params.dataIndex;
+				return cities[id] + '<br>最低：' + data[id][0] + '<br>最高：' + data[id][1] + '<br>平均：' + data[id][2];
+			}
+		},
+		radiusAxis: {
+		},
+		polar: {
+		},
+		series: [{
+			type: 'bar',
+			itemStyle: {
+				normal: {
+					color: 'transparent'
+				}
+			},
+			data: data.map(function (d) {
+				return d[0];
+			}),
+			coordinateSystem: 'polar',
+			stack: '最大最小值',
+			silent: true
+		}, {
+			type: 'bar',
+			data: data.map(function (d) {
+				return d[1] - d[0];
+			}),
+			coordinateSystem: 'polar',
+			name: '价格范围',
+			stack: '最大最小值'
+		}, {
+			type: 'bar',
+			itemStyle: {
+				normal: {
+					color: 'transparent'
+				}
+			},
+			data: data.map(function (d) {
+				return d[2] - barHeight;
+			}),
+			coordinateSystem: 'polar',
+			stack: '均值',
+			silent: true,
+			z: 10
+		}, {
+			type: 'bar',
+			data: data.map(function (d) {
+				return barHeight * 2
+			}),
+			coordinateSystem: 'polar',
+			name: '均值',
+			stack: '均值',
+			barGap: '-100%',
+			z: 10
+		}],
+		legend: {
+			show: true,
+			data: ['A', 'B', 'C']
+		}
 	}`,0),
 
 	'堆叠柱状图2'+echref('Bar Polar-Stack')+
@@ -2169,82 +2233,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 		}]
 	}`,0),
 
-	echref('Bar Histogram')+
-	sceg(`var girth = [8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, 11.4, 11.4, 11.7, 12.0, 12.9, 12.9, 13.3, 13.7, 13.8, 14.0, 14.2, 14.5, 16.0, 16.3, 17.3, 17.5, 17.9, 18.0, 18.0, 20.6];
-	var bins = ecStat.histogram(girth);
-	
-	var interval;
-	var min = Infinity;
-	var max = -Infinity;
-	
-	data = echarts.util.map(bins.data, function (item, index) {
-		var x0 = bins.bins[index].x0;
-		var x1 = bins.bins[index].x1;
-		interval = x1 - x0;
-		min = Math.min(min, x0);
-		max = Math.max(max, x1);
-		return [x0, x1, item[1]];
-	});
-	
-	function renderItem(params, api) {
-		var yValue = api.value(2);
-		var start = api.coord([api.value(0), yValue]);
-		var size = api.size([api.value(1) - api.value(0), yValue]);
-		var style = api.style();
-	
-		return {
-			type: 'rect',
-			shape: {
-				x: start[0] + 1,
-				y: start[1],
-				width: size[0] - 2,
-				height: size[1]
-			},
-			style: style
-		};
-	}
-	
-	option = {
-		title: {
-			text: 'Girths of Black Cherry Trees',
-			subtext: 'By ecStat.histogram',
-			sublink: '',
-			left: 'center',
-			top: 10
-		},
-		color: ['rgb(25, 183, 207)'],
-		grid: {
-			top: 80,
-			containLabel: true
-		},
-		xAxis: [{
-			type: 'value',
-			min: min,
-			max: max,
-			interval: interval
-		}],
-		yAxis: [{
-			type: 'value',
-		}],
-		series: [{
-			name: 'height',
-			type: 'custom',
-			renderItem: renderItem,
-			label: {
-				normal: {
-					show: true,
-					position: 'insideTop'
-				}
-			},
-			encode: {
-				x: [0, 1],
-				y: 2,
-				tooltip: 2,
-				label: 2
-			},
-			data: data
-		}]
-	}`,0),
+	echref('Bar Histogram'),
 
 
 	echref('Bar Large')+'50万+',
@@ -3183,48 +3172,129 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 		
 	echref('Custom Profile')+
-	sceg(`o={
-	    dataset: {
-	        source: [
-	            ['score', 'amount', 'product'],
-	            [89.3, 58212, 'Matcha Latte'],
-	            [57.1, 78254, 'Milk Tea'],
-	            [74.4, 41032, 'Cheese Cocoa'],
-	            [50.1, 12755, 'Cheese Brownie'],
-	            [89.7, 20145, 'Matcha Cocoa'],
-	            [68.1, 79146, 'Tea'],
-	            [19.6, 91852, 'Orange Juice'],
-	            [10.6, 101852, 'Lemon Juice'],
-	            [32.7, 20112, 'Walnut Brownie']
-	        ]
-	    },
-	    grid: {containLabel: true},
-	    xAxis: {name: 'amount'},
-	    yAxis: {type: 'category'},
-	    visualMap: {
-	        orient: 'horizontal',
-	        left: 'center',
-	        min: 10,
-	        max: 100,
-	        text: ['High Score', 'Low Score'],
-	        // Map the score column to color
-	        dimension: 0,
-	        inRange: {
-	            color: ['#D7DA8B', '#E15457']
-	        }
-	    },
-	    series: [
-	        {
-	            type: 'bar',
-	            encode: {
-	                // Map the "amount" column to X axis.
-	                x: 'amount',
-	                // Map the "product" column to Y axis
-	                y: 'product'
-	            }
-	        }
-	    ]
-
+	sceg(`var data = [];
+	var dataCount = 10;
+	var startTime = +new Date();
+	var categories = ['categoryA', 'categoryB', 'categoryC'];
+	var types = [
+		{name: 'JS Heap', color: '#7b9ce1'},
+		{name: 'Documents', color: '#bd6d6c'},
+		{name: 'Nodes', color: '#75d874'},
+		{name: 'Listeners', color: '#e0bc78'},
+		{name: 'GPU Memory', color: '#dc77dc'},
+		{name: 'GPU', color: '#72b362'}
+	];
+	
+	// Generate mock data
+	echarts.util.each(categories, function (category, index) {
+		var baseTime = startTime;
+		for (var i = 0; i < dataCount; i++) {
+			var typeItem = types[Math.round(Math.random() * (types.length - 1))];
+			var duration = Math.round(Math.random() * 10000);
+			data.push({
+				name: typeItem.name,
+				value: [
+					index,
+					baseTime,
+					baseTime += duration,
+					duration
+				],
+				itemStyle: {
+					normal: {
+						color: typeItem.color
+					}
+				}
+			});
+			baseTime += Math.round(Math.random() * 2000);
+		}
+	});
+	
+	function renderItem(params, api) {
+		var categoryIndex = api.value(0);
+		var start = api.coord([api.value(1), categoryIndex]);
+		var end = api.coord([api.value(2), categoryIndex]);
+		var height = api.size([0, 1])[1] * 0.6;
+	
+		var rectShape = echarts.graphic.clipRectByRect({
+			x: start[0],
+			y: start[1] - height / 2,
+			width: end[0] - start[0],
+			height: height
+		}, {
+			x: params.coordSys.x,
+			y: params.coordSys.y,
+			width: params.coordSys.width,
+			height: params.coordSys.height
+		});
+	
+		return rectShape && {
+			type: 'rect',
+			shape: rectShape,
+			style: api.style()
+		};
+	}
+	
+	
+	option = {
+		tooltip: {
+			formatter: function (params) {
+				return params.marker + params.name + ': ' + params.value[3] + ' ms';
+			}
+		},
+		title: {
+			text: 'Profile',
+			left: 'center'
+		},
+		dataZoom: [{
+			type: 'slider',
+			filterMode: 'weakFilter',
+			showDataShadow: false,
+			top: 400,
+			height: 10,
+			borderColor: 'transparent',
+			backgroundColor: '#e2e2e2',
+			handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
+			handleSize: 20,
+			handleStyle: {
+				shadowBlur: 6,
+				shadowOffsetX: 1,
+				shadowOffsetY: 2,
+				shadowColor: '#aaa'
+			},
+			labelFormatter: ''
+		}, {
+			type: 'inside',
+			filterMode: 'weakFilter'
+		}],
+		grid: {
+			height:300
+		},
+		xAxis: {
+			min: startTime,
+			scale: true,
+			axisLabel: {
+				formatter: function (val) {
+					return Math.max(0, val - startTime) + ' ms';
+				}
+			}
+		},
+		yAxis: {
+			data: categories
+		},
+		series: [{
+			type: 'custom',
+			renderItem: renderItem,
+			itemStyle: {
+				normal: {
+					opacity: 0.8
+				}
+			},
+			encode: {
+				x: [1, 2],
+				y: 0
+			},
+			data: data
+		}]
 	}`,0),
 
 
@@ -3911,7 +3981,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 									'  {Sunny|}{value|202}{rate|55.3%}',
 									'  {Cloudy|}{value|142}{rate|38.9%}',
 									'  {Showers|}{value|21}{rate|5.8%}'
-								].join('\n'),
+								].join(brn),
 								backgroundColor: '#eee',
 								borderColor: '#777',
 								borderWidth: 1,
@@ -7358,13 +7428,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 		  return module;
 		}`,0),
 
-		echref('Heatmap-Cartesian')+
-		sceg(`o={
-		}`,0),
-
-		echref('Heatmap-Cartesian')+
-		sceg(`o={
-		}`,0),
 
 	].join(br)
 	),
@@ -9104,7 +9167,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 						show: true,
 						formatter: function (params) {
 							var d = echarts.number.parseDate(params.value[0]);
-							return d.getDate() + '\n\n' + params.value[2] + '\n\n';
+							return d.getDate() + brn+brn + params.value[2] + brn+brn;
 						},
 						textStyle: {
 							color: '#000'
@@ -9120,7 +9183,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 					normal: {
 						show: true,
 						formatter: function (params) {
-							return '\n\n\n' + (params.value[3] || '');
+							return brn+brn+brn + (params.value[3] || '');
 						},
 						textStyle: {
 							fontSize: 14,
@@ -10193,12 +10256,12 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 		]
 	}`,0),
 
-	echref('Tree Orient Right Left'),
+	echref('Tree Orient Right Left')+sceg2(`orient: 'RL',`),
 
-	echref('Tree Orient Bottom Top'),
+	echref('Tree Orient Bottom Top')+sceg2(`orient: 'BT',`),
 
-	echref('Tree Orient Vertical'),
-	echref('Tree Orient Radial')+sceg2(`layout: 'radial',`),
+	echref('Tree Orient Vertical')+sceg2(`orient: 'vertical',`),
+	echref('Tree Radial')+sceg2(`layout: 'radial',`),
 		].join(br)
 	),
 
@@ -10239,7 +10302,12 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 			
 		}`,0),
 		
-	
+		echref('Treemap-Disk'),
+		echref('Treemap-Drill Down'),
+		echref('Treemap-Obama'),
+		echref('Treemap-Show Parent'),
+		echref('Treemap-Visual'),
+
 			].join(br)
 		),
 	
@@ -10248,13 +10316,849 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 	
 
 
+	detail('【象形柱图】PictorialBar',[
+
+		echref('Body Fill','','pictorialBar-body-fill')+
+		sceg(`var symbols = [
+			'path://M36.7,102.84c-1.17,2.54-2.99,4.98-3.39,7.63c-1.51,9.89-3.31,19.58-1.93,29.95 c0.95,7.15-2.91,14.82-3.57,22.35c-0.64,7.36-0.2,14.86,0.35,22.25c0.12,1.68,2.66,3.17,4.67,5.4c-0.6,0.82-1.5,2.22-2.58,3.48 c-0.96,1.12-1.96,2.35-3.21,3.04c-1.71,0.95-3.71,2.03-5.51,1.9c-1.18-0.08-3.04-2.13-3.16-3.43c-0.44-4.72,0-9.52-0.41-14.25 c-0.94-10.88-2.32-21.72-3.24-32.61c-0.49-5.84-1.63-12.01-0.35-17.54c3.39-14.56,2.8-28.84,0.36-43.4 c-2.71-16.16-1.06-32.4,0.54-48.59c0.91-9.22,4.62-17.36,8.53-25.57c1.32-2.77,1.88-6.84,0.87-9.62C21.89-3.77,18.09-11,14.7-18.38 c-0.56,0.1-1.13,0.21-1.69,0.31C10.17-11.52,6.29-5.2,4.71,1.65C2.05,13.21-4.42,22.3-11.43,31.28c-1.32,1.69-2.51,3.5-3.98,5.04 c-4.85,5.08-3.25,10.98-2.32,16.82c0.25,1.53,0.52,3.06,0.77,4.59c-0.53,0.22-1.07,0.43-1.6,0.65c-1.07-2.09-2.14-4.19-3.28-6.44 c-6.39,2.91-2.67,9.6-5.23,15.16c-1.61-3.31-2.77-5.68-3.93-8.06c0-0.33,0-0.67,0-1c6.96-16.08,14.63-31.9,20.68-48.31 C-5.24-4.07-2.03-18.55,2-32.73c0.36-1.27,0.75-2.53,0.98-3.82c1.36-7.75,4.19-10.23,11.88-10.38c1.76-0.04,3.52-0.21,5.76-0.35 c-0.55-3.95-1.21-7.3-1.45-10.68c-0.61-8.67,0.77-16.69,7.39-23.19c2.18-2.14,4.27-4.82,5.25-7.65c2.39-6.88,11.66-9,16.94-8.12 c5.92,0.99,12.15,7.93,12.16,14.12c0.01,9.89-5.19,17.26-12.24,23.68c-2.17,1.97-5.35,4.77-5.17,6.94c0.31,3.78,4.15,5.66,8.08,6.04 c1.82,0.18,3.7,0.37,5.49,0.1c5.62-0.85,8.8,2.17,10.85,6.73C73.38-27.19,78.46-14.9,84.2-2.91c1.52,3.17,4.52,5.91,7.41,8.09 c7.64,5.77,15.57,11.16,23.45,16.61c2.28,1.58,4.64,3.23,7.21,4.14c5.18,1.84,8.09,5.63,9.82,10.46c0.45,1.24,0.19,3.71-0.6,4.18 c-1.06,0.63-3.15,0.27-4.44-0.38c-7.05-3.54-12.84-8.88-19.14-13.5c-3.5-2.57-7.9-4-12.03-5.6c-9.44-3.66-17.73-8.42-22.5-18.09 c-2.43-4.94-6.09-9.27-9.69-14.61c-1.2,10.98-4.46,20.65,1.14,31.19c6.62,12.47,5.89,26.25,1.21,39.49 c-2.52,7.11-6.5,13.74-8.67,20.94c-1.91,6.33-2.2,13.15-3.23,19.75c-0.72,4.63-0.84,9.48-2.36,13.84 c-2.49,7.16-6.67,13.83-5.84,21.82c0.42,4.02,1.29,7.99,2.1,12.8c-3.74-0.49-7.47-0.4-10.67-1.66c-1.33-0.53-2.43-4.11-2.07-6.01 c1.86-9.94,3.89-19.69,0.07-29.74C34.55,108.63,36.19,105.52,36.7,102.84c1.25-8.45,2.51-16.89,3.71-24.9 c-0.83-0.58-0.85-0.59-0.87-0.61c-0.03,0.16-0.07,0.32-0.09,0.48C38.53,86.15,37.62,94.5,36.7,102.84z',
+			'path://M40.02-99c2.07,1.21,4.26,2.25,6.19,3.66c5.94,4.34,8.23,12.57,4.95,19.79 c-3.21,7.08-6.82,14.03-10.86,20.67c-2.17,3.56-1.25,5.38,1.99,6.36c2.94,0.89,6.36,1.91,9.15,1.21c5.51-1.4,8.33,1.23,10.66,5.29 c4.71,8.22,9.72,16.29,13.84,24.8C81.06-6.65,89,0.4,99.56,5.17C109.82,9.8,120,14.7,129.85,20.15c4.72,2.61,9.09,6.37,10.24,12.97 c-2.89-1.93-5.2-3.75-7.78-5.04c-0.99-0.5-2.6,0.22-4.83,0.5c-5.36-9.35-16.8-9.4-26.74-12.62C91.68,13.04,81.82,11.37,75.66,3 c-5.98-8.13-11.61-16.52-17.4-24.79c-0.46-0.66-0.98-1.27-1.66-2.16c-3.21,7.75-6.78,15-9.12,22.63c-1.15,3.76-0.64,8.37,0.26,12.33 c0.81,3.59,3.01,6.92,4.87,10.22c6.73,11.95,2.41,22.89-2.91,33.75c-0.35,0.72-0.86,1.43-1.46,1.97 c-7.11,6.38-14.48,12.5-21.24,19.22c-2.08,2.07-3.1,5.7-3.62,8.77c-1.92,11.44-3.81,22.92-4.93,34.46 c-0.5,5.16,1.06,10.49,1.28,15.75c0.23,5.7,0.39,11.47-0.15,17.13c-1.15,12.11-2.83,24.17-4.11,36.27c-0.18,1.72,0.8,3.53,1.13,5.33 c0.88,4.76-0.22,6.23-4.71,5.17c-4.53-1.06-8.86-2.94-14.27-4.8c1.98-1.62,2.84-2.83,3.94-3.12c5.42-1.44,7-5.2,6.39-10.23 c-1.39-11.39-3.15-22.73-4.24-34.14c-0.53-5.56,0.16-11.23,0.24-16.85c0.06-4.49,0.01-8.97,0.01-14.72 c-2.79,1.53-5.2,2.27-6.79,3.83c-4.26,4.19-8.39,8.56-12.11,13.22c-1.55,1.95-2.19,4.76-2.79,7.29c-0.47,1.99,0.6,5.02-0.48,6.05 c-2.17,2.08-5.2,3.79-8.13,4.38c-3.61,0.73-7.49,0.18-12.26,0.18c6.34-8.69,11.91-16.11,17.22-23.71c3.29-4.71,6.23-9.67,9.24-14.58 c2.15-3.5,3.76-7.4,6.3-10.57c5.38-6.73,6.74-14.28,6.72-22.64C0.88,68.3,1.36,57.91,2.26,47.58c0.69-7.85,2.15-15.67,3.7-23.41 c0.77-3.83,2.89-7.39,3.72-11.22c1.83-8.4-1.9-16-4.38-23.95C2.96-5.34-0.31,0.12-1.5,6c-1.96,9.72-7.34,17.44-12.26,25.57 c-4.39,7.25-8.79,14.52-12.75,22.01c-2.64,5-4.5,10.41-6.83,15.92c-4.82-5.28-4.65-10.59-0.94-16.97 C-21.4,30.4-12.08,6.78-6.17-18.12c1.4-5.88,1.24-12.11,2.23-18.12c1.2-7.27,4.15-9.56,11.39-9.69c8.65-0.14,13.86-4.77,14.48-13.51 c0.35-5.01,0.16-10.11-0.28-15.12c-0.82-9.3,2.49-16.57,10.17-21.69c2.08-1.39,4.78-1.87,7.2-2.76C39.35-99,39.69-99,40.02-99z',
+			'path://M-39,33.03c3.72-9.74,12.97-12.87,20.96-17.43c9.51-5.43,19.2-10.54,28.69-16 c1.77-1.02,3.35-2.85,4.33-4.67C21.44-17,27.82-28.95,33.95-41.04c2.13-4.2,4.95-6.01,9.7-6.09c3.68-0.06,7.52-0.92,10.97-2.25 c5.09-1.95,4.85-5.2,1.1-9.01c-5.12-5.21-10.89-10.1-13.23-17.54c-1.71-5.44,0.78-15.62,4.87-18.74 c4.12-3.15,12.55-3.84,16.69-0.12c3.39,3.04,6.44,7.27,7.8,11.56c1.96,6.16,3.31,12.9,2.99,19.29 c-0.45,9.21,6.35,16.71,15.73,16.97c7.94,0.21,9.27,0.78,10.69,8.61c5.23,28.73,19.4,53.73,32.21,79.33 c1.95,3.9,4.32,7.71,5.51,11.84c1.03,3.61,0.66,7.61,0.91,11.45c-0.73,0.14-1.45,0.28-2.18,0.42c-0.49-1.57-0.98-3.15-1.47-4.72 c-0.22,0.09-0.44,0.19-0.66,0.28c-0.85-2.62-1.7-5.24-2.74-8.45c-0.9,2.53-1.55,4.4-2.21,6.26c-0.41-0.03-0.83-0.06-1.24-0.08 c-0.19-2.78-0.35-5.56-0.56-8.34c-0.67-9.04-7.05-14.8-12.04-21.47c-5.2-6.95-10.31-14.09-14.36-21.73 c-3.56-6.7-5.59-14.21-9-21.29c-3.02,9.7-8.69,18.66-6.3,29.2c0.63,2.78,2.68,5.21,3.87,7.9c4.73,10.64,5.56,22.14,6.92,33.46 c1.21,10.13,1.88,20.38,1.96,30.59c0.06,7.02-1.67,14.04-1.85,21.08c-0.12,4.66,0.83,9.41,1.73,14.03 c1.21,6.22,2.81,12.36,4.28,18.52c0.3,1.26,0.69,2.51,1.23,3.69c3.92,8.54,7.79,17.1,11.88,25.55c1.3,2.67,3.24,5.04,5.07,7.83 c-2.19,0.86-3.64,1.76-5.17,1.97c-3.53,0.47-6.9,0.64-8.13-4.11c-1.71-6.58-3.78-13.07-5.87-19.54c-0.44-1.35-1.6-2.47-3.21-3.33 c0,16.17-7.35,32.86,6.17,48.11c-3.55,0-5.95,0.01-8.36,0c-7.59-0.03-7.66-0.54-7.72-7.64c-0.11-13.74-0.69-27.4-5.27-40.71 c-1.72-5.01-0.38-11.01-1.01-16.49c-0.67-5.79-2.11-11.48-3.08-17.24c-2.52-14.91-12.01-26.06-20.01-38.12 c-5.34-8.06-10.18-16.56-14.25-25.32c-5.18-11.16-5.52-22.61,1.24-33.57c3.68-5.96,3.12-12.27,1.17-18.55 c-2.5-8.03-5.22-16-8.05-24.61c-0.91,1.44-1.76,2.86-2.68,4.24C32.9-10.29,28.04-2.46,22.63,4.96c-5.34,7.34-14.22,8.45-22.08,10.9 c-8.48,2.65-17.2,4.46-23.03,12.01c-1.84,2.39-3.61,4.84-5.41,7.26c-0.39-0.17-0.78-0.34-1.16-0.51c0.81-2.38,1.62-4.76,2.43-7.14 c-0.2-0.22-0.39-0.44-0.59-0.66c-1.24,1.3-2.31,2.88-3.77,3.83c-2.54,1.66-5.33,2.94-8.02,4.37C-39,34.36-39,33.7-39,33.03z',
+			'path://M80,100.49c0,5.23,0.13,10.46-0.03,15.69c-0.2,6.3-0.57,12.6-0.99,18.9 c-0.94,14.08-2.08,28.14-2.87,42.22c-0.41,7.29,4.95,14.31,12.03,16.62c1.22,0.4,2.43,0.84,3.65,2.16c-1.8,0.35-3.59,0.91-5.4,1 c-5.4,0.3-10.83,0.7-16.22,0.42c-1.44-0.07-3.7-2.25-3.95-3.74c-0.56-3.4,0.14-6.98-0.13-10.45c-0.77-9.67-0.8-19.56-3-28.92 c-1.97-8.39-2.18-16.07-0.02-24.35c1.28-4.91,1.34-10.48,0.5-15.52c-2.09-12.71-4.95-25.31-7.65-37.92 c-0.34-1.57-1.3-3.33-2.52-4.33c-3.71-3.01-7.37-6.38-11.62-8.38c-13.61-6.41-19.23-28.93-9.14-42.66 c5.41-7.36,5.32-13.85,0.74-21.4c-4.33-7.14-7.8-14.79-11.71-22.32C16.35-14.03,11.08-4.82,4.94,3.76 C1.8,8.13-2.43,12.19-7.04,14.93c-5.3,3.15-11.39,5.39-17.43,6.76c-9.05,2.05-14.31,7.59-17.67,15.68 c-0.43,1.05-1.13,1.99-1.76,2.95c-0.15,0.22-0.52,0.29-1.8,0.94c0.32-2.2,0.61-3.74,0.74-5.3c0.09-1.14-0.04-2.3-0.07-3.46 c-1.38,0.26-3.21,0.05-4.06,0.86c-2,1.91-3.5,4.33-5.27,6.49c-0.5,0.61-1.22,1.03-1.95,1.61c-1.02-5.19,1.42-10.27,7.11-13.9 C-36.09,19.24-22.82,11.2-9.77,2.82c2.12-1.36,3.99-3.6,5.17-5.85C1.52-14.72,7.44-26.52,13.29-38.35 c2.21-4.48,5.11-7.27,10.48-7.83c3.23-0.34,6.27-2.47,9.89-4.01c-4.23-4.83-8.31-8.74-11.49-13.28c-6.34-9.03-7.03-22.38,3.14-29.92 c6.9-5.12,13.79-4.47,20.85,0.69c6.15,4.5,6.15,11.2,7.55,17.13c1.32,5.6,0.82,11.84,0.1,17.67c-0.73,5.9-0.29,7.53,5.3,8.73 c0.96,0.21,1.99,0.17,2.98,0.19C72.51-48.76,74.44-47.06,76-36.52c1.83,12.35,2.1,25.03,6.99,36.77 c3.28,7.88,6.57,15.79,10.47,23.38c3.66,7.12,8.05,13.87,12.25,20.7c2.97,4.84,3.11,12.13-0.65,17c-1.8-2.05-3.45-3.92-5.01-5.7 c0.04-0.04-0.45,0.53-1.46,1.71C94.83,37.86,80.48,24.72,71.82,8.18c0.46,3.43,0.09,7.26,1.54,10.2c3.95,8.01,1.92,16.67,3.56,24.91 c1.63,8.22,1.87,16.74,3.79,24.88c0.88,3.73,4.32,6.84,6.58,10.25c1.09,1.65,2.2,3.29,3.17,5.01c4.84,8.58,9.09,17.55,14.58,25.69 c7.27,10.79,15.21,21.16,23.39,31.28c6.19,7.67,13.08,14.8,19.92,21.92c2.93,3.04,6.54,5.42,9.96,8.2 c-6.92,4.09-12.67,3.33-19.87-2.17c-1.82-1.39-3.76-2.79-5.87-3.62c-4.12-1.63-4.47-4.54-3.73-8.3c0.26-1.33,0.17-3.42-0.66-4.18 c-7.53-6.87-14.85-14.07-23.04-20.07c-7.75-5.68-12.26-13.2-16.11-21.54c-1.44-3.12-3.31-6.06-5.14-8.98 c-0.5-0.8-1.57-1.24-2.38-1.85C81.01,100.03,80.5,100.26,80,100.49z',
+			'path://M-57,41.03c3.65-4.15,7.17-8.43,10.98-12.42c6.53-6.83,13.31-13.41,19.84-20.23 c1.76-1.84,3.51-3.98,4.4-6.31c3.8-9.99,6.99-20.23,10.99-30.14c2.74-6.79,5.65-13.62,12.37-17.95c4.17-2.68,5.12-7.31,4.29-11.96 c-0.3-1.67-2.02-3.08-3.35-4.97c-2.57,5.59-4.62,10.03-7.21,15.66c-4.79-6.43-9.76-10.83-11.68-16.31 c-1.77-5.04-1.18-11.44,0.04-16.86c1.27-5.62,5.24-9.71,12.03-9.7c1.55,0,3.1-1.68,4.66-2.55c9.3-5.22,20.47-1.53,25.73,7.59 c4.06,7.04,4.84,14.6,5.57,22.26c0.65,6.82-0.32,7.59-8.26,8.11c0,1.97,0,3.96,0,5.95c8.01-0.17,8.01,0.43,12.02,7.52 c2.09,3.69,6.34,6.1,9.41,9.29c2.48,2.58,7.04,3.14,7.24,8c0.29,6.79,0.46,6.78-6.43,11.08c0,15.78-0.02,31.49,0.03,47.2 c0,1.23,0.29,2.51,0.71,3.67c1.64,4.59,3.27,9.19,5.13,13.7c0.79,1.92,1.88,3.83,3.26,5.36c7.54,8.36,15.45,16.41,22.75,24.96 c5.09,5.97,9.05,12.9,14.18,18.84c9.73,11.26,19.47,22.59,30.08,33c8.84,8.67,18.88,16.13,28.51,23.98 c2.52,2.06,5.48,3.58,8.27,5.36c-4.02,3.54-10.94,4.01-16.34,1.62c-4.76-2.11-9.63-4.03-14.6-5.56c-5.6-1.72-6.59-3.72-4.42-9.32 c0.47-1.22-0.12-3.8-1.11-4.5c-7.36-5.15-14.66-10.53-22.55-14.78c-8.49-4.57-15.35-10.3-19.59-19.04 c-4.29-8.84-11.6-14.85-19.48-20.29c-3.2-2.21-6.43-4.4-9.64-6.6c-0.53,0.17-1.05,0.33-1.58,0.5c-0.11,11.17,0.12,22.36-0.45,33.51 c-0.29,5.72-2.33,11.33-3,17.05c-1.68,14.31-3.04,28.65-4.51,42.98c-0.34,3.34,0.94,5.76,4.12,7.18c6.09,2.73,12.14,5.56,18.61,9.26 c-3.96,0.36-7.93,0.72-11.89,1.08c-4.92,0.45-9.91,0.53-14.76,1.42c-6.96,1.28-9.68-0.99-8.69-8.02c1.73-12.28,0.67-24.36-1.4-36.56 c-1.08-6.36-2.02-14.02,0.49-19.47c5.62-12.19,2.4-23.48,0.01-35.2c-2.05-10.04-3.8-20.14-5.9-30.17c-0.32-1.52-1.72-2.91-2.87-4.13 c-3.6-3.83-8.03-7.09-10.85-11.41c-6.61-10.14-2.6-19.6,3.74-28.13c5.27-7.1,6.85-14.1,2.15-21.95c-3.79-6.34-7.53-12.7-11.38-19 c-0.46-0.75-1.41-1.2-2.77-2.3c-3.27,7.28-6.98,13.9-9.24,20.98c-3.58,11.2-12.11,17.05-21.53,22.3c-1.86,1.04-3.57,2.44-5.53,3.21 c-4.29,1.67-6.09,3.88-4.9,9.01c0.69,2.96-1.31,6.55-2.1,9.86c-0.5,0.03-0.99,0.06-1.49,0.08c-0.18-2.57-0.36-5.14-0.66-9.41 c-3.45,4.38-6.11,7.75-9.33,11.84c-1.07-2.08-1.61-3.13-2.15-4.18C-57,43.7-57,42.36-57,41.03z'
+		];
+		
+		var bodyMax = 150;
+		
+		var labelSetting = {
+			normal: {
+				show: true,
+				position: 'outside',
+				offset: [0, -20],
+				formatter: function (param) {
+					return (param.value / bodyMax * 100).toFixed(0) + '%';
+				},
+				textStyle: {
+					fontSize: 18,
+					fontFamily: 'Arial'
+				}
+			}
+		};
+		
+		var markLineSetting = {
+			symbol: 'none',
+			lineStyle: {
+				normal: {
+					opacity: 0.3
+				}
+			},
+			data: [{
+				type: 'max',
+				label: {
+					normal: {
+						formatter: 'max: {c}'
+					}
+				}
+			}, {
+				type: 'min',
+				label: {
+					normal: {
+						formatter: 'min: {c}'
+					}
+				}
+			}]
+		};
+		
+		option = {
+			tooltip: {
+			},
+			legend: {
+				data: ['typeA', 'typeB'],
+				selectedMode: 'single'
+			},
+			xAxis: {
+				data: ['a', 'b', 'c', 'd', 'e'],
+				axisTick: {show: false},
+				axisLine: {show: false},
+				axisLabel: {show: false}
+			},
+			yAxis: {
+				max: bodyMax,
+				offset: 20,
+				splitLine: {show: false}
+			},
+			grid: {
+				top: 'center',
+				height: 230
+			},
+			markLine: {
+				z: -100
+			},
+			series: [{
+				name: 'typeA',
+				type: 'pictorialBar',
+				symbolClip: true,
+				symbolBoundingData: bodyMax,
+				label: labelSetting,
+				data: [{
+					value: 123,
+					symbol: symbols[0]
+				}, {
+					value: 34,
+					symbol: symbols[1]
+				}, {
+					value: 101,
+					symbol: symbols[2]
+				}, {
+					value: 89,
+					symbol: symbols[3]
+				}, {
+					value: 72,
+					symbol: symbols[4]
+				}],
+				markLine: markLineSetting,
+				z: 10
+			}, {
+				name: 'typeB',
+				type: 'pictorialBar',
+				symbolClip: true,
+				symbolBoundingData: bodyMax,
+				label: labelSetting,
+				data: [{
+					value: 12,
+					symbol: symbols[0]
+				}, {
+					value: 44,
+					symbol: symbols[1]
+				}, {
+					value: 131,
+					symbol: symbols[2]
+				}, {
+					value: 33,
+					symbol: symbols[3]
+				}, {
+					value: 142,
+					symbol: symbols[4]
+				}],
+				markLine: markLineSetting,
+				z: 10
+			}, {
+				name: 'full',
+				type: 'pictorialBar',
+				symbolBoundingData: bodyMax,
+				animationDuration: 0,
+				itemStyle: {
+					normal: {
+						color: '#ccc'
+					}
+				},
+				data: [{
+					value: 1,
+					symbol: symbols[0]
+				}, {
+					value: 1,
+					symbol: symbols[1]
+				}, {
+					value: 1,
+					symbol: symbols[2]
+				}, {
+					value: 1,
+					symbol: symbols[3]
+				}, {
+					value: 1,
+					symbol: symbols[4]
+				}]
+			}]
+		}`,0),
+
+
+
+		echref('Dotted','','pictorialBar-dotted')+
+		sceg(`// Generate data
+		var category = [];
+		var dottedBase = +new Date();
+		var lineData = [];
+		var barData = [];
+		
+		for (var i = 0; i < 20; i++) {
+			var date = new Date(dottedBase += 3600 * 24 * 1000);
+			category.push([
+				date.getFullYear(),
+				date.getMonth() + 1,
+				date.getDate()
+			].join('-'));
+			var b = Math.random() * 200;
+			var d = Math.random() * 200;
+			barData.push(b)
+			lineData.push(d + b);
+		}
+		
+		
+		// option
+		option = {
+			backgroundColor: '#0f375f',
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
+			legend: {
+				data: ['line', 'bar'],
+				textStyle: {
+					color: '#ccc'
+				}
+			},
+			xAxis: {
+				data: category,
+				axisLine: {
+					lineStyle: {
+						color: '#ccc'
+					}
+				}
+			},
+			yAxis: {
+				splitLine: {show: false},
+				axisLine: {
+					lineStyle: {
+						color: '#ccc'
+					}
+				}
+			},
+			series: [{
+				name: 'line',
+				type: 'line',
+				smooth: true,
+				showAllSymbol: true,
+				symbol: 'emptyCircle',
+				symbolSize: 15,
+				data: lineData
+			}, {
+				name: 'bar',
+				type: 'bar',
+				barWidth: 10,
+				itemStyle: {
+					normal: {
+						barBorderRadius: 5,
+						color: new echarts.graphic.LinearGradient(
+							0, 0, 0, 1,
+							[
+								{offset: 0, color: '#14c8d4'},
+								{offset: 1, color: '#43eec6'}
+							]
+						)
+					}
+				},
+				data: barData
+			}, {
+				name: 'line',
+				type: 'bar',
+				barGap: '-100%',
+				barWidth: 10,
+				itemStyle: {
+					normal: {
+						color: new echarts.graphic.LinearGradient(
+							0, 0, 0, 1,
+							[
+								{offset: 0, color: 'rgba(20,200,212,0.5)'},
+								{offset: 0.2, color: 'rgba(20,200,212,0.2)'},
+								{offset: 1, color: 'rgba(20,200,212,0)'}
+							]
+						)
+					}
+				},
+				z: -12,
+				data: lineData
+			}, {
+				name: 'dotted',
+				type: 'pictorialBar',
+				symbol: 'rect',
+				itemStyle: {
+					normal: {
+						color: '#0f375f'
+					}
+				},
+				symbolRepeat: true,
+				symbolSize: [12, 4],
+				symbolMargin: 1,
+				z: -10,
+				data: lineData
+			}]
+		}`,0),
+
+
+		echref('Forest','','pictorialBar-forest')+
+		sceg(`var treeDataURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC';
+
+		var beginYear = 2016;
+		var endYear = 2050;
+		var lineCount = 10;
+		
+		
+		// Set dynamic data.
+		var currentYear = beginYear;
+		sTi(function () {
+			currentYear++;
+			if (currentYear > endYear) {
+				currentYear = beginYear;
+			}
+			myChart.setOption({
+				xAxis: {
+					name: currentYear
+				},
+				series: [{
+					data: makeSeriesData(currentYear)
+				}, {
+					data: makeSeriesData(currentYear, true)
+				}]
+			});
+		}, 800);
+		// Set dynamic data.
+		var currentYear = beginYear;
+		sTi(function () {
+			currentYear++;
+			if (currentYear > endYear) {
+				currentYear = beginYear;
+			}
+			myChart.setOption({
+				xAxis: {
+					name: currentYear
+				},
+				series: [{
+					data: makeSeriesData(currentYear)
+				}, {
+					data: makeSeriesData(currentYear, true)
+				}]
+			});
+		}, 800);
+		// Basic option:
+		option = {
+			color: ['#e54035'],
+			xAxis: {
+				axisLine: {show: false},
+				axisLabel: {show: false},
+				axisTick: {show: false},
+				splitLine: {show: false},
+				name: beginYear,
+				nameLocation: 'middle',
+				nameGap: 40,
+				nameTextStyle: {
+					color: 'green',
+					fontSize: 30,
+					fontFamily: 'Arial'
+				},
+				min: -2800,
+				max: 2800
+			},
+			yAxis: {
+				data: makeCategoryData(),
+				show: false
+			},
+			grid: {
+				top: 'center',
+				height: 280
+			},
+			series: [{
+				name: 'all',
+				type: 'pictorialBar',
+				symbol: 'image://' + treeDataURI,
+				symbolSize: [30, 55],
+				symbolRepeat: true,
+				data: makeSeriesData(beginYear),
+				animationEasing: 'elasticOut'
+			}, {
+				name: 'all',
+				type: 'pictorialBar',
+				symbol: 'image://' + treeDataURI,
+				symbolSize: [30, 55],
+				symbolRepeat: true,
+				data: makeSeriesData(beginYear, true),
+				animationEasing: 'elasticOut'
+			}]
+		};
+		
+		
+		// Make fake data.
+		function makeCategoryData() {
+			var categoryData = [];
+			for (var i = 0; i < lineCount; i++) {
+				categoryData.push(i + 'a');
+			}
+			return categoryData;
+		}
+		
+		function makeSeriesData(year, negative) {
+			// make a fake value just for demo.
+			var r = (year - beginYear + 1) * 10;
+			var seriesData = [];
+		
+			for (var i = 0; i < lineCount; i++) {
+				var sign = (negative ? -1 * ((i % 3) ? 0.9 : 1): 1 * (((i + 1) % 3) ? 0.9 : 1));
+				seriesData.push({
+					value: 0,
+					value: sign * (
+						year <= beginYear + 1
+						? (Math.abs(i - lineCount / 2 + 0.5) < lineCount / 5 ? 5 : 0)
+						: (lineCount - Math.abs(i - lineCount / 2 + 0.5)) * r
+					),
+					symbolOffset: (i % 2) ? ['50%', 0] : null
+				});
+			}
+			return seriesData;
+		}`,0),
+
+
+
+
+		echref('Hill','','pictorialBar-hill')+
+		sceg(`var paperDataURI = 'data:image/png;base64,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';
+option = {
+    backgroundColor: '#0f375f',
+    tooltip: {},
+    legend: {
+        data: ['all'],
+        textStyle: {color: '#ddd'}
+    },
+    xAxis: [{
+        data: ['圣诞节儿童愿望清单', '', '珠穆朗玛\\nQomolangma', '乞力马扎罗\\nKilimanjaro'],
+        axisTick: {show: false},
+        axisLine: {show: false},
+        axisLabel: {
+            margin: 20,
+            textStyle: {
+                color: '#ddd',
+                fontSize: 14
+            }
+        }
+    }],
+    yAxis: {
+        splitLine: {show: false},
+        axisTick: {show: false},
+        axisLine: {show: false},
+        axisLabel: {show: false}
+    },
+    markLine: {
+        z: -1
+    },
+    animationEasing: 'elasticOut',
+    series: [{
+        type: 'pictorialBar',
+        name: 'all',
+        hoverAnimation: true,
+        label: {
+            normal: {
+                show: true,
+                position: 'top',
+                formatter: '{c} m',
+                textStyle: {
+                    fontSize: 16,
+                    color: '#e54035'
+                }
+            }
+        },
+        data: [{
+            value: 13000,
+            symbol: 'image://' + paperDataURI,
+            symbolRepeat: true,
+            symbolSize: ['130%', '20%'],
+            symbolOffset: [0, 10],
+            symbolMargin: '-30%',
+            animationDelay: function (dataIndex, params) {
+                return params.index * 30;
+            }
+        }, {
+            value: '-',
+            symbol: 'none',
+        }, {
+            value: 8844,
+            symbol: 'image://img/logo.jpg',
+            symbolSize: ['200%', '105%'],
+            symbolPosition: 'end',
+            z: 10
+        }, {
+            value: 5895,
+            symbol: 'image://img/ZIL.png',
+            symbolSize: ['200%', '105%'],
+            symbolPosition: 'end'
+        }],
+        markLine: {
+            symbol: ['none', 'none'],
+            label: {
+                normal: {show: false}
+            },
+            lineStyle: {
+                normal: {
+                    color: '#e54035',
+                    width: 2
+                }
+            },
+            data: [{
+                yAxis: 8844
+            }]
+        }
+    }, {
+        name: 'all',
+        type: 'pictorialBar',
+        barGap: '-100%',
+        symbol: 'circle',
+        itemStyle: {
+            normal: {
+                color: '#185491'
+            }
+        },
+        silent: true,
+        symbolOffset: [0, '50%'],
+        z: -10,
+        data: [{
+            value: 1,
+            symbolSize: ['150%', 50]
+        }, {
+            value: '-'
+        }, {
+            value: 1,
+            symbolSize: ['200%', 50]
+        }, {
+            value: 1,
+            symbolSize: ['200%', 50]
+        }]
+    }]
+}`,0),
+
+		echref('Spirit','','pictorialBar-spirit')+
+		sceg(`var spirit = 'img/ZIL.png';
+
+var maxData = 2000;
+
+// Make dynamic data.
+function random() {
+    return +(Math.random() * (maxData - 10)).toFixed(1);
+}
+sTi(function () {
+    var dynamicData = [random(), random(), random(), random()];
+    myChart.setOption({
+        series: [{
+            data: dynamicData.slice()
+        }, {
+            data: dynamicData.slice()
+        }]
+    })
+}, 3000);
+
+option = {
+    tooltip: {
+    },
+    xAxis: {
+        max: maxData,
+        splitLine: {show: false},
+        offset: 10,
+        axisLine: {
+            lineStyle: {
+                color: '#999'
+            }
+        },
+        axisLabel: {
+            margin: 10
+        }
+    },
+    yAxis: {
+        data: ['2013', '2014', '2015', '2016'],
+        inverse: true,
+        axisTick: {show: false},
+        axisLine: {show: false},
+        axisLabel: {
+            margin: 10,
+            textStyle: {
+                color: '#999',
+                fontSize: 16
+            }
+        }
+    },
+    grid: {
+        top: 'center',
+        height: 200,
+        left: 70,
+        right: 100
+    },
+    series: [{
+        // current data
+        type: 'pictorialBar',
+        symbol: spirit,
+        symbolRepeat: 'fixed',
+        symbolMargin: '5%',
+        symbolClip: true,
+        symbolSize: 30,
+        symbolBoundingData: maxData,
+        data: [891, 1220, 660, 1670],
+        markLine: {
+            symbol: 'none',
+            label: {
+                normal: {
+                    formatter: 'max: {c}',
+                    position: 'start'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    color: 'green',
+                    type: 'dotted',
+                    opacity: 0.2,
+                    width: 2
+                }
+            },
+            data: [{
+                type: 'max'
+            }]
+        },
+        z: 10
+    }, {
+        // full data
+        type: 'pictorialBar',
+        itemStyle: {
+            normal: {
+                opacity: 0.2
+            }
+        },
+        label: {
+            normal: {
+                show: true,
+                formatter: function (params) {
+                    return (params.value / maxData * 100).toFixed(1) + ' %';
+                },
+                position: 'right',
+                offset: [10, 0],
+                textStyle: {
+                    color: 'green',
+                    fontSize: 18
+                }
+            }
+        },
+        animationDuration: 0,
+        symbolRepeat: 'fixed',
+        symbolMargin: '5%',
+        symbol: spirit,
+        symbolSize: 30,
+        symbolBoundingData: maxData,
+        data: [891, 1220, 660, 1670],
+        z: 5
+    }]
+}`,0),
+
+
+		echref('Vehicle','','pictorialBar-vehicle')+
+		sceg(`var pathSymbols = {
+			reindeer: 'path://M-22.788,24.521c2.08-0.986,3.611-3.905,4.984-5.892',
+			plane: 'path://M1.112,32.559l2.998,1.205l-2.882,2.268l-2.215-0.012',
+			train: 'path://M67.335,33.596L67.335,33.596c-0.002-1.39-1.153-3.183-3.328-4.218',
+			car: 'path://M49.592,40.883c-0.053,0.354-0.139,0.697-0.268,0.963'
+		};
+		
+		var labelSetting = {
+			normal: {
+				show: true,
+				position: 'right',
+				offset: [10, 0],
+				textStyle: {
+					fontSize: 16
+				}
+			}
+		};
+		
+		
+		option = {
+			title: {
+				text: 'Vehicles in X City'
+			},
+			legend: {
+				data: ['2015', '2016']
+			},
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
+			grid: {
+				containLabel: true,
+				left: 20
+			},
+			yAxis: {
+				data: ['reindeer', 'ship', 'plane', 'train', 'car'],
+				inverse: true,
+				axisLine: {show: false},
+				axisTick: {show: false},
+				axisLabel: {
+					margin: 30,
+					textStyle: {
+						fontSize: 14
+					}
+				},
+				axisPointer: {
+					label: {
+						show: true,
+						margin: 30
+					}
+				}
+			},
+			xAxis: {
+				splitLine: {show: false},
+				axisLabel: {show: false},
+				axisTick: {show: false},
+				axisLine: {show: false}
+			},
+			series: [{
+				name: '2015',
+				type: 'pictorialBar',
+				label: labelSetting,
+				symbolRepeat: true,
+				symbolSize: ['80%', '60%'],
+				barCategoryGap: '40%',
+				data: [{
+					value: 157,
+					symbol: pathSymbols.reindeer
+				}, {
+					value: 21,
+					symbol: pathSymbols.ship
+				}, {
+					value: 66,
+					symbol: pathSymbols.plane
+				}, {
+					value: 78,
+					symbol: pathSymbols.train
+				}, {
+					value: 123,
+					symbol: pathSymbols.car
+				}]
+			}, {
+				name: '2016',
+				type: 'pictorialBar',
+				barGap: '10%',
+				label: labelSetting,
+				symbolRepeat: true,
+				symbolSize: ['80%', '60%'],
+				data: [{
+					value: 184,
+					symbol: pathSymbols.reindeer
+				}, {
+					value: 29,
+					symbol: pathSymbols.ship
+				}, {
+					value: 73,
+					symbol: pathSymbols.plane
+				}, {
+					value: 91,
+					symbol: pathSymbols.train
+				}, {
+					value: 95,
+					symbol: pathSymbols.car
+				}]
+			}]
+		}`,0),
+
+		echref('Velocity','','pictorialBar-velocity')+
+		sceg(`var pathSymbols = {
+			reindeer: 'path://M-22.788,24.521c2.08-0.986,3.611-3.905,4.984-5.892 c-2.686,2.782-5.047,5.884-9.102,7.312c-0.992,0.005-0.25-2.016,0.34-2.362l1.852-0.41c0.564-0.218,0.785-0.842,0.902-1.347 c2.133-0.727,4.91-4.129,6.031-6.194c1.748-0.7,4.443-0.679,5.734-2.293',
+			plane: 'path://M1.112,32.559l2.998,1.205l-2.882,2.268l-2.215-0.012L1.112,32.559z M37.803,23.96 c0.158-0.838,0.5-1.509,0.961-1.904c-0.096-0.037-0.205-0.071-0.344-0.071c-0.777-0.005-2.068-0.009-3.047-0.009 c-0.633,0-1.217,0.066-1.754,0.18l2.199,1.8',
+			rocket: 'path://M-244.396,44.399c0,0,0.47-2.931-2.427-6.512c2.819-8.221,3.21-15.709,3.21-15.709s5.795,1.383,5.795,7.325C-237.818,39.679-244.396,44.399-244.396,44.399z M-260.371,40.827c0,0-3.881-12.946-3.881-18.319c0-2.416,0.262-4.566,0.669-6.517h17',
+			train: 'path://M67.335,33.596L67.335,33.596c-0.002-1.39-1.153-3.183-3.328-4.218h-9.096v-2.07h5.371 c-4.939-2.07-11.199-4.141-14.89-4.141H19.72v12.421v5.176h38.373c4.033,0,8.457-1.035,9.142-5.176h-0.027 c0.076-0.367,0.129-0.751,0.129-1.165L67.335,33',
+			ship: 'path://M16.678,17.086h9.854l-2.703,5.912c5.596,2.428,11.155,5.575,16.711,8.607c3.387,1.847,6.967,3.75,10.541,5.375 v-6.16l-4.197-2.763v-5.318L33.064,12.197h-11.48L20.43,15.24h-4.533l-1.266,3.286l0.781,0.345L16.678,17.086z M49.6,31.84 l0.047,1.273',
+			car: 'path://M49.592,40.883c-0.053,0.354-0.139,0.697-0.268,0.963c-0.232,0.475-0.455,0.519-1.334,0.475 c-1.135-0.053-2.764,0-4.484,0.068c0,0.476,0.018,0.697,0.018,0.697c0.111,1.299,0.697,1.342,0.931,1.342h3.7 c0.326,0,0.628,0,0.861-0.154',
+			run: 'path://M13.676,32.955c0.919-0.031,1.843-0.008,2.767-0.008v0.007c0.827,0,1.659,0.041,2.486-0.019 c0.417-0.028,1.118,0.325,1.14-0.545c0.014-0.637-0.156-1.279-0.873-1.367c-1.919-0.241-3.858-0.233-5.774,0.019 c-0.465,0.062-0.998,0.442-0.832,1.069',
+			walk: 'path://M29.902,23.275c1.86,0,3.368-1.506,3.368-3.365c0-1.859-1.508-3.365-3.368-3.365 c-1.857,0-3.365,1.506-3.365,3.365C26.537,21.769,28.045,23.275,29.902,23.275z M36.867,30.74c-1.666-0.467-3.799-1.6-4.732-4.199 c-0.932-2.6-3.131-2.998-4.797-2.998'
+		};
+		
+		option = {
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'none'
+				},
+				formatter: function (params) {
+					return params[0].name + ': ' + params[0].value;
+				}
+			},
+			xAxis: {
+				data: ['驯鹿', '火箭', '飞机', '高铁', '轮船', '汽车', '跑步', '步行', ],
+				axisTick: {show: false},
+				axisLine: {show: false},
+				axisLabel: {
+					textStyle: {
+						color: '#e54035'
+					}
+				}
+			},
+			yAxis: {
+				splitLine: {show: false},
+				axisTick: {show: false},
+				axisLine: {show: false},
+				axisLabel: {show: false}
+			},
+			color: ['#e54035'],
+			series: [{
+				name: 'hill',
+				type: 'pictorialBar',
+				barCategoryGap: '-130%',
+				// symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+				symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+				itemStyle: {
+					normal: {
+						opacity: 0.5
+					},
+					emphasis: {
+						opacity: 1
+					}
+				},
+				data: [123, 60, 25, 18, 12, 9, 2, 1],
+				z: 10
+			}, {
+				name: 'glyph',
+				type: 'pictorialBar',
+				barGap: '-100%',
+				symbolPosition: 'end',
+				symbolSize: 50,
+				symbolOffset: [0, '-120%'],
+				data: [{
+					value: 123,
+					symbol: pathSymbols.reindeer,
+					symbolSize: [60, 60]
+				}, {
+					value: 60,
+					symbol: pathSymbols.rocket,
+					symbolSize: [50, 60]
+				}, {
+					value: 25,
+					symbol: pathSymbols.plane,
+					symbolSize: [65, 35]
+				}, {
+					value: 18,
+					symbol: pathSymbols.train,
+					symbolSize: [50, 30]
+				}, {
+					value: 12,
+					symbol: pathSymbols.ship,
+					symbolSize: [50, 35]
+				}, {
+					value: 9,
+					symbol: pathSymbols.car,
+					symbolSize: [40, 30]
+				}, {
+					value: 2,
+					symbol: pathSymbols.run,
+					symbolSize: [40, 50]
+				}, {
+					value: 1,
+					symbol: pathSymbols.walk,
+					symbolSize: [40, 50]
+				}]
+			}]
+		}`,0),
+
+	].join(br)
+	),
 
 
 	detail('【交互】',[
 
 		echref('拖拽 Drag','','line-draggable')+
-		sceg(`
-		function updatePosition() {
+		sceg(`function updatePosition() {
 			myChart.setOption({
 				graphic: echarts.util.map(data, function (item, dataIndex) {
 					return {
