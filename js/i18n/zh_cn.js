@@ -222,6 +222,7 @@ lang['zh_cn'] = {
 	'Comprehensive':'综合',
 	'Holistic':'整体性',
 
+	'Uniq':'去重',
 	'Unique':'唯一',
 	'Repeat':'重复',
 
@@ -745,12 +746,14 @@ lang['zh_cn'] = {
 	'Semi': '半',
 	'Demi': '半',
 	'Hemi': '半',
+	'Per': '每',
 
 	'Sub': '子',
 	'Quasi': '准',
 	'Multi': '多',
 	'Except': '除了',
 
+	'With': '以',
 	// measure
 
 	// 空间
@@ -831,6 +834,7 @@ lang['zh_cn'] = {
 	'QRcode': '二维码',
 
 	'Snippet': '片段',
+	'Char': '字符',
 	'Character': '字符',
 	'Content': '内容',
 	'Contents': '目录',
@@ -855,6 +859,7 @@ lang['zh_cn'] = {
 	'Hebrew': '希伯来文',
 	'Lowercase': '小写',
 	'Uppercase': '大写',
+	'Case Sensitive':'区分大小写',
 
 	'Rule': '法则',
 	'Aims': '宗旨',
@@ -1118,6 +1123,7 @@ lang['zh_cn'] = {
 	'Overlap': '重叠',
 	'Clip': '裁剪',
 	'Crop': '裁剪',
+	'Trim':'去空',
 
 	'Offset': '偏移',
 	'Scale': '缩放',
@@ -1255,7 +1261,12 @@ lang['zh_cn'] = {
 	'Ascending':'升序',
 	'Descending':'降序',
 
+	'Null':'空',
+	'Blank':'空',
 	'Number': '数',
+	'Comma':'逗号',
+	'Semicolon':'分号',
+
 	'Prime Mersenne Number': '梅森素数',
 	'Amicable Numbers': '亲和数',
 
@@ -1302,7 +1313,8 @@ lang['zh_cn'] = {
 	'Identity Matrix': '单位矩阵',
 	'Square Matrix': '方阵',
 
-	'Space': '空间',
+	'Space': '空格',
+	'Space.1': '空间',
 	'Kernel': '核',
 
 	'Permutation': '置换',

@@ -33,6 +33,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 		return XML.wrapE('ruby',s+XML.wrapE('rt',top||(a1?a1.replace(/.\d/g,function(x){return ['aāáǎà','oōóǒò','eēéěè','iīíǐì','uūúǔù','üǖǘǚǜ']['aoeiuv'.indexOf(x[0])][+x[1]]}):'')))
 	},
 	sTo=setTimeout,sTi=setInterval,
+	oneDay = 24 * 3600 * 1000,
 	Engin = {
 		bd: function (html, u) {
 			var bd = $(XML.wrapE('div', (html || '')));
@@ -483,7 +484,7 @@ var HOM = {
 	'ZMather': Hs + 'github.com/zzllrr/mather'
 };
 
-var strop = '</option><option value=', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
+var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
 	num = function (x, min, max) { return '<input type=number value="' + (x||0) + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
 	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
 	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
@@ -1989,11 +1990,11 @@ var svgf = {
 		week: function (t, deltaDays) {
 			var d = new Date();
 
-			d.setTime(Date.parse(t || d) + (deltaDays || 0) * 3600 * 24 * 1000);
+			d.setTime(Date.parse(t || d) + (deltaDays || 0) * oneDay);
 
 			var y = d.getFullYear(),
-				days = Math.floor((d - Date.parse(y + '-1-1')) / 1000 / 3600 / 24),
-				days2018 = Math.floor((d - Date.parse('2018-1-1')) / 1000 / 3600 / 24),
+				days = Math.floor((d - Date.parse(y + '-1-1')) / oneDay),
+				days2018 = Math.floor((d - Date.parse('2018-1-1')) / oneDay),
 				A = [(days2018 % 7) + 1, Math.floor(days / 7), (days % 7) + 1];
 			if (A[0] < 0) {
 				A[0] += 7
@@ -2145,7 +2146,7 @@ var svgf = {
 			if (d.getFullYear() != n.getFullYear()) { return d.toLocaleDateString() }
 			var today = Date.parse((new Date()).toDateString());
 
-			if (d >= today - 3600 * 1000 * 24 && d < today) { return gM('yesterday') }
+			if (d >= today - oneDay && d < today) { return gM('yesterday') }
 
 			if (d > today && d < Date.parse(Time.reg('tomorrow'))) {
 				return d.toLocaleTimeString().replace(/:\d+$/, '').replace(/:\d+ /, ' ');

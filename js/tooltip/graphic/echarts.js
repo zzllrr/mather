@@ -3,15 +3,318 @@
  * zzllrr@gmail
  * Released under MIT License
  */
+function getVirtulData(year) {
+	year = year || '2019';
+	var date = +echarts.number.parseDate(year + '-01-01');
+	var end = +echarts.number.parseDate(year + '-12-31');
+	var dayTime = 3600 * 24 * 1000;
+	var data = [];
+	for (var time = date; time <= end; time += dayTime) {
+		data.push([
+			echarts.format.formatTime('yyyy-MM-dd', time),
+			Math.floor(Math.random() * 10000)
+		]);
+	}
+	return data;
+}
+	
+///////////////////////////////////////////////////////////////////////////
+// Simplex and perlin noise helper from https://github.com/josephg/noisejs
+///////////////////////////////////////////////////////////////////////////
+function getNoiseHelper(global) {
 
-var echref=function(text,gl,u,theme){return href(Hs+'www.echartsjs.com/examples/zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
+	var module = {};
+	
+	function Grad(x, y, z) {
+		this.x = x; this.y = y; this.z = z;
+	}
+	
+	Grad.prototype.dot2 = function(x, y) {
+		return this.x*x + this.y*y;
+	};
+	
+	Grad.prototype.dot3 = function(x, y, z) {
+		return this.x*x + this.y*y + this.z*z;
+	};
+	
+	var grad3 = [new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
+					new Grad(1,0,1),new Grad(-1,0,1),new Grad(1,0,-1),new Grad(-1,0,-1),
+					new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)];
+	
+	var p = [151,160,137,91,90,15,225,140,36,103,30,69,142,8];
+	// To remove the need for index wrapping, double the permutation table length
+	var perm = new Array(512);
+	var gradP = new Array(512);
+	
+	// This isn't a very good seeding function, but it works ok. It supports 2^16
+	// different seed values. Write something better if you need more seeds.
+	module.seed = function(seed) {
+		if(seed > 0 && seed < 1) {
+		// Scale the seed out
+		seed *= 65536;
+		}
+	
+		seed = Math.floor(seed);
+		if(seed < 256) {
+		seed |= seed << 8;
+		}
+	
+		for(var i = 0; i < 256; i++) {
+		var v;
+		if (i & 1) {
+			v = p[i] ^ (seed & 255);
+		} else {
+			v = p[i] ^ ((seed>>8) & 255);
+		}
+	
+		perm[i] = perm[i + 256] = v;
+		gradP[i] = gradP[i + 256] = grad3[v % 12];
+		}
+	};
+	
+	module.seed(0);
+	
+	/*
+	for(var i=0; i<256; i++) {
+		perm[i] = perm[i + 256] = p[i];
+		gradP[i] = gradP[i + 256] = grad3[perm[i] % 12];
+	}*/
+	
+	// Skewing and unskewing factors for 2, 3, and 4 dimensions
+	var F2 = 0.5*(Math.sqrt(3)-1);
+	var G2 = (3-Math.sqrt(3))/6;
+	
+	var F3 = 1/3;
+	var G3 = 1/6;
+	
+	// 2D simplex noise
+	module.simplex2 = function(xin, yin) {
+		var n0, n1, n2; // Noise contributions from the three corners
+		// Skew the input space to determine which simplex cell we're in
+		var s = (xin+yin)*F2; // Hairy factor for 2D
+		var i = Math.floor(xin+s);
+		var j = Math.floor(yin+s);
+		var t = (i+j)*G2;
+		var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+		var y0 = yin-j+t;
+		// For the 2D case, the simplex shape is an equilateral triangle.
+		// Determine which simplex we are in.
+		var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+		if(x0>y0) { // lower triangle, XY order: (0,0)->(1,0)->(1,1)
+		i1=1; j1=0;
+		} else {    // upper triangle, YX order: (0,0)->(0,1)->(1,1)
+		i1=0; j1=1;
+		}
+		// A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
+		// a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
+		// c = (3-sqrt(3))/6
+		var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+		var y1 = y0 - j1 + G2;
+		var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
+		var y2 = y0 - 1 + 2 * G2;
+		// Work out the hashed gradient indices of the three simplex corners
+		i &= 255;
+		j &= 255;
+		var gi0 = gradP[i+perm[j]];
+		var gi1 = gradP[i+i1+perm[j+j1]];
+		var gi2 = gradP[i+1+perm[j+1]];
+		// Calculate the contribution from the three corners
+		var t0 = 0.5 - x0*x0-y0*y0;
+		if(t0<0) {
+		n0 = 0;
+		} else {
+		t0 *= t0;
+		n0 = t0 * t0 * gi0.dot2(x0, y0);  // (x,y) of grad3 used for 2D gradient
+		}
+		var t1 = 0.5 - x1*x1-y1*y1;
+		if(t1<0) {
+		n1 = 0;
+		} else {
+		t1 *= t1;
+		n1 = t1 * t1 * gi1.dot2(x1, y1);
+		}
+		var t2 = 0.5 - x2*x2-y2*y2;
+		if(t2<0) {
+		n2 = 0;
+		} else {
+		t2 *= t2;
+		n2 = t2 * t2 * gi2.dot2(x2, y2);
+		}
+		// Add contributions from each corner to get the final noise value.
+		// The result is scaled to return values in the interval [-1,1].
+		return 70 * (n0 + n1 + n2);
+	};
+	
+	// 3D simplex noise
+	module.simplex3 = function(xin, yin, zin) {
+		var n0, n1, n2, n3; // Noise contributions from the four corners
+	
+		// Skew the input space to determine which simplex cell we're in
+		var s = (xin+yin+zin)*F3; // Hairy factor for 2D
+		var i = Math.floor(xin+s);
+		var j = Math.floor(yin+s);
+		var k = Math.floor(zin+s);
+	
+		var t = (i+j+k)*G3;
+		var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+		var y0 = yin-j+t;
+		var z0 = zin-k+t;
+	
+		// For the 3D case, the simplex shape is a slightly irregular tetrahedron.
+		// Determine which simplex we are in.
+		var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
+		var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
+		if(x0 >= y0) {
+		if(y0 >= z0)      { i1=1; j1=0; k1=0; i2=1; j2=1; k2=0; }
+		else if(x0 >= z0) { i1=1; j1=0; k1=0; i2=1; j2=0; k2=1; }
+		else              { i1=0; j1=0; k1=1; i2=1; j2=0; k2=1; }
+		} else {
+		if(y0 < z0)      { i1=0; j1=0; k1=1; i2=0; j2=1; k2=1; }
+		else if(x0 < z0) { i1=0; j1=1; k1=0; i2=0; j2=1; k2=1; }
+		else             { i1=0; j1=1; k1=0; i2=1; j2=1; k2=0; }
+		}
+		// A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
+		// a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
+		// a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
+		// c = 1/6.
+		var x1 = x0 - i1 + G3; // Offsets for second corner
+		var y1 = y0 - j1 + G3;
+		var z1 = z0 - k1 + G3;
+	
+		var x2 = x0 - i2 + 2 * G3; // Offsets for third corner
+		var y2 = y0 - j2 + 2 * G3;
+		var z2 = z0 - k2 + 2 * G3;
+	
+		var x3 = x0 - 1 + 3 * G3; // Offsets for fourth corner
+		var y3 = y0 - 1 + 3 * G3;
+		var z3 = z0 - 1 + 3 * G3;
+	
+		// Work out the hashed gradient indices of the four simplex corners
+		i &= 255;
+		j &= 255;
+		k &= 255;
+		var gi0 = gradP[i+   perm[j+   perm[k   ]]];
+		var gi1 = gradP[i+i1+perm[j+j1+perm[k+k1]]];
+		var gi2 = gradP[i+i2+perm[j+j2+perm[k+k2]]];
+		var gi3 = gradP[i+ 1+perm[j+ 1+perm[k+ 1]]];
+	
+		// Calculate the contribution from the four corners
+		var t0 = 0.6 - x0*x0 - y0*y0 - z0*z0;
+		if(t0<0) {
+		n0 = 0;
+		} else {
+		t0 *= t0;
+		n0 = t0 * t0 * gi0.dot3(x0, y0, z0);  // (x,y) of grad3 used for 2D gradient
+		}
+		var t1 = 0.6 - x1*x1 - y1*y1 - z1*z1;
+		if(t1<0) {
+		n1 = 0;
+		} else {
+		t1 *= t1;
+		n1 = t1 * t1 * gi1.dot3(x1, y1, z1);
+		}
+		var t2 = 0.6 - x2*x2 - y2*y2 - z2*z2;
+		if(t2<0) {
+		n2 = 0;
+		} else {
+		t2 *= t2;
+		n2 = t2 * t2 * gi2.dot3(x2, y2, z2);
+		}
+		var t3 = 0.6 - x3*x3 - y3*y3 - z3*z3;
+		if(t3<0) {
+		n3 = 0;
+		} else {
+		t3 *= t3;
+		n3 = t3 * t3 * gi3.dot3(x3, y3, z3);
+		}
+		// Add contributions from each corner to get the final noise value.
+		// The result is scaled to return values in the interval [-1,1].
+		return 32 * (n0 + n1 + n2 + n3);
+	
+	};
+	
+	// ##### Perlin noise stuff
+	
+	function fade(t) {
+		return t*t*t*(t*(t*6-15)+10);
+	}
+	
+	function lerp(a, b, t) {
+		return (1-t)*a + t*b;
+	}
+	
+	// 2D Perlin Noise
+	module.perlin2 = function(x, y) {
+		// Find unit grid cell containing point
+		var X = Math.floor(x), Y = Math.floor(y);
+		// Get relative xy coordinates of point within that cell
+		x = x - X; y = y - Y;
+		// Wrap the integer cells at 255 (smaller integer period can be introduced here)
+		X = X & 255; Y = Y & 255;
+	
+		// Calculate noise contributions from each of the four corners
+		var n00 = gradP[X+perm[Y]].dot2(x, y);
+		var n01 = gradP[X+perm[Y+1]].dot2(x, y-1);
+		var n10 = gradP[X+1+perm[Y]].dot2(x-1, y);
+		var n11 = gradP[X+1+perm[Y+1]].dot2(x-1, y-1);
+	
+		// Compute the fade curve value for x
+		var u = fade(x);
+	
+		// Interpolate the four results
+		return lerp(
+			lerp(n00, n10, u),
+			lerp(n01, n11, u),
+			fade(y));
+	};
+	
+	// 3D Perlin Noise
+	module.perlin3 = function(x, y, z) {
+		// Find unit grid cell containing point
+		var X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
+		// Get relative xyz coordinates of point within that cell
+		x = x - X; y = y - Y; z = z - Z;
+		// Wrap the integer cells at 255 (smaller integer period can be introduced here)
+		X = X & 255; Y = Y & 255; Z = Z & 255;
+	
+		// Calculate noise contributions from each of the eight corners
+		var n000 = gradP[X+  perm[Y+  perm[Z  ]]].dot3(x,   y,     z);
+		var n001 = gradP[X+  perm[Y+  perm[Z+1]]].dot3(x,   y,   z-1);
+		var n010 = gradP[X+  perm[Y+1+perm[Z  ]]].dot3(x,   y-1,   z);
+		var n011 = gradP[X+  perm[Y+1+perm[Z+1]]].dot3(x,   y-1, z-1);
+		var n100 = gradP[X+1+perm[Y+  perm[Z  ]]].dot3(x-1,   y,   z);
+		var n101 = gradP[X+1+perm[Y+  perm[Z+1]]].dot3(x-1,   y, z-1);
+		var n110 = gradP[X+1+perm[Y+1+perm[Z  ]]].dot3(x-1, y-1,   z);
+		var n111 = gradP[X+1+perm[Y+1+perm[Z+1]]].dot3(x-1, y-1, z-1);
+	
+		// Compute the fade curve value for x, y, z
+		var u = fade(x);
+		var v = fade(y);
+		var w = fade(z);
+	
+		// Interpolate
+		return lerp(
+			lerp(
+			lerp(n000, n100, u),
+			lerp(n001, n101, u), w),
+			lerp(
+			lerp(n010, n110, u),
+			lerp(n011, n111, u), w),
+			v);
+	};
+	
+	
+	return module;
+}
+
+var ecegs=Hs+'www.echartsjs.com/examples/',echref=function(text,gl,u,theme){return href(ecegs+'zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
 tooltip.graphic=tooltip.graphic || {};
-tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/examples/index.html','百度ECharts官网'),[
+tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECharts官网'),[
 	href(Hs+'www.echartsjs.com/zh/api.html','API')+'暂不支持LaTeX',
 	'JS代码片段','用$美元符号$括起来'+sceg2('$1+2$'),
 	'回归分析'+github('ecomfe/echarts-stat'),
 
-	'暂不收录的图形案例'+ul(Arrf(function(x){return href(Hs+'www.echartsjs.com/examples/index.html#chart-type-'+x.replace(/ [a-z]$/i,''),x.replace(/.+ /,'').toLowerCase())},
+	'暂不收录的图形案例'+ul(Arrf(function(x){return href(ecegs+'index.html#chart-type-'+x.replace(/ [a-z]$/i,''),x.replace(/.+ /,'').toLowerCase())},
 	[
 		'地理坐标/地图 GEO / Map',
 		'K 线图 Candlestick',
@@ -194,7 +497,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 	echref('Area Simple')+
 	sceg(`var base = +new Date(1968, 9, 3);
-	var oneDay = 24 * 3600 * 1000;
 	var date = [];
 	
 	var data = [Math.random() * 300];
@@ -789,7 +1091,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 	
 	var data = [];
 	var now = +new Date(1997, 9, 3);
-	var oneDay = 24 * 3600 * 1000;
+
 	var value = Math.random() * 1000;
 	for (var i = 0; i < 1000; i++) {
 		data.push(randomData());
@@ -7073,9 +7375,9 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 			}`,0),
 
 		echref('Heatmap-Large'),
+
 		echref('Heatmap-Large Piecewise')+
-		sceg(`
-		var noise = getNoiseHelper();
+		sceg(`var noise = getNoiseHelper();
 		var xData = [];
 		var yData = [];
 		noise.seed(Math.random());
@@ -7135,297 +7437,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 				progressive: 1000,
 				animation: false
 			}]
-		};
-		
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		// Simplex and perlin noise helper from https://github.com/josephg/noisejs
-		///////////////////////////////////////////////////////////////////////////
-		function getNoiseHelper(global) {
-		
-		  var module = {};
-		
-		  function Grad(x, y, z) {
-			this.x = x; this.y = y; this.z = z;
-		  }
-		
-		  Grad.prototype.dot2 = function(x, y) {
-			return this.x*x + this.y*y;
-		  };
-		
-		  Grad.prototype.dot3 = function(x, y, z) {
-			return this.x*x + this.y*y + this.z*z;
-		  };
-		
-		  var grad3 = [new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
-					   new Grad(1,0,1),new Grad(-1,0,1),new Grad(1,0,-1),new Grad(-1,0,-1),
-					   new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)];
-		
-		  var p = [151,160,137,91,90,15,225,140,36,103,30,69,142,8];
-		  // To remove the need for index wrapping, double the permutation table length
-		  var perm = new Array(512);
-		  var gradP = new Array(512);
-		
-		  // This isn't a very good seeding function, but it works ok. It supports 2^16
-		  // different seed values. Write something better if you need more seeds.
-		  module.seed = function(seed) {
-			if(seed > 0 && seed < 1) {
-			  // Scale the seed out
-			  seed *= 65536;
-			}
-		
-			seed = Math.floor(seed);
-			if(seed < 256) {
-			  seed |= seed << 8;
-			}
-		
-			for(var i = 0; i < 256; i++) {
-			  var v;
-			  if (i & 1) {
-				v = p[i] ^ (seed & 255);
-			  } else {
-				v = p[i] ^ ((seed>>8) & 255);
-			  }
-		
-			  perm[i] = perm[i + 256] = v;
-			  gradP[i] = gradP[i + 256] = grad3[v % 12];
-			}
-		  };
-		
-		  module.seed(0);
-		
-		  /*
-		  for(var i=0; i<256; i++) {
-			perm[i] = perm[i + 256] = p[i];
-			gradP[i] = gradP[i + 256] = grad3[perm[i] % 12];
-		  }*/
-		
-		  // Skewing and unskewing factors for 2, 3, and 4 dimensions
-		  var F2 = 0.5*(Math.sqrt(3)-1);
-		  var G2 = (3-Math.sqrt(3))/6;
-		
-		  var F3 = 1/3;
-		  var G3 = 1/6;
-		
-		  // 2D simplex noise
-		  module.simplex2 = function(xin, yin) {
-			var n0, n1, n2; // Noise contributions from the three corners
-			// Skew the input space to determine which simplex cell we're in
-			var s = (xin+yin)*F2; // Hairy factor for 2D
-			var i = Math.floor(xin+s);
-			var j = Math.floor(yin+s);
-			var t = (i+j)*G2;
-			var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
-			var y0 = yin-j+t;
-			// For the 2D case, the simplex shape is an equilateral triangle.
-			// Determine which simplex we are in.
-			var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
-			if(x0>y0) { // lower triangle, XY order: (0,0)->(1,0)->(1,1)
-			  i1=1; j1=0;
-			} else {    // upper triangle, YX order: (0,0)->(0,1)->(1,1)
-			  i1=0; j1=1;
-			}
-			// A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
-			// a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
-			// c = (3-sqrt(3))/6
-			var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
-			var y1 = y0 - j1 + G2;
-			var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
-			var y2 = y0 - 1 + 2 * G2;
-			// Work out the hashed gradient indices of the three simplex corners
-			i &= 255;
-			j &= 255;
-			var gi0 = gradP[i+perm[j]];
-			var gi1 = gradP[i+i1+perm[j+j1]];
-			var gi2 = gradP[i+1+perm[j+1]];
-			// Calculate the contribution from the three corners
-			var t0 = 0.5 - x0*x0-y0*y0;
-			if(t0<0) {
-			  n0 = 0;
-			} else {
-			  t0 *= t0;
-			  n0 = t0 * t0 * gi0.dot2(x0, y0);  // (x,y) of grad3 used for 2D gradient
-			}
-			var t1 = 0.5 - x1*x1-y1*y1;
-			if(t1<0) {
-			  n1 = 0;
-			} else {
-			  t1 *= t1;
-			  n1 = t1 * t1 * gi1.dot2(x1, y1);
-			}
-			var t2 = 0.5 - x2*x2-y2*y2;
-			if(t2<0) {
-			  n2 = 0;
-			} else {
-			  t2 *= t2;
-			  n2 = t2 * t2 * gi2.dot2(x2, y2);
-			}
-			// Add contributions from each corner to get the final noise value.
-			// The result is scaled to return values in the interval [-1,1].
-			return 70 * (n0 + n1 + n2);
-		  };
-		
-		  // 3D simplex noise
-		  module.simplex3 = function(xin, yin, zin) {
-			var n0, n1, n2, n3; // Noise contributions from the four corners
-		
-			// Skew the input space to determine which simplex cell we're in
-			var s = (xin+yin+zin)*F3; // Hairy factor for 2D
-			var i = Math.floor(xin+s);
-			var j = Math.floor(yin+s);
-			var k = Math.floor(zin+s);
-		
-			var t = (i+j+k)*G3;
-			var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
-			var y0 = yin-j+t;
-			var z0 = zin-k+t;
-		
-			// For the 3D case, the simplex shape is a slightly irregular tetrahedron.
-			// Determine which simplex we are in.
-			var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
-			var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
-			if(x0 >= y0) {
-			  if(y0 >= z0)      { i1=1; j1=0; k1=0; i2=1; j2=1; k2=0; }
-			  else if(x0 >= z0) { i1=1; j1=0; k1=0; i2=1; j2=0; k2=1; }
-			  else              { i1=0; j1=0; k1=1; i2=1; j2=0; k2=1; }
-			} else {
-			  if(y0 < z0)      { i1=0; j1=0; k1=1; i2=0; j2=1; k2=1; }
-			  else if(x0 < z0) { i1=0; j1=1; k1=0; i2=0; j2=1; k2=1; }
-			  else             { i1=0; j1=1; k1=0; i2=1; j2=1; k2=0; }
-			}
-			// A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
-			// a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
-			// a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
-			// c = 1/6.
-			var x1 = x0 - i1 + G3; // Offsets for second corner
-			var y1 = y0 - j1 + G3;
-			var z1 = z0 - k1 + G3;
-		
-			var x2 = x0 - i2 + 2 * G3; // Offsets for third corner
-			var y2 = y0 - j2 + 2 * G3;
-			var z2 = z0 - k2 + 2 * G3;
-		
-			var x3 = x0 - 1 + 3 * G3; // Offsets for fourth corner
-			var y3 = y0 - 1 + 3 * G3;
-			var z3 = z0 - 1 + 3 * G3;
-		
-			// Work out the hashed gradient indices of the four simplex corners
-			i &= 255;
-			j &= 255;
-			k &= 255;
-			var gi0 = gradP[i+   perm[j+   perm[k   ]]];
-			var gi1 = gradP[i+i1+perm[j+j1+perm[k+k1]]];
-			var gi2 = gradP[i+i2+perm[j+j2+perm[k+k2]]];
-			var gi3 = gradP[i+ 1+perm[j+ 1+perm[k+ 1]]];
-		
-			// Calculate the contribution from the four corners
-			var t0 = 0.6 - x0*x0 - y0*y0 - z0*z0;
-			if(t0<0) {
-			  n0 = 0;
-			} else {
-			  t0 *= t0;
-			  n0 = t0 * t0 * gi0.dot3(x0, y0, z0);  // (x,y) of grad3 used for 2D gradient
-			}
-			var t1 = 0.6 - x1*x1 - y1*y1 - z1*z1;
-			if(t1<0) {
-			  n1 = 0;
-			} else {
-			  t1 *= t1;
-			  n1 = t1 * t1 * gi1.dot3(x1, y1, z1);
-			}
-			var t2 = 0.6 - x2*x2 - y2*y2 - z2*z2;
-			if(t2<0) {
-			  n2 = 0;
-			} else {
-			  t2 *= t2;
-			  n2 = t2 * t2 * gi2.dot3(x2, y2, z2);
-			}
-			var t3 = 0.6 - x3*x3 - y3*y3 - z3*z3;
-			if(t3<0) {
-			  n3 = 0;
-			} else {
-			  t3 *= t3;
-			  n3 = t3 * t3 * gi3.dot3(x3, y3, z3);
-			}
-			// Add contributions from each corner to get the final noise value.
-			// The result is scaled to return values in the interval [-1,1].
-			return 32 * (n0 + n1 + n2 + n3);
-		
-		  };
-		
-		  // ##### Perlin noise stuff
-		
-		  function fade(t) {
-			return t*t*t*(t*(t*6-15)+10);
-		  }
-		
-		  function lerp(a, b, t) {
-			return (1-t)*a + t*b;
-		  }
-		
-		  // 2D Perlin Noise
-		  module.perlin2 = function(x, y) {
-			// Find unit grid cell containing point
-			var X = Math.floor(x), Y = Math.floor(y);
-			// Get relative xy coordinates of point within that cell
-			x = x - X; y = y - Y;
-			// Wrap the integer cells at 255 (smaller integer period can be introduced here)
-			X = X & 255; Y = Y & 255;
-		
-			// Calculate noise contributions from each of the four corners
-			var n00 = gradP[X+perm[Y]].dot2(x, y);
-			var n01 = gradP[X+perm[Y+1]].dot2(x, y-1);
-			var n10 = gradP[X+1+perm[Y]].dot2(x-1, y);
-			var n11 = gradP[X+1+perm[Y+1]].dot2(x-1, y-1);
-		
-			// Compute the fade curve value for x
-			var u = fade(x);
-		
-			// Interpolate the four results
-			return lerp(
-				lerp(n00, n10, u),
-				lerp(n01, n11, u),
-			   fade(y));
-		  };
-		
-		  // 3D Perlin Noise
-		  module.perlin3 = function(x, y, z) {
-			// Find unit grid cell containing point
-			var X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
-			// Get relative xyz coordinates of point within that cell
-			x = x - X; y = y - Y; z = z - Z;
-			// Wrap the integer cells at 255 (smaller integer period can be introduced here)
-			X = X & 255; Y = Y & 255; Z = Z & 255;
-		
-			// Calculate noise contributions from each of the eight corners
-			var n000 = gradP[X+  perm[Y+  perm[Z  ]]].dot3(x,   y,     z);
-			var n001 = gradP[X+  perm[Y+  perm[Z+1]]].dot3(x,   y,   z-1);
-			var n010 = gradP[X+  perm[Y+1+perm[Z  ]]].dot3(x,   y-1,   z);
-			var n011 = gradP[X+  perm[Y+1+perm[Z+1]]].dot3(x,   y-1, z-1);
-			var n100 = gradP[X+1+perm[Y+  perm[Z  ]]].dot3(x-1,   y,   z);
-			var n101 = gradP[X+1+perm[Y+  perm[Z+1]]].dot3(x-1,   y, z-1);
-			var n110 = gradP[X+1+perm[Y+1+perm[Z  ]]].dot3(x-1, y-1,   z);
-			var n111 = gradP[X+1+perm[Y+1+perm[Z+1]]].dot3(x-1, y-1, z-1);
-		
-			// Compute the fade curve value for x, y, z
-			var u = fade(x);
-			var v = fade(y);
-			var w = fade(z);
-		
-			// Interpolate
-			return lerp(
-				lerp(
-				  lerp(n000, n100, u),
-				  lerp(n001, n101, u), w),
-				lerp(
-				  lerp(n010, n110, u),
-				  lerp(n011, n111, u), w),
-			   v);
-		  };
-		
-		
-		  return module;
 		}`,0),
 
 
@@ -8451,22 +8462,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 	detail('【日历】Calendar',[
 		echref('Calendar Simple')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate(year + '-12-31');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time <= end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 10000)
-				]);
-			}
-			return data;
-		}
-		
-		option = {
+		sceg(`option = {
 			visualMap: {
 				show: false,
 				min: 0,
@@ -8486,24 +8482,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 
 		echref('Calendar Horizontal')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 1000)
-				]);
-			}
-			return data;
-		}
-		
-		
-		
-		option = {
+		sceg(`option = {
 			tooltip: {
 				position: 'top'
 			},
@@ -8557,23 +8536,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 
 		echref('Calendar Vertical')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 1000)
-				]);
-			}
-			return data;
-		}
-		
-		
-		option = {
+		sceg(`option = {
 			tooltip: {
 				position: 'top',
 				formatter: function (p) {
@@ -8634,48 +8597,33 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 
 		echref('Calendar Charts')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2017';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 1000)
-				]);
-			}
-			return data;
-		}
-		
-		var graphData = [
+		sceg(`var graphData = [
 			[
-				1485878400000,
+				Date.parse('2019-2-1'),
 				260
 			],
 			[
-				1486137600000,
+				Date.parse('2019-2-4'),
 				200
 			],
 			[
-				1486569600000,
+				Date.parse('2019-2-7')
 				279
 			],
 			[
-				1486915200000,
+				Date.parse('2019-2-10')
 				847
 			],
 			[
-				1487347200000,
+				Date.parse('2019-2-13')
 				241
 			],
 			[
-				1487779200000,
+				Date.parse('2019-2-16')
 				411
 			],
 			[
-				1488124800000,
+				Date.parse('2019-2-19')
 				985
 			]
 		];
@@ -8825,31 +8773,31 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 		sceg(`var graphData = [
 			[
 				// Consider timeoffset, add two days to avoid overflow.
-				1485878400000 + 3600 * 24 * 1000 * 2,
+				Date.parse('2019-2-1'),
 				260
 			],
 			[
-				1486137600000,
+				Date.parse('2019-2-4'),
 				200
 			],
 			[
-				1486569600000,
+				Date.parse('2019-2-9'),
 				279
 			],
 			[
-				1486915200000,
+				Date.parse('2019-2-13'),
 				847
 			],
 			[
-				1487347200000,
+				Date.parse('2019-2-18'),
 				241
 			],
 			[
-				1487779200000 + 3600 * 24 * 1000 * 15,
+				Date.parse('2019-3-10'),
 				411
 			],
 			[
-				1488124800000 + 3600 * 24 * 1000 * 23,
+				Date.parse('2019-3-22'),
 				985
 			]
 		];
@@ -8861,22 +8809,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 			};
 		});
 		links.pop();
-		
-		function getVirtulData(year) {
-			year = year || '2017';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 1000)
-				]);
-			}
-			return data;
-		}
-		
 		
 		option = {
 			tooltip : {},
@@ -8972,20 +8904,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 			};
 		
 			}, 10);
-		
-		function getVirtulData() {
-			var date = +echarts.number.parseDate('2020-02-01');
-			var end = +echarts.number.parseDate('2020-03-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 10000)
-				]);
-			}
-			return data;
-		}
 		
 		function getPieSeries(scatterData, chart) {
 			return echarts.util.map(scatterData, function (item, index) {
@@ -9207,22 +9125,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 
 		echref('Calendar-Heatmap')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 10000)
-				]);
-			}
-			return data;
-		}
-		
-		option = {
+		sceg(`option = {
 			title: {
 				top: 30,
 				left: 'center',
@@ -9261,23 +9164,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 
 
 		echref('Calendar-EffectScatter')+
-		sceg(`function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					Math.floor(Math.random() * 10000)
-				]);
-			}
-			return data;
-		}
-		
-		var data = getVirtulData(2019);
-		
+		sceg(`var data = getVirtulData(2019);
 		option = {
 			backgroundColor: '#404a59',
 		
@@ -9452,26 +9339,6 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(Hs+'www.echartsjs.com/example
 		var colors = [
 			'#c4332b', '#16B644', '#6862FD', '#FDC763'
 		];
-		
-		function getVirtulData(year) {
-			year = year || '2019';
-			var date = +echarts.number.parseDate(year + '-01-01');
-			var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-			var dayTime = 3600 * 24 * 1000;
-			var data = [];
-			for (var time = date; time < end; time += dayTime) {
-				var items = [];
-				var eventCount = Math.round(Math.random() * pathes.length);
-				for (var i = 0; i < eventCount; i++) {
-					items.push(Math.round(Math.random() * (pathes.length - 1)));
-				}
-				data.push([
-					echarts.format.formatTime('yyyy-MM-dd', time),
-					items.join('|')
-				]);
-			}
-			return data;
-		}
 		
 		function renderItem(params, api) {
 			var cellPoint = api.coord(api.value(0));
@@ -12458,7 +12325,6 @@ option = {
 
 		echref('触屏tooltip data-zoom','','line-tooltip-touch')+
 		sceg(`var base = +new Date(2016, 9, 3);
-		var oneDay = 24 * 3600 * 1000;
 		var valueBase = Math.random() * 300;
 		var valueBase2 = Math.random() * 50;
 		var data = [];
@@ -13767,4 +13633,3 @@ option = {
 	].join(br)),
 
 ].join('');
-

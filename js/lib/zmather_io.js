@@ -306,7 +306,7 @@ SBS={
 'ο':'omikron',
 'π':'pi',
 'ρ':'rho',
-'ς':'zelta',//实际无此字母，暂以Zelta命名
+//'ς':'zelta',//实际无此字母，暂以Zelta命名
 'σ':'sigma',
 'τ':'tau',
 'υ':'upsilon',
@@ -2085,31 +2085,86 @@ $(function(){
 
 				'<div id=inputTools>'+
 
-					strbtn+'T" id=editTexton class=tool tip=EditText />'+
 					strbtn+'⋮" id=Condon class=tool hidden />'+
 					SCtv('iTextLaTeXon',
 						
+						strbtn+'T" id=editTexton class=tool tip=EditText />'+
 						strbtn+'α" id=sbson tip=UnicodeCharacter class=tool />'+
 						strbtn+'ƒ" id=funcson tip=Function class=tool />'+
-						strbtn+'∑" id=strucon tip=Structure class=tool />'+
-						itv('" id=editorLaunch tip="Launch','launch')+
-						itvc('rotate180" id="tClear2')
-		
+						strbtn+'∑" id=strucon tip=Structure class=tool />'
 					)+
+					itv('" id=editorLaunch tip="Launch','launch')+
+					itvc('rotate180" id="tClear2')+
 					
 				dc+
-				DCtv('onbox" hidden id="editText',
-					gM('Line.1 Merge')+' '+
-					strbtn+'." id=lineMerge tip="Merge Line.1" />'+
-					strbtn+':" id=lineSplit tip="Split Line.1" />'+
-					strbtn+'1" id=lineUnique tip="Unique Line.1" />'+
-					br+
-					gM('Line.1 Sort')+' '+
-					strbtn+'↑" id=lineSortUp tip=AscendingSort />'+
-					strbtn+'↓" id=lineSortDown tip=DescendingSort />'+
-					strbtn+'?" id=lineSortRandom tip=RandomSort />'+
-					br+XML.wrapE('label',gM('Repeat Line.1')+' / '+gM('Selection')+strchkbx0+'id=RepeatSelection />')+br+
-					Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join('')
+				DCtv('onbox" hidden id="editText',[
+					DCtv('editTextBox',[
+						gM('By')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+							ZLR('Comma Semicolon Space Tab')).join(' '),
+						'<input type=text id=lineByChar />',
+						strbtn+gM('Merge Line.1')+'" id=lineMerge tip="Line.1 Merge" />'+
+						strbtn+gM('Split Line.1')+'" id=lineSplit tip="Line.1 Split" />'
+						]
+					).join(''),
+
+					
+					DCtv('editTextBox hidden',[
+						strbtn+gM('Uniq Line.1')+'" id=lineUnique tip="Line.1 Uniq" />',
+						strbtn+gM('Delete Blank Line.1')+'" id=blankLineTrim tip="Blank Line.1 Trim" />',
+						strbtn+'↤↦" id=lineTrim tip="Line.1 Head Foot Trim" />'+
+						strbtn+'↤" id=lineTrimHead tip="Line.1 Head Trim" />'+
+						strbtn+'↦" id=lineTrimFoot tip="Line.1 Foot Trim" />'
+						]
+					).join(''),
+
+
+					DCtv('editTextBox hidden',[
+						gM('Sort')+': '+
+							XML.wrapE('label', strradio0+'name=txtsortby value=char checked tip=Char />'+gM('By Char'))+
+							XML.wrapE('label', strradio0+'name=txtsortby value=len tip="Char Length" />'+gM('Length'))+
+							XML.wrapE('label', strradio0+'name=txtsortby value=num tip="Number Value" />'+gM('Number Value')),
+
+						strbtn+'↑" id=lineSortUp tip=AscendingSort />'+
+						strbtn+'↓" id=lineSortDown tip=DescendingSort />'+
+						strbtn+'?" id=lineSortRandom tip=RandomSort />',
+
+						strbtn+'↕" id=reverseLine tip="Reverse Line.1" />'+
+						strbtn+'↔" id=reversePerLine tip="Reverse Per Line.1" />'
+						]
+					).join(''),
+
+
+
+					DCtv('editTextBox hidden',[
+						gM('Replace')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
+						'<input type=text id=replaceByChar />',
+
+						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
+						'<input type=text id=replaceWithChar />',
+
+						
+						XML.wrapE('label',gM('Case Sensitive')+strchkbx0+'id=replaceCaseSensitive />')+
+						XML.wrapE('label',gM('Regexp')+strchkbx0+'id=replaceRegexp />')+br+
+
+						strbtn+gM('Replace')+'" id=Replace />'
+
+						]
+					).join(''),
+
+
+
+					DCtv('editTextBox hidden',[
+						gM('Clone')+': ',
+						XML.wrapE('label',gM('Line.1')+' / '+gM('Selection')+strchkbx0+'id=RepeatSelection />'),
+
+						Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join(''),
+						''
+						]
+					).join(''),
+					].join('')
+
 				)+
 				DCtv('onbox" id="ITextLaTeXBox',
 					DCtv('TextLaTeXBox" id="iTextLaTeXBox',
@@ -2206,7 +2261,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 					}
 					return (a+' '+b).trim()
 				
-				},x.replace(/\t/g,' ').trim().split('\n')).join(';')+']'});
+				},x.replace(/\t/g,' ').trim().split(brn)).join(';')+']'});
 		}
 		
 	}).on('click','i',function(){
@@ -2297,7 +2352,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}else if(isnode){
 			t=XML.wrapE(t)
 		}else{
-			t=t.replace(/&&(?! )/g,'\n')
+			t=t.replace(/&&(?! )/g,brn)
 		}
 		if(!(i1 || tbt || fxTXT)){
 			copy2clipboard(t)
@@ -2350,23 +2405,24 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		$('.Symboli td:visible:not(:has(.symboli_)).seled').click();
 		$('.Symboli td.seled:visible').click();
 		var id=($('.iTextLaTeXon .tool.seled').attr('id')||'').replace(/on/,'');
-		if(id){
-			var tr=$('#i'+id+' .sbsiTbl tr').not('.Symboli_'),tn=tr.length,
-				i=tr.filter(':visible').eq(0).prevAll().not('.Symboli_').length;
+		if(id=='editText'){
+			var tr=$('#editText .editTextBox'),
+			i=tr.filter(':visible').index();
 
-			tr.hide();
-			//console.log(i+3,tn-1);
-			if(i+3>tn-1){
-				i=0
-			}else if(i+3==tn-1){
-				i=tn-1
-			}else{
-				i+=3;
-			}
-			tr.slice(i,i+3).show();
-
+		}else{
+			var tr=$('#i'+id+' .sbsiTbl tr').not('.Symboli_'),
+			i=tr.filter(':visible').eq(0).prevAll().not('.Symboli_').length;
 		}
-		
+
+		var tn=tr.hide().length;
+		if(i+3>tn-1){
+			i=0
+		}else if(i+3==tn-1){
+			i=tn-1
+		}else{
+			i+=3;
+		}
+		tr.slice(i,i+3).show();
 
 
 	}).on('click','#downloadPreview',function(e){
@@ -2438,23 +2494,39 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 		saveText(t,nm+'.'+ext);
 		
+
+
+	}).on('click','.editTextBox .hotk',function(){
+		var me=$(this);
+		
+		me.parent().next().find('input:text').eq(0).val(function(i,v){
+			var o={'Comma':',', 'Semicolon':';', 'Space':' ', 'Tab':'\t'};
+			return v+o[me.attr('data-v')]
+		});
+
 	}).on('click','#lineSplit',function(){
 
-		var t=$('#input0Type').val();
+		var t=$('#input0Type').val(), by=$('#lineByChar').val(), isreg=/^\/.+\/[gi]?$/.test(by);
+		
+		$('#input0').val(function(i,v){return v.replace(new RegExp(isreg?by.substr(1).replace(/\/[gi]?$/,''):regReg(by), isreg?by.replace(/.+\//,''):'g'),brn)});
+		/*
 		if(t=='LaTeX'){
 			$('#input0').val(function(i,v){return v.replace(/(\\\\)*\n/g,'\\\\\n')});
 			if($('#preview.seled').length){
 				preDisplay()
 			}
 		}else if(t=='graphic'){
-			$('#input0').val(function(i,v){return v.replace(/&&/g,'\n')});
+			$('#input0').val(function(i,v){return v.replace(/&&/g,brn)});
 		}else{
 			
 		}
+		*/
 				
 	}).on('click','#lineMerge',function(){
 
-		var t=$('#input0Type').val();
+		var t=$('#input0Type').val(), by=$('#lineByChar').val();
+		$('#input0').val(function(i,v){return v.replace(/\n+/g,by)});
+		/*
 		if(t=='LaTeX'){
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'').replace(/\\\\/g,'')});
 			if($('#preview.seled').length){
@@ -2465,10 +2537,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}else{
 			$('#input0').val(function(i,v){return v.replace(/\n+/g,'')});
 		}
+		*/
 
 	}).on('click','#lineUnique',function(){
 
-		var v=$('#input0').val(),vA=v.split('\n'),n=vA.length, B=[], C=[], caseOn=$('#Shift').is('.seled');//是否区分大小写
+		var v=$('#input0').val(),vA=v.split(brn),n=vA.length, B=[], C=[], caseOn=$('#Shift').is('.seled');//是否区分大小写
 		if(caseOn){
 			for(var i=0;i<n;i++){
 				var t=vA[i];
@@ -2477,7 +2550,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				}
 			}
 		}else{
-			var uA=v.toLowerCase().split('\n');
+			var uA=v.toLowerCase().split(brn);
 			for(var i=0;i<n;i++){
 				var t=uA[i];
 				if(C.indexOf(t)<0){
@@ -2486,27 +2559,65 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				}
 			}
 		}
-		$('#input0').val(B.join('\n'));
+		$('#input0').val(B.join(brn));
+
+	}).on('click',zlr('#lineTrim',' Head Foot',',')+',#blankLineTrim',function(){
+
+		var T=$('#input0'),v=T.val(),vA=v.split(brn), id=this.id;
+
+		if(id=='lineTrim'){
+			T.val(v.replace(/\s*\n\s*/g,brn).trim())
+		}
+		if(id=='lineTrimHead'){
+			T.val(v.replace(/\n\s*/g,brn).trim())
+		}
+		if(id=='lineTrimFoot'){
+			T.val(v.replace(/\s*\n/g,brn).trim())
+		}
+		if(id=='blankLineTrim'){
+			T.val(v.replace(/\n+/g,brn).replace(/^\n/g,'').replace(/\n$/g,''))
+		}
+
+	}).on('click','#Replace',function(){
+		var T=$('#input0'),v=T.val(),
+		t0=$('#replaceByChar').val(), t1=$('#replaceWithChar').val(),
+		isreg=$('#replaceRegexp').prop('checked'),
+		iscase=$('#replaceCaseSensitive').prop('checked');
+
+		T.val(v.replace(new RegExp(isreg?t0:regReg(t0), 'g'+(iscase?'':'i')), t1))
 
 
 	}).on('click','#lineSortUp,#lineSortDown,#lineSortRandom',function(){
 
-		var v=$('#input0').val(),vA=v.split('\n'), B=[], C=[], tp=this.id.substr(8), caseOn=$('#Shift').is('.seled');//是否按每行字符数长短（而不是按字母表）排序
+		var v=$('#input0').val(),vA=v.split(brn), B=[], C=[], tp=this.id.substr(8), by=$('[name=txtsortby]:checked').val();
 		if(tp=='Random'){
 			vA.sort(sortBy.random)
 		}else{
-			if(caseOn){
+			if(by=='len'){
 				vA.sort(sortBy.lenchr)
-			}else{
+			}else if(by=='char'){
 				vA.sort()
+			}else if(by=='num'){
+				vA.sort(sortBy.num)
 			}
+
 			if(tp=='Down'){
 				vA.reverse()
 			}
 		}
 
-		$('#input0').val(vA.join('\n'));
+		$('#input0').val(vA.join(brn));
 
+
+	}).on('click','#reverseLine,#reversePerLine',function(){
+		var v=$('#input0').val(),vA=v.split(brn); 
+		if(this.id=='reverseLine'){
+			vA.reverse()
+		}else{
+			vA=Arrf(function(x){return x.split('').reverse().join('')}, vA)
+		}
+
+		$('#input0').val(vA.join(brn));
 
 	}).on('click',zlr('#Repeat','2 3 5 7 11',','),function(){
 		
@@ -2790,7 +2901,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				$('#input1').val('');
 				$('#cClear').toggle();
 
-			}else if(/sbs|funcs|struc/.test(id)){
+			}else if(/sbs|funcs|struc|editText/.test(id)){
 
 				me.siblings('.seled.tool').removeClass('seled').each(function(){
 					var tid=this.id.replace(/on$/,'');
@@ -2870,7 +2981,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			
 				//consolelog(A);
 				if(shft){
-					A[1]=A[1].replace(/^\t/,'').replace(/\n\t/g,'\n');
+					A[1]=A[1].replace(/^\t/,'').replace(/\n\t/g,brn);
 				}else{
 					A[1]='\t'+A[1].replace(/\n/g,'\n\t');
 					t++;
