@@ -7,7 +7,7 @@ function getVirtulData(year) {
 	year = year || '2019';
 	var date = +echarts.number.parseDate(year + '-01-01');
 	var end = +echarts.number.parseDate(year + '-12-31');
-	var dayTime = 3600 * 24 * 1000;
+	var dayTime = oneDay;
 	var data = [];
 	for (var time = date; time <= end; time += dayTime) {
 		data.push([
@@ -6478,7 +6478,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECh
 				return idx * 5;
 			}
 		}]
-	}`,1),
+	}`,0),
 
 	echref('Scatter-Life Expectancy Timeline'),
 
@@ -8599,31 +8599,31 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECh
 		echref('Calendar Charts')+
 		sceg(`var graphData = [
 			[
-				Date.parse('2019-2-1'),
+				1485878400000,
 				260
 			],
 			[
-				Date.parse('2019-2-4'),
+				1486137600000,
 				200
 			],
 			[
-				Date.parse('2019-2-7')
+				1486569600000,
 				279
 			],
 			[
-				Date.parse('2019-2-10')
+				1486915200000,
 				847
 			],
 			[
-				Date.parse('2019-2-13')
+				1487347200000,
 				241
 			],
 			[
-				Date.parse('2019-2-16')
+				1487779200000,
 				411
 			],
 			[
-				Date.parse('2019-2-19')
+				1488124800000,
 				985
 			]
 		];
@@ -8748,7 +8748,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECh
 				coordinateSystem: 'calendar',
 				calendarIndex: 1,
 				symbolSize: function (val) {
-					return val[1] / 40;
+					return val[1] / 400;
 				},
 				data: getVirtulData(2017)
 			}, {
@@ -8756,7 +8756,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECh
 				coordinateSystem: 'calendar',
 				calendarIndex: 2,
 				symbolSize: function (val) {
-					return val[1] / 60;
+					return val[1] / 600;
 				},
 				data: getVirtulData(2017)
 			}, {
@@ -10347,7 +10347,7 @@ tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECh
 		var barData = [];
 		
 		for (var i = 0; i < 20; i++) {
-			var date = new Date(dottedBase += 3600 * 24 * 1000);
+			var date = new Date(dottedBase += oneDay);
 			category.push([
 				date.getFullYear(),
 				date.getMonth() + 1,

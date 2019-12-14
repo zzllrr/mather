@@ -133,7 +133,7 @@ solve['number']=function(inputValue, uriA){
 		
 	}
 
-	if(sel(uriA,'进制转换')){//数字n&进制a [进制b（支持seqsA表达式）] 整数转换
+	if(sel(uriA,'进制转换')){//数字n&进制a [进制b（支持seqsA表达式）] 整数转换 !表示阶乘进制
 		rS=rS.concat(
 			Arrf(function(t){
 				var v=t.split(/[ &]/), v0=v[0],n0=v0.split('&'),b0=+(n0[1]||10), n=b0==10?BigInt(n0[0]):parseInt(n0[0],b0); //n=parseInt(n0[0],b0);
@@ -428,7 +428,7 @@ solve['number']=function(inputValue, uriA){
 	}
 
 	if(sel(uriA,'n!')){
-		rS=rS.concat(concat(VA,copyA('!=',n),Arrf(Fact,VA)));
+		rS=rS.concat(concat(VA,copyA('!=',n),Arrf(Factb,VA)));
 	}
 	if(sel(uriA,'n!!')){
 		rS=rS.concat(concat(VA,copyA('!!=',n),Arrf(Fact2,VA)));

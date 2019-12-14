@@ -1986,40 +1986,44 @@ var OverCanvas=function(t){
 
 
 }, preDisplay=function(){
-	var iv=$('#input0Type').val(),ov=$('#output0Type').val();
-	if(!iv){
-		iv='LaTeX';
-		$('#input0Type').val(iv);
-	}
-	var i=iv[0],o=ov[0],v=$('#input0').val().trim(),w=$('#input0Preview');
+	try{
+		var iv=$('#input0Type').val(),ov=$('#output0Type').val();
+		if(!iv){
+			iv='LaTeX';
+			$('#input0Type').val(iv);
+		}
+		var i=iv[0],o=ov[0],v=$('#input0').val().trim(),w=$('#input0Preview');
 
 
-	if(iv==ov && ov!='HTML'){
-		w.add('#previewTool').hide();
-		
-	}else if(iv=='LaTeX' && o!='H'){
-		var x=v;
-
-		if(o=='P' && v){
-			katex.render(kx(sub2n(v,1)), w[0], {
-			    throwOnError: false,
-			    displayMode: true
-			});
-			x=XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')));
+		if(iv==ov && ov!='HTML'){
+			w.add('#previewTool').hide();
 			
-		}
-		w.html(x).add('#previewTool').show();
+		}else if(iv=='LaTeX' && o!='H'){
+			var x=v;
 
-		
-	}else if(o=='H'){
-		w.add('#previewTool').show();
-		if(v){
-			$('#input0Preview').css('min-height',$('#input0').height()-15+'px');
-			all2html(iv,v,w);
+			if(o=='P' && v){
+				katex.render(kx(sub2n(v,1)), w[0], {
+					throwOnError: false,
+					displayMode: true
+				});
+				x=XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')));
+				
+			}
+			w.html(x).add('#previewTool').show();
 
-		}else{
-			w.empty()
+			
+		}else if(o=='H'){
+			w.add('#previewTool').show();
+			if(v){
+				$('#input0Preview').css('min-height',$('#input0').height()-15+'px');
+				all2html(iv,v,w);
+
+			}else{
+				w.empty()
+			}
 		}
+	}catch(e){
+
 	}
 };
 
@@ -2091,7 +2095,8 @@ $(function(){
 						strbtn+'T" id=editTexton class=tool tip=EditText />'+
 						strbtn+'α" id=sbson tip=UnicodeCharacter class=tool />'+
 						strbtn+'ƒ" id=funcson tip=Function class=tool />'+
-						strbtn+'∑" id=strucon tip=Structure class=tool />'
+						strbtn+'∑" id=strucon tip=Structure class=tool />'+
+						strbtn+'?" id=randon tip=Random class=tool />'
 					)+
 					itv('" id=editorLaunch tip="Launch','launch')+
 					itvc('rotate180" id="tClear2')+
@@ -2111,7 +2116,7 @@ $(function(){
 					DCtv('editTextBox hidden',[
 						strbtn+gM('Uniq Line.1')+'" id=lineUnique tip="Line.1 Uniq" />',
 						strbtn+gM('Delete Blank Line.1')+'" id=blankLineTrim tip="Blank Line.1 Trim" />',
-						strbtn+'↤↦" id=lineTrim tip="Line.1 Head Foot Trim" />'+
+						gM('Head Foot Trim')+strbtn+'↤↦" id=lineTrim tip="Line.1 Head Foot Trim" />'+
 						strbtn+'↤" id=lineTrimHead tip="Line.1 Head Trim" />'+
 						strbtn+'↦" id=lineTrimFoot tip="Line.1 Foot Trim" />'
 						]
@@ -2119,15 +2124,16 @@ $(function(){
 
 
 					DCtv('editTextBox hidden',[
-						gM('Sort')+': '+
-							XML.wrapE('label', strradio0+'name=txtsortby value=char checked tip=Char />'+gM('By Char'))+
+						gM('Sort')+': '+gM('By')+
+							XML.wrapE('label', strradio0+'name=txtsortby value=char checked tip=Char />'+gM('Char'))+
 							XML.wrapE('label', strradio0+'name=txtsortby value=len tip="Char Length" />'+gM('Length'))+
 							XML.wrapE('label', strradio0+'name=txtsortby value=num tip="Number Value" />'+gM('Number Value')),
 
 						strbtn+'↑" id=lineSortUp tip=AscendingSort />'+
 						strbtn+'↓" id=lineSortDown tip=DescendingSort />'+
 						strbtn+'?" id=lineSortRandom tip=RandomSort />',
-
+						
+						gM('Reverse')+
 						strbtn+'↕" id=reverseLine tip="Reverse Line.1" />'+
 						strbtn+'↔" id=reversePerLine tip="Reverse Per Line.1" />'
 						]
@@ -2136,19 +2142,19 @@ $(function(){
 
 
 					DCtv('editTextBox hidden',[
-						gM('Replace')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
-							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
-						'<input type=text id=replaceByChar />',
+					
 
 						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
 						'<input type=text id=replaceWithChar />',
 
-						
-						XML.wrapE('label',gM('Case Sensitive')+strchkbx0+'id=replaceCaseSensitive />')+
-						XML.wrapE('label',gM('Regexp')+strchkbx0+'id=replaceRegexp />')+br+
+						strbtn+gM('Replace')+'" id=Replace />'+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
+						'<input type=text id=replaceByChar />',
 
-						strbtn+gM('Replace')+'" id=Replace />'
+						
+						XML.wrapE('label',strchkbx0+'id=replaceCaseSensitive />'+gM('Case Sensitive'))+
+						XML.wrapE('label',strchkbx0+'id=replaceRegexp />'+gM('Regexp'))
 
 						]
 					).join(''),
@@ -2159,13 +2165,65 @@ $(function(){
 						gM('Clone')+': ',
 						XML.wrapE('label',gM('Line.1')+' / '+gM('Selection')+strchkbx0+'id=RepeatSelection />'),
 
-						Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join(''),
-						''
+						Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join('')
 						]
 					).join(''),
-					].join('')
+				].join(''))+
 
-				)+
+
+				DCtv('onbox" hidden id="rand',[
+					DCtv('randBox',[
+						
+						gM('Range')+': '+num(1,1)+'~'+num(100)+br+
+							strbtn+gM('Random Positive Integer')+'" id=randInt tip="Random Positive Integer" />'+gM('Quantity')+': '+num(10),
+
+						gM('Range')+': '+num()+'~'+num(1)+br+
+							strbtn+gM('Random Decimal')+'" id=randDeci tip="Random Decimal" />'+gM('Quantity')+': '+num(10),
+
+						
+						gM('Digit')+': '+num(10)+'~'+num(30)+br+
+							strbtn+gM('Random Big Integer')+'" id=randBigInt tip="Random Big Integer" />'+gM('Quantity')+': '+num(10),
+
+						]
+					).join(''),
+
+
+					DCtv('randBox hidden',[
+						
+						gM('From')+num(5)+gM('Choose')+num(2)+br+
+						strbtn+gM('Random Combination Index')+'" id=randCombinIndex tip="Random Combination Index" />'+gM('Quantity')+': '+num(5),
+
+						gM('From')+'<input type=text value="a,b,c,d,e" />'+br+
+						strbtn+gM('Random Choose')+'" id=randCombin tip="Random Combination" />'+num(2)+' '+gM('Quantity')+': '+num(5),
+
+						strbtn+gM('Random Permutation')+'" id=randPermut tip="Random Permutation" />',
+						]
+					).join(''),
+
+
+					DCtv('randBox hidden',[
+						XML.wrapE('label',gM('Arithmetic / Geometric')+strchkbx0+'id=randSequenceType />')+
+							gM('Step.1')+': '+num(2),
+
+						gM('Start From.1')+num(3),
+
+						strbtn+gM('Sequence')+'" id=randSequence tip="Sequence" />'+gM('Quantity')+': '+num(5),
+
+					
+						]
+					).join(''),
+
+
+					DCtv('randBox hidden',[
+					
+						XML.wrapE('label','HEX / RGBA'+strchkbx0+'id=randColorType />'),
+						strbtn+gM('Random Color')+'" id=randColor tip="Random Color" />'+
+							gM('Quantity')+': '+num(5),
+						]
+					).join(''),
+
+				].join(''))+
+
 				DCtv('onbox" id="ITextLaTeXBox',
 					DCtv('TextLaTeXBox" id="iTextLaTeXBox',
 						DCtv('iTextLaTeX" hidden id="isbs')+
@@ -2408,7 +2466,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		if(id=='editText'){
 			var tr=$('#editText .editTextBox'),
 			i=tr.filter(':visible').index();
-
+		}else if(id=='rand'){
+			var tr=$('#rand .randBox'),
+			i=tr.filter(':visible').index();
 		}else{
 			var tr=$('#i'+id+' .sbsiTbl tr').not('.Symboli_'),
 			i=tr.filter(':visible').eq(0).prevAll().not('.Symboli_').length;
@@ -2497,9 +2557,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 
 	}).on('click','.editTextBox .hotk',function(){
-		var me=$(this);
-		
-		me.parent().next().find('input:text').eq(0).val(function(i,v){
+		var me=$(this), T=me.nextAll(':text').eq(0);
+		if(T.length<1){
+			T=me.parent().next().find(':text').eq(0);
+		}
+		T.val(function(i,v){
 			var o={'Comma':',', 'Semicolon':';', 'Space':' ', 'Tab':'\t'};
 			return v+o[me.attr('data-v')]
 		});
@@ -2638,6 +2700,77 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		}
 
+	}).on('click','#rand :button',function(e){
+		var me=$(this),id=this.id, pa=me.parent(), pap=pa.prev(),
+		q=+me.nextAll(':number').eq(0).val()||1,q2=+me.nextAll(':number').eq(1).val()||1,
+		prop=me.prevAll(':checkbox').first(),
+		num1=me.prevAll(':number').first(),
+		txt=me.prevAll(':text').first(),
+		i=$('#input0'), iv=i.val(),t='';
+
+		if(prop.length<1){
+			prop=pap.find(':checkbox').last();
+			if(prop.length<1){
+				prop=pap.prev().find(':checkbox').last();
+				
+			}
+		}
+		if(num1.length<1){
+			num1=pap.find(':number').last();
+			if(num1.length<1){
+				num1=pap.prev().find(':number').last();
+				
+			}
+		}
+		var num0=num1.prevAll(':number').first();
+		if(num0.length<1){
+			num0=num1.parent().prev().find(':number').last();
+			
+		}
+
+		if(txt.length<1){
+			txt=pap.find(':text').last();
+			
+		}
+
+		txt=txt.val();
+
+
+		prop=prop.prop('checked');
+		num0=+num0.val();
+		num1=+num1.val();
+
+		
+
+		if(id=='randInt'){
+			t=Arrf(function(){return Random(num1-num0+1)+num0-1},seqA(1,q)).join(',')
+		}else if(id=='randDeci'){
+			t=Arrf(function(){return Random(num1-num0)+num0-1+Math.random()},seqA(1,q)).join(',')
+		}else if(id=='randBigInt'){
+			t=Arrf(function(){return Random(9)+Arrf(function(){return Random(10)-1}, 
+				seqA(1,Random(num1-num0+1)+num0-1)).join('')},seqA(1,q)).join(',')
+		}else if(id=='randCombinIndex'){
+			t=Arrf(function(){return jSoff(RandomCombinN(num0,num1))},seqA(1,q)).join(',')
+		}else if(id=='randCombin'){
+			t=Arrf(function(){return jSoff(RandomCombinA(txt.split(','),q))},seqA(1,q2)).join(',')
+		}else if(id=='randPermut'){
+			t=Arrf(function(){return jSoff(RandomCombinA(txt.split(','),txt.split(',').length))},seqA(1,num1)).join(',')
+		}else if(id=='randSequence'){
+			t=jSoff(seqA(num1,q,prop?'geo':'',num0))
+		}else if(id=='randColor'){
+			if(prop){
+				t=Arrf(function(){return RandomColor()},seqA(1,q)).join(',')
+			}else{
+				t=Arrf(function(){return hex2rgba(RandomColor())},seqA(1,q)).join(',')
+			}
+		}
+
+		var sS=i[0].selectionStart, sE=i[0].selectionEnd;
+		i.val(iv.substr(0,sS)+t+(sE==iv.length?'':iv.substr(sE)));
+		var s2=sS+t.length;
+		//i.focus();
+		i[0].selectionStart=s2;
+		i[0].selectionEnd=s2;
 
 	}).on('click','#DownloadSnippetFile',function(e){
 
@@ -2901,7 +3034,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				$('#input1').val('');
 				$('#cClear').toggle();
 
-			}else if(/sbs|funcs|struc|editText/.test(id)){
+			}else if(/sbs|funcs|struc|editText|rand/.test(id)){
 
 				me.siblings('.seled.tool').removeClass('seled').each(function(){
 					var tid=this.id.replace(/on$/,'');

@@ -26,7 +26,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 
 			{'进制':[
 				{'60进制':['秒→度(时) 分 秒','度(时) 分 秒→秒“1 2 3']},
-				{'转换':['进制转换…数字n&进制a,进制b“101&2,16']},
+				{'转换':['进制转换…数字n&进制a,进制b(!表示阶乘进制)“101&2,16']},
 			]},
 		]},
 		{'Classification':[
@@ -60,7 +60,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			
 			{'Natural':[
 				{'排列组合':['Permutation Number','Combination Number']},
-				{'Factorial':['$n!$','$n!!$—双阶乘', '$n!的末零数$…n']},
+				{'Factorial':['$n!$—n最大9648','$n!!$—双阶乘', '$n!的末零数$…n']},
 				{'Digit':['数根dr']},
 			]},
 

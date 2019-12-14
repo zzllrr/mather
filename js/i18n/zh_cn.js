@@ -742,6 +742,8 @@ lang['zh_cn'] = {
 	'Co': '互',
 	'By': '按',
 	'From': '从',
+	'From.1':'于',
+
 	'To': '到',
 	'Semi': '半',
 	'Demi': '半',
@@ -810,6 +812,8 @@ lang['zh_cn'] = {
 	'Difficulty': '困难',
 	'Eagerness': '热切程度',
 	'Step': '步',
+
+	'Step.1':'步长',
 
 	'Event': '事件',
 	'Reusability': '复用性',
@@ -1515,6 +1519,9 @@ lang['zh_cn'] = {
 	'Combination Number':'组合数',
 	'Permutation Number':'排列数',
 	'Factorial': '阶乘',
+	'Factorial Base': '阶乘进制',
+	'Factoriadic': '阶乘进制',
+
 	'Greatest Common Divisor': '最大公约数',
 	'Least Common Multiple': '最小公倍数',
 	'Division': '除法',

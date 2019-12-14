@@ -222,10 +222,15 @@ consolelog(op,A,p);
 
 //下列涉及排列组合函数
 
-},Fact=function(n){//阶乘		factorial
+},Factb=function(n){//阶乘		factorial	b使用BigInt
+	var t=BigInt(n||0);
+	if(t<=BigInt(0)){t=BigInt(1)}
+	return t==BigInt(1)?t:Factb(t-BigInt(1))*t
+
+},Fact=function(n){//阶乘 n<22时
 	var t=+n||0;
 	if(t<=0){t=1}
-	return t==1?1:Fact(t-1)*t
+	return t==1?t:Fact(t-1)*t
 		
 },Fact2=function(n){//双阶乘
 	var t=+n||0;
