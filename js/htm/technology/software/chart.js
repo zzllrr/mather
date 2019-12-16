@@ -24,6 +24,11 @@ technology['Software/Charts']=Table([i18(ZLR('Tool Type Summary'))],[
 	[href(H+'weavesilk.com','WeaveSilk'),'','Interactive Generative Art, doodle with music'],
 
 
+	[href(Hs+'roughjs.com','Roughjs'),'','Create graphics with a hand-drawn, sketchy, appearance '+github('pshihn/rough')],
+	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')],
+	[github('timqian/chart.xkcd'),'','xkcd styled chart lib '],
+
+
 ],'TBrc')+
 detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
 

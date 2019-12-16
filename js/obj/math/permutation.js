@@ -222,6 +222,31 @@ consolelog(op,A,p);
 
 //下列涉及排列组合函数
 
+},factoradic=function(n){//十进制 整数（暂不实现小数） 转成 阶乘进制	
+	var t=BigInt(n||0),rA=[], r=t,i=BigInt(2);
+	if(t<=BigInt(0)){return [BigInt(0)]}
+
+	while(t){
+		var r=t%i;
+		rA.unshift(r);
+		t=t/i;
+		i++;
+	}
+	return rA
+
+},factoradic2bigInt=function(A){//阶乘进制	整数（暂不实现小数） 转成 十进制	
+	var i=BigInt(A.length),j=BigInt(0), x=BigInt(0);
+
+	while(i){
+		if(A[j]){
+			x+=A[j]*Factb(i);
+			//console.log(x);
+		}
+		i--;
+		j++;
+	}
+	return x
+
 },Factb=function(n){//阶乘		factorial	b使用BigInt
 	var t=BigInt(n||0);
 	if(t<=BigInt(0)){t=BigInt(1)}

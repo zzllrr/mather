@@ -354,6 +354,8 @@ lang['zh_cn'] = {
 	'Conference':'会议',
 	'Lecture':'讲座',
 
+	'Lab':'实验室',
+
 	'Syllabus':'教学大纲',
 	'Hons':'学士学位',
 	'FSc':'理学教员',
