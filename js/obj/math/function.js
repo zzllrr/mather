@@ -1352,7 +1352,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 	toStr4:function(A,p){// 简单情况下的四则运算 latex  补充省略的×号，\d/\d识别为分数线 /识别为÷		参数p 控制/识别为分数线
-		//console.log(A.toStr(1));
+		////console.log(A.toStr(1));
 		var x=A.toStr(1).replace(/(\d+)((\\left)?\()/g,'$1×$2').replace(/(\) *)(\d+)/g,'$1×$2')	// 显示隐藏的×号
 		.replace(/\\left\( ([a-z\d]+\/[a-z\d]+)\\right\) /g,'{$1}')	// 去多余的分数括号
 
@@ -3057,7 +3057,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 		if(op=='::'){//外换元（对象），从外面引进Mfn对象		参数p对象{'x':A, 'a':B, '@2$':C, '@3&':D, '2.71828':E}键(变量单字母、@引用、num值)：值（Mfn对象）
-			 console.log('::外换元',p);
+			 //console.log('::外换元',p);
 			var iA=[];
 			$.each(p,function(i,v){
 				if((i+'')[0]=='@'){
@@ -3072,13 +3072,13 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					ii='@'+i0+'$'	//注意，这里从num转变成var, 键没跟着改（@$ → @&），是因为会影响其他表达式的引用
 				}
 				
-				 console.log('i = ',i,'外换元（对象），从外面引进Mfn对象 iv = ',iv,' 此时A[2] = ',A[2].join(' ; '));
+				 //console.log('i = ',i,'外换元（对象），从外面引进Mfn对象 iv = ',iv,' 此时A[2] = ',A[2].join(' ; '));
 
 				if(A[1][ii]){//查到@ 索引
-					 console.log(iv[0]);
-					console.log(iv[1]);
+					 //console.log(iv[0]);
+					//console.log(iv[1]);
 					
-					 console.log(iv[1][iv[0]], iv[2]);
+					 //console.log(iv[1][iv[0]], iv[2]);
 					
 					var y=iv[1][iv[0]], yf=y.f, yc=y.c, yt=iv[2][+iv[0].replace(/\D/g,'')], Al=A[2].length;
 					

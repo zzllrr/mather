@@ -26,8 +26,10 @@ technology['Software/Charts']=Table([i18(ZLR('Tool Type Summary'))],[
 
 	[href(Hs+'roughjs.com','Roughjs'),'','Create graphics with a hand-drawn, sketchy, appearance '+github('pshihn/rough')],
 	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')],
-	[github('timqian/chart.xkcd'),'','xkcd styled chart lib '],
+	[github('timqian/chart.xkcd'),'','xkcd styled chart lib'],
+	[github('fabricjs/fabric.js'),'','Canvas Library, SVG-to-Canvas (& canvas-to-SVG) Parser '+href(H+'fabricjs.com/demos/','Demos')],
 
+	
 
 ],'TBrc')+
 detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
