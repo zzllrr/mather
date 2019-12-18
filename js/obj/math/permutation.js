@@ -323,18 +323,92 @@ consolelog(op,A,p);
 
 },Factb=function(n){//阶乘		factorial	b使用BigInt
 	var t=BigInt(n||0);
-	if(t<=BigInt(0)){t=BigInt(1)}
-	return t==BigInt(1)?t:Factb(t-BigInt(1))*t
+	if(t<=BigInt(0) || t==BigInt(1)){return BigInt(1)}
+	return Factb(t-BigInt(1))*t
+
+},FactbTrim0=function(n,div2){//阶乘 去除尾零	参数div2，指定需要除以2的幂次（弥补之前除以5之后的影响，修正目的）
+
+	/*
+
+	计算极限
+(999999999n**10478n+'').length == 94302
+
+(Factb(9675)+'').length == 34362
+
+
+(FactbTrim0(9674)+'').length == 31943
+
+FactbTrim0(9675)		 Uncaught SyntaxError: Invalid regular expression: /0+$/: Stack overflow
+
+	*/
+
+
+	
+//方法1
+	var t=BigInt(n||0);
+	if(t<=BigInt(0) || t==BigInt(1)){return BigInt(1)}
+	var x=Factb(t-BigInt(1))*t;
+	while(!(x%BigInt(10))){
+		x/=BigInt(10)
+	}
+	return x
+
+//方法2
+
+var t=BigInt(n||0);
+if(t<=BigInt(0) || t==BigInt(1)){return BigInt(1)}
+if(/0$/.test(t)){
+	var s=BigInt((t+'').replace(/0+$/,''));
+	return BigInt((FactbTrim0(t-BigInt(1),d)*s+'').replace(/0+$/,''))
+}
+
+return BigInt((FactbTrim0(t-BigInt(1))*t+'').replace(/0+$/,''))
+
+
+
+
+//方法3
+
+
+	var t=BigInt(n||0), d=div2||0;
+	if(t<=BigInt(0) || t==BigInt(1)){return BigInt(1)}
+	if(/0$/.test(t)){
+		var s=BigInt((t+'').replace(/0+$/,''));
+		while(/5$/.test(s)){
+			s/=BigInt(5);
+			d++;
+		}
+
+		while(/[2468]$/.test(s) && d){
+			s/=BigInt(2);
+			d--;
+		}
+
+		return FactbTrim0(t-BigInt(1),d)*s
+	}
+
+	var s=t;
+	while(/5$/.test(s)){
+		s/=BigInt(5);
+		d++;
+	}
+
+	while(/[2468]$/.test(s) && d){
+		s/=BigInt(2);
+		d--;
+	}
+
+	return FactbTrim0((t-BigInt(1)),d)*s
 
 },Fact=function(n){//阶乘 n<22时
 	var t=+n||0;
-	if(t<=0){t=1}
-	return t==1?t:Fact(t-1)*t
+	if(t<=0 || t==1){return 1}
+	return Fact(t-1)*t
 		
 },Fact2=function(n){//双阶乘
 	var t=+n||0;
-	if(t<=0){t=1}
-	return t==1?1:Fact2(t-2)*t
+	if(t<=0 || t==1){return 1}
+	return Fact2(t-2)*t
 		
 },Permut=function(n,m){//排列数
 	var t=+n||0,s=+m||0,v=1;

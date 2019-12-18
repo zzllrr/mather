@@ -60,7 +60,8 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			
 			{'Natural':[
 				{'排列组合':['Permutation Number','Combination Number']},
-				{'Factorial':['$n!$—n最大9648','$n!!$—双阶乘', '$n!的末零数$…n']},
+				{'Factorial':['$n!$—n最大9648或9675','$n!!$—双阶乘', '$n!的末零数$…n']},
+
 				{'Digit':['数根dr']},
 			]},
 
