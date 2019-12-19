@@ -350,6 +350,7 @@ lang['zh_cn'] = {
 	'Academic':'学术',
 	'Seminar':'研讨会',
 	'Webinar':'网络研讨会',
+	'Symposium':'专题研讨会',
 	'Workshop':'讲习',
 	'Conference':'会议',
 	'Lecture':'讲座',
@@ -451,9 +452,13 @@ lang['zh_cn'] = {
 	'Environmental Protection':'环保',
 	'Eco-Friendly': '环保的',
 
+	'Astronomy':'天文',
+	'Geography':'地理',
 	'Physics':'物理',
 	'Chemistry':'化学',
 	'Biology':'生物',
+	'Geographic':'地理',
+
 	'Medicine':'药物',
 	'AI': '人工智能',
 	'Intelligent': '智能',
@@ -1096,6 +1101,8 @@ lang['zh_cn'] = {
 	'Functionalize':'函数化',
 	'Functionalization': '函数化',
 
+	'Aural':'听觉',
+	'Visual':'视觉',
 	'Visualize':'可视化',
 	'Visualization': '可视化',
 	'Decentralization': '去中心化',
@@ -1214,6 +1221,7 @@ lang['zh_cn'] = {
 
 	'Deprecated':'不推荐',
 
+	'Available':'可用',
 	//Math concept
 
 	// noun

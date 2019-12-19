@@ -6,6 +6,7 @@
 sciences={index:['Universe','Life','Environment','Society'],
 
     'Universe':[
+        'Astronomy',
         'Physics',
         'Chemistry',
 
@@ -15,10 +16,10 @@ sciences={index:['Universe','Life','Environment','Society'],
         'Intelligence',
         'Health',
         'Medicine',
-        'Psychology'
     ],
 
     'Environment':[
+        'Geography',
         'Climate',
         'Polution',
         'Waste',
@@ -27,6 +28,7 @@ sciences={index:['Universe','Life','Environment','Society'],
 
 
     'Society':[
+        'Psychology',
         'Politics',
         'Economy',
         'Business',

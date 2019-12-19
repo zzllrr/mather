@@ -16,7 +16,7 @@ Table([i18(ZLR('Name Type Summary'))],[
 		hrefA('this@@doesnotexist.com',ZLR('Cat Article')).join(' ')],
 	[href(git('deepfakes/faceswap'),'Deepfakes FaceSwap'),'Python',' utilizes deep learning to recognize and swap faces in pictures and videos'],
 
-
+	[href('ml5js.org','ml5.js'),'JS','A neighborly approach to creating and exploring artificial intelligence in the browser. '+github('ml5js/ml5-library')+github('ml5js.github.io/ml5-examples/public/')],
 	
 ],'TBrc');
 
