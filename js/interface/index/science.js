@@ -41,6 +41,7 @@ sciences={index:['Universe','Life','Environment','Society'],
             'Superstition',
             'Anti-science',
         ]},
+        'Sports',
     ]
 
 };
