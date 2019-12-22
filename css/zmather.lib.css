@@ -340,10 +340,18 @@ a:not(:visited){
     background-size: 1.3rem;
 }
 .github{
-	background: url(../img/github.svg) no-repeat;
     padding-left: 1.4rem;
-    background-size: 1.3rem;
+	background-size: 1.3rem;
+	background-repeat: no-repeat;
 }
+
+.night .github{
+	background-image: url(../img/github.svg),url(../img/logo.jpg) 
+}
+.day .github{
+	background-image: url(../img/github.svg)
+}
+
 
 .bdt[data-mt]:before{
     content: attr(data-mt);

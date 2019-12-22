@@ -10,7 +10,7 @@ Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'mathigon.org/courses','Mathigon'),'Grades 6~12',hrefA('mathigon.org',ZLR('Activities Courses')).join(' ')],
 
-	[href(Hs+'globalmathproject.org','Global Math Project - GMP'),'',hrefA('globalmathproject.org/',ZLR('R-A-M-D PDFs Teachers')).join(' ')],
+	[href(Hs+'globalmathproject.org','Global Math Project - GMP'),'',ul(hrefA('globalmathproject.org',ZLR('R-A-M-D PDFs Teachers')))],
 
 	[href(Hs+'www.explodingdots.org','Exploding Dots Experience'),'K12','Discover the islands'],
 	[href(Hs+'parallel.org.uk','Parallel Maths Project'),'Age of 11～15','devised as an add-on for the Top-Top Set Project and is supported by the Good Thinking Society. by Dr. Simon Singh'],
