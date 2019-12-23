@@ -17,10 +17,21 @@ technology['Software/Coding']=detail(gM('Tool'),Table([i18(ZLR('Name Type Summar
 
 	[href(Hs+'glitch.com','Glitch'),'','Simple, powerful, free tools to create and use millions of apps.'],
 
+
+	[href(Hs+'cambridge-intelligence.com/graphing-github/','Graphing Github'),'',''],
+
+
 ],'TBrc'),1)+detail(gM('Algorithm'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(H+'www.math.uwaterloo.ca/tsp/data/art/','Traveling Salesman Problem (TSP) to Art'),'',href('www.math.uwaterloo.ca/tsp/data/ml/monalisa.html','Monalisa')],
 
-	[href(Hs+'towardsdatascience.com/how-to-cluster-in-high-dimensions-4ef693bacc6','How to cluster in High Dimensions'),'','Towards Data Science'],
+	[href(Hs+'algorithm-visualizer.org/backtracking/hamiltonean-cycles','Algorithm Visualizer'),'','算法可视化大全'+github('algorithm-visualizer')],
+
+
+],'TBrc'),1)+detail(gM('Design'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[href(Hs+'datascopeanalytics.com/fontstellations/','Font Stellations'),'','一个基于图分析字体关系的分析工具'],
+
+	[href(Hs+'smallmultiples.com.au/projects/hanzi-universe/','Hanzi Universe'),'',''],
 
 ],'TBrc'),1);
 

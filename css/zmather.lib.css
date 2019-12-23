@@ -348,7 +348,7 @@ a:not(:visited){
 .night .github{
 	background-image: url(../img/github.svg),url(../img/logo.jpg) 
 }
-.day .github{
+body:not(.night) .github{
 	background-image: url(../img/github.svg)
 }
 

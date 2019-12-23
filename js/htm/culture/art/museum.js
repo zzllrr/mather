@@ -12,6 +12,10 @@ culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 	
 	[href(Hs+'www.astc.org','Association of Science & Technology Centers - ASTC'),'Community',href(Hs+'www.astc.org/about-astc/about-science-centers/find-a-science-center/','local center')],
 
+
+	[href(Hs+'www.shanghaimuseum.net/museum/frontend/display/exhibition-info-on-line.action','上海博物馆网上展览'),'',''],
+
+
 	[href(Hs+'www.cdstm.cn','China S & T Museum - 中国科技馆'),'',href(Hs+'www.cdstm.cn/xnxs/vr/','VR')],
 
 	[href(Hs+'www.chnmuseum.cn/qwjs/?searchword=%E6%95%B0%E5%AD%A6','National Museum of China 中国国家博物馆'),'',''],
@@ -32,5 +36,8 @@ culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 	[href(Hs+'artsandculture.google.com','Google Culture Institute'),'',''],
 
 	[href(H+'datanews.caixin.com/mobile/museum/','China Museum'),'','中国的博物馆'],
+
+
+	[href(Hs+'designmuseum.org','Design Museum'),'','in UK'],
 
 ],'TBrc');

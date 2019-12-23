@@ -29,4 +29,10 @@ science['Society/Economy']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(H+'selfiecity.net/selfiexploratory/','Selfiexploratory'),'','自拍可视化分析'+href(H+'selfiecity.net','more')],
 
+
+    [href(Hs+'flowingdata.com/2019/03/06/women-men-timeuse/','A Day in the Life: Women and Men'),'','by FlowingData'],
+
+    
+
+
 ],'TBrc');

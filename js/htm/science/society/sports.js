@@ -10,5 +10,7 @@ science['Society/Sports']=Table([i18(ZLR('Name Type Summary'))],[
         hrefA(Hs+'shapeofthegame.com',ZLR('tottenham-united-pl-2018-19 kohli-races-to-10000'))
     )],
 
+    [href(H+'transferwindow.info','Transfer Window'),'','New season, new signing. The new Transfer Window visualisation across the 10 main European Leagues'],
+
 
 ],'TBrc');

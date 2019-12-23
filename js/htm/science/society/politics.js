@@ -20,4 +20,23 @@ science['Society/Politics']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(Hs+'projects.propublica.org/graphics/trump-job-promises','What Happened to All the Jobs Trump Promised?'),'',''],
 
+    [href(Hs+'www.usatoday.com/pages/interactives/1619-african-slavery-history-maps-routes-interactive-graphic/','how slavery grew in the U.S. over two centuries'),'','by USAToday'],
+
+
+    [href(Hs+'circle-of-nations.interactivethings.io','Circles of Nations'),'','Countries according to their relative geographical position'],
+
+    [href(Hs+'www.zeit.de/politik/deutschland/2019-05/east-west-exodus-migration-east-germany-demography','East-West Exodus'),'',"Since Germany's reunification, millions of people have left the East, triggering a demographic crisis. Data now shows exactly what happened – and why there’s cause for hope."],
+
+
+    [href(Hs+'fivethirtyeight.com/features/which-2020-candidates-have-the-most-in-common-on-twitter/','2020 Democratic presidential candidate Twitter followers'),'','Which 2020 Candidates Have The Most In Common … On Twitter?'+github('fivethirtyeight/twitter-overlap')],
+
+    [href(H+'www.datasketch.es/october/code/nadieh/','Royal Constellations'),'','from '+href('www.datasketch.es','Data Sketch')+'a '+href(H+'Nadieh','www.visualcinnamon.com/')+' & '+href(H+'sxywu.com','Shirley')+' collaboration monthly'],
+
+
+    [href(Hs+'www.torre.nl/EUmoves/','How Europe moves'),'',''],
+
+
+
+    
+
 ],'TBrc');

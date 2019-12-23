@@ -15,6 +15,9 @@ technologys={index:['Software','Hardware',
         {'Coding':[
 
         ]},
+        {'Music':[
+
+        ]},
         {'AI':[
 
         ]},

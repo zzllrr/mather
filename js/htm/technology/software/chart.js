@@ -24,6 +24,8 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	[href(Hs+'roughjs.com','Roughjs'),'','Create graphics with a hand-drawn, sketchy, appearance '+github('pshihn/rough')],
 	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')],
 	[github('timqian/chart.xkcd'),'','xkcd styled chart lib'],
+	[href(Hs+'wiredjs.com','Wired Elements'),'','A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.'+github('wiredjs/wired-elements')],
+
 	[github('fabricjs/fabric.js'),'','Canvas Library, SVG-to-Canvas (& canvas-to-SVG) Parser '+href(H+'fabricjs.com/demos/','Demos')],
 	[href(Hs+'sanddance.js.org/app/','Sand Dance'),'','Visually explore, understand, and present your data '+github('microsoft/SandDance')],
 
@@ -51,6 +53,13 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	].concat(hrefA(
 		Hs+'www.amcharts.com', ZLR('demos/ svg-maps/ visited_countries/ visited_states/ javascript-charts/ javascript-maps/ timeline-chart')
 	)))],
+
+
+	[href(H+'infranodus.com','Infra Nodus'),'','a text-to-network visualization tool'+github('noduslabs/infranodus')],
+	[href(Hs+'wordart.com','Word Art'),'','a word cloud art creator that enables you to create amazing and unique word cloud art with ease.'+href(Hs+'wordart.com/create','Create')],
+
+
+	[href(Hs+'aviz.fr/~bbach/timecurves/','Time Curves'),'','a general approach to visualize patterns of evolution in temporal data'],
 ],'TBrc'),1)+
 
 
@@ -62,9 +71,22 @@ detail(gM('Methodology'),Table([i18(ZLR('Name Type Summary'))],[
     [href(Hs+'mercator.tass.com','墨卡托投影介绍'),'','In the 16th century, Gerardus Mercator, a Flemish cartographer devised a new way of depicting the world on a flat plane. We set off to explore his map in order to illustrate his biggest blunders, unearth curious facts and explain the advantages that make this representation of the globe still relevant today'],
 
 	[href(Hs+'informationisbeautiful.net','Information is Beautiful'),'',"Distilling the world's data, information & knowledge into beautiful infographics & visualizations"],
+	[href(Hs+'flowingdata.com','Flowing Data'),'','explores how statisticians, designers, data scientists, and others use analysis, visualization, and exploration to understand data and ourselves. A blog by Nathan Yau, PhD in statistics from UCLA'],
 
-
+	[href(Hs+'www.informationisbeautifulawards.com/showcase?page=1&type=awards','Kantar Information is Beautiful Awards'),'','celebrates excellence & beauty in data visualization, infographics, interactives &  information art'],
 	[href(Hs+'public.tableau.com/views/TheTableauChartCatalog/TableauChartExamples','Tableau Chart Examples'),'','developed as a resource for the Tableau (Commercial) community for inspiration'],
+
+	[href(Hs+'viz.wtf','WTF Visualizations'),'',"Visualizations that make no sense.	For a discussion of what is wrong with a particular visualization"],
+
+	
+	[href(Hs+'vcg.informatik.uni-rostock.de/~ct/timeviz/timeviz.html','The TimeViz Browser'),'',"A Visual Survey of Visualization Techniques for Time-Oriented Data"],
+
+	[href(H+'notabilia.net','Notabilia'),'','Visualizing Deletion Discussions on Wikipedia'],
+
+	[href(Hs+'serialmentor.com/dataviz/','Fundamentals of Data Visualization'),'',''],
+
+	[href(Hs+'idyll.pub/post/dimensionality-reduction-293e465c2a3443e8941b016d/','Dimensionality Reduction'),'','The Interactive Guide to Dimensionality Reduction'],
+	
 ],'TBrc'),1)+
 
 detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
@@ -72,6 +94,12 @@ detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(H+'feltron.com','Feltron'),'','annual infographic reports, etc'],
 
 	[href(H+'muyueh.com','李慕約'),'','we analyze data and develop efficient representations'],
+
+	[href(H+'www.stefanieposavec.com/design','Stefanie Posavec'),'',"I'm Stefanie, a designer, artist and author whose favoured creative material is data. I also share my practice through public speaking and teaching workshops."],
+
+	[href(Hs+'www.c82.net','C82'),'','works of Nicholas Rougeux'],
+
+	[href(Hs+'www.visualcinnamon.com','Visual Cinnamon'),'','Data made insightful, effective & beautiful through visualization. One of the authors of the Project '+href('www.datasketch.es','Data Sketch')+'a '+href(H+'Nadieh','www.visualcinnamon.com/')+' & '+href(H+'sxywu.com','Shirley')+' collaboration monthly'],
 
 ],'TBrc'),1)+
 
@@ -97,6 +125,10 @@ detail(gM('Geography')+' GIS',Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'apps.mapbox.com/cartogram/','Cartogram'),'',href(Hs+'www.mapbox.com','by MapBox')+' '+href(Hs+'demos.mapbox.com/scrollytelling/','Scrolly Telling')],
 
 	[href(Hs+'developers.arcgis.com/javascript/','ArcGIS'),'','通过交互式地图，将人员、位置和数据连接起来。'],
+
+	[href(Hs+'torflow.uncharted.software','TorFlow'),'','Data flow in the Tor network'],
+
+
 
 
 
