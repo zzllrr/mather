@@ -68,7 +68,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 		}
 
 	}, git=function(x,githubio){
-		return Hs+(githubio?x+'.github.io/'+githubio:'github.com/'+x)
+		return Hs+(githubio!==undefined?x+'.github.io/'+githubio:'github.com/'+x)
 
 	}, delivr=function(x,y,type){
 		return Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')

@@ -836,7 +836,7 @@ function tileToolCap(t, val){
 	
 	$('#svgTextN,#svgTextDetail').toggle(txt && isntP && $('#svgText').val()!='0');
 
-	$('#Angle').toggle(/Regulargon|Triangon|Trapegon|Line3YRight|lineangle|lineIso|Line3E/.test(shp+id));
+	$('#Angle').toggle(/Regulargon|Triangon|Trapegon|Line3YRight|lineangle|lineIso|Line3E|LfanNoteV/.test(shp+id));
 
 	$('#svgCssTransform').toggle(id && id!='Pointer');
 	$('#scrTool').toggle(id=='Pointer');

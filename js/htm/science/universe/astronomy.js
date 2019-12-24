@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-science['Universe/Astronomy']=Table([i18(ZLR('Name Type Summary'))],[
+science['Universe/Astronomy']=detail('Star',Table([i18(ZLR('Name Type Summary'))],[
     [href(H+'cosmicweb.kimalbrecht.com/viz/','Cosmic Web'),'Website',href(H+'cosmicweb.barabasilab.com','Summary')+' '+href(Hs+'kimalbrecht.com/vis/','more works from Author')],
     [href(Hs+'stars.chromeexperiments.com','100k Stars'),'','An interactive 3D visualization of the stellar neighborhood, including over 100,000 nearby stars. Created for the Google Chrome web browser.'],
 
@@ -12,6 +12,15 @@ science['Universe/Astronomy']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(H+'www.datasketch.es/may/code/nadieh/','Figures in the Sky'),'','How cultures across the World have seen their myths and legends in the stars'],
 
+
+
+
+],'TBrc'),1)+detail('Satellites',Table([i18(ZLR('Name Type Summary'))],[
+    [href(Hs+'www.nationalgeographic.com/science/2017/09/cassini-saturn-nasa-3d-grand-tour/',"Cassini's Grand Tour"),'',''],
+
+
     [href(Hs+'dc.ria.ru/dc/kay-n/2017/satellites/?language=en','Satellites'),'','轨道卫星60年'],
 
-],'TBrc');
+
+
+],'TBrc'),1);

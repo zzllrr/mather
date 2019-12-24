@@ -36,7 +36,18 @@ science['Society/Politics']=Table([i18(ZLR('Name Type Summary'))],[
     [href(Hs+'www.torre.nl/EUmoves/','How Europe moves'),'',''],
 
 
+    [href(Hs+'2019vote.eu','2019 vote EU'),'',''],
 
-    
+
+    [href(Hs+'www.theguardian.com/us-news/ng-interactive/2017/dec/20/bussed-out-america-moves-homeless-people-country-study','How America moves its homeless'),'','by theGuardian'],
+
+    [href(H+'govmaps.cid.hks.harvard.edu','Government Structure'),'','A visual and analytical exploration of the functional structures of the fifty US state governments.'],
+
+    [href(Hs+'drawingdata.net/wgs2019/','The World of Small Countries'),'',''],
+
+    [href(H+'romercreative.com/bloom/','Nation in Bloom'),'',''],
+
+
+    [href(Hs+'codehesive.com/commonwealthww1/','Commonwealth War Dead'),'','First World War Visualised'],    
 
 ],'TBrc');

@@ -60,6 +60,17 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 
 	[href(Hs+'aviz.fr/~bbach/timecurves/','Time Curves'),'','a general approach to visualize patterns of evolution in temporal data'],
+
+	[github('stardustjs',''),'','Stardust: GPU-based Visualization Library'],
+
+	[href(H+'data-illustrator.com',''),'','Create infographics and data visualizations without programming.'],
+
+	
+	[href(H+'storyexplorer.namwkim.org','Story Explorer - Nolitory'),'','Visual Interface for Creative Genome Data. #Movie'],
+
+
+	[href(Hs+'gephi.org','Gephi'),'','visualization and exploration software for all kinds of graphs and networks.'+github('gephi/gephi')],
+
 ],'TBrc'),1)+
 
 
@@ -68,7 +79,16 @@ detail(gM('Methodology'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'datastori.es','Data Stories'),'','A podcast on data visualization with Enrico Bertini and Moritz Stefaner'],
 	[href(H+'rojects.christianlaesser.com/100-data-stories/','100 Data Stories'),'','A small visual exploration of the episodes and guests of the Data Stories podcast by Christian Laesser.' + href(Hs+'www.christianlaesser.com','Christian Laesser')],
 
+	[href(H+'tuzhidian.com','图之典'),'','可视化图表的词典，为你的学习和工作提供科学的可视化建议'],
+
+	[href(Hs+'www.data-to-viz.com','Data to Viz'),'','leads you to the most appropriate graph for your data. It links to the code to build it and lists common caveats you should avoid'],
+
+	[href(Hs+'datajournalism.com/read/handbook/two','Data Journalism 2'),'','数据新闻手册 2'],
+	[href(Hs+'serialmentor.com/dataviz/','Fundamentals of Data Visualization'),'','一本开源的可视化方面的书'],
+	[href(Hs+'datavizcatalogue.com/ZH/','The Data Visualisation Catalogue'),'','数据可视化工具目录'],
+
     [href(Hs+'mercator.tass.com','墨卡托投影介绍'),'','In the 16th century, Gerardus Mercator, a Flemish cartographer devised a new way of depicting the world on a flat plane. We set off to explore his map in order to illustrate his biggest blunders, unearth curious facts and explain the advantages that make this representation of the globe still relevant today'],
+	[href(H+'bl.ocks.org/vlandham/raw/9216751/','Projection Face'),'',''],
 
 	[href(Hs+'informationisbeautiful.net','Information is Beautiful'),'',"Distilling the world's data, information & knowledge into beautiful infographics & visualizations"],
 	[href(Hs+'flowingdata.com','Flowing Data'),'','explores how statisticians, designers, data scientists, and others use analysis, visualization, and exploration to understand data and ourselves. A blog by Nathan Yau, PhD in statistics from UCLA'],
@@ -86,7 +106,25 @@ detail(gM('Methodology'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'serialmentor.com/dataviz/','Fundamentals of Data Visualization'),'',''],
 
 	[href(Hs+'idyll.pub/post/dimensionality-reduction-293e465c2a3443e8941b016d/','Dimensionality Reduction'),'','The Interactive Guide to Dimensionality Reduction'],
-	
+
+
+	[href(H+'www.evolutionoftheweb.com','The evolution of web'),'','网络的演变、浏览器'],
+
+	[href(Hs+'medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368','Mistakes, we’ve drawn a few'),'','经济学人在做数据可视化图表时犯过的错'],
+
+	[href(Hs+'www.newslifespan.com','The Lifespan of News Stories'),'','a collaboration between Schema Design and Google Trends'],
+
+	[href(Hs+'visme.co/blog/flowchart-examples/','21 Creative Flowchart Examples'),'',' for Making Important Life Decisions'],
+
+	[href(Hs+'www.visualcinnamon.com/2019/04/mobile-vs-desktop-dataviz','Mobile VS Desktop Dataviz'),'','Techniques for Data Visualization on both Mobile & Desktop | Visual Cinnamon'],
+
+	[href(Hs+'projects.isds.tugraz.at/respvis/','Responsive Data Visualisation'),'','Visualisation components which adapt to their display context'],
+
+
+	[href(Hs+'www.dailyinfographic.com','Daily Infographic'),'',''],
+
+	[href(H+'www.maartenlambrechts.com/2018/12/31/the-list-of-2018-visualization-lists.html','The list of 2018 visualization lists'),'','The year in visual stories, graphics maps and satellite images'],
+
 ],'TBrc'),1)+
 
 detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
@@ -100,9 +138,24 @@ detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'www.c82.net','C82'),'','works of Nicholas Rougeux'],
 
 	[href(Hs+'www.visualcinnamon.com','Visual Cinnamon'),'','Data made insightful, effective & beautiful through visualization. One of the authors of the Project '+href('www.datasketch.es','Data Sketch')+'a '+href(H+'Nadieh','www.visualcinnamon.com/')+' & '+href(H+'sxywu.com','Shirley')+' collaboration monthly'],
+	
+	[href(H+'tulpinteractive.com','Tulp Interactive'),'','Jan Willem'],
+	
+	[href(H+'giorgialupi.com',''),'','I am an information designer and a Partner at Pentagram advocating for Data Humanism.'],
+
+	[href(Hs+'plotparade.com','Plot Parade'),'','data art project by Krisztina Szűcs'],
+
+	[href(Hs+'kimalbrecht.com','Kim Albrecht'),'','visualizes cultural, technological, and scientific forms of knowledge. His diagrams are meant to unfold and question the structures of representation and explore the aesthetic of the intermingling of technology and society through the sensual knowledge of tracing information.'+ul(hrefA(Hs+'kimalbrecht.com',ZLR('grid viz')))],
 
 ],'TBrc'),1)+
 
+detail(gM('Aural'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[href(Hs+'galaxy-of-covers.interactivethings.io','Galaxy of Covers'),'','Honoring the evolution of the 50 most popular cover songs of all time.'+github('interactivethings/galaxy-of-covers')],
+	[href(Hs+'s3-us-west-1.amazonaws.com/vocs/map.html','Sound Emotion Map'),'','声音情感地图'],
+
+
+],'TBrc'),1)+
 
 detail('AR/VR/3D',Table([i18(ZLR('Name Type Summary'))],[
 
@@ -129,8 +182,12 @@ detail(gM('Geography')+' GIS',Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'torflow.uncharted.software','TorFlow'),'','Data flow in the Tor network'],
 
 
+	[href(Hs+'watabou.itch.io/medieval-fantasy-city-generator','Medieval Fantasy City Generator'),'','中世纪城市生成器 by watabou'],
+
+	[href(Hs+'donjon.bin.sh/fantasy/world/','Fantasy World Generator'),'','Data flow in the Tor network'],
 
 
+	[href(Hs+'flowmap.blue','Flow Map Visualization Tool'),'','Create geographic flow maps from your data published in Google Sheets. Visualize numbers of movements between locations'+github('ilyabo/flowmap.blue')],
 
 ],'TBrc'),1)+
 

@@ -39,6 +39,9 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 	[href(H+'www.2dcurves.com','2D Curves'),gM('Web'),''],
 	[href(Hs+'jsxgraph.org','JSXGraph'),gM('Web'),'interactive geometry, function plotting, charting, and data visualization'+href(Hs+('jsxgraph.org/wiki/index.php/Category:Examples'),'Examples')],
 	[href(Hs+'start.sketchometry.org','Sketchometry'),gM('Web'),'Sketch Geometry - Sketchometry,convert hand drawings into geometric constructions'],
+
+
+	[href(Hs+'csacademy.com/app/graph_editor/',''),'',''],
 ],'TBrc'))+
 
 

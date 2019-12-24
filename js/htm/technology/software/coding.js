@@ -33,5 +33,11 @@ technology['Software/Coding']=detail(gM('Tool'),Table([i18(ZLR('Name Type Summar
 
 	[href(Hs+'smallmultiples.com.au/projects/hanzi-universe/','Hanzi Universe'),'',''],
 
+
+],'TBrc'),1)+detail(gM('Color'),Table([i18(ZLR('Name Type Summary'))],[
+
+
+	[href(H+'h3stogram.herokuapp.com','H3Stogram'),'','3D Interactive Color Histogram '+href(H+'dofideas.com/h3stogram-interactive-3d-color-histogram-en/','blog')],
+
 ],'TBrc'),1);
 

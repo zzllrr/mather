@@ -19,8 +19,3 @@ detail(gM('Resources'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'bitmidi.com','Bit Midi'),'MIDI','Serving 113,241 MIDI files curated by volunteers around the world'],
 
 ],'TBrc'),1);
-
-detail(gM('Methodology'),Table([i18(ZLR('Name Type Summary'))],[
-	[href(Hs+'galaxy-of-covers.interactivethings.io','Galaxy of Covers'),'','Honoring the evolution of the 50 most popular cover songs of all time.'+github('interactivethings/galaxy-of-covers')],
-
-],'TBrc'),1);

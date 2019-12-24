@@ -10,10 +10,6 @@ science['Society/Economy']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(Hs+'knightfoundation.org/features/misinfo/','How much “fake news” can we identify on Twitter?'),'', ''],
 
-
-    [href(H+'rhythm-of-food.net','Rhythm of Food'),'','How do we search for food? Google search interest can reveal key food trends over the years. by Google News Lab + Truth & Beauty'],
-
-
     [href(Hs+'pudding.cool','The Pudding'),'','a digital publication that explains ideas debated in culture with visual essays.'],
 
 
@@ -32,7 +28,11 @@ science['Society/Economy']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(Hs+'flowingdata.com/2019/03/06/women-men-timeuse/','A Day in the Life: Women and Men'),'','by FlowingData'],
 
-    
 
+    [href(H+'manpopex.us','Manhattan Population Explorer'),'',''],
+
+    [href(H+'rhythm-of-food.net','The Rhythm of Food'),'','by Google News Lab and Truth & Beauty'],
+
+    [href(H+'www.statestreet.com/content/microsites/growth/index.html','Growth X 200'),'','Explore 200 years of trends and events that have shaped the growth of the financial system – from the exponential explosion of data to the scale, complexity and connectivity of global markets.'],
 
 ],'TBrc');

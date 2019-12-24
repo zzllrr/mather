@@ -22,6 +22,8 @@ Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'www.graphingstories.com',"Graphing Stories"),'','short video stories that help students learn to graph on a plane'],
 
+	[href(Hs+'www.mathsisfun.com','Maths is Fun'),'','Math explained in easy language, plus puzzles, games, worksheets and an illustrated dictionary. For K-12 kids, teachers and parents.'],
+
 ],'TBrc')+
 	
 detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
