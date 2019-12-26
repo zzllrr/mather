@@ -5,7 +5,7 @@
  */
 
 var toolSwitch=function(x){
-	var G='#'+x+'Ground', hasEditorTxt=/show/.test(x);
+	var G='#'+x+'Ground', hasEditorTxt=/show/.test(x), me=$('#'+x), pa=me.parent();
 	$('.ground:not('+G+')').hide();
 
 	$(G).show();
@@ -29,6 +29,10 @@ var toolSwitch=function(x){
 			jdetail(eval(x+'s')['index']||'')
 
 		);
+		pa.siblings().hide();
+	}else{
+		$(G).children().empty();
+		pa.siblings().show();
 	}
 
 }, furi=function(o){
@@ -69,7 +73,7 @@ $(function(){
 
 		)+
 		'<div id=navbody>'+
-			DCtv('pd2" id="toolnav',
+			SCtv('toolnavs" id="toolnav',
 				Arrf(function(i){
 					return XML.wrapE('label','<input type=radio name=tool value='+i+' id='+i+' hidden /><span>'+gM(i)+sc)
 				},toolnames).join('')
@@ -77,7 +81,7 @@ $(function(){
 
 			
 			Arrf(function(i){
-				return DCtv('ground" id="'+i+'Ground',DCtv('ground0')+DCtv('ground1')+DCtv('ground2')+DCtv('tasks'))
+				return SCtv('ground" id="'+i+'Ground',SCtv('ground0')+SCtv('ground1')+SCtv('ground2')+SCtv('tasks'))
 			},toolnames).join('')+
 		dc+
 	dc);
@@ -102,7 +106,7 @@ $(function(){
 			
 		}
 
-		$('#iContent,#iTextOpt i:not(#oHClear,#launch)').toggle(id=='home');
+		$('#iContent').toggle(id=='home');//,#iTextOpt i:not(#oHClear,#launch)
 
 	});
 	
@@ -336,12 +340,14 @@ $(function(){
 				var muri=me.attr('data-uri');
 				//$('iframe[src="wiki.html?q='+muri).remove();
 				$('iframe[src*="q='+muri).remove();
+			}else{
+				me.siblings().show()
 			}
 			
 		}else{
 			me.addClass('seled');
 			if(!istask){
-				me.siblings().removeClass('seled');
+				me.siblings().removeClass('seled').hide();
 			}
 	
 			var fm=furi(me), muri=fm[0].join('/'),lvl=fm[0].length, v=issolve?fm[0][0]:'';

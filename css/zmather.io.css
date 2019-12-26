@@ -113,8 +113,8 @@
 }
 
 .seled:not(div):not(.subhead):not(.subtabhead):not(textarea){
-	background: yellow;
-	color: gray;
+	background: lightyellow;
+	color: limegreen;
 	border-radius: 100%;
 }
 

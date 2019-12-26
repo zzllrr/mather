@@ -5,7 +5,7 @@
  */
  
 graphics={
-	index:['Plane Coordinate System.Math','Space Coordinate System.Math','Surface','Solid','Discrete Mathematics','Statistics','Fractal'],
+	index:['Plane Coordinate System.Math','Space.1 Coordinate System.Math','Surface','Solid','Discrete Mathematics','Statistics','Fractal'],
 	'Plane Coordinate System.Math':[
 		
 		{'Curve':[
@@ -50,7 +50,7 @@ graphics={
 	
 
 	
-	'Space Coordinate System.Math':[
+	'Space.1 Coordinate System.Math':[
 		{'Cartesian':[
 			'Axis','Grid'
 		]},

@@ -2055,7 +2055,7 @@ $(function(){
 					)
 				+dc
 			)+
-			DCtv('opac" id="input0Tool',
+			DCtv('opac" hidden id="input0Tool',
 				itvc('" id=iClear hotkey="Ctrl + E')+
 
 				(isedi?'':itv('" id=send2textBox tip="copy2input','arrow_upward'))+
@@ -2288,7 +2288,7 @@ itv('tool seled" tip=Preview id="preview','remove_red_eye')+
 
 
 itv('tool" tip="More Snippet" id="Snippetson','subject')+
-itv('seled" id=input0Toolon tip="Toggle Editor Tool','functions')+
+itv('" id=input0Toolon tip="Toggle Editor Tool','functions')+
 
 itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 

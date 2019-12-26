@@ -1054,6 +1054,9 @@ dc+
 
 			'<div id=svgTool2>'+
 				svgf.id('SVGshift" tip="Shift',svgf.path('M8 17 L15 10 22 17 M8 21 H22'))+
+
+				svgf.id('D2on" tip="2D Flatten',svgf.text('2D',[22,4,16]))+
+
 				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
 
 				svgf.id('LayerToggle" tip="Layer Toggle',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
@@ -1638,7 +1641,7 @@ dc+
 
 
 	$('#RandomColorson').on('click', function () {
-		var c = $(this).toggleClass('seled'), shp = $('#' + (L.drawShape || 'unknown')), shpN = $('#' + (L.drawShapeNow || 'unknown'));
+		var c = $(this), shp = $('#' + (L.drawShape || 'unknown')), shpN = $('#' + (L.drawShapeNow || 'unknown'));
 		if (L.drawShape == 'allEraser') {
 
 			caps.repaint();
@@ -1683,6 +1686,14 @@ dc+
 		if(id=='Zdogon'){
 			$(this).children('text').attr('fill',function(){var istog=$(this).attr('fill')=='white';
 				$('.zdog').children().attr('spinning',istog);
+				return istog?'yellow':'white'
+			});
+			
+			return
+		}
+		if(id=='D2on'){
+			$(this).children('text').attr('fill',function(){var istog=$(this).attr('fill')=='white';
+				//$('.zdog').children().attr('spinning',istog);
 				return istog?'yellow':'white'
 			});
 			
@@ -1959,14 +1970,14 @@ dc+
 */
 
 		
-	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mMv(e);
+	}).on('mousemove touchmove', 'svg, textarea, span[id]', function (e) {mMv(e);
 	/*
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
 		e.stopPropagation && e.stopPropagation();
 		return false;
 		*/
-	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) {consolelog('#Caps');mUp(e);	
+	}).on('mouseup touchend', 'svg, textarea, span[id]', function (e) {mUp(e);	
 	/*
 		e.preventDefault && e.preventDefault();
 		e.returnValue=false;
@@ -1978,7 +1989,7 @@ dc+
 
 
 // || !(act=='DIV' && eos.id && eos.id=='oHTML')
-	$('#caps,#oHTML').on('mousedown touchstart', function (e) {consolelog('caps');
+	$('#caps,#oHTML').on('mousedown touchstart', function (e) {
 
 		mDn(e);
 		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
@@ -1997,7 +2008,7 @@ dc+
 
 		}
 		
-	}).on('mousemove touchmove', function (e) {consolelog('caps'); mMv(e);
+	}).on('mousemove touchmove', function (e) {mMv(e);
 		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
 			e.preventDefault && e.preventDefault();
 			e.returnValue=false;
@@ -2006,7 +2017,7 @@ dc+
 		}
 
 		
-	}).on('mouseup touchend', function (e) {consolelog('caps'); mUp(e);
+	}).on('mouseup touchend', function (e) {mUp(e);
 		if(!/Pointer|noteEraser|allEraser/.test(L.drawShape)){
 			e.preventDefault && e.preventDefault();
 			e.returnValue=false;
@@ -2323,9 +2334,9 @@ dc+
 	});
 
 	window.addEventListener('orientationchange', function() {  
-		consolelog(window.innerWidth); 
+		//console.log(window.innerWidth); 
 		setTimeout(function() {  
-			consolelog(window.innerWidth,innerHeight); 
+			//console.log(window.innerWidth,innerHeight); 
 			caps.ini(innerWidth,innerHeight);
 			caps.repaint();
 		}, 300);  
@@ -2374,7 +2385,7 @@ dc+
 
 function cng_cap(obj) {
 	var me = $(obj), id = me.attr('id'), v = me.val();
-consolelog(id);
+//console.log(id);
 	if (/^css/.test(id) || id == 'capType' || id == 'svgTexts' || id == 'svgText') { cng_popout(obj); return }
 	if (/scr[WH]$/.test(id)) {
 		var cvs = $('#caps')[0], w = +$('#scrW').val(), h = +$('#scrH').val();
@@ -2853,8 +2864,7 @@ function cng_popout(obj) {
 		var shpN = L.drawShapeNow || 'unknown', isTxt = /Text/.test(shpN), sp = $('#' + shpN);
 
 
-		var pid = me.prevAll('span[id]').attr('id');
-		if (/DropShadow/.test(id)) { pid = 'dropShadow' }
+		var pid = (me.parent().attr('id')||me.parent().parent().attr('id')).replace(/Css./,function(x){x.substr(-1).toLowerCase()});
 
 
 

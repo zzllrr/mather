@@ -10,9 +10,10 @@ $(function () {
 
     var o=H_o(),tp=(o['type']||'LaTeX'), t=o['t']?fn1(o['t']):'', s=o['src'];
     
+    
     setTimeout(function () {
-
       $('#input0Type').val(tp);
+      
       if(t){
         $('#snippetNew').eq(0).click();
         $('#input0').val(t)//.mouseover()//.change();

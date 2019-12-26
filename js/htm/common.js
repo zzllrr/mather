@@ -150,7 +150,7 @@ loadHTML=function (x) {
         (full && zM.length?zM.height():0)-20,200)+'px" class="resize bd0"></iframe>')
 };
 
-
+L.removeItem('translation');
 var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog',
 Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D2 D3 ZD',
 Mele2='LT LX LTX TEX IL YML',
@@ -1237,8 +1237,17 @@ $(function(){
 
 	}).on('click','.subtabhead',function(e){
 		var me=$(this).addClass('seled'), pa=me.parent(), i=me.index(),shft=e.shiftKey || $('#Shift').is('.seled');
-		me.siblings('.subtabhead').removeClass('seled');
-		pa.parent().find('.subtab').hide().eq(i).show();
+        me.siblings('.subtabhead').removeClass('seled');
+        var subtabi=pa.parent().find('.subtab').eq(i);
+        subtabi.siblings('.subtab').hide();
+        if(subtabi.is(':visible')){
+            subtabi.hide();
+            me.siblings().show();
+        }else{
+            subtabi.show();
+            me.siblings().hide();
+        }
+
 
     }).on('click','.launch',function(){
         var me=$(this);

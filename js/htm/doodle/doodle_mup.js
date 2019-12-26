@@ -31,10 +31,96 @@ function mUp(e,Last){
 
 	var drawLast=function(){
 		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
+
+		if($('#D2on text').attr('fill')=='yellow'){
+			chd.filter(function(){return $(this).css('display')!=='none'}).each(function(){//.filter(':visible') 不起效果
+				var $t=$(this),color=($t.attr('stroke')||'').replace('none',''),
+				color2=($t.attr('fill')||'').replace('none',''),
+				fill=$t.attr('fill')!='none',
+				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),
+				c=caps.ctx, P, ps;
+				if($t.attr('d')){
+					ps=$t.attr('d');
+				}else if($t.attr('points')){
+					ps='M'+chdmp.replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
+				}
+				if(ps){
+					P=new Path2D(ps)
+
+				}else{
+					P=new Path2D();
+					if($t.is('rect')){
+						var x=+$t.attr('x'),y=+$t.attr('y'), rx=+$t.attr('rx'),ry=+$t.attr('ry'),w=+$t.attr('width'),h=+$t.attr('height');
+						if(rx||ry){
+							P.moveTo(x+rx,y);
+							P.lineTo(x+w-rx,y);
+
+							P.arcTo(x+w,y,x+w,y+ry,rx);
+							P.lineTo(x+w,y+h-ry);
+
+							P.arcTo(x+w,y+h,x+w-rx,y+h,ry);
+							P.lineTo(x+rx,y+h);
+
+							P.arcTo(x,y+h,x,y+h-ry,rx);
+							P.lineTo(x,y+ry);
+
+							P.arcTo(x,y,x+rx,y);
+
+						}else{
+							P.rect(x,y,w,h)
+						}
+					}
+
+					if($t.is('ellipse')){
+						P.ellipse(+$t.attr('cx'), +$t.attr('cy'), +$t.attr('rx'), +$t.attr('ry'),0,Math.PI*2,0);//, rotation, startAngle, endAngle, anticlockwise
+					}
+
+					if($t.is('line')){
+						P.moveTo(+$t.attr('x1'), +$t.attr('y1'));
+						P.lineTo(+$t.attr('x2'), +$t.attr('y2'));
+					}
+
+
+				}
+				
+			//	console.log(this.tagName, color,color2,chdmd,chdmp,ps);
+				if(P){
+					
+					c.save();
+					c.translate(lt,tp);
+					c.beginPath();
+					c.lineWidth=+chdm.attr('stroke-width');
+					c.lineCap=chdm.attr('stroke-linecap')||'butt';		//	butt|round|square
+					c.lineJoin=chdm.attr('stroke-linejoin')||'miter';	//	miter|round|bevel
+					//c.miterLimit=10.0		//chdm.attr('stroke-miterlimit');
+					var dashA=chdm.attr('stroke-dasharray');
+					if(dashA){
+						c.setLineDash(Arrf(Number,dashA.split(',')));
+						c.lineDashOffset=+chdm.attr('stroke-dashoffset')||0;
+					}
+					if(color){
+						c.strokeStyle=color;
+						c.stroke(P);
+					}
+					
+					if(color2){
+						c.fillStyle=color2;
+						c.fill(P);
+					}
+					c.restore();
+
+				}
+	
+
+			});
+			shpN.remove();
+
+		}
+
 		if($('#Zdogon text').attr('fill')=='yellow'){
 
 
-consolelog(shp);
+//consolelog(shp);
 var color=(chdm.attr('stroke')||'').replace('none',''),
 	color2=(chdm.attr('fill')||'').replace('none',''),
 	fill=chdm.attr('fill')!='none', 

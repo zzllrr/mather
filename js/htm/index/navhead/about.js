@@ -18,15 +18,15 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2019.12.13',
+			fieldseth('V2019.12.26',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
 						'<span id=ZMatherQR>'+sc+
 						DCtv('alignl',
-							'Demo '+href(HOM.ZMATHER)+br+
-							'Gitee '+href(HOM.ZMATHERcn)+br+
-							'Github '+href(HOM.ZMather)
+							href(HOM.ZMATHERcn)+br+
+							github('zzllrr/mather')+' | '+
+							github('zzllrr','mather')
 						)
 					)+
 					DCtv('Summarytip',

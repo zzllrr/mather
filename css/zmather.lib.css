@@ -47,7 +47,7 @@
 	input[type="number"]{
 		max-width: 2.6rem;
 	}
-	
+	#donaWeixin img{max-width:90%}
 }
 
 
@@ -61,9 +61,10 @@
 		max-width: 4rem;
 	}
 	.tool:hover{
-		background:yellow;
+		background:lightyellow;
 		color: black;
 	}
+	#donaWeixin img{max-width:350px}
 }
 
 @media print{
@@ -236,6 +237,7 @@ body.day, iframe{
 summary{
 	user-select:none;
 	padding: 5px;
+	margin:2px;
 }
 
 
@@ -424,10 +426,6 @@ input[type=text],#wiki>span,.brad{
 }
 .ridge{
 	border-style:ridge;
-}
-
-.ground > div:not(.tasks){
-	border-radius:10px;
 }
 
 
@@ -626,7 +624,7 @@ input[type="file"]{
 #oHTML{
 	position: relative;
 	overflow:auto;
-	padding:20px;
+	padding:10px;
 }
 #oHTML > div.abs{
 	position:absolute;
@@ -751,6 +749,9 @@ summary ~ details summary{
     padding: 20px;
 }
 
+.level,.task{
+	border-top: solid 1px;
+}
 .level,[name=tool] + span, .sechResult{
 	padding:2px 14px;
 	margin:2px 5px;
@@ -773,7 +774,7 @@ select,input:not([type="file"]), .rem13{
 	opacity:.5
 }
 
-.subhead:not(.seled):not(:hover),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span,#toolnav{
+.subhead:not(.seled):not(:hover),.subtabhead,.fdetail:hover summary,[name=tool]:not(:checked) +span{
 	background:black;
 }
 .task:not(.seled),.taskname{
@@ -781,7 +782,7 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-.sechResult, .Mele:hover{
+.sechResult, .Mele:hover,#iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background: rgba(50, 205, 50, 0.6);
 }
 
@@ -799,20 +800,7 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-
-.ground:nth-of-type(3n+2) > div:not(.tasks):not(:empty){
-	border:5px outset blue;
-}
-
-.ground:nth-of-type(3n+3) > div:not(.tasks):not(:empty){
-	border:5px outset hotpink;
-}
-
-.ground:nth-of-type(3n+1) > div:not(.tasks):not(:empty){
-	border:5px outset blueviolet;
-}
-
-[name=tool]:checked + span,.subhead.seled,.subtabhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
+[name=tool]:checked + span,.subhead.seled,.subtabhead.seled{
 	background:limegreen;
 }
 
@@ -866,7 +854,7 @@ input:not([readonly]), select{
 #donate div {margin:10px}
 #donaQR img{width:150px}
 #donaQR img{margin:0 10px}
-#donaWeixin img{width:350px}
+
 
 #Jiaohang{margin-right:50px;}
 .pay .jiaohang{
@@ -916,11 +904,7 @@ input:not([readonly]), select{
 	text-align:center
 }
 
-.tasks{
-    background: rgba(0,0,0,.1);
-	border-radius: 5px;
-	margin: 5px;
-}
+
 img{
 	cursor: pointer;
 }
@@ -1050,12 +1034,12 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 }
 
 .mi.toggle, svg.toggle{
-	background:yellow;
+	background:lightyellow;
 	color: rgb(27, 24, 24);
 }
 
 .onbox{
-	border:solid yellow 1px;
+	border:solid lightyellow 1px;
 }
 
 #searchContent{
