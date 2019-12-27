@@ -996,6 +996,9 @@ $(function(){
             $('.subhead').show();
         }
         $('#zMatherOn2').toggle(!isup);
+        if($('#svgs').is('.toggle')){
+            $('#svgs').click()
+        }
     });
     
 	

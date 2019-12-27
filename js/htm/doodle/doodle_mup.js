@@ -38,17 +38,19 @@ function mUp(e,Last){
 				color2=($t.attr('fill')||'').replace('none',''),
 				fill=$t.attr('fill')!='none',
 				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),
-				c=caps.ctx, P, ps;
+				c=caps.ctx, P, ps, code='';
 				if($t.attr('d')){
 					ps=$t.attr('d');
 				}else if($t.attr('points')){
 					ps='M'+chdmp.replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
 				}
 				if(ps){
-					P=new Path2D(ps)
+					P=new Path2D(ps);
+					code=`var P=new Path2D('${ps}');`;
 
 				}else{
 					P=new Path2D();
+					code=`var P=new Path2D();`;
 					if($t.is('rect')){
 						var x=+$t.attr('x'),y=+$t.attr('y'), rx=+$t.attr('rx'),ry=+$t.attr('ry'),w=+$t.attr('width'),h=+$t.attr('height');
 						if(rx||ry){
@@ -64,20 +66,38 @@ function mUp(e,Last){
 							P.arcTo(x,y+h,x,y+h-ry,rx);
 							P.lineTo(x,y+ry);
 
-							P.arcTo(x,y,x+rx,y);
+							P.arcTo(x,y,x+rx,y,ry);
+
+							code+=`
+							P.moveTo(${x+rx},${y});
+							P.lineTo(${x+w-rx},${y});
+
+							P.arcTo(${x+w},${y},${x+w},${y+ry},${rx});
+							P.lineTo(${x+w},${y+h-ry});
+
+							P.arcTo(${x+w},${y+h},${x+w-rx},${y+h},${ry});
+							P.lineTo(${x+rx},${y+h});
+
+							P.arcTo(${x},${y+h},${x},${y+h-ry},${rx});
+							P.lineTo(${x},${y+ry});
+
+							P.arcTo(${x},${y},${x+rx},${y},${ry});`
 
 						}else{
-							P.rect(x,y,w,h)
+							P.rect(x,y,w,h);
+							code+=`P.rect(${x},${y},${w},${h});`
 						}
 					}
 
 					if($t.is('ellipse')){
 						P.ellipse(+$t.attr('cx'), +$t.attr('cy'), +$t.attr('rx'), +$t.attr('ry'),0,Math.PI*2,0);//, rotation, startAngle, endAngle, anticlockwise
+						code+=`P.ellipse(${$t.attr('cx')}, ${$t.attr('cy')}, ${$t.attr('rx')}, ${$t.attr('ry')},0,Math.PI*2,0);`
 					}
 
 					if($t.is('line')){
 						P.moveTo(+$t.attr('x1'), +$t.attr('y1'));
 						P.lineTo(+$t.attr('x2'), +$t.attr('y2'));
+						code+=`P.moveTo(${$t.attr('x1')}, ${$t.attr('y1')});P.lineTo(${$t.attr('x2')}, ${$t.attr('y2')});`
 					}
 
 
@@ -97,6 +117,8 @@ function mUp(e,Last){
 					if(dashA){
 						c.setLineDash(Arrf(Number,dashA.split(',')));
 						c.lineDashOffset=+chdm.attr('stroke-dashoffset')||0;
+					}else{
+						c.setLineDash([])
 					}
 					if(color){
 						c.strokeStyle=color;
@@ -108,6 +130,22 @@ function mUp(e,Last){
 						c.fill(P);
 					}
 					c.restore();
+
+					code+=`
+					c.save();
+					c.translate(${lt},${tp});
+					c.beginPath();
+					c.lineWidth=${c.lineWidth};
+					c.lineCap='${c.lineCap}';		
+					c.lineJoin='${c.lineJoin}';
+	
+					c.setLineDash([${dashA?dashA:''}]);
+					${dashA?'c.lineDashOffset('+c.lineDashOffset+')':''}
+					${color?'c.strokeStyle=\''+color+'\';c.stroke(P);':''}
+					${color2?'c.fillStyle=\''+color2+'\';c.fill(P);':''}
+					c.restore();
+					`;
+					L.canvasCode+=code;
 
 				}
 	

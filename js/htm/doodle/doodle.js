@@ -5,7 +5,8 @@
  */
 var svgid = '#svgShape svg[id', strk, slid, dsh, shps,
 	Colors = '000000,F5F5F5,ffffff,FFFAFA;4682B4,87CEFA,87CEFA,FFF5EE;FA8072,F8F8FF,FFB6C1,FFC0CB;ffffff,DCDCDC,000000,696969;8B0000,B22222,CD5C5C,F08080', 
-	cap0='<canvas id=caps hidden></canvas><img id=capsimg /><div hidden id=capsdiv>' + dc;
+	cap0='<canvas id=caps hidden></canvas><img id=capsimg /><div hidden id=capsdiv>' + dc, reCanvasCode;
+	L.canvasCode=L.canvasCode||'';
 
 $(function () {
 
@@ -28,13 +29,20 @@ $(function () {
 
 	caps=new ctt('#caps');
 
+	reCanvasCode=function(){
+		if(L.canvasCode){
+			var c=caps.ctx;
+			eval(L.canvasCode);
+		}
+	};
+
 	setTimeout(function () {
 
 		//$('#Pointer').click();
 		//$('#allEraser').click();
 		//$('#LayerToggle').click();
 
-		$('#color' + (L.night == 'false' ? 0 : 3)).click();
+		//$('#color' + (L.night == 'false' ? 0 : 3)).click();
 
 		if ($('#svgs').length < 1) {
 
@@ -46,6 +54,7 @@ $(function () {
 
 		}
 
+		reCanvasCode();
 		$('#caps').nextAll().hide();
 	}, 100)
 
@@ -79,6 +88,342 @@ $(function () {
 						gM('W')+num('0" title=px id="scrW',1)+
 						gM('H')+num('0" title=px id="scrH',1)+dc+
 				
+
+
+
+					DCtv('hidden" id="allEraserCanvas',DCtv('pd10" id="canvasMenu',
+						itv('" id=bg tip="bg','photo_size_select_actual')+
+						itv('" id=grid tip="Grid','grid_on')+
+						itv('" id=shape tip="Shape','panorama_fish_eye')+
+						itv('" id=text tip="Text','title')+
+						itv('" id=clear tip="Clear','backspace')
+						//itv('" id=ani tip="Animation','movie')
+					)+
+					'<div for=bg>'+
+						'<div>'+spanmi('gradient',gM('BGC'),'" id="bggrad')+
+							'<span for=bggrad><label>'+strchkbx0+'id=bggradOn class=on /></label>'+
+								'<span for=bggradOn>'+
+									DCtv('fill',
+										'<label hidden>'+gM('Fill')+strchkbx0+'class=fillon'+chked+' /></label>'+
+										'<input type=color value="#eeeeee" class=color />'+
+										'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
+										gM('Gradient Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+br+
+										gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+									)+
+								sc+
+							sc+dc+
+						'<div>'+spanmi('landscape',gM('Image'),'" id="bgimg')+
+							'<span for=bgimg><label>'+strchkbx0+'id=bgimgOn class=on /></label>'+
+								'<span for=bgimgOn>'+
+									DCtv('multi',
+										'<div>'+gM('Image URL')+'<input type=url class=imgurl placeholder="" />'+dc+
+										'<div>'+gM('Cut Position and Size')+'<input type=text class=poswh placeholder="sx,sy,swidth,sheight" />'+dc+
+										'<div>'+gM('Paste Position and Size')+'<input type=text class=poswh placeholder="x,y,width,height" />'+dc+
+										'<div>'+itv('Add','add')+itv('Del','clear')+dc
+					
+									)+
+								sc+
+							sc+dc+
+					dc+
+					
+					
+					
+					
+					'<div for=grid>'+
+						'<div>'+spanmi('filter_tilt_shift',gM('Origin'),'" id="orig')+
+							'<span><label>x='+num('600" id="Ox')+'</label>'+
+								'<label>y='+num('400" id="Oy')+'</label>'+sc+
+						dc+
+						'<div>'+spanmi('radio_button_checked',gM('Point'),'" id="dot')+
+							'<span for=dot><label>'+strchkbx0+'id=dotOn class=on /></label>'+
+					
+								'<span for=dotOn>'+
+									DCtv('multi',
+										'<div><span>'+gM('Coordinate')+'<input type=text class=pos placeholder="20 20,30 30" />'+sc+
+											'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
+											itv('Add','add')+itv('Del','clear')+
+										dc
+									)+
+								sc+
+							sc+dc+
+					
+						'<div>'+spanmi('add_circle_outline',gM('Axis'),'" id="axis')+
+							'<span for=axis><label>'+strchkbx0+'id=axisOn class=on /></label>'+
+								'<span for=axisOn>'+
+									'<span>'+gM('Range')+'<input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" />'+sc+
+									'<div>'+gM('Arrow')+'分类 (左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】) <input type=text value="0101" id=axisArrowType placeholder="0101" />'+dc+
+									'<div>'+gM('Arrow')+'参数 (侧翼点长,宽;箭尾点偏移) <input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" />'+dc+
+									'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
+								sc+
+							sc+dc+
+						'<div>'+spanmi('graphic_eq',gM('Tick'),'" id="tick')+
+							'<span for=tick><label>'+strchkbx0+'id=tickOn class=on /></label>'+
+								'<span for=tickOn>'+
+									'<span>'+
+										gM('Range')+'<input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" />'+
+									sc+
+									DCtv('multi',
+										'<div><span>'+gM('Tick Length')+' (负号表示负轴方向) <input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 />'+sc+
+											'<span>'+gM('Spacing')+'<input type=text value=20 class=tickSpacing placeholder="20,20" size=10 />'+sc+
+											'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
+											itv('Add','add')+itv('Del','clear')+
+										dc
+									)+
+					
+								sc+
+							sc+dc+
+						'<div>'+spanmi('border_all',gM('Cartesian Grid'),'" id="gridCross')+
+							'<span for=gridCross><label>'+strchkbx0+'id=gridCrossOn class=on /></label>'+
+								'<span for=gridCrossOn>'+
+									SCtv('orig',
+										'<span>'+gM('Range')+'<input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" />'+sc+
+										'<label>'+gM('Origin')+strchkbx0+'id=gridCrossOrigOn class=on />'+'</label>'+
+										'<span for=gridCrossOrigOn>'+
+											'<label>x='+num('600" class="Ox')+'</label>'+
+											'<label>y='+num('400" class="Oy')+'</label>'+sc
+					
+									)+
+									DCtv('primary',
+										'<span>'+gM('Primary Grid Spacing')+'<input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 />'+sc+
+										'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
+										br+
+										'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
+									)+
+									DCtv('secondary',
+										'<span>'+gM('Secondary Grid Spacing')+'<input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 />'+sc+
+										'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
+										br+
+										'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
+									)+
+								sc+
+							sc+dc+
+					
+						'<div>'+spanmi('location_searching',gM('Polar Grid'),'" id="gridPolar')+
+							'<span for=gridPolar><label>'+strchkbx0+'id=gridPolarOn class=on /></label>'+
+								'<span for=gridPolarOn>'+
+									SCtv('orig',
+										'<span>'+gM('Range Radii')+num('0" id="gridPolarRange')+sc+
+										'<label>'+gM('Origin')+strchkbx0+'id=gridPolarOrigOn class=on /></label>'+
+										'<span for=gridPolarOrigOn>'+
+											'<label>x='+num('600" class="Ox')+'</label>'+
+											'<label>y='+num('400" class="Oy')+'</label>'+sc
+									)+
+									DCtv('primary',
+										'<span>'+gM('Primary Grid Spacing')+' r '+num('200" id="gridPolarxSpacing')+sc+
+										'<span>'+gM('Primary Grid')+'角等分线数'+num('1" id="gridPolaryNum')+sc+
+										'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
+										br+
+										'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
+					
+									)+
+									DCtv('secondary',
+										'<span>'+gM('Secondary Grid Spacing')+' r '+num('0" id="gridPolar2xSpacing')+sc+
+										'<span>'+gM('Secondary Grid')+'角等分线数'+num('0" id="gridPolar2yNum')+sc+
+										'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
+										br+
+										'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
+									)+
+								sc+
+							sc+
+						dc+
+					dc+
+					'<div for=shape>'+
+					
+					
+					
+						'<div>'+spanmi('radio_button_unchecked',gM('Circle'),'" id="circle')+
+							'<span for=circle><label>'+strchkbx0+'id=circleOn class=on /></label>'+
+								'<span for=circleOn>'+
+									DCtv('multi',
+										'<div>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 200,300 300" />'+dc+
+										'<div>'+gM('Radii')+'<input type=text class=rad placeholder="15,10" />'+dc
+					
+									)+
+								sc+
+							sc+dc+
+					
+						'<div>'+spanmi('vignette',gM('Ellipse'),'" id="ellipse')+
+							'<span for=ellipse><label>'+strchkbx0+'id=ellipseOn class=on /></label>'+
+								'<span for=ellipseOn>'+
+									DCtv('multi',
+										'<div>'+strchkbx0+'class=multinput'+chked+' />'+
+											'<span>'+
+												gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
+											sc+
+											'<span>'+
+												gM('Radii')+' (半长轴,半短轴,半焦距 3选2) <input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" />'+
+											sc+
+											'<span>'+
+												gM('Rotate')+'°<input type=text class=rot placeholder="45,-30" />'+
+											sc+
+										dc+
+										'<div>'+strchkbx0+'class=multinput />'+
+											'<span>'+
+												gM('Foci Coordinate')+'<input type=text class=pos placeholder="300 400,380 400;" />'+
+											sc+
+											'<span>'+
+												gM('Radii')+' (半长轴,半短轴 2选1) <input type=text class=rad placeholder="ra50;rb30" />'+
+											sc+
+										dc+
+										'<div>'+strchkbx0+'class=multinput />'+
+											'<span>'+
+												gM('Vertex Coordinate')+'<input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 />'+
+											sc+
+										dc+
+										'<div>'+strchkbx0+'class=multinput />'+
+											'<span>'+
+												gM('CircumRectangle')+
+												gM('Vertex Coordinate')+'<input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 />'+
+											sc+
+										dc
+					
+									)+
+								sc+
+							sc+dc+
+					
+					
+						'<div>'+spanmi('crop_landscape',gM('Rectangle'),'" id="rect')+
+							'<span for=rect><label>'+strchkbx0+'id=rectOn class=on /></label>'+
+								'<span for=rectOn>'+
+									DCtv('multi',
+										'<div>'+gM('Vertex Coordinate')+' ('+gM('Left Top')+') <input type=text class=pos placeholder="200 400;" size=50 />'+dc+
+										'<div>'+gM('Length Width')+'<input type=text class=rad placeholder="300 200;" />'+dc
+									)+
+								sc+
+							sc+dc+
+					
+						'<div>'+spanmi('power_input',gM('Polyline Polygon'),'" id="line')+
+							'<span for=line><label>'+strchkbx0+'id=lineOn class=on /></label>'+
+								'<span for=lineOn>'+
+									DCtv('multi',
+										'<div>'+gM('Vertex Coordinate')+' (或斜°长) <input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 />'+dc+
+										'<div>'+gM('Round Corner')+ gM('Radii')+'<input type=text class=rad2 placeholder="0,10" />'+dc+
+										'<div><label>'+gM('Closed')+' ('+gM('Polygon')+') '+strchkbx0+'class=close /></label>'+dc
+									)+
+					
+								sc+
+							sc+dc+
+					
+					
+						'<div>'+spanmi('brightness_low',gM('Regular Polygon'),'" id="isogon')+
+							'<span for=isogon><label>'+strchkbx0+'id=isogonOn class=on /></label>'+
+								'<span for=isogonOn>'+
+									DCtv('multi',
+										'<div>'+strchkbx0+'class=multinput'+chked+' />'+
+											'<span>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
+											'<span>'+gM('Radii')+'<input type=text class=rad placeholder="50;" />'+sc+
+											'<span>'+gM('Rotate')+'° ('+gM('Start Radius offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
+										dc+
+										'<div>'+strchkbx0+'class=multinput />'+
+											'<span>'+gM('Start Point')+' '+gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
+											'<span>'+gM('Side Length')+'<input type=text class=rad placeholder="50;" />'+sc+
+											'<span>'+gM('Rotate')+'° ('+gM('Start side offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
+											'<label>'+gM('Counterclockwise')+' ('+gM('Direction')+') '+strchkbx0+'class=dir'+chked+' />'+'</label>'+
+										dc+
+					
+										'<div>'+gM('Round Corner Radii')+'<input type=text class=rad2 placeholder="0,0,5;10;" />'+dc+
+										'<div>'+gM('Sides')+'<input type=text class=line placeholder="3,4,5" value=3 />'+dc
+					
+									)+
+								sc+
+							sc+dc+
+					
+					
+						'<div>'+spanmi('all_inclusive',gM('Bezier Curve'),'" id="bezier')+
+							'<span for=bezier><label>'+strchkbx0+'id=bezierOn class=on /></label>'+
+								'<span for=bezierOn>'+
+									DCtv('multi',
+										'<div>'+
+											gM('Point Coordinate')+' ('+gM('Start Point')+','+gM('Control Point')+'1、2;' +gM('End Point')+ 
+											') <input type=text class=pos placeholder="20 20,30 50;80 60" size=50 />'+
+										dc+
+										'<div><label>'+gM('Closed')+strchkbx0+'class=close /></label>'+dc
+					
+									)+
+					
+								sc+
+							sc+dc+
+						'<div>'+spanmi('gesture',gM('Curve'),'" id="path')+
+							'<span for=path><label>'+strchkbx0+'id=pathOn class=on /></label>'+
+								'<span for=pathOn>'+
+									DCtv('multi',
+										'<div>SVG命令 (MLHVAQC) <input type=text class=svg placeholder="M20 20L30 50" size=50 />'+dc+
+										'<div><label>'+
+												gM('Closed')+strchkbx0+'class=close />'+
+											'</label>'+dc
+					
+									)+
+								sc+
+							sc+dc+
+					dc+
+					'<div for=text>'+
+					
+						'<div>'+spanmi('text_format',gM('Text'),'" id="txt')+
+							'<span for=txt><label>'+strchkbx0+'id=txtOn class=on /></label>'+
+					
+								'<span for=txtOn>'+
+									DCtv('multi',
+										'<span>'+
+											gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
+										sc+
+										'<input type=text class=value size=80 />'+
+										'<div><label>'+
+												gM('Font')+' <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" />'+
+											'</label>'+
+											'<label>'+gM('Horizontal Align')+' <select class=halign>'+Options(ZLR('center end left right start'),1).join('')+'</select></label>'+
+											'<label>'+gM('Vertical Align')+' <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'),1).join('')+'</select></label>'+
+										dc
+					
+									)+
+								sc+
+							sc+dc+
+					
+					dc+
+					'<div for=ani>'+
+						'<div id=aniControl>'+
+							itv('" id=aniPlay tip="Play','play_arrow')+
+							itv('" id=aniStop tip="Stop','stop')+
+							itv('" id=aniShot tip="Shot','camera_alt')+
+							itv('" id=aniClear tip="Clear','close')+
+							itv('" id=aniInput tip="Import','file_upload')+
+							itv('" id=aniOutput tip="Export','file_download')+
+					
+						dc+
+						'<div>'+spanmi('stay_current_landscape',gM('Scene'),'" id="scene')+
+							'<span for=scene><label>'+strchkbx0+'id=sceneOn class=on /></label>'+
+					
+								'<span for=sceneOn>'+
+									DCtv('multi',
+										'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1500" />'+sc+
+										'<div>Frame '+txa('','json" placeholder="每一场初始静态化数据')+dc
+									)+
+								sc+
+							sc+dc+
+					
+						'<div>'+spanmi('directions_run',gM('Action'),'" id="act')+
+							'<span for=act><label>'+strchkbx0+'id=actOn class=on /></label>'+
+					
+								'<span for=actOn>'+
+									DCtv('multi',
+										'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1000" />'+sc+
+										'<div>JS '+txa('','js" placeholder="动作指令JS代码')+dc
+									)+
+								sc+
+							sc+dc+
+					
+					
+					dc)+
+
+
+
+
+
+
+
+
+
+
+
 					'<div id=copyOpt>'+gM('Copy')+' '+gM('Direction')+
 						'<p><select id=copyDir multiple=multiple class=hmulti size=1 title=Ctrl>'+Options(seqA(0, 10), '←→↑↓↖↗↙↘↥↧'.split('')).join('')+'</select></p>'+
 						'<p>'+SCtv('','×')+num('1" id="copyn',1)+
@@ -110,332 +455,7 @@ $(function () {
 						
 						)+
 						
-						DCtv('hidden" for="Canvas',tooltip.Canvas+
-DCtv('pd10" id="canvasMenu',
-	itv('" id=bg tip="bg','photo_size_select_actual')+
-	itv('" id=grid tip="Grid','grid_on')+
-	itv('" id=shape tip="Shape','panorama_fish_eye')+
-	itv('" id=text tip="Text','title')+
-	itv('" id=clear tip="Clear','backspace')
-	//itv('" id=ani tip="Animation','movie')
-)+
-'<div for=bg>'+
-	'<div>'+spanmi('gradient',gM('BGC'),'" id="bggrad')+
-		'<span for=bggrad><label>'+strchkbx0+'id=bggradOn class=on /></label>'+
-			'<span for=bggradOn>'+
-				DCtv('fill',
-					'<label hidden>'+gM('Fill')+strchkbx0+'class=fillon'+chked+' /></label>'+
-					'<input type=color value="#eeeeee" class=color />'+
-					'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
-					gM('Gradient Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+br+
-					gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
-				)+
-			sc+
-		sc+dc+
-	'<div>'+spanmi('landscape',gM('Image'),'" id="bgimg')+
-		'<span for=bgimg><label>'+strchkbx0+'id=bgimgOn class=on /></label>'+
-			'<span for=bgimgOn>'+
-				DCtv('multi',
-					'<div>'+gM('Image URL')+'<input type=url class=imgurl placeholder="" />'+dc+
-					'<div>'+gM('Cut Position and Size')+'<input type=text class=poswh placeholder="sx,sy,swidth,sheight" />'+dc+
-					'<div>'+gM('Paste Position and Size')+'<input type=text class=poswh placeholder="x,y,width,height" />'+dc+
-					'<div>'+itv('Add','add')+itv('Del','clear')+dc
-
-				)+
-			sc+
-		sc+dc+
-dc+
-
-
-
-
-'<div for=grid>'+
-	'<div>'+spanmi('filter_tilt_shift',gM('Origin'),'" id="orig')+
-		'<span><label>x='+num('600" id="Ox')+'</label>'+
-			'<label>y='+num('400" id="Oy')+'</label>'+sc+
-	dc+
-	'<div>'+spanmi('radio_button_checked',gM('Point'),'" id="dot')+
-		'<span for=dot><label>'+strchkbx0+'id=dotOn class=on /></label>'+
-
-			'<span for=dotOn>'+
-				DCtv('multi',
-					'<div><span>'+gM('Coordinate')+'<input type=text class=pos placeholder="20 20,30 30" />'+sc+
-						'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
-						itv('Add','add')+itv('Del','clear')+
-					dc
-				)+
-			sc+
-		sc+dc+
-
-	'<div>'+spanmi('add_circle_outline',gM('Axis'),'" id="axis')+
-		'<span for=axis><label>'+strchkbx0+'id=axisOn class=on /></label>'+
-			'<span for=axisOn>'+
-				'<span>'+gM('Range')+'<input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" />'+sc+
-				'<div>'+gM('Arrow')+'分类 (左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】) <input type=text value="0101" id=axisArrowType placeholder="0101" />'+dc+
-				'<div>'+gM('Arrow')+'参数 (侧翼点长,宽;箭尾点偏移) <input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" />'+dc+
-				'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
-			sc+
-		sc+dc+
-	'<div>'+spanmi('graphic_eq',gM('Tick'),'" id="tick')+
-		'<span for=tick><label>'+strchkbx0+'id=tickOn class=on /></label>'+
-			'<span for=tickOn>'+
-				'<span>'+
-					gM('Range')+'<input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" />'+
-				sc+
-				DCtv('multi',
-					'<div><span>'+gM('Tick Length')+' (负号表示负轴方向) <input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 />'+sc+
-						'<span>'+gM('Spacing')+'<input type=text value=20 class=tickSpacing placeholder="20,20" size=10 />'+sc+
-						'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
-						itv('Add','add')+itv('Del','clear')+
-					dc
-				)+
-
-			sc+
-		sc+dc+
-	'<div>'+spanmi('border_all',gM('Cartesian Grid'),'" id="gridCross')+
-		'<span for=gridCross><label>'+strchkbx0+'id=gridCrossOn class=on /></label>'+
-			'<span for=gridCrossOn>'+
-				SCtv('orig',
-					'<span>'+gM('Range')+'<input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" />'+sc+
-					'<label>'+gM('Origin')+strchkbx0+'id=gridCrossOrigOn class=on />'+'</label>'+
-					'<span for=gridCrossOrigOn>'+
-						'<label>x='+num('600" class="Ox')+'</label>'+
-						'<label>y='+num('400" class="Oy')+'</label>'+sc
-
-				)+
-				DCtv('primary',
-					'<span>'+gM('Primary Grid Spacing')+'<input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 />'+sc+
-					'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
-					br+
-					'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
-				)+
-				DCtv('secondary',
-					'<span>'+gM('Secondary Grid Spacing')+'<input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 />'+sc+
-					'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
-					br+
-					'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
-				)+
-			sc+
-		sc+dc+
-
-	'<div>'+spanmi('location_searching',gM('Polar Grid'),'" id="gridPolar')+
-		'<span for=gridPolar><label>'+strchkbx0+'id=gridPolarOn class=on /></label>'+
-			'<span for=gridPolarOn>'+
-				SCtv('orig',
-					'<span>'+gM('Range Radii')+num('0" id="gridPolarRange')+sc+
-					'<label>'+gM('Origin')+strchkbx0+'id=gridPolarOrigOn class=on /></label>'+
-					'<span for=gridPolarOrigOn>'+
-						'<label>x='+num('600" class="Ox')+'</label>'+
-						'<label>y='+num('400" class="Oy')+'</label>'+sc
-				)+
-				DCtv('primary',
-					'<span>'+gM('Primary Grid Spacing')+' r '+num('200" id="gridPolarxSpacing')+sc+
-					'<span>'+gM('Primary Grid')+'角等分线数'+num('1" id="gridPolaryNum')+sc+
-					'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
-					br+
-					'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
-
-				)+
-				DCtv('secondary',
-					'<span>'+gM('Secondary Grid Spacing')+' r '+num('0" id="gridPolar2xSpacing')+sc+
-					'<span>'+gM('Secondary Grid')+'角等分线数'+num('0" id="gridPolar2yNum')+sc+
-					'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
-					br+
-					'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
-				)+
-			sc+
-		sc+
-	dc+
-dc+
-'<div for=shape>'+
-
-
-
-	'<div>'+spanmi('radio_button_unchecked',gM('Circle'),'" id="circle')+
-		'<span for=circle><label>'+strchkbx0+'id=circleOn class=on /></label>'+
-			'<span for=circleOn>'+
-				DCtv('multi',
-					'<div>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 200,300 300" />'+dc+
-					'<div>'+gM('Radii')+'<input type=text class=rad placeholder="15,10" />'+dc
-
-				)+
-			sc+
-		sc+dc+
-
-	'<div>'+spanmi('vignette',gM('Ellipse'),'" id="ellipse')+
-		'<span for=ellipse><label>'+strchkbx0+'id=ellipseOn class=on /></label>'+
-			'<span for=ellipseOn>'+
-				DCtv('multi',
-					'<div>'+strchkbx0+'class=multinput'+chked+' />'+
-						'<span>'+
-							gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
-						sc+
-						'<span>'+
-							gM('Radii')+' (半长轴,半短轴,半焦距 3选2) <input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" />'+
-						sc+
-						'<span>'+
-							gM('Rotate')+'°<input type=text class=rot placeholder="45,-30" />'+
-						sc+
-					dc+
-					'<div>'+strchkbx0+'class=multinput />'+
-						'<span>'+
-							gM('Foci Coordinate')+'<input type=text class=pos placeholder="300 400,380 400;" />'+
-						sc+
-						'<span>'+
-							gM('Radii')+' (半长轴,半短轴 2选1) <input type=text class=rad placeholder="ra50;rb30" />'+
-						sc+
-					dc+
-					'<div>'+strchkbx0+'class=multinput />'+
-						'<span>'+
-							gM('Vertex Coordinate')+'<input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 />'+
-						sc+
-					dc+
-					'<div>'+strchkbx0+'class=multinput />'+
-						'<span>'+
-							gM('CircumRectangle')+
-							gM('Vertex Coordinate')+'<input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 />'+
-						sc+
-					dc
-
-				)+
-			sc+
-		sc+dc+
-
-
-	'<div>'+spanmi('crop_landscape',gM('Rectangle'),'" id="rect')+
-		'<span for=rect><label>'+strchkbx0+'id=rectOn class=on /></label>'+
-			'<span for=rectOn>'+
-				DCtv('multi',
-					'<div>'+gM('Vertex Coordinate')+' ('+gM('Left Top')+') <input type=text class=pos placeholder="200 400;" size=50 />'+dc+
-					'<div>'+gM('Length Width')+'<input type=text class=rad placeholder="300 200;" />'+dc
-				)+
-			sc+
-		sc+dc+
-
-	'<div>'+spanmi('power_input',gM('Polyline Polygon'),'" id="line')+
-		'<span for=line><label>'+strchkbx0+'id=lineOn class=on /></label>'+
-			'<span for=lineOn>'+
-				DCtv('multi',
-					'<div>'+gM('Vertex Coordinate')+' (或斜°长) <input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 />'+dc+
-					'<div>'+gM('Round Corner')+ gM('Radii')+'<input type=text class=rad2 placeholder="0,10" />'+dc+
-					'<div><label>'+gM('Closed')+' ('+gM('Polygon')+') '+strchkbx0+'class=close /></label>'+dc
-				)+
-
-			sc+
-		sc+dc+
-
-
-	'<div>'+spanmi('brightness_low',gM('Regular Polygon'),'" id="isogon')+
-		'<span for=isogon><label>'+strchkbx0+'id=isogonOn class=on /></label>'+
-			'<span for=isogonOn>'+
-				DCtv('multi',
-					'<div>'+strchkbx0+'class=multinput'+chked+' />'+
-						'<span>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
-						'<span>'+gM('Radii')+'<input type=text class=rad placeholder="50;" />'+sc+
-						'<span>'+gM('Rotate')+'° ('+gM('Start Radius offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
-					dc+
-					'<div>'+strchkbx0+'class=multinput />'+
-						'<span>'+gM('Start Point')+' '+gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
-						'<span>'+gM('Side Length')+'<input type=text class=rad placeholder="50;" />'+sc+
-						'<span>'+gM('Rotate')+'° ('+gM('Start side offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
-						'<label>'+gM('Counterclockwise')+' ('+gM('Direction')+') '+strchkbx0+'class=dir'+chked+' />'+'</label>'+
-					dc+
-
-					'<div>'+gM('Round Corner Radii')+'<input type=text class=rad2 placeholder="0,0,5;10;" />'+dc+
-					'<div>'+gM('Sides')+'<input type=text class=line placeholder="3,4,5" value=3 />'+dc
-
-				)+
-			sc+
-		sc+dc+
-
-
-	'<div>'+spanmi('all_inclusive',gM('Bezier Curve'),'" id="bezier')+
-		'<span for=bezier><label>'+strchkbx0+'id=bezierOn class=on /></label>'+
-			'<span for=bezierOn>'+
-				DCtv('multi',
-					'<div>'+
-						gM('Point Coordinate')+' ('+gM('Start Point')+','+gM('Control Point')+'1、2;' +gM('End Point')+ 
-						') <input type=text class=pos placeholder="20 20,30 50;80 60" size=50 />'+
-					dc+
-					'<div><label>'+gM('Closed')+strchkbx0+'class=close /></label>'+dc
-
-				)+
-
-			sc+
-		sc+dc+
-	'<div>'+spanmi('gesture',gM('Curve'),'" id="path')+
-		'<span for=path><label>'+strchkbx0+'id=pathOn class=on /></label>'+
-			'<span for=pathOn>'+
-				DCtv('multi',
-					'<div>SVG命令 (MLHVAQC) <input type=text class=svg placeholder="M20 20L30 50" size=50 />'+dc+
-					'<div><label>'+
-							gM('Closed')+strchkbx0+'class=close />'+
-						'</label>'+dc
-
-				)+
-			sc+
-		sc+dc+
-dc+
-'<div for=text>'+
-
-	'<div>'+spanmi('text_format',gM('Text'),'" id="txt')+
-		'<span for=txt><label>'+strchkbx0+'id=txtOn class=on /></label>'+
-
-			'<span for=txtOn>'+
-				DCtv('multi',
-					'<span>'+
-						gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
-					sc+
-					'<input type=text class=value size=80 />'+
-					'<div><label>'+
-							gM('Font')+' <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" />'+
-						'</label>'+
-						'<label>'+gM('Horizontal Align')+' <select class=halign>'+Options(ZLR('center end left right start'),1).join('')+'</select></label>'+
-						'<label>'+gM('Vertical Align')+' <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'),1).join('')+'</select></label>'+
-					dc
-
-				)+
-			sc+
-		sc+dc+
-
-dc+
-'<div for=ani>'+
-	'<div id=aniControl>'+
-		itv('" id=aniPlay tip="Play','play_arrow')+
-		itv('" id=aniStop tip="Stop','stop')+
-		itv('" id=aniShot tip="Shot','camera_alt')+
-		itv('" id=aniClear tip="Clear','close')+
-		itv('" id=aniInput tip="Import','file_upload')+
-		itv('" id=aniOutput tip="Export','file_download')+
-
-	dc+
-	'<div>'+spanmi('stay_current_landscape',gM('Scene'),'" id="scene')+
-		'<span for=scene><label>'+strchkbx0+'id=sceneOn class=on /></label>'+
-
-			'<span for=sceneOn>'+
-				DCtv('multi',
-					'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1500" />'+sc+
-					'<div>Frame '+txa('','json" placeholder="每一场初始静态化数据')+dc
-				)+
-			sc+
-		sc+dc+
-
-	'<div>'+spanmi('directions_run',gM('Action'),'" id="act')+
-		'<span for=act><label>'+strchkbx0+'id=actOn class=on /></label>'+
-
-			'<span for=actOn>'+
-				DCtv('multi',
-					'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1000" />'+sc+
-					'<div>JS '+txa('','js" placeholder="动作指令JS代码')+dc
-				)+
-			sc+
-		sc+dc+
-
-
-dc
-				
-				),'','id=TextBoxTool hidden'),
-						1,'id=svgTEXTBox')+
+						DCtv('hidden" for="Canvas',tooltip.Canvas),'','id=TextBoxTool hidden'),	1,'id=svgTEXTBox')+
 				
 					'<div id=svgSel>'+
 						detail('<select id=svgText>'+Options(seqA(0,11),ZLR(
@@ -1070,7 +1090,7 @@ dc+
 				
 				svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
 
-				svgf.id('noteEraser" tip="Del Layer" hotkey="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+				svgf.id('noteEraser" tip="Del Layer" title="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
 			
 			dc+
 			'<div id=svgTog>'+
@@ -1099,6 +1119,7 @@ dc+
 					SCtv('tool radio seled" name=codeout id="code_API','API')+
 					SCtv('tool radio" name=codeout id="code_Native',gM('Native'))+
 					SCtv('tool radio" name=codeout id="code_UserInput',gM('User Input'))+
+					SCtv('tool radio" name=codeout id="code_Canvas',gM('Canvas'))+
 
 					detail(gM('Option'),[
 						'<label>'+strchkbx0+'id=ignoreHiddenElement'+chked+' />'+gM('ignoreHiddenElement')+'</label>',
@@ -1121,7 +1142,7 @@ dc+
 
 
 
-	caps=new ctt('#caps');
+	//caps=new ctt('#caps');
 
 	$('#svgTog ~ *, .pg1 ~ div, span[for]').hide();
 
@@ -1299,7 +1320,7 @@ dc+
 		$('#TextBox').val(t);
 
 	});
-	$('#TextBoxTool [for=Canvas]').on('click','.mi-span',function(){
+	$('#allEraserCanvas').on('click','.mi-span',function(){
 		var me=$(this),id=this.id,pa=me.parent(),tog=me.toggleClass('toggle').is('.toggle'),nx=me.next('[for='+id+']');
 		
 		if(nx.length){
@@ -1428,12 +1449,17 @@ dc+
 		$('#Caps > .effects').remove();
 		$('#caps ~ canvas').remove();
 
+		scrn('eraser');
 		caps.repaint();
-		//scrn('eraser');
 
 	});
 	$('#clrTextBox').on('click', function () {
 		$('#Caps .cap'+$('#TextBoxType').val()).remove();
+		if($('#allEraser rect').attr('stroke')=='yellow'){
+			L.canvasCode='';
+			scrn('eraser');
+			caps.repaint(1);
+		}
 	});
 
 
@@ -1607,8 +1633,8 @@ dc+
 		mp.prev('summary').toggleClass('seled', c);
 		if (mpn.filter('#sgcs').length) {
 
+			scrn('eraser');
 			caps.repaint();
-			//scrn('eraser');
 			
 		} else {
 			if (c) {
@@ -1628,8 +1654,8 @@ dc+
 		pp.nextAll('.' + (v == 'Linear' ? 'Radial' : 'Linear')).hide();
 
 		if (me.is('[name=SGradType]')) {
+			scrn('eraser');
 			caps.repaint();
-			//scrn('eraser');
 
 		} else {
 			refreshFilter();
@@ -1643,9 +1669,9 @@ dc+
 	$('#RandomColorson').on('click', function () {
 		var c = $(this), shp = $('#' + (L.drawShape || 'unknown')), shpN = $('#' + (L.drawShapeNow || 'unknown'));
 		if (L.drawShape == 'allEraser') {
-
+			scrn('eraser');
 			caps.repaint();
-			//scrn('eraser');
+			reCanvasCode();
 			
 		} else if (!shp.parent().is('#svgTool,#svgTool2') || shp.is('#Pointer')) {
 			RndColors(shpN);
@@ -1733,14 +1759,9 @@ dc+
 
 		$('[name=MarginCopyOpt][value=copy]').prop('checked', true).parent().toggle(true);
 
-		if(id=='allEraser'){
-			tileToolCap(id, true);
+		tileToolCap(id);
+
 	
-		}else{
-			tileToolCap(id);
-
-		}
-
 
 
 		$('#caps').css('cursor', 'crosshair')
@@ -1819,6 +1840,7 @@ dc+
 				$('#scrH').val(hv ? w : h);
 
 				if (all) {
+					/*
 					var dtl = Cd.eq(2), isGrad = dtl.find('.Grad').prop('checked');
 				//	dtl.show().siblings().hide();
 					if (isGrad) {
@@ -1830,9 +1852,9 @@ dc+
 						var c = RandomColor();
 						$('#SGC').val(c).attr('title', c + '\n' + hex2rgba(c, $('#OpaSGC').val()))
 					}
-
+*/
+					scrn('eraser');
 					caps.repaint();
-					//scrn('eraser');
 					
 				} else {
 					scrn(id.substr(3).toLowerCase());
@@ -1843,11 +1865,15 @@ dc+
 				drawClr();
 				$('.clrCanvas').click();
 
+				if($('#SVGshift path').attr('stroke')=='yellow'){
+					L.canvasCode='';
+					caps.repaint();
+				}
 			}
 
 
 		} else {
-			var pg=me.parent().attr('class').replace(/\D/g,'');
+			var pg=(me.parent().attr('class')||'').replace(/\D/g,'');
 			$('#svgPg'+pg).siblings().toggle(!isNarrow);
 
 			if(isNarrow){
@@ -2338,7 +2364,11 @@ dc+
 		setTimeout(function() {  
 			//console.log(window.innerWidth,innerHeight); 
 			caps.ini(innerWidth,innerHeight);
+
+			scrn('eraser');
 			caps.repaint();
+
+
 		}, 300);  
 	}, false);
 
@@ -2352,7 +2382,7 @@ dc+
 		});
 
 
-	toggleColor();
+	//toggleColor();
 
 
 
@@ -2395,9 +2425,9 @@ function cng_cap(obj) {
 			cvs.width = w;
 			cvs.height = h;
 
-
+			scrn('eraser');
 			caps.repaint();
-			//scrn('eraser');
+			
 			
 		}
 		if (/Crop/.test(L.drawShape)) {
@@ -2746,8 +2776,9 @@ function toggleColor() {
 
 	if (L.drawShape == 'allEraser') {
 
+		scrn('eraser');
 		caps.repaint();
-		//scrn('eraser');
+		reCanvasCode();
 		return
 	}
 	refreshFilter();

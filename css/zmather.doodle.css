@@ -18,6 +18,10 @@
 	
 	#tileToolCap:not(.Narrow) svg[id]{width:15%;}
 	#Crop {display: none}
+	body{
+		touch-action: none;
+		overflow: hidden;
+	}
 }
 @media screen and (min-width:800px){
 	#tileToolCap svg[id]{width:2rem;}

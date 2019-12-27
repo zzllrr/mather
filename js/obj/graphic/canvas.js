@@ -869,10 +869,12 @@ ctt=function(canvas,w,h,OX,OY){
 		}
 	};
 	
-	this.repaint=function(){/*
+	this.repaint=function(ini){/*
 		重新绘制
 		*/
-		this.ini();
+		if(ini){
+			this.ini();
+		}
 		//this.clear();
 		this.bg();
 		this.grid();

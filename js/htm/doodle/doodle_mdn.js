@@ -936,10 +936,15 @@ function tileToolCap(t, val){
 	
 
 
-
+	$('#allEraserCanvas').toggle(id=='allEraser');
 	if(id=='allEraser'){
-		$('#TextBoxType').val('Canvas').attr('disabled','disabled')
+		$('#TextBoxType').val('Canvas').attr('disabled','disabled');
 
+		if($('#ToolOpt path').attr('stroke')!='yellow'){
+			$('#ToolOpt').click()
+		}
+
+		
 	}else{
 		$('#TextBoxType').removeAttr('disabled')
 	}
@@ -960,7 +965,6 @@ function tileToolCap(t, val){
 			}else{
 
 			}
-
 		}
 		if(txt){
 			$('#fontCSS span').each(function(){
@@ -1148,7 +1152,6 @@ function tileToolCap(t, val){
 			$('#skew ~ input').val(0);
 		}
 
-
 	}
 }
 
@@ -1157,7 +1160,10 @@ function tileToolCap(t, val){
 function tileToolCode(obj,returnValue){
 	var a=[],o=$(obj),t, nohid=$('#ignoreHiddenElement').prop('checked'), spath=$('#svg2path').prop('checked'),
 		jsf=$('#code_API').is('.seled'), nat=$('#code_Native').is('.seled'), user=$('#code_UserInput').is('.seled');
-	if(o.is('svg')){
+	if($('#code_Canvas').is('.seled')){
+		t=L.canvasCode
+		
+	}else if(o.is('svg')){
 
 		/*
 		jQuery bug 选择器 ':visible' 针对SVG中元素，无法区分是否可见（都认为是可见）
