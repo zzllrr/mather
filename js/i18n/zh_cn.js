@@ -657,6 +657,8 @@ lang['zh_cn'] = {
 	'Graphic': '作图',
 	'Graphics': '图形',
 
+	'Flatten':'扁平化',
+
 	'Chart':'图形',
 	'Charts':'制图',
 	'Plot':'绘制',

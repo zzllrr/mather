@@ -1950,8 +1950,18 @@ var svgf = {
 			}
 
 			if (tO.M) {
+				var dm=(d0.getMonth() + tO.M) % 12;
 				tO.y += Math.floor((d0.getMonth() + tO.M) / 12);
-				d1.setMonth((d0.getMonth() + tO.M) % 12);
+				d1.setMonth(dm);
+				if((d1.getMonth()-d0.getMonth()) % 12 !=tO.M){//修正误差  例如：2019-12-31 -1M, 是2019-11-30 而不是2019-12-1
+					if(tO.M<0){
+						d1.setMonth((dm+1)% 12,1);
+						//console.log(dm, d1);
+						d1.setTime(d1.getTime()-oneDay);
+					}else{
+						d1.setMonth(dm,1);
+					}
+				}
 			}
 
 			if (tO.y) { d1.setFullYear(d0.getFullYear() + tO.y) }
