@@ -730,6 +730,7 @@ lang['zh_cn'] = {
 	'Layer': '层',
 	'Layers': '层数',
 	'Pointer': '指针',
+	'Erase':'擦除',
 	'Eraser': '橡皮擦',
 	'Tab': '制表符',
 	'Indent': '缩进',
@@ -745,6 +746,10 @@ lang['zh_cn'] = {
 	'Infix': '中缀',
 
 	// 助词	或 词根
+	'if':'如果',
+	'iif':'当且仅当',
+	'when':'当',
+
 	'and': '和',
 	'or': '或',
 	'About': '关于',
@@ -1016,6 +1021,8 @@ lang['zh_cn'] = {
 	'Pally': '亲密的',
 	'Peace-loving': '爱好和平的',
 
+	'On':'开',
+	'Off':'关',
 	'Only':'只',
 	'Smooth': '平滑',
 	'Offline': '离线',

@@ -1090,7 +1090,7 @@ dc+
 				
 				svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
 
-				svgf.id('noteEraser" tip="Del Layer" title="Shift+Delete(D)',svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+				svgf.id('noteEraser" tip="Del Layer" title="Shift+Delete(D)\n'+gM('2D on → Erase All'),svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
 			
 			dc+
 			'<div id=svgTog>'+
@@ -1683,7 +1683,7 @@ dc+
 	$('#svgShape svg[id], #svgTool2 svg[id]').on('click', function (e) {
 
 
-		var me=$(this),id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id), isNarrow=$('#tileToolCap').is('.Narrow');
+		var me=$(this),id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id), isNarrow=$('#tileToolCap').is('.Narrow'),D2on=$('#D2on text').attr('fill')=='yellow';
 		Scroll('scrollT');
 		if(id=='Narrow'){
 
@@ -1826,6 +1826,7 @@ dc+
 
 			if(id=='noteEraser'){
 				L.cap0=getcap0();
+
 			}
 
 
@@ -1864,8 +1865,8 @@ dc+
 			if (note) {
 				drawClr();
 				$('.clrCanvas').click();
-
-				if($('#SVGshift path').attr('stroke')=='yellow'){
+console.log(D2on);
+				if(D2on){
 					L.canvasCode='';
 					caps.repaint();
 				}

@@ -11,7 +11,7 @@ culture['Activity/Interest Group']=detail(gM('Social'),Table([i18(ZLR('Name Type
 	[href(Hs+'batmath.org','BAT Math - Bay Area Teachers and Mathematicians'),'Math Teacher','the Bay Area branch of the Math Teachers’ Circle Network, a project of the American Institute of Mathematics '+href('batmath.org/lesson-plans/','lesson plans')],
 	[href(Hs+'www.mathteacherscircle.org',"Math Teachers’ Circle"),'Math Teacher',"professional communities of K-12 mathematics teachers and mathematicians"],
 
-	[href(Hs+'imaginary.org',''),'开放和交互数学','德国 开放和交互数学，是起源于莱布尼兹协会，有一些实际数学模型，用于展览，科普，教学等'],
+	[href(Hs+'imaginary.org','Imaginary'),'开放和交互数学','德国 开放和交互数学，是起源于莱布尼兹协会，有一些实际数学模型，用于展览，科普，教学等'],
 
 	[href(Hs+'www.siam.org','SIAM 应用数学类协会'),'',''],
 

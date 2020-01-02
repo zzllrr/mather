@@ -2706,7 +2706,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		prop=me.prevAll(':checkbox').first(),
 		num1=me.prevAll(':number').first(),
 		txt=me.prevAll(':text').first(),
-		i=$('#input0'), iv=i.val(),t='';
+		i=$('#input0'), iv=i.val(),t='', shifton=$('#Shift').is('.seled');
 
 		if(prop.length<1){
 			prop=pap.find(':checkbox').last();
@@ -2763,6 +2763,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			}else{
 				t=Arrf(function(){return hex2rgba(RandomColor())},seqA(1,q)).join(',')
 			}
+		}
+
+		if(shifton){
+			i.val('');
+			iv='';
 		}
 
 		var sS=i[0].selectionStart, sE=i[0].selectionEnd;
