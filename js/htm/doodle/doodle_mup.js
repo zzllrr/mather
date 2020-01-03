@@ -5,14 +5,14 @@
  */
 
 
-function mUp(e,Last){
+function mUp(e,Last,drawshape){
 	var et=e.type;
 	//console.log(et);
 
 	var eos=e.originalEvent.srcElement, act=eos.tagName, ect=e.originalEvent.changedTouches;
 	if(act!='CANVAS'){e.stopPropagation()}
 
-	var shp=L.drawShape, shp2=/Crop/.test(shp), shp3=/Paral|Trape|(lineangle|Triangon)[HV]|Line3YRight|cub/.test(shp), shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid),
+	var shp=drawshape||L.drawShape, shp2=/Crop/.test(shp), shp3=/Paral|Trape|(lineangle|Triangon)[HV]|Line3YRight|cub/.test(shp), shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid),
 		isSq=/Sq/.test(shp),hv=/H/.test(shp), isTri=/Tria/.test(shp), isLn=/Line/.test(shp), isln=/line/i.test(shp), isGONlike=/Rect|gon|Note|arrow/i.test(shp) && !/(rect|ellipse)Note/.test(shp),
 
 		isGON=isGONlike && !/A|Heart|QIGonRnd|(fan|Moon|Star)Note/.test(shp),
@@ -30,9 +30,9 @@ function mUp(e,Last){
 
 
 	var drawLast=function(){
-		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid);
+		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid), D2on=$('#D2on text').attr('fill')=='yellow', D3on=$('#Zdogon text').attr('fill')=='yellow';
 
-		if($('#D2on text').attr('fill')=='yellow'){
+		if(D2on){
 			chd.filter(function(){return $(this).css('display')!=='none'}).each(function(){//.filter(':visible') 不起效果
 				var $t=$(this),color=($t.attr('stroke')||'').replace('none',''),
 				color2=($t.attr('fill')||'').replace('none',''),
@@ -151,11 +151,13 @@ function mUp(e,Last){
 	
 
 			});
-			shpN.remove();
+			if(!D3on){
+				shpN.remove()
+			}
 
 		}
 
-		if($('#Zdogon text').attr('fill')=='yellow'){
+		if(D3on){
 
 
 //consolelog(shp);
@@ -412,6 +414,9 @@ var s=zdogs(WD+sw,HT+sw,s0,rotatexyz);
 			shpN.after(s1);
 			all2html('zdog','','#'+id);
 
+			if(D2on){
+				shpN.remove()
+			}
 			return
 
 		}

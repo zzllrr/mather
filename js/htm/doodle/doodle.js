@@ -1683,8 +1683,20 @@ dc+
 	$('#svgShape svg[id], #svgTool2 svg[id]').on('click', function (e) {
 
 
-		var me=$(this),id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id), isNarrow=$('#tileToolCap').is('.Narrow'),D2on=$('#D2on text').attr('fill')=='yellow';
+		var me=$(this),id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id),
+			isNarrow=$('#tileToolCap').is('.Narrow'),
+			shifton=$('#SVGshift path').attr('stroke')=='yellow',
+			D2on=$('#D2on text').attr('fill')=='yellow',
+			D3on=$('#Zdogon text').attr('fill')=='yellow';
 		Scroll('scrollT');
+
+		if(/SVGshift|D2on|Zdogon|LayerToggle|CanvasToggle/.test(id) && isNarrow && !/Pointer|Copy|Eraser/.test(L.drawShape)){
+			var pg=($('#'+L.drawShape).parent().attr('class')||'').replace(/\D/g,'');
+			$('#svgPg'+pg).siblings().hide();
+
+			$('.pg'+pg).children().not('#'+L.drawShape).hide();
+
+		}
 		if(id=='Narrow'){
 
 			var w=$('#tileTool')[0].style.width;
@@ -1694,7 +1706,17 @@ dc+
 			$('#svgToolOpt,#tileToolCap').toggleClass('Narrow',w=='');
 			if(w){
 				$('#svgShape svg,#svgTog svg').show()
+			}else{
+				var pg=($('#svgTog svg').filter(function(){return $(this).children().attr('stroke')=='yellow'}).attr('id')||'').replace(/\D/g,'');
+
+				$('#svgPg'+pg).siblings().hide();
+	
+				if(!/Pointer|Copy|Eraser/.test(L.drawShape)){
+					$('.pg'+pg).children().not($('#'+L.drawShape)).hide();
+				}
+				
 			}
+			
 			
 			return
 		}
@@ -1714,7 +1736,9 @@ dc+
 				$('.zdog').children().attr('spinning',istog);
 				return istog?'yellow':'white'
 			});
-			
+			if(L.drawShapeNow && !/Zdog_/.test(L.drawShapeNow)){
+				mUp(e,1,L.drawShapeNow.replace(/\d+$/,''))
+			}
 			return
 		}
 		if(id=='D2on'){
@@ -1722,6 +1746,10 @@ dc+
 				//$('.zdog').children().attr('spinning',istog);
 				return istog?'yellow':'white'
 			});
+
+			if(L.drawShapeNow){
+				mUp(e,1,L.drawShapeNow.replace(/\d+$/,''))
+			}
 			
 			return
 		}
@@ -1776,7 +1804,7 @@ dc+
 
 
 
-		var scr = /scr/.test(id), note = /note/.test(id), all = /all/.test(id), Cd = $('#Color details');
+		var scr = /scr/.test(id), all = /all/.test(id), Cd = $('#Color details');
 
 		if (/Pointer|Eraser|scr|Copy|Undo|Redo/.test(id)) {
 
@@ -1824,10 +1852,6 @@ dc+
 				$('#Pointer').click()
 			}
 
-			if(id=='noteEraser'){
-				L.cap0=getcap0();
-
-			}
 
 
 			if (scr || all) {
@@ -1862,14 +1886,34 @@ dc+
 				}
 				if (scr) { $('#Pointer').click() }
 			}
-			if (note) {
-				drawClr();
-				$('.clrCanvas').click();
-console.log(D2on);
+
+			if(id=='noteEraser'){
+
 				if(D2on){
 					L.canvasCode='';
-					caps.repaint();
+					caps.repaint(1);
 				}
+
+				if(D3on){
+					$('#Caps > .zdog').remove()
+				}
+
+				
+
+				if(!D2on && !D3on || shifton){
+					
+					
+					if(shifton){
+						drawClr();
+						$('.clrCanvas').click();
+						L.cap0=getcap0();
+					}else{
+						$('#Caps > div').nextAll().not('.zdog').remove()
+
+					}
+				}
+
+
 			}
 
 
