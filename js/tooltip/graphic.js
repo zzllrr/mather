@@ -20,7 +20,7 @@ $.each({
 			gM('Round Corner') + scegc('rect x=50 y=10 rx=10 ry=10 width=30 height=30 fill=green', 4),
 			gM('Circle') + scegc('circle cx=60 cy=60 r=50 stroke=green fill=none', 6),
 			gM('Ellipse') + scegc('ellipse cx=110 cy=60 rx=100 ry=50 stroke=green fill=none', 7),
-			gM('Line') + scegc('line x1=0 y1=80 x2=100 y2=20 stroke=red', 4),
+			gM('Line.0') + scegc('line x1=0 y1=80 x2=100 y2=20 stroke=red', 4),
 			gM('Polyline') + scegc('polyline points="100,100 150,25 150,75 200,0" fill=none stroke=black', 8),
 			gM('Polygon') + scegc('polygon points="10 100, 150 25 ,250 100" stroke=red fill=none', 7),
 
@@ -30,7 +30,7 @@ $.each({
 			scegc('path d="M10 20 L20 30" stroke=red fill=none', 4),
 			gM('Closed') + ' Z(z)' + sceg2('Z'),
 			gM('Move') + ' M x y | m dx dy' + sceg2('M10 20') + sceg2('m10 20'),
-			gM('Line') + ' L x y | l dx dy' + sceg2('L20 30') + sceg2('l20 30'),
+			gM('Line.0') + ' L x y | l dx dy' + sceg2('L20 30') + sceg2('l20 30'),
 			gM('Horizontal Line') + ' H x | h dx' + sceg2('H30') + sceg2('h30'),
 			gM('Vertical Line') + ' V y | v dy' + sceg2('V50') + sceg2('v50'),
 
@@ -388,7 +388,7 @@ $.each({
 			
 			detail(gM('Path Shape'),[
 
-				gM('Line')+' lineTo(x,y)'+scegj('c.lineTo(155,150)',9),
+				gM('Line.0')+' lineTo(x,y)'+scegj('c.lineTo(155,150)',9),
 				
 				
 				gM('Rectangle')+' rect(x,y,width,height)',
@@ -834,7 +834,7 @@ let dt = new Zdog.Shape({
 	color: '#636',
 })`,0),
 
-				gM('Line')+scegj(`
+				gM('Line.0')+scegj(`
 let ln = new Zdog.Shape({
 	addTo: zo,
 	path: [
@@ -1169,8 +1169,108 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 
 
 
+		
+	'Lego':[
+
+		href(Hs+'legrajs.com','Legra (Lego brick Graphics)'),
+		detail(gM('Initialize'),[
+			'new legra(ctx[, size, options])',
+			scegj(`C.width=400;C.height=300;
+var lg = new legra(c)`,0)
+		].join(br)),
+
+		detail(gM('Setting'),[
+			scegj(`,{filled:true}`),
+			scegj(`,{color:'blue'}`),
+			scegj(`,{filled:true, color: 'blue'}`,0)
+		].join(br)),
+
+		detail(gM('Line.0'),[
+			'line(x1, y1, x2, y2 [, options])',
+			scegj(`lg.line(3, 1, 10, 1)`),
+			scegj(`lg.line(11, 11, 1, 1, { color: 'red' })`,0)
+		].join(br)),
+
+		detail(gM('Rectangle'),[
+			'rectangle(x, y, width, height [, options])',
+			scegj(`lg.rectangle(12, 2, 8, 8)`,0),
+		].join(br)),
+
+		detail(gM('Linear Path'),[
+			'linearPath(points [, options])',
+			scegj(`
+lg.linearPath([
+	[1, 1],
+	[10, 1],
+	[1, 10],
+	[10, 10]
+])`,0),
+		].join(br)),
 
 
+		detail(gM('Circle'),[
+			'circle(xc, yc, radius [, options])',
+			scegj(`lg.circle(6, 6, 4)`,0),
+		].join(br)),
+
+
+
+		detail(gM('Ellipse'),[
+			'ellipse(xc, yc, a, b, [, options])',
+			scegj(`lg.ellipse(15, 15, 10, 6, { filled: true, color: 'green' })`,0),
+		].join(br)),
+
+
+		detail(gM('Polygon'),[
+			'polygon(vertices [, options])',
+	scegj(`
+lg.polygon([
+	[3, 10],
+	[22, 18],
+	[30, 1],
+	[14, 10],
+	[8, 2]
+], { filled: true, color: 'orange' })`,0),
+		].join(br)),
+
+
+
+
+		detail(gM('Arc'),[
+			'arc(xc, yc, a, b, start, stop, closed [, options])',
+			scegj(`lg.arc(15, 15, 10, 10, Math.PI, Math.PI * 1.5, true)`),
+			scegj(`lg.arc(15, 15, 10, 10, 0, Math.PI * .5, true, { 
+	filled: true, 
+	color: 'orange' 
+})`,0),
+			scegj(`lg.arc(15, 15, 15, 15, -Math.PI * 0.5, Math.PI * 0.5, false, { 
+				color: 'red' 
+			})`,0),
+		].join(br)),
+
+		detail(gM('Bézier Curve'),[
+			'bezierCurve(x1, y1, cp1x, cp1y, cp2x, cp2y, x2, y2 [, options])',
+			scegj(`lg.bezierCurve(3, 3, 8, 30, 18, 1, 22, 14)`)
+		].join(br)),
+
+
+		detail(gM('Quadratic Curve'),[
+			'quadraticCurve(x1, y1, cpx, cpy, x2, y2 [, options])',
+			scegj(`lg.quadraticCurve(3, 3, 8, 30, 18, 1, 22, 14)`)
+		].join(br)),
+
+		detail(gM('Draw Image'),[
+			'drawImage(image, dstPoint [, dstSize, srcPoint, srcSize])',
+			scegj(`var img=new Image();
+img.onload = function () {lg.drawImage(img, [0, 0])};
+img.src='img/ZIL.png'`,0),
+			scegj(`lg.drawImage(image, [0, 0])`,0)
+		].join(br)),
+
+
+
+
+	].join(''),
 
 
 },function(k,v){

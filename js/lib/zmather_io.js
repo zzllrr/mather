@@ -2069,7 +2069,7 @@ $(function(){
 					gM('Webpage Editor')+
 					'":"Markdown HTML CSS"},{"'+
 					gM('Graphics')+
-					'":"Canvas SVG Echarts Zdog 2D 3D"},{"'+
+					'":"Canvas SVG Echarts Zdog Lego 2D 3D"},{"'+
 					gM('Show')+
 					'":"Slide VR AR"},{"'+
 			

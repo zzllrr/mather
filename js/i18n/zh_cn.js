@@ -1403,6 +1403,7 @@ lang['zh_cn'] = {
 	'Line': '线',
 	
 	'Line.1': '行',
+	'Line.0': '直线',
 
 	'Line Segment': '线段',
 

@@ -637,7 +637,7 @@ function changeTextCSS(){
 
 
 function toggleSvg(){
-	var s=$('#svgShape,#svgTool2').find('svg[id!=SVGshift][id!=Zdogon]');
+	var s=$('#svgShape,#svgTool2').find('svg').filter(function(){return !/^(SVGshift|Zdogon|D2on|Legoon)$/.test(this.id)});
 	s.find('[stroke=yellow]').attr('stroke','white');
 	s.find('[fill=yellow]').attr('fill','white');
 
@@ -1161,7 +1161,7 @@ function tileToolCode(obj,returnValue){
 	var a=[],o=$(obj),t, nohid=$('#ignoreHiddenElement').prop('checked'), spath=$('#svg2path').prop('checked'),
 		jsf=$('#code_API').is('.seled'), nat=$('#code_Native').is('.seled'), user=$('#code_UserInput').is('.seled');
 	if($('#code_Canvas').is('.seled')){
-		t=L.canvasCode
+		t=L.canvasCode+'\n// lego\n'+L.legoCode
 		
 	}else if(o.is('svg')){
 

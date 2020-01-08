@@ -98,6 +98,8 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 
 		'zdog':referf(delivr('zdog','.dist.min')),
 
+		'lego':referf(unpkg('legra')),
+
 		'canvas_eval':function(t){return '<div id=js hidden>'+t+dc+
 	'<canvas id=cvs width="300" height="300"></canvas>'+
 	XML.wrapE('script',

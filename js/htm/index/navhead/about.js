@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2020.1.3',
+			fieldseth('V2020.1.7',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -358,7 +358,7 @@ Table('',[
 				href(Hs+'www.douban.com/group/excel-vba/','Excel宏VBA')+' (豆瓣小组) 组长',
 				href(HOM.ZIG,'小乐图客zzllrr Imager')+'（Google Chrome Extension）作者',
 				href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
-				href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）开源发起者',
+				href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）作者',
 				gM('Contact')+': '+href(GMAIL,'zzllrr@gmail.com'),
 				
 			])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),

@@ -30,20 +30,62 @@ function mUp(e,Last,drawshape){
 
 
 	var drawLast=function(){
-		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid), D2on=$('#D2on text').attr('fill')=='yellow', D3on=$('#Zdogon text').attr('fill')=='yellow';
+		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid), 
+		D2on=$('#D2on text').attr('fill')=='yellow', 
+		Legoon=$('#Legoon rect').attr('stroke')=='yellow', 
+		D3on=$('#Zdogon text').attr('fill')=='yellow';
 
 		if(D2on){
 			chd.filter(function(){return $(this).css('display')!=='none'}).each(function(){//.filter(':visible') 不起效果
 				var $t=$(this),color=($t.attr('stroke')||'').replace('none',''),
 				color2=($t.attr('fill')||'').replace('none',''),
 				fill=$t.attr('fill')!='none',
-				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),
+				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),// 箭头暂不实现 翻译
+				swd=$t.attr('stroke-width'),
 				c=caps.ctx, P, ps, code='';
+
 				if($t.attr('d')){
 					ps=$t.attr('d');
 				}else if($t.attr('points')){
 					ps='M'+chdmp.replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
 				}
+
+
+				if(Legoon){
+					code=`var lg=new legra(c, ${swd});`;
+					var opt=",{"+(color2?"filled:1,color:'"+color2+"'":"color:'"+color+"'")+'}', lt0=lt/swd, tp0=tp/swd;
+					if($t.is('rect')){
+						code+=`lg.rectangle(${+$t.attr('x')+lt0},${+$t.attr('y')+tp0},${$t.attr('width')/swd},${$t.attr('height')/swd}${opt})`
+					}
+					if($t.is('ellipse')){	//circle
+						code+=`lg.ellipse(${(+$t.attr('cx')+lt)/swd}, ${(+$t.attr('cy')+tp)/swd}, ${$t.attr('rx')/swd}, ${$t.attr('ry')/swd}${opt})`
+					}
+					if($t.is('line')){
+						code+=`lg.line(${(+$t.attr('x1')+lt)/swd},${(+$t.attr('y1')+tp)/swd},${(+$t.attr('x2')+lt)/swd},${(+$t.attr('y2')+tp)/swd}${opt})`
+					}
+
+					if($t.attr('points')){
+						code+='lg.polygon(['+Arrf(function(t,i){return i%2?(+t+tp)/swd+']':'['+(+t+lt)/swd}, chdmp.split(/[, +]/)).join(',')+']'+opt+')'
+					}
+
+					if($t.is('path')){
+						//code+='lg.linearPath(['+Arrf(function(t,i){return i%2?'['+t+',':t+'],'}, ps.split(/[, +]/)).join(',')+']${opt})'
+					}
+
+
+					L.legoCode+=';'+code;
+
+
+					eval(code);
+
+					return true;
+
+				}
+
+
+
+
+
 				if(ps){
 					P=new Path2D(ps);
 					code=`var P=new Path2D('${ps}');`;
@@ -345,10 +387,10 @@ s0=s0.replace('pathstr',function(){
 	
 	if(chdmp){
 		//console.log('points=',chdmp);
-		return SVGPath2Zdog(chdmp,WD2,HT2,1)
+		return SVGPath.toZdog(chdmp,WD2,HT2,1)
 	}
 	if(chdmd){
-		return SVGPath2Zdog(chdmd,WD2,HT2)
+		return SVGPath.toZdog(chdmd,WD2,HT2)
 	}
 
 	if(chdm.filter('line').length){
@@ -849,154 +891,161 @@ var s=zdogs(WD+sw,HT+sw,s0,rotatexyz);
 }
 
 
+var SVGPath={
+	toFull:function(x){
+		var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
+		/*
+		while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
+			xs=xs.replace(/L *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'L$1 L$2')
+		}
+		*/
+	// 对连续命令，显示完整
+		while(/L *([-\d\.]+ +){3,}/.test(xs)){
+			xs=xs.replace(/L *(([-\d\.]+ +){2})([-\d\.])/g,'L$1 L$3')
+		}
+	
+		while(/T *([-\d\.]+ +){3,}/.test(xs)){
+			//xs=xs.replace(/T *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'T$1 T$2')
+			//xs=xs.replace(/T *([\d\.]+ +){2}([\d\.])/g,'T$1 T$2')
+			xs=xs.replace(/T *(([-\d\.]+ +){2})([-\d\.])/g,'T$1 T$3')
+		}
+	
+		while(/S *([-\d\.]+ +){5,}/.test(xs)){
+			xs=xs.replace(/S *(([-\d\.]+ +){4})([-\d\.])/g,'S$1 S$3')
+		}
+	
+		while(/Q *([-\d\.]+ +){5,}/.test(xs)){
+			xs=xs.replace(/Q *(([-\d\.]+ +){4})([-\d\.])/g,'Q$1 Q$3')
+		}
+	
+	
+		while(/C *([-\d\.]+ +){7,}/.test(xs)){
+			xs=xs.replace(/C *(([-\d\.]+ +){6})([-\d\.])/g,'C$1 C$3')
+		}
+	
+		while(/A *([-\d\.]+ +){8,}/.test(xs)){
+			xs=xs.replace(/C *(([-\d\.]+ +){7})([-\d\.])/g,'C$1 C$3')
+		}
+		return xs
+	},
 
-function SVGPath2Zdog(x,WD2,HT2,ispoints){
+
+
+	toZdog:function(x,WD2,HT2,ispoints){
 	/*注意，Zdog坐标系（左-右+上-下+，原点在Canvas中心），
 		类似于SVG坐标系（左-右+上-下+，原点在Canvas左上角），
 		都不同于数学中的笛卡儿坐标系（左-右+上+下-，原点在Canvas中心）
 	*/
 
-	if(ispoints){
-		return Arrf(function(t,i){return i%2?',y:'+(+t-HT2)+'},':'{x:'+(+t-WD2)}, x.split(/[, +]/)).join('')
-	}
-	
-	var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
-	/*
-	while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
-		xs=xs.replace(/L *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'L$1 L$2')
-	}
-	*/
-// 对连续命令，显示完整
-	while(/L *([-\d\.]+ +){3,}/.test(xs)){
-		xs=xs.replace(/L *(([-\d\.]+ +){2})([-\d\.])/g,'L$1 L$3')
-	}
-
-	while(/T *([-\d\.]+ +){3,}/.test(xs)){
-		//xs=xs.replace(/T *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'T$1 T$2')
-		//xs=xs.replace(/T *([\d\.]+ +){2}([\d\.])/g,'T$1 T$2')
-		xs=xs.replace(/T *(([-\d\.]+ +){2})([-\d\.])/g,'T$1 T$3')
-	}
-
-	while(/S *([-\d\.]+ +){5,}/.test(xs)){
-		xs=xs.replace(/S *(([-\d\.]+ +){4})([-\d\.])/g,'S$1 S$3')
-	}
-
-	while(/Q *([-\d\.]+ +){5,}/.test(xs)){
-		xs=xs.replace(/Q *(([-\d\.]+ +){4})([-\d\.])/g,'Q$1 Q$3')
-	}
-
-
-	while(/C *([-\d\.]+ +){7,}/.test(xs)){
-		xs=xs.replace(/C *(([-\d\.]+ +){6})([-\d\.])/g,'C$1 C$3')
-	}
-
-	while(/A *([-\d\.]+ +){8,}/.test(xs)){
-		xs=xs.replace(/C *(([-\d\.]+ +){7})([-\d\.])/g,'C$1 C$3')
-	}
-
-//console.log('d=',xs);
-
-	var cs=split(xs, /[A-Z]/g), cs0=cs[0],
-		cs1=[Arrf(Number,cs[1][0].replace(/M/,'').trim().split(/[ ,]+/))],
-		s='{x:'+(cs1[0][0]-WD2)+', y:'+(cs1[0][1]-HT2)+'},';
-	Arrf(function(y,i){
-		var p=y.trim().split(/[ ,]+/);
-//console.log(i,cs1[i-1]);
-		if(cs0[i]=='H'){
-			p=[p[0], cs1[i].slice(-1)[0]];
+		if(ispoints){
+			return Arrf(function(t,i){return i%2?',y:'+(+t-HT2)+'},':'{x:'+(+t-WD2)}, x.split(/[, +]/)).join('')
 		}
-		if(cs0[i]=='V'){
-			p=[cs1[i].slice(-2)[0], p[0]];
-		}
-		if(cs0[i]=='Z'){
-			p=cs1[0];
-			
-		}
-
-		if(cs0[i]=='S'){//三次贝塞尔（对称控制点）
-			var p0=Arrf(Number,cs1[i].slice(-4));
-			p=[p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
-		}
-		if(cs0[i]=='Q'){//二次贝塞尔，两个控制点合二为一
-			p=p.slice(0,2).concat(p)
-		}
-		if(cs0[i]=='T'){//二次贝塞尔（对称控制点）
-			var p0=Arrf(Number,cs1[i].slice(-4));
-			p=[p0[2]*2-p0[0], p0[3]*2-p0[1],p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
-		}
-
-
 		
-		var dp=Arrf(function(t,j){return j%2?+t-HT2:+t-WD2},  cs0[i]=='A'?p.slice(-2):p);// A命令参数个数是奇数，这里需截取坐标信息，以防错位
+		var xs=SVGPath.toFull(x);
+	//console.log('d=',xs);
 
-//console.log(p.join(' _ '));
-		cs1.push(p);
-		
-//console.log(cs1.join(' ; '));
-		if(cs0[i]=='M'){
-			s+='{move:{x:'+dp.join(', y:')+'}},'
-		}
-		if(/[LHVZ]/.test(cs0[i])){	//直线
-//console.log(dp.join(' , '));
-			s+='{x:'+dp.join(', y:')+'},'
-		}
-
-		
-		if(/[CSQT]/.test(cs0[i])){	//贝塞尔
-			s+='{bezier:['+Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
-		}
-
-
-		if(cs0[i]=='A'){	/*弧线		注意：SVG path中A是指定椭圆半径（弧线不一定占1/4椭圆），
-				而Zdog中arc是指定前点，Corner点，终点，构成的矩形的内切椭圆（弧线占1/4椭圆）
-				因此，Zdog中的Corner点，不在弧线上，而在弧线外，即弧的两条切线的交点（且交角为直角）。
-
+		var cs=split(xs, /[A-Z]/g), cs0=cs[0],
+			cs1=[Arrf(Number,cs[1][0].replace(/M/,'').trim().split(/[ ,]+/))],
+			s='{x:'+(cs1[0][0]-WD2)+', y:'+(cs1[0][1]-HT2)+'},';
+		Arrf(function(y,i){
+			var p=y.trim().split(/[ ,]+/);
+	//console.log(i,cs1[i-1]);
+			if(cs0[i]=='H'){
+				p=[p[0], cs1[i].slice(-1)[0]];
+			}
+			if(cs0[i]=='V'){
+				p=[cs1[i].slice(-2)[0], p[0]];
+			}
+			if(cs0[i]=='Z'){
+				p=cs1[0];
 				
-
-			*/
-			var rx=+p[0], ry=+p[1],p0=Arrf(Number,cs1[i].slice(-2)),
-				dx=dp[0]-(p0[0]-WD2), dy=dp[1]-(p0[1]-HT2);// Zdog使用Corner点（方角），而SVG Path中A命令不是
-	
-			if(dx==0){//竖直两端点之间的弧线，只考虑劣弧
-/*
-Corner点横坐标选取原则：
-			本横坐标-dw：顺时针 下上dy<0  逆时针上下		
-			本横坐标+dw：顺时针 上下dy>0  逆时针下上	即： 顺 ^ 下上- (异或)
-*/	
-				var dw=rx-Math.sqrt(rx*rx-Math.pow(dy/2,2));
-				dw*=2.4; //粗略近似处理
-				s+='{arc:[{x:'+[fixed4(dp[0]+dw*(((p[4]=='1') ^ (dy<0))?1:-1)), fixed4((p0[1]-HT2+dp[1])/2)].join(', y:')+
-				'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
-
-
-			}else if(dy==0){//水平两端点之间的弧线，只考虑劣弧
-/*
-Corner点纵坐标选取原则：
-			本纵坐标-dh：顺时针 左右dx>0  逆时针右左		
-			本纵坐标+dh：顺时针 右左dx<0  逆时针左右	即： 顺 ^ 左右+ (异或)
-*/	
-				var dh=ry-Math.sqrt(ry*ry-Math.pow(dx/2,2));
-				dh*=2.4; //粗略近似处理
-			//	console.log('dh=',dh,'dx=',dx,'半径',ry,'勾股高',Math.sqrt(ry*ry-Math.pow(dx/2,2)));
-				s+='{arc:[{x:'+[fixed4((p0[0]-WD2+dp[0])/2), fixed4(dp[1]+dh*(((p[4]=='1') ^ (dx>0))?1:-1))].join(', y:')+
-				'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
-	
-
-
-			}else{
-/*
-Corner点坐标选取原则：
-			本横坐标，上一个点纵坐标：顺时针 左下 右上（异号dx*dy<0 && 顺时针1）   逆时针左上 右下（同号dx*dy>0 && 逆时针0）	异顺 || 同逆   即： 同 ^ 顺 (异或)
-			上一个点横坐标，本纵坐标：顺时针 左上 右下（同号dx*dy>0 && 顺时针1）   逆时针右上 左下（异号dx*dy<0 && 逆时针0）	同顺 || 异逆   即： 同 ^ 逆 (异或)
-*/		
-				s+='{arc:[{x:'+((dx*dy>0) ^ (p[4]=='1')?[p0[0]-WD2,dp[1]]:[dp[0],p0[1]-HT2]).join(', y:')+
-				'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
 			}
 
-		}
+			if(cs0[i]=='S'){//三次贝塞尔（对称控制点）
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				p=[p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
+			}
+			if(cs0[i]=='Q'){//二次贝塞尔，两个控制点合二为一
+				p=p.slice(0,2).concat(p)
+			}
+			if(cs0[i]=='T'){//二次贝塞尔（对称控制点）
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				p=[p0[2]*2-p0[0], p0[3]*2-p0[1],p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
+			}
 
 
-	}, cs[1].slice(1));
-	return s
+			
+			var dp=Arrf(function(t,j){return j%2?+t-HT2:+t-WD2},  cs0[i]=='A'?p.slice(-2):p);// A命令参数个数是奇数，这里需截取坐标信息，以防错位
 
-}
+	//console.log(p.join(' _ '));
+			cs1.push(p);
+			
+	//console.log(cs1.join(' ; '));
+			if(cs0[i]=='M'){
+				s+='{move:{x:'+dp.join(', y:')+'}},'
+			}
+			if(/[LHVZ]/.test(cs0[i])){	//直线
+	//console.log(dp.join(' , '));
+				s+='{x:'+dp.join(', y:')+'},'
+			}
+
+			
+			if(/[CSQT]/.test(cs0[i])){	//贝塞尔
+				s+='{bezier:['+Arrf(function(t,j){return j%2?',y:'+t+'},':'{x:'+t}, dp).join('')+']},'
+			}
+
+
+			if(cs0[i]=='A'){	/*弧线		注意：SVG path中A是指定椭圆半径（弧线不一定占1/4椭圆），
+					而Zdog中arc是指定前点，Corner点，终点，构成的矩形的内切椭圆（弧线占1/4椭圆）
+					因此，Zdog中的Corner点，不在弧线上，而在弧线外，即弧的两条切线的交点（且交角为直角）。
+
+					
+
+				*/
+				var rx=+p[0], ry=+p[1],p0=Arrf(Number,cs1[i].slice(-2)),
+					dx=dp[0]-(p0[0]-WD2), dy=dp[1]-(p0[1]-HT2);// Zdog使用Corner点（方角），而SVG Path中A命令不是
+		
+				if(dx==0){//竖直两端点之间的弧线，只考虑劣弧
+	/*
+	Corner点横坐标选取原则：
+				本横坐标-dw：顺时针 下上dy<0  逆时针上下		
+				本横坐标+dw：顺时针 上下dy>0  逆时针下上	即： 顺 ^ 下上- (异或)
+	*/	
+					var dw=rx-Math.sqrt(rx*rx-Math.pow(dy/2,2));
+					dw*=2.4; //粗略近似处理
+					s+='{arc:[{x:'+[fixed4(dp[0]+dw*(((p[4]=='1') ^ (dy<0))?1:-1)), fixed4((p0[1]-HT2+dp[1])/2)].join(', y:')+
+					'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
+
+
+				}else if(dy==0){//水平两端点之间的弧线，只考虑劣弧
+	/*
+	Corner点纵坐标选取原则：
+				本纵坐标-dh：顺时针 左右dx>0  逆时针右左		
+				本纵坐标+dh：顺时针 右左dx<0  逆时针左右	即： 顺 ^ 左右+ (异或)
+	*/	
+					var dh=ry-Math.sqrt(ry*ry-Math.pow(dx/2,2));
+					dh*=2.4; //粗略近似处理
+				//	console.log('dh=',dh,'dx=',dx,'半径',ry,'勾股高',Math.sqrt(ry*ry-Math.pow(dx/2,2)));
+					s+='{arc:[{x:'+[fixed4((p0[0]-WD2+dp[0])/2), fixed4(dp[1]+dh*(((p[4]=='1') ^ (dx>0))?1:-1))].join(', y:')+
+					'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
+		
+
+
+				}else{
+	/*
+	Corner点坐标选取原则：
+				本横坐标，上一个点纵坐标：顺时针 左下 右上（异号dx*dy<0 && 顺时针1）   逆时针左上 右下（同号dx*dy>0 && 逆时针0）	异顺 || 同逆   即： 同 ^ 顺 (异或)
+				上一个点横坐标，本纵坐标：顺时针 左上 右下（同号dx*dy>0 && 顺时针1）   逆时针右上 左下（异号dx*dy<0 && 逆时针0）	同顺 || 异逆   即： 同 ^ 逆 (异或)
+	*/		
+					s+='{arc:[{x:'+((dx*dy>0) ^ (p[4]=='1')?[p0[0]-WD2,dp[1]]:[dp[0],p0[1]-HT2]).join(', y:')+
+					'},{x:'+dp[0]+', y:'+dp[1]+'}]},'
+				}
+
+			}
+
+
+		}, cs[1].slice(1));
+		return s
+
+	}
+};

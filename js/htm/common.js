@@ -151,7 +151,7 @@ loadHTML=function (x) {
 };
 
 L.removeItem('translation');
-var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog',
+var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog Lego',
 Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D2 D3 ZD',
 Mele2='LT LX LTX TEX IL YML',
 Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
@@ -395,6 +395,33 @@ function all2html(type,V,dom){
             throwOnError: false,
             displayMode: iv!='IL'
         });
+
+    }else if(/Lego/i.test(iv)){
+  
+        try{
+            var id=ivl+Random(12,1)+Time.now5();
+            if(!w.is('canvas')){
+                w.html('<canvas id='+id+' width='+(w.attr('width')||300)+' height='+(w.attr('height')||300)+'></canvas>');
+
+            }
+            //var C=new ctt($('#input0Preview canvas'),300,300), c=C.ctx;
+            //var C=new ctt(cvs,300,300), c=C.ctx;
+            var C=$('#'+id)[0];// work!
+            c=C.getContext('2d');
+            //var C=w.children()[0];    fail!
+           // console.log(XML.decode(v));
+
+
+         //  console.log(v);
+
+            eval(XML.decode(v));
+
+            w.addClass('lego');
+        }catch(e){
+            console.log(e);
+            w.html(v)
+        }
+
     }else if(/ZD/.test(iv)){
   
         try{
@@ -898,7 +925,7 @@ $(function(){
 			all2html('zdog','',pa);
 
         }
-	}).on('click','.zdog canvas',function(e){
+	}).on('click','.zdog canvas, .lego canvas',function(e){
         L.drawShapeNow=$(this).parent().attr('id')
     });
 
