@@ -70,9 +70,10 @@ function mUp(e,Last,drawshape){
 
 					if($t.is('path')){
 						//code+='lg.linearPath(['+Arrf(function(t,i){return i%2?'['+t+',':t+'],'}, ps.split(/[, +]/)).join(',')+']${opt})'
+						code+=SVGPath.toLego(ps,lt,tp,WD2,HT2,swd,opt)
 					}
 
-
+console.log(code);
 					L.legoCode+=';'+code;
 
 
@@ -447,21 +448,21 @@ var rotatexyz=/cylinderoidV|conoid[IO]V/.test(shp)?'x':'y';
 // console.log(s0);
 var s=zdogs(WD+sw,HT+sw,s0,rotatexyz);
 
-			var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
-			Z=Z||2001;
-		//	console.log(Z+6);
-			s1='<span data-code="'+s+'" class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
+var id='Zdog_'+shpNid;//+'_'+Time.now5()+(Math.random()+'').substr(2);
+Z=Z||2001;
+//	console.log(Z+6);
+s1='<span data-code="'+s+'" class=zdog'+idStyle(id,[lt-sw,tp-sw,WD+sw*2,HT+sw*2],'',Z+6,1)+'">'+s+sc;
 
 
-			shpN.after(s1);
-			all2html('zdog','','#'+id);
+shpN.after(s1);
+all2html('zdog','','#'+id);
 
-			if(D2on){
-				shpN.remove()
-			}
-			return
+if(D2on){
+	shpN.remove()
+}
+return
 
-		}
+}
 		
 		if(oOn('SymmetryAxis')){
 			var m1='M'+sw+' '+sw+'H'+(WD+40), m2='M'+sw+' '+sw+'V'+(HT+40), m3='M'+sw+' '+sw+'L'+(WD+40)+' '+(HT+40)+'M'+sw+' '+(HT+40)+'L'+(WD+40)+' '+sw,
@@ -930,6 +931,100 @@ var SVGPath={
 	},
 
 
+
+
+	toLego:function(x,lt,tp,WD2,HT2,swd,opt){
+		/*注意，Lego坐标系（同Canvas），
+			path 转成 legra命令
+		*/
+
+		
+		var xs=SVGPath.toFull(x);
+	//console.log('d=',xs);
+
+		var cs=split(xs, /[A-Z]/g), cs0=cs[0],
+			cs1=[Arrf(Number,cs[1][0].replace(/M/,'').trim().split(/[ ,]+/))],
+			s='', lastP=Arrf(function(t,j){return j%2?(+t+tp)/swd:(+t+lt)/swd},cs1[0]);
+
+			//console.log(cs[1],lastP,cs1);
+		Arrf(function(y,i){
+			var p=y.trim().split(/[ ,]+/);
+	//console.log(i,cs1[i-1]);
+			if(cs0[i]=='H'){
+				p=[p[0], cs1[i].slice(-1)[0]];
+			}
+			if(cs0[i]=='V'){
+				p=[cs1[i].slice(-2)[0], p[0]];
+			}
+			if(cs0[i]=='Z'){
+				p=cs1[0];
+				
+			}
+
+			if(cs0[i]=='S'){//三次贝塞尔（对称控制点）
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				p=[p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
+			}
+			if(cs0[i]=='Q'){//二次贝塞尔，两个控制点合二为一
+				p=p.slice(0,2).concat(p)
+			}
+			if(cs0[i]=='T'){//二次贝塞尔（对称控制点）
+				var p0=Arrf(Number,cs1[i].slice(-4));
+				p=[p0[2]*2-p0[0], p0[3]*2-p0[1],p0[2]*2-p0[0], p0[3]*2-p0[1]].concat(p)
+			}
+
+
+			
+			var dp=Arrf(function(t,j){return j%2?(+t+tp)/swd:(+t+lt)/swd},  cs0[i]=='A'?p.slice(-2):p);// A命令参数个数是奇数，这里需截取坐标信息，以防错位
+
+	//console.log(p.join(' _ '));
+			cs1.push(p);
+			
+	//console.log(cs1.join(' ; '));
+
+			if(/[LHVZ]/.test(cs0[i])){	//直线
+	//console.log(dp.join(' , '));
+				//s+='{x:'+dp.join(', y:')+'},'
+				//s+='lg.linearPath(['
+				s+=`lg.line(${lastP},${dp+opt});`
+			}
+
+			
+			if(/[CSQT]/.test(cs0[i])){	//贝塞尔
+				s+=`lg.bezierCurve(${lastP},${dp+opt});`
+			}
+
+
+			if(cs0[i]=='A'){	/*弧线		注意：SVG path中A是连接两点的弧
+					A rx ry x-axis-rotation large-arc-flag[0,1] sweep-flag[↻1|↺0] x y
+
+					而Lego中 arc(xc, yc, a, b, start, stop, closed [, options])
+					先指定圆心，按起始弧度
+
+					这里只实现 横平竖直的圆角弧（不考虑倾斜的弧，忽略x-axis-rotation参数）
+
+				*/
+				var rx=+p[0], ry=+p[1],p0=Arrf(Number,cs1[i].slice(-2)),
+					dx=dp[0]-lastP[0], dy=dp[1]-lastP[1], dxy=(p[4]=='1') ^ (dx*dy<0);// 
+
+				
+				s+=`lg.arc(${dxy?dp[0]+','+lastP[1]:lastP[0]+','+dp[1]},${Math.abs(dx)},${Math.abs(dy)},
+					Math.PI*${dxy?Math.sign(dy)/2:+(dx>0)},
+					Math.PI*${dxy?+(dx<0):-Math.sign(dy)/2},
+					0,${opt});`
+
+
+			}
+//console.log(i,cs0[i], dp);
+			//if(cs0[i]=='M'){
+				lastP=dp;
+				//s+='{move:{x:'+dp.join(', y:')+'}},'
+			//}
+
+		}, cs[1].slice(1));
+		return s
+
+	},
 
 	toZdog:function(x,WD2,HT2,ispoints){
 	/*注意，Zdog坐标系（左-右+上-下+，原点在Canvas中心），
