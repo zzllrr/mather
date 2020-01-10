@@ -150,9 +150,9 @@ teachings = {
     {
       "Computational Mathematics": [
         "Interpolation and Approximation Theory",
-        "Numerical solution of Ordinary Differential Equation",
+        "Numerical Solution of Ordinary Differential Equation",
         "Numerical Solution of Partial Differential Equation",
-        "Numerical solution of Integral Equation",
+        "Numerical Solution of Integral Equation",
         "Numerical Algebra",
         "Discrete Method for Continuous Problem",
         "Random Numerical Experiment",
@@ -166,7 +166,7 @@ teachings = {
         "Probability Distribution",
         "Limit Theory",
         "Random Process",
-        "Markov process",
+        "Markov Process",
         "Random Analysis",
         "Martingale Theory",
         "Applied Probability Theory",

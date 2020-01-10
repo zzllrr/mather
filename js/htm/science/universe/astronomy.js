@@ -23,4 +23,10 @@ science['Universe/Astronomy']=detail('Star',Table([i18(ZLR('Name Type Summary'))
 
 
 
+],'TBrc'),1)+detail(gM('Planet'),Table([i18(ZLR('Name Type Summary'))],[
+
+
+    [href(Hs+'trek.nasa.gov/mars/','Mars'),'','by NASA'],
+    [href(Hs+'www.google.com/mars/','Mars Map'),'','by Google'],
+    
 ],'TBrc'),1);
