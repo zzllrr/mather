@@ -223,6 +223,8 @@ lang['zh_cn'] = {
 	'Comprehensive':'综合',
 	'Holistic':'整体性',
 
+	'Predict':'预测',
+
 	'Uniq':'去重',
 	'Unique':'唯一',
 	'Repeat':'重复',

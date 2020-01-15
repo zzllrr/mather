@@ -21,4 +21,6 @@ science['Environment/Geography']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(H+'www.ninepointfive.org','9.5 Earthquakes'),'','Nine Point Five is a WebGL visualization exploring earthquakes over the past 30 years.'],
 
+    [href(Hs+'map.onesoil.ai','One Soil'),'','Agricultural OneSoil Map with AI detected fields and crops'],
+
 ],'TBrc');

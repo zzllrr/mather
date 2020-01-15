@@ -121,7 +121,8 @@ $(function () {
 							'<span for=bgimg><label>'+strchkbx0+'id=bgimgOn class=on /></label>'+
 								'<span for=bgimgOn>'+
 									DCtv('multi',
-										'<div>'+gM('Image URL')+'<input type=url class=imgurl placeholder="" />'+dc+
+										'<div>'+gM('Import')+'<input type=file class=imgurlfile placeholder="drop & drag" />'+dc+
+										'<div>'+gM('Image URL')+'<input type=url class=imgurl placeholder="image URL/Clipboard" />'+dc+
 										'<div>'+gM('Cut Position and Size')+'<input type=text class=poswh placeholder="sx,sy,swidth,sheight" />'+dc+
 										'<div>'+gM('Paste Position and Size')+'<input type=text class=poswh placeholder="x,y,width,height" />'+dc+
 										'<div>'+itv('Add','add')+itv('Del','clear')+dc
@@ -1400,7 +1401,52 @@ dc+
 		psib.find('input').not('.multinput').attr('disabled','disabled');
 		pa.find('input').removeAttr('disabled');
 
-	}).on('change keyup mouseup','input,select',function(e){//keyup mouseup
+	}).on('paste','.imgurl',function(e){
+
+		var ts=e.originalEvent.clipboardData.items, me=$(this), id=this.id, p=me.parent(), pp=p.parent(),sm=pp.prevAll('summary'), c=sm.find(':checked').length,
+	
+		cb=function(){
+
+			loadCaps()
+		};
+		if(ts.length){
+			for(var i=0;i<ts.length;i++){
+				if(ts[i].kind == 'file'){
+					p.find(':file').add(pp.find(':file')).val('');
+					
+					blob = ts[i].getAsFile(),reader=new FileReader();
+					//console.log(ts[i]);  DataTransferItem {type: "image/png", kind: "file"}
+					reader.onload = function(event){
+						//console.log(event);
+						var src = event.target.result; //webkitURL.createObjectURL(blob);
+
+						
+						var sne=picSrcNameExt(src), img=new Image();
+						me.val(' ').css('background','url('+src+') bottom right/contain no-repeat')
+							.attr({'data-name':'clipboard','data-no':0,'data-size':0,'data-sz':0,'data-ext':'other','data-bg':src,'data-src':src});
+						img.onload=function(){
+							var w=this.width;
+							var h=this.height;
+							var s=w+'×'+h;
+							$('.urlImg[data-bg="'+this.src+'"]').attr({'data-w':w,'data-h':h,'data-wxh':s});
+							$(this).attr({'data-wxh':s, 'data-src':this.src});
+							
+							if($(loc+' img:not([data-wxh])').length==0){
+								cb();
+							}
+						};
+						img.src=src;
+						
+						$(loc).append(img);
+						
+						loadCaps();
+					};
+					reader.readAsDataURL(blob);
+					break;
+				}
+			}
+		}
+	}).on('change keyup mouseup','input:not(.imgurl),select',function(e){//keyup mouseup
 		var me=$(this);
 
 		e.stopPropagation();
@@ -1418,6 +1464,8 @@ dc+
 			var on=me.prop('checked');
 			me.parent().next().toggle(on);
 		}
+
+
 
 		$('#TextBox').val('');
 		$('#TextBoxGo').click();
@@ -2226,19 +2274,19 @@ dc+
 
 
 
-	}).on('paste', t, function (e) {
+	}).on('paste', '.imgurl', function (e) {
 		//console.log(e);
 		var ts = e.originalEvent.clipboardData.items, me = $(this), id = this.id, p = me.parent(), pp = p.parent(), sm = pp.prevAll('summary'), c = sm.find(':checked').length,
 
 			cb = function () {
-				loadCaps()
+				caps.repaint();
 			};
 		if (ts.length) {
 			for (var i = 0; i < ts.length; i++) {
 				if (ts[i].kind == 'file') {
 					p.find(':file').add(pp.find(':file')).val('');
 
-					blob = ts[i].getAsFile(), reader = new FileReader();
+					var blob = ts[i].getAsFile(), reader = new FileReader();
 					//console.log(ts[i]);  DataTransferItem {type: "image/png", kind: "file"}
 					reader.onload = function (event) {
 						//console.log(event);
@@ -2252,7 +2300,7 @@ dc+
 							var w = this.width;
 							var h = this.height;
 							var s = w + '×' + h;
-							$('.urlImg[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
+							$('.imgurl[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
 							$(this).attr({ 'data-wxh': s, 'data-src': this.src });
 
 						};
@@ -2260,22 +2308,18 @@ dc+
 
 
 
-						loadCaps()
+						cb();
 					};
 					reader.readAsDataURL(blob);
 					break;
 				}
 			}
 		}
-	}).on('change keyup mouseup', t, function (e) {//textarea
+	}).on('change keyup mouseup', '.imgurl', function (e) {//textbox
 		var me = $(this), id = this.id, src = me.val(), src0 = me.attr('data-bg') || '', cnged = src0 != src && src != ' ', p = me.parent(), pp = p.parent(), sm = pp.prevAll('summary'), c = sm.find(':checked').length,
-			cap=id=='urlCap',
 			cb = function () {
-				/*
-				if (til) { loadTiles() }
-				if (imr) { $('#count').click() }
-				*/
-				if (cap) { loadCaps() }
+				loadCaps();
+				//caps.repaint()
 			};
 
 		imgPreRe.lastIndex = 0;
@@ -2297,7 +2341,7 @@ dc+
 						var w = this.width;
 						var h = this.height;
 						var s = w + '×' + h;
-						$('.urlImg[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
+						$('.imgurl[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
 						$(this).attr({ 'data-wxh': s, 'data-src': this.src });
 
 
@@ -2308,15 +2352,13 @@ dc+
 					img.src = src;
 
 
-					loadCaps()
+					loadCaps();
 				}
 
 			}
 
-		} else if ($('#inFile').val() == 'capcanvasAPI') {
-			scrn('canvasAPI');
-
 		}
+		
 		e.stopPropagation();
 
 	}).on('dragover', t, function (e) {
@@ -2328,7 +2370,7 @@ dc+
 	}).on('drop', t, function (e) {
 		e.stopPropagation(); e.preventDefault(); $(this).removeClass('drop');
 		var me = $(this), id = this.id, pp = me.parent().parent(), src = me.val();;
-		if (/url/.test(id)) { $('#' + id.replace('rl', 'p')).val('') }
+		//if (/url/.test(id)) { $('#' + id.replace('rl', 'p')).val('') }
 		var f = e.originalEvent.dataTransfer.files[0];
 		if (!f || f.type.indexOf('image') < 0) { return }
 		//console.log(f); File {webkitRelativePath: "", lastModifiedDate: xxx, name: "VIP.png", type: "image/png", size: 10628}
@@ -2337,7 +2379,7 @@ dc+
 		reader.onload = function (event) {
 			var src = this.result;
 			me.val(' ').css('background', 'url(' + src + ') bottom right/contain no-repeat').attr({ 'data-bg': src, 'data-src': src });
-			loadCaps()
+			loadCaps();
 		};
 		reader.readAsDataURL(f);
 
@@ -3183,4 +3225,84 @@ function getcap0(){
 		t+=this.outerHTML;
 	});
 	return t
+}
+
+
+function loadCaps(){
+	var bg=$('.imgurl').attr('data-bg'), infile='capscr', ext, cvs=$('#caps')[0], capctx=cvs.getContext('2d'), img, w, h;
+	if(!bg){
+		if(/capscr/.test(infile)){scrn('eraser')}
+		return;
+	}
+
+	if(bg.substr(0,11)=='data:image/'){
+		ext=bg.replace(/[;,].*/,'').split('/')[1].toLowerCase().replace('x-icon','ico').replace('+xml','');
+		if(ext=='svg'){
+			bg=Base64.decode(bg.replace("data:image/svg+xml;base64,",''));
+			if(bg.indexOf('desc name="zzllrr Imager Geek"')>0){
+				var tArr=bg.split('<foreignObject x='), Scr=/<image x=/.test(tArr[0]), Note=tArr.length==2;
+				if(!Note && !Scr){return}
+				if(Scr && infile!='capnote'){
+					var imgs=tArr[0].split('" xlink:href="'), wh=imgs[0].split('" height="');
+					h=+wh[1];
+					w=+wh[0].split(' width="')[1];
+					img=imgs[1].split('"></image>')[0];
+				}
+				if(Note && infile!='capscr'){
+					tArr[1]=tArr[1].split('</body')[0].split('zig()">')[1];
+					var Txt=/<textarea id=/.test(tArr[1]);
+					if(Txt){
+						var txts=tArr[0].split('".split("Text"),B="');
+						var A=txts[0].split('var A="')[1].split('Text'), B=txts[1].split('"')[0].split(',');
+					}
+					var last=$('#Caps').children().last(), tim=Time.now5();
+					last.after(tArr[1]);
+					if(Txt){
+						for(var i=0;i<A.length;i++){
+							last.nextAll('#Text'+A[i]).val(unescape(B[i]));
+						}
+					}
+					last.nextAll().css({'z-index':function(i,v){return +v+$(this).index()*100}}).find('[id]').add(last.nextAll()).attr('id',function(){return this.id+tim});
+				}
+
+			}else{
+				if(infile=='capscr'){
+					img=$('.imgurl').attr('data-bg');
+				}else{
+					bg=bg.substr(bg.indexOf('<svg')-4);
+					bg=bg.substr(0,bg.lastIndexOf('</svg')+6);
+					bg=bg.replace(/<title>.*<[/]title>/g,'').replace(/<desc>.*<[/]desc>/g,'');
+					var last=$('#Caps').children().last(), tim=Time.now5();
+					last.after('<svg id=SVG'+tim+'>'+bg+'</svg>');
+					last.next().css({'z-index':$('#Caps').children('svg, textarea, span').length+2001,position:'absolute',left:0,top:0})
+				}
+			}
+		}else{
+			img=bg;
+		}
+	}else{
+		img=bg;
+	}
+
+	if(img){
+	var Img=new Image();
+		Img.onload=function(){
+			if(infile){
+				/*
+				cvs.width=this.width;
+				cvs.height=this.height;
+				*/
+
+				capctx.drawImage(this,0,0);
+				/*
+				$('#svgShape svg[id]').eq(0).mouseout();
+				$('#tileTool').show('fast',function(){
+					if(this.width+$('#tileTool').width()>$(window).width()){CapsTip()}
+				});
+				*/
+			}
+		}
+		Img.src=img;
+	}
+
 }

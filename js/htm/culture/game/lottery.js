@@ -57,9 +57,13 @@ culture['Game/Lottery']=XML.wrapE('style',
 		strbtn+gM('Random')+'" id=ltr_randFSblue />'+
 		num('5" class="bets',1,100)+gM('Bet')+'</label></p>'+
 
-		'<p>单式 <label>'+
-		strbtn+gM('Random')+'" id=ltr_randDS />'+
-		num('5" class="bets',1,100)+gM('Bet')+'</label></p>'
+		'<p>单式 '+
+		strbtn+gM('Random')+'" id=ltr_randDS /><label>'+
+		num('5" class="bets',1,100)+gM('Bet')+'</label>'+
+		
+		strbtn+gM('Predict')+'" id=ltr_predictDS />'+
+		strbtn+gM('Statistics')+'" id=ltr_statiDS />'+
+		'</p>'
 );
 	
 
@@ -68,7 +72,7 @@ $(function(){
 
 	$('body').on('click','#ltr_randDS',function(){
 		var s='';
-		for(var i=0,l=+$(this).next().val();i<l;i++){
+		for(var i=0,l=+$(this).next().children().val();i<l;i++){
 			s+=RandomCombinA(seqA(1,33),6).join(' ')+' ; '+Random(16)+'\n'
 		}
 		$('#ltr_result').val(s)
@@ -114,6 +118,40 @@ $(function(){
 		}
 		$('#ltr_result').val(s)
 	
+
+	}).on('click','#ltr_predictDS,#ltr_statiDS',function(){
+		$('#ltr_my_result').val(function(i,v){return v.replace(/\t(\d\d?\t){6}/g,function(t){return '\t'+t.trim().split('\t').sort(sortBy.numInt).join('\t')+'\t'})});
+		var id=this.id, v=$('#ltr_my_result').val().replace(/\d{7}\t((\d+\t){6}\d+)/g,'$1'),
+		vA=Arrf(function(x){return x.replace(/\t\d+$/,'').split('\t')},v.split(brn)), vn=vA.length,
+		s='', rA0=[], rA1=[], rA2=[], A;
+
+//统计
+//if(id=='ltr_statiDS'){
+	A=[1];
+	for(var i=1;i<vn;i++){
+		var vAi=vA[i].slice(0,7),si=[];
+		for(var j=0;j<i;j++){
+			si.push(set.opr2('∩',vAi,vA[j].slice(0,7)).length)
+		}
+		A.push(si.join('\t'));
+	}
+//}
+
+
+if(id=='ltr_predictDS'){
+	A=[];
+	// C(33-6,6)
+	var B=set.opr2('-',vA.slice(-1)[0].slice(0,7),seqA(1,33));
+	for(var i=1;i<vn;i++){
+
+	}
+
+}
+
+s=A.join(brn);
+		$('#ltr_result').val(s);
+
+
 	}).on('click','#ltr_chk',function(){
 		var p=$(this).parent(), txt=$('#ltr_my_result').val().trim().replace(/^0/,''), isonline=$('#ltr_lastOnline').prop('checked'), chkprize=function(x){
 			/*

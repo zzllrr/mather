@@ -25,6 +25,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')],
 	[github('timqian/chart.xkcd'),'','xkcd styled chart lib'],
 	[href(Hs+'wiredjs.com','Wired Elements'),'','A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.'+github('wiredjs/wired-elements')],
+	[github('gangtao/sketchify'),'','turn svg graph(ECharts,AntV G2,highcharts,amcharts,xCharts) into sketchy visualization, based on Rough.js'],
 
 	[github('fabricjs/fabric.js'),'','Canvas Library, SVG-to-Canvas (& canvas-to-SVG) Parser '+href(H+'fabricjs.com/demos/','Demos')],
 	[href(Hs+'sanddance.js.org/app/','Sand Dance'),'','Visually explore, understand, and present your data '+github('microsoft/SandDance')],
@@ -70,6 +71,8 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 
 	[href(Hs+'gephi.org','Gephi'),'','visualization and exploration software for all kinds of graphs and networks.'+github('gephi/gephi')],
+
+	[href(Hs+'plotparade.com','Plot Parade'),'','Pick a chart and play'],
 
 ],'TBrc'),1)+
 
@@ -143,9 +146,17 @@ detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
 	
 	[href(H+'giorgialupi.com',''),'','I am an information designer and a Partner at Pentagram advocating for Data Humanism.'],
 
-	[href(Hs+'plotparade.com','Plot Parade'),'','data art project by Krisztina Szűcs'],
+	[href(Hs+'variable.io'),'','a generative design and data visualisation studio based in London, UK. We blend design, software and aesthetics emerging from data, processes and human behaviour.'],
 
 	[href(Hs+'kimalbrecht.com','Kim Albrecht'),'','visualizes cultural, technological, and scientific forms of knowledge. His diagrams are meant to unfold and question the structures of representation and explore the aesthetic of the intermingling of technology and society through the sensual knowledge of tracing information.'+ul(hrefA(Hs+'kimalbrecht.com',ZLR('grid viz')))],
+
+	[href(Hs+'dataveyes.com/#!/en/works','Dataveyes | Human Data Interactions'),'','We share the firm conviction that the upcoming era of rich data and smart objects will disrupt the way data is conventionally used. Through our works, we take an active part in the revolution of Human-Data interactions.'],
+
+	[href(H+'graphics.reuters.com','Reuters Graphics'),'','A collection of recent work from the Reuters Graphics team.'],
+
+	[href(H+'www.studioterp.nl','STUDIO TERP'),'','designs data visualization and infographics to visually guide your audience through challenging data'],
+
+	[href(H+'www.findtheconversation.com/concept-map','Concept Map'),'',''],
 
 ],'TBrc'),1)+
 
@@ -197,6 +208,8 @@ detail(gM('Geography')+' GIS',Table([i18(ZLR('Name Type Summary'))],[
 detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'bestofjs.org','Best of JS'),'Nav','Best of JavaScript is a project by Michael Rambeau, made in Osaka, Japan'],
+
+	[href(Hs+'www.yuque.com/mo-college/weekly','墨者修齐'),'','数据可视化周刊，精选文章推荐，可视化入门与进阶权威网站、论文、工具介绍，工程与设计实践分享'],
 
 ],'TBrc'),1);
 
