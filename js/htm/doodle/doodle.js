@@ -3328,3 +3328,19 @@ $('span[for=bgimgOn] .multi').each(function(){
 	}
 });
 }
+
+function randomCanvas(w,h,x,y){
+	var c=(new ctt('#caps')).ctx, d=c.createImageData(w,h);
+	for(var i=0;i<h;i++){
+		for(var j=0;j<w;j++){
+			var ij=(i*w+j)*4;
+			//console.log(ij);
+			d.data[ij+0]=Random(256)-1;
+			d.data[ij+1]=Random(256)-1;
+			d.data[ij+2]=Random(256)-1;
+			d.data[ij+3]=Random(256)-1;
+		}
+	}
+	//console.log(d.data);
+	c.putImageData(d,x||0,y||0);
+}

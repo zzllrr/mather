@@ -73,7 +73,7 @@ function mUp(e,Last,drawshape){
 						code+=SVGPath.toLego(ps,lt,tp,WD2,HT2,swd,opt)
 					}
 
-console.log(code);
+//console.log(code);
 					L.legoCode+=';'+code;
 
 
