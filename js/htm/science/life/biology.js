@@ -18,4 +18,6 @@ science['Life/Biology']=Table([i18(ZLR('Name Type Summary'))],[
 
     [href(Hs+'neal.fun/deep-sea/','Deep Sea'),'',''],
 
+    [href(H+'liveranatomyexplorer.steven-birr.com','Liver Anatomy Explorer'),'','developed in a german research project supported by the Federal Ministry of Education and Research ("BMBF")'],
+
 ],'TBrc');

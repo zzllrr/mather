@@ -40,4 +40,6 @@ culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 
 	[href(Hs+'designmuseum.org','Design Museum'),'','in UK'],
 
+	[href(Hs+'www.vam.ac.uk','V & A'),'',"The V&A is the world’s leading museum of art and design, housing a permanent collection of over 2.3 million objects that span over 5,000 years of human creativity. The Museum holds many of the UK's national collections and houses some of the greatest resources for the study of architecture, furniture, fashion, textiles, photography, sculpture, painting, jewellery, glass, ceramics, book arts, Asian art and design, theatre and performance."],
+
 ],'TBrc');

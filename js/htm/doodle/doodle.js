@@ -1415,7 +1415,7 @@ dc+
 				if(ts[i].kind == 'file'){
 					pp.find(':file').val('');
 					
-					blob = ts[i].getAsFile(),reader=new FileReader();
+					var blob = ts[i].getAsFile(),reader=new FileReader();
 					//console.log(ts[i]);  DataTransferItem {type: "image/png", kind: "file"}
 					reader.onload = function(event){
 						//console.log(event);

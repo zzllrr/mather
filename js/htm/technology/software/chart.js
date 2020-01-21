@@ -52,7 +52,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 		href(Hs+'live.amcharts.com','Online Chart Editor'),
 		github('amcharts'),
 	].concat(hrefA(
-		Hs+'www.amcharts.com', ZLR('demos/ svg-maps/ visited_countries/ visited_states/ javascript-charts/ javascript-maps/ timeline-chart')
+		'www.amcharts.com', ZLR('demos/ svg-maps/ visited_countries/ visited_states/ javascript-charts/ javascript-maps/ timeline-chart')
 	)))],
 
 
@@ -64,7 +64,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 	[github('stardustjs',''),'','Stardust: GPU-based Visualization Library'],
 
-	[href(H+'data-illustrator.com',''),'','Create infographics and data visualizations without programming.'],
+	[href(H+'data-illustrator.com','Data Illustrator'),'','Create infographics and data visualizations without programming.'],
 
 	
 	[href(H+'storyexplorer.namwkim.org','Story Explorer - Nolitory'),'','Visual Interface for Creative Genome Data. #Movie'],
@@ -148,7 +148,7 @@ detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'variable.io'),'','a generative design and data visualisation studio based in London, UK. We blend design, software and aesthetics emerging from data, processes and human behaviour.'],
 
-	[href(Hs+'kimalbrecht.com','Kim Albrecht'),'','visualizes cultural, technological, and scientific forms of knowledge. His diagrams are meant to unfold and question the structures of representation and explore the aesthetic of the intermingling of technology and society through the sensual knowledge of tracing information.'+ul(hrefA(Hs+'kimalbrecht.com',ZLR('grid viz')))],
+	[href(Hs+'kimalbrecht.com','Kim Albrecht'),'','visualizes cultural, technological, and scientific forms of knowledge. His diagrams are meant to unfold and question the structures of representation and explore the aesthetic of the intermingling of technology and society through the sensual knowledge of tracing information.'+ul(hrefA('kimalbrecht.com',ZLR('grid viz')))],
 
 	[href(Hs+'dataveyes.com/#!/en/works','Dataveyes | Human Data Interactions'),'','We share the firm conviction that the upcoming era of rich data and smart objects will disrupt the way data is conventionally used. Through our works, we take an active part in the revolution of Human-Data interactions.'],
 
