@@ -203,7 +203,76 @@ $(function(){
 	*/
 
 //	console.log(orbits('3n+1',5));
+/*
 
+
+
+A：所有符合猜想的奇数集合\\
+B：所有符合猜想的偶数集合\\
+f(x)=3x+1\\
+g(x)=4x+1\\
+h(x)=2x+1\\
+∀ k∈ Z^+\\
+\begin{aligned}
+定理1：& ∀T(x)∈奇数集且
+f(T(x))∈ B => T(x) ∈A \\
+定理2：&
+x ∈ A => $piece([
+'g^{(n)}(x) ∈ A',
+'f(x) , 2^kx, 2^kf(x)∈ B'])$ \\
+
+定理3：&
+x ∈ B => $piece([
+'f(x),f^{-1}(x),g^{(n)}(x) ∈ A?',
+'2^kx, 2^kf(x)∈ B?'])$ \\
+
+\end{aligned}\\
+
+\begin{aligned}
+
+& 证明：\\
+& (1)~ g(x) ∈ A\\
+& f(g(x))=12x+4=4f(x)∈B=> g(x) ∈ A\\~\\
+& (2)~ g^{(n)}(x) ∈ A\\
+& g^{(n)}(x)=\underbrace{g(g(⋯ g(x)⋯))}_{n层嵌套}=4^n \left(x+1\/3\right)-1\/3\\
+& 例如：g^{(2)}(x)=g(g(x))=16x+5\\
+& g^{(n)}(x)+1\/3=4\left( g^{(n-1)}(x)+1\/3 \right)=⋯=4^n \left(x+1\/3\right)\\
+&f(g^{(n)}(x))=4^n (3x+1)=4^nf(x)∈B => g^{(n)}(x) ∈A\\~\\
+& (3)~ P^{(n)}(x) =a^nx+b{a^n-1}\/{a-1}=a^n\left( x+b\/{a-1}\right)-b\/{a-1}\\
+
+& 多项式函数P(x)=ax+b~~(仅考虑a≠1情况)\\
+& P^{(n)}(x)=a P^{(n-1)}(x)+b\\
+& P^{(n)}(x)+b\/{a-1}=a\left(  P^{(n-1)}(x)+b\/{a-1}\right)\\
+& =⋯=a^{n-1}\left(  P(x)+b\/{a-1}\right)=a^n\left(x+b\/{a-1}\right)\\
+& f(P^{(n)}(x)) = a^n3x+3b{a^n-1}\/{a-1}+1=a^nf(x)+(3b-a+1){a^n-1}\/{a-1}\\
+& 令3b-a+1=0，且a=2^m，得\\
+& 3b+1=a=2^m=(3-1)^m\\
+& 则m是偶数（等式两边同时\mod 3即可得知）\\
+& 即此时 a=4^k,~b={4^k-1}\/3, 且P(x),P^{(n)}(x)∈B
+
+
+\end{aligned}\\~\\
+\begin{aligned}
+
+& 未知(是否一定∈B)：\\
+& (1)\\
+& f(h(x))=6x+4=2f(x)+2\\~\\
+& (2)\\
+& g(f(x))=12x+5\\
+& f(g(f(x)))=36x+16=12f(x)+4\\~\\
+& (3)\\
+& f^{(n)}(x)=\underbrace{f(f(⋯f(x)⋯))}_{n层嵌套}=3^n \left(x+1\/2\right)-1\/2\\
+& f(f^{(n)}(x))=f^{(n+1)}(x)=3^nf(x)+{3^n-1}\/2\\~\\
+& (4)\\
+& f(x+2k)=3(x+2k)+1=f(x)+6k\\
+& f((2k+1)x)=3(2k+1)x+1=(2k+1)f(x)-2k
+\\~\\
+
+\end{aligned}\\ 
+
+
+
+*/
 
 	$('body').on('click change keyup','#k_kn_b,#b_kn_b',function(){
 		var k=+$('#k_kn_b').val(),b=+$('#b_kn_b').val(),knb=k+'n'+(b<0?b:'+'+b);

@@ -8,7 +8,13 @@ var svgid = '#svgShape svg[id', strk, slid, dsh, shps,
 	cap0='<canvas id=caps hidden></canvas><img id=capsimg /><div hidden id=capsdiv>' + dc, reCanvasCode;
 	L.canvasCode=L.canvasCode||'';
 	L.legoCode=L.legoCode||'';
-
+	L.FGC=/#/.test(L.FGC)?L.FGC:'#000000';
+	L.BGC1=/#/.test(L.BGC1)?L.BGC1:'#F5F5F5';
+	L.BGC=/#/.test(L.BGC)?L.BGC:'#ffffff';
+	L.BGC2=/#/.test(L.BGC2)?L.BGC2:'#FFFAFA';
+	L.FGC1=L.BGC1;
+	L.FGC2=L.BGC2;
+	
 $(function () {
 
 
