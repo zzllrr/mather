@@ -2293,6 +2293,7 @@ itv('" id=input0Toolon tip="Toggle Editor Tool','functions')+
 itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 (ishome?itv('" id=go tip="Run" hotkey="Ctrl + Enter','play_circle_outline')+
+	itv('" id=refresh tip="Refresh','refresh')+
 	itv('" id=launch tip="Launch','launch')+
 	itv('" id=qrcode tip="Share','share')+
 	itv('" id=zMatherOn2 tip="Collapse','keyboard_arrow_up'):'')

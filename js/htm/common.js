@@ -1103,6 +1103,14 @@ $(function(){
 			$('#go').click()
 		}
 
+	}).on('click','#refresh',function(){
+		var x=$('#oHTML iframe').attr('src')||location.href, lv=$('.launch:visible');
+		if(x){
+			$('#oHTML iframe').attr('src',x);
+		}else{
+			
+		}
+
     }).on('click','#oHTML .katex',function(e){
     
         copy2clipboard($(this).find('annotation').eq(0).text());
