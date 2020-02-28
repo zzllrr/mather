@@ -14,7 +14,7 @@ Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'brilliant.org','brilliant'),'','以数学，物理为主，含有大量wiki与测试题，适合自学'],
 
 	[href(H+'episte.math.ntu.edu.tw','基础数学讲义'),'','by 项武义教授'],
-
+	[href(Hs+'3Brown1Blue.com','3Brown1Blue'),'','数学科普视频 '+href(Hs+'space.bilibili.com/88461692','B站')],
 ],'TBrc')+
 	
 detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
