@@ -90,6 +90,8 @@ oHTML=function(x,notMD,elem,cb){
                 katex.render(kx(t), this, {
                     throwOnError: true,
                     displayMode: $(this).is('div,td'),
+                    
+					trust:true
                 });
             }
 
@@ -393,7 +395,8 @@ function all2html(type,V,dom){
         }
         katex.render(x, w[0], {
             throwOnError: false,
-            displayMode: iv!='IL'
+            displayMode: iv!='IL',
+            trust:true
         });
 
     }else if(/Lego/i.test(iv)){
@@ -1196,6 +1199,7 @@ $(function(){
                             katex.render(kx(t), this, {
                                 throwOnError: true,
                                 displayMode: $(this).is('div,td'),
+                                trust:true
                             });
                         });
                     }else if(!c.length){
@@ -1204,6 +1208,7 @@ $(function(){
                             katex.render(kx(t), td[0], {
                                 throwOnError: true,
                                 displayMode: $(td).is('div,td'),
+                                trust:true
                             });
                         }
                         
@@ -1215,6 +1220,7 @@ $(function(){
                         katex.render(kx(t), this, {
                             throwOnError: true,
                             displayMode: $(this).is('div,td'),
+                            trust:true
                         });
                     });
                 }else{
@@ -1222,6 +1228,7 @@ $(function(){
                     katex.render(kx(t), this, {
                         throwOnError: true,
                         displayMode: true,
+                        trust:true
                     });
                 }
             }
@@ -1239,7 +1246,8 @@ $(function(){
         if(v){
             katex.render(kx(v), k0[0], {
                 throwOnError: true,
-                displayMode: true
+                displayMode: true,
+                trust:true
             });
         }
         
@@ -1257,6 +1265,7 @@ $(function(){
             katex.render(kx(t), this, {
                 throwOnError: true,
                 displayMode: false,
+                trust:true
             });
         });
         

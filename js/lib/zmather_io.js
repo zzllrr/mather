@@ -117,14 +117,14 @@ SBS={
 
 	Operator:[
 		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀◯'],//⨌
-		['′″‴! ¬∀∃∄ ∟√∛∜','‵‶‷‼ ∠∂∇†'],
+		['′″‴!† ¬∀∃∄ ∟√∛∜','‵‶‷‼‡ ∠∂∇✓'],
 		['+×±⊕ ∧∨∩∪','-÷∓⊗'],
 		[ ZLR('() [] {} <> 〈〉 ⁽⁾ ┌┐ ⌈⌉ ⎰⎱ ⟦⟧ ║║ ||'),
 		ZLR('(,) [,] {,} <,> ⟨⟩ ₍₎ └┘ ⌊⌋ (,] [,)')],//⟮⟯
 	],
 
 	Operator1:[
-		['+∓⍅⍏⌿⌗†⌶','⊹±⍆⍖⍀⋕#'],
+		['+∓⍅⍏⌿⌗†⌶','⊹±⍆⍖⍀⋕#‡'],
 		['‐‑‒−⁃¦∣∤','–—―－'],
 		['‾∓∔∸∺∻÷∹⍎','_±‗⍘⍙⍚⍛⍜⍕'],
 			
@@ -138,7 +138,7 @@ SBS={
 		['∧⋀⌃⌅⊼⌆⋋⋏⨇','∨⋁⌄‸⊻⊽⋌⋎⨈'],
 		['∩⋂⋓⋔ ⨃⨄⨅⊓','∪⋃⋒ ⊌⊍⊎⨆⊔'],
 
-		['∡∠','∢∟⊾⊿'],//⦛⦣⦤⦥⦟⦞ ⦠⦢⦡⦜⦝
+		['∡∠⦛⦣⦤⦠⦟⦞','∢⊿⊾⦢⦥⦡∟⦜⦝'],
 		['⊞⊠⍁⌸⊡⍃⍄⌺⍐⍍⍓⍌⍰','⊟⌹⍂⍯⍠⍇⍈⍞⍗⍔'],
 		['≖⋄','']
 
@@ -401,6 +401,46 @@ SBS={
 'ă':'breve{a}',
 
 
+'†':'dag',
+'‡':'ddag',
+
+'∡':'measuredangle',
+'∢':'sphericalangle',
+'⋄':'diamond',
+'◊':'Diamond',
+'⧫':'blacklozenge',
+'♢':'diamonds',
+
+'♣':'clubs',
+'♠':'spades',
+'♡':'hearts',
+'✠':'maltese',
+
+'♮':'natural',
+'♯':'sharp',
+'♭':'flat',
+
+'⋆':'star',
+'★':'bigstar',
+
+
+
+'℧':'mho',
+'╱':'diagup',
+'╲':'diagdown',
+
+
+'¥':'yen',
+'£':'pounds',
+
+
+'®':'circledR',
+'Ⓢ':'circledS',
+'§':'text{\\S}',
+'¶':'text{\\P}',
+
+'■':'blacksquare',
+'□':'square',
 
 '⅟':kfrac('1/n').substr(1),
 '½':kfrac('1/2').substr(1),
@@ -468,7 +508,7 @@ SBS={
 
 */
 
-
+		'✓':'checkmark',
 
 		'≐':'doteq', //	'dot=',
 
@@ -797,7 +837,7 @@ SBS={
 '⊨':'models',
 '⊸':'multimap',
 '∋':'owns',
-'∥':'parallel',
+'‖':'parallel',
 '⊥':'perp',
 '⋔':'pitchfork',
 '≺':'prec',
@@ -841,8 +881,19 @@ SBS={
 '⊵':'trianglerighteq',
 '∝':'varpropto',
 '△':'vartriangle',
+'▽':'triangledown',
+'◃':'triangleleft',
+'▹':'triangleright',
+
 '⊲':'vartriangleleft',
 '⊳':'vartriangleright',
+
+'▲':'blacktriangle',
+'▼':'blacktriangle',
+'◀':'blacktriangleleft',
+'▶':'blacktriangleright',
+
+
 ':':'vcentcolon',
 '⊢':'vdash',
 '⊨':'vDash',
@@ -954,7 +1005,10 @@ SBS={
 	['Lowercase Greek','Uppercase Greek','Hebrew'],
 	['Font','Math Font','Text Font'],
 
-	['Margin','Margin Value','Negative Margin'],
+	['Align'],
+	['Margin','Negative Margin'],
+	['Margin Space','Margin Value'],
+
 
 ]
 	
@@ -1070,7 +1124,7 @@ SBS={
 		zlrA3('piece([',[
 			"[1,2],[3,4]]",
 			"[1,2],[3,4]],2",
-			],')'),
+			],')').concat("mtrx([[1,2],[3,4]],'B','B','')"),
 		[
 			"EqA(['1x+2y=3','4x-5y=6'])",
 			"EqA(['1x+2y>=3','4x-5y<=6'])",
@@ -1128,12 +1182,7 @@ SBS={
 			"],[3,4]],'','r2c2'",
 			",3,4],[5,6,7,8]],'','c2'"
 		],')'),
-		zlrA3("mtrx([[1,2],[3,4]],'",[
 
-		"B','B",
-		"V','V",
-
-		],"','')"),
 		
 		zlrA3("Eq([",[
 			"zmtrx([[1,2],[3,4]]),zmtrx([[5,6],[7,8]])],[['1','2']],'','→'",	//\\begin{aligned} & ~ \\\\quad x \\\\  & =1 \\\\  & =2 \\end{aligned}
@@ -1141,9 +1190,29 @@ SBS={
 		],')')
 	]),
 
+
+	'Align':Arrf($A,[
+
+		zlrA3("mtrx([[1,2],[3,4]],",[
+			"'small','small'",
+			"'.','.'"
+		],",'')"),
+
+
+		zlrA3("zmtrx([[1,2",[
+			"],[3,4]],'','r2c2'",
+			",3,4],[5,6,7,8]],'','c2'"
+		],",'.','.')"),
+		
+		
+	]),//.concat(["\\def\\arraystretch{1.5}"+mtrx([[1,2],[3,4]],'.','.','')]),
+
+
 	'Det':Arrf($A,[
 		["kdet([[1,2],[3,4]])",
-		 "zdet(['1 2','3 4'])"],
+		 "zdet(['1 2','3 4'])",
+		 "mtrx([[1,2],[3,4]],'V','V','')",
+		],
 		zlrA3("Eq([",[
 			"kdet([[1,2],[2,4]]),0],[['1st','2nd']]",
 			"kdet([[1,2],[3,4]]),kdet([[5,6],[7,8]])],[['1st','2nd']]",
@@ -1241,7 +1310,8 @@ SBS={
 
 //zlrA3("\\math",ZLR('rm bb it bf sf tt'),"{A}"),
 	'Font':Arrf($A,[zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')"),
-		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold boldsymbol')),"','')"),
+		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold')),"','')"),
+		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('boldsymbol')),"','')"),
 	
 	]),
 	
@@ -1277,10 +1347,13 @@ SBS={
 		zlrA3("kxc('",['V','W','X','Y','Z'],"','g')"),
 	]),
 
-	'Margin':[zlrA('\\backslash',[',\\,',':\\:',';\\;']).concat('\\tilde~')
-			.concat(Arrf(function(x){return x+'\\'+x},['quad','qquad'])),
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('thin med thick en'),'space')),
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' nobreak'),'space')),
+	'Margin':[zlrA('\\backslash',[',\\,',':\\:',';\\;']).concat('\\tilde~'),
+
+		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' q'),'quad')),
+	],
+	'Margin Space':[
+		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('thin med thick'),'space')),
+		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' en nobreak'),'space')),
 	],
 
 	'Margin Value':[zlrA3('\\',ZLR('mkern mskip hspace'),'{5mu}'),
@@ -1295,16 +1368,22 @@ SBS={
 		Arrf(function(x){return x+'\\'+x},zlrA3('neg',ZLR('thin med'),'space')),
 		zlrA3('\\math',ZLR('l c r'),'lap{A}')
 	],
-	
-	
+
+
+
+
+
 	'Linebreak':[$A(['kbr','kbr2']),
 		ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
+		ZLR('tag{1}{A} tag*{2}{B}'),
 	
 	],
 
+
+
 	'Latin':[zlrA3('\\',ZLR('vec dot ddot mathring'),'{a}'),
 		zlrA3('\\',ZLR('bar acute check grave'),'{a}'),
-		zlrA3('\\',ZLR('hat tilde'),'{a}').concat(['\\breve{a}']),
+		zlrA3('\\',ZLR('hat tilde breve'),'{a}').concat(['\\stackrel{a}{.}']),
 	
 	],
 
@@ -1342,7 +1421,9 @@ SBS={
 		"$fcb('red','yellow','A')$",
 		"\\colorbox{aqua}{A}"
 		],
-		$A(["kancel(1)","kancel(1,'-')","kbox(1)","kbox('F','frak','math')"])
+		zlrA3("$kancel(1",ZLR(" ,'-' ,'b' ,'x'"),')$'),
+		['\\not{1}'].concat($A(["kbox(1)","kbox('F','frak','math')"])),
+		zlrA3('\\',ZLR('Ka La '),'TeX'),
 	]
 
 },SBSFn=[],
@@ -1688,7 +1769,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 		if(iTyp=='LaTeX'){
 
-////consolelog(t);
+//console.log(t);
 			if(t){
 				if(t.indexOf('$')>-1){
 					if(!shft){
@@ -1704,27 +1785,14 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 					t=tl.replace(/\$.+/,'')+t;
 					*/
 				}else{
+					if(/tag/.test(t)){
+		
+						t='\\'+t;
+					}
+					
 				//	t=(/^[\{\d\\]/.test(tl)?'':'\\')+tl;
 					//t=/^[a-z]/i.test(t)?t.replace(/^[a-z]+/ig,''):t;
 				}
-			}else if(t=='~'){
-				
-			}else if(/quad/.test(t)){
-				t='\\'+t.replace(/\d/g,'')
-
-			}else if(/thin|med|thick|break|en/.test(t)){
-				t='\\'+t.replace(/[^a-z]/ig,'')+'space'
-
-			}else if(/kern|skip|space|phantom|raisebox|smash|lap/.test(t)){
-				t='\\'+t;
-				
-			}else if(/^[,:;!]$/.test(t)){
-				t='\\'+t;
-				
-			}else if(/^.$/.test(t)){
-				t='\\'+SL[t];
-			}else{
-				
 			}
 		}else if(t.indexOf('$')>-1){
 			if(iTyp=='Markdown'){
@@ -2004,7 +2072,8 @@ var OverCanvas=function(t){
 			if(o=='P' && v){
 				katex.render(kx(sub2n(v,1)), w[0], {
 					throwOnError: false,
-					displayMode: true
+					displayMode: true,
+					trust:true
 				});
 				x=XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')));
 				
@@ -2463,7 +2532,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		$('.Symboli td:visible:not(:has(.symboli_)).seled').click();
 		$('.Symboli td.seled:visible').click();
-		var id=($('.iTextLaTeXon .tool.seled').attr('id')||'').replace(/on/,'');
+		var id=($('.iTextLaTeXon .tool.seled').attr('id')||'').replace(/on/,''), shifton=$('#Shift').is('.seled');
 		if(id=='editText'){
 			var tr=$('#editText .editTextBox'),
 			i=tr.filter(':visible').index();
@@ -2476,13 +2545,27 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 
 		var tn=tr.hide().length;
-		if(i+3>tn-1){
-			i=0
-		}else if(i+3==tn-1){
-			i=tn-1
+		if(shifton){
+			if(i-3<0){
+				i=tn-3
+			}else if(i-3==0){
+				i=0
+			}else{
+				i-=3;
+			}
+
+
 		}else{
-			i+=3;
+			if(i+3>tn-1){
+				i=0
+			}else if(i+3==tn-1){
+				i=tn-1
+			}else{
+				i+=3;
+			}
+
 		}
+
 		tr.slice(i,i+3).show();
 
 

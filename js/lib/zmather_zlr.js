@@ -697,7 +697,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	intl = function (v, b, t, d, p, zM) {
 		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\cdots\\int'][p || 0] + (!zM ? '\\nolimits' : '') +
 			'_{' + ((b == '-' ? b + '∞' : b) || '') + '}' + (t ? '^{' + (t == '+' ? t + '∞' : t) + '}' : '') + v + '\\,'+
-			zlrA3('\\mathrm{d}{',(d || 'x').split(''), '}').join('\\,')+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
+			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'x').split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
 
 	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', dg = g ? '^{' + g + '}' : ''; return '\\frac{' + d + dg + (f || '') + '}{' + d + (x || 'x') + dg + '}' },
@@ -1300,8 +1300,8 @@ array命令下		()	[]	\{\}	||	\|
 		return al > 3 ? '\\begin{' + (lr == '.' ? '' : (lr || 'b')) + 'matrix}' + Arrf(function (x) { return x instanceof Array ? x.join(' & ') : x }, v).join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]')) + ' \\end{' + (lcr == '.' ? '' : (lcr || 'b')) +
 			'matrix}' : SCtv('mtrx' + (lr || '') + ' inblk align' + (lcr || lr || 'c'), v instanceof Array ? Table('', v) : v)
 	},
-	zmtrx = function (A, spacing, parts) { return mtrx(A, '', '', spacing, parts) },
-	kmtrx = function (A, fracOff, parts) { var t = mtrx((Mfn ? Arrf(function (a) { return isArr(a) ? Arrf(function (x) { return Mfn.fromStr(x).toStr(1) }, a) : Mfn.fromStr(a).toStr(1) }, A) : A), '', '', /frac/.test(A) || !fracOff && /\//.test(A) ? 5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
+	zmtrx = function (A, spacing, parts,lr,lcr) { return mtrx(A, lr||'', lcr||'', spacing, parts) },
+	kmtrx = function (A, fracOff, parts,lr,lcr) { var t = mtrx((Mfn ? Arrf(function (a) { return isArr(a) ? Arrf(function (x) { return Mfn.fromStr(x).toStr(1) }, a) : Mfn.fromStr(a).toStr(1) }, A) : A), lr||'', lcr||'', /frac/.test(A) || !fracOff && /\//.test(A) ? 5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
 
 	zstrx = function (t, p) { return Arrf(function (x) { return ZLR(x, '', p == undefined ? ' ' : '') }, t.split(';')) },
 	zarray = function (A, spacing, parts) { return mtrx(A, '.', '.', spacing, parts) },
