@@ -9,6 +9,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	[inhref('technology.html?q=Software/Math','Math Software List'),'Math',''],
 	[href(Hs+'observablehq.com',i18('Visualization Notebook')+' - Observable'),'','magic notebook for visualization '+href(Hs+'explorabl.es','Explorable Explanations')+github('d3/d3/wiki/Gallery')],
 	[href(H+'www.fooplot.com','Foo Plot'),'Web','在线画函数图像'],
+	[href(Hs+'helloacm.com/tools/math-plot-graph/','简易数学函数作图工具'),'',''],
 
 	[href(Hs+'draw.io','draw.io'),'JS + SVG','Create flow charts, process diagrams, org charts, UML diagrams, ER models, network diagrams'],
 	[href(Hs+'demo.bpmn.io/s/start','bpmn.io'),'JS + SVG',hrefA('demo.bpmn.io/@@/new',ZLR('BPMN CMMN DMN')).join(' ')],
@@ -16,6 +17,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	[href(Hs+'naotu.baidu.com','百度脑图'),'','Mindmap by baidu'],
 
 	[href(Hs+'witeboard.com','WiteBoard'),'','Whiteboard, the same URL could be shared with synchronization'],
+	[href(Hs+'xiaohuazhuo.com','小画桌'),'','在线协作白板，团队效率工具'],
 
 	[github('paveldogreat','WebGL-Fluid-Simulation','WebGL Fluid Simulation'),'JS + WebGL',github('PavelDoGreat/WebGL-Fluid-Simulation')],
 	[href(H+'weavesilk.com','WeaveSilk'),'','Interactive Generative Art, doodle with music'],

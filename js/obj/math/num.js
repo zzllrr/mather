@@ -1159,18 +1159,18 @@ var Integer={/*整数 (本质是字符串)
 		
 		if(op=='竖式+-'){//参数p：+或-，支持二元以上同一种运算（但不支持+-混合）
 
-
+//console.log(aA.join(brn),al);
 			aA.push(Decimal.oprs(p,aA));
 			aA=Arrf(Decimal.toStr,aA);
-			
+//console.log(aA.join(brn),al);
 			t=aA.slice(0,al).join(p)+'='+aA[al];
 			Arrf(function(x,i){aA[i]=(''+x).split('.')},aA);
 //console.log(aA.join(';'),max(Arri(aA,0)),max(Arri(aA,1)));
 
 			var nl=(''+max(Arri(aA,0))).length,nr=(''+max(Arri(aA,1))).length;
-
+//console.log(aA.join(brn), nl, nr);
 			Arrf(function(x,i){
-				x[0]=hp().repeat(nl-(''+x[0]).length)+x[0];
+				x[0]=hp().repeat(Math.abs(nl-(''+x[0]).length))+x[0];
 				if(!x[1]){
 					x[1]=x[0]+hp('.'+'0'.repeat(nr))
 					x[0]='';
@@ -1182,6 +1182,7 @@ var Integer={/*整数 (本质是字符串)
 				
 			},aA);
 			aA[al-1][0]=p;
+//console.log(aA.join(brn),al);
 			return mtrx(aA,'.','.','','I'+al)+'\\\\ '+t;
 		}
 		if(op=='竖式*'){//二元
@@ -1668,13 +1669,13 @@ if(r.length<sl){
 			if(al<2){return aA[0]}
 			
 			if(al>2){
-////console.log(aA,al);
+
 				return Decimal.oprs('+',[Decimal.oprs('+',aA.slice(0,al-1)),aA[al-1]])
 
 			}else{
 				var a0=''+aA[0][0],a1=aA[0][1],b0=''+aA[1][0],b1=aA[1][1],isNega=a0[0]=='-',isNegb=b0[0]=='-',isNegSame=isNega==isNegb,
 					Ia=a0.replace(/^-/,'').length,Ib=b0.replace(/^-/,'').length,Na=a0.replace(/-/,''),Nb=b0.replace(/-/,'');
-////console.log(Na,Nb);
+//console.log(Na,Nb,isNegSame,isNega,isNegb);
 				
 				if(isNegSame){
 					
@@ -1712,7 +1713,7 @@ if(r.length<sl){
 			}
 			
 			if(al<2){return aA[0]}
-			
+//console.log(aA.join(brn), al);
 			if(aA[0][0]=='0'){
 				if(al==2){
 					return Decimal.opr1('-',aA[0])
@@ -1725,21 +1726,25 @@ if(r.length<sl){
 				return Decimal.oprs('-',[aA[0],Decimal.oprs('+',aA.slice(1))])
 				
 			}else{
-
+//console.log(aA.join(brn), al);
 				var a0=aA[0][0],a1=aA[0][1],b0=aA[1][0],b1=aA[1][1],isNega=a0[0]=='-',isNegb=b0[0]=='-',isNegSame=isNega==isNegb,
 					Ia=a0.replace(/^-/,'').length,Ib=b0.replace(/^-/,'').length,Na=a0.replace(/-/,''),Nb=b0.replace(/-/,'');
+//console.log(isNegSame,isNega,isNegb,aA[0],aA[1]);
+
 				if(isNegSame){
 					var agb=Decimal.is.b2['≥'](aA[0],aA[1]);
 					if(a1==b1){
 						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na,Nb]),a1)
 					}
 					
+//console.log(a1,b1,agb);
+
 					if(a1>b1){
 						////console.log(Na+ZLR(0,a1-b1),Nb);
-						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na+ZLR(0,a1-b1),Nb]),b1)
+						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na+ZLR(0,a1-b1),Nb]).replace(/-/,''),b1)
 					}
 					if(a1<b1){
-						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Nb+ZLR(0,b1-a1),Na]),a1)
+						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na,Nb+ZLR(0,b1-a1)]).replace(/-/,''),a1)
 					}
 				}else{
 					return isNegb?Decimal.oprs('+',[aA[0],[b0.substr(1),b1]]):Decimal.opr1('-',Decimal.oprs('+',[[a0.substr(1),a1],aA[1]]))

@@ -600,8 +600,8 @@ solve['number']=function(inputValue, uriA){
 					rA.push(t[0]);
 					var nA=Arrf(function(t){return +t.split('下列')[1].split('个数')[0]},rA);
 					rA.splice(rA.length-1,0,mA+'的最小公倍数是'+lm);
-					rA.push('能被'+pA.join('或')+'整除，且不能被'+qA.join('或')+'整除的数的个数等于'+nA[0]+'-'+nA[1]+'='+nOpr2s('-',nA));//(n1-lm))
-					rA.push('和等于'+A[0][3]+'-'+t[3]+'='+nOpr2s('-',[A[0][3],t[3]]));
+					rA.push('能被'+pA.join('或')+'整除，且不能被'+qA.join('或')+'整除的数的个数等于'+nA[0]+'-'+nA[1]+'='+Mfn.oprs('-',nA).toStr(1));//(n1-lm))
+					rA.push('和等于'+A[0][3]+'-'+t[3]+'='+Mfn.oprs('-',[A[0][3],t[3]]).toStr(1));
 				}
 				return kxA(rA)
 				
@@ -1143,8 +1143,8 @@ a b c d
 			//	consolelog(m.join('\n'));
 				
 				if(opr1){
-					consolelog(ops,m,l);
-					R=[nOpr2s(ops,V,1)+' = '+frac(m[0][0],m[0][1],'')+opr+frac(m[1][0],m[1][1],'')+' = '+frac(nOpr2s(ops,Arri(m,0),1),l,'')+ ' = '+FracReduct([nOpr2s(ops,Arri(m,0)),l])];
+
+					R=[V.join(ops[0])+' = '+frac(m[0][0],m[0][1],'')+opr+frac(m[1][0],m[1][1],'')+' = '+frac(Arri(m,0).join(ops[0]),l,'')+ ' = '+FracReduct([fracOpr(ops[0],Arri(m,0)[0],Arri(m,0)[1]),l])];
 				}else{//比较大小
 					
 

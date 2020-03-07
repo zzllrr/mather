@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2020.3.1',
+			fieldseth('V2020.3.6',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -229,19 +229,19 @@ Table('',[
 						[gM('Wiki'),meter(20),
 							'#'+gM(ZLR('Compact Structural Semantical')).join(', #')],
 					
-						[gM('Teaching'),meter(1),
+						[gM('Teaching'),meter(10),
 							'#'+gM(ZLR('Reusable Hierarchical Functional')).join(', #')],
 					
-						[gM('Academic'),meter(4),
+						[gM('Academic'),meter(8),
 							'#'+gM(ZLR('Flexible Intelligent l10n')).join(', #')],
 							
-						[gM('Technology'),meter(2),
+						[gM('Technology'),meter(20),
 							'#'+gM(ZLR('Extendable Customizable Efficient')).join(', #')],
 
-						[gM('Science'),meter(1),
+						[gM('Science'),meter(10),
 							'#'+gM(ZLR('Structural Unambiguous Inspiring')).join(', #')],
 							
-						[gM('Culture'),meter(2),
+						[gM('Culture'),meter(15),
 							'#'+gM(ZLR('Systematized Interpretable Inspiring')).join(', #')],
 							
 
