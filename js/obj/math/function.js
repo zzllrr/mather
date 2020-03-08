@@ -1378,7 +1378,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		return x
 
 	},
-	toStr:function(A, latex, p){/*A → 数学表达式str (unicode Math)		latex指定返回LaTeX格式	p指定是否添加括号
+	toStr:function(A, latex, p, prodCharOn){/*A → 数学表达式str (unicode Math)		latex指定返回LaTeX格式	p指定是否添加括号
 			如果A本身就是字符串，则认为是数学表达式，转成LaTeX输出
 		*/
 		if(isStr(A)){
@@ -1653,9 +1653,11 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 						if(oi=='×'){
 					// consolelog(' a = ',a, ' b = ',b);
 							//if(av || ap || bp || (av || an) && bv || av && bn){
-							//if(av || ap || bp || avi && bv || av && bn){
+							//if((av || ap || bp || avi && bv || av && bn) && !prodCharOn ){
 							
-							if(!(/\d$/.test(a) &&  /^\d/.test(b)) && 0){
+					
+							//
+							if(!(/\d$/.test(a) &&  /^\d/.test(b)) && !prodCharOn){
 								a0[i]='';
 				// consolelog(' a0 = ',a0);
 							}

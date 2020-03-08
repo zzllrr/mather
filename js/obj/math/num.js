@@ -593,6 +593,9 @@ var Integer={/*整数 (本质是字符串)
 		if(op=='*'){//乘法
 			
 			if(BigInt){
+				if(/[a-z]/.test(aA0)||/[a-z]/.test(aA1)){
+					return aA0+''+aA1
+				}
 				return BigInt(aA0)*BigInt(aA1)+''
 			}
 
@@ -3118,7 +3121,7 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 				}
 			}
 
-		}else{//整数的分数幂
+		}else{//整数的分数
 			var a=factorA(A[0]),ga=+gcd(a[1]);
 			var gabc=+gcd([ga,B[1]]);
 			if(gabc>1){//底数（分解因数后，因数公重数）与分数幂的分母可以约分

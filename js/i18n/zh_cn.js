@@ -1572,6 +1572,8 @@ lang['zh_cn'] = {
 
 	'Leading Principle Minor': '顺序主子式',
 
+	'Max':'最大值',
+	'Min':'最小值',
 	'Binom': '二项式',
 	'Subsup': '上下标',
 

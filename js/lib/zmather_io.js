@@ -993,21 +993,22 @@ SBS={
 
 ,STRUCi=[//
 
-	ZLR('Fraction Note Binom'),
-	ZLR('Subsup Root Size'),
-	['Parentheses','Big Parentheses','Color'],
+	ZLR('Fraction Note Reasoning'),
+	ZLR('Subsup Root Differential'),
+	['Parentheses','Big Parentheses','Binom'],
 
-	ZLR('Equality Non-equality Relation'),
-	ZLR('Sum Integral Limit'),
+	
+	ZLR('Sum Integral Max'),
+	ZLR('Limit Align Linebreak'),
 	ZLR('Matrix Det Summarize'),
 
-	ZLR('Over Latin Linebreak'),
+	ZLR('Over Latin Color'),
 	['Lowercase Greek','Uppercase Greek','Hebrew'],
 	['Font','Math Font','Text Font'],
 
-	['Align'],
-	['Margin','Negative Margin'],
-	['Margin Space','Margin Value'],
+	ZLR('Equality Non-equality Relation'),
+	['Notes','Margin','Negative Margin'],
+	['Margin Space','Margin Value','Size'],
 
 
 ]
@@ -1029,6 +1030,10 @@ SBS={
 		"\\cfrac{1}{1 + \\cfrac{1}{2}}",
 		"$mfracs([1,3,5],[2,4,6],'',1,'+','')$"
 		],
+		
+	],
+
+	'Differential':[
 		$A(zlrA3("difn('f','x',",[
 			"''",
 			"1",
@@ -1038,16 +1043,19 @@ SBS={
 		)
 	],
 
-
 	'Note':[
 		zlrA3("$eq(1,'",'→↔←↦'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤	//←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄↦
 		['\\stackrel{1}{\\longrightarrow}'].concat(zlrA3("$eq(1,'",'↩↪↞↠'.split(''),"',2)$")),
 		['\\stackrel{1}{\\longleftarrow}'].concat(zlrA3("$eq(1,'",'↼⇀↽⇁'.split(''),"',2)$")),
-		zlrA3("$eq(1,'",'=⇒⇔⇐'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤
-		zlrA3("$eq(1,'",'⇋⇌⇄'.split(''),"',2)$"),
+	
 		
 	],
 
+
+	'Reasoning':[
+		zlrA3("$eq(1,'",'=⇒⇔⇐'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤
+		zlrA3("$eq(1,'",'⇋⇌⇄'.split(''),"',2)$"),
+	],
 
 	'Relation':[['↖','↙'],
 		zlrA3("$mtrx([",[
@@ -1111,24 +1119,34 @@ SBS={
 
 
 	'Summarize':Arrf($A,[
-		['piece([1,2])'].concat(
-			zlrA3("kx",[
-				"o('a+b+c','{'",
-				"o('a+b+c','{','note'",
-			],')')),
-		['piece([1,2],1)'].concat(
-			zlrA3("kx",[
-			"u('a+b+c','{'",
-			"u('a+b+c','{','note'"
-			],')')),
-		zlrA3('piece([',[
-			"[1,2],[3,4]]",
-			"[1,2],[3,4]],2",
-			],')').concat("mtrx([[1,2],[3,4]],'B','B','')"),
+		
+		zlrA3("piece(",[
+			"[1,2]",
+			"[[1,2],[3,4]]",
+		],')').concat("mtrx([[1,2],[3,4]],'B','B','')"),
+		zlrA3('piece(',[
+			"[1,2],1",
+			"[[1,2],[3,4]],2",
+			],')'),
 		[
 			"EqA(['1x+2y=3','4x-5y=6'])",
 			"EqA(['1x+2y>=3','4x-5y<=6'])",
 		]
+	]),
+
+
+	'Notes':Arrf($A,[
+
+			zlrA3("kx",[
+				"o('a+b','{'",
+				"o('a+b','{','note'",
+			],')'),
+		
+			zlrA3("kx",[
+			"u('a+b','{'",
+			"u('a+b','{','note'"
+			],')'),
+
 	]),
 
 	'Parentheses':Arrf($A,[zlrA3("zp('x'",[
@@ -1222,19 +1240,22 @@ SBS={
 	]),
 
 
-	'Sum':[['\\sum','\\prod',"$Opr('','-','+','f','*')$"]].concat(
+	'Sum':[['\\sum','\\prod']
+		.concat($A(zlrA3("prod('i',0,'+','f',",[3,7],",'')")))
+	].concat(
 		Arrf($A,[
 			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')"),
 			zlrA3("prod('i',0,'+','f',",[0,1,4,8],",'')"),
-			["prod('i',0,'+','f',3,'')"]
-				.concat(zlrA3("sum('i',0,'+','f',",[4,5],",'')"))
-				.concat("prod('i',0,'+','f',7,'')"),
-			["sum('i',0,'+','f',2,'')"
-				].concat(zlrA3("prod('i',0,'+','f',",[5,6,2],",'')"))
 
 		])
 	),
 
+	'Max':Arrf($A,[
+		zlrA3("sum('i',0,'+','f',",[2,4,5],",'')"),
+		zlrA3("prod('i',0,'+','f',",[2,5,6],",'')"),
+
+		["Opr('','-','+','f','*')"]
+	]),
 
 	'Limit':[['\\lim'].concat(
 			zlrA3("$lim('x','",[
@@ -1373,7 +1394,7 @@ SBS={
 
 
 
-	'Linebreak':[$A(['kbr','kbr2']),
+	'Linebreak':[$A(['kbr','kbr2']).concat('\\sum_{\\substack{0<i<m\\\\0<j<n}}'),
 		ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
 		ZLR('tag{1}{A} tag*{2}{B}'),
 	
@@ -1938,7 +1959,7 @@ sbsTbl=function(){
 			if(K=='Margin Value'){
 				c=c.split('{')[0].substr(1)+c
 			}
-
+//console.log(K,c);
 			s+=DCtv('Sts td" title="'+c.replace(/.backslash./,'')
 				.replace(/^[a-z]{4,}/g,'')
 				.replace('\\tilde~','~')

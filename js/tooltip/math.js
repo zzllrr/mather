@@ -75,6 +75,7 @@ $.each({
 			].join(br)),
 		].join(br)),
 		detail(gM('Calculate Determinant'), [
+			href('wiki.html?q=Formula/Matrix/Determinant','行列式公式'),
 			sceg2('d') + ' 主对角线相乘',
 			sceg2('d-') + ' 副对角线相乘',
 
