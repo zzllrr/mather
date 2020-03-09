@@ -118,7 +118,6 @@
 	border-radius: 100%;
 }
 
-
 .snippetName{
 	border-bottom:solid 1px gainsboro;
 	word-break: break-all;
@@ -134,7 +133,9 @@
 #input0Preview, #iTextPreview{
 	background: rgba(162,195,97,.1);
 }
-
+[name=tool]:checked + span:not(:hover){
+	background: rgba(255,255,0,.5);
+}
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;
 	background:rgba(50, 205, 50, 0.2);

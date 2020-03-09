@@ -1737,7 +1737,7 @@ if(r.length<sl){
 				if(isNegSame){
 					var agb=Decimal.is.b2['≥'](aA[0],aA[1]);
 					if(a1==b1){
-						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na,Nb]),a1)
+						return Decimal.build.D((agb?'':'-')+Integer.oprs('-',[Na,Nb]).replace(/-/,''),a1)
 					}
 					
 //console.log(a1,b1,agb);

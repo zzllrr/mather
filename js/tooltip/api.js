@@ -131,7 +131,7 @@ tooltip['API']=[
 		]},
 
 		{'LaTeX':[
-			{'颜色':'fcb '},
+			{'颜色':'fcb'},
 			{'字体':'kxf kxc ksz'},
 			{'过渡':'kbr kbr2'},
 			{'HTML元素':[
@@ -143,8 +143,8 @@ tooltip['API']=[
 			{'运算符':'kos'},
 			{'标记符':'kxo kxu kancel'},
 			{'括符':'$A $B boxed kbox hp lrpfrac genfrac zp pp'},
-			{'数学运算':'kroot kfrac kfraczp kxAfrac difn Opr'},
-			{'数学结构':'ksups ksubs binom zmtrx kmtrx zarray ztable det zdet kdet piece'},
+			{'数学运算':'kroot kfrac kfraczp kxAfrac difn Opr orifun'},
+			{'数学结构':'ksups ksubs binom zmtrx kmtrx zarray ztable det zdet kdet piece aligned'},
 			{'数学关系':'kmod eq eqM Eq EqA'},
 			
 		]},

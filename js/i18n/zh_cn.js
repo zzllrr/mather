@@ -146,6 +146,11 @@ lang['zh_cn'] = {
 	'WeChat': '微信公众号',
 
 	'Other':'其他',
+	'Tip':'提示',
+	'Tips':'提示',
+	'Syntax':'句法',
+
+
 	// 百科
 
 	'Dictionary':'辞典',

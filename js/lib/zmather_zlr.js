@@ -699,7 +699,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			'_{' + ((b == '-' ? b + '∞' : b) || '') + '}' + (t ? '^{' + (t == '+' ? t + '∞' : t) + '}' : '') + v + '\\,'+
 			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'x').split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
-
+	orifun =function(fx,x1,x0){
+		return fx+'\\LARGE|\\normalsize\\substack{'+x1+'\\\\\\\\'+x0+'}'
+	},
 	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', dg = g ? '^{' + g + '}' : ''; return '\\frac{' + d + dg + (f || '') + '}{' + d + (x || 'x') + dg + '}' },
 
 	Opr = function (i, b, t, v, p) { return '\\mathop{' + p + '}\\limits' + '_{' + (i ? i + '=' + b : (b=='-'?'-∞':b)) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') + (v || '') },
@@ -825,7 +827,18 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		return isA ? rel(A, Arrf(function (t) { return c[nm[1]][+t || parseInt(t, 36)] }, nm[0].split('')), style) : A + r + c[nm ? nm[1] : 0][nm ? nm[0] || parseInt(+nm[0], 36) : 0] + ' ' + b
 
 	},
-
+	aligned=function(A,leftElement){
+		var a=[].concat(A);
+		if(leftElement){
+			a[1]=a[0]+' & '+a[1];
+			a.shift();
+		}else{
+			a[0]='& '+a[0]
+		}
+		return ['\\begin{aligned}',
+		a.join(kbr+brn+'& '),
+		'\\end{aligned}'].join(brn)
+	},
 
 	eq = function (t, m, b) { var k = kos(m); return (t || b) ? '\\' + k + (b ? '[' + b + ']' : '') + '{' + (t || '') + '}' : (/x/.test(k) ? '\\' + k : k) },
 	eqM = function (A, m) { return A.join(eq('', '', '\\mod ' + m)) },
@@ -2760,14 +2773,15 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 }, optgrp = function (t,v) {//返回字符串
 	return '<optgroup label="'+t+'">'+v+'</optgroup>'
-}, OptGrps = function (A) {//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
+}, OptGrps = function (A, getI18) {//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
 	var s = '';
 	for (var i = 0, l = A.length; i < l; i++) {
 		var a = A[i];
 		$.each(a, function (x, v) {
-			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(function (k) { return '<option value="' + k + '">' + k + '</option>' },
+			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(function (k) { return '<option value="' + k + '">' + (getI18 && k!='LaTeX' && k!='JavaScript'?gM(k):k) + '</option>' },
 				ZLR(v)) : Arrf(function (j) {
-					return '<option value="' + (j.v || j.t) + '"' + (j.s ? seled : '') + '>' + (j.t || j.v) + '</option>'
+					var tv=j.t || j.v;
+					return '<option value="' + (j.v || j.t) + '"' + (j.s ? seled : '') + '>' + (getI18 && tv!='LaTeX' && tv!='JavaScript'?gM(tv):tv) + '</option>'
 				}, v)).join('') + '</optgroup>'
 		});
 	}

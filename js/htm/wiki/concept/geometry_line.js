@@ -97,8 +97,45 @@ detail('线的二元关系',Table([ZLR('名称 记法 定义 性质')],[
 		]),'','____'),
 	ZLR('平行\nBe Parallel to________','','____'),
 	ZLR('垂直\nBe Pperpendicular to________','','____'),
+	ZLR('平分\nBe Bisected to________','','____'),
 
-
+	['关系符号（提议）','','',
+		zarray([['','符号','','含义','小乐数学中的命令'],
+		ZLR('AB = CD 相等（公认）'),
+		ZLR('AB ⊥ CD 垂直（公认）'),
+		ZLR('AB // CD 平行（公认） '),
+		
+		ZLR('AB \\sout/ CD 相交 \\backslash{sout}/'),
+		
+		ZLR('AB ¦ CD 平分'),
+		
+		ZLR('AB ⋅¦⋅ CD 相互平分'),
+		
+		ZLR('AB \\stackrel{//}= CD 平行且相等（公认） \\backslash{stackrel}\\{//\\}='),
+		
+		ZLR('AB \\underline⊥ CD 垂直且相等 \\backslash{underline}⊥'),
+		
+		ZLR('AB := CD 平分且相等'),
+		
+		ZLR('AB =: CD 被平分且相等'),
+		
+		ZLR('AB :=: CD 相互平分且相等'),
+		
+		ZLR('AB ⊣ CD 垂直平分'),
+		
+		ZLR('AB ⊢ CD 垂直被平分'),
+		
+		ZLR('AB ⊣⊢ CD 垂直相互平分'),
+		
+		ZLR('AB =\\!\\!| CD 垂直平分且相等 =\\backslash!\\backslash!|'),
+		
+		ZLR('AB |\\!\\!= CD 垂直被平分且相等 |\\backslash!\\backslash!='),
+		
+		ZLR('AB |\\!\\!=\\!\\!| CD 垂直相互平分且相等 |\\backslash!\\backslash!=\\backslash!\\backslash!|'),
+		
+		
+		])
+	]
 
 ],'wiki').replace(/\n/g,br))
 );

@@ -800,7 +800,7 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-[name=tool]:checked + span,.subhead.seled,.subtabhead.seled{
+.subhead.seled,.subtabhead.seled{
 	background:limegreen;
 }
 

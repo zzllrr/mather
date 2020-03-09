@@ -993,7 +993,7 @@ SBS={
 
 ,STRUCi=[//
 
-	ZLR('Fraction Note Reasoning'),
+	ZLR('Fraction Equality Non-equality'),
 	ZLR('Subsup Root Differential'),
 	['Parentheses','Big Parentheses','Binom'],
 
@@ -1006,7 +1006,7 @@ SBS={
 	['Lowercase Greek','Uppercase Greek','Hebrew'],
 	['Font','Math Font','Text Font'],
 
-	ZLR('Equality Non-equality Relation'),
+	ZLR('Note Reasoning Relation'),
 	['Notes','Margin','Negative Margin'],
 	['Margin Space','Margin Value','Size'],
 
@@ -1072,16 +1072,16 @@ SBS={
 	
 
 
-	'Root':[$A(zlrA3("kroot('x'",['',',3',',4'],')').concat(
+	'Root':[['√2'].concat($A(zlrA3("kroot('x'",['',',3',',4'],')').concat(
 		zlrA3('mroots(',ZLR("[2,3],['','x','y'],'','','+-',1"),",'')")
-	)),
-		$A(zlrA3("kfrac([",ZLR("kroot(2),2 kroot(5)+'-1','2' '-b±'+kroot('b^2-4ac'),'2a'"),'])')),
+	))),
+		$A(zlrA3("kfrac([",ZLR("kroot(2),2 kroot(5)+'-1','2' '-b±'+kroot('b^2-4ac'),'2a'"),'])')).concat('∛3'),
 
-		$A(zlrA3('mroots(',ZLR("[2,3,4,5],['',1,10,100,1000],'',1,'+',1"),",'')"))
+		$A(zlrA3('mroots(',ZLR("[2,3,4,5],['',1,10,100,1000],'',1,'+',1"),",'')")).concat('∜4')
 	],
 
 	
-	'Equality':Arrf($A,[
+	'Equality':[['='].concat($A(
 		zlrA3("Eq([",[
 			"'x',''],'','line'",
 			"'x','y',2],'','line'",
@@ -1089,33 +1089,40 @@ SBS={
 			[
 				"eq0(['x','y'])",
 			]
-		),
-		[
-			"kmod('a','b',2)",
-			"eq0(['x','y'],3,5)",
-		],
+		))),
+
+		$A(zlrA3("aligned(['x','= 1','= 2']",[
+			"",
+			",1"
+		],")").concat("aligned(['~ \\\\quad x','= 1','= 2'])")),
+
 		
-		[
-			"eqM([1,-1],2)"
-		],
-		zlrA3("Eq([",[
+
+		$A(zlrA3("Eq([",[
 			"['x','1'],'2']",
 			"'x','1','2']",
 			"['x','1'],'2'],'','','≡'",
 			"'x','1','2'],'','','≡'",
-			],')'),
-	]),
+			],')')),
+	],
 
-	'Non-equality':Arrf($A,[zlrA3("Eq([",[
-		"'x',''],'','line',['≤']",
+	'Non-equality':[['≤'].concat($A(zlrA3("Eq([",[
 		"'x','y',2],'','line',['=','≤']",
 		"'x','y',2],'','line',['=','≠']",
 
-		],')'),
-		[
-			"kmod('a','b',2,1)"
-		]
-	]),
+		],')'))),
+		['≥','≠'].concat($A([
+			"Eq(['x',''],'','line',['≤'])",
+			"kmod('a','b',2,1)",
+		])),
+		$A([
+			"kmod('a','b',2)",
+			"eq0(['x','y'],3,5)",
+		]),
+		$A([
+			"eqM([1,-1],2)"
+		]),
+	],
 
 
 	'Summarize':Arrf($A,[
@@ -1149,7 +1156,7 @@ SBS={
 
 	]),
 
-	'Parentheses':Arrf($A,[zlrA3("zp('x'",[
+	'Parentheses':Arrf($A,[zlrA3("zp('x^2'",[
 		"",
 		",'<>'",
 		",'[]'",
@@ -1158,14 +1165,14 @@ SBS={
 		",'/\\\\'",
 		
 		],')'),
-		zlrA3("zp('x'",[
+		zlrA3("zp('x^2'",[
 		",'||'",
 		",'‖‖'",
 		",'⌊⌋'",
 		",'⌈⌉'",
 	
 		],')'),
-		zlrA3("zp('x'",[
+		zlrA3("zp('x^2'",[
 	
 		",'↑↓'",
 		",'↕↕'",
@@ -1221,7 +1228,11 @@ SBS={
 			"],[3,4]],'','r2c2'",
 			",3,4],[5,6,7,8]],'','c2'"
 		],",'.','.')"),
-		
+
+		zlrA3("aligned([1,2,3]",[
+			"",
+			",1"
+		],")"),
 		
 	]),//.concat(["\\def\\arraystretch{1.5}"+mtrx([[1,2],[3,4]],'.','.','')]),
 
@@ -1280,7 +1291,7 @@ SBS={
 	'Integral':[['\\int',"$intl('f','-1','1','x',0,'')$","$intl('f','-','+','x',6,'')$"]]
 		.concat(Arrf($A,[
 
-			zlrA3("intl('f','-','+','x",["',0","yz',3"],",'')"),
+			zlrA3("intl('f','-','+','x",["',0","yz',3"],",'')").concat("orifun('F(x)','1','0')"),
 			zlrA3("intl('f','-','+','xy',",[1,4],",'')"),
 			zlrA3("intl('f','-','+','x",["',2","yz',5"],",'')"),
 	])),
@@ -2333,7 +2344,31 @@ $(function(){
 			
 
 			
-			'<div id=input0Tip>'+dc+
+			'<div id=input0Tip>'+
+			'<select id=input0TipType>'+optgrp(gM('API Help')+':',
+			OptGrps(jSon('[{"'+
+				gM('Math Object')+
+				'":"Number Sequence Permutation Matrix Proposition Series Function Set Relation"},{"'+
+				
+
+				gM('Data')+' | '+gM('Script')+
+				'":"YAML JavaScript"},{"'+
+				
+				gM('Translator')+
+				'":"I18N EN"},{"'+
+
+				gM('Math Formula')+
+				'":"LaTeX"},{"'+
+				gM('Webpage Editor')+
+				'":"Markdown HTML"},{"'+
+				gM('Graphics')+
+				'":"Canvas SVG Echarts Zdog Lego"},{"'+
+				gM('Show')+
+				'":"Slide VR AR"}]'
+				),1
+			)
+			)+'</select>'+
+			dc+
 			DCtv('clear')+
 
 		dc+
@@ -2379,6 +2414,7 @@ itv('tool seled" tip=Preview id="preview','remove_red_eye')+
 
 itv('tool" tip="More Snippet" id="Snippetson','subject')+
 itv('" id=input0Toolon tip="Toggle Editor Tool','functions')+
+itv('seled" id=input0Tipon tip="API Help','help_outline')+
 
 itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
@@ -2930,6 +2966,54 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		$('#input0').removeClass('seled');
 		$(this).addClass('seled');
 
+
+	}).on('change','#input0TipType', function(){
+
+		var v=$(this).val()||'JavaScript', it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
+		if(v=='Echarts'){
+			tv=tooltip.graphic['Statistics/Echarts']
+		}
+		if(v=='I18N' || v=='EN'){
+			tv=v;
+		}
+		var opti=$(this).find('option[value='+v+']').parent().index(),
+		width=Math.max($('#input0').width(),$('#input0Tool').width())||200,
+		height=Math.max($('#input0').height(),$('#input0Tool').height(),400),
+		strc='class="inputTip inputTypeTip" style="max-height:'+height+'px" data-tool="';
+
+		if(tv){
+			if(!opti){
+				tv+=tooltip[v+' Operation']||''
+			}
+			if(tv=='I18N'){
+				tv='';
+				$.each(i18n,function(i,j){
+					tv+=sceg2(i)+' → '+sceg2(j)+br
+				});
+			}
+			if(tv=='EN'){
+				tv='';
+				$.each(i18n,function(i,j){
+					tv+=sceg2(j)+' → '+sceg2(i)+br
+				});
+			}
+
+			if(v=='LaTeX'){
+				tv+=br;
+				$.each(SBS.Latex,function(i,j){
+					if(!/func/.test(i)){
+						tv+=sceg2(i)+' : '+sceg2('\\'+j+' ')+br
+					}
+				});
+			}
+
+
+
+			$('#input0Tip').append(detail((v!='LaTeX'&&v!='JavaScript'?gM(v):v)+itv('remove" tip="Remove','remove_circle'),tv,'',strc+v+'"'));
+
+		}
+		
+
 	}).on('change','#input0Type', function(){
 	
 		var v=$(this).val()||'TXT', it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
@@ -2982,7 +3066,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 
 
-			$('#input0Tip').append(detail(v+itv('remove" tip="Remove','remove_circle'),tv,'',strc+v+'"'));
+			$('#input0Tip').prepend(detail(v+itv('remove" tip="Remove','remove_circle'),tv,'',strc+v+'"'));
 
 
 			$('.inputTip.inputTypeTip').last().prevAll().remove();
@@ -3092,7 +3176,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}else if($('#input0Tip > .inputTip').length>1){
 			$('#input0Tip > .inputTip').last().prevAll().remove()
 		}else{
-			$('#input0Tip').empty();
+			$('#input0Tip > .inputTip').remove();
 		}
 
 	}).on('click','#iTextFold',function(){
@@ -3116,6 +3200,14 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		var me=$(this), sel=me.toggleClass('seled').is('.seled');
 		$('#input0Tool').toggle(sel);
 
+	}).on('click','#input0Tipon',function(){
+		var me=$(this), sel=me.toggleClass('seled').is('.seled');
+		$('#input0Tip').toggle(sel);
+
+		if(sel && $('#input0Tip .inputTip').length<1){
+			$('#input0TipType').val($('#input0Type').val()).change();
+
+		}
 
 	}).on('click','#displayOverCanvas',function(){
 		
