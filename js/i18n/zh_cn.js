@@ -157,9 +157,11 @@ lang['zh_cn'] = {
 	'Wiki': '百科',
 	'Enclyclopedia':'百科全书',
 	
+
 	'Concept': '概念',
 	'Name': '名称',
 	'Notation': '记法',
+	'Define':'定义',
 	'Definition': '定义',
 	'Summary': '简介',
 	'Description': '描述',

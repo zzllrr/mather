@@ -118,7 +118,7 @@ SBS={
 	Operator:[
 		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀◯'],//⨌
 		['′″‴!† ¬∀∃∄ ∟√∛∜','‵‶‷‼‡ ∠∂∇✓'],
-		['+×±⊕ ∧∨∩∪','-÷∓⊗'],
+		['+×±⊕ ∧∨∩∪','-÷∓⊗∖'],
 		[ ZLR('() [] {} <> 〈〉 ⁽⁾ ┌┐ ⌈⌉ ⎰⎱ ⟦⟧ ║║ ||'),
 		ZLR('(,) [,] {,} <,> ⟨⟩ ₍₎ └┘ ⌊⌋ (,] [,)')],//⟮⟯
 	],
@@ -135,7 +135,7 @@ SBS={
 
 	Operator2:[
 		
-		['∧⋀⌃⌅⊼⌆⋋⋏⨇','∨⋁⌄‸⊻⊽⋌⋎⨈'],
+		['∧⋀⌃⌅⊼⌆⩞⋋⋏⨇','∨⋁⌄‸⊻ ⊽⋌⋎⨈'],
 		['∩⋂⋓⋔ ⨃⨄⨅⊓','∪⋃⋒ ⊌⊍⊎⨆⊔'],
 
 		['∡∠⦛⦣⦤⦠⦟⦞','∢⊿⊾⦢⦥⦡∟⦜⦝'],
@@ -384,8 +384,9 @@ SBS={
 'ℎ':'mathit{h}',//mathnormal 
 'Ｃ':'mathbf{C}',
 'Ϲ':'mathsf{C}',
-'∁':'mathtt{C}',
-	
+'∁':'mathtt{C}',	// complement
+
+'⊺':'intercal',
 'a':'mathrm{a}',
 	
 	
@@ -407,11 +408,11 @@ SBS={
 '∡':'measuredangle',
 '∢':'sphericalangle',
 '⋄':'diamond',
-'◊':'Diamond',
+'◊':'Diamond',	//lozenge
 '⧫':'blacklozenge',
-'♢':'diamonds',
+'♢':'diamonds',	//diamondsuit	
 
-'♣':'clubs',
+'♣':'clubs',	//clubsuit
 '♠':'spades',
 '♡':'hearts',
 '✠':'maltese',
@@ -423,24 +424,51 @@ SBS={
 '⋆':'star',
 '★':'bigstar',
 
-
+'∙':'bullet',
 
 '℧':'mho',
 '╱':'diagup',
 '╲':'diagdown',
+'∖':'setminus',
 
+'⟨':'langle',
+'⟩':'rangle',
+
+'{':'lbrace',
+'}':'rbrace',
+
+'[':'lbrack',
+']':'rbrack',
+
+'|':'lvert',
+'|':'llvert',
+
+'∧':'land',
+'∨':'lor',
+'¬':'neg',	//lnot
+
+'⊼':'barwedge',
+'⩞':'doublebarwedge',
 
 '¥':'yen',
 '£':'pounds',
 
-
+'⊛':'circledast',
+'⊚':'circledcirc',
+'⊝':'circleddash',
 '®':'circledR',
 'Ⓢ':'circledS',
 '§':'text{\\S}',
 '¶':'text{\\P}',
 
 '■':'blacksquare',
-'□':'square',
+'□':'square',	// Box
+'⊡':'boxdot',
+'⊟':'boxminus',
+'⊞':'boxplus',
+'⊠':'boxtimes',
+
+'≀':'wr',
 
 '⅟':kfrac('1/n').substr(1),
 '½':kfrac('1/2').substr(1),
@@ -465,7 +493,7 @@ SBS={
 'func_tri':[zlr2('sech csch cth th sh ch','⁻¹'),'sech csch cth th sh ch',
 		zlr('arc','sin cos tan cot sec csc'),'sin cos tan cot sec csc'
 		],
-//'func':'# & % exp log ln lg arg gcd lcm mod max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arccot arctg arcctg det dim deg hom ker Pr',
+		//injlim
 'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr',
 
 /*
@@ -485,14 +513,25 @@ SBS={
 		'×':'times',
 		'÷':'div',
 
+		'⋇':'divideontimes',
 		'∣':'mid',
 		'∤':'nmid',
-		'⋅':'cdot',
+		'⋅':'cdot',	//cdotp centerdot
+
+
+
+
 		'∘':'circ',
 		'∗':'ast',
-		'⨀':'bigodot',//⨀
+		'⨀':'bigodot',
 		'⨂':'bigotimes',
 		'⨁':'bigoplus',
+
+		'⊕':'oplus',
+		'⊖':'ominus',
+		'⊗':'otimes',
+		'⊘':'oslash',
+		'⊙':'odot',
 
 		'≡':'equiv',
 		'≠':'ne',	// \ne \not= \neq
@@ -510,7 +549,6 @@ SBS={
 
 		'✓':'checkmark',
 
-		'≐':'doteq', //	'dot=',
 
 		'≪':'ll',
 		'≫':'gg',
@@ -523,6 +561,11 @@ SBS={
 		'≦':'leqq',
 		'≧':'geqq',
 			
+		'└':'llcorner',
+		'┘':'lrcorner',
+
+		'⋉':'ltimes',
+		'⋊':'rtimes',
 
 		'≈':'approx',
 		'≃':'simeq',
@@ -549,7 +592,9 @@ SBS={
 		'⊃':'supset',
 		'⊆':'subseteq',
 		'⊇':'supseteq',
+		'⋒':'Cap',	// doublecap
 		'∩':'cap',
+		'⋓':'Cup',	// doublecup
 		'∪':'cup',
 		'⊓':'sqcap',
 		'⊔':'sqcup',
@@ -568,18 +613,22 @@ SBS={
 		'⋀':'bigwedge',
 		'⨄':'biguplus',
 		'⨆':'bigsqcup',
-		'∋':'ni',
+		'◯':'bigcirc',
+
 		
+		'.':'ldotp',
 		
-		'…':'ldots',
-		'⋯':'cdots',
+		'…':'ldots',	//dotsc	dotso
+		'⋯':'cdots',	//dotsb	dotsm	idotsint
 		'⋱':'ddots',
 		'⋮':'vdots',
+		'⋰':'iddots',
 
 		'∵':'because',
 		'∴':'therefore',
 		'∀':'forall',
 		'∃':'exists',
+		'∄':'nexists',
 
 		'≯':'not>',
 		'̸⊄':'not\\subset',
@@ -777,6 +826,8 @@ SBS={
 '≏':'bumpeq',
 '≎':'Bumpeq',
 '≗':'circeq',
+
+':':'colon',
 ':≈':'colonapprox',
 '::≈':'Colonapprox',
 ':−':'coloneq',
@@ -788,11 +839,17 @@ SBS={
 '≅':'cong',
 '⋞':'curlyeqprec',
 '⋟':'curlyeqsucc',
+'⋎':'curlyvee',
+'⋏':'curlywedge',
+
 '⊣':'dashv',
 '::':'dblcolon',
 '≐':'doteq',
 '≑':'Doteq',
 '≑':'doteqdot',
+
+'∔':'dotplus',
+
 '≖':'eqcirc',
 '−:':'eqcolon',
 '−::':'Eqcolon',
@@ -812,6 +869,8 @@ SBS={
 '⋙':'ggg',
 '⋙':'gggtr',
 '>':'gt',
+
+'⋗':'gtrdot',
 '⪆':'gtrapprox',
 '⋛':'gtreqless',
 '⪌':'gtreqqless',
@@ -820,9 +879,10 @@ SBS={
 '∈':'in',
 '∈':'isin',
 '⋈':'Join',
-'≤':'le',
-'≤':'leq',
-'≦':'leqq',
+
+'<':'lt',
+'⋖':'lessdot',
+
 '⩽':'leqslant',
 '⪅':'lessapprox',
 '⋚':'lesseqgtr',
@@ -832,11 +892,11 @@ SBS={
 '≪':'ll',
 '⋘':'lll',
 '⋘':'llless',
-'<':'lt',
+
 '∣':'mid',
 '⊨':'models',
 '⊸':'multimap',
-'∋':'owns',
+'∋':'owns',	//ni
 '‖':'parallel',
 '⊥':'perp',
 '⋔':'pitchfork',
@@ -848,7 +908,7 @@ SBS={
 '∝':'propto',
 '≓':'risingdotseq',
 '∣':'shortmid',
-'∥':'shortparallel',
+'∥':'lVert',	//shortparallel
 '∼':'sim',
 '≃':'simeq',
 '⌢':'smallfrown',
@@ -880,19 +940,21 @@ SBS={
 '≜':'triangleq',
 '⊵':'trianglerighteq',
 '∝':'varpropto',
-'△':'vartriangle',
-'▽':'triangledown',
+'△':'vartriangle',	//bigtriangleup
+'▽':'triangledown',	//bigtriangledown
 '◃':'triangleleft',
 '▹':'triangleright',
 
-'⊲':'vartriangleleft',
-'⊳':'vartriangleright',
+'⊲':'lhd',	//vartriangleleft
+'⊳':'rhd',	//vartriangleright
 
 '▲':'blacktriangle',
-'▼':'blacktriangle',
+'▼':'blacktriangledown',
 '◀':'blacktriangleleft',
 '▶':'blacktriangleright',
 
+'⋋':'leftthreetimes',
+'⋌':'rightthreetimes',
 
 ':':'vcentcolon',
 '⊢':'vdash',
@@ -973,21 +1035,21 @@ SBS={
 	
 ,FUNCS={
 	'Number Theory':['dr'],
-	'Arithmetic':['gcd log Arg mod sign','lcm ln arg exp'],// ㏒ ㏑
+	'Arithmetic':['gcd log exp Arg mod sign','lcm ln lg arg'],// ㏒ ㏑
 	'Algebraic':['r tr det dim','hom ker Pr diag'],
 	'Trigonometric':['sin tan sec','cos cot csc',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
 	'Hyperbolic':['sh th sech','ch cth csch',
 	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
 
-	'Analytical':['lim sup inf','limsup liminf'],
+	'Analytical':['lim sup inf','limsup liminf','injlim','projlim'],
 	'Set':[],
 	'Logistical':[],
 	'Probabilistic':[],
 	'Statistical':['min max'],
 
 	'Topological':[],
-	'Geometric':[]
+	'Geometric':['deg',]
 }
 
 
@@ -1010,6 +1072,7 @@ SBS={
 	['Notes','Margin','Negative Margin'],
 	['Margin Space','Margin Value','Size'],
 
+	ZLR('Define'),
 
 ]
 	
@@ -1056,6 +1119,12 @@ SBS={
 		zlrA3("$eq(1,'",'=⇒⇔⇐'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤
 		zlrA3("$eq(1,'",'⇋⇌⇄'.split(''),"',2)$"),
 	],
+
+	'Define':[
+		['\\def\\zzllrr#1#2{{#1}+{#2}}\\zzllrr{\\pi}{4}',
+		'\\newcommand\\test[2]{\\color{#1}{\\heartsuit}\\color{#2}{\\heartsuit}} \\test{red}{blue}']
+	],
+
 
 	'Relation':[['↖','↙'],
 		zlrA3("$mtrx([",[
@@ -1156,7 +1225,7 @@ SBS={
 
 	]),
 
-	'Parentheses':Arrf($A,[zlrA3("zp('x^2'",[
+	'Parentheses':[zlrA3("$zp('x^2'",[
 		"",
 		",'<>'",
 		",'[]'",
@@ -1164,31 +1233,33 @@ SBS={
 	
 		",'/\\\\'",
 		
-		],')'),
-		zlrA3("zp('x^2'",[
+		],')$'),
+		zlrA3("$zp('x^2'",[
 		",'||'",
 		",'‖‖'",
 		",'⌊⌋'",
 		",'⌈⌉'",
 	
-		],')'),
-		zlrA3("zp('x^2'",[
+		],')$'),
+		zlrA3("$zp('x^2'",[
 	
 		",'↑↓'",
 		",'↕↕'",
 		",'⇑⇓'",
 		",'⇕⇕'",
-		],')'),
-		zlrA3("zp('x,y'",[
+		],')$'),
+		zlrA3("$zp('x,y'",[
 			",'','(','.'",
 			",'','.',')'",
 			",'(]'",
 			",'[)'",
 	
-		],')'),
-		["pp('x,y')",
-		"zp('x,y','','<','>')"],
-	]),
+		],')$'),
+		["$pp('x,y')$",
+		"$zp('x,y','','<','>')$",
+		"\\mathopen\\lt a\\mathclose\\gt",
+		'\\pod a'],
+	],
 
 	'Big Parentheses':Arrf($A,[
 		['big(0)+big(0,1)','big(1)+big(1,1)','big(2)+big(2,1)','big(3)+big(3,1)'],
@@ -1341,11 +1412,13 @@ SBS={
 
 
 //zlrA3("\\math",ZLR('rm bb it bf sf tt'),"{A}"),
-	'Font':Arrf($A,[zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')"),
-		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold')),"','')"),
-		zlrA3("kxc('",Arrf(function(x){return x+"','"+x},ZLR('boldsymbol')),"','')"),
+	'Font':[zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')$"),
+		zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold')),"','')$"),
+		zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('boldsymbol')),"','')$").concat([
+			'a \\pmb b c'
+		]),
 	
-	]),
+	],
 	
 	'Math Font':Arrf($A,[zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('bb bf cal')),"')"),
 		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('frak it rm')),"')"),
@@ -1359,9 +1432,10 @@ SBS={
 	
 	]),
 
-	'Hebrew':Arrf($A,[
-		zlrA3("kxc('",['A','B','C','D'],"','a')"),	
-	]),
+	'Hebrew':[
+		zlrA3("$kxc('",['A','B','C','D'],"','a')$"),
+		zlrA3('\\',ZLR('Ka La '),'TeX'),
+	],
 
 	'Lowercase Greek':Arrf($A,[
 		zlrA3("kxc('",['a','b','c','d','e'],"','g')"),
@@ -1386,6 +1460,7 @@ SBS={
 	'Margin Space':[
 		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('thin med thick'),'space')),
 		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' en nobreak'),'space')),
+		['1\\mathinner{\\text{inner}}2','1\\mathpunct{.}2'],
 	],
 
 	'Margin Value':[zlrA3('\\',ZLR('mkern mskip hspace'),'{5mu}'),
@@ -1454,8 +1529,8 @@ SBS={
 		"\\colorbox{aqua}{A}"
 		],
 		zlrA3("$kancel(1",ZLR(" ,'-' ,'b' ,'x'"),')$'),
-		['\\not{1}'].concat($A(["kbox(1)","kbox('F','frak','math')"])),
-		zlrA3('\\',ZLR('Ka La '),'TeX'),
+		['\\not{1}'].concat($A(["kbox(1)","kbox('F','frak','math')"]),'\\fbox{A}'),
+		
 	]
 
 },SBSFn=[],

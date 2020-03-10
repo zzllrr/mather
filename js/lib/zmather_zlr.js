@@ -581,6 +581,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			.replace(/≢/g, '\\not \\mathrlap{} \\negthickspace \\negthickspace ≡')	// fix latex ≢ bug	V0.10.1				katex bug:	table元素中使用katex，不等号会错位	字体显示≢会丢失 删除线
 
 			//extension 
+
+			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
+			.replace(/(inj|proj) ?(lim)/g, 'mathrm{$1~$2}')
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
 			.replace(/(\{[^\}]+\}|.) *\\\/ *(\{[^\}]+\}|.)/g, '\\frac{$1}{$2}')				//无嵌套分数形式	a\/b  <=> \frac{a}{b}
 			.replace(/[√∛∜]-?[\d\.]+/g, function(x){var i='√∛∜'.indexOf(x[0]);return '\\sqrt'+(i?'['+(i+2)+']':'')+'{'+x.substr(1)+'}'})
@@ -695,7 +698,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	},
 
 	intl = function (v, b, t, d, p, zM) {
-		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\cdots\\int'][p || 0] + (!zM ? '\\nolimits' : '') +
+		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : '') +
 			'_{' + ((b == '-' ? b + '∞' : b) || '') + '}' + (t ? '^{' + (t == '+' ? t + '∞' : t) + '}' : '') + v + '\\,'+
 			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'x').split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
@@ -705,7 +708,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', dg = g ? '^{' + g + '}' : ''; return '\\frac{' + d + dg + (f || '') + '}{' + d + (x || 'x') + dg + '}' },
 
 	Opr = function (i, b, t, v, p) { return '\\mathop{' + p + '}\\limits' + '_{' + (i ? i + '=' + b : (b=='-'?'-∞':b)) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') + (v || '') },
-	/* katex 不支持 ⋰ ∱∲∳ \idotsint 多重积分 ∫⋅⋅⋅∫ 与MathJax区别
+	/* katex 不支持 ⋰ (已使用\iddots 命令修复) ∱∲∳ \idotsint 多重积分 ∫⋅⋅⋅∫ 与MathJax区别
 	
 	 http://www.cnblogs.com/suerchen/p/4833381.html
 	 https://katex.org/docs/supported.html
@@ -1344,7 +1347,8 @@ array命令下		()	[]	\{\}	||	\|
 		return B
 	},
 	ztable = function (A, nobox, spacing) { var t = mtrx(A, '.', '.', spacing || '', 'rc  _'); return nobox ? t : boxed(t) },
-	det = function (A, spacing, tiny) { var al = arguments.length; return al >= 2 ? '\\begin{vmatrix}' + Arrf(function (x) { return kfrac(x.join(' & '), 1, tiny || '') }, A).join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]')) + '\\end{vmatrix}' : SCtv('bdl bdr inblk alignc', Table('', A)) },
+	det = function (A, spacing, tiny) { var al = arguments.length; return al >= 2 ? '\\begin{vmatrix}' + Arrf(function (x) { return kfrac(x.join(' & '), 1, tiny || '') }, A).join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]'))
+		.replace(/⋰/g,'\\iddots') + '\\end{vmatrix}' : SCtv('bdl bdr inblk alignc', Table('', A)) },
 	zdet = function (A, spacing) { return det(Arrf(ZLR, A), spacing) },
 	kdet = function (A, fracOff) { return det(A, /frac/.test(A) || !fracOff && /\//.test(A) ? 5 : '', fracOff ? '' : 't') },
 
