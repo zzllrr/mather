@@ -1035,14 +1035,14 @@ SBS={
 	
 ,FUNCS={
 	'Number Theory':['dr'],
-	'Arithmetic':['gcd log exp Arg mod sign','lcm ln lg arg'],// ㏒ ㏑
-	'Algebraic':['r tr det dim','hom ker Pr diag'],
+	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sign'],// ㏒ ㏑
+	'Algebraic':['r rank diag tr det','dim hom ker Pr div'],
 	'Trigonometric':['sin tan sec','cos cot csc',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
 	'Hyperbolic':['sh th sech','ch cth csch',
 	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
 
-	'Analytical':['lim sup inf','limsup liminf','injlim','projlim'],
+	'Analytical':['lim sup inf','limsup liminf','inj~lim proj~lim'],
 	'Set':[],
 	'Logistical':[],
 	'Probabilistic':[],
@@ -1072,7 +1072,7 @@ SBS={
 	['Notes','Margin','Negative Margin'],
 	['Margin Space','Margin Value','Size'],
 
-	ZLR('Define'),
+	ZLR('Define Determinant'),
 
 ]
 	
@@ -1321,6 +1321,19 @@ SBS={
 		
 	]),
 
+	'Determinant':[
+		['|A|'].concat(zlrA3("$zdet(",[
+			"['a b   ','c a b  ',' ⋱ ⋱ ⋱ ','  c a b','   c a']",
+			"['a     b',' ⋱   ⋰ ','  a b  ','  c d  ',' ⋰   ⋱ ','c     d']",
+
+		],')$')),
+		zlrA3("$zdet(",[
+			"['a_{11} a_{12} a_{13} ⋯ a_{1n}','a_{21} a_{22} a_{23} ⋯ a_{2n}','a_{31} a_{32} a_{33} ⋯ a_{3n}','⋮ ⋮ ⋮ ⋱ ⋮','a_{n1} a_{n2} a_{n3} ⋯ a_{nn}']",
+			"['1 1 1 ⋯ 1','a_1 a_2 a_3 ⋯ a_n','a_1^2 a_2^2 a_3^2 ⋯ a_n^2','⋮ ⋮ ⋮ ⋱ ⋮','a_1^{n-1} a_2^{n-1} a_3^{n-1} ⋯ a_n^{n-1}'],4",
+
+		],')$')
+
+	],
 
 	'Sum':[['\\sum','\\prod']
 		.concat($A(zlrA3("prod('i',0,'+','f',",[3,7],",'')")))
@@ -1859,9 +1872,9 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	if(fn){//函数
 		if(iTyp=='LaTeX'){
 
-			var c=td.attr('title'),hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,'');
+			var c=td.attr('title'),hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,''), word=/^[a-z~]+$/.test(c);
 
-			t=(SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+c0+'}')+(hassbl?c.replace(/^[a-z]+/i,''):'');
+			t=(SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+(word?c:c0)+'}')+(hassbl && !word?c.replace(/^[a-z]+/i,''):'');
 
 		}else{
 			t=td.attr('title')
@@ -2013,9 +2026,9 @@ sbsTbl=function(){
 
 		var s='<div class=Fns data-i="'+K+'">',n=A.length;
 		for(var i=0;i<n;i++){
-			var c=A[i],hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,'');
+			var c=A[i],hassbl=/[^a-z].+/i.test(c),c0=c.replace(/[^a-z].+/i,''), word=/^[a-z~]+$/.test(c);
 
-			s+=DCtv('Fns td" title="'+c, SCtv('symboln',zx((SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+c0+'}')+(hassbl?c.replace(/^[a-z]+/i,''):''))));
+			s+=DCtv('Fns td" title="'+c, SCtv('symboln',zx((SLF.indexOf(c0)>-1?'\\'+c0:'\\text{'+(word?c:c0)+'}')+(hassbl && !word?c.replace(/^[a-z]+/i,''):''))));
 		}
 		s+=DCtv('clear')+dc;
 		return s

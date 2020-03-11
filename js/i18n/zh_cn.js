@@ -1221,6 +1221,9 @@ lang['zh_cn'] = {
 	'Misc':'杂项',
 	'Miscellaneous':'杂项',
 
+	'Nationality':'国籍',
+	'Nation':'国家',
+
 	'Avatar':'头像',
 	'Card':'卡片',
 	'Process':'流程',
