@@ -16,7 +16,7 @@ Table([i18(ZLR('Name Nationality Time Image Summary Reference'))],[
 
 			['1707–1727','早年，瑞士巴塞尔Basel'],
 			[1707,'作为长子出生，父亲Paulus Euler牧师（出身普通工匠家庭，在大学的前两年也上过数学家Jakob Bernoulli的课），母亲Margaretha Brucker是学者的后代'],
-			[1708,'1岁，搬家到巴塞尔郊区；两个妹妹Anna Maria、Maria Magdalena，1个弟弟Johann Heinrich相继出生'],
+			[1708,'1岁，搬家到巴塞尔郊区Riehen；两个妹妹Anna Maria、Maria Magdalena，1个弟弟Johann Heinrich相继出生'],
 
 			[1711,'4岁，欢乐，充满好奇心，一次躲在鸡窝里想自己孵鸡蛋，让妈妈担心他掉到井里，四处找他；帮妈妈摘樱桃前，想一个个尝甜不甜'],
 
@@ -86,9 +86,13 @@ Table([i18(ZLR('Name Nationality Time Image Summary Reference'))],[
 			[href(Hs+'www.cs.purdue.edu/homes/wxg/EulerLect.pdf','Leonhard Euler: His Life, the Man, and His Works'),'Walter Gautschi','2008'],
 			[href(H+'www.doc88.com/p-0691743387056.html','Leonhard Euler and the Bernoullis - Mathematicians from Basel'),'',''],
 			[href(H+'mathshistory.st-andrews.ac.uk/Extras/Euler_Fuss_Eulogy.html','Eulogy of Leonhard Euler'),'Nicolas Fuss','1783'],
+			[href(Hs+'www.unibas.ch/en/University/About-University/History.html',''),'',''],
+			[href(Hs+'www.sohu.com/a/196971673_224832','欧拉轶事：他就像数学界中的贝多芬 '),'知社学术圈','2017-10-9'],
 			[href(H+'www.qulishi.com/article/201903/326811.html','趣历史：莱昂哈德·欧拉是谁 他所获的评价是什么样的'),'',''],
 			[href(Hs+'www.360kuai.com/pc/9f8df20b0ead6190e','影响世界历史的100位科学家（19）-欧拉 数学史上四杰之一'),'',''],
 			[href(H+'www.360doc.com/content/18/0726/14/45199333_773364025.shtml','数学家欧拉和高斯，哪个更厉害？'),'',''],
+			[href(H+'www.360doc.com/content/18/0414/14/9824753_745578218.shtml','伯努利家族的恩怨情仇'),'',''],
+			[href(Hs+'mp.weixin.qq.com/s?__biz=MjM5ODc2Mzk2MA==&mid=2451744553&idx=1&sn=ced765842bcff18286bda5f1d159b4df&chksm=b113cbfe866442e81fa55ddfa280d1e7928de6c40ce76718b568ea8fd5f2bd1bc24a72507d40&scene=21','数学名人 | 无处不在的欧拉'),'校苑数模','2018-4-11'],
 		],'TBrc'),
 	]
 	
