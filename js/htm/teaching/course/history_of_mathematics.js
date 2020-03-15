@@ -15,7 +15,7 @@ Table([i18(ZLR('Name Nationality Time Image Summary Reference'))],[
 		Table([i18(ZLR('Time Summary'))],[
 
 			['1707–1727','早年，瑞士巴塞尔Basel'],
-			[1707,'作为长子出生，父亲Paulus Euler牧师（出身普通工匠家庭，在大学的前两年也上过数学家Jakob Bernoulli的课），母亲Margaretha Brucker是学者的后代'],
+			[1707,'作为长子出生，父亲Paulus Euler（1670~1745）牧师（出身普通工匠家庭，在大学的前两年也上过数学家Jakob Bernoulli的课），母亲Margaretha Brucker（1677~1761）是牧师的女儿'],
 			[1708,'1岁，搬家到巴塞尔郊区Riehen；两个妹妹Anna Maria、Maria Magdalena，1个弟弟Johann Heinrich相继出生'],
 
 			[1711,'4岁，欢乐，充满好奇心，一次躲在鸡窝里想自己孵鸡蛋，让妈妈担心他掉到井里，四处找他；帮妈妈摘樱桃前，想一个个尝甜不甜'],
