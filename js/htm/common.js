@@ -644,6 +644,8 @@ $(function(){
       
       
         sc+
+
+        itv('" id=WidgetOpen tip="Launch','launch')+
         itv('" id=WidgetOn tip="Close','close')+
 
 
@@ -720,6 +722,12 @@ $(function(){
         $('#Widgets .toggle').click();
         $('#Widget.toggle').click();
     });
+
+
+    $('#WidgetOpen').on('click',function(){
+        open('widget.html')
+    });
+
 
     $('#padding').on('click',function(){
         var o=$('#oHTML'),p=o.is('.pd20p'),pl=o.is('.pd20pl'),p20=o.is('.pd20');

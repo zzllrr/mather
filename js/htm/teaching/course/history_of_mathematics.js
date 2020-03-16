@@ -83,6 +83,7 @@ Table([i18(ZLR('Name Nationality Time Image Summary Reference'))],[
 		
 		],'TBrc'),
 		Table([i18(ZLR('Title Author Time'))],[
+			[enwiki('Leonhard_Euler'),'',''],
 			[href(Hs+'www.cs.purdue.edu/homes/wxg/EulerLect.pdf','Leonhard Euler: His Life, the Man, and His Works'),'Walter Gautschi','2008'],
 			[href(H+'www.doc88.com/p-0691743387056.html','Leonhard Euler and the Bernoullis - Mathematicians from Basel'),'',''],
 			[href(H+'mathshistory.st-andrews.ac.uk/Extras/Euler_Fuss_Eulogy.html','Eulogy of Leonhard Euler'),'Nicolas Fuss','1783'],
