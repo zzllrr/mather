@@ -52,6 +52,11 @@ lang['zh_cn'] = {
 
 	'Launch': '在新窗口运行',
 	'Lang': '语言',
+	'English':'英语',
+	'Chinese':'中文',
+
+
+
 	'Del': '删除',
 
 	'Linebreak': '换行',
@@ -711,6 +716,7 @@ lang['zh_cn'] = {
 	'Action': '动作',
 	'Scene': '场景',
 	'Scenario':'场合',
+	'Aside':'旁白',
 
 	'Gadget': '部件',
 	'Widget':'部件',
@@ -1041,6 +1047,7 @@ lang['zh_cn'] = {
 	'Energy Consumption Minimization': '能耗最小化',
 	'Open Access': '开放获取',
 
+	'Symbol': '符号',
 	'Symbolic': '符号',
 	'Numeral': '数值',
 	'Numerical': '数值',
@@ -1795,6 +1802,7 @@ lang['zh_cn'] = {
 'Hardy':'哈代',
 'Hilbert':'希尔伯特',
 'Hypatia':'希帕蒂娅',
+'Jacob':'雅克布',
 'Jacobi':'雅可比',
 'Jiushao':'秦九韶',
 'Johnson':'约翰逊',
