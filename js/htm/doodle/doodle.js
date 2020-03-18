@@ -452,7 +452,7 @@ $(function () {
 					detail('<input type=button id=clrTextBox value="'+gM('Clear')+'" />'+
 						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />'+strbtn+' + " id=TextBoxGo2 />',
 						txa('','" id="TextBox')+
-						detail(gM('Editor'),
+						detail(gM('Editor')+SCtv('ediHot" for="HTML',Arrf(function(x){return strbtn+gM(x)+'" data-v='+x+' />'},ZLR('widget editor document slide index')).join('')),
 						
 						DCtv('hidden" for="HTML', [].concat(
 							'iframe: ','<input type=text class="iframesrc" value="" placeholder="solve.html?" />',
@@ -1267,12 +1267,12 @@ dc+
 
 
 	$('#TextBoxType').on('change',function(){
-		var f=$('#TextBoxTool > div[for]').hide().filter('[for="'+this.value+'"]');
+		var f=$('#TextBoxTool > div[for]').hide().filter('[for="'+this.value+'"]'), ediHot=$('#TextBoxTool summary .ediHot').hide().filter('[for="'+this.value+'"]');
 		if(f.length){
 			f.show().parent().show()
-
+			ediHot.show();
 		}else{
-			f.parent().hide()
+			f.parent().hide();
 		}
 	})
 	;
@@ -1313,7 +1313,7 @@ dc+
 	});
 
 
-	$('#TextBoxTool [for=HTML]').on('click','input, select,textarea,label,meter',function(){
+	$('#TextBoxTool [for=HTML]').on('click','summary ~ div input, select,textarea,label,meter',function(){
 		var me=$(this),pa=me.parent(), t=this.outerHTML;
 		if(pa.is('label')){
 			t=XML.wrapE('label', t.replace(/input /, '$&'+(!me.prop('checked')?'checked ':'')));
@@ -1322,7 +1322,7 @@ dc+
 
 		}else if(me.is('input')){
 			if(me.is('.iframesrc')){
-				t='<iframe src="'+$(this).val()+'" width=300 height=600 style="border:0"></iframe>'
+				t='<iframe src="'+H_a($(this).val(),location.origin+location.pathname)+'" width=300 height=600 style="border:0;overflow:auto;resize:auto;"></iframe>'
 			}else{
 				t=/value/.test(t)?t.replace(/value="[^"]*"/, 'value="'+me.val()+'"'):t.replace(/input /, '$&value="'+me.val()+'" ');
 			}
@@ -1493,6 +1493,18 @@ dc+
 
 
 
+	$('.ediHot :button').on('click', function () {
+		var me=$(this),tp=me.parent().attr('for'),v=me.attr('data-v'),t='';
+		if(tp=='HTML'){
+			t='<iframe src="'+H_a(v+'.html',location.origin+location.pathname)+'" width=300 height=600 style="border:0;overflow:auto;resize:auto;"></iframe>';
+			//console.log(t);
+			$('#TextBox').val(t);
+			$('#TextBoxGo2').click();
+			
+		}
+
+
+	});
 
 	$('#OtherOpts :checkbox').on('click', function () {
 
@@ -2286,7 +2298,7 @@ dc+
 
 
 
-	}).on('paste', '.imgurl', function (e) {
+	}).on('paste', '.imgurl,#Caps textarea', function (e) {
 		//console.log(e);
 		var ts = e.originalEvent.clipboardData.items, me = $(this), id = this.id, p = me.parent(), pp = p.parent(),
 
@@ -2329,7 +2341,7 @@ dc+
 				}
 			}
 		}
-	}).on('change keyup mouseup', '.imgurl', function (e) {//textbox
+	}).on('change keyup mouseup', '.imgurl,#Caps textarea', function (e) {//textbox
 		var me = $(this), id = this.id, src = me.val(), src0 = me.attr('data-bg') || '', cnged = src0 != src && src != ' ', p = me.parent(), pp = p.parent(),
 		cb = function () {
 			scrn('eraser');

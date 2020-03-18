@@ -1684,7 +1684,10 @@ function H_h(F, H) { var f = H_W(F), h = H_w(H); if (h == f || h == f + '/') { h
 
 function H_a(u, base) {
 
-	var b = base || '';
+	var b = base || (location.origin+location.pathname);
+	if(/\?.+\//.test(b)){
+		b=b.replace(/\?.+/,'')
+	}
 
 	if (b.indexOf('/', 8) > 0) {
 		var b0 = b.substr(0, b.indexOf('/', 8)) + '/';
