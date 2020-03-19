@@ -36,7 +36,7 @@
 	.toolTip{
 		position: fixed;
 		left:2px;
-		top:2px;
+		bottom:2px;
 	}
 	
 	.editorText {
