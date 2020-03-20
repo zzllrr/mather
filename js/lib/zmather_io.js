@@ -70,7 +70,7 @@ SBS={
 		['ⅰⅱⅲⅳⅴⅺⅻ','ⅵⅶⅷⅸⅹⅼⅽⅾⅿ'],
 		['ⅠⅡⅢⅣⅤⅪⅫ','ⅥⅦⅧⅨⅩⅬⅭⅮⅯ'],
 		['ℂℍℙℚ ℭℌℑℜ','ℕℝℤℨ'],
-		['ℬℰℱℋ ℯℊℴ','ℐℒℳℛ'],
+		['ℬℰℱℋ ℯℊℴℓ','ℐℒℳℛ'],
 		['⍶⍺ϐϒϕ⍳⍸⍴ϱ','ϵ⍷ℇϑϴ⍵⍹ϖ∂∇'],
 
 	
@@ -116,8 +116,8 @@ SBS={
 	DEF3:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),
 
 	Operator:[
-		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀◯'],//⨌
-		['′″‴!† ¬∀∃∄ ∟√∛∜','‵‶‷‼‡ ∠∂∇✓'],
+		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀⨌'],
+		['′″‴!† ¬∀∃∄∟√∛∜⨳','‵‶‷‼‡∠∂∇✓※'],
 		['+×±⊕ ∧∨∩∪','-÷∓⊗∖'],
 		[ ZLR('() [] {} <> 〈〉 ⁽⁾ ┌┐ ⌈⌉ ⎰⎱ ⟦⟧ ║║ ||'),
 		ZLR('(,) [,] {,} <,> ⟨⟩ ₍₎ └┘ ⌊⌋ (,] [,)')],//⟮⟯
@@ -130,7 +130,7 @@ SBS={
 			
 		['×⨉∕╱','╳⋇∖╲'],
 			
-		['⊕⨁⨂⊖⊗⦿⊙⨀⊚⌾','⊘⌽⊜⊝ ⍟⊛⌻⌼'],//⧀⧁
+		['⊕⨁⨂⊖⊗⦿⊙⨀⊚⌾','⊘⌽⊜⊝⍟⧀⧁⊛⌻⌼'],
 	],
 
 	Operator2:[
@@ -139,8 +139,8 @@ SBS={
 		['∩⋂⋓⋔ ⨃⨄⨅⊓','∪⋃⋒ ⊌⊍⊎⨆⊔'],
 
 		['∡∠⦛⦣⦤⦠⦟⦞','∢⊿⊾⦢⦥⦡∟⦜⦝'],
-		['⊞⊠⍁⌸⊡⍃⍄⌺⍐⍍⍓⍌⍰','⊟⌹⍂⍯⍠⍇⍈⍞⍗⍔'],
-		['≖⋄','']
+		['⊞⊠⍁⌸⊡⍃⍄⌺⍐⍍⍓⍌⍰□■','⊟⌹⍂⍯⍠⍇⍈⍞⍗⍔'],
+		['≖⋄','◯']
 
 	],
 
@@ -1036,7 +1036,7 @@ SBS={
 ,FUNCS={
 	'Number Theory':['dr'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sign'],// ㏒ ㏑
-	'Algebraic':['r rank diag tr det','dim hom ker Pr div'],
+	'Algebraic':['r rank diag tr det','dim hom ker Pr div','span proj'],
 	'Trigonometric':['sin tan sec','cos cot csc',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
 	'Hyperbolic':['sh th sech','ch cth csch',
@@ -1045,7 +1045,7 @@ SBS={
 	'Analytical':['lim sup inf','limsup liminf','inj~lim proj~lim'],
 	'Set':[],
 	'Logistical':[],
-	'Probabilistic':[],
+	'Probabilistic':['Bin Geo U N',],
 	'Statistical':['min max'],
 
 	'Topological':[],
@@ -1449,6 +1449,7 @@ SBS={
 	'Hebrew':[
 		zlrA3("$kxc('",['A','B','C','D'],"','a')$"),
 		zlrA3('\\',ZLR('Ka La '),'TeX'),
+		['Q.~E.~D.~','Q.~E.~A.~'],
 	],
 
 	'Lowercase Greek':Arrf($A,[

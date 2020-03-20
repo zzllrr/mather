@@ -616,6 +616,11 @@ lang['zh_cn'] = {
 	'Todo': '待办',
 
 	'Statistics': '统计',
+	'Population':'总体',//统计学中
+	'Sample':'样本',
+	'Correlation':'相关系数',
+	'Covariance':'协方差',
+	'Variance':'方差',
 
 
 	'Lottery': '彩票',
@@ -854,11 +859,14 @@ lang['zh_cn'] = {
 
 
 	'Glossary': '词汇表',
+	'Lexicon':'词汇表',
 	'Corpus': '语料',
 	'Grammar': '语法',
 	'Context': '语境',
 	'Linguistics': '语言学',
 
+	'Tautology':'重言式', // 永真式
+	'Contradiction':'矛盾',
 
 	'Expression': '表达式',
 
@@ -1252,6 +1260,9 @@ lang['zh_cn'] = {
 	'Deprecated':'不推荐',
 
 	'Available':'可用',
+	'Jargon':'行话',
+
+
 	//Math concept
 
 	// noun
@@ -1361,6 +1372,8 @@ lang['zh_cn'] = {
 	'Space.1': '空间',
 	'Kernel': '核',
 
+	'Spectral':'',
+
 	'Permutation': '置换',
 	'Relation': '关系',
 	'Function': '函数',
@@ -1375,6 +1388,7 @@ lang['zh_cn'] = {
 	'Graphing': '作图',
 
 	'Set': '集合',
+	'Subset':'子集',
 	'Group.Math': '群',
 	'Group': '群组',
 
@@ -1404,6 +1418,8 @@ lang['zh_cn'] = {
 	'Orthocenter': '垂心',
 	'Incenter': '内心',
 	'Circumcenter': '外心',
+	'Parallel':'平行',
+	'Perpendicular':'垂直',
 	'Perpendicular Foot': '垂足',
 	'Foci': '焦点',
 
@@ -1605,6 +1621,7 @@ lang['zh_cn'] = {
 	'Area':'面积',
 	'Surface Area':'表面积',
 	'Similar':'相似',
+	'Congruent':'全等',
 
 	'Contour':'等高线',
 

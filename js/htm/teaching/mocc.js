@@ -9,13 +9,17 @@
 teaching['MOOC']=
 	Table([i18(ZLR('Name Type Features'))],[
 
-        [href(Hs+'www.icourse163.org','中国大学Mooc'),'',''],
         [href(Hs+'www.coursera.org/browse/math-and-logic','Coursera'),'',''],
+
+        [href(Hs+'www.khanacademy.org/math','Khan Academy'),'','可汗学院'],
+
+        [href(Hs+'ocw.mit.edu/courses/mathematics/','MIT Open Course Ware'),'',"A comprehensive platform with most of the undergraduate / graduate-level math courses offered by MIT, featuring video instructions, eTextbooks, presentation slides and other helpful materials."],
+       
+        [href(Hs+'www.icourse163.org','中国大学Mooc'),'',''],
         [href(Hs+'www.mooc.cn/course?cate=11','Mooc中国'),'',''],
         [href(Hs+'www.edx.org/course/subject/math','edX'),'',''],
         [href(Hs+'cn.udacity.com','Udacity'),'','优达学城'],
         [href(Hs+'www.udemy.com/courses/teaching-and-academics/math/','Udemy'),'',''],
-        [href(Hs+'www.khanacademy.org/math','Khan Academy'),'','可汗学院'],
         ['NovoEd','','美国，斯坦福大学建立的平台，以商科课程为主'],
         ['iversity','','德国，面向全世界征集网络课程，英语、德语授课 '],
         [href(Hs+'www.futurelearn.com/courses/categories/science-engineering-and-maths-courses','FutureLearn'),'','英国，课程由英国的大学开设 英式英语'],

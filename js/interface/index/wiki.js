@@ -8,6 +8,10 @@ wikis={
 	'index':['Concept','Theorem','Formula','Conjecture','Pitfall','Explore','Thinking','Dictionary'],
 
 	'Dictionary':[
+		{'Symbol':[
+
+		]},
+
 		{'Glossary':[
 
 
