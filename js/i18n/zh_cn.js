@@ -1261,6 +1261,9 @@ lang['zh_cn'] = {
 
 	'Available':'可用',
 	'Jargon':'行话',
+	'Parlance':'术语',
+	'Metaphor':'隐喻',
+	'Ansatz':'拟设',
 
 
 	//Math concept

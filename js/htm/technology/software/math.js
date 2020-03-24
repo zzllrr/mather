@@ -41,7 +41,7 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 	[href(Hs+'start.sketchometry.org','Sketchometry'),gM('Web'),'Sketch Geometry - Sketchometry,convert hand drawings into geometric constructions'],
 
 
-	[href(Hs+'csacademy.com/app/graph_editor/',''),'',''],
+	[href(Hs+'csacademy.com/app/graph_editor/','Graph Editor'),'','CSAcademy is a next generation educational platform. Discover computer science with interactive lessons and a seamless online code editor.'],
 ],'TBrc'))+
 
 

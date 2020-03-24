@@ -1186,7 +1186,7 @@ var Integer={/*整数 (本质是字符串)
 			},aA);
 			aA[al-1][0]=p;
 //console.log(aA.join(brn),al);
-			return mtrx(aA,'.','.','','I'+al)+'\\\\ '+t;
+			return [mtrx(aA,'.','.','','I'+al),t,''].join(kbr+'\\widetilde{'+'~'.repeat(27)+'}'+kbr);
 		}
 		if(op=='竖式*'){//二元
 			
@@ -1217,15 +1217,19 @@ $Decimal.oprs('竖式*',[0.002,300])$
 			var tAl=tA.length;
 			if(bl>1){
 				//tA.push(Decimal.oprs('+',tA));
-				tA.push([Decimal.oprs('+',tA)[0],0]);
+				var x=Decimal.oprs('+',tA);
+				tA.push([x[0],x[1]]);
+
+			//	console.log(tA[tAl][0], tA[tAl][1]);
+
 				tA[tAl][0]=tA[tAl][0]+'0'.repeat(tA[tAl][1]);
 				tA[tAl][1]=0;
-				//console.log(tA.join(' ; '));
+			//	console.log(tA.join(' ; '));
 			}else{
 				tAl--;
 				tA[tAl][0]=tA[tAl][0]+'0'.repeat(tA[tAl][1]);
 				tA[tAl][1]=0;
-				//console.log(tA.join(' ; '));
+			//	console.log(tA.join(' ; '));
 			}
 			
 			var nl=max([tA.slice(-1)[0][0].length, -aA[0][0].length-aA[0][1]+1, -aA[1][0].length-aA[1][1]+1]),
@@ -1323,13 +1327,38 @@ $Decimal.oprs('竖式*',[0.002,300])$
 			for(var i=tA.length-1;i>=0;i--){
 				dotf(tA[i]);
 			}
-			if(+d>0){
 
+			//console.log(tA[tAl][1], d);
+			if(+d>0){
+				//console.log(tA[tAl][1], d);
 				tA[tAl][1]=tA[tAl][1].replace(new RegExp('(\\\\hphantom\\{0\\}){'+nr0+'}$'), '0'.repeat(d)+kancel(0).repeat(Math.max(nr0-d,0)));
 				//console.log(tA[tAl][1]);
+
+			}else{
+				//console.log(tA[tAl][1], d);
+				tA[tAl][1]=tA[tAl][1].replace(new RegExp('\\.0+(\\\\hphantom\\{0\\})*$'), function(x){return Arrf(kancel,x.split('\\')[0].split('')).join('')+'\\'+x.split('\\')[1]});
+
 			}
 
-			return mtrx(aA.concat(tA),'.','.','','I2'+(bl>=2?'_'+(tA.length+1):''))+'\\\\ '+t;
+
+			var h0=/^\\hphantom\{\.\}/.test(aA[0][1]), h1=/^\\hphantom\{\.\}/.test(aA[1][1]);
+			if(h0||h1){
+				var dots=h0 && /^\d+\./.test(aA[1][1])?aA[1][1].split('.')[0].length:(h1 && /^\d+\./.test(aA[0][1])?aA[0][1].split('.')[0].length:0), s=hp(0).repeat(dots);
+				for(var i=aA.length-1;i>=0;i--){
+					if(/^\\hphantom\{\.\}/.test(aA[i][1])){
+						aA[i][1]=s+aA[i][1];
+					}
+				}
+
+				for(var i=tA.length-1;i>=0;i--){
+					if(/^\\hphantom\{\.\}/.test(tA[i][1])){
+						tA[i][1]=s+tA[i][1];
+					}
+				}
+
+			}
+//console.log(aA,tA);
+			return [mtrx(aA.concat(tA),'.','.','','I2'+(bl>=2?'_'+(tA.length+1):'')),t,''].join(kbr+'\\widetilde{'+'~'.repeat(27)+'}'+kbr);
 		}
 
 
@@ -1633,7 +1662,7 @@ if(r.length<sl){
 				
 			*/
 
-			return mtrx(tA,'.','.','').replace(/⓪/g,hp()).replace(/①/g,hp('.')).replace(/②/g,kancel(0)).replace(/③/g,kancel('.')).replace(/⑤/g,hp(kancel('.')))+'\\\\ '+t;
+			return [mtrx(tA,'.','.','').replace(/⓪/g,hp()).replace(/①/g,hp('.')).replace(/②/g,kancel(0)).replace(/③/g,kancel('.')).replace(/⑤/g,hp(kancel('.'))),t,''].join(kbr+'\\widetilde{'+'~'.repeat(27)+'}'+kbr);
 		}
 
 
@@ -1783,7 +1812,7 @@ if(r.length<sl){
 			
 			al=nA.length;
 			
-			if(al<2){var A=[nA[0],tens0];A.type='Decimal';return A}
+			if(al<2){var A=[nA[0],tens];A.type='Decimal';return A}
 			if(al>2){
 				return Decimal.oprs('*',[Decimal.build.D(Integer.oprs('*',nA.slice(0,al-1))),[nA[al-1],tens]])
 			}else{
