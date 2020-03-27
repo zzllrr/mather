@@ -169,6 +169,7 @@ lang['zh_cn'] = {
 	'Define':'定义',
 	'Definition': '定义',
 	'Summary': '简介',
+	'Details':'详情',
 	'Description': '描述',
 	'Property': '性质',
 
@@ -888,6 +889,8 @@ lang['zh_cn'] = {
 	'Presentation Markup': '表现型标记',
 	'Content Markup': '内容型标记',
 	'Markup': '标记',
+	'Mark': '标记',
+	'Readonly':'只读',
 
 	'Object': '对象',
 	'Entity': '实体',
@@ -988,6 +991,7 @@ lang['zh_cn'] = {
 
 	'ul': '无序列表',
 	'ol': '有序列表',
+	'dl': '定义列表',
 	'Block': '块',
 	'Inline': '行内',
 	'Quote': '引用',
@@ -1373,6 +1377,7 @@ lang['zh_cn'] = {
 
 	'Space': '空格',
 	'Space.1': '空间',
+	'Linear Space': '线性空间',
 	'Kernel': '核',
 
 	'Spectral':'',

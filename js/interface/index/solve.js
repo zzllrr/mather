@@ -280,7 +280,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			'$A^T$—Transpose','$A^H$—Hermitian','$-A$',
 
 			'$A_{ij}$…A&索引\n一阶i1,j2（或缩写为1,2）\n多阶i1,i2,j1,j2\ni1（按第1行）\nj1（按第1列）\n多个用;分开—Algebraic Cofactor“1234&i1',
-			'$A^*$—Adjoint Matrix',
+			'$A^*$…A&1使用逆矩阵求—Adjoint Matrix',
 			"$$kxf('r')$(A)$—Rank",
 			"$$kxf('tr')$(A)$—Trace",
 			

@@ -104,7 +104,7 @@ solve['matrix']=function(inputValue, uriA){
 	}
 
 
-	if(sel(uriA,'A_{ij}') || sel('A^*')){/*矩阵&i1,j2;i1,i2,j1,j2;
+	if(sel(uriA,'A_{ij}') || sel(uriA,'A^*')){/*矩阵&i1,j2;i1,i2,j1,j2;
 		1,3（1阶子式）;
 		1,2,1,2（2阶子式）
 		i1,i2（C_n^2个2阶子式）
@@ -125,9 +125,20 @@ solve['matrix']=function(inputValue, uriA){
 		};
 		
 		if(sel(uriA,'A^*')){
+			//console.log('伴随', rS);
+			
 			rS=rS.concat(concat(strA,copyA(sup('*',''),n),
 				Arrf(function(t){
-					var M=MfS(t),ml=M.length, A=Mtrx.opr1('Aijs',M,zlr('i',seqA(1,ml).join(' '),';'));
+					var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'', M=MfS(t), ml=M.length;
+					if(ij){
+						var d=Mtrx.opr1('det',M);
+						if(+d!=0){
+							var M_=Mtrx.opr1('逆',M);
+
+							return '=|A|A^{-1}='+kfrac(d)+kmtrx(M_)+'='+kmtrx(Mtrx.opr2('*',M_,d))
+						}
+					}
+					var A=Mtrx.opr1('Aijs',M,zlr('i',seqA(1,ml).join(' '),';'));
 					return '='+kmtrx(Mtrx.opr1('*',M))+Tbl(A);
 			},VA)));
 		}

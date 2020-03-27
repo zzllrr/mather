@@ -1142,8 +1142,16 @@ console.log(op,' 结束',p);
 		}
 
 		if(op=='eval'){//化简计算结果
-
-			B=Arrf(function(x){return Arrf(function(y){return Mfn.opr1('=',y,1).toStr()},x)},A);
+			if(A.t){//1个矩阵
+				B=Arrf(function(x){return Arrf(function(y){return Mfn.opr1('=',y,1).toStr()},x)},A);
+			}else if(isArr(A)){
+				//B=Arrf(function(x){return Mtrx.opr1('eval',x)},A)
+				//console.log('矩阵组',A[0]);
+				B=Mtrx.opr1('eval',A[0])
+			}else{
+				B=Arrf(function(x){return Arrf(function(y){return Mfn.opr1('=',y,1).toStr()},x)},A)
+			}
+			
 		}
 		if(op=='pt'){/*初等变换（结果不化简）
 			参数p 变换命令
@@ -1295,6 +1303,7 @@ console.log(op,' 结束',p);
 
 				if(isL){//Laplace展开
 					B=Mtrx.opr1('detLaplace',A,psj.substr(1))[0][0];
+					//B=Mtrx.opr1('detLaplace',A,psj.substr(1));//[ [行列式,系数]+ 数组, 步骤]
 					return B
 				}
 				if(isS){//对角线法则展开
@@ -2123,7 +2132,7 @@ var newj=0;
 					}
 
 					B[0]=Mtrx.opr1('PT',B[0][0],psj,B[0][1]||1);//[结果矩阵，系数]
-	//consolelog(psj,B[0]);
+	//console.log(psj,B[0]);
 
 				}
 
@@ -2141,11 +2150,19 @@ var newj=0;
 						TB='J'+(/^fsi/.test(psj)?(n-1)+(B00[0].length>n?'_'+n:''):n);
 					}
 
-//consolelog('B00 =',B00);
+//console.log('B00 =',B00);
+//console.log('B[0] =',B[0]);
+//console.log('B =',B);
 					var Asi=isdet?(B00.length>1?times([Coe,'x']).replace('x',kdet(B00)):times([Coe,B00[0][0]])):
 
 						kmtrx(B00,'',isinv||iscong||TB?TB:'');
 					if(Asi!=As.slice(-1)[0]){
+						//console.log('Asi = ',Asi,A);
+						if(/^L[ij]\d/.test(psj) && isdet){
+							Asi=Mtrx.opr1('detLaplace',A,psj.substr(1))[1][1];
+						//	console.log(Asi);
+						}
+
 						As.push(Asi);
 
 
@@ -2334,7 +2351,7 @@ var newj=0;
 //consolelog(j,i);
 					var Aji=Mtrx.opr1('Aij',A,[j+1,i+1]);
 					//consolelog(Mtrx.opr1('det',Aji[0]));
-					//consolelog(Aji[2]);
+					//console.log(Aji[2]);
 					B[i].push(times([Mtrx.opr1('det',Aji[0]),Aji[2]]))
 
 				}
@@ -2463,14 +2480,18 @@ var newj=0;
 			*/
 			var ps=p.split(';');
 			for(var j=0;j<ps.length;j++){
-				var psj=ps[j],p0=psj[0],isi=p0=='i',k=+psj.substr(1),a=[kdet(A),eq(Mtrx.note.PT('l'+psj))];
+				var psj=ps[j],p0=psj[0],isi=p0=='i',k=+psj.substr(1),a=[kdet(A),''];	//,eq(Mtrx.note.PT('l'+psj))
 				for(var i=0;i<(isi?n:m);i++){
 					var s=isi?k-1:i,t=isi?i:k-1;
+					//console.log(s,t,k,isi,psj);
 					if(+A[s][t]!=0){
 						var Aij=Mtrx.opr1('Aij',A,[s+1,t+1]);//[余子式矩阵, 子式, 系数]
-						if(!Mtrx.is.b1.rc0(Aij[0])){//其实还需判断，是否有相同或成比例的行（列） rck0
 
-							Aij[1]=times([Aij[1],A[s][t]]);
+						//console.log(Aij);
+						if(!Mtrx.is.b1.rc0(Aij[0])){//其实还需判断，是否有相同或成比例的行（列） rck0
+							//console.log(Aij);
+							//Aij[1]=times([Aij[1],A[s][t]]);	
+							Aij[1]=times([Aij[1],Aij[2]]);
 
 							B.push(Aij);
 							a[1]+=Aij[1]+kdet(Aij[0])+' + ';
@@ -2478,8 +2499,10 @@ var newj=0;
 					}
 				}
 			}
-			a[1]=a[1].replace(/ \+ $/,'');
+			a[1]=a[1].replace(/ \+ -/,' -').replace(/ \+ $/,'');
 			
+			//console.log(B,a);
+
 			return [B,a]//[B,a.replace(/ \+ $/,'')]
 		}
 
@@ -3278,7 +3301,7 @@ var newj=0;
 				
 				.replace(/[×⋅\*]=/g,', 乘以')
 				.replace(/^d-/g,'副对角线相乘').replace(/^d/g,'主对角线元素相乘')
-				.replace(/^L/g,kxf('Laplace')+'展开').replace(/^D/g,'按定义展开').replace(/^S/g,'按对角线法则展开')
+				.replace(/^L(ap)*/g,kxf('Laplace')+'展开').replace(/^D/g,'按定义展开').replace(/^S/g,'按对角线法则展开')
 				.replace(/^T/g,'转置').replace(/^a/g,'拆开')//.replace(/-?\d+\/\d+/g,function(s){return s})//pptd(s)
 
 		},
@@ -3286,7 +3309,7 @@ var newj=0;
 			return t.replace(/(\d)[LUDI]/g,'$1').replace(/(\d+)/,'第$&项').replace(/项\.(\d+)/g,'项中的第$1项')
 				.replace(/[ij]U/g,'化上三角').replace(/[ij]L/g,'化下三角').replace(/[ij]D/g,'化对角阵').replace(/[ij]I/g,'化最简形')
 				.replace(/^≈(\d+)/,'与第$1项交换').replace(/^\+=([\d,]+)/,'与第$1项合并').replace(/^\*=(.+)/,'提取公因子$1')
-				.replace(/^Def/g,'按定义展开').replace(/^Sar/g,'按对角线法则展开').replace(/^Lap/g,'Laplace展开').replace(/^d/g,'主对角线元素相乘')
+				.replace(/^Def/g,'按定义展开').replace(/^Sar/g,'按对角线法则展开').replace(/^L(ap)*/g,'Laplace展开').replace(/^d/g,'主对角线元素相乘')
 				.replace(/^a.\d+=.+/g, function(s){return '拆开'+Mtrx.note.PT(s.split('=')[0].substr(1))})
 				.replace(/^Up/,'去括号')
 				.replace(/^FVan/g,'是范德蒙行列式').replace(/^F.*cyc/g, function(s){'是'+'反b '[s[1].charCodeAt(0)-97]+'循环行列式'})

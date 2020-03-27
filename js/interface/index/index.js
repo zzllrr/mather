@@ -66,9 +66,12 @@ $(function(){
 					}[i]))
 			},ZLR('home about')).join('')
 			+SCtv('',
+				'<p id=toolHistory hidden></p>'+
 				itv('" id="Search','youtube_searched_for')+
 				'<input type=search id=search list=searchlist hidden />'+
 				'<datalist id=searchlist></datalist>'
+				
+
 			)
 
 		)+
@@ -113,10 +116,11 @@ $(function(){
 	$('#Search').on('click',function(){
 		var b=$('#search').is(':visible');
 		$('.subhead,#panel').toggle(b);
-		$('#search').toggle(!b);
+		$('#search,#toolHistory').toggle(!b);
 		if(!b){
 			$('#search').focus()
 		}
+		reloadHistory('tool');
 	});
 
 	$('#menu').nextAll().hide();
