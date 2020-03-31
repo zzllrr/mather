@@ -472,7 +472,7 @@ details:hover{
 	opacity:0;
 	cursor:default
 }
-#outputOpt input,#wiki>span,.scbox{
+#outputOpt input,#wiki>span,.scbox, .toolHistory{
 	margin:2px
 }
 #Topic{
@@ -800,7 +800,7 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-.subhead.seled,.subtabhead.seled{
+.subhead.seled,.subtabhead.seled, .toolHistory:hover{
 	background:limegreen;
 }
 

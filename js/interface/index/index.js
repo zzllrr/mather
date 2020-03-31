@@ -49,6 +49,47 @@ var toolSwitch=function(x){
 		iuri.push(o.index());
 	}
 	return [turi,iuri];
+
+}, loadToolPath=function(path, by){
+	var pathA=path.split('/'),pl=pathA.length;
+	var p=$('#'+by+'Ground .ground0 .level').filter(function(){var di=$(this).attr('data-i');
+		return di==pathA[0] || gM(di)==pathA[0]
+	});
+	p.not('.seled').click();
+
+	if(pl>1){
+		p=$('#'+by+'Ground .ground1 .level').filter(function(){var di=$(this).attr('data-i');
+			return di==pathA[1] || gM(di)==pathA[1]
+		});
+		p.not('.seled').click();
+
+		if(!p.length){
+			p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
+				return di==pathA[1] || gM(di)==pathA[1]
+			});
+			p.not('.seled').click();
+		}
+	}
+	if(pl>2){
+		p=$('#'+by+'Ground .ground2 .level').filter(function(){var di=$(this).attr('data-i');
+			return di==pathA[2] || gM(di)==pathA[2]
+		})
+		p.not('.seled').click();
+
+		if(!p.length){
+			p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
+				return di==pathA[2] || gM(di)==pathA[2]
+			});
+			p.not('.seled').click();
+			
+		}
+	}
+	if(pl>3){
+		p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
+			return di==pathA[3] || gM(di)==pathA[3]
+		});
+		p.not('.seled').click();
+	}
 };
 
 $(function(){
@@ -66,7 +107,7 @@ $(function(){
 					}[i]))
 			},ZLR('home about')).join('')
 			+SCtv('',
-				'<p id=toolHistory hidden></p>'+
+				'<div id=toolHistory hidden></div>'+
 				itv('" id="Search','youtube_searched_for')+
 				'<input type=search id=search list=searchlist hidden />'+
 				'<datalist id=searchlist></datalist>'
@@ -136,45 +177,7 @@ $(function(){
 			return
 		}
 		if(sl.find('option[value="'+v+'"]').length){
-			var pathA=v.split('/'),pl=pathA.length;
-			var p=$('#'+by+'Ground .ground0 .level').filter(function(){var di=$(this).attr('data-i');
-				return di==pathA[0] || gM(di)==pathA[0]
-			});
-			p.not('.seled').click();
-
-			if(pl>1){
-				p=$('#'+by+'Ground .ground1 .level').filter(function(){var di=$(this).attr('data-i');
-					return di==pathA[1] || gM(di)==pathA[1]
-				});
-				p.not('.seled').click();
-
-				if(!p.length){
-					p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
-						return di==pathA[1] || gM(di)==pathA[1]
-					});
-					p.not('.seled').click();
-				}
-			}
-			if(pl>2){
-				p=$('#'+by+'Ground .ground2 .level').filter(function(){var di=$(this).attr('data-i');
-					return di==pathA[2] || gM(di)==pathA[2]
-				})
-				p.not('.seled').click();
-
-				if(!p.length){
-					p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
-						return di==pathA[2] || gM(di)==pathA[2]
-					});
-					p.not('.seled').click();
-					
-				}
-			}
-			if(pl>3){
-				p=$('#'+by+'Ground .tasks .task').filter(function(){var di=$(this).attr('data-i') || $(this).attr('data-tool');
-					return di==pathA[3] || gM(di)==pathA[3]
-				});
-				p.not('.seled').click();
-			}
+			loadToolPath(v,by);
 			me.val('')
 		}
 
