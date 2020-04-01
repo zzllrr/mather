@@ -2176,6 +2176,7 @@ var OverCanvas=function(t){
 
 
 }, preDisplay=function(){
+	$('#zoomHTMLEditor').toggle($('#toggleHTMLEditor').is('.seled'));
 	try{
 		var iv=$('#input0Type').val(),ov=$('#output0Type').val();
 		if(!iv){
@@ -2486,7 +2487,8 @@ $(function(){
 
 				'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
-				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','vignette')+
+				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
+				itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
 			sc+
 
 		dc+
@@ -2719,7 +2721,20 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
-		$('#HTMLEditor').toggle(me.is('.seled'))
+		$('#HTMLEditor,#zoomHTMLEditor').toggle(me.is('.seled'))
+
+	}).on('click','#zoomHTMLEditor',function(e){
+		$('#HTMLEditor img').css('zoom',function(i,v){var x=+v||1, me=$(this),z=me.attr('data-zooming')||'out';
+			if(x<=0.4 || x==1 && z=='in'){
+				z='in';
+			}
+			if(x>=1.2){
+				z='out';
+			}
+	
+			me.attr('data-zooming',z);
+			return z=='in'?x+0.2:x-0.2
+		})
 
 	}).on('click','#downloadPreview',function(e){
 

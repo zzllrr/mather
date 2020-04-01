@@ -146,8 +146,12 @@ loadHTML=function (x) {
        oHTML(DCtv('abscenter hue rem3',imgSRC+'logo.jpg" />'))//gM('zzllrr Mather')
    }
 
+
+}, fn0URL=function(t){
+    return t.replace(/&/g,fn0).replace(/\n/g,fn0).replace(/ /g,fn0)
+    
 }, OHiframe=function(x,o,fullscr,fullURL){
-    var oC=$('#oContent'), zM=$('#zMather'), src=fullURL||H_o(x+'.html',o),
+    var oC=$('#oContent'), zM=$('#zMather'), src=(fullURL||H_o(x+'.html',o)).replace(/ /g,fn0),
         his=ZLR((L.iframeHistory||'').trim()), hisi=his.indexOf(src);
     if(!his[0]){
         his.shift()
@@ -617,13 +621,15 @@ function reloadHistory(t){
             $('#toolHistory').html(itv('','history')+Arrf(function(x){
                 var A=x.split('/'),x0=A[0], x1=A[1], fx1=fn1(x1), fx1A=fx1.split('/'), y=fx1A[fx1A.length-1];
                 return SCtv('toolHistory hotk" title="'+fx1+'" data-path="'+fx1+'" data-by="'+x0,
-                    /^[a-z ]+$/i.test(y)?gM(y):zx(y)) 
+                hanziCoreRe.test(y)?y:(/^[a-z -]+$/i.test(y)?gM(y):zx(y))) 
             },his).join('')+itv('clrHistory','delete_forever'));
         }else{
             $('#iframeHistory').html(ol(Arrf(function(x){
-                var o=H_o(x);
-
-                return itv('iframeHistory','access_time')+href(x,o.t||x,o.qa||'')+itv('clriframeHistory','clear')
+                var o=H_o(x),txt=o.t||x;
+                if(/\?q=/.test(txt)){
+                    txt=gM(txt.replace(/.+\?q=/,'').split('/')).join('/')
+                }
+                return itv('iframeHistory','access_time')+href(x,txt ,o.qa||'')+itv('clriframeHistory','clear')
             },his)));
         }
         
@@ -822,7 +828,7 @@ $(function(){
 				i0v=v;
             }
             o={ s:$('#solveGround .ground0 .seled').attr('data-i').toLowerCase(),
-                t:i0v.replace(/&/g,fn0).replace(/\n/g,fn0).replace(/ /g,fn0),
+                t:fn0URL(i0v),
                 qa:questionA('solve').join(';')
             };
 
@@ -840,7 +846,7 @@ $(function(){
 
 
             o={ s:$('#graphicGround .ground0 .seled').attr('data-i').toLowerCase(),
-                t:i0v.replace(/&/g,fn0).replace(/\n/g,fn0).replace(/ /g,fn0),
+                t:fn0URL(i0v),
                 qa:questionA('graphic').join(';')
             };
 
@@ -1013,9 +1019,16 @@ $(function(){
         }
         
     }).on('click','.toolHistory',function(e){
+        var me=$(this), tool=me.attr('data-by');
         $('#home').click();
+        if($('#toolnav > label:visible').length>1){
+            $('#'+tool).click()
+        }else if(L.tool!=tool){
+            $('#'+L.tool).click();
+            $('#'+tool).click()
+        }
         $('.task.seled').click();
-        loadToolPath($(this).attr('data-path'), $(this).attr('data-by'));
+        loadToolPath(me.attr('data-path'), tool);
         
     }).on('click','.iframeHistory',function(e){
         
