@@ -1066,7 +1066,7 @@ var Integer={/*整数 (本质是字符串)
 			
 			if(A[2]){//循环节长度
 				//console.log(str,A[2]);
-				str=str.replace(new RegExp('(\\d\\.?){'+A[2]+'}$'),function(x){return x.replace(/\d/g,'\\dot$&')})
+				str=str.replace(new RegExp('(\\d\\.?){'+A[2]+'}$'),function(x){return x.replace(/\d/,'\\dot$&').replace(/(\d.*)(\d)$/,'$1\\dot$2')})
 			}
 		}
 		return str
@@ -2459,6 +2459,9 @@ Decimal.opr1('/') 依赖于 Frac.build.D(A)
 	
 	*/
 	var p=percnt2n(n),A=p.split('.');
+	if(/^-/.test(p)){
+		return '-'+n2frac(p.substr(1),len)
+	}
 	if(/\//.test(p)){
 		if(A.length<2){
 			return p

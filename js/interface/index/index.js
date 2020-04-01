@@ -143,14 +143,15 @@ $(function(){
 				OH('');
 			}
 		}else{
-			$('#menu > .toggle').click();
+			
+			$('#menu > .toggle, #iTextFold.seled, #input0Tipon.seled').click();
 			$('#navbody').hide();
 
 			OHiframe(id,{},1);
 			
 		}
 
-		$('#iContent').toggle(id=='home');//,#iTextOpt i:not(#oHClear,#launch)
+		$('#iContent,#iTextFold,#input0Tipon,#go').toggle(id=='home');//,#iTextOpt i:not(#oHClear,#launch)
 
 	});
 	

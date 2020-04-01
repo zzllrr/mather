@@ -126,7 +126,7 @@
 #input0,#input1{
 	min-height:70px;
 }
-#input0Preview{
+#input0Preview,#HTMLEditor{
 	min-height:50px;
 }
 

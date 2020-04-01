@@ -1013,7 +1013,8 @@ $(function(){
         }
         
     }).on('click','.toolHistory',function(e){
-        
+        $('#home').click();
+        $('.task.seled').click();
         loadToolPath($(this).attr('data-path'), $(this).attr('data-by'));
         
     }).on('click','.iframeHistory',function(e){

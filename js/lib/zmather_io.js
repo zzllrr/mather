@@ -2225,6 +2225,7 @@ $(function(){
 
 	'<div id=iText>'+
 		'<div id=iTextMain>'+
+			DCtv('pd10 resize" hidden contentEditable=true id="HTMLEditor')+
 			DCtv('pd10 resize" hidden contentEditable=true id="input0Preview')+
 			DCtv('resize','<textarea id=input0>'+(L.snippet1||'')+'</textarea>'+
 				'<div id=Snippets hidden>'+
@@ -2485,6 +2486,7 @@ $(function(){
 
 				'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
+				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','vignette')+
 			sc+
 
 		dc+
@@ -2714,7 +2716,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 
 		tr.slice(i,i+3).show();
-
+		
+	}).on('click','#toggleHTMLEditor',function(e){
+		var me=$(this).toggleClass('seled');
+		$('#HTMLEditor').toggle(me.is('.seled'))
 
 	}).on('click','#downloadPreview',function(e){
 

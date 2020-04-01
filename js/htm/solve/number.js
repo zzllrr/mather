@@ -1006,7 +1006,7 @@ a b c d
 			Arrf(function(t){
 				var V=t.split(/[ &,]/),dgts=V.length>1?V[1]:0,decimals=(V[0].split('.')[1]||'').length,Vl=V[0].length,d=-dgts-(decimals<dgts?1:0), f=n2frac(V[0],dgts).split('/');
 				return (dgts?V[0].substr(0,Vl+d)+
-					Arrf(function(t){return t=='.'?t:'\\dot '+t},V[0].substr(d).split('')).join(''):V[0])+' = '+frac(f[0],f[1]||1,'')
+					V[0].substr(d).replace(/\d/,'\\dot$&').replace(/(\d.*)(\d)$/,'$1\\dot$2'):V[0])+' = '+(f[0][0]=='-'?'-':'')+frac(f[0].replace(/-/,''),f[1]||1,'')
 		},VA));
 	}
 
