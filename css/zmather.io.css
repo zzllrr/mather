@@ -130,7 +130,7 @@
 	min-height:50px;
 }
 
-#input0Preview, #iTextPreview{
+#input0Preview, #iTextPreview,#HTMLEditor{
 	background: rgba(162,195,97,.1);
 }
 [name=tool]:checked + span:not(:hover){

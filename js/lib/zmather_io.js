@@ -2291,7 +2291,6 @@ $(function(){
 						strbtn+'∑" id=strucon tip=Structure class=tool />'+
 						strbtn+'?" id=randon tip=Random class=tool />'
 					)+
-					itv('" id=editorLaunch tip="Launch','launch')+
 					itvc('rotate180" id="tClear2')+
 					
 				dc+
@@ -2477,7 +2476,7 @@ $(function(){
 		dc+
 
 		'<div id=iTextPreview>'+
-			'<span id=previewTool hidden>'+
+			'<span id=previewTool hidden class=opac>'+
 
 
 				/*
@@ -2487,8 +2486,15 @@ $(function(){
 
 				'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
+
+				itv('" id=alignPreviewLeft tip="Left Align','format_align_left')+
+				itv('" id=alignPreviewCenter tip="Center Align','format_align_center')+
+				itv('" id=alignPreviewRight tip="Right Align','format_align_right')+
+
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
 				itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
+				
+				itv('" id=editorLaunch tip="Launch','launch')+
 			sc+
 
 		dc+
@@ -2722,6 +2728,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
 		$('#HTMLEditor,#zoomHTMLEditor').toggle(me.is('.seled'))
+
+	}).on('click',zlr('#alignPreview','Left Center Right',','),function(e){
+
+		$('#input0Preview>.katex-display>.katex').css('text-align',this.id.substr(12).toLowerCase())
+
 
 	}).on('click','#zoomHTMLEditor',function(e){
 		$('#HTMLEditor img').css('zoom',function(i,v){var x=+v||1, me=$(this),z=me.attr('data-zooming')||'out';
