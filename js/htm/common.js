@@ -148,7 +148,7 @@ loadHTML=function (x) {
 
 
 }, fn0URL=function(t){
-    return t.replace(/&/g,fn0).replace(/\n/g,fn0).replace(/ /g,fn0)
+    return t.replace(/&/g,fn0).replace(/\n/g,fn0).replace(/ /g,fn0).replace(/=/g,fn0)
     
 }, OHiframe=function(x,o,fullscr,fullURL){
     var oC=$('#oContent'), zM=$('#zMather'), src=(fullURL||H_o(x+'.html',o)).replace(/ /g,fn0),

@@ -2448,10 +2448,10 @@ var newj=0;
 
 
 
-				var S=Arrf(function(k){return DCtv('inblk pd2','D'+(k?sub(k,''):''))+DCtv('inblk pd2','=')+C[k][1]},seqA(0,m+1)).concat(
-					concat(vars,'=',Arrf(function(k){return frac('D'+sub(k,''),'D','')},ms),
+				var S=Arrf(function(k){return C[k][1].replace('A','D'+(k?'_{'+k+'}':''))},seqA(0,m+1)).concat(
+					concat(vars,'=',Arrf(function(k){return frac('D_{'+k+'}','D','')},ms),
 						'=',Arrf(function(k){return frac(C[k][0]||'0',d,'')},ms),
-						'=',R));
+						'=',Arrf(kfrac,R)));
 	
 				//consolelog(S);
 				return [R,C,S]

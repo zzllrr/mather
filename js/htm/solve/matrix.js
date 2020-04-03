@@ -1269,7 +1269,7 @@ console.log('单位化？',oi,m,Q);
 
 	if(sel(uriA,'Cramer Rule')){//增广矩阵 & 变换参数数组[可选，每个行列式的求解命令用@隔开] & 变量风格
 
-		console.log(inputValue,v,VA);
+		//console.log(inputValue,v,VA);
 		if(/=/.test(v)){
 			VA=[v];
 		}
@@ -1277,7 +1277,7 @@ console.log('单位化？',oi,m,Q);
 		rS=rS.concat(Arrf(function(t){
 			var ts=t.split('&'),hasP=/&/.test(t), xi=hasP?t.replace(/.+&/,''):'x1', M=MfS(/=/.test(t)?'Linear('+t+')':t), p=ts.length>2?ts[1].split('@'):[],
 				A=Mtrx.opr1('Cramer',M,p,xi);
-			return kxA(A[2])
+			return A[2].join(kbr2)
 		},VA));
 	}
 
