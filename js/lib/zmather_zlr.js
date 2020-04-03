@@ -582,6 +582,8 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 			//extension 
 
+			.replace(/\\d /g,'\\hskip{0.1em}\\text{d}')	//微分d
+
 			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
 		//	.replace(/(inj|proj) ?(lim)/g, 'mathrm{$1~$2}')
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
@@ -684,26 +686,45 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		return t5 ? (/[ud]/.test(ud) ? '\\underset' + [ntox0 + '{\\', 'line{\\lim}}\\,'].join(ud == 'u' ? 'over' : 'under') : '\\lim' + (/[si]/.test(ud) ? (ud == 's' ? 'sup' : 'inf') : '') +
 			'\\limits_' + ntox0) + v : SCtv('inblk alignc', (ud == 'u' ? scit('lim') : (ud == 'd' ? scib('lim') : 'lim')) + br + sup(n + '→' + (x0 || (/^[\+-]$/.test(x) ? x : '') + '∞') + (lr ? sup(lr) : ''))) + (v || '')
 	},
-
+//	\\tiny\\begin{matrix} ' + b.join('\\\\ ') + ' \\end{matrix}' 
 	sum = function (i, b, t, v, p, zM) {
 		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['sum', 'bigcup', 'mathop{+}', 'bigvee', 'sup', 'max', 'bigoplus'][p || 0] + (!zM ? '\\limits' : '') +
-			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\tiny\\begin{matrix} ' + b.join('\\\\ ') + ' \\end{matrix}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
+			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
 			v + '}' : SCtv('inblk alignc', sub(t == '+' ? '∞' : t) + br + ['∑', '∪', '+', '⋁', 'sup', 'max', '⊕'][p || 0] + br + sup(i ? i + '=' + b : b)) + sci(v)
 	},
 
 	prod = function (i, b, t, v, p, zM) {
 		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['prod', 'bigcap', 'mathop{×}', 'coprod', 'bigwedge', 'inf', 'min', 'bigodot', 'bigotimes'][p || 0] + (!zM ? '\\limits' : '') +
-			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\tiny\\begin{matrix} ' + b.join('\\\\ ') + ' \\end{matrix}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
+			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
 			v + '}' : SCtv('inblk alignc', sub(t == '+' ? '∞' : t) + br + ['∏', '∩', '×', '∐', '∧', 'inf', 'min', '⊙', '⊗'][p || 0] + br + sup(i ? i + '=' + b : b)) + sci(v)
 	},
 
 	intl = function (v, b, t, d, p, zM) {
-		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : '') +
-			'_{' + ((b == '-' ? b + '∞' : b) || '') + '}' + (t ? '^{' + (t == '+' ? t + '∞' : t) + '}' : '') + v + '\\,'+
-			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'x').split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
+		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
+			'_{' + ((/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':b)) || '') + '}' + 
+			(t ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + v + '\\,'+
+			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
-	orifun =function(fx,x1,x0){
-		return fx+'\\LARGE|\\normalsize\\substack{'+x1+'\\\\\\\\'+x0+'}'
+
+
+	iint = function (v, b, t, d,p,zM) {
+		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
+			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + v + '\\,'+
+			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,'))+'}' 
+	},
+
+	oint = function (vA, b, t, d,p,zM) {
+		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
+			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') +
+			(/^\{.+\}$/.test(d)?vA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}'),vA]).join(''))+'}' 
+	},
+
+
+
+
+
+	orifun =function(x0,x1){
+		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\'+x0+'}'
 	},
 	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', dg = g ? '^{' + g + '}' : ''; return '\\frac{' + d + dg + (f || '') + '}{' + d + (x || 'x') + dg + '}' },
 

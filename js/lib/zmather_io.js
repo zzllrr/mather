@@ -1057,12 +1057,13 @@ SBS={
 
 	ZLR('Fraction Equality Non-equality'),
 	ZLR('Subsup Root Differential'),
-	['Parentheses','Big Parentheses','Binom'],
 
+	ZLR('Sum Limit Integral'),
 	
-	ZLR('Sum Integral Max'),
-	ZLR('Limit Align Linebreak'),
+
+	ZLR('Max Align Linebreak'),
 	ZLR('Matrix Det Summarize'),
+	['Parentheses','Big Parentheses','Binom'],
 
 	ZLR('Over Latin Color'),
 	['Lowercase Greek','Uppercase Greek','Hebrew'],
@@ -1080,13 +1081,12 @@ SBS={
 
 
 	'Fraction':[
-		$A(zlrA3("kfrac(",[
-			"'1/2'",
+		['1\\/2'].concat($A(zlrA3("kfrac(",[
 			"[3,4]",
 			"'1/2+3/4+5/6',1",
 			
-		],")")).concat('{$Random(100)$}\\/{$Random(100)$} $\'+-×÷\'[Random(4)-1]$ {$Random(100)$}\\/{$Random(100)$}'),
-		['1\\/2'].concat(zlrA3('\\',['','t'],'frac{1}{2}'),
+		],")"))).concat('{$Random(100)$}\\/{$Random(100)$} $\'+-×÷\'[Random(4)-1]$ {$Random(100)$}\\/{$Random(100)$}'),
+		["$kfrac('1/2')$"].concat(zlrA3('\\',['','t'],'frac{1}{2}'),
 		zlrA3('\\',['','t'],'frac{1}{1+\\frac{1}{2}}')),
 		[
 		"\\dfrac{1}{2}",
@@ -1096,16 +1096,6 @@ SBS={
 		
 	],
 
-	'Differential':[
-		$A(zlrA3("difn('f','x',",[
-			"''",
-			"1",
-			"'',2",
-			"1,2"
-			],")")
-		),
-		["$difn('f')$",'\\mathrm{d}y','∂x','\\nabla'],
-	],
 
 	'Note':[
 		zlrA3("$eq(1,'",'→↔←↦'.split(''),"',2)$"),//katex 暂不支持 ⇆ ↤	//←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄↦
@@ -1337,11 +1327,13 @@ SBS={
 	],
 
 	'Sum':[['\\sum','\\prod']
-		.concat($A(zlrA3("prod('i',0,'+','f',",[3,7],",'')")))
+		.concat($A(zlrA3("prod('i',0,'+','f',",[3,7],",'')").concat("sum('',['i+j=10','i<j'],'','f',0,'')")))
 	].concat(
 		Arrf($A,[
-			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')"),
-			zlrA3("prod('i',0,'+','f',",[0,1,4,8],",'')"),
+			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')").concat("sum('','i+j=10','','f',0,'')"),
+
+			
+			zlrA3("prod('i',0,'+','f',",[0,1,4,8],",'')").concat("prod('','i|24','','f',0,'')"),
 
 		])
 	),
@@ -1368,17 +1360,28 @@ SBS={
 			],"','')$"
 		),
 		
-		["e^x=$lim('n','',kfraczp('1+'+kfrac(['x','n']),'','n'),'','')$"]
+		["e^x=$lim('n','',kfraczp('1+'+kfrac(['x','n']),'','n'),'','')$",
+			'\\lim\\limits_{\\substack{x→0\\\\y→0}}f(x,y)'
+		]
 	],
 	
 
-	
-	'Integral':[['\\int',"$intl('f','-1','1','x',0,'')$","$intl('f','-','+','x',6,'')$"]]
-		.concat(Arrf($A,[
+	'Differential':[
+		$A(["difn('f')"].concat(zlrA3("difn('f','x',",[
+			"''",
+			"1",
+			"'',2",
+			"1,2"
+			],")")
+		)),
+		['\\d x','\\mathrm{d}y','∂x','\\nabla'],
+		["$orifun('0','1')$"],
+	],
 
-			zlrA3("intl('f','-','+','x",["',0","yz',3"],",'')").concat("orifun('F(x)','1','0')"),
-			zlrA3("intl('f','-','+','xy',",[1,4],",'')"),
-			zlrA3("intl('f','-','+','x",["',2","yz',5"],",'')"),
+	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-','+','x',6,'')$"]].concat(Arrf($A,[
+			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')", "oint(['P','+Q'],'C','','xy',1,1)"],
+			["iint('f','D','','xy',2,1)", "oint(['P','+Q'],'D','','xyz',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','xy',2,1)"], 
+			["iint('f','Ω','','xyz',3,1)", "oint(['P','+Q'],'Ω','','xyz',3,1)"],
 	])),
 
 
@@ -2176,7 +2179,7 @@ var OverCanvas=function(t){
 
 
 }, preDisplay=function(){
-	$('#zoomHTMLEditor').toggle($('#toggleHTMLEditor').is('.seled'));
+	$('.imgHTMLEditor').toggle($('#toggleHTMLEditor').is('.seled'));
 	try{
 		var iv=$('#input0Type').val(),ov=$('#output0Type').val();
 		if(!iv){
@@ -2492,8 +2495,12 @@ $(function(){
 				itv('" id=alignPreviewRight tip="Right Align','format_align_right')+
 
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
-				itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
-				
+				SCtv('imgHTMLEditor',
+					itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
+					itv('" id=rotateHTMLEditor tip="Rotate Image','rotate_90_degrees_ccw')+
+					itv('" id=removeHTMLEditor tip="Remove Image','remove_circle_outline')
+				)+
+
 				itv('" id=editorLaunch tip="Launch','launch')+
 			sc+
 
@@ -2727,7 +2734,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
-		$('#HTMLEditor,#zoomHTMLEditor').toggle(me.is('.seled'))
+		$('#HTMLEditor,.imgHTMLEditor').toggle(me.is('.seled'))
 
 	}).on('click',zlr('#alignPreview','Left Center Right',','),function(e){
 
@@ -2746,6 +2753,16 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			me.attr('data-zooming',z);
 			return z=='in'?x+0.2:x-0.2
 		})
+
+	}).on('click','#rotateHTMLEditor',function(e){
+		$('#HTMLEditor img').css('transform',function(i,v){var x=(+(v||'0').replace(/\D/g,'')+90)%360;
+
+			return 'rotate('+x+'deg)'
+		})
+
+	}).on('click','#removeHTMLEditor',function(e){
+		$('#HTMLEditor img').remove()
+		
 
 	}).on('click','#downloadPreview',function(e){
 
@@ -2907,7 +2924,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		t0=$('#replaceByChar').val(), t1=$('#replaceWithChar').val(),
 		isreg=$('#replaceRegexp').prop('checked'),
 		iscase=$('#replaceCaseSensitive').prop('checked');
-
+//console.log(isreg?t0:regReg(t0), t1);
 		T.val(v.replace(new RegExp(isreg?t0:regReg(t0), 'g'+(iscase?'':'i')), t1))
 
 

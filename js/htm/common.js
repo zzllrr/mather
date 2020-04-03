@@ -831,7 +831,7 @@ $(function(){
                 t:fn0URL(i0v),
                 qa:questionA('solve').join(';')
             };
-
+//console.log(fn0URL(i0v), i0v,o);
             OHiframe('solve',o);
 
 		}

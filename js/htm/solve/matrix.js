@@ -1128,7 +1128,7 @@ console.log('单位化？',oi,m,Q);
 			return kxA(['系数矩阵化最简行',A[1],'得到基础解系：'+Xs.join(', '),'~','因此通解是：'+Y.join(' + '),
 				'一个对偶方程组是：',optrim(piece(F))])
 		},VA));
-		console.log(rS);
+		//console.log(rS);
 	}
 
 	if(sel(uriA,'AX=b')){
@@ -1268,8 +1268,14 @@ console.log('单位化？',oi,m,Q);
 
 
 	if(sel(uriA,'Cramer Rule')){//增广矩阵 & 变换参数数组[可选，每个行列式的求解命令用@隔开] & 变量风格
+
+		console.log(inputValue,v,VA);
+		if(/=/.test(v)){
+			VA=[v];
+		}
+		
 		rS=rS.concat(Arrf(function(t){
-			var ts=t.split('&'),hasP=/&/.test(t), xi=hasP?t.replace(/.+&/,''):'x1', M=MfS(t), p=ts.length>2?ts[1].split('@'):[],
+			var ts=t.split('&'),hasP=/&/.test(t), xi=hasP?t.replace(/.+&/,''):'x1', M=MfS(/=/.test(t)?'Linear('+t+')':t), p=ts.length>2?ts[1].split('@'):[],
 				A=Mtrx.opr1('Cramer',M,p,xi);
 			return kxA(A[2])
 		},VA));

@@ -123,7 +123,7 @@ tooltip['API']=[
 			{'兼容LaTeX':[
 				{'上下标':'sup sub msup msub msups msubs subsup msubsup Msubsup'},
 				{'括符':'lp rp lrp'},
-				{'大型数学式':'lim sum prod intl mtrx'},
+				{'大型数学式':'lim sum prod intl iint oint mtrx'},
 				{'数学运算':'frac mfrac mfracs root mroots mod'},
 			]},
 
