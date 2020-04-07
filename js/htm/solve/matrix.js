@@ -344,11 +344,14 @@ solve['matrix']=function(inputValue, uriA){
 					var b_k=minus([M[0],k]), _f_k=minus([times([k,b_k]),M[1]]), _1_f_k=divide([1,_f_k]),f=function(x){
 						return plus(['A',times([x,E])])
 					}, fk=f(k), fb_k=f(b_k), r=times([_1_f_k,fb_k]),
-					 e0=times([_f_k,'E']),e1=_1_f_k,e2=r;
-					return ['A^2'+sums(M,['A',E],'','',1)+' = O',
-						pptd(fk)+pptd(fb_k)+' = '+e0,
-						pptd(fk)+pptd(e2)+' = '+E,
-						'因此'+f(k)+'可逆，且逆矩阵是'+e2
+					 e0=times([_f_k,'E']),e1=_1_f_k,e2=r,
+					 pfk=pptd(fk), pfbk=pptd(fb_k), pe2=pptd(e2);
+
+					return [('A^2+'+sums(M,['A',E],'','',1)).replace('+-','-')+' = O',
+						pfk+pfbk+' = '+e0,
+						pfk+pe2+' = '+E,
+						'因此'+fk+'可逆，',
+						'且逆矩阵是'+Mfn.toStr(r)
 					].join('\\\\ ')
 
 				},seqsA(ij)).join('\\\\ ')
@@ -719,10 +722,11 @@ console.log('单位化？',oi,m,Q);
 //Power
 
 
-	if(sel(uriA,'A^2')){//矩阵&乘幂2
+	if(sel(uriA,'A^2','Power')){//矩阵&乘幂2
 		rS=rS.concat(
 			Arrf(function(t){
 				var M=MfS(t);
+				//console.log(uriA,t);
 				return kmtrx(M)+'^2='+kmtrx(Mtrx.opr1('^',M,2))
 			},VA)
 		);

@@ -142,7 +142,7 @@ tooltip['API']=[
 			{'规范化':'kx encodeLatex'},
 			{'运算符':'kos'},
 			{'标记符':'kxo kxu kancel'},
-			{'括符':'$A $B boxed kbox hp lrpfrac genfrac zp pp'},
+			{'括符':'$A $B tinyA boxed kbox hp lrpfrac genfrac zp pp'},
 			{'数学运算':'kroot kfrac kfraczp kxAfrac difn Opr orifun'},
 			{'数学结构':'ksups ksubs binom zmtrx kmtrx zarray ztable det zdet kdet piece aligned'},
 			{'数学关系':'kmod eq eqM Eq EqA'},

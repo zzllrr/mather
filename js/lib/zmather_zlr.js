@@ -564,7 +564,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	dl = function (A, B, c) { return '<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(function (t) { return XML.wrapE('dt', t) }, A), Arrf(function (t) { return XML.wrapE('dd', t) }, B)).join('') + '</dl>' }, kdl = function (A, B, c) { return dl(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), B, c) },
 
 	$A = function (A) { return Arrf(function (x) { return x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : '') }, A) },
-	tinyA=function(A){return A.length==0?[]:Arrf(function(x){return '\\tiny '+$A(x)},A)},
+	tinyA=function(A, size){return A.length==0?[]:Arrf(function(x){return '\\'+ZLR('tiny scriptsize footnotesize small normalsize large Large LARGE huge Huge')[size!==undefined?size:3]+' '+$A(x)},A)},
 	encodeLatex = function (t) { return ('' + t).replace(/[\{\}]/g, '\\$&') },
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
@@ -711,7 +711,8 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	iint = function (v, b, t, d,p,zM) {
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + v + '\\,'+
-			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,'))+'}' 
+			(!d?('\\mathrm{d}'+'  σV'[p || 2]):
+			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,')))+'}' 
 	},
 
 	oint = function (vA, b, t, d,p,zM) {

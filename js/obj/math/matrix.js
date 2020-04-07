@@ -2244,7 +2244,7 @@ var newj=0;
 				noteA.push('得到'+(isinv && !isinvl && !isinvr?(A.length!=A[0].length?'可':'')+'逆':'')+'矩阵');//+(isinvl?'A左除B A\\B':(isinvr?'A右除B B/A':''))
 			}
 
-			B[1]=Eq(As,noteA,'',isdet?'':'xrightarrow');
+			B[1]='\\small '+Eq(As,noteA,'',isdet?'':'xrightarrow') +' \\normalsize';
 			B[2]=psA;
 //consolelog(psA);
 

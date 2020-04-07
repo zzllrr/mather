@@ -1036,7 +1036,7 @@ SBS={
 ,FUNCS={
 	'Number Theory':['dr'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sign'],// ㏒ ㏑
-	'Algebraic':['r rank diag tr det','dim hom ker Pr div','span proj'],
+	'Algebraic':['r rank diag tr det','adj dim hom ker Pr','div span proj'],
 	'Trigonometric':['sin tan sec','cos cot csc',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
 	'Hyperbolic':['sh th sech','ch cth csch',
@@ -1274,34 +1274,24 @@ SBS={
 			"],[3,4]],'','r2c2'",
 			",3,4],[5,6,7,8]],'','c2'"
 		],')'),
-
 		[],
+
 		zlrA3("Eq([",[
 			"zmtrx([[1,2],[3,4]]),zmtrx([[5,6],[7,8]])],[['1','2']],'','→'",	//\\begin{aligned} & ~ \\\\quad x \\\\  & =1 \\\\  & =2 \\end{aligned}
 			"zmtrx([[1,2,3,4],[5,6,7,8]],'','c2'),zmtrx([[1,2,3,4],[5,6,7,8]],'','c2')],[['1','2']],'','→'"
-		],')')
+		],')'),
+		[],[],
+
+		zlrA3("zmtrx(Arrf(ZLR,",[
+			"['a_{11} a_{12} a_{13}','a_{21} a_{22} a_{23}','a_{31} a_{32} a_{33}']",
+			"['a_{11} a_{12} a_{13} ⋯ a_{1n}','a_{21} a_{22} a_{23} ⋯ a_{2n}','a_{31} a_{32} a_{33} ⋯ a_{3n}','⋮ ⋮ ⋮ ⋱ ⋮','a_{n1} a_{n2} a_{n3} ⋯ a_{nn}']",
+
+		],'))'),
+		[],[],
+
 	]),
 
 
-	'Align':Arrf($A,[
-
-		zlrA3("mtrx([[1,2],[3,4]],",[
-			"'small','small'",
-			"'.','.'"
-		],",'')"),
-
-
-		zlrA3("zmtrx([[1,2",[
-			"],[3,4]],'','r2c2'",
-			",3,4],[5,6,7,8]],'','c2'"
-		],",'.','.')"),
-		[],
-		zlrA3("aligned([1,2,3]",[
-			"",
-			",1"
-		],")"),
-		
-	]),//.concat(["\\def\\arraystretch{1.5}"+mtrx([[1,2],[3,4]],'.','.','')]),
 
 
 	'Det':Arrf(tinyA,[
@@ -1314,24 +1304,21 @@ SBS={
 		zlrA3("Eq([",[
 			"kdet([[1,2],[2,4]]),0],[['1st','2nd']]",
 			"kdet([[1,2],[3,4]]),kdet([[5,6],[7,8]])],[['1st','2nd']]",
-		],')')
-		,
-
+		],')'),
 		[],
 		
 		zlrA3("zdet(",[
 			"['a b   ','c a b  ',' ⋱ ⋱ ⋱ ','  c a b','   c a']",
 			"['a     b',' ⋱   ⋰ ','  a b  ','  c d  ',' ⋰   ⋱ ','c     d']",
 
-		],')')
-		,
+		],')'),[],[],
 
-		
 		zlrA3("zdet(",[
 			"['a_{11} a_{12} a_{13} ⋯ a_{1n}','a_{21} a_{22} a_{23} ⋯ a_{2n}','a_{31} a_{32} a_{33} ⋯ a_{3n}','⋮ ⋮ ⋮ ⋱ ⋮','a_{n1} a_{n2} a_{n3} ⋯ a_{nn}']",
 			"['1 1 1 ⋯ 1','a_1 a_2 a_3 ⋯ a_n','a_1^2 a_2^2 a_3^2 ⋯ a_n^2','⋮ ⋮ ⋮ ⋱ ⋮','a_1^{n-1} a_2^{n-1} a_3^{n-1} ⋯ a_n^{n-1}'],4",
 
-		],')')
+		],')'),[],[],
+
 		
 		
 	]),
@@ -1391,10 +1378,14 @@ SBS={
 	],
 
 	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-','+','x',6,'')$"]].concat(Arrf($A,[
-			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')", "oint(['P','+Q'],'C','','xy',1,1)"],
+			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')"],
 			[],
-			["iint('f','D','','xy',2,1)", "oint(['P','+Q'],'D','','xyz',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','xy',2,1)"], 
-			["iint('f','Ω','','xyz',3,1)", "oint(['P','+Q'],'Ω','','xyz',3,1)"],
+
+			["iint('f','D','','',2,1)", "iint('f','D','','xy',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','xy',2,1)"], 
+			["oint(['P','+Q'],'C','','xy',1,1)", "oint(['P','+Q'],'D','','xyz',2,1)"],
+			[],
+			["iint('f','Ω','','',3,1)", "iint('f','Ω','','xyz',3,1)"],
+			["oint(['P','+Q'],'Ω','','xyz',3,1)"],
 	])),
 
 
@@ -1514,6 +1505,26 @@ SBS={
 		ZLR('tag{1}{A} tag*{2}{B}'),
 	
 	],
+
+	'Align':Arrf($A,[
+
+		zlrA3("mtrx([[1,2],[3,4]],",[
+			"'small','small'",
+			"'.','.'"
+		],",'')"),
+
+
+		zlrA3("zmtrx([[1,2",[
+			"],[3,4]],'','r2c2'",
+			",3,4],[5,6,7,8]],'','c2'"
+		],",'.','.')"),
+		[],
+		zlrA3("aligned([1,2,3]",[
+			"",
+			",1"
+		],")"),
+		
+	]),//.concat(["\\def\\arraystretch{1.5}"+mtrx([[1,2],[3,4]],'.','.','')]),
 
 
 	'Latin':[zlrA3('\\',ZLR('vec dot ddot mathring'),'{a}'),
@@ -2075,7 +2086,7 @@ sbsTbl=function(){
 	$('#ifuncs').append(str2+'</table>');
 
 	//STRUC
-	var strPg=strbtn+'∧∨" class=sbsTblPg hidden />';
+	var strPg=strbtn+'∧" class=sbsTblPg hidden />';
 	var str='<div class=sbsTbl>'+strPg,str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 	////consolelog(K,A);
@@ -2114,7 +2125,7 @@ sbsTbl=function(){
 		str2+='</tr>'
 	}
 
-	$('#struc').append(str+strPg+dc);
+	$('#struc').append(str+strPg.replace('∧','∨')+dc);
 	$('#istruc').append(str2+'</table>');
 
 	$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide();	
@@ -2259,7 +2270,7 @@ $(function(){
 					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
 
-					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle_outline')+
+					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle')+
 
 					
 					itvc('rotate180" id="tClear')+
@@ -2596,19 +2607,30 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
 	}).on('click', '.sbsTblPg',function(e){
-		var me=$(this),pa=me.parent(),pc=pa.children(),
+		var me=$(this),pa=me.parent(),pc=pa.children(), i=me.index(),
 		x=pc.filter('div:visible'), di=x.attr('data-i'),
 		ii=pc.filter('[data-i="'+di+'"]'),
 		d0=ii.first().index(), d1=ii.last().index(),
 		i0=x.first().index(), i1=x.last().index();
 		x.hide();
 
+		if(i){
 
-		if(d1>i1){
+			if(d1>i1){
 
-			pc.slice(i1+1,i1+1+Math.min(d1-i1,3)).show();
+				pc.slice(i1+1, Math.min(d1+1,i1+4)).show();
+			}else{
+				pc.slice(d0, Math.min(d1+1,d0+3)).show();
+			}
 		}else{
-			pc.slice(d0,d0+Math.min(d1-d0+1,3)).show();
+
+			if(d0<i0){
+
+				pc.slice(Math.max(d0,i0-3), i0).show();
+			}else{
+				pc.slice(Math.max(d0,d1-2), d1+1).show();
+			}
+
 		}
 		
 	}).on('click', '.snippetName',function(){
