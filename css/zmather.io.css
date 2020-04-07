@@ -68,6 +68,9 @@
 	border-color:transparent
 }
 
+.sbsTblPg{
+	width:100%
+}
 .sbsTbl .td:empty{
 	display:none
 }

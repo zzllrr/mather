@@ -1061,7 +1061,7 @@ SBS={
 	ZLR('Sum Limit Integral'),
 	
 
-	ZLR('Max Align Linebreak'),
+	ZLR('Align Linebreak Define'),
 	ZLR('Matrix Det Summarize'),
 	['Parentheses','Big Parentheses','Binom'],
 
@@ -1072,8 +1072,6 @@ SBS={
 	ZLR('Note Reasoning Relation'),
 	['Notes','Margin','Negative Margin'],
 	['Margin Space','Margin Value','Size'],
-
-	ZLR('Define Determinant'),
 
 ]
 	
@@ -1088,6 +1086,9 @@ SBS={
 		],")"))).concat('{$Random(100)$}\\/{$Random(100)$} $\'+-×÷\'[Random(4)-1]$ {$Random(100)$}\\/{$Random(100)$}'),
 		["$kfrac('1/2')$"].concat(zlrA3('\\',['','t'],'frac{1}{2}'),
 		zlrA3('\\',['','t'],'frac{1}{1+\\frac{1}{2}}')),
+
+		[],
+		
 		[
 		"\\dfrac{1}{2}",
 		"\\cfrac{1}{1 + \\cfrac{1}{2}}",
@@ -1132,12 +1133,14 @@ SBS={
 	
 
 
-	'Root':[['√2'].concat($A(zlrA3("kroot('x'",['',',3',',4'],')').concat(
+	'Root':[['√2','∛3','∜4'].concat($A(
 		zlrA3('mroots(',ZLR("[2,3],['','x','y'],'','','+-',1"),",'')")
-	))),
-		$A(zlrA3("kfrac([",ZLR("kroot(2),2 kroot(5)+'-1','2' '-b±'+kroot('b^2-4ac'),'2a'"),'])')).concat('∛3'),
-
-		$A(zlrA3('mroots(',ZLR("[2,3,4,5],['',1,10,100,1000],'',1,'+',1"),",'')")).concat('∜4')
+	)),
+		$A(zlrA3("kroot('x'",['',',3',',4'],')')
+			.concat(zlrA3("kfrac([",ZLR("kroot(2),2 kroot(5)+'-1','2'"),'])'))),
+		[],
+		$A(zlrA3("kfrac([",ZLR("'-b±'+kroot('b^2-4ac'),'2a'"),'])')),
+		$A(zlrA3('mroots(',ZLR("[2,3,4,5],['',1,10,100,1000],'',1,'+',1"),",'')"))
 	],
 
 	
@@ -1156,7 +1159,7 @@ SBS={
 			",1"
 		],")").concat("aligned(['~ \\\\quad x','= 1','= 2'])")),
 
-		
+		[],
 
 		$A(zlrA3("Eq([",[
 			"['x','1'],'2']",
@@ -1175,6 +1178,7 @@ SBS={
 			"Eq(['x',''],'','line',['≤'])",
 			"kmod('a','b',2,1)",
 		])),
+		[],
 		$A([
 			"kmod('a','b',2)",
 			"eq0(['x','y'],3,5)",
@@ -1185,7 +1189,7 @@ SBS={
 	],
 
 
-	'Summarize':Arrf($A,[
+	'Summarize':Arrf(tinyA,[
 		
 		zlrA3("piece(",[
 			"[1,2]",
@@ -1195,6 +1199,7 @@ SBS={
 			"[1,2],1",
 			"[[1,2],[3,4]],2",
 			],')'),
+		[],
 		[
 			"EqA(['1x+2y=3','4x-5y=6'])",
 			"EqA(['1x+2y>=3','4x-5y<=6'])",
@@ -1259,7 +1264,7 @@ SBS={
 	
 	]),
 
-	'Matrix':Arrf($A,[zlrA3("zmtrx([[1,2],[3,4]]",[
+	'Matrix':Arrf(tinyA,[zlrA3("zmtrx([[1,2],[3,4]]",[
 			"",
 			",'','.',''",
 			",'','p',''",
@@ -1270,7 +1275,7 @@ SBS={
 			",3,4],[5,6,7,8]],'','c2'"
 		],')'),
 
-		
+		[],
 		zlrA3("Eq([",[
 			"zmtrx([[1,2],[3,4]]),zmtrx([[5,6],[7,8]])],[['1','2']],'','→'",	//\\begin{aligned} & ~ \\\\quad x \\\\  & =1 \\\\  & =2 \\end{aligned}
 			"zmtrx([[1,2,3,4],[5,6,7,8]],'','c2'),zmtrx([[1,2,3,4],[5,6,7,8]],'','c2')],[['1','2']],'','→'"
@@ -1290,7 +1295,7 @@ SBS={
 			"],[3,4]],'','r2c2'",
 			",3,4],[5,6,7,8]],'','c2'"
 		],",'.','.')"),
-
+		[],
 		zlrA3("aligned([1,2,3]",[
 			"",
 			",1"
@@ -1299,51 +1304,57 @@ SBS={
 	]),//.concat(["\\def\\arraystretch{1.5}"+mtrx([[1,2],[3,4]],'.','.','')]),
 
 
-	'Det':Arrf($A,[
+	'Det':Arrf(tinyA,[
+
 		["kdet([[1,2],[3,4]])",
 		 "zdet(['1 2','3 4'])",
 		 "mtrx([[1,2],[3,4]],'V','V','')",
 		],
+		
 		zlrA3("Eq([",[
 			"kdet([[1,2],[2,4]]),0],[['1st','2nd']]",
 			"kdet([[1,2],[3,4]]),kdet([[5,6],[7,8]])],[['1st','2nd']]",
+		],')')
+		,
+
+		[],
+		
+		zlrA3("zdet(",[
+			"['a b   ','c a b  ',' ⋱ ⋱ ⋱ ','  c a b','   c a']",
+			"['a     b',' ⋱   ⋰ ','  a b  ','  c d  ',' ⋰   ⋱ ','c     d']",
+
+		],')')
+		,
+
+		
+		zlrA3("zdet(",[
+			"['a_{11} a_{12} a_{13} ⋯ a_{1n}','a_{21} a_{22} a_{23} ⋯ a_{2n}','a_{31} a_{32} a_{33} ⋯ a_{3n}','⋮ ⋮ ⋮ ⋱ ⋮','a_{n1} a_{n2} a_{n3} ⋯ a_{nn}']",
+			"['1 1 1 ⋯ 1','a_1 a_2 a_3 ⋯ a_n','a_1^2 a_2^2 a_3^2 ⋯ a_n^2','⋮ ⋮ ⋮ ⋱ ⋮','a_1^{n-1} a_2^{n-1} a_3^{n-1} ⋯ a_n^{n-1}'],4",
+
 		],')')
 		
 		
 	]),
 
-	'Determinant':[
-		['|A|'].concat(zlrA3("$zdet(",[
-			"['a b   ','c a b  ',' ⋱ ⋱ ⋱ ','  c a b','   c a']",
-			"['a     b',' ⋱   ⋰ ','  a b  ','  c d  ',' ⋰   ⋱ ','c     d']",
 
-		],')$')),
-		zlrA3("$zdet(",[
-			"['a_{11} a_{12} a_{13} ⋯ a_{1n}','a_{21} a_{22} a_{23} ⋯ a_{2n}','a_{31} a_{32} a_{33} ⋯ a_{3n}','⋮ ⋮ ⋮ ⋱ ⋮','a_{n1} a_{n2} a_{n3} ⋯ a_{nn}']",
-			"['1 1 1 ⋯ 1','a_1 a_2 a_3 ⋯ a_n','a_1^2 a_2^2 a_3^2 ⋯ a_n^2','⋮ ⋮ ⋮ ⋱ ⋮','a_1^{n-1} a_2^{n-1} a_3^{n-1} ⋯ a_n^{n-1}'],4",
 
-		],')$')
-
-	],
-
-	'Sum':[['\\sum','\\prod']
-		.concat($A(zlrA3("prod('i',0,'+','f',",[3,7],",'')").concat("sum('',['i+j=10','i<j'],'','f',0,'')")))
+	'Sum':[['\\Sigma','\\Pi','\\sum','\\prod']
 	].concat(
 		Arrf($A,[
 			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')").concat("sum('','i+j=10','','f',0,'')"),
 
-			
 			zlrA3("prod('i',0,'+','f',",[0,1,4,8],",'')").concat("prod('','i|24','','f',0,'')"),
+
+			zlrA3("prod('i',0,'+','f',",[3,7],",'')").concat("sum('',['i+j=10','i<j'],'','f',0,'')"),
+			
+			zlrA3("sum('i',0,'+','f',",[2,4,5],",'')"),
+			zlrA3("prod('i',0,'+','f',",[2,5,6],",'')"),
+			
+			["Opr('','-','+','f','*')"]
+			
 
 		])
 	),
-
-	'Max':Arrf($A,[
-		zlrA3("sum('i',0,'+','f',",[2,4,5],",'')"),
-		zlrA3("prod('i',0,'+','f',",[2,5,6],",'')"),
-
-		["Opr('','-','+','f','*')"]
-	]),
 
 	'Limit':[['\\lim'].concat(
 			zlrA3("$lim('x','",[
@@ -1359,7 +1370,7 @@ SBS={
 			"','f','d",
 			],"','')$"
 		),
-		
+		[],
 		["e^x=$lim('n','',kfraczp('1+'+kfrac(['x','n']),'','n'),'','')$",
 			'\\lim\\limits_{\\substack{x→0\\\\y→0}}f(x,y)'
 		]
@@ -1374,12 +1385,14 @@ SBS={
 			"1,2"
 			],")")
 		)),
-		['\\d x','\\mathrm{d}y','∂x','\\nabla'],
-		["$orifun('0','1')$"],
+		['\\d x','\\mathrm{d}y','∂x','\\nabla',"$orifun('0','1')$"],
+		[],
+		$A(["difn('(x,y)','(u,v)',1)", "zp(difn('(x,y)','(u,v)',1),'|')"]),
 	],
 
 	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-','+','x',6,'')$"]].concat(Arrf($A,[
 			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')", "oint(['P','+Q'],'C','','xy',1,1)"],
+			[],
 			["iint('f','D','','xy',2,1)", "oint(['P','+Q'],'D','','xyz',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','xy',2,1)"], 
 			["iint('f','Ω','','xyz',3,1)", "oint(['P','+Q'],'Ω','','xyz',3,1)"],
 	])),
@@ -1403,6 +1416,7 @@ SBS={
 		'_1',
 		]),
 		['{e}^{πi}','{r}e^{iθ}','{e}^{\\frac{iπ}2}','C_{n}^{m}'],
+		[],
 		['\\stackrel{1}{2}','\\overset{1}{2}','\\underset{2}{1}'],
 		zlrA3('1 \\',['atop','above{}','above{1pt}','above{2pt}'],2)
 	
@@ -1495,15 +1509,11 @@ SBS={
 	],
 
 
-
-
-
 	'Linebreak':[$A(['kbr','kbr2']).concat('\\sum_{\\substack{0<i<m\\\\0<j<n}}'),
 		ZLR('phantom\\phantom{A} hphantom$hp()$ vphantom\\vphantom{A}'),
 		ZLR('tag{1}{A} tag*{2}{B}'),
 	
 	],
-
 
 
 	'Latin':[zlrA3('\\',ZLR('vec dot ddot mathring'),'{a}'),
@@ -1527,6 +1537,7 @@ SBS={
 	
 		],")$"),
 	
+		[],
 	
 		zlrA3("$ksz('",[
 		"Large',2",
@@ -1863,9 +1874,19 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			return
 		}
 		
-
-		if(fn||st){
-			$('.'+ZLR('Fns Sts')[[fn,st].indexOf(true)]+'[data-i="'+di+'"]').toggle();
+		if(fn){
+			$('.Fns[data-i="'+di+'"]').toggle();
+		}else if(st){
+			var divs=$('.Sts[data-i="'+di+'"]');
+			if(divs.filter(':visible').length){
+				divs.add('.sbsTblPg').hide()
+			}else{
+				divs.slice(0,3).show();
+				if(divs.length>3){
+					$('.sbsTblPg').show()
+				}
+			}
+			
 		}else{
 			$('.'+di).toggle();
 		}
@@ -2054,7 +2075,8 @@ sbsTbl=function(){
 	$('#ifuncs').append(str2+'</table>');
 
 	//STRUC
-	var str='<div class=sbsTbl>',str2='<table class="sbsTbl sbsiTbl">';
+	var strPg=strbtn+'∧∨" class=sbsTblPg hidden />';
+	var str='<div class=sbsTbl>'+strPg,str2='<table class="sbsTbl sbsiTbl">';
 	var strK=function(K,A){
 	////consolelog(K,A);
 		var s='<div class=Sts data-i="'+K+'">',n=A.length;
@@ -2092,7 +2114,7 @@ sbsTbl=function(){
 		str2+='</tr>'
 	}
 
-	$('#struc').append(str+dc);
+	$('#struc').append(str+strPg+dc);
 	$('#istruc').append(str2+'</table>');
 
 	$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide();	
@@ -2573,6 +2595,22 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
 
+	}).on('click', '.sbsTblPg',function(e){
+		var me=$(this),pa=me.parent(),pc=pa.children(),
+		x=pc.filter('div:visible'), di=x.attr('data-i'),
+		ii=pc.filter('[data-i="'+di+'"]'),
+		d0=ii.first().index(), d1=ii.last().index(),
+		i0=x.first().index(), i1=x.last().index();
+		x.hide();
+
+
+		if(d1>i1){
+
+			pc.slice(i1+1,i1+1+Math.min(d1-i1,3)).show();
+		}else{
+			pc.slice(d0,d0+Math.min(d1-d0+1,3)).show();
+		}
+		
 	}).on('click', '.snippetName',function(){
 
 		var me=$(this),pa=me.parent(), t=pa.attr('data-type'), i=pa.index()+1;

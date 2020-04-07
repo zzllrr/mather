@@ -564,6 +564,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	dl = function (A, B, c) { return '<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(function (t) { return XML.wrapE('dt', t) }, A), Arrf(function (t) { return XML.wrapE('dd', t) }, B)).join('') + '</dl>' }, kdl = function (A, B, c) { return dl(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), B, c) },
 
 	$A = function (A) { return Arrf(function (x) { return x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : '') }, A) },
+	tinyA=function(A){return A.length==0?[]:Arrf(function(x){return '\\tiny '+$A(x)},A)},
 	encodeLatex = function (t) { return ('' + t).replace(/[\{\}]/g, '\\$&') },
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
