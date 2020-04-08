@@ -55,10 +55,10 @@ solve['matrix']=function(inputValue, uriA){
 
 	}
 
-	if(sel(uriA,'Orthogonalize','Gram-Schmidt') || sel('Gram-Schmidt','Gram-Schmidt')){
+	if(sel(uriA,'Orthogonalize','Gram-Schmidt') || sel(uriA,'Gram-Schmidt','Gram-Schmidt')){
 
 		rS=rS.concat(Arrf(function(t){
-			var M=MfS(t), A=Mtrx.opr1('正交化',M, sel('Gram-Schmidt','Gram-Schmidt'));
+			var M=MfS(t), A=Mtrx.opr1('正交化',M, sel(uriA,'Gram-Schmidt','Gram-Schmidt'));
 
 			return A[1]
 		},VA));
@@ -631,11 +631,11 @@ solve['matrix']=function(inputValue, uriA){
 
 	}
 
-	if(sel(uriA,'Eigen Vector Orthogonalize') || sel('Eigen Vector Gram-Schmidt')){/*矩阵&特征值1,2...
+	if(sel(uriA,'Eigen Vector Orthogonalize') || sel(uriA,'Eigen Vector Gram-Schmidt')){/*矩阵&特征值1,2...
 		示例：17 -8 4 -8 17 -4 4 -4 11
 			22-225-4-2-45
 		*/
-		var oi=sel('Eigen Vector Gram-Schmidt');
+		var oi=sel(uriA,'Eigen Vector Gram-Schmidt');
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'',M,t0=t.replace(/&.+/,''),tA;
 			if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
@@ -766,13 +766,13 @@ console.log('单位化？',oi,m,Q);
 	}
 	
 
-	if(sel(uriA,'α^Tβ求幂') || sel('αβ^T求幂')){//2×n矩阵[α;β] & 幂   //A=αTβ或αβT
+	if(sel(uriA,'α^Tβ求幂') || sel(uriA,'αβ^T求幂')){//2×n矩阵[α;β] & 幂   //A=αTβ或αβT
 		
 
 		rS=rS.concat(
 			Arrf(function(t){
 				var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'1', M=MfS(t),
-					ATB=sel('αTβ求幂'),atb=ATB?'α^Tβ':'αβ^T',at=ATB?'α^T':'α',bt=ATB?'β':'β^T',
+					ATB=sel(uriA,'αTβ求幂'),atb=ATB?'α^Tβ':'αβ^T',at=ATB?'α^T':'α',bt=ATB?'β':'β^T',
 					n=M[0].length,ij_1=minus([ij,1]),aT=Mtrx.opr1('T',[M[0]]),bT=Mtrx.opr1('T',[M[1]]),aTb=Mtrx.opr2('*',aT,[M[1]]),
 					A0=kmtrx([M[0]]),A1=kmtrx([M[1]]), B0=kmtrx(aT),B1=kmtrx(bT),abT=Mtrx.opr2('*',[M[0]],bT),A=Mtrx.opr2('^',abT,ij_1);//这里用变量A表示一阶矩阵βαT的幂
 

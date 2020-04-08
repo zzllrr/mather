@@ -18,7 +18,7 @@ $(function(){
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
 			
 			//version
-			fieldseth('V2020.4.3',
+			fieldseth('V2020.4.8',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo>zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+

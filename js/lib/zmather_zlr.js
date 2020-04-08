@@ -700,25 +700,27 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			v + '}' : SCtv('inblk alignc', sub(t == '+' ? '∞' : t) + br + ['∏', '∩', '×', '∐', '∧', 'inf', 'min', '⊙', '⊗'][p || 0] + br + sup(i ? i + '=' + b : b)) + sci(v)
 	},
 
-	intl = function (v, b, t, d, p, zM) {
+	intl = function (fA, b, t, d, p, zM) {
 		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + ((/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':b)) || '') + '}' + 
-			(t ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + v + '\\,'+
-			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,'))+'}' : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
+			(t ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + (isArr(fA)?
+			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join('\\,')+'}') : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
 
 
-	iint = function (v, b, t, d,p,zM) {
+	iint = function (fA, b, t, d,p,zM) {
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
-			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + v + '\\,'+
+			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + (isArr(fA)?
+			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
 			(!d?('\\mathrm{d}'+'  σV'[p || 2]):
-			(/^\{.+\}$/.test(d)?'\\mathrm{d}'+d:zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}').join('\\,')))+'}' 
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join('\\,')))+'}' 
 	},
 
-	oint = function (vA, b, t, d,p,zM) {
+	oint = function (fA, b, t, d,p,zM) {
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') +
-			(/^\{.+\}$/.test(d)?vA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2)).split(''), '}'),vA]).join(''))+'}' 
+			(!/,/.test(d) && !isArr(fA)?fA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}'),fA]).join(''))+'}' 
 	},
 
 

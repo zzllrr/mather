@@ -883,7 +883,7 @@ var Mtrx={	//矩阵
 					abu.push(Mtrx.opr2('内积',Aj,Bjs[k]));
 					
 				}
-		//consolelog(abu,'Bs=\n',Bs.join('\n'));
+		//console.log(abu,'Bs=\n',Bs.join('\n'));
 				var not0=j && /[^0]/.test(abu.join(''));
 				if(not0){
 					for(var i=0;i<m;i++){
@@ -909,6 +909,8 @@ var Mtrx={	//矩阵
 				}else{
 					Bj=Arri(B,j);
 				}
+
+				//console.log(Bj);
 				var g=gcdFrac(Bj),l=lcmFrac(Bj);
 				if(l!=1 || g!=1){//需整数化 或者需要约分
 					Bj=[];
@@ -917,8 +919,8 @@ var Mtrx={	//矩阵
 							B[i][j]=times([B[i][j],l]);
 						}
 						if(g!=1){
-							//consolelog(B[i][j],g);
-							//consolelog(i,j,B);
+							//console.log(B[i][j],g);
+							//console.log(i,j,B);
 
 							B[i][j]=divide([B[i][j],g]);
 						}
@@ -952,7 +954,7 @@ var Mtrx={	//矩阵
 			if(p){
 				B=Mtrx.opr1('单位化',B);
 				Bs.push(B.toStr(1));
-				noteB.push('再单位化得到矩阵');
+				noteB.push('再单位化得到');
 			}
 //consolelog('Bs = ',Bs);	//bug 22-225-4-2-45	https://zhidao.baidu.com/question/1866983200694120987.html
 	
@@ -962,7 +964,7 @@ var Mtrx={	//矩阵
  			
 //consolelog(op,' 结束',p);
  			
-			return [B,Eq(Bs,noteB,'','xrightarrow')];
+			return [B,'\\small '+Eq(Bs,noteB,'','xrightarrow')+' \\normalsize'];
 		}
 		
 		

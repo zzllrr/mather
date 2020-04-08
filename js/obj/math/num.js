@@ -501,7 +501,7 @@ var Integer={/*整数 (本质是字符串)
 			return A.join('')
 
 		}
-		if(op=='-'){//减法
+		if(op=='-'){//减法	暂不考虑al>2
 			
 			if(BigInt){
 				return BigInt(aA0)-BigInt(aA1)+''
@@ -591,7 +591,13 @@ var Integer={/*整数 (本质是字符串)
 		}
 
 		if(op=='*'){//乘法
-			
+			if(aA.indexOf('0')>-1){return '0'}
+			if(al>2){
+
+				return Integer.oprs('*',[Integer.oprs('*',aA.slice(0,al-1)),aA[al-1]])	//左结合
+				//return Integer.oprs('*',[aA0,Integer.oprs('*',aA.slice(1))])	//右结合
+			}
+
 			if(BigInt){
 				if(/[a-z]/.test(aA0)||/[a-z]/.test(aA1)){
 					return aA0+''+aA1
@@ -599,12 +605,7 @@ var Integer={/*整数 (本质是字符串)
 				return BigInt(aA0)*BigInt(aA1)+''
 			}
 
-			if(aA.indexOf('0')>-1){return '0'}
-			if(al>2){
 
-				return Integer.oprs('*',[Integer.oprs('*',aA.slice(0,al-1)),aA[al-1]])	//左结合
-				//return Integer.oprs('*',[aA0,Integer.oprs('*',aA.slice(1))])	//右结合
-			}
 			if(aisNeg || bisNeg){return (aisNeg && bisNeg?'':'-')+Integer.oprs('*',[aisNeg?aA0.substr(1):aA0, bisNeg?aA1.substr(1):aA1])}
 
 			var n0=aA0.length,n1=aA1.length,m0=aA0.match(/[^0]/g).length,m1=aA1.match(/[^0]/g).length,
@@ -3153,9 +3154,12 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 				}
 			}
 
-		}else{//整数的分数
+		}else{//整数的分数幂
 			var a=factorA(A[0]),ga=+gcd(a[1]);
 			var gabc=+gcd([ga,B[1]]);
+
+//console.log(a.join(' --- '),ga,gabc);
+
 			if(gabc>1){//底数（分解因数后，因数公重数）与分数幂的分母可以约分
 				a[1]=Arrf(function(x){return x=='1'?x:Integer.oprs('/',[x,gabc])[0]},a[1]);
 				//console.log('a = ',a[0],' ;;; ',a[1]);
@@ -3169,9 +3173,30 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 					//console.log(isneg,op,[a,B[0]],Integer.oprs(op,[a,B[0]]));
 					return isneg+Integer.oprs(op,[a,B[0]])
 				}
+			}else{//遍历质因数，重数是分数幂的分母的倍数，则约分
+				var IA=[[],[]];
+			//	console.log(a.join(' & '),B[1]);
+				a[1]=Arrf(function(x,i){
+					if(x!='1' && Integer.is.b2['|'](B[1],x)){
+						IA[0].push(a[0][i]);
+						IA[1].push(Integer.oprs('/',[x,B[1]])[0])
+						return 0
+					}
+					return x
+				},a[1]);
+
+				if(IA[0].length){
+
+				//	console.log(a.join(' a '), IA.join(' IA '));
+
+					a=factorA2n(a);
+					A=[a,1];
+				//	console.log(factorA2n(IA),a,isneg+factorA2n(IA)+'⋅'+A[0]+'^('+B.join('/')+')');
+					return isneg+factorA2n(IA)+'⋅'+A[0]+'^('+B.join('/')+')'
+				}
 			}
 			//var x=isneg+(/^1[234]$/.test(B.join(''))?
-			//console.log(isneg+A[0]+'^('+B.join('/')+')');
+
 			return isneg+A[0]+'^('+B.join('/')+')';
 		}
 
