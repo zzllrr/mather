@@ -30,7 +30,7 @@ tooltip['API']=[
 		]},
 		
 		{'num.js':[{'实体':'Integer Decimal Frac Root Num'},
-				{'识别':'nis nAis nisd nisVd nisVid nisn'},
+				{'识别':'nis nAis nisd nisVd nisVid nisn nisSupSuffix'},
 				{'正则':'nRegofab nReg2dot nReg2digits nReg2A'},
 				{'转换':'percnt2n n2percnt n2frac n2ArabBig n2Roman Roman2n'},
 				{'精度':'digi Nsqrt'},

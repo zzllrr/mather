@@ -14,7 +14,7 @@ solve['matrix']=function(inputValue, uriA){
 	
 //Display
 //console.log(inputValue,uriA);
-	if(sel(uriA,'A')){
+	if(sel(uriA,'A','Display')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
 				return '='+Mtrx.toStr(MfS(t))
@@ -449,17 +449,16 @@ solve['matrix']=function(inputValue, uriA){
 					kn=pow([k,M[1]]),kn_A=divide([kn,M[0]]), ij3A=times([ij[3],'A']);
 
 
-				
-				
-				return Eq(Arrf(function(s){return lrp('|',s,'|')},[
-						plus([kap([ij[0], times([ij[1],'A']),-1]),
-							kap([ij[2], ij3A,'*'])
-						],1,1),
 
-						plus([a_bA_1, times([ij[2],'|'+ij3A+'|'+pow([ij3A,'-1'])])],1),
+				return Eq(Arrf(function(s){return '\\left|'+s+'\\right|'},[
+						plus([kap(ij[0], times([ij[1],'A']),-1),
+							kap(ij[2], ij3A,'X')
+						],1,1).replace(/\/A/g,'A^{-1}').replace(/X/g,'*'),
+	
+						plus([a_bA_1, times([ij[2],'X'])],1).replace(/X/g,'\\left|'+ij3A+'\\right|'+pow([ij3A,-1])).replace(/\/A/g,'A^{-1}'),
 						].concat(ij[3]!='1'?
-						plus([a_bA_1, times([kap([ij[2],ij[3],n_1]),'|A|A^{-1}'])]):[]).concat(
-						times([k,'A^(-1)'])
+						plus([a_bA_1, times([kap(ij[2],ij[3],n_1),'X'])],1).replace(/X/,'|A|A^{-1}'):[]).concat(
+						times([k,'A^(-1)'],1)
 						)).concat([
 
 						frac(pow([k,M[1]]),'|A|',''),
@@ -489,8 +488,8 @@ solve['matrix']=function(inputValue, uriA){
 				return '显然|A|='+Arrfc([pptd],M).join('×')+'='+detA+'\\\\ '
 			+Eq(Arrf(function(s){return lrp('|',s,'|')},
 					[
-						plus([kap([ij[0], times([ij[1],'A']),-1]),
-							kap([ij[2], ij3A,'*']),
+						plus([kap(ij[0], times([ij[1],'A']),-1),
+							kap(ij[2], ij3A,'*'),
 							eE,fA
 						],1)
 					].concat(ij[2]!='0'?
@@ -504,7 +503,7 @@ solve['matrix']=function(inputValue, uriA){
 							
 						plus([
 						pptd(a_bA_1),
-						times([kap([ij[2],ij[3],n_1]),'|A|A^{-1}']),
+						times([kap(ij[2],ij[3],n_1),'|A|A^{-1}']),
 						eE,fA
 						],1):[]	//]):[]
 					).concat(ij[2]!='0'?

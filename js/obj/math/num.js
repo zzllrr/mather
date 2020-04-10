@@ -2848,6 +2848,9 @@ Decimal.opr1('/') 依赖于 Frac.build.D(A)
 	}
 	return false
 	
+},nisSupSuffix=function(n){//判断表达式是上标后缀
+	return /^[\*TH†]$/.test(n)
+
 },nisfrac=function(n,notNeg){//判断表达式是有理数	参数notNeg 指定是否非负
 	return /^-?\d+[/]?\d*$/.test(n) && (notNeg?!/-/.test(n):1)
 

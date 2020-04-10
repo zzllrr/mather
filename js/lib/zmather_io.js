@@ -639,8 +639,8 @@ SBS={
 		'°':'^\\circ',
 		
 		'′':'prime',
-		'″‴':'\'\'',
-		'‴':'\'\'\'',
+		'″':"''",
+		'‴':"'''",
 		'‵':'backprime',
 		'∫':'int',
 		'∬':'iint',
@@ -1036,20 +1036,21 @@ SBS={
 ,FUNCS={
 	'Number Theory':['dr'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sign'],// ㏒ ㏑
-	'Algebraic':['r rank diag tr det','adj dim hom ker Pr','div span proj'],
+	'Algebraic':['rank diag tr det','adj dim hom ker per','span proj Pr'],
 	'Trigonometric':['sin tan sec','cos cot csc',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
 	'Hyperbolic':['sh th sech','ch cth csch',
 	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
 
-	'Analytical':['lim sup inf','limsup liminf','inj~lim proj~lim'],
+	'Analytical':['lim sup inf grad','limsup liminf curl rot','inj~lim proj~lim div'],
 	'Set':[],
-	'Logistical':[],
-	'Probabilistic':['Bin Geo U N',],
+	'Logistical':['OR AND XOR','NOR NAND XNOR'],
+	'Probabilistic':['Bin Geo'],
 	'Statistical':['min max'],
 
 	'Topological':[],
-	'Geometric':['deg',]
+	'Geometric':['deg',],
+	'Combination':[],
 }
 
 
@@ -2810,14 +2811,17 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				z='out';
 			}
 	
-			me.attr('data-zooming',z);
-			return z=='in'?x+0.2:x-0.2
+			var y=z=='in'?x+0.2:x-0.2;
+			me.attr({'data-zooming':z,'title':gM('Zooming')+' '+y});
+			return y
 		})
 
 	}).on('click','#rotateHTMLEditor',function(e){
-		$('#HTMLEditor img').css('transform',function(i,v){var x=(+(v||'0').replace(/\D/g,'')+90)%360;
+		$('#HTMLEditor img').css('transform',function(i,v){var me=$(this),z=+me.attr('data-rotating')||0,
+			x=(z+1)%6, y=x<4?'rotate('+x*90+'deg)':'rotate'+'XY'[x-5]+'(180deg)';
+			me.attr({'data-rotating':x, 'title':y});
 
-			return 'rotate('+x+'deg)'
+			return y
 		})
 
 	}).on('click','#removeHTMLEditor',function(e){
