@@ -418,18 +418,30 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	},
 	has:{//子元素
 		"var":function(A,ref){//是否含单变量或自身就是单变量
-			var o=A[1][ref||A[0]], of=o.f, oc=o.c, ov=o.v;
+			var o=A[1][ref||A[0]];
+			console.log(ref,A[0],o);
+			if(!o){
+				return 0
+			}
+			var of=o.f, oc=o.c, ov=o.v;
 			if(of=='var' || of=='_'){
 				return 1
 			}
 			if(/num/.test(of)){//一些字母代表著名常数，不认为是变量
 				return 0
 			}
+
 			if(ov){
 				for(var i=0,l=ov.length;i<l;i++){
-					if(Mfn.has.var(A,ov[i])){
-						return 1
+					var oi=ov[i];
+					if(isArr(oi)){
+						for(var j=0,m=oi.length;j<m;j++){
+							if(/@/.test(oi[j]) && Mfn.has.var(A,oi[j])){
+								return 1
+							}
+						}
 					}
+
 				}
 			}else{
 				return Mfn.has.var(A,oc)
@@ -1466,7 +1478,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					return latex?oc.replace(/%/,'\\$&'):oc
 				}
 				if(of=='var'){
-					return oc
+					return ' '+oc
 				}
 				if(of=='_'){
 					// consolelog(ov);
@@ -1512,10 +1524,12 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					return latex?kroot(f(oc,1),'01√∛∜'.indexOf(of)):of+(nisVid(foc,1)?foc:pp(foc))
 				}
 				if(of=='pow'){
-					var x0=f(ov[0],1), x1=f(ov[1],1), x0isVid=nisVid(x0,1), x1isVid=nisVid(x1,1)||nisSupSuffix(x1),
+					var x0=f(ov[0],1).trim(), x1=f(ov[1],1).trim();
+
+					var x0isVid=nisVid(x0,1), x1isVid=nisVid(x1,1)||nisSupSuffix(x1),
 						X0=x0isVid?x0:(latex?zp:pp)(x0), X1=latex?pp(x1,'{}'):(x1isVid?x1:pp(x1));
 
-					
+
 		
 					if(latex && /^1[/].+$/.test(x1)){
 						
@@ -1754,8 +1768,11 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					}
 				}
 				
-					
-				return fx+f(ov,1)
+				//console.log(fx, ov,oc);
+				if(!ov){
+					return fx+' '+f(oc,1)	
+				}
+				return fx+' '+f(ov,1)
 
 				
 			}
@@ -1802,7 +1819,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	*/
 	
 		if(op=='导数'){//
-
+//console.log(of,Mfn.has.var(A),A);
 			if(of=='var' || of=='_'){
 				return Mfn.build.Num(1)
 			}
@@ -1819,7 +1836,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				return Neg(Mfn.opr1('导数',A,sim,p),sim)
 			}
 			if(of=='pms'){
-
+//console.log(snake([ov[0],seqA(0,l)]).join(''));
 				var l=ov[1].length, B=Mfn.fromStr(snake([ov[0],seqA(0,l)]).join('')), bp={};
 				for(var i=0;i<l;i++){
 					var oi=ov[1][i];
@@ -1871,7 +1888,22 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 			}
 
+			if(of=='pow'){
+				var l=ov[1].length, o10=ov[1][0], o11=ov[1][1], bp={}, B;
+				if(A[1][o10].f=='num'){// a^x
+					
+					var t=A.ref('㏑2');
 
+					A[1][A0].v[1][1]=A.ref(o11+'^'+t);
+
+					bp[o10]=Neg(Mfn.opr1('导数',Mfn.build.A(A,o11),sim,p));
+					
+					B=Mfn.opr1(':',A,'',bp);
+
+					return sim?Mfn.opr1('=',B,'',p):B
+				}
+
+			}
 
 		}
 	

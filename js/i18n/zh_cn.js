@@ -622,7 +622,8 @@ lang['zh_cn'] = {
 	'Correlation':'相关系数',
 	'Covariance':'协方差',
 	'Variance':'方差',
-
+	'variation':'变分',
+	'Convolution':'卷积',
 
 	'Lottery': '彩票',
 	'Sudoku': '数独',
@@ -1684,10 +1685,13 @@ lang['zh_cn'] = {
 	'Linear': '线性',
 
 	'Eigen': '特征',
-	'Adjoint': '伴随',
+	'Adjoint': '伴随',	//伴随变换，共轭变换，共轭转置矩阵A^H
+	'Adjugate': '伴随',	 //伴随矩阵，代数余子式矩阵转置
+	'Conjugate': '共轭',
 	'Augmented': '增广',
 	'Diagonal': '对角',
 	'Hermitian': '共轭转置',
+
 	'Coprime': '互素',
 	'Recursive': '递归',
 	'Cross': '交叉',
@@ -1763,6 +1767,9 @@ lang['zh_cn'] = {
 	'Formal': '形式',
 	'Differential': '微分',
 	'Integral': '积分',
+
+	'Contour Integral': '围线积分',
+
 	'Boolean': '布尔',
 
 	'Indefinite': '不定',
@@ -1777,7 +1784,11 @@ lang['zh_cn'] = {
 	'Archimedean':'阿基米德',
 	'Napoleon':'拿破仑',
 
-	
+	'Green.1':'格林',
+	'Black.1':'布莱克',
+	'Brown.1':'布朗',
+	'White.1':'怀特',
+
 'Abel':'阿贝尔',
 'Al-haytham':'海什木',
 'Al-karaji':'卡拉吉',
@@ -1822,6 +1833,7 @@ lang['zh_cn'] = {
 'Germain':'热尔曼',
 'Godel':'哥德尔',
 'Goldbach':'哥德巴赫',
+
 'Grothendieck':'格罗滕迪克',
 'Hamilton':'哈密尔顿',
 'Hardy':'哈代',

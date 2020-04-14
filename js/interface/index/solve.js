@@ -194,15 +194,34 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			'Domain',
 			'Range…f(x),D',
 			'Limit…f,a',
-			'Derivative',
-			'Partial Derivative…f,[xy]',
+
+
+		]},
+		{'Differential':[
+			'Derivative…f&x&阶数&x0',
+			'Partial Derivative…f&x,y&阶数&x0,y0',
 			'Directional Derivative…f,φ',
 			'Grad',
 			'Differential',
 			'Partial Differential',
+		]},
+		{'Integral':[
+			{'Line Integral':[
+				{'Green.1 Formula':[
+					'路径无关'
+				]},
+				{'Stokes Formula':[
+					'路径无关'
+				]},
+				'Contour Integral',
+			]},
+			{'Surface Integral':[
+				'Gauss Formula'
+			]},
 			'Indefinite Integral',
-			'Definite Integral']
-		}
+			'Definite Integral',
+		]},
+
 	],
 
 

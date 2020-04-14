@@ -1369,24 +1369,26 @@ SBS={
 		$A(["difn('f')"].concat(zlrA3("difn('f','x',",[
 			"''",
 			"1",
-			"'',2",
-			"1,2"
 			],")")
-		)),
+		,"difn()","difn('','',1)")),
 		['\\d x','\\mathrm{d}y','∂x','\\nabla',"$orifun('0','1')$"],
 		[],
+		$A(zlrA3("difn('f','x',",[
+			"'',2",
+			"1,2"
+			],")").concat(zlrA3("difn('f',['x','y']",['',',1'],")"))),
 		$A(["difn('(x,y)','(u,v)',1)", "zp(difn('(x,y)','(u,v)',1),'|')"]),
 	],
 
-	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-','+','x',6,'')$"]].concat(Arrf($A,[
-			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')"],
+	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-1','1','x',0,'')$", "$intl('f','-','+','x',0,'')$"]].concat(Arrf($A,[
+			["iint(['P','+Q'],'L','','x;y',1,1)","oint(['P','+Q'],'C','','x;y',1,1)"],
 			[],
 
 			["iint('f','D','','',2,1)", "iint('f','D','','x,y',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','x,y',2,1)"], 
-			["oint(['P','+Q'],'C','','x,y',1,1)", "oint(['P','+Q'],'D','','x,y,z',2,1)"],
+			["oint(['P','+Q','+R'],'D','','x,y;y,z;z,x',2,1)"],
 			[],
-			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)"],
-			["oint(['P','+Q'],'Ω','','x,y,z',3,1)"],
+			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)","intl('f','-','+','x',6,'')"],
+			["oint(['P','+Q','+R','+S'],'Ω','','x,y,z;y,z,t;z,t,x;t,x,y',3,1)"],
 	])),
 
 
@@ -2528,6 +2530,8 @@ $(function(){
 				itv('" id=alignPreviewCenter tip="Center Align','format_align_center')+
 				itv('" id=alignPreviewRight tip="Right Align','format_align_right')+
 
+				itv('" id=linebreak tip="Linebreak','subdirectory_arrow_left')+
+
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
 				SCtv('imgHTMLEditor',
 					itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
@@ -2801,17 +2805,20 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		$('#input0Preview>.katex-display>.katex').css('text-align',this.id.substr(12).toLowerCase())
 
+	}).on('click','#linebreak',function(e){
+		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
+		$('#input0').val(function(i,v){return v.replace(/\n/g, t+brn)}).change();
 
 	}).on('click','#zoomHTMLEditor',function(e){
 		$('#HTMLEditor img').css('zoom',function(i,v){var x=+v||1, me=$(this),z=me.attr('data-zooming')||'out';
-			if(x<=0.4 || x==1 && z=='in'){
+			if(x<=0.2 || x==1 && z=='in'){
 				z='in';
 			}
 			if(x>=1.2){
 				z='out';
 			}
 	
-			var y=z=='in'?x+0.2:x-0.2;
+			var y=(z=='in'?x+0.2:x-0.2).toFixed(2);
 			me.attr({'data-zooming':z,'title':gM('Zooming')+' '+y});
 			return y
 		})

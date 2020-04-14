@@ -269,7 +269,8 @@ function GM(txt,fromLang,toLang) {
 }
 function gM(mesg, str, o) {
 	if (isArr(mesg)) { return Arrf(function (i) { return gM(i, str, o) }, mesg) }
-	var msg = '' + mesg, M = (msg[0] || '').toUpperCase() + (msg || '').substr(1), O = o || i18n, x = O ? O[msg] || O[M] || '' : '';
+	var msg = '' + mesg, m0=msg[0] || '', m1=(msg || '').substr(1),
+		M = m0 + m1, O = o || i18n, x = O ? O[msg] || O[M] || '' : '';
 	try {
 		if (!x && chrome && chrome.i18n) {
 			x = chrome.i18n.getMessage(msg, str)
@@ -710,7 +711,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 	iint = function (fA, b, t, d,p,zM) {
-		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
+		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','int','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + (isArr(fA)?
 			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
 			(!d?('\\mathrm{d}'+'  σV'[p || 2]):
@@ -720,7 +721,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	oint = function (fA, b, t, d,p,zM) {
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') +
-			(!/,/.test(d) && !isArr(fA)?fA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}'),fA]).join(''))+'}' 
+			(!/,/.test(d) && !isArr(fA)?fA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''))+'}' 
 	},
 
 
@@ -730,7 +731,11 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	orifun =function(x0,x1){
 		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\'+x0+'}'
 	},
-	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', dg = g ? '^{' + g + '}' : ''; return '\\frac{' + d + dg + (f || '') + '}{' + d + (x || 'x') + dg + '}' },
+	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', 
+		dx= +g>1?d + (x || 'x'):d,
+		dg = +g>1? '^{' + g + '}' : (isArr(x)?'^{' +x.length+'}':''),
+		dg_= +g>1 ? '^{' + g + '}' : (isArr(x)?x.join(d):(x || 'x'));
+		return ' \\tfrac{' + d + dg + (f || '') + '}{' + dx + dg_ + '}' },
 
 	Opr = function (i, b, t, v, p) { return '\\mathop{' + p + '}\\limits' + '_{' + (i ? i + '=' + b : (b=='-'?'-∞':b)) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') + (v || '') },
 	/* katex 不支持 ⋰ (已使用\iddots 命令修复) ∱∲∳ \idotsint 多重积分 ∫⋅⋅⋅∫ 与MathJax区别
