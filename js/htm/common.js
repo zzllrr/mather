@@ -287,10 +287,13 @@ var MfS=function(x,typ){return Mtrx.fromStr(x,typ)},
 function dayOrNight(){
 	var isnight=L.night=='true';
 	//$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});
-	$('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
+    $('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
+    $('#allEraser').click();
+    $('#color'+(isnight?3:0)).click();
 	if(isnight){
 		$('#oHTML svg *[stroke=black]').attr('stroke','gainsboro');
-		$('#oHTML svg *[fill=black]').attr('fill','gainsboro');	
+        $('#oHTML svg *[fill=black]').attr('fill','gainsboro');
+        
 	}else{
 		$('#oHTML svg *[stroke=gainsboro]').attr('stroke','black');	
 		$('#oHTML svg *[fill=gainsboro]').attr('fill','black');	
@@ -308,6 +311,14 @@ function copy2clipboard(t){
     document.execCommand('copy', false, null);
     $('#bar input').remove();
     toolTip(gM('copiedtip'));
+}
+
+function mathjsOutputOpt(par,imp,f){
+    return {
+        parenthesis: par||'auto',    // parenthesis option   keep|auto|all
+        handler: f||{},   // handler to change the output
+        implicit: (imp?'show':'hide')       // how to treat implicit multiplication     hide|show
+    }
 }
 
 var rng2=function(t,neg){

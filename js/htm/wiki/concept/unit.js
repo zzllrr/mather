@@ -311,6 +311,15 @@ detail('速度 Velocity',Table([ZLR('中文 英文 符号 表达式（用基本�
 	ZLR('千米/时________\\text{\\text{km}/\\text{h}}____{5}\\/{18}\\text{\\text{m}/\\text{s}}____','','____'),
 	ZLR('节________\\text{kn}____{463}\\/{900}\\text{\\text{m}/\\text{s}}____1节 = 1海里/时 = 1852\\text{\\text{m}/\\text{h}}','','____'),
 ],'wiki').replace(/\n/g,br)),
-].join(br))
+].join(br))+
+
+detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[enwiki('Physical_constants'),'',''],
+	[enwiki('International_System_of_Units'),'',''],
+
+	[href(Hs+'mathjs.org/docs/datatypes/units.html','mathjs units'),'',''],
+
+],'TBrc'),1)
 ;
 //);

@@ -270,7 +270,7 @@ function GM(txt,fromLang,toLang) {
 function gM(mesg, str, o) {
 	if (isArr(mesg)) { return Arrf(function (i) { return gM(i, str, o) }, mesg) }
 	var msg = '' + mesg, m0=msg[0] || '', m1=(msg || '').substr(1),
-		M = m0 + m1, O = o || i18n, x = O ? O[msg] || O[M] || '' : '';
+		M = m0 + m1, M_=m0.toUpperCase()+m1, O = o || i18n, x = O ? O[msg] || O[M] || O[M_] || '' : '';
 	try {
 		if (!x && chrome && chrome.i18n) {
 			x = chrome.i18n.getMessage(msg, str)

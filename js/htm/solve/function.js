@@ -9,6 +9,39 @@ solve['function']=function(inputValue, uriA){
 
 	//console.log(uriA);
 	
+	if(sel(uriA,'Simplify','Unary Operation')){
+
+		rS=rS.concat(
+			Arrf(function(t){
+				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)];
+
+
+					f_=math.simplify(f);
+					m_=f_.toString(mathjsOutputOpt('',''));
+
+					A.push('='+Mfn.fromStr(m_).toStr(1),'mathjs ='+m_ );//kfrac( ,1)	Mfn.opr1('=',		Mfn.fromStr(m_).toStr(1)
+
+				return A.join(kbr2)
+		},VA));
+	}
+	if(sel(uriA,'Rationalize','Unary Operation')){
+
+		rS=rS.concat(
+			Arrf(function(t){
+				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)];
+
+
+					f_=math.rationalize(f);
+					m_=f_.toString(mathjsOutputOpt('',''));
+
+					A.push('='+Mfn.fromStr(m_).toStr(1),'mathjs ='+m_ );
+
+				return A.join(kbr2)
+		},VA));
+	}
+
+
+
 	if(sel(uriA,'Derivative','Differential')){
 
 		rS=rS.concat(
@@ -88,7 +121,7 @@ fxxx fxxy
 		rS=rS.concat(
 			Arrf(function(t){
 				return `
-				问题：计算$iint(['P','+Q'],'L','','x;y',1,1)$，其中曲线L：起点(0,0)→终点(1,1)\\\\
+				示例问题：计算$iint(['P','+Q'],'L','','x;y',1,1)$，其中曲线L：起点(0,0)→终点(1,1)\\\\
 				思路：如符合格林公式条件，则~原式\\\\
 				=$intl('P(x,y_1)','x_1','x_2','x',0,'')$+$intl('Q(x_2,y)','y_1','y_2','y',0,'')$ ~水平+竖直\\\\
 				=$intl('P(x,y_2)','x_1','x_2','x',0,'')$+$intl('Q(x_1,y)','y_1','y_2','y',0,'')$ ~竖直+水平\\\\
@@ -103,7 +136,7 @@ fxxx fxxy
 				$difn('Q','x',1)$=-2(x+y)\\\\~\\\\
 				$difn('P','y',1)$=$difn('Q','x',1)$\\\\~\\\\
 				则根据格林公式，\\\\得知原积分与路径无关\\\\
-				\\quad原式\\\\
+				\\quad 原式\\\\
 				=$intl('P(x,0)','0','1','x',0,'')$+$intl('Q(1,y)','0','1','y',0,'')$\\\\
 				=$intl('1','0','1','x',0,'')$-$intl('(1+y)^2','0','1','y',0,'')$\\\\
 				=$intl('1','0','1','x',0,'')$-$intl('(1+x)^2','0','1','x',0,'')$\\\\

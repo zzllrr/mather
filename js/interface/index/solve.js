@@ -194,7 +194,8 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			'Domain',
 			'Range…f(x),D',
 			'Limit…f,a',
-
+			'Simplify',
+			'Rationalize',
 
 		]},
 		{'Differential':[

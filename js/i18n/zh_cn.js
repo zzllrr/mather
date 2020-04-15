@@ -1672,6 +1672,8 @@ lang['zh_cn'] = {
 	'Prime': '质',
 	'Rational': '有理',
 	'Irrational': '无理',
+	'Rationalize':'有理化',
+	
 	'Radical': '根式',
 	'Root': '根',
 

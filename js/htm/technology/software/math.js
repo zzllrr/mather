@@ -51,7 +51,8 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 
 	[github('arguiot/Descartes'),'JS + PNG','A small plotting JavaScript library, made for '+github('arguiot/TheoremJS')+' - Math framework'],
 	[href(Hs+'kisonecat.com/phase-plot/','Phase Plot'),'JS + GLSL','Plot complex functions'+github('kisonecat/phase-plot')],
-	[github('josdejong/mathjs'),'',href(Hs+'mathjs.org/docs/reference/functions.html',gM('Function'))+' 数学JS插件，支持多种运算，有各种扩展增强版本 '+href(Hs+'jsbin.com/devacu/edit?html,output','在线演示')],
+	[github('josdejong/mathjs'),'',' 数学JS插件，支持多种运算，有各种扩展增强版本 '+href(Hs+'jsbin.com/devacu/edit?html,output','在线演示')
+		+ul(hrefA('https://mathjs.org/docs',ZLR('expressions/syntax.html reference/functions.html')))],
 
 	[github('benfred/contour_plot','','Contour Plot'),'D3 Plugin',gM('Contour')+' - draw contour plots of 2D functions'],
 

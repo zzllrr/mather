@@ -603,9 +603,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	加减
 
 			*/
-		var x=(''+s).replace(/^-0$/,'0'),AAA=[],tmp={},tmpA=[],i=0;
+		var x=simExpression(''+s),AAA=[],tmp={},tmpA=[],i=0;
 		
-		// consolelog('Mfn.fromStr    ',x);
+		// console.log('Mfn.fromStr    ',x);
 		
 		
 		AAA.type='Mfn';AAA.toStr=function(l,p){return Mfn.toStr(this,l,p)};AAA.toStr4=function(p){return Mfn.toStr4(this,p)};AAA.ref=function(r){return Mfn.ref(this,r)};
@@ -1478,7 +1478,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					return latex?oc.replace(/%/,'\\$&'):oc
 				}
 				if(of=='var'){
-					return ' '+oc
+					return oc	//此处为了防止变量前面有函数字母，产生混淆, 前面需加空格，但加上之后，行列式公式，出现死循环
 				}
 				if(of=='_'){
 					// consolelog(ov);
@@ -1770,9 +1770,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				
 				//console.log(fx, ov,oc);
 				if(!ov){
-					return fx+' '+f(oc,1)	
+					return simExpression(fx+' '+f(oc,1))
 				}
-				return fx+' '+f(ov,1)
+				return simExpression(fx+' '+f(ov,1))
 
 				
 			}
@@ -3799,7 +3799,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 //下列涉及上下文处理（增加括号避免歧义、按数学习惯简化公式写法）
 
 },pptd=function(t,atFirst,notlatex){//乘除环境	t是Mfn或者字符串，atFirst指定是否是第一项	返回字符串
+	//console.log(pptd,t);
 	var a=isArr(t),A=a?t:Mfn.fromStr(t), x=Mfn.opr1('type',A);
+	//console.log('type',x);
 	if(!a){
 		if(/^1$/.test(t)){
 			return ''
@@ -3825,7 +3827,8 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	}
 	return Mfn.toStr(A,!notlatex,1)
 
-
+}, simExpression=function(s){
+	return (''+s).replace(/([^a-z]) +([a-z])/gi,'$1$2').replace(/^-0$/,'0').trim()
 
 
 },simFactTimes=function(a){/*简化乘式中的阶乘a!
