@@ -392,8 +392,8 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			
 			{'Diagonalize':[
 				'对角化求幂…A&'+gM('Power')+'&'+gM('Eigen Value'),
-				'对角化求幂PA=ΛP…P\nΛ\nn\nA的多项式',
-				'对角化求幂AP=PΛ…P\nΛ\nn\nA的多项式'
+				'对角化求幂PA=ΛP…P\nΛ&B\nn\nA的多项式',
+				'对角化求幂AP=PΛ…P\nΛ&B\nn\nA的多项式'
 			]},
 
 			'$A^2$…A—Square','$A^n$…A&n—Power',

@@ -818,7 +818,8 @@ console.log('单位化？',oi,m,Q);
 		);
 	}
 
-	if(sel(uriA,'对角化求幂')){//矩阵A&幂&特征值
+	if(sel(uriA,'对角化求幂') && !/对角化求幂[AP]/.test(uriA[0])){//矩阵A&幂&特征值
+		
 		rS=rS.concat(
 			Arrf(function(t){
 				var ij=t.split('&'), n=ij[1]||'1', A=MfS(ij[0]), m=A.length, T=Mtrx.opr1('特征向量',A,ij[2]?ij[2].split(','):'',1), P=T[0], isDiagable=P[0].length==m, rs=[];
@@ -868,15 +869,21 @@ console.log('单位化？',oi,m,Q);
 			},VA));
 	}
 	if(sel(uriA,'对角化求幂PA=ΛP')){//第1行 矩阵P   第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式
-		var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),
+		var VA0=VA[0],ij=VA[2]||'1',VA1=VA[1],VA10=VA1.replace(/&.+/,''),VA11=/&/.test(VA10)?(VA10.replace(/.+&/,'')):'Λ',
+			P=MfS(VA0),D=MfS(/diag/.test(VA1)?VA1:'diag('+VA1+')'),
 			P_1=Mtrx.opr1('inv',P),	Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P_1,Dp,P);
-		rS.push('A = P^{-1}ΛP', Eq(['则A'+sup(ij,''), '(P^{-1}ΛP)'+sup(ij,''), 'P^{-1}Λ(PP^{-1})Λ(PP^{-1})Λ⋯ΛP', 'P^{-1}Λ'+sup(ij,'')+'P',
+		rS.push('A = P^{-1}'+VA11+'P', ij=='1'?'A = '+kmtrx(R):Eq(['则A'+sup(ij,''),
+			'(P^{-1}'+VA11+'P)'+sup(ij,''), ['P^{-1}','(PP^{-1})','(PP^{-1})','⋯','P'].join(VA11), 'P^{-1}'+VA11+sup(ij,'')+'P',
 			kmtrx(P_1)+' '+kmtrx(Dp)+' '+kmtrx(P), kmtrx(R)]));
 	}
 	if(sel(uriA,'对角化求幂AP=PΛ')){//第1行 矩阵P 	第2行Λ   第3行：幂(具体数字或'n') 第4行：矩阵多项式f(A) 或者 f(x)
-		var VA0=VA[0],ij=VA[2]||'1', P=MfS(VA0),D=MfS(VA[1]),Ds=Mtrx.opr1('取',D,'D'), m=Ds.length, B=Mtrx.opr1('invPTs',P,'iS='),
+	
+		var VA0=VA[0],ij=VA[2]||'1',VA1=VA[1],VA10=VA1.replace(/&.+/,''),VA11=/&/.test(VA10)?(VA10.replace(/.+&/,'')):'Λ',
+			P=MfS(VA0),D=MfS(/diag/.test(VA1)?VA1:'diag('+VA1+')'),
+			Ds=Mtrx.opr1('取',D,'D'), m=Ds.length, B=Mtrx.opr1('invPTs',P,'iS='),
 			P_1=subMtrx(B[0][0],1,m,m+1),Dp=Mtrx.opr1('^',D,ij,'d'), R=Mtrx.opr2('*',P,Dp,P_1);//P_1=Mtrx.opr1('inv',P)
-		rS.push('A = PΛP^{-1}','求P的逆矩阵',B[1], Eq(['则A'+sup(ij,''), '(PΛP^{-1})'+sup(ij,''), 'PΛ(P^{-1}P)Λ(P^{-1}P)Λ⋯ΛP^{-1}', 'PΛ'+sup(ij,'')+'P^{-1}',
+		rS.push('A = P'+VA11+'P^{-1}','求P的逆矩阵',B[1], ij=='1'?'A = '+kmtrx(R):Eq(['则A'+sup(ij,''),
+			'(P'+VA11+'P^{-1})'+sup(ij,''), ['P','(P^{-1}P)','(P^{-1}P)','⋯','P^{-1}'].join(VA11), 'P'+VA11+sup(ij,'')+'P^{-1}',
 			kmtrx(P)+' '+kmtrx(Dp)+' '+kmtrx(P_1), kmtrx(R)]));
 		if(VA[3]){
 			var D2=Mtrx.build.D(Arrf(f, Ds)), fA=Mtrx.opr2('*',P,D2,P_1);

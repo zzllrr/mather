@@ -288,15 +288,26 @@ function dayOrNight(){
 	var isnight=L.night=='true';
 	//$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});
     $('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
-    $('#allEraser').click();
-    $('#color'+(isnight?3:0)).click();
+
 	if(isnight){
 		$('#oHTML svg *[stroke=black]').attr('stroke','gainsboro');
         $('#oHTML svg *[fill=black]').attr('fill','gainsboro');
-        
+        /*
+        L.canvasCode='';
+        L.legoCode='';
+        */
+        //scrn('eraser');
+       // console.log($('#caps').length);
+        setTimeout(function(){
+            //console.log($('#caps').length);
+            caps.repaint(1);
+        },1000);
+
 	}else{
 		$('#oHTML svg *[stroke=gainsboro]').attr('stroke','black');	
-		$('#oHTML svg *[fill=gainsboro]').attr('fill','black');	
+        $('#oHTML svg *[fill=gainsboro]').attr('fill','black');	
+        $('#allEraser').click();
+        $('#color'+(isnight?3:0)).click();
 	}
 	
 }

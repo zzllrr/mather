@@ -549,6 +549,10 @@ var Mtrx={	//矩阵
 			return Mtrx.build.BC(Vect.fromStr(t[0]),t[1],t[2]);
 		}
 		if(/^c?diag\(/.test(s)){//对角 副对角
+			if(!/,/.test(s)){
+				s=s.replace(/ /g,',');
+			}
+			
 			var isC=/^c/.test(s), D=exp2arr(s.substr(+isC+5,s.length-6-(+isC)));
 			//consolelog(s.substr(+isC+5,s.length-6-(+isC)),D);
 
