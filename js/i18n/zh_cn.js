@@ -1681,6 +1681,7 @@ lang['zh_cn'] = {
 	'Real': '实',
 	'Imaginary': '虚',
 	'Complex': '复',
+	'Implicit':'隐',
 
 	'Regular': '正则',
 	'Singular': '奇异',
