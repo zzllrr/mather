@@ -2530,6 +2530,7 @@ $(function(){
 				itv('" id=alignPreviewCenter tip="Center Align','format_align_center')+
 				itv('" id=alignPreviewRight tip="Right Align','format_align_right')+
 
+				itv('" id=linebreakEqual tip="Linebreak Equality','drag_handle')+
 				itv('" id=linebreak tip="Linebreak','subdirectory_arrow_left')+
 
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
@@ -2807,7 +2808,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 	}).on('click','#linebreak',function(e){
 		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
-		$('#input0').val(function(i,v){return v.replace(/\n/g, t+brn)}).change();
+		$('#input0').val(function(i,v){return Arrf(function(x){return x.lastIndexOf(t)==x.length-t.length?x:x+t},v.split(brn)).join(brn)+brn}).change();
+
+	}).on('click','#linebreakEqual',function(e){
+		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
+		$('#input0').val(function(i,v){return Arrf(function(x,i){return (i && x[0]!='='?'=':'')+(x.lastIndexOf(t)==x.length-t.length?x:x+t)},v.split(brn)).join(brn)+brn}).change();
 
 	}).on('click','#zoomHTMLEditor',function(e){
 		$('#HTMLEditor img').css('zoom',function(i,v){var x=+v||1, me=$(this),z=me.attr('data-zooming')||'out';

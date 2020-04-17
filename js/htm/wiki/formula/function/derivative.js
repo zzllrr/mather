@@ -65,5 +65,15 @@ wiki['Formula/Function/Derivative']=Kx(
         ZLR(khrA([kxf('csch')+'^{-1}x','\\ln (1+'+kroot('1+x^2')+') - \\ln x'])+'____-'+frac(1,'x'+kroot('1-x^2'),''),'','____')
     
     
-    ],'wiki').replace(/\n/g,br))
+    ],'wiki TBrc').replace(/\n/g,br))+
+
+    detail(gM('Implicit Function Derivative'),Table([[gM('Function'),'1阶导数′','2阶导数″','n阶导数^{(n)}']],[
+        
+        ['F(x,y)=0',khrA([difn('y','x','')+"=-\\frac{F_x}{F_y}",'\\d F=F_x\\d x+F_y\\d y=0']),difn('y','x','',2)+"=-\\frac{F_{xx}F_y-F_xF_{yx}}{F_y^2}",""],
+        ['F(x,y,z)=0',piece([difn('z','x',1)+'=-\\frac{F_x}{F_z} =-'+difn('z','y',1)+difn('y','x',1), '',difn('z','y',1)+'=-\\frac{F_y}{F_z}','', difn('y','x',1)+'=-\\frac{F_x}{F_y}'])+kbr,"",""],
+    
+    ],'wiki TBrc').replace(/\n/g,br))
+
+
+
 );

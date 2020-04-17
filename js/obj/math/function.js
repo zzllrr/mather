@@ -851,7 +851,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				//consolelog(tic,tif);
 				var ct=cache(tic);
 				
-				consolelog(ct,tmp,tmpA);
+				//consolelog(ct,tmp,tmpA);
 				if(tif=='||'){
 					tmp['@'+j+'$']={'f':tif, 'c':ct};
 					tmpA[j]='|'+ct+'|';

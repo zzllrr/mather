@@ -324,6 +324,10 @@ function copy2clipboard(t){
     toolTip(gM('copiedtip'));
 }
 
+function math2str(x,tex,opt){
+    var o=opt||mathjsOutputOpt();
+    return tex?x.toTex(o):pp(x.toString(o))
+}
 function mathjsOutputOpt(par,imp,f){
     return {
         parenthesis: par||'auto',    // parenthesis option   keep|auto|all
