@@ -300,7 +300,10 @@ function dayOrNight(){
        // console.log($('#caps').length);
         setTimeout(function(){
             //console.log($('#caps').length);
-            caps.repaint(1);
+            if(caps){
+
+                caps.repaint(1);
+            }
         },1000);
 
 	}else{

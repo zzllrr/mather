@@ -702,26 +702,30 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	},
 
 	intl = function (fA, b, t, d, p, zM) {
+		var s=/, /.test(d)?'∧':'';
 		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + ((/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':b)) || '') + '}' + 
 			(t ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + (isArr(fA)?
-			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
-			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join('\\,')+'}') : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
+			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + 
+			(d==' '?'':'\\,'+
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s||'\\,')+'}')) : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
 
 
 	iint = function (fA, b, t, d,p,zM) {
+		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','int','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') + (isArr(fA)?
-			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
-			(!d?('\\mathrm{d}'+'  σV'[p || 2]):
-			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join('\\,')))+'}' 
+			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
+			(d==' '?'':(!d?('\\mathrm{d}'+'  σV'[p || 2]):
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s||'\\,'))))+'}' 
 	},
 
 	oint = function (fA, b, t, d,p,zM) {
+		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b || '')) + '}' + (t ? '^{' + t + '}' : '') +
-			(!/,/.test(d) && !isArr(fA)?fA + '\\,\\mathrm{d}'+d:snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,'\\,\\mathrm{d}').split(';'), '}'),fA]).join(''))+'}' 
+			(!/,/.test(d) && !isArr(fA)?fA +(d==' '?'':'\\,\\mathrm{d}'+d):snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''))+'}' 
 	},
 
 
@@ -731,7 +735,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	orifun =function(x0,x1){
 		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\'+x0+'}'
 	},
-	difn = function (f, x, p, g) { var d = '\\' + (p ? 'partial' : 'mathrm{d}') + ' ', 
+	difn = function (f, x, p, g) { var d = (p ? '∂' : '\\mathrm{d}') + ' ', 
 		dx= +g>1?d + (x || 'x'):d,
 		dg = +g>1? '^{' + g + '}' : (isArr(x)?'^{' +x.length+'}':''),
 		dg_= +g>1 ? '^{' + g + '}' : (isArr(x)?x.join(d):(x || 'x'));
@@ -1393,7 +1397,7 @@ array命令下		()	[]	\{\}	||	\|
 	},
 	pp = function (v, c, l, r) { if (v === '') { return '' } return (c ? c[0] : (l || '(')) + v + (c ? c[1] : (r || ')')) },
 	big = function (size, lr, lmr) {return '\\'+(['big','Big','bigg','Bigg'][size||0]+(lmr||''))+'()[]{}'[lr||0].replace(/[\{\}]/g,'\\$&') },
-	frac = function (t, b, zM) { var nob = b == undefined, t3 = arguments.length >= 3; return t3 ? '\\' + (/^[td]$/.test(zM) ? zM : '') + 'frac{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '\\partial ' : '') + t + '}{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '\\partial ' : '') + b + '}' : SCtv('inblk alignc', SCtv('alignc', nob ? t[0] : t) + DCtv('fracline') + SCtv('alignc', nob ? t[1] : b)) },
+	frac = function (t, b, zM) { var nob = b == undefined, t3 = arguments.length >= 3; return t3 ? '\\' + (/^[td]$/.test(zM) ? zM : '') + 'frac{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + t + '}{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + b + '}' : SCtv('inblk alignc', SCtv('alignc', nob ? t[0] : t) + DCtv('fracline') + SCtv('alignc', nob ? t[1] : b)) },
 
 	root = function (t, n, s, zM) {
 		return arguments.length >= 4 ? '\\sqrt' + (n && +n != 2 ? '[' + n + ']' : '') + '{' + t + '}' : SCtv('rootleft inblk notm" data-size="' + (s || 1), DCtv('rootleftline" data-index="' +

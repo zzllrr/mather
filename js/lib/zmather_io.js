@@ -1371,24 +1371,34 @@ SBS={
 			"1",
 			],")")
 		,"difn()","difn('','',1)")),
-		['\\d x','\\mathrm{d}y','∂x','\\nabla',"$orifun('0','1')$"],
+		['\\d x','\\mathrm{d}y','∂x','\\d x∧\\d y','\\nabla'],
 		[],
 		$A(zlrA3("difn('f','x',",[
 			"'',2",
 			"1,2"
 			],")").concat(zlrA3("difn('f',['x','y']",['',',1'],")"))),
-		$A(["difn('(x,y)','(u,v)',1)", "zp(difn('(x,y)','(u,v)',1),'|')"]),
+		$A(["difn('(x,y)','(u,v)',1)", "zp(difn('(x,y)','(u,v)',1),'|')", "difn('f',['x','y','z'],1)"]),
 	],
 
-	'Integral':[['\\int','\\smallint','\\textstyle\\int',"$intl('f','-1','1','x',0,'')$", "$intl('f','-','+','x',0,'')$"]].concat(Arrf($A,[
-			["iint(['P','+Q'],'L','','x;y',1,1)","oint(['P','+Q'],'C','','x;y',1,1)"],
+	'Integral':[['\\int','\\smallint','\\textstyle\\int',"\\int \\limits_{L}",
+				"$orifun('0','1')$","$orifun('0','2π')$"]].concat(Arrf($A,[
+			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')", "intl('f(t)','0','x','t',0,'')"],
 			[],
 
+			["iint(['P','+Q'],'L','','x;y',1,1)", "iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)"],
+			["oint(['P','+Q'],'L','','x;y',1,1)+'='+iint(zp(difn('Q','x',1)+'-'+difn('P','y',1)),'D','','x,y',2,1)"],
+			[],
+
+
 			["iint('f','D','','',2,1)", "iint('f','D','','x,y',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','x,y',2,1)"], 
-			["oint(['P','+Q','+R'],'D','','x,y;y,z;z,x',2,1)"],
+			["oint(['P','+Q','+R'],'D','','x,y;y,z;z,x',2,1)", "iint('f','D','','x, y',2,1)",],
 			[],
 			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)","intl('f','-','+','x',6,'')"],
-			["oint(['P','+Q','+R','+S'],'Ω','','x,y,z;y,z,t;z,t,x;t,x,y',3,1)"],
+			["oint(['P','+Q'],'Ω','','x,y,z;y,z,t',3,1)"],
+			[],
+			["intl('','-1','1','x',0,'')+intl('f','-x','x','y',0,'')","intl('','0','2π','θ',0,'')+intl('f','0','r','ρ',0,'')"],
+			["intl('','0','2π','θ',0,'')+intl('f','0','1','r',0,'')","intl('','0','2π','θ',0,'')+zp('f')+orifun('ρ=0','ρ=r')"],
+			[],
 	])),
 
 
@@ -1891,7 +1901,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		if(fn){
 			$('.Fns[data-i="'+di+'"]').toggle();
 		}else if(st){
-			var divs=$('.Sts[data-i="'+di+'"]');
+			var divs=$('div.Sts[data-i="'+di+'"]');
 			if(divs.filter(':visible').length){
 				divs.add('.sbsTblPg').hide()
 			}else{
@@ -3454,7 +3464,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 				me.siblings('.seled.tool').removeClass('seled').each(function(){
 					var tid=this.id.replace(/on$/,'');
+					$('#struc > .sbsTbl').children().hide();
 					$('#i'+tid+',#'+tid).hide();
+
 				});
 				$('#swap').remove();
 				if(se){
