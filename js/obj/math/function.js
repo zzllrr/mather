@@ -338,7 +338,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				A[1][r]={'f':'||','c':S.replace(/\|/g,'')};
 
 				
-			}else if(/^@\d+.[\!‼#]$/.test(S)){
+			}else if(/^@\d+.[\!‼#°]$/.test(S)){
 				A[1][r]={'f':S.substr(-1),'c':S.substr(0,S.length-1)};
 
 				
@@ -663,7 +663,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 		//预处理
 		x=x.replace(/ *log */g,'㏒').replace(/ *ln */g,'㏑')		//化成单个字符的好处，替换时不会误替换
-			.replace(/ *e\^/g,' exp ')
+			//.replace(/ *e\^/g,' exp ')
 			.replace(/ *!!+ */g,'‼')
 			.replace(/，/g,',')
 			.replace(/[⋅]/g,'×').replace(/([^\^])\*/g,'$1×').replace(/[/]/g,'÷')
@@ -933,10 +933,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			}
 		}
 
-		while(/[!‼#]/.test(t)){//		后缀前面只可能是：括号@1$  纯数字	单个字母(拉丁、希腊)
+		while(/[!‼#°]/.test(t)){//		后缀前面只可能是：括号@1$  纯数字	单个字母(拉丁、希腊)
 // consolelog('缓存后缀',t);
-			var ti=t.match(/([a-zα-ω]|@\d+[\$&]) *[!‼#]+/ig)[0].replace(/\s/g,''), tic=ti, tif=ti.substr(-1),
-				tai=tmpA.indexOf(tic), rg=new RegExp(' *'+ti.replace(/([!‼#])/g,' *$1 *').replace(/[\$]/g,'\\$&'),'g');
+			var ti=t.match(/([a-zα-ω]|@\d+[\$&]) *[!‼#°]+/ig)[0].replace(/\s/g,''), tic=ti, tif=ti.substr(-1),
+				tai=tmpA.indexOf(tic), rg=new RegExp(' *'+ti.replace(/([!‼#°])/g,' *$1 *').replace(/[\$]/g,'\\$&'),'g');
 
 			t=t.replace(rg,'@'+(tai<0?i:tai)+'&');
 			if(tai<0){
@@ -1500,7 +1500,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					
 					return of+f(oc,1)
 				}
-				if(/[!‼#]/.test(of)){
+				if(/[!‼#°]/.test(of)){
 					var py=1,fx=(latex?of.replace(/#/,'\\$&'):of);
 					if(/@/.test(oc)){
 						 var cf=A[1][oc].f, t=A[1][oc].c;
@@ -2068,6 +2068,56 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					return A
 				}
 				
+				if(cof=='°'){//度数
+					oc=coc;
+					co=A[1][oc];
+					cof=co.f;
+					cov=co.v;
+					var n=+cov.toStr() % 360, n1=Math.abs(360-n);
+					if(of=='cos'){
+						if(!n){
+							return Mfn.fromStr(1);
+						}
+						if(n==15 || n1==15){
+							return Mfn.fromStr('(√6+√2)/4');
+						}
+						if(n==30 || n1==30){
+							return Mfn.fromStr('√3/2');
+						}
+						if(n==45 || n1==45){
+							return Mfn.fromStr('1/√2');
+						}
+						if(n==60 || n1==60){
+							return Mfn.fromStr('1/2');
+						}
+						if(n==75 || n1==75){
+							return Mfn.fromStr('(√6-√2)/4');
+						}
+						if(n==90 || n1==90){
+							return Mfn.fromStr(0);
+						}
+						if(n==105 || n1==105){
+							return Mfn.fromStr('(√2-√6)/4');
+						}
+						if(n==120 || n1==120){
+							return Mfn.fromStr('-1/2');
+						}
+						if(n==135 || n1==135){
+							return Mfn.fromStr('-1/√2');
+						}
+						if(n==150 || n1==150){
+							return Mfn.fromStr('-√3/2');
+						}
+						if(n==165 || n1==165){
+							return Mfn.fromStr('-(√6+√2)/4');
+						}
+						if(n==180){
+							return Mfn.fromStr('-1');
+						}
+
+					}
+
+				}
 
 				if(cof=='var' || cof=='_'){
 					return A
@@ -2094,7 +2144,64 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			}
 
 
+			if(ZLR('sin').indexOf(of)>-1){
+				var co=A[1][oc], cof=co.f, coc=co.c, cov=co.v;
 
+				
+				if(cof=='°'){//度数
+					oc=coc;
+					co=A[1][oc];
+					cof=co.f;
+					cov=co.v;
+					var n=+cov.toStr() % 360, n1=n-180;
+					if(of=='sin'){
+						if(!n){
+							return Mfn.fromStr(1);
+						}
+						if(n==15 || n1==15){
+							return Mfn.fromStr('(√6-√2)/4');
+						}
+						if(n==30 || n1==30){
+							return Mfn.fromStr('1/2');
+						}
+						if(n==45 || n1==45){
+							return Mfn.fromStr('1/√2');
+						}
+						if(n==60 || n1==60){
+							return Mfn.fromStr('√3/2');
+						}
+						if(n==75 || n1==75){
+							return Mfn.fromStr('(√6+√2)/4');
+						}
+						if(n==90 || n1==90){
+							return Mfn.fromStr(0);
+						}
+						if(n==105 || n1==105){
+							return Mfn.fromStr('-(√6+√2)/4');
+						}
+						if(n==120 || n1==120){
+							return Mfn.fromStr('-√3/2');
+						}
+						if(n==135 || n1==135){
+							return Mfn.fromStr('-1/√2');
+						}
+						if(n==150 || n1==150){
+							return Mfn.fromStr('-1/2');
+						}
+						if(n==165 || n1==165){
+							return Mfn.fromStr('-(√2-√6)/4');
+						}
+						if(n==180){
+							return Mfn.fromStr('-1');
+						}
+
+
+					}
+
+				}
+
+
+			}
 
 			if(of=='pms'){// 加减式化简
 // consolelog('pms 化简 ov=',ov.join(' ; '));

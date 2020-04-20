@@ -329,12 +329,18 @@ function copy2clipboard(t){
 
 function math2str(x,tex,opt){
     var o=opt||mathjsOutputOpt();
+    console.log(o);
+    if(tex && o.handler===null){
+        o.handler=function(i){
+            return i.replace(/\\exp (.+)/g,'e^{$1}')
+        };
+    }
     return tex?x.toTex(o):pp(x.toString(o))
 }
 function mathjsOutputOpt(par,imp,f){
     return {
         parenthesis: par||'auto',    // parenthesis option   keep|auto|all
-        handler: f||{},   // handler to change the output
+        handler: f||null,   // handler to change the output
         implicit: (imp?'show':'hide')       // how to treat implicit multiplication     hide|show
     }
 }

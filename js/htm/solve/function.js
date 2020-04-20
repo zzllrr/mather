@@ -198,15 +198,17 @@ fxxx fxxy
 				}else{
 
 
-					var f=math.parse(tA[0]),m=Mfn.fromStr(tA[0]),A=['f'+zp(d)+'='+m.toStr(1)], fA=[f], vA=[''];
+					var f=math.parse(tA[0]),m=Mfn.fromStr(tA[0]),A=['f'+zp(xy)+'='+m.toStr(1)], fA=[f], vA=[''];
 					for(var j=1,k=+tA[2]||1;j<=k;j++){
 						var fA2=[], vA2=[];
 						for(var h=0,n=fA.length;h<n;h++){
-	
+							var m_A=[];
 							for(var i=0,l=dA.length;i<l;i++){
 								var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
-	
-								A.push("$difn('f','"+(ispwer?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:'')+")$="+Mfn.fromStr(m_).toStr(1));
+
+								m_A.push(Mfn.fromStr(m_).toStr(1));
+								A.push("$difn('f','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+m_A[i]);
+
 								fA2.push(f_);
 								vA2.push(vd);
 							}
@@ -225,7 +227,9 @@ fxxx fxxy
 							ispwer=h==0||h==n-1;
 							f_=fA[h].evaluate(o);
 							m_=f_.toString();
-							A.push("$difn('f','"+(ispwer?dA[i]+"'":vA[h]+"'.split('')")+"',1,"+(h==0||h==n-1?vA[h].length:'')+")$"+zp(oi)+"="+Mfn.fromStr(m_).toStr(1))
+
+
+							A.push("$difn('f','"+(ispwer|| dA[h].length<2?dA[h]+"'":dA[h]+"'.split('')")+",1,"+(h==0||h==n-1?dA[h].length:'')+")$"+zp(oi)+"="+Mfn.fromStr(m_).toStr(1))
 						}
 					}
 
@@ -236,6 +240,76 @@ fxxx fxxy
 				return A.join(kbr2)
 		},VA));
 	}
+
+	if(sel(uriA,'Grad','Differential') || sel(uriA,'Directional Derivative')){
+		rS=rS.concat(
+			Arrf(function(t){
+				var tA=t.split('&'),d=(tA[1]||'x,y').split(',')[0],
+				xy=/,/.test(tA[1])?tA[1]:d+',y', dA=xy.split(','),
+				tA0=tA[0], tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
+				var f=math.parse(tA[0]),m=Mfn.fromStr(tA[0]),A=['f'+zp(xy)+'='+m.toStr(1)], fA=[f], vA=[''];
+				for(var j=1,k=1;j<=k;j++){
+					var fA2=[], vA2=[];
+					for(var h=0,n=fA.length;h<n;h++){
+						var m_A=[];
+						for(var i=0,l=dA.length;i<l;i++){
+							var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
+							
+							m_A.push(Mfn.fromStr(m_).toStr(1));
+							A.push("$difn('f','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+m_A[i]);
+
+							fA2.push(f_);
+							vA2.push(vd);
+						}
+					}
+					fA=fA2;
+					vA=vA2;
+				}
+
+				A.push('∇f=\\text{grad} f='+zp(Arrf(function(x){return difn('f',x,1)},dA)),
+					'\\text{grad} f'+zp(xy)+'='+zp(m_A));
+
+				if(tA[3]){
+					
+					var o={}, vA=tA[3].split(','), oi=[], gA=[], gAt=[];
+					for(var i=0,l=dA.length;i<l;i++){
+						o[dA[i]]=+vA[i]||0;
+						oi.push(+vA[i]||0);
+					}
+					for(var h=0,n=fA.length;h<n;h++){
+						ispwer=h==0||h==n-1;
+						f_=fA[h].evaluate(o);
+						m_=f_.toString();
+						gA.push(m_);
+						gAt.push(Mfn.fromStr(m_).toStr(1));
+					}
+//console.log(gA,Mtrx.opr1('向量模1',gA));
+					var sqrtg=Mfn.opr1('=',Mtrx.opr1('向量模1',gA));
+					A.push('\\text{grad} f'+zp(tA[3])+'='+zp(gAt), 
+						zp('∇','‖‖')+'='+zp('\\text{grad} f','‖‖')+'='+sqrtg.toStr(1));
+				}
+		
+				if(tA[2]){
+
+					A.push(difn('f','l',1)+'=∇⋅l_e=\\text{grad} f⋅l_e='+zp(Arrf(function(x){return difn('f',x,1)},dA))+'⋅(\\cos φ,~\\sin φ)');
+					var le=/,/.test(tA[2])?Arrf(function(x){return Mfn.opr1('=',Mfn.fromStr('cos('+x+'°)'))}, tA[2].split(',')):[Mfn.opr1('=',Mfn.fromStr('cos('+tA[2]+'°)')),Mfn.opr1('=',Mfn.fromStr('sin('+tA[2]+'°)'))];
+					if(tA[3]){
+						A.push(difn('f','l',1)+zp(tA[3])+'='+Mtrx.opr2('内积',gA,Arrf(function(x){return x.toStr()},le))
+
+						)
+					}else{
+						A.push('='+Mtrx.opr2('内积',Arrf(math2str,fA2),Arrf(function(x){return x.toStr()},le)))
+					}
+					A.push('与梯度同方向，函数变化率最大，为梯度模',
+						'与梯度反方向，函数变化率最小，为负梯度模',
+						'与梯度垂直方向，函数变化率为0',
+					);
+				}
+				return A.join(kbr2)
+		},VA));
+	}
+
+	
 
 	if(sel(uriA,'路径无关','Green.1 Formula','Line Integral')){
 
