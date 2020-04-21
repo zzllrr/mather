@@ -13,13 +13,14 @@ solve['function']=function(inputValue, uriA){
 
 		rS=rS.concat(
 			Arrf(function(t){
-				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)];
+				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)], r_;
 
 
 					f_=math.simplify(f);
-					m_=f_.toString(mathjsOutputOpt('',''));
+					m_=f_.toString();//f_.toString(mathjsOutputOpt('',''))
+					r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
 
-					A.push('='+Mfn.fromStr(m_).toStr(1),'mathjs ='+m_ );//kfrac( ,1)	Mfn.opr1('=',		Mfn.fromStr(m_).toStr(1)
+					A.push('='+r_,'mathjs ='+m_ );
 
 				return A.join(kbr2)
 		},VA));
@@ -28,13 +29,14 @@ solve['function']=function(inputValue, uriA){
 
 		rS=rS.concat(
 			Arrf(function(t){
-				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)];
+				var f=math.parse(t), m=Mfn.fromStr(t), A=['\\quad '+m.toStr(1)], r_;
 
 
 					f_=math.rationalize(f);
-					m_=f_.toString(mathjsOutputOpt('',''));
+					m_=f_.toString();
+					r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
 
-					A.push('='+Mfn.fromStr(m_).toStr(1),'mathjs ='+m_ );
+					A.push('='+r_,'mathjs ='+m_ );
 
 				return A.join(kbr2)
 		},VA));
@@ -98,9 +100,9 @@ solve['function']=function(inputValue, uriA){
 				}else{
 
 					for(var j=1,l=+tA[2]||1;j<=l;j++){
-						var f_=math.derivative(f,d), m_=f_.toString();
-						//console.log(m_);
-						A.push("f"+(j<4?"'".repeat(j):"^{("+j+")}")+"("+d+')='+Mfn.fromStr(m_).toStr(1));
+						var f_=math.derivative(f,d), m_=f_.toString(), r_;
+						r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
+						A.push("f"+(j<4?"'".repeat(j):"^{("+j+")}")+"("+d+')='+r_);
 						f=f_;
 					}
 	
@@ -109,11 +111,12 @@ solve['function']=function(inputValue, uriA){
 
 				if(tA[3]){
 					j--;
-					var o={};
+					var o={}, r_;
 					o[d]=+tA[3]||0;
 					f_=f.evaluate(o);
 					m_=f_.toString();
-					A.push("f"+(j<4?"'".repeat(j):"^{("+j+")}")+"("+tA[3]+')='+Mfn.fromStr(m_).toStr(1))
+					r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
+					A.push("f"+(j<4?"'".repeat(j):"^{("+j+")}")+"("+tA[3]+')='+r_)
 				}
 				/*
 				'或写成：',
@@ -136,8 +139,8 @@ fxxx fxxy
 			Arrf(function(t){
 				var tA=t.split('&'),d=(tA[1]||'x,y').split(',')[0],
 					xy=/,/.test(tA[1])?tA[1]:d+',y', dA=xy.split(','),
-					tA0=tA[0], tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
-				
+					tA0=tA[0].split(',')[0], fn=tA[0].split(',')[1]||'f', tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
+				tA[0]=tA0;
 
 
 				if(tp){//隐函数
@@ -150,18 +153,18 @@ fxxx fxxy
 	
 					var f=math.parse(tA[0]), m=Mfn.fromStr(tA[0]);
 
-					var A=['F('+xy+')='+m.toStr(1)+'=0'];
+					var A=[fn+'('+xy+')='+m.toStr(1)+'=0'];
 					
 					var fA=Arrf(function(x){return math.simplify(math.derivative(f,x))},dA), f_A=[],ijA=[];
 
-					A=A.concat(Arrf(function(x,i){return 'F_'+x+'='+math2str(fA[i],1)}, dA));
+					A=A.concat(Arrf(function(x,i){return fn+'_'+x+'='+math2str(fA[i],1)}, dA));
 
 					A=A.concat(Arrf(function(t,i){
 						var tmpA=[];
 						for(var j=0,jn=dA.length;j<jn;j++){
 							
 							if(j!=i){
-								var x=dA[j], fml='=-'+kfrac(zlrA('F_',[x,t]));
+								var x=dA[j], fml='=-'+kfrac(zlrA(fn+'_',[x,t]));
 								var f_=math.simplify('-'+Arrf(math2str,[fA[j],fA[i]]).join('/'));
 								f_A.push(f_);
 								ijA.push([x,t]);
@@ -198,27 +201,39 @@ fxxx fxxy
 				}else{
 
 
-					var f=math.parse(tA[0]),m=Mfn.fromStr(tA[0]),A=['f'+zp(xy)+'='+m.toStr(1)], fA=[f], vA=[''];
+					var f=math.parse(tA[0]),m=Mfn.fromStr(tA[0]),A=[fn+zp(xy)+'='+m.toStr(1)], fA=[f], vA=[''], uA=[''];
 					for(var j=1,k=+tA[2]||1;j<=k;j++){
-						var fA2=[], vA2=[];
+						var fA2=[], vA2=[], uA2=[];
 						for(var h=0,n=fA.length;h<n;h++){
 							var m_A=[];
 							for(var i=0,l=dA.length;i<l;i++){
-								var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
-
-								m_A.push(Mfn.fromStr(m_).toStr(1));
-								A.push("$difn('f','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+m_A[i]);
+								var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), r_,
+									vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
+								r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
+								m_A.push(r_);
+								A.push("$difn('"+fn+"','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+r_);
 
 								fA2.push(f_);
 								vA2.push(vd);
+								uA2.push(r_);
 							}
+							
 						}
 						fA=fA2;
 						vA=vA2;
+						uA=uA2;
+						A.push('一二'[j-1]+'阶全微分：'+
+							'\\d '+(j>1?'^'+j:'')+fn+'='+zp(Arrf(function(x){return '\\d '+x+difn('',x,1)},dA).join('+'))+(j>1?'^'+j:'')+fn,
+							'\\d '+(j>1?'^'+j:'')+fn+'='+(
+							j==1?Arrf(function(x,i){return uA[i]=='0'?'':(i && uA[i][0]!='-'?'+':'')+uA[i]+'\\d '+x},dA).join('').replace(/^\+/,''):(j==2?
+								Arrf(function(x,i){return uA[i]=='0'||i==2?'':(i && uA[i][0]!='-'?'+':'')+
+									(i==1?Mfn.opr1('=',Mfn.fromStr(math.parse(pp(fA[i].toString())+'*2'))).toStr(1):uA[i])+
+									'\\d '+(i==1?vA[i].split('').join('\\d'):vA[i].replace(/.$/,'^2'))},uA).join('').replace(/^\+/,''):''))
+						);
 					}
 					if(tA[3]){
 						
-						var o={}, vA=tA[3].split(','), oi=[];
+						var o={}, vA=tA[3].split(','), oi=[], r_;
 						for(var i=0,l=dA.length;i<l;i++){
 							o[dA[i]]=+vA[i]||0;
 							oi.push(+vA[i]||0);
@@ -227,9 +242,10 @@ fxxx fxxy
 							ispwer=h==0||h==n-1;
 							f_=fA[h].evaluate(o);
 							m_=f_.toString();
+							r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
 
-
-							A.push("$difn('f','"+(ispwer|| dA[h].length<2?dA[h]+"'":dA[h]+"'.split('')")+",1,"+(h==0||h==n-1?dA[h].length:'')+")$"+zp(oi)+"="+Mfn.fromStr(m_).toStr(1))
+							A.push("$difn('f','"+(ispwer|| dA[h].length<2?dA[h]+"'":dA[h]+"'.split('')")+",1,"+(h==0||h==n-1?dA[h].length:'')+")$"+zp(oi)+
+								"="+r_)
 						}
 					}
 
@@ -253,10 +269,11 @@ fxxx fxxy
 					for(var h=0,n=fA.length;h<n;h++){
 						var m_A=[];
 						for(var i=0,l=dA.length;i<l;i++){
-							var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
-							
-							m_A.push(Mfn.fromStr(m_).toStr(1));
-							A.push("$difn('f','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+m_A[i]);
+							var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), r_,
+							vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
+							r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
+							m_A.push(r_);
+							A.push("$difn('f','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+r_);
 
 							fA2.push(f_);
 							vA2.push(vd);
@@ -271,7 +288,7 @@ fxxx fxxy
 
 				if(tA[3]){
 					
-					var o={}, vA=tA[3].split(','), oi=[], gA=[], gAt=[];
+					var o={}, vA=tA[3].split(','), oi=[], gA=[], gAt=[], r_;
 					for(var i=0,l=dA.length;i<l;i++){
 						o[dA[i]]=+vA[i]||0;
 						oi.push(+vA[i]||0);
@@ -280,8 +297,9 @@ fxxx fxxy
 						ispwer=h==0||h==n-1;
 						f_=fA[h].evaluate(o);
 						m_=f_.toString();
+						r_=Mfn.opr1('=',Mfn.fromStr(m_)).toStr(1);
 						gA.push(m_);
-						gAt.push(Mfn.fromStr(m_).toStr(1));
+						gAt.push(r_);
 					}
 //console.log(gA,Mtrx.opr1('向量模1',gA));
 					var sqrtg=Mfn.opr1('=',Mtrx.opr1('向量模1',gA));
@@ -294,15 +312,19 @@ fxxx fxxy
 					A.push(difn('f','l',1)+'=∇⋅l_e=\\text{grad} f⋅l_e='+zp(Arrf(function(x){return difn('f',x,1)},dA))+'⋅(\\cos φ,~\\sin φ)');
 					var le=/,/.test(tA[2])?Arrf(function(x){return Mfn.opr1('=',Mfn.fromStr('cos('+x+'°)'))}, tA[2].split(',')):[Mfn.opr1('=',Mfn.fromStr('cos('+tA[2]+'°)')),Mfn.opr1('=',Mfn.fromStr('sin('+tA[2]+'°)'))];
 					if(tA[3]){
-						A.push(difn('f','l',1)+zp(tA[3])+'='+Mtrx.opr2('内积',gA,Arrf(function(x){return x.toStr()},le))
+						var pr=Mtrx.opr2('内积',gA,Arrf(function(x){return x.toStr()},le));
+						A.push(difn('f','l',1)+zp(tA[3])+'='+
+							Mfn.fromStr(pr).toStr(1)
 
 						)
 					}else{
-						A.push('='+Mtrx.opr2('内积',Arrf(math2str,fA2),Arrf(function(x){return x.toStr()},le)))
+						var pr=Mtrx.opr2('内积',Arrf(math2str,fA2),Arrf(function(x){return x.toStr()},le));
+						A.push('='+Mfn.fromStr(pr).toStr(1))
 					}
-					A.push('与梯度同方向，函数变化率最大，为梯度模',
-						'与梯度反方向，函数变化率最小，为负梯度模',
-						'与梯度垂直方向，函数变化率为0',
+					A.push(zp('∇','‖‖')+'='+zp('\\text{grad} f','‖‖')+'=',
+						'与梯度同方向，函数增长率最大（增加最快），为梯度模',
+						'与梯度反方向，函数减少率最大（减少最快），为负梯度模',
+						'与梯度垂直方向（方向向量与梯度内积为0），函数变化率为0',
 					);
 				}
 				return A.join(kbr2)

@@ -200,11 +200,10 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 		]},
 		{'Differential':[
 			'Derivative…f&x&阶数&x0',
-			'Partial Derivative…f&x,y&阶数&x0,y0',
+			'Partial Derivative…f,fn&x,y&阶数&x0,y0',
 			'Grad…f&x,y&φ&x0,y0',
 			'Directional Derivative…f&x,y&φ&x0,y0',
-			'Differential',
-			'Partial Differential',
+	
 		]},
 		{'Integral':[
 			{'Line Integral':[

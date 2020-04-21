@@ -1043,7 +1043,6 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 }
 
 #searchContent{
-	background: gainsboro;
 	max-width: 80%;
 
 }

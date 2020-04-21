@@ -102,6 +102,125 @@ wiki['Formula/Function/Integral']=Kx(
         ])
         ],
 
+    
+        ['第一类曲线积分',khrA([
+            '（线性）'+iint('(af+bg)','L','','s',1,1)+'=a'+iint('f','L','','s',1,1)+'+b'+iint('g','L','','s',1,1),
+            '（路径可加性）'+iint('f','L','','s',1,1)+'='+iint('f','L_1','','s',1,1)+'+'+iint('f','L_2','','s',1,1),
+            iint('f(x,y,z)','L','','s',1,1)+'='+intl('f(x(t),y(t),z(t))'+kroot('(x\'^2(t)+y\'^2(t)+z\'^2(t)'),'a','b','t',0,''),
+            '（平面上）'+iint('f(x,y)',['L：y=y(x)','a≤x≤b'],'','s',1,1)+'='+intl('f(x,y(x))'+kroot('(1+y\'^2(x)'),'a','b','x',0,'')
+            ,
+
+
+        ]),'',khrA([
+            ['（曲线弧长）L：x=x(t), y=y(t), z=z(t),','a≤t≤b',
+                's='+iint('','L','','s',1,1)+'='+intl(kroot('(x\'^2(t)+y\'^2(t)+z\'^2(t)'),'a','b','t',0,'')
+            ].join(kbr)
+        ])
+        ],
+
+    
+        ['第一类曲面积分',khrA([
+
+            [iint('f(x,y,z)','Σ','','S',2,1)+'='+iint('f(x(u,v),y(u,v),z(u,v))'+kroot('EG-F^2'),'D','','u,v',2,1),
+                '\\text{其中Gauss系数}，',
+                piece(['E=\\b r_u^2=x_u^2+y_u^2+z_u^2',
+                'F=\\b r_u⋅\\b r_v=x_ux_v+y_uy_v+z_uz_v',
+                'G=\\b r_v^2=x_v^2+y_v^2+z_v^2']),
+                '\\b r_u=x_u\\b i+y_u\\b j+z_u\\b k',
+                '\\b r_v=x_v\\b i+y_v\\b j+z_v\\b k',
+                'EG-F^2='+zp('\\b r_u×\\b r_v','‖‖')+'^2='+zp(difn('(y,z)','(u,v)',1))+'^2+'+zp(difn('(z,x)','(u,v)',1))+'^2+'+zp(difn('(x,y)','(u,v)',1))+'^2'
+            ].join(kbr)
+            
+            ,
+
+
+        ]),'',khrA([
+            ['（曲面面积）Σ',
+                'S='+iint('','D','','S',2,1)+'='+iint(kroot('EG-F^2'),'D','','u,v',2,1)
+            ].join(kbr),
+
+            ['（曲面面积）Σ：z=f(x,y)',
+                'S='+iint(kroot('1+f_x^2(x,y)+f_y^2(x,y)'),'D','','x,y',2,1)
+            ].join(kbr),
+
+            ['（曲面面积）Σ：H(x,y,z)=0',
+                Eq([['S',
+                    iint(kroot('1+f_x^2+f_y^2'),'D','','x,y',2,1)],
+                    iint(kroot('1+'+zp('-'+kfrac(['H_x','H_z']))+'^2+'+zp('-'+kfrac(['H_y','H_z']))+'^2'),'D','','x,y',2,1),
+                    iint(kfrac([zp('\\text{grad} H','‖‖'),'|H_z|']),'D','','x,y',2,1),
+                ])
+            ].join(kbr),
+        ])
+        ],
+
+        ['第二类曲线积分',khrA([
+            '（方向性）'+iint('\\b f⋅\\b τ','L','','s',1,1)+'=-'+iint('\\b f⋅\\b τ','-L','','s',1,1),
+            '（线性）'+iint('(a\\b f+b\\b g)⋅\\b τ','L','','s',1,1)+'=a'+iint('\\b f⋅\\b τ','L','','s',1,1)+'+b'+iint('\\b g⋅\\b τ','L','','s',1,1),
+            '（路径可加性）'+iint('\\b f⋅\\b τ','L','','s',1,1)+'='+iint('\\b f⋅\\b τ','L_1','','s',1,1)+'+'+iint('\\b f⋅\\b τ','L_2','','s',1,1),
+            [Eq([[iint('ω','L','',' ',1,1),iint(['P','+Q','+R'],'L','','x;y;z',1,1)],
+                iint('(P\\cosα+Q\\cosβ+R\\cosγ)','L','','s',1,1),
+                iint('\\b f⋅\\b τ','L','','s',1,1),
+                intl('[P(t)x\'(t)+Q(t)y\'(t)+R(t)z\'(t)]','a','b','t',0,'')
+            ]),'其中单位切向量\\b τ=(\\cosα,\\cosβ,\\cosγ)',
+            'f(x,y,z)=P(x,y,z)\\b i+Q(x,y,z)\\b j+R(x,y,z)\\b k'
+            ].join(kbr),
+
+            '（平面上参数方程）'+Eq([iint(['P','+Q'],'L','','x;y',1,1),
+                iint('(P\\cosα+Q\\cosβ)','L','','s',1,1),
+                iint('(P\\cosα+Q\\sinα)','L','','s',1,1),
+                intl('[P(t)x\'(t)+Q(t)y\'(t)]','a','b','t',0,'')
+                ]),
+            '（参数为x的方程）'+Eq([iint(['P','+Q','+R'],['L：y=y(x)','z=z(x)','a≤x≤b'],'','x;y;z',1,1),
+                intl('[P(x,y(x))+Q(x,y(x))y\'(x)+R(x,y(x))z\'(x)]','a','b','x',0,'')
+                ]),
+            '（平面上）'+Eq([iint(['P','+Q'],['L：y=y(x)','a≤x≤b'],'','x;y',1,1),
+                intl('[P(x)+Q(x)y\'(x)]','a','b','x',0,'')
+                ])
+            ,
+
+
+        ]),'',khrA([
+            ['（曲线弧长）L：x=x(t), y=y(t), z=z(t),','a≤t≤b',
+                's='+iint('','L','','s',1,1)+'='+intl(kroot('(x\'^2(t)+y\'^2(t)+z\'^2(t)'),'a','b','t',0,'')
+            ].join(kbr)
+        ])
+        ],
+
+    
+        ['第二类曲面积分',khrA([
+
+            [iint('f(x,y,z)','Σ','','S',2,1)+'='+iint('f(x(u,v),y(u,v),z(u,v))'+kroot('EG-F^2'),'D','','u,v',2,1),
+                '\\text{其中Gauss系数}，',
+                piece(['E=\\b r_u^2=x_u^2+y_u^2+z_u^2',
+                'F=\\b r_u⋅\\b r_v=x_ux_v+y_uy_v+z_uz_v',
+                'G=\\b r_v^2=x_v^2+y_v^2+z_v^2']),
+                '\\b r_u=x_u\\b i+y_u\\b j+z_u\\b k',
+                '\\b r_v=x_v\\b i+y_v\\b j+z_v\\b k',
+                'EG-F^2='+zp('\\b r_u×\\b r_v','‖‖')+'^2='+zp(difn('(y,z)','(u,v)',1))+'^2+'+zp(difn('(z,x)','(u,v)',1))+'^2+'+zp(difn('(x,y)','(u,v)',1))+'^2'
+            ].join(kbr)
+            
+            ,
+
+
+        ]),'',khrA([
+            ['（曲面面积）Σ',
+                'S='+iint('','D','','S',2,1)+'='+iint(kroot('EG-F^2'),'D','','u,v',2,1)
+            ].join(kbr),
+
+            ['（曲面面积）Σ：z=f(x,y)',
+                'S='+iint(kroot('1+f_x^2(x,y)+f_y^2(x,y)'),'D','','x,y',2,1)
+            ].join(kbr),
+
+            ['（曲面面积）Σ：H(x,y,z)=0',
+                Eq([['S',
+                    iint(kroot('1+f_x^2+f_y^2'),'D','','x,y',2,1)],
+                    iint(kroot('1+'+zp('-'+kfrac(['H_x','H_z']))+'^2+'+zp('-'+kfrac(['H_y','H_z']))+'^2'),'D','','x,y',2,1),
+                    iint(kfrac([zp('\\text{grad} H','‖‖'),'|H_z|']),'D','','x,y',2,1),
+                ])
+            ].join(kbr),
+        ])
+        ],
+
     ],'wiki TBrc').replace(/\n/g,br))
 
 

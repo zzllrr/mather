@@ -664,6 +664,8 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		//预处理
 		x=x.replace(/ *log */g,'㏒').replace(/ *ln */g,'㏑')		//化成单个字符的好处，替换时不会误替换
 			//.replace(/ *e\^/g,' exp ')
+			.replace(/sqrt/g,'√')
+			.replace(/cbrt/g,'∛')
 			.replace(/ *!!+ */g,'‼')
 			.replace(/，/g,',')
 			.replace(/[⋅]/g,'×').replace(/([^\^])\*/g,'$1×').replace(/[/]/g,'÷')
@@ -2069,7 +2071,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				}
 				
 				if(cof=='°'){//度数
-					oc=coc;
+					oc=coc.replace(/.$/,'');
 					co=A[1][oc];
 					cof=co.f;
 					cov=co.v;
@@ -2149,49 +2151,49 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 				
 				if(cof=='°'){//度数
-					oc=coc;
+					oc=coc.replace(/.$/,'');
 					co=A[1][oc];
 					cof=co.f;
 					cov=co.v;
 					var n=+cov.toStr() % 360, n1=n-180;
 					if(of=='sin'){
-						if(!n){
-							return Mfn.fromStr(1);
-						}
-						if(n==15 || n1==15){
-							return Mfn.fromStr('(√6-√2)/4');
-						}
-						if(n==30 || n1==30){
-							return Mfn.fromStr('1/2');
-						}
-						if(n==45 || n1==45){
-							return Mfn.fromStr('1/√2');
-						}
-						if(n==60 || n1==60){
-							return Mfn.fromStr('√3/2');
-						}
-						if(n==75 || n1==75){
-							return Mfn.fromStr('(√6+√2)/4');
-						}
-						if(n==90 || n1==90){
+						if(!n || !n1){
 							return Mfn.fromStr(0);
 						}
-						if(n==105 || n1==105){
-							return Mfn.fromStr('-(√6+√2)/4');
+						if(n==15 || n1==-15){
+							return Mfn.fromStr('(√6-√2)/4');
 						}
-						if(n==120 || n1==120){
-							return Mfn.fromStr('-√3/2');
+						if(n==30 || n1==-30){
+							return Mfn.fromStr('1/2');
 						}
-						if(n==135 || n1==135){
-							return Mfn.fromStr('-1/√2');
+						if(n==45 || n1==-45){
+							return Mfn.fromStr('1/√2');
 						}
-						if(n==150 || n1==150){
+						if(n==60 || n1==-60){
+							return Mfn.fromStr('√3/2');
+						}
+						if(n==75 || n1==-75){
+							return Mfn.fromStr('(√6+√2)/4');
+						}
+						if(n==90){
+							return Mfn.fromStr(1);
+						}
+						if(n1==15 || n1-180==-15){
+							return Mfn.fromStr('(√2-√6)/4');
+						}
+						if(n1==30 || n1-180==-30){
 							return Mfn.fromStr('-1/2');
 						}
-						if(n==165 || n1==165){
-							return Mfn.fromStr('-(√2-√6)/4');
+						if(n1==45 || n1-180==-45){
+							return Mfn.fromStr('-1/√2');
 						}
-						if(n==180){
+						if(n1==60 || n1-180==-60){
+							return Mfn.fromStr('-√3/2');
+						}
+						if(n1==75 || n1-180==-75){
+							return Mfn.fromStr('-(√6+√2)/4');
+						}
+						if(n1==90){
 							return Mfn.fromStr('-1');
 						}
 

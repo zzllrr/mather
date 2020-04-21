@@ -1078,6 +1078,7 @@ lang['zh_cn'] = {
 	'Directional': '方向',
 	'Grad':'梯度',
 	'Partial':'偏',
+	'Total':'全',
 	'Basic':'基本',
 	'Option': '选项',
 

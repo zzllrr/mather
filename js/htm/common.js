@@ -329,7 +329,7 @@ function copy2clipboard(t){
 
 function math2str(x,tex,opt){
     var o=opt||mathjsOutputOpt();
-    console.log(o);
+    //console.log(o);
     if(tex && o.handler===null){
         o.handler=function(i){
             return i.replace(/\\exp (.+)/g,'e^{$1}')
