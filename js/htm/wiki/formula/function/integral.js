@@ -71,10 +71,11 @@ wiki['Formula/Function/Integral']=Kx(
 
         
         ['重积分变量代换',khrA([
-            iint('f(x,y)','T(D)','','x,y',2,1)+'='+iint('f(x(u,v),~y(u,v))'+zp(difn('(x,y)','(u,v)',1),'|'),'D','','u,v',2,1),
+            '（二维）'+iint('f(x,y)','T(D)','','x,y',2,1)+'='+iint('f(x(u,v),~y(u,v))'+zp(difn('(x,y)','(u,v)',1),'|'),'D','','u,v',2,1),
             [
+                '（推广到高维的向量形式）',
                 iint('f(\\red x)','D','', '\\red x',1,1)+'='+iint('f(\\red x(\\red u))|\\det \\red x\'(\\red u)|','D\'','','\\red u',1,1),
-                '推广到高维的向量形式，其中雅可比行列式\\det \\red x\'(\\red u)='+difn('(x_1,⋯,x_n)','(u_1,⋯,u_n)',1)
+                '其中雅可比行列式\\det \\red x\'(\\red u)='+difn('(x_1,⋯,x_n)','(u_1,⋯,u_n)',1)
             ].join(kbr),
 
 
@@ -128,6 +129,7 @@ wiki['Formula/Function/Integral']=Kx(
                 'G=\\b r_v^2=x_v^2+y_v^2+z_v^2']),
                 '\\b r_u=x_u\\b i+y_u\\b j+z_u\\b k',
                 '\\b r_v=x_v\\b i+y_v\\b j+z_v\\b k',
+                '\\b r_u×\\b r_v = '+difn('(y,z)','(u,v)',1)+'\\b i +'+difn('(z,x)','(u,v)',1)+'\\b j+'+difn('(x,y)','(u,v)',1)+'\\b k',
                 'EG-F^2='+zp('\\b r_u×\\b r_v','‖‖')+'^2='+zp(difn('(y,z)','(u,v)',1))+'^2+'+zp(difn('(z,x)','(u,v)',1))+'^2+'+zp(difn('(x,y)','(u,v)',1))+'^2'
             ].join(kbr)
             
@@ -159,10 +161,11 @@ wiki['Formula/Function/Integral']=Kx(
             '（路径可加性）'+iint('\\b f⋅\\b τ','L','','s',1,1)+'='+iint('\\b f⋅\\b τ','L_1','','s',1,1)+'+'+iint('\\b f⋅\\b τ','L_2','','s',1,1),
             [Eq([[iint('ω','L','',' ',1,1),iint(['P','+Q','+R'],'L','','x;y;z',1,1)],
                 iint('(P\\cosα+Q\\cosβ+R\\cosγ)','L','','s',1,1),
-                iint('\\b f⋅\\b τ','L','','s',1,1),
+                iint('\\b f⋅\\b τ','L','','s',1,1)+'='+iint('\\b f','L','','\\b s',1,1),
                 intl('[P(t)x\'(t)+Q(t)y\'(t)+R(t)z\'(t)]','a','b','t',0,'')
             ]),'其中f(x,y,z)=P(x,y,z)\\b i+Q(x,y,z)\\b j+R(x,y,z)\\b k',
-            '单位切向量\\b τ=(\\cosα,\\cosβ,\\cosγ)'
+            '单位切向量\\b τ=(\\cosα,\\cosβ,\\cosγ)',
+            '\\d \\b s=\\b τ\\d s'
             ].join(kbr),
 
             '（平面上参数t方程）'+Eq([iint(['P','+Q'],'L','','x;y',1,1),
@@ -173,7 +176,7 @@ wiki['Formula/Function/Integral']=Kx(
             '（参数x的方程）'+Eq([iint(['P','+Q','+R'],['L：y=y(x)','z=z(x)','a≤x≤b'],'','x;y;z',1,1),
                 intl('[P(x,y(x))+Q(x,y(x))y\'(x)+R(x,y(x))z\'(x)]','a','b','x',0,'')
                 ]),
-            '（平面x-y上）'+Eq([iint(['P','+Q'],['L：y=y(x)','a≤x≤b'],'','x;y',1,1),
+            '（平面上）'+Eq([iint(['P','+Q'],['L：y=y(x)','a≤x≤b'],'','x;y',1,1),
                 intl('[P(x)+Q(x)y\'(x)]','a','b','x',0,'')
                 ])
             ,
@@ -186,23 +189,33 @@ wiki['Formula/Function/Integral']=Kx(
 
     
         ['第二类曲面积分',khrA([
+            '（方向性）'+iint('\\b f⋅\\b n','Σ','','S',2,1)+'=-'+iint('\\b f⋅\\b n','-Σ','','S',2,1),
+            '（线性）'+iint('(a\\b f+b\\b g)⋅\\b n','Σ','','S',2,1)+'=a'+iint('\\b f⋅\\b n','Σ','','S',2,1)+'+b'+iint('\\b g⋅\\b n','Σ','','S',2,1),
+            '（曲面可加性）'+iint('\\b f⋅\\b n','Σ','','S',2,1)+'='+iint('\\b f⋅\\b n','Σ_1','','S',2,1)+'+'+iint('\\b f⋅\\b n','Σ_2','','S',2,1),
+            [Eq([[iint('ω','Σ','',' ',2,1),iint(['P','+Q','+R'],'Σ','','y,z;z,x;x,y',2,1)],
+                iint('(P\\cosα+Q\\cosβ+R\\cosγ)','Σ','','S',2,1),
+                iint('\\b f⋅\\b n','Σ','','S',2,1)+'='+iint('\\b f','Σ','','\\b S',2,1),
+                '±'+iint(zp([
+                    'P(u,v)'+difn('(y,z)','(u,v)',1),
+                    'Q(u,v)'+difn('(z,x)','(u,v)',1),
+                    'R(u,v)'+difn('(x,y)','(u,v)',1)
+                ].join('+')),'D','','u,v',2,1)
+            ]),'其中f(x,y,z)=P(x,y,z)\\b i+Q(x,y,z)\\b j+R(x,y,z)\\b k',
+            '单位法向量\\b n=(\\cosα,\\cosβ,\\cosγ)',
+            '=±'+kfrac([1,kroot('EG-F^2')],'',1)+zp([difn('(y,z)','(u,v)',1),difn('(z,x)','(u,v)',1),difn('(x,y)','(u,v)',1)]),
+            '\\d \\b S=\\b n\\d S',
+            '\\d S='+kroot('EG-F^2')+'\\d u\\d v',
+            ].join(kbr),
 
-            [iint('f(x,y,z)','Σ','','S',2,1)+'='+iint('f(x(u,v),y(u,v),z(u,v))'+kroot('EG-F^2'),'D','','u,v',2,1),
-                '\\text{其中Gauss系数}，',
-                piece(['E=\\b r_u^2=x_u^2+y_u^2+z_u^2',
-                'F=\\b r_u⋅\\b r_v=x_ux_v+y_uy_v+z_uz_v',
-                'G=\\b r_v^2=x_v^2+y_v^2+z_v^2']),
-                '\\b r_u=x_u\\b i+y_u\\b j+z_u\\b k',
-                '\\b r_v=x_v\\b i+y_v\\b j+z_v\\b k',
-                'EG-F^2='+zp('\\b r_u×\\b r_v','‖‖')+'^2='+zp(difn('(y,z)','(u,v)',1))+'^2+'+zp(difn('(z,x)','(u,v)',1))+'^2+'+zp(difn('(x,y)','(u,v)',1))+'^2'
-            ].join(kbr)
-            
+            '（参数x,y的方程）'+Eq([iint('R(x,y,z)','Σ：z=z(x,y)','','x,y',2,1),
+                    '±'+iint('R(x,y,z(x,y))','D_{xy}','','x,y',2,1),
+                ])
             ,
-
 
         ]),'',khrA([
 
         ])
+
         ],
 
     ],'wiki TBrc').replace(/\n/g,br))

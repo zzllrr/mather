@@ -1447,7 +1447,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 	toStr4:function(A,p){// 简单情况下的四则运算 latex  补充省略的×号，\d/\d识别为分数线 /识别为÷		参数p 控制/识别为分数线
-		////consolelog(A.toStr(1));
+
 		var x=A.toStr(1).replace(/(\d+)((\\left)?\()/g,'$1×$2').replace(/(\) *)(\d+)/g,'$1×$2')	// 显示隐藏的×号
 		.replace(/\\left\( ([a-z\d]+\/[a-z\d]+)\\right\) /g,'{$1}')	// 去多余的分数括号
 
@@ -1941,7 +1941,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	
 
 	
-		if(op=='=='){//深度递归化简			bug	Mfn.opr1('=',Mfn.fromStr('1-25/(45+2)')).toStr()		Mfn.opr1('=',Mfn.fromStr('(25/9)^(1/2)-23'))		200032023&j3-=j2×2/3;
+		if(op=='=='){//深度递归化简			bug	Mfn.opr1('=',Mfn.fromStr('1-25/(45+2)')).toStr()		Mfn.opr1('=',Mfn.fromStr('(25/9)^(1/2)-23'))
 			var fresh=0;
 			for(var i=0;i<A[2].length;i++){
 				var ai='@'+i+'&',Ai=A[1][ai];
@@ -4333,7 +4333,6 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 },sums=function(A,B,latex){//形式线性组合	ax+by
 	return Mfn.fromStr(plus(Arrf(function(x,i){return times([A[i],x])},B))).toStr(latex)
-	//return plus(Arrf(function(x,i){return times([A[i],x])},B),latex)		bug 只显示一个分数，var A=["1/3", "-2/3", "2/3"],B=["x_1", "x_2", "x_3"];Plus(Arrf(function(x,i){return times([A[i],x])},B),1).toStr(1)
 
 },sumx=function(A,x,n,latex){//向量分量的线性组合	x是向量字母
 	return sums(A,zlrA((x||'x')+'_',seqA(1,n||A.length)),latex)
@@ -4341,6 +4340,8 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 },kap=function(k,a,p,latex){//形式幂		ka^p
 	return times([k,pow([a,p])],latex)
 
+},sump=function(A,x,deg,latex){//多项式形式		A[0]x^deg+A[1]x^(deg-1)+...
+	return Arrf(function(x,i){var a=''+A[i]||''; a= a && a!='0'?(times([a,pow([x,deg-i])],latex)):''; return /^-/.test(a)?a:(a?'+'+a:'')}, A).join('').replace(/^\+/,'')
 
 },fmin=function(A){//最小值
 	var B=[].concat(A);
@@ -4351,6 +4352,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	var B=[].concat(A);
 	B.sort(sortBy.num);
 	return B.slice(-1)[0]
+
+},e2h=function(x,sim){
+	var m=Mfn.fromStr(x);
+	return (sim?Mfn.opr1('=',m):m).toStr(1)
 
 // 下列涉及解方程运算
 
@@ -4683,7 +4688,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 	var l=K.length,A=K.concat([]), fr=[neg(K[1]),K[0]], X=[], S=[], M=m, p='x';
 
 	if(dtl){
-		S.push(eq0([sump(A,p,-l)],3,m));
+		S.push(eq0([sump(A,p,1,1)],3,m));
 	}
 	if(/^-?1$/.test(K[0])){
 		X.push(Mod(fr[0],M));
@@ -4701,7 +4706,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 		M=+m/g;
 
 		if(dtl){
-			S.push(eq0([sump(A,p,-l)],3,M));
+			S.push(eq0([sump(A,p,1,1)],3,M));
 			X.push(frac(-A[1],A[0],''));
 		}
 	}else{
@@ -4715,7 +4720,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 
 	if(dtl && a!=A.join()){
 
-		var t=eq0([sump(A,p,-l)],3,M);
+		var t=eq0([sump(A,p,1,1)],3,M);
 		S.push(t);
 		X.push(frac(-A[1],A[0],''));
 	}
@@ -4824,19 +4829,18 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 	参数 p 指定变量名 （此时会返回步骤数组）
 	*/
 	
-	// consolelog('一元多次方程',K);//bug 5 1 0 1 1 -1 0 -1 2求特征值 undefined	equationA([1, -8, 16, -3]) https://zhidao.baidu.com/question/1772342166371113060.html?entry=qb_uhome_search
 	var A=Arrf(FracReduct,K),l=A.length, X=[], S=[];
 
 	if(p){
 
-		S.push(eq0(sump(A,p,-l)));
+		S.push(eq0(sump(A,p,l,1)));
 	}
 	if(l==2){//ax+b=0
 		if(!/^0$/.test(A[0])){
 
 			X.push(divide([neg(A[1]),A[0]]));
 			if(p){
-				S.push(eqv(sump([A[0],0],p,-2),neg(A[1])), eqv(p,X[0]));
+				S.push(eqv(sump([A[0]],p,1,1),neg(A[1],1)), eqv(p,e2h(X[0])));
 			}
 		}else{
 			if(/^0$/.test(A[1])){
@@ -4856,14 +4860,14 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				var m=lcmFrac(A);//分母最小公倍数
 				A=Arrf(function(s){return times([s,m])},A);
 				if(p){
-					S.push(eq0(sump(A,p,-l)));
+					S.push(eq0(sump(A,p,l,1)));
 				}
 			}
 			var m=gcd(A);
 			if(m!='1'){//约分
 				A=Arrf(function(s){return divide([s,m])},A);
 				if(p){
-					S.push(eq0(sump(A,p,-l)));
+					S.push(eq0(sump(A,p,l,1)));
 				}
 			}
 			
@@ -4874,25 +4878,25 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				
 				X.push(delta,delta);
 				if(p){
-					S.push(eq0(nWrap0(sump([1,neg(X[0])],p,-2))+sup(2)), eq0(sump([1,neg(X[0])],p,-2)), eqv(p,X[0]));
+					S.push(eq0(sump([1,neg(X[0])],p,2,1)), eqv(p,X[0]));
 				}
 			}else if(/^-/.test(delta)){//判别式<0
 				if(p){
-					S.push('判别式Δ = '+delta+ ' < 0，因此无实数解');
+					S.push('判别式Δ = '+e2h(delta)+ ' < 0，因此无实数解');
 				}
 				if(d){//实数域无解
 
 				}else{
 					//x=(-b+-√Δ)/(2a)
 					// consolelog('Δ = ',delta);
-					delta=na2n(sqrt(neg(delta)),'i');
+					delta=times([sqrt(neg(delta)),'i']);
 					// consolelog('√Δ = ',delta);
 					X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
 					if(p){
 						S.push(
-							eq0(nWrap0(sump([1,neg(X[0])],p,-2),1)+nWrap0(sump([1,neg(X[1])],p,-2),1)),
-							eq0(sump([1,neg(X[0])],p,-2))+' 或 '+eq0(sump([1,neg(X[1])],p,-2)),
-							eqv(p,X[0])+' 或 '+X[1]
+							eq0(zp(sump([1,neg(X[0])],p,1,1))+zp(sump([1,neg(X[1])],p,1,1))),
+		
+							eqv(p,e2h(X[0]))+' 或 '+e2h(X[1])
 							);
 					}
 				}
@@ -4900,9 +4904,8 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				delta=sqrt(delta);
 				X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
 				if(p){
-					S.push(eq0(nWrap0(sump([1,neg(X[0])],p,-2),1)+nWrap0(sump([1,neg(X[1])],p,-2),1)),
-						eq0(sump([1,neg(X[0])],p,-2))+' 或 '+eq0(sump([1,neg(X[1])],p,-2)),
-						eqv(p,X[0])+' 或 '+X[1]
+					S.push(eq0(zp(sump([1,neg(X[0])],p,1,1))+zp(sump([1,neg(X[1])],p,1,1))),
+						eqv(p,e2h(X[0]))+' 或 '+e2h(X[1])
 						);
 				}
 			}
@@ -4920,7 +4923,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 			var m=lcmFrac(A);//分母最小公倍数
 			A=Arrf(function(s){return times([s,m])},A);
 			if(p){
-				S.push(eq0(sump(A,p,-l)));
+				S.push(eq0(sump(A,p,3,1)));
 			}
 		}
 		var m=gcd(A);
@@ -4928,7 +4931,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 			// consolelog(m,A);
 			A=Arrf(function(s){return divide([s,m])},A);
 			if(p){
-				S.push(eq0(sump(A,p,-l)));
+				S.push(eq0(sump(A,p,3,1)));
 			}
 		}
 		var _a=divide([A[1],A[0],-3]), // 标准方程的-a/3
@@ -4939,7 +4942,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				
 			delta=plus([P3,Q2]);
 		if(p){
-			S.push('判别式Δ = '+delta);
+			S.push('判别式Δ = '+e2h(delta));
 		}
 		// consolelog('系数',A);
 		// consolelog('3p=',p3,'2q=',q2,'q=',q,'p^3=',P3,'q^2=',Q2,'Δ = ',delta,'-a/3 = ',_a);
@@ -5007,14 +5010,12 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 	
 };
 /*
-	bug	neg("(-1/24)(4√14i-8)")
+	bug	e2h("(2i√14+4)/3",1)	equationA([12,-8,6])
 	
 解2次方程	12 -8 6		分子分母未约分
 sump([1,neg("(1/24)(4√14i-8)")],'x',-2)
 
-2 -1 2 5 -3 3 -1 0 2
-1 3 -3 -3 -5 -3 -6 6 4
-求不出特征值
+
 01-210-1-2-10 求合同变换，化成对角阵
 
 
