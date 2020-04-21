@@ -4,6 +4,35 @@
  * Released under MIT License
  */
 
+var deepClone = function(obj) {
+	// 先检测是不是数组和Object
+	// let isArr = Object.prototype.toString.call(obj) === '[object Array]';
+	let isArr = Array.isArray(obj);
+	let isJson = Object.prototype.toString.call(obj) === '[object Object]';
+	if (isArr) {
+	  // 克隆数组
+	  let newObj = [];
+	  for (let i in obj) {
+		newObj[i] = deepClone(obj[i]);
+	  }
+	  return newObj;
+	} else if (isJson) {
+	  // 克隆Object
+	  let newObj = {};
+	  for (let i in obj) {
+		newObj[i] = deepClone(obj[i]);
+	  }
+	  return newObj;
+	}
+	// 不是引用类型直接返回
+	return obj;
+  };
+  
+  Object.prototype.deepClone = function() {
+	return deepClone(this);
+  };
+  Object.defineProperty(Object.prototype, 'deepClone', {enumerable: false});
+
 var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	build:{
 		JS:function(t){//JS中的数学常数或函数，得到小数
@@ -147,7 +176,8 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			
 		},
 		A:function(A,ref){//A是已知Mfn对象		ref是某一个子表达式的引用(@\d+$)
-			var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(p){return Mfn.toStr4(this,p)};a.ref=function(r){return Mfn.ref(this,r)};
+			var a=deepClone(A);
+			//var a=[].concat(A);a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(p){return Mfn.toStr4(this,p)};a.ref=function(r){return Mfn.ref(this,r)};
 			if(ref){
 				a[0]=ref;
 			}
@@ -419,7 +449,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	has:{//子元素
 		"var":function(A,ref){//是否含单变量或自身就是单变量
 			var o=A[1][ref||A[0]];
-			console.log(ref,A[0],o);
+			//console.log(ref,A[0],o);
 			if(!o){
 				return 0
 			}
@@ -1788,7 +1818,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 	opr1:function(op,arr,sim,p){//一元运算(结果)	sim是参数，指定是否递归化简			p是参数
-		// consolelog('Mfn.opr1 op = ',op,'arr = ',arr,' p =',p);
+		// console.log('Mfn.opr1 op = ',op,'arr = ',arr,' p =',p);
 		var A=isArr(arr)?Mfn.build.A(arr):Mfn.fromStr(arr), A0=A[0], oA=A[1][A0],of=oA.f,oc=oA.c,ov=oA.v;
 		// consolelog('A = ',A);
 		if(op=='type'){//公式类型（最外层的运算）
@@ -1959,7 +1989,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 		if(op=='='){//普通化简（尽量不涉及递归运算）		此时参数p，指定数学对象环境（数域Num，矩阵Mtrx，布尔逻辑Bool）
-// consolelog(' = 开始化简 A',A,' of = ',of);
+ //console.log(' = 开始化简 A',A,' of = ',of);
 			if(of=='num' || of=='var' || of=='_'){
 				
 				return A
@@ -2206,7 +2236,45 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			}
 
 			if(of=='pms'){// 加减式化简
-// consolelog('pms 化简 ov=',ov.join(' ; '));
+ //console.log('pms 化简 ov=',ov.join(' ; '));
+
+
+
+				if(ov[0].length==1){
+					//console.log('比较x,y');
+					//console.log(A);
+					var x=Mfn.build.A(A,ov[1][0]), y=Mfn.build.A(A,ov[1][1]), y_=Mfn.opr1('-',Mfn.build.A(A,ov[1][1])), ov00=ov[0][0];
+					if(Mfn.is.b2['=='](x, y)){
+						//console.log('x=y');
+						if(ov00=='-'){
+							return Mfn.fromStr(0)
+						}else{
+							var t=A.ref(2);
+							A[0]=A.ref(ov[1][0]+'×'+t);
+							//console.log('x+x',A);
+							return Mfn.opr1('=',A)
+						}
+
+					}else if(Mfn.is.b2['=='](x, y_)){
+						//console.log('x=-y');
+						if(ov00=='+'){
+							return Mfn.fromStr(0)
+						}else{
+							var t=A.ref(2);
+							A[0]=A.ref(ov[1][0]+'×'+t);
+							//console.log('x--x',A);
+							return Mfn.opr1('=',A)
+							
+						}
+					}
+
+					//console.log('比较x,y 后');
+					//console.log(A);
+				}
+	
+
+
+
 				for(var i=0;i<ov[1].length;i++){/*平面化	a-(b-c+d)+e	变成 a-b+c-d+e		a+(b-c+d)+e	变成 a+b-c+d+e
 							a-(-b-c+d)+e	变成 a+b+c-d+e			a+(-b-c+d)+e	变成 a-b-c+d+e
 					*/
@@ -2246,20 +2314,52 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 					}
 					if(oif=='-'){
+						//console.log('负值','ov[0]',ov[0],'ov[1]',ov[1]);
 						if(i){
 							ov[0][i-1]=opinv(ov[0][i-1]);
 							ov[1][i]=oic;
 						}else{
+
 							
 							//首项是负项，暂时不处理
 						}
 
 					}
-					
-					
-					
 				}
-				
+
+				for(var i=0;i<ov[1].length;i++){/*平面化第2步	-(-x) 化成x
+					*/
+					var oi=A[1][ov[1][i]], oif=oi.f, oic=oi.c, oiv=oi.v;
+					if(oif=='-'){
+						//console.log('负值','ov[0]',ov[0],'ov[1]',ov[1]);
+						if(i){
+							ov[0][i-1]=opinv(ov[0][i-1]);
+							ov[1][i]=oic;
+						}else{
+
+							
+							//首项是负项，暂时不处理
+						}
+
+					}
+				}
+
+
+		
+
+				var o0=A[1][ov[1][0]], o0f=o0.f, o0c=o0.c, o0v=o0.v;
+				/*
+				if(o0f=='-'){
+					console.log('首项是负项',ov.join(' ; '));
+					ov[0].unshift('-');
+					ov[1][0]=o0c;
+					ov[1].unshift(A.ref(0));
+					console.log(A.ref(0));
+					console.log('首项是负项，改成',ov.join(' ; '));
+
+				}
+*/
+
 				var i=ov[0].indexOf('+'),o0=A[1][ov[1][0]];
 				if(i>-1 && o0.f=='-'){//-a...+b	变成 b-a...
 // consolelog('-a...+b	变成 b-a...');
@@ -2271,7 +2371,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				
 				A[1][A0].v=ov;
 	
-// consolelog('平面化后 ov = ',ov.join(' ;;; '));
+ //console.log('平面化后 ov = ',ov.join(' ;;; '));
 	
 				var B0=[],B1=[],B2=0;//分别记录有理常数系数，含变量（以及根式常数等）表达式	有理数
 				
@@ -2459,7 +2559,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				
 				B2=''+B2;
 				
-				// consolelog('有理常数系数 B0 = ',B0, '复杂表达式 B1 = ',B1,' 有理数 B2 = ',B2,'A = ',A);
+			//	console.log('有理常数系数 B0 = ',B0, '复杂表达式 B1 = ',B1,' 有理数 B2 = ',B2,'A = ',A);
 				
 				var C=[[],[]];//正项 负项
 				for(var i=0;i<B0.length;i++){//B0有理系数数组，B1未知表达式数组
@@ -2514,7 +2614,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					
 				}
 				
-				// consolelog('正负项数组：C = ',C,'B0 = ',B0, 'B1 = ',B1,  'B2 = ',B2);
+				//console.log('正负项数组：C = ',C,'B0 = ',B0, 'B1 = ',B1,  'B2 = ',B2);
 
 				if(C[0].length && C[1].length){
 					
@@ -2533,7 +2633,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 				
 				if(C[0].length+C[1].length){
 					
-					
+					//console.log('C=',C, 'B2=',B2);
 					
 					
 					if(B2!='0'){
@@ -2557,6 +2657,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 						});
 					}
 
+					//console.log('加、减元：C=',C, 'B2=',B2);
 					
 					if(C[0].length){// 有加元
 
@@ -2576,13 +2677,13 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 						var s=C[1].join('-')+(B2!='0'?'-'+t:'');
 						
 					}
-
+//console.log('s=',s);
 					A[0]=A.ref(s);
 					
 					return A
 						
-				}else{// 只剩下有理数
-					
+				}else{
+					//console.log('只剩下有理数');
 					return Mfn.fromStr(B2)
 					
 				}
@@ -2603,6 +2704,19 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					A[1][A[1][ov[1][0]].c].f=='num' && A[1][A[1][ov[1][1]].c].f=='num'){// 是两个根数
 					// consolelog(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c);
 					return Sqrt(fracOpr(ov[0][0],A[1][A[1][ov[1][0]].c].c,A[1][A[1][ov[1][1]].c].c),1)
+
+				}
+
+				if(of=='tds' && ov[0].length==1 && /[÷]/.test(ov[0][0]) &&
+					Mfn.is.b2['=='](Mfn.build.A(A,ov[1][0]), Mfn.build.A(A,ov[1][1]))){// 是两个相同值相除
+
+					return Mfn.fromStr(1)
+
+				}
+
+				if(of=='tds' && ov[0].length==1 && /[÷]/.test(ov[0][0]) &&
+					Mfn.is.b2['=='](Mfn.build.A(A,ov[1][0]), Mfn.opr1('-',Mfn.build.A(A,ov[1][1])))){// 是两个相反值相除
+					return Mfn.fromStr(-1)
 
 				}
 
@@ -3110,7 +3224,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 						}else{
 							var t=A.ref(k);
-// consolelog('A.ref(k) = ',t,'A[2] = ',A[2]);//bug divide(['5^n',3])
+
 							A[0]=A.ref(t+B1i);
 						}
 					}
@@ -3130,11 +3244,11 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					
 			}//tds化简完毕
 			
-//bug rcp('a')
+
 			
 			
 			if(of=='pow'){
-// consolelog('化简 pow（仅部分情况）， 以及其他情况暂不化简');
+ //console.log('化简 pow（仅部分情况）， 以及其他情况暂不化简');
 				
 				var o0=A[1][ov[0]], o0c=o0.c, o0v=o0.v, o0f=o0.f,
 					o1=A[1][ov[1]], o1c=o1.c, o1v=o1.v, o1f=o1.f;
@@ -3190,9 +3304,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					}
 				}
 				
-				if(Mfn.is.b1.frac(A,ov[0]) && Mfn.is.b1.frac(A,ov[1])){//有理数幂		bug 01110-31-30 求特征值
+				//console.log(ov);
+				if(Mfn.is.b1.frac(A,ov[0]) && Mfn.is.b1.frac(A,ov[1])){//有理数幂
 					var a=Mfn.build.A(A,ov[0]).toStr(),b=Mfn.build.A(A,ov[1]).toStr();
-					// consolelog(a,b,fracOpr('^',a,b));
+				 //console.log(a,b,fracOpr('^',a,b));
 					return Mfn.fromStr(fracOpr('^',a,b))
 				}else{
 					
@@ -3451,10 +3566,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		}
 		
 
-// consolelog('op = ',op);
+ //console.log('op = ',op);
 		if(Mfn.is.b1.frac(A)){
 			var Fr=FracReduct(Mfn.toStr(A));//bug 这里需弃用toStr	嫌慢
-			// consolelog('A是有理数 ',Fr);
+			 //console.log('A是有理数 ',Fr);
 			var s=Frac.opr1(op,Fr,p);
 			// consolelog('有理数一元运算结果 ',s);
 			return Mfn.fromStr(isStr(s)?s:s.toStr())
@@ -3682,7 +3797,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		}
 		if(op=='√'){
 
-
+//console.log('of=',of);
 			if(of=='√'){// √(√x) = ∜x
 				A[1][A0].f='∜';
 				return A
@@ -3712,7 +3827,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 
-			//一般情况下	√x
+			console.log('一般情况下	√x');
 			A[0]=A.ref('√'+A0);
 			
 			return A
@@ -3806,15 +3921,8 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 		var A=Mfn.opr1(':',Mfn.fromStr(snake([ops,a]).join('')),'',o);
 		 //consolelog('下面去括号');
 		Mfn.simp(A,'','()');//去括号
-	// consolelog(op,'oprs 结束之后   A=  ',A,'sim = ',sim);
+
 	
-/*		bug [λ-a+1 1;2 λ-a]&i1-=i2;i1/=	
-		
-
-0 1 0 0 0 0 1 0 0 0 0 1 a b c d
-
-*/
-		//Mfn.uniRef(A);
 		return sim?Mfn.opr1('=',A,'',p):A
 
 
@@ -4699,7 +4807,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 
 	}
 
-},equationA=function(K,d,p1111,p){/*解一元代数方程
+},equationA=function(K,d,p){/*解一元代数方程
 	输入有理系数数组	不考虑含其它未知变量的情况
 	
 	返回[计算结果数组, 步骤数组]	计算结果数组为空表示无解
@@ -4875,11 +4983,12 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				}
 			}else{
 				var x6=plus([_a,divide([x3,2])]), x7=times(['√3/2',x4]);
-				S.push('q=',q,'delta=',delta);
-				S.push('x1=',x1,'x2=',x2);
-				S.push('x3=',x3,'x4=',x4);
-				S.push('x6=',x6,'x7=',x7);
+
 				if(p){
+					S.push('q=',q,'Δ=',delta);
+					S.push('x_1=',e2h(x1),'x_2=',x2);
+					S.push('x_3=',x3,'x_4=',x4);
+					S.push('x_6=',x6,'x_7=',x7);
 					S.push('有1个实根'+e2h(x5), '1对共轭复根'+e2h(x6)+' ± i'+nWrap(e2h(x7)));
 				}
 				X.push(plus([x6,times(['i',x7])]), plus([x6,times(['-i',x7])]));

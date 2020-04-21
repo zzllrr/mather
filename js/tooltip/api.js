@@ -22,7 +22,7 @@ tooltip['API']=[
 		{'function.js':[{'实体':'Fun Mfn Polynomial'},
 			{'识别':'eType oType'},
 			{'运算符变换':'opneg opinv'},
-			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1 simExpression'},
+			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1 simExpression deepClone'},
 		
 			{'符号计算':'plus minus times divide pow square cubic sqrt cbrt pmtds sums sumx kap fmin fmax'},
 			{'方程':'equationsMS equationsMX equationM equationA'},

@@ -2825,7 +2825,8 @@ var newj=0;
 					//consolelog('3次方程1次项系数是',a1);
 
 					var last3=equationA([1,neg(tr),a1,neg(dete)]);
-					es.push(last3[0][0],last3[0][2],last3[0][3]);
+					//console.log(last3);
+					es.push(last3[0][0],last3[0][1],last3[0][2]);
 					esn=m;
 					
 				}
@@ -3266,7 +3267,8 @@ var newj=0;
 			for(var i=0;i<Br;i++){
 				C.push([]);
 				for(var j=0;j<Bc;j++){
-					C[i].push(Mfn.oprs(op[1],[A[i][j],B[i][j]],1).toStr())
+					//console.log(op[1],i,j,[A[i][j],B[i][j]],A,B);
+					C[i].push(Mfn.oprs(op[1],[A[i][j]||0,B[i][j]||0],1).toStr())
 				}
 			}
 		}

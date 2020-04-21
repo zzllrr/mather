@@ -3158,47 +3158,27 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 			}
 
 		}else{//整数的分数幂
-			var a=factorA(A[0]),ga=+gcd(a[1]);
-			var gabc=+gcd([ga,B[1]]);
 
-//console.log(a.join(' --- '),ga,gabc);
-
-			if(gabc>1){//底数（分解因数后，因数公重数）与分数幂的分母可以约分
-				a[1]=Arrf(function(x){return x=='1'?x:Integer.oprs('/',[x,gabc])[0]},a[1]);
-				//console.log('a = ',a[0],' ;;; ',a[1]);
-				a=factorA2n(a);
-				A=[a,1];
-				
-				//console.log('A = ',A);
-				//console.log('B = ',B,'gabc= ',gabc);
-				B[1]/=gabc;
-				if(B[1]==1){//整数幂
-					//console.log(isneg,op,[a,B[0]],Integer.oprs(op,[a,B[0]]));
-					return isneg+Integer.oprs(op,[a,B[0]])
-				}
-			}else{//遍历质因数，重数是分数幂的分母的倍数，则约分
-				var IA=[[],[]];
+			var a=factorA(A[0]);
+			//遍历质因数，重数是分数幂的分母的倍数，则约分；或者重数比分数幂的分母大时，减去最大的倍数，约分后，移到根号外
+			var IA=[[],[]];
 			//	console.log(a.join(' & '),B[1]);
 				a[1]=Arrf(function(x,i){
-					if(x!='1' && Integer.is.b2['|'](B[1],x)){
+					if(x!='1' && Integer.is.b2['≤'](B[1],x)){	//Integer.is.b2['|'](B[1],x)
+						var y=Integer.oprs('/',[x,B[1]]);
 						IA[0].push(a[0][i]);
-						IA[1].push(Integer.oprs('/',[x,B[1]])[0])
-						return 0
+						IA[1].push(y[0]);
+						return y[1]
 					}
 					return x
 				},a[1]);
 
 				if(IA[0].length){
 
-				//	console.log(a.join(' a '), IA.join(' IA '));
-
 					a=factorA2n(a);
 					A=[a,1];
-				//	console.log(factorA2n(IA),a,isneg+factorA2n(IA)+'⋅'+A[0]+'^('+B.join('/')+')');
 					return isneg+factorA2n(IA)+'⋅'+A[0]+'^('+B.join('/')+')'
 				}
-			}
-			//var x=isneg+(/^1[234]$/.test(B.join(''))?
 
 			return isneg+A[0]+'^('+B.join('/')+')';
 		}

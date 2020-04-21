@@ -161,28 +161,26 @@ wiki['Formula/Function/Integral']=Kx(
                 iint('(P\\cosα+Q\\cosβ+R\\cosγ)','L','','s',1,1),
                 iint('\\b f⋅\\b τ','L','','s',1,1),
                 intl('[P(t)x\'(t)+Q(t)y\'(t)+R(t)z\'(t)]','a','b','t',0,'')
-            ]),'其中单位切向量\\b τ=(\\cosα,\\cosβ,\\cosγ)',
-            'f(x,y,z)=P(x,y,z)\\b i+Q(x,y,z)\\b j+R(x,y,z)\\b k'
+            ]),'其中f(x,y,z)=P(x,y,z)\\b i+Q(x,y,z)\\b j+R(x,y,z)\\b k',
+            '单位切向量\\b τ=(\\cosα,\\cosβ,\\cosγ)'
             ].join(kbr),
 
-            '（平面上参数方程）'+Eq([iint(['P','+Q'],'L','','x;y',1,1),
+            '（平面上参数t方程）'+Eq([iint(['P','+Q'],'L','','x;y',1,1),
                 iint('(P\\cosα+Q\\cosβ)','L','','s',1,1),
                 iint('(P\\cosα+Q\\sinα)','L','','s',1,1),
                 intl('[P(t)x\'(t)+Q(t)y\'(t)]','a','b','t',0,'')
                 ]),
-            '（参数为x的方程）'+Eq([iint(['P','+Q','+R'],['L：y=y(x)','z=z(x)','a≤x≤b'],'','x;y;z',1,1),
+            '（参数x的方程）'+Eq([iint(['P','+Q','+R'],['L：y=y(x)','z=z(x)','a≤x≤b'],'','x;y;z',1,1),
                 intl('[P(x,y(x))+Q(x,y(x))y\'(x)+R(x,y(x))z\'(x)]','a','b','x',0,'')
                 ]),
-            '（平面上）'+Eq([iint(['P','+Q'],['L：y=y(x)','a≤x≤b'],'','x;y',1,1),
+            '（平面x-y上）'+Eq([iint(['P','+Q'],['L：y=y(x)','a≤x≤b'],'','x;y',1,1),
                 intl('[P(x)+Q(x)y\'(x)]','a','b','x',0,'')
                 ])
             ,
 
 
         ]),'',khrA([
-            ['（曲线弧长）L：x=x(t), y=y(t), z=z(t),','a≤t≤b',
-                's='+iint('','L','','s',1,1)+'='+intl(kroot('(x\'^2(t)+y\'^2(t)+z\'^2(t)'),'a','b','t',0,'')
-            ].join(kbr)
+
         ])
         ],
 
@@ -203,21 +201,7 @@ wiki['Formula/Function/Integral']=Kx(
 
 
         ]),'',khrA([
-            ['（曲面面积）Σ',
-                'S='+iint('','D','','S',2,1)+'='+iint(kroot('EG-F^2'),'D','','u,v',2,1)
-            ].join(kbr),
 
-            ['（曲面面积）Σ：z=f(x,y)',
-                'S='+iint(kroot('1+f_x^2(x,y)+f_y^2(x,y)'),'D','','x,y',2,1)
-            ].join(kbr),
-
-            ['（曲面面积）Σ：H(x,y,z)=0',
-                Eq([['S',
-                    iint(kroot('1+f_x^2+f_y^2'),'D','','x,y',2,1)],
-                    iint(kroot('1+'+zp('-'+kfrac(['H_x','H_z']))+'^2+'+zp('-'+kfrac(['H_y','H_z']))+'^2'),'D','','x,y',2,1),
-                    iint(kfrac([zp('\\text{grad} H','‖‖'),'|H_z|']),'D','','x,y',2,1),
-                ])
-            ].join(kbr),
         ])
         ],
 
