@@ -7,12 +7,12 @@
 wiki['Formula/Function/Integral']=Kx(
     detail(gM('Integral Formula'),Table([gM(ZLR('Name Content Condition Application'))],[
         
-        ['\\text{Newton-Leibniz}',khrA([
+        ['Newton-Leibniz\n牛-莱公式',khrA([
             intl('f\'(x)','a','b','x',0,'')+'=f(b)-f(a)',
             'F(b)-F(a)='+intl('F\'(x)','a','b','x',0,'')
         ]),'',''
         ],
-        ['\\text{Green}',khrA([
+        ['Green\n格林公式',khrA([
             iint(zp(difn('F','x',1)+'+'+difn('G','y',1)),'D','','x,y',2,1)+'='+oint(['F','-G'],'L','','y;x',1,1),
             oint(['P','+Q'],'L','','x;y',1,1)+'='+iint(zp(difn('Q','x',1)+'-'+difn('P','y',1)),'D','','x,y',2,1)+
             '='+iint('\\small '+kdet([[difn('','x',1),difn('','y',1)],ZLR('P Q')]),'D','','x,y',2,1),
@@ -24,9 +24,17 @@ wiki['Formula/Function/Integral']=Kx(
             '1\\/2'+iint(['x','-y'],'∂D','','y;x',1,1)]),
         ],
 
-        ['\\text{Gauss}',khrA([
+        ['Gauss\n高斯公式',khrA([
             iint(zp(difn('P','x',1)+'+'+difn('Q','y',1)+'+'+difn('R','z',1)),'Ω','','x,y,z',3,1)+'='+oint(['P','+Q','+R'],'∂Ω','','y,z;z,x;x,y',2,1),
             oint(['P','+Q','+R'],'∂Ω','','y,z;z,x;x,y',2,1)+'='+iint(zp(difn('P','x',1)+'+'+difn('Q','y',1)+'+'+difn('R','z',1)),'Ω','','x,y,z',3,1),
+            
+            [
+                Eq([['通量：'+oint(['\\b a ⋅'],'∂Ω','','\\b S',2,1), iint(['\\b ∇ ⋅\\b a'],'Ω','','V',3,1)],
+                    iint(['\\text{div~}\\b a'],'Ω','','V',3,1)
+                ]),
+
+                ].join(kbr),
+    
 
         ]),'',
         Eq(['求区域体积~ V',
@@ -37,18 +45,103 @@ wiki['Formula/Function/Integral']=Kx(
             '1\\/3'+oint(['x','+y','+z'],'∂Ω','','y,z;z,x;x,y',2,1)])
         ],
       
-        ['\\text{Stokes}',khrA([
+        ['Stokes\n斯托克斯公式',khrA([
             Eq([oint(['P','+Q','+R'],'∂Σ','','x;y;z',1,1),
                 iint(pp(difn('R','y',1)+'-'+difn('Q','z',1)),'Σ','','y,z',2,1)+'+'+iint(pp(difn('P','z',1)+'-'+difn('R','x',1)),'Σ','','z,x',2,1)+'+'+iint(pp(difn('Q','x',1)+'-'+difn('P','y',1)),'Σ','','x,y',2,1),
                 iint(zp(pp(difn('R','y',1)+'-'+difn('Q','z',1))+'\\cos α+'+pp(difn('P','z',1)+'-'+difn('R','x',1))+'\\cos β+'+pp(difn('Q','x',1)+'-'+difn('P','y',1))+'\\cos γ','[]'),'Σ','','S',2,1),
                 '\\iint\\limits_{Σ}\\small '+kdet([['\\d y\\d z','\\d z\\d x','\\d x\\d y'],[difn('','x',1),difn('','y',1),difn('','z',1)],ZLR('P Q R')])
                 +'='+iint('\\small '+kdet([['\\cos α','\\cos β','\\cos γ'],[difn('','x',1),difn('','y',1),difn('','z',1)],ZLR('P Q R')]),'Σ','','S',2,1),
+                
             ]),
+            [
+                Eq([['环量：'+oint(['\\b a ⋅'],'∂Σ','','\\b s',1,1), iint(['(\\b ∇ ×\\b a) ⋅'],'Σ','','\\b S',2,1)],
+                    iint(['(\\r {rot~}\\b a) ⋅'],'Σ','','\\b S',2,1),
+                    iint(['(\\r {curl~}\\b a) ⋅'],'Σ','','\\b S',2,1)
+                ]),
+            ].join(kbr),
 
-            iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)+'(\\text{上述牛-莱、格林、高斯、斯托克斯公式，也统称为斯托克斯公式})'
+            [
+                iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1),
+                '上述牛-莱、格林、高斯、斯托克斯公式，',
+                '也统称为斯托克斯公式'
+            ].join(kbr)
+
         ]),'',
 
         ],
+
+        ['场论\n',khrA([
+            ['向量场：\\b a=P\\b i+Q\\b j+R\\b k',
+
+            ].join(kbr),
+
+            [
+            '\\text{Hamilton算子,~ Nabla：}\\b ∇ =\\b i'+difn('','x',1)+'+\\b j'+difn('','y',1)+'+\\b k'+difn('','z',1),
+            '\\text{Laplace算子：} Δ =\\b ∇⋅\\b ∇='+difn('','x',1,2)+'+'+difn('','y',1,2)+'+'+difn('','z',1,2),
+            '（调和函数：满足\\text{Laplace方程}Δu=0的函数）',
+            ].join(kbr),
+
+            [   Eq([['梯度：\\r {grad}f','\\b ∇ f'],
+                    difn('f','x',1)+'\\b i+'+difn('f','y',1)+'\\b j+'+difn('f','z',1)+'\\b k'
+                ]),
+
+            ].join(kbr),
+
+            [   Eq([['散度：\\text{div~}\\b a','\\b ∇ ⋅\\b a'],
+                    zp('\\b i'+difn('','x',1)+'+\\b j'+difn('','y',1)+'+\\b k'+difn('','z',1))+'⋅(P\\b i+Q\\b j+R\\b k)',
+                    difn('P','x',1)+'+'+difn('Q','y',1)+'+'+difn('R','z',1)
+                ]),
+
+
+            ].join(kbr),
+            [
+                Eq([['旋度：\\r {rot~}\\b a或\\r {curl~}\\b a','\\b ∇ ×\\b a'],
+                    zp('\\b i'+difn('','x',1)+'+\\b j'+difn('','y',1)+'+\\b k'+difn('','z',1))+'×(P\\b i+Q\\b j+R\\b k)',
+                    '\\small '+kdet([['\\b i','\\b j','\\b k'],[difn('','x',1),difn('','y',1),difn('','z',1)],ZLR('P Q R')]),
+                    pp(difn('R','y',1)+'-'+difn('Q','z',1))+'\\b i+'+pp(difn('P','z',1)+'-'+difn('R','x',1))+'\\b j+'+pp(difn('Q','x',1)+'-'+difn('P','y',1))+'\\b k'
+                ]),
+            ].join(kbr),
+            [
+                "（无旋场：\\r {rot~}\\b a或\\r {curl~}\\b a = \\b ∇ ×\\b a = \\b 0）",
+                "（有势场：\\b a=\\r {grad~}U，势函数：-U）",
+                "（保守场：向量场\\b a中曲线积分与路径无关）",
+                "（保守场，有势场，无旋场三者等价）"
+            ].join(kbr),
+    
+
+            aligned([
+                '\\text{div}(λ\\b a+μ\\b b)=λ~\\text{div} \\b a+μ~\\text{div} \\b b'+'&'+
+                '\\b ∇⋅(λ\\b a+μ\\b b)=λ(\\b ∇⋅\\b a)+μ(\\b ∇⋅\\b b)',
+
+                '\\r {rot~}(λ\\b a+μ\\b b)=λ\\r {rot~}\\b a+μ\\r {rot~} \\b b'+'&'+
+                '\\b ∇×(λ\\b a+μ\\b b)=λ(\\b ∇×\\b a)+μ(\\b ∇×\\b b)',
+
+                '\\text{div}(f\\b a)=f\\text{div} \\b a+ \\r {grad} f⋅\\b a'+'&'+
+                '\\b ∇⋅(f\\b a)=f(\\b ∇⋅\\b a)+(\\b ∇f)⋅\\b a',
+                
+                '\\r {rot~}(f\\b a)=f\\r {rot~} \\b a+ \\r {grad} f×\\b a'+'&'+
+                '\\b ∇×(f\\b a)=f(\\b ∇×\\b a)+(\\b ∇f)×\\b a',
+
+                '\\text{div}(\\b a×\\b b)=\\b b⋅\\r {rot~}(\\b a)-\\b a⋅\\r {rot~}(\\b b)'+'&'+
+                '\\b ∇⋅(\\b a×\\b b)=\\b b⋅(\\b ∇×\\b a)-\\b a⋅(\\b ∇×\\b b)',
+
+                '\\r {rot~}(\\r {grad} f)=\\b 0'+'&'+
+                '\\b ∇×(\\b ∇f)=(\\b ∇×\\b ∇)f=\\b 0',
+
+                '\\text{div}(\\r {rot~} \\b a)= 0'+'&'+
+                '\\b ∇⋅(\\b ∇×\\b a)= 0',          
+
+
+            ]),
+
+
+
+
+
+
+        ]),'',''
+        ],
+
 
         ['重积分化累次积分\nFubini定理\nCavalieri原理',khrA([
             iint('f(x,y)','[a,~b]×[y_1(x),~y_2(x)]','','x,y',2,1)+'='+
@@ -152,7 +245,7 @@ wiki['Formula/Function/Integral']=Kx(
                 Eq([['S',
                     iint(kroot('1+f_x^2+f_y^2'),'D','','x,y',2,1)],
                     iint(kroot('1+'+zp('-'+kfrac(['H_x','H_z']))+'^2+'+zp('-'+kfrac(['H_y','H_z']))+'^2'),'D','','x,y',2,1),
-                    iint(kfrac([zp('\\text{grad} H','‖‖'),'|H_z|']),'D','','x,y',2,1),
+                    iint(kfrac([zp('\\r {grad}H','‖‖'),'|H_z|']),'D','','x,y',2,1),
                 ])
             ].join(kbr),
         ])

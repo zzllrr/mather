@@ -584,7 +584,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 			//extension 
 			.replace(/\\b (\{[^\{\}]+\})/g,'\\pmb {\\red$1}')	//加粗斜体红色
-			.replace(/\\b ([^\{}])/g,'\\pmb {\\red{$1}}')	//加粗斜体红色
+			.replace(/\\b ([^\{}])/g,'\\pmb {\\red{$1}}')	//加粗斜体红色(单个字)
+			.replace(/\\r (\{[^\{\}]+\})/g,'\\textbf \\red $1')	//加粗正体红色
+			.replace(/\\r ([^\{}])/g,'\\textbf \\red{$1}')	//加粗正体红色(单个字)
 			.replace(/\\d /g,'\\hskip{0.1em}\\text{d}')	//微分d
 
 			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
