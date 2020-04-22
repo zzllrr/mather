@@ -45,7 +45,7 @@ wiki['Formula/Function/Integral']=Kx(
                 +'='+iint('\\small '+kdet([['\\cos α','\\cos β','\\cos γ'],[difn('','x',1),difn('','y',1),difn('','z',1)],ZLR('P Q R')]),'Σ','','S',2,1),
             ]),
 
-            iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)+'(\\text{上述各种公式的统称})'
+            iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)+'(\\text{上述牛-莱、格林、高斯、斯托克斯公式，也统称为斯托克斯公式})'
         ]),'',
 
         ],
@@ -113,9 +113,12 @@ wiki['Formula/Function/Integral']=Kx(
 
 
         ]),'',khrA([
-            ['（曲线弧长）L：x=x(t), y=y(t), z=z(t),','a≤t≤b',
+            ['（空间曲线弧长）L：x=x(t), y=y(t), z=z(t),','a≤t≤b',
                 's='+iint('','L','','s',1,1)+'='+intl(kroot('(x\'^2(t)+y\'^2(t)+z\'^2(t)'),'a','b','t',0,'')
-            ].join(kbr)
+            ].join(kbr),
+            ['（平面曲线弧长）L：y=y(x),','a≤x≤b',
+            's='+iint('','L','','s',1,1)+'='+intl(kroot('(1+y\'^2(x)'),'a','b','x',0,'')
+        ].join(kbr)
         ])
         ],
 

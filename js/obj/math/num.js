@@ -2998,9 +2998,13 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 
 },fracOpr=function(o,x,y){/*分数二元运算 
 		分数运算	返回 字符串
+
+
 			+ - * / 封闭
 			^ 整数幂 封闭
 			  分数幂 得到开根号的无理数 (a/b)^(c/d)
+
+			  含根号数乘除有理数
 			 
 		关系运算		返回 逻辑0,1
 	
@@ -3027,6 +3031,20 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 		}
 	}
 //console.log(op,m,n);
+
+	var Ahasi=/i/.test(m),Bhasi=/i/.test(n);
+	if(Ahasi || Bhasi){
+		//var mon=(m[0]=='-' && op!='^'?'-'+pp(m.substr(1)):pp(m))+op+pp(n);	//mathjs bug math.simplify(math.parse('(-1/24)*(4i-8)')).toString()
+		var mon=pp(m)+op+pp(n);
+		console.log(mon);
+		if(/√/.test(mon)){
+			mon=mon.replace(/√(\d+)/g,'^(1/$1)');
+		}
+		var r=Mfn.fromStr(math.simplify(math.parse(mon)).toString()).toStr();
+		console.log('r=',r);
+		return r
+	}
+
 	if(l==2){//整数运算
 		if(op=='/'){
 			return fracReduct(m,n)
@@ -3095,7 +3113,8 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 				A[0]=-A[0]
 			}
 		}
-		var isneg=A[0]<0?(B[1]%2 && B[0]%2?'-':(B[0]%2?'(-1)^('+B[0]+'/'+B[1]+')×':'')):'';
+		//var isneg=A[0]<0?(B[1]%2 && B[0]%2?'-':(B[0]%2?'(-1)^('+B[0]+'/'+B[1]+')×':'')):'';
+		var isneg=A[0]<0?(B[1]%2 && B[0]%2?'-':(B[0]%2?(B.join('/')=='1/2'?'i':'(-1)^('+B[0]+'/'+B[1]+')×'):'')):'';
 		if(A[0]<0){
 			A[0]=-A[0]
 		}
@@ -3158,7 +3177,9 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 			}
 
 		}else{//整数的分数幂
-
+			if(A[0]=='1'){
+				return isneg||'1'
+			}
 			var a=factorA(A[0]);
 			//遍历质因数，重数是分数幂的分母的倍数，则约分；或者重数比分数幂的分母大时，减去最大的倍数，约分后，移到根号外
 			var IA=[[],[]];
@@ -3176,8 +3197,20 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 				if(IA[0].length){
 
 					a=factorA2n(a);
-					A=[a,1];
-					return isneg+factorA2n(IA)+'⋅'+A[0]+'^('+B.join('/')+')'
+					var k=isneg+factorA2n(IA);
+					
+					if(a=='1'){
+						return k
+					}
+					if(a=='-1'){
+						if(B.join('/')=='1/2'){
+							return k+'i'
+						}
+						console.log(-1,B.join('/'));
+						return k+pp(a)+'^('+B.join('/')+')'
+					}
+					//A=[a,1];
+					return k+'⋅'+a+'^('+B.join('/')+')'
 				}
 
 			return isneg+A[0]+'^('+B.join('/')+')';

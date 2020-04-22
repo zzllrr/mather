@@ -343,7 +343,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			'$|AP|$…P&|A|“1234&2456',
 			
 			'By Definition',
-			'代数余子式之和…A&i4&系数“1234&i2&-1,1',
+			'代数余子式之和…A或a_i&i4&系数或余子式“1234&i2&-1,1',
 			'Laplace Expansion',
 			'对角线法则',
 			'Block Matrix',

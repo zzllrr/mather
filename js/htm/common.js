@@ -327,6 +327,15 @@ function copy2clipboard(t){
     toolTip(gM('copiedtip'));
 }
 
+
+function mathsimp(x,tostr){
+    if(math){
+        var o=math.simplify(math.parse(x));
+        return tostr?(toStr==1?math2str(o):Mfn.fromStr(o.toString()).toStr()):o
+    }
+    return x
+}
+
 function math2str(x,tex,opt){
     var o=opt||mathjsOutputOpt();
     //console.log(o);

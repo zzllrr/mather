@@ -1667,7 +1667,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 					var s=ov[1][0];//乘积的首项
 					
-// consolelog('首项',s,A);
+ //console.log('首项',s,A);
 					if(/@/.test(s)){
 						var sf=A[1][s].f, t=A[1][s].c;
 						if(sf=='()' && /@/.test(t)){
@@ -1682,14 +1682,15 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 								if(sf!='pms'){//除式
 									ov[1][0]=kfrac(f(s,1))
 								}else{
-									ov[1][0]=zp(f(s,1))
+									ov[1][0]=zp(f(s,1));
+									console.log(ov[1][0]);
 								}
 							}else{
 								
 								ov[1][0]=pp(f(s,1))
 							}
 							//ov[1][0]=(latex?zp:pp)(f(s,1));
-	// consolelog('此时 ',latex, ov[1][0]);
+	//console.log('此时 ',latex, ov[1][0]);
 						}
 					}
 					for(var i=0,l=ov[1].length;i<l-1;i++){
@@ -1730,9 +1731,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 								
 								if(latex){
 									if(sf=='tds'){//除式
-										ov[1][0]=kfrac(f(s,1))
+										ov[1][i+1]=kfrac(f(s,1))
 									}else{
-										ov[1][0]=zp(kfrac(f(s,1)))
+										ov[1][i+1]=zp(kfrac(f(s,1)))
 									}
 								}else{
 									
@@ -1745,7 +1746,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 					}
 					
-				// consolelog('latex',latex,' ov[] = ',ov[0], ov[1],A);
+				 //console.log('latex',latex,' ov[] = ',ov[0], ov[1],A);
 					var a0=ov[0],a1=Arrf(f,ov[1]);
 				// consolelog(' a0 = ',a0, ' a1 = ',a1);
 					for(var i=0,l=a1.length;i<l-1;i++){//简化乘法符号
@@ -2815,7 +2816,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 						// consolelog('乘积的一项，是有理数，A = ',A,'o1j = ',o1j,'A[1][o1j] = ',A[1][o1j],'o0j = ',o0j);
 						var kj=Mfn.toStr(Mfn.build.A(A,o1j));
 				// consolelog('k = ',k,'j = ',j, 'kj = ',kj,'j = ',j,'o0j = ', o0j,'dividej = ',dividej);
+						//k=Mfn.oprs(dividej?'/':'*',[k,kj],1).toStr();
 						k=fracOpr(dividej?'/':'*',k,kj);
+
+
 				// consolelog('k = ',k,'j = ',j, 'kj = ',kj);
 				
 					}else if(A[1][o1j].f=='times'){
@@ -2828,8 +2832,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 								newV[1].push(om);
 							}else{//num
 								var kj=Mfn.toStr(Mfn.build.A(A,om));
+								//console.log('k=',k,'kj = ',kj,' om = ',om,'dividej= ',dividej);
 								k=fracOpr(dividej?'/':'*',k,kj);
-				// consolelog('k = ',k,'j = ',j,' m = ',m);
+								//k=Mfn.oprs(dividej?'/':'*',[k,kj],1).toStr();
+				 //console.log('k = ',k,'j = ',j,' m = ',m);
 								if(''+k=='0'){
 									break 
 								}
@@ -3245,7 +3251,10 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			}//tds化简完毕
 			
 
-			
+			if(/√∛∜/.test(of)){
+				//of='pow';
+
+			}
 			
 			if(of=='pow'){
  //console.log('化简 pow（仅部分情况）， 以及其他情况暂不化简');
@@ -4341,7 +4350,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	return times([k,pow([a,p])],latex)
 
 },sump=function(A,x,deg,latex){//多项式形式		A[0]x^deg+A[1]x^(deg-1)+...
-	return Arrf(function(x,i){var a=''+A[i]||''; a= a && a!='0'?(times([a,pow([x,deg-i])],latex)):''; return /^-/.test(a)?a:(a?'+'+a:'')}, A).join('').replace(/^\+/,'')
+	return Arrf(function(k,i){var a=''+k||''; a= a && a!='0'?(times([a,pow([x,deg-i])],latex)):''; return /^-/.test(a)?a:(a?'+'+a:'')}, A).join('').replace(/^\+/,'')
 
 },fmin=function(A){//最小值
 	var B=[].concat(A);
@@ -4833,7 +4842,7 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 
 	if(p){
 
-		S.push(eq0(sump(A,p,l,1)));
+		S.push(eq0(sump(A,p,l-1,1)));
 	}
 	if(l==2){//ax+b=0
 		if(!/^0$/.test(A[0])){
@@ -4860,25 +4869,27 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				var m=lcmFrac(A);//分母最小公倍数
 				A=Arrf(function(s){return times([s,m])},A);
 				if(p){
-					S.push(eq0(sump(A,p,l,1)));
+					S.push(eq0(sump(A,p,l-1,1)));
 				}
 			}
+
 			var m=gcd(A);
+
 			if(m!='1'){//约分
 				A=Arrf(function(s){return divide([s,m])},A);
 				if(p){
-					S.push(eq0(sump(A,p,l,1)));
+					S.push(eq0(sump(A,p,l-1,1)));
 				}
 			}
 			
 			var delta=minus([square(A[1]),times([4,A[0],A[2]])]);
-			// consolelog('判别式Δ = ',delta);
+			 //console.log('判别式Δ = ',delta);
 			if(/^0$/.test(delta)){//判别式=0
-				delta=divide([neg(A[1]),times(2,A[0])]);
+				delta=divide([neg(A[1]),times([2,A[0]])]);
 				
 				X.push(delta,delta);
 				if(p){
-					S.push(eq0(sump([1,neg(X[0])],p,2,1)), eqv(p,X[0]));
+					S.push(eq0(zp(e2h(p+'-'+pp(X[0]),1))+'^2'), eqv(p,X[0]));
 				}
 			}else if(/^-/.test(delta)){//判别式<0
 				if(p){
@@ -4891,7 +4902,12 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 					// consolelog('Δ = ',delta);
 					delta=times([sqrt(neg(delta)),'i']);
 					// consolelog('√Δ = ',delta);
-					X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
+					var a2=times([2,A[0]]), b_2a=divide([A[1],a2]), delta_2a=divide([delta,a2]);
+					//X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
+					X.push(minus([delta_2a,b_2a]), neg(plus([delta_2a,b_2a])));
+
+
+					//console.log(X);
 					if(p){
 						S.push(
 							eq0(zp(sump([1,neg(X[0])],p,1,1))+zp(sump([1,neg(X[1])],p,1,1))),
@@ -4901,11 +4917,20 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 					}
 				}
 			}else{//判别式>0
+				if(p){
+					S.push('判别式Δ = '+e2h(delta)+ ' > 0，有两个不相等的实根',
+						'利用求根公式~x='+kfrac(['-b±'+kroot('b^2-4ac'),'2a']),
+						'或十字相乘法'
+					);
+				}
 				delta=sqrt(delta);
-				X.push(divide([minus([delta,A[1]]), times([2,A[0]])]), divide([plus([delta,A[1]]), times([-2,A[0]])]));
+				var a2=times([2,A[0]]), b_2a=divide([A[1],a2]), delta_2a=divide([delta,a2]);
+				//console.log('根号Δ = ',delta);
+				//X.push(divide([minus([delta,A[1]]), a2]), divide([neg(plus([delta,A[1]])), a2]));
+				X.push(minus([delta_2a,b_2a]), neg(plus([delta_2a,b_2a])));
 				if(p){
 					S.push(eq0(zp(sump([1,neg(X[0])],p,1,1))+zp(sump([1,neg(X[1])],p,1,1))),
-						eqv(p,e2h(X[0]))+' 或 '+e2h(X[1])
+						'解得~'+eqv(p,e2h(X[0]))+' 或 '+e2h(X[1])
 						);
 				}
 			}
@@ -4988,11 +5013,14 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 				var x6=plus([_a,divide([x3,2])]), x7=times(['√3/2',x4]);
 
 				if(p){
-					S.push('q=',q,'Δ=',delta);
+					/*
+					S.push('q='+q,'Δ='+delta);
+					
 					S.push('x_1=',e2h(x1),'x_2=',x2);
 					S.push('x_3=',x3,'x_4=',x4);
 					S.push('x_6=',x6,'x_7=',x7);
-					S.push('有1个实根'+e2h(x5), '1对共轭复根'+e2h(x6)+' ± i'+nWrap(e2h(x7)));
+					*/
+					S.push('有1个实根'+e2h(x5), '1对共轭复根'+e2h(x6)+' ± i'+zp(e2h(x7)));
 				}
 				X.push(plus([x6,times(['i',x7])]), plus([x6,times(['-i',x7])]));
 			}
@@ -5010,9 +5038,8 @@ OH(equationsMX([[2,3],[3,5],[2,7],[1,11]],1)[1].join(br))
 	
 };
 /*
-	bug	e2h("(2i√14+4)/3",1)	equationA([12,-8,6])
-	
-解2次方程	12 -8 6		分子分母未约分
+	bug	
+
 sump([1,neg("(1/24)(4√14i-8)")],'x',-2)
 
 

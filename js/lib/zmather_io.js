@@ -1397,7 +1397,7 @@ SBS={
 			["oint(['P','+Q','+R'],'D','','x,y;y,z;z,x',2,1)", "iint('f','D','','x, y',2,1)",],
 			[],
 			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)","intl('f','-','+','x',6,'')"],
-			["oint(['P','+Q'],'Ω','','x,y,z;y,z,t',3,1)"],
+			["oint(['P','+Q'],'Ω','','x,y,z;y,z,t',3,1)","intl(intl(intl('f','0','a','z',0,''),'0','b','y',0,''),'0','c','x',0,'')"],
 			[],
 			["intl('','-1','1','x',0,'')+intl('f','-x','x','y',0,'')","intl('','0','2π','θ',0,'')+intl('f','0','r','ρ',0,'')"],
 			["intl('','0','2π','θ',0,'')+intl('f','0','1','r',0,'')","intl('','0','2π','θ',0,'')+zp('f')+orifun('ρ=0','ρ=r')"],
@@ -1906,7 +1906,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		}else if(st){
 			var divs=$('div.Sts[data-i="'+di+'"]');
 			if(divs.filter(':visible').length){
-				divs.add('.sbsTblPg').hide()
+				divs.add('.sbsTblPg, div.Sts[data-i]').hide()
 			}else{
 				divs.slice(0,3).show();
 				if(divs.length>3){

@@ -398,17 +398,26 @@ solve['matrix']=function(inputValue, uriA){
 	
 	if(sel(uriA,'代数余子式之和')){
 		rS=rS.concat(Arrf(function(t){
-			var hasP=/&/.test(t),ij=hasP?t.replace(/[^&]+&/,'').split('&'):['i1'], M=MfS(t);
+			var hasP=/&/.test(t),ij=hasP?t.replace(/[^&]+&/,'').split('&'):['i1'], M=MfS(t), m=M.length;
 			if(ij.length==1){
-				ij.push('1,1,1,1')
+				ij.push(''+ZLR(1,m).split(''))
 			}
-			
-			//consolelog(ij);
-			var isr=ij[0][0].toLowerCase()=='i',IJ=+ij[0].substr(1), M2=Mtrx.build.replace(M,ij[1].split(','),ij[0]);
-			//consolelog(M2);
-			var A=Mtrx.opr1('detPTs',M2,'iU=;d;=');
-			return '|A|='+Mtrx.toStr(M)+eq('求题中各元素的'+(ij[0][0]=='i'?'代数':'')+'余子式之和','→','相当于原行列式第'+IJ+(isr?'行':'列')+'元素替换为'+ij[1])
-				+'|A\'|='+Mtrx.toStr(M2)+'\\\\ '+A[1].replace('A','A\'')
+
+			//console.log(ij[1]);
+			var isr=ij[0][0].toLowerCase()=='i',IJ=+ij[0].substr(1)||1;
+			if(m==1){// 已知某一行或列，和相应余子式
+				m=M[0].length;
+				var d=(IJ % 2?'1,-1,':'-1,1,').repeat(m/2).split(',').slice(0,m),
+					M2=Mtrx.opr2('*',M,MfS('diag('+d+')'),Mtrx.opr1('T',MfS(ij[1])));
+				return 'D='+zp(M)+'\\text{diag}('+d+')'+zp(ij[1])+'^T = '+e2h(M2[0])
+
+			}else{//矩阵 替换
+				var M2=Mtrx.build.replace(M,ij[1].split(','),ij[0]);
+				//consolelog(M2);
+				var A=Mtrx.opr1('detPTs',M2,'iU=;d;=');
+				return '|A|='+Mtrx.toStr(M)+eq('求题中各元素的'+(ij[0][0]=='i'?'代数':'')+'余子式之和','→','相当于原行列式第'+IJ+(isr?'行':'列')+'元素替换为'+ij[1])
+					+'|A\'|='+Mtrx.toStr(M2)+'\\\\ '+A[1].replace('A','A\'')
+			}
 		},VA))
 	}
 	
