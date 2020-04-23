@@ -706,6 +706,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 	intl = function (fA, b, t, d, p, zM) {
 		var s=/, /.test(d)?'∧':'';
+		if(p==-1){
+			return fA+orifun(b, t)
+		}
 		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:''))) + '}' + 
 			(t||t===0 ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + (isArr(fA)?

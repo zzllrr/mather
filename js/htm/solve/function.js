@@ -149,14 +149,15 @@ fxxx fxxy
 					}else if(tp){
 						tA[0]=tA0.replace(/=.+/,'');
 					}
-					
+				//console.log(tA[0]);	
 	
 					var f=math.parse(tA[0]);
 
 					var A=[fn+'('+xy+')='+e2h(tA[0])+'=0'];
 					
-					var fA=Arrf(function(x){return math.simplify(math.derivative(f,x))},dA), f_A=[],ijA=[];
-
+					var fA=Arrf(function(x){
+						return math.simplify(math.derivative(f,x))},dA), f_A=[],ijA=[];
+//console.log(fA, dA);
 					A=A.concat(Arrf(function(x,i){return fn+'_'+x+'='+math2str(fA[i],1)}, dA));
 
 					A=A.concat(Arrf(function(t,i){

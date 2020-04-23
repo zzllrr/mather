@@ -41,7 +41,7 @@ detail(ksc('I+AB可逆⇔ I+BA可逆'), kbrA(['证明：',
 detail(ksc('I-AB可逆⇔ I-BA可逆'), kbrA(['证明：',
 
     Eq(['(I-BA)(I+B(I-AB)^{-1}A)','I-BA+B(I-AB)^{-1}A-BAB(I-AB)^{-1}A','I-BA+B(I-AB)(I-AB)^{-1}A','I-BA+BA','I']),
-    '用分块矩阵证明',
+    '用分块矩阵证明\\small ',
     zmtrx([['I','A'],['O','I']])+zmtrx([['I-AB','O'],['B','I']])+' = '+zmtrx([['I','O'],['B','I-BA']])+zmtrx([['I','A'],['O','I']]),
     '两边取行列式，化简得到','|I-AB|=|I-BA|','则I-AB，I-BA同时可逆或同不可逆',
     '类似地，',
@@ -56,7 +56,7 @@ kbrA([
 ])+
 detail('初等行变换：'+ksc('A|I → I|A^{-1}'), kbrA([
 
-    kbox('Gauss-Jordan算法'),
+    kbox('Gauss-Jordan算法')+'\\small ',
     Eq([zmtrx([['a','b',1,0],['c','d',0,1]],'','c2'),
         zmtrx([['a','b',1,0],['ac','ad',0,'a']],'','c2'),
         zmtrx([['a','b',1,0],[0,'ad-bc','-c','a']],'','c2'),

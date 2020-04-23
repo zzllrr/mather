@@ -339,11 +339,14 @@ function mathsimp(x,tostr){
 function math2str(x,tex,opt){
     var o=opt||mathjsOutputOpt();
     //console.log(o);
+    /*
     if(tex && o.handler===null){
         o.handler=function(i){
+            console.log(i); //i是对象，不是字符串
             return i.replace(/\\exp (.+)/g,'e^{$1}')
         };
     }
+    */
     return tex?x.toTex(o):pp(x.toString(o))
 }
 function mathjsOutputOpt(par,imp,f){
