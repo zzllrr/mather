@@ -839,6 +839,48 @@ var Mtrx={	//矩阵
 		}
 
 
+		if(op=='kA'){//分离公倍数， 返回数组[公倍数（公分母），新矩阵或向量]		参数p暂用不到
+			
+			var Ais2=isArr(A,true), Bj=[];
+			if(Ais2){//二维
+				B=Mtrx.opr1('拷',A);
+				Arrf(function(x){Bj=Bj.concat(x)},B)
+
+			}else{
+				B=[].concat(A);
+				Bj=B;
+			}
+			//console.log(Bj,A);
+			var g=gcdFrac(Bj),l=lcmFrac(Bj);
+			if(l!=1 || g!=1){//需整数化 或者需要约分
+				
+				for(var i=0;i<m;i++){
+					if(Ais2){
+						for(var j=0;j<n;j++){
+							if(l!=1){
+								B[i][j]=times([B[i][j],l]);
+							}
+							if(g!=1){
+								B[i][j]=divide([B[i][j],g]);
+							}
+						}
+
+					}else{
+
+						if(l!=1){
+							B[i]=times([B[i],l]);
+						}
+						if(g!=1){
+							B[i]=divide([B[i],g]);
+						}	
+					}
+				}
+			}
+			return [divide([g,l]),B]
+		}
+
+
+
 		if(op=='向量模1'){/*A是一维数组（行向量）1表示是1维数组，而不是矩阵
 			参数p=2指定返回 自身内积（模平方）而不是模（内积开方）
 			返回数

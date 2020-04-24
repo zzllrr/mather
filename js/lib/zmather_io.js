@@ -1388,12 +1388,13 @@ SBS={
 			["intl('f','-1','1','x',0,'')", "intl('f','-','+','x',0,'')", "intl('f(t)','0','x','t',0,'')","orifun('0','2π')"],
 			[],
 
-			["iint(['P','+Q'],'L','','x;y',1,1)", "iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)"],
+			["iint(['P','+Q'],'L','','x;y',1,1)", "iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)",
+			"intl('','0','2π','θ',0,'')+intl('r','0','R','r',0,'')"],
 			["oint(['P','+Q'],'L','','x;y',1,1)+'='+iint(zp(difn('Q','x',1)+'-'+difn('P','y',1)),'D','','x,y',2,1)"],
 			[],
 
 
-			["iint('f','D','','',2,1)", "iint('f','D','','x,y',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','x,y',2,1)"], 
+			["iint('f','D','','',2,1)", "iint('f','D','','x,y',2,1)",  "iint('f','D\\'','','r,θ',2,1)", "iint('f',['x^2+y^2=1','x>=0'],'','x,y',2,1)"], 
 			["oint(['P','+Q','+R'],'D','','x,y;y,z;z,x',2,1)", "iint('f','D','','x, y',2,1)",],
 			[],
 			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)","intl('f','-','+','x',6,'')"],
@@ -1756,13 +1757,16 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		.replace(/\^?\*/g,'*')	//伴随矩阵
 		.replace(/^\(?⁻¹?\)?/g,'⁻')	//逆（广义逆）
 
-},opreplace3=function(x){//运算符规范化预处理	微积分运算
-	return x.replace(/[′']{3}/g,'‴').replace(/[′']+/g,'″').replace(/‵{3}/g,'‷').replace(/‵+/g,'″')
+},opreplace3=function(x, formathjs){//运算符规范化预处理	微积分运算	参数formathjs指定按mathjs的风格
+	var t=opreplace(x).replace(/[′']{3}/g,'‴').replace(/[′']+/g,'″').replace(/‵{3}/g,'‷').replace(/‵+/g,'″')
 		.replace(/∫{3}/g,'∭').replace(/∫+/g,'∬').replace(/∮{3}/g,'∰').replace(/∮+/g,'∯')
-		.replace(/d([xyt])/g,'ⅾ$1')//暂用罗马数字ⅾd，表示微分算符
+		//.replace(/d([xyt])/g,'ⅾ$1')//暂用罗马数字ⅾd，表示微分算符
 		.replace(/偏/g,'∂')
 		.replace(/o+/g,'∞')
+		.replace(/㏒_([\da-z]+)\^([\da-z]+)/ig, formathjs?'log ($2,$1)':'㏒($1,$2)');
 
+	return formathjs?t.replace(/[㏒㏑]/g,'log '):t
+		
 
 
 },opreplace6=function(x){//运算符规范化预处理	集合运算

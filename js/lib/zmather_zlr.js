@@ -712,9 +712,10 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:''))) + '}' + 
 			(t||t===0 ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + (isArr(fA)?
-			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + 
+			snake([zlrA3('\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g, s+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + 
 			(d==' '?'':'\\,'+
-			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s||'\\,')+'}')) : Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s)+'}')) : 
+				Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
 	},
 
 
@@ -722,16 +723,16 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','int','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:'')) + '}' + (t||t===0  ? '^{' + t + '}' : '') + (isArr(fA)?
-			snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
+			snake([zlrA3('\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g, s+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + '\\,'+
 			(d==' '?'':(!d?('\\mathrm{d}'+'  σV'[p || 2]):
-			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s||'\\,'))))+'}' 
+			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s))))+'}' 
 	},
 
 	oint = function (fA, b, t, d,p,zM) {
 		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:'')) + '}' + (t||t===0  ? '^{' + t + '}' : '') +
-			(!/,/.test(d) && !isArr(fA)?fA +(d==' '?'':'\\,\\mathrm{d}'+d):snake([zlrA3('\\,\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g,(s||'\\,')+'\\mathrm{d}').split(';'), '}'),fA]).join(''))+'}' 
+			(!/,/.test(d) && !isArr(fA)?fA +(d==' '?'':'\\,\\mathrm{d}'+d):snake([zlrA3('\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g, s+'\\mathrm{d}').split(';'), '}'),fA]).join(''))+'}' 
 	},
 
 

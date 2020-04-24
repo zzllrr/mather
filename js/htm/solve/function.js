@@ -12,8 +12,8 @@ solve['function']=function(inputValue, uriA){
 	if(sel(uriA,'Simplify','Unary Operation')){
 
 		rS=rS.concat(
-			Arrf(function(t){
-				var f=math.parse(t), A=['\\quad '+e2h(t)], r_;
+			Arrf(function(x){
+				var t=opreplace3(x), f=math.parse(opreplace3(t,1)), A=['\\quad '+e2h(t)], r_;
 
 
 					f_=math.simplify(f);
@@ -28,8 +28,8 @@ solve['function']=function(inputValue, uriA){
 	if(sel(uriA,'Rationalize','Unary Operation')){
 
 		rS=rS.concat(
-			Arrf(function(t){
-				var f=math.parse(t), A=['\\quad '+e2h(t)], r_;
+			Arrf(function(x){
+				var t=opreplace3(x), f=math.parse(opreplace3(t,1)), A=['\\quad '+e2h(t)], r_;
 
 
 					f_=math.rationalize(f);
@@ -49,7 +49,8 @@ solve['function']=function(inputValue, uriA){
 		rS=rS.concat(
 			Arrf(function(t){
 				var tA=t.split('&'),d=(tA[1]||'x').split(',')[0], xy=/,/.test(tA[1])?tA[1]:d+',y', y=xy.split(',')[1],
-					tA0=tA[0], tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A, fname='f';
+					tA0=opreplace3(tA[0]), tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A, fname='f';
+				tA[0]=tA0;
 
 				if(tp==2){
 					tA[0]=tA0.replace('=','-(')+')';
@@ -63,7 +64,7 @@ solve['function']=function(inputValue, uriA){
 				}
 
 
-				var f=math.parse(tA[0]);
+				var f=math.parse(opreplace3(tA[0],1));
 				A[0]+=e2h(tA[0])+(tp?'=0':'');
 				
 
@@ -139,7 +140,7 @@ fxxx fxxy
 			Arrf(function(t){
 				var tA=t.split('&'),d=(tA[1]||'x,y').split(',')[0],
 					xy=/,/.test(tA[1])?tA[1]:d+',y', dA=xy.split(','),
-					tA0=tA[0].split(',')[0], fn=tA[0].split(',')[1]||'f', tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
+					tA0=opreplace3(tA[0].split(';')[0]), fn=tA[0].split(';')[1]||'f', tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
 				tA[0]=tA0;
 
 
@@ -151,7 +152,7 @@ fxxx fxxy
 					}
 				//console.log(tA[0]);	
 	
-					var f=math.parse(tA[0]);
+					var f=math.parse(opreplace3(tA[0],1));
 
 					var A=[fn+'('+xy+')='+e2h(tA[0])+'=0'];
 					
@@ -201,8 +202,8 @@ fxxx fxxy
 
 				}else{
 
-
-					var f=math.parse(tA[0]),A=[fn+zp(xy)+'='+e2h(tA[0])], fA=[f], vA=[''], uA=[''];
+console.log(tA[0],opreplace3(tA[0],1) );
+					var f=math.parse(opreplace3(tA[0],1)),A=[fn+zp(xy)+'='+e2h(tA[0])], fA=[f], vA=[''], uA=[''];
 					for(var j=1,k=+tA[2]||1;j<=k;j++){
 						var fA2=[], vA2=[], uA2=[];
 						for(var h=0,n=fA.length;h<n;h++){
@@ -263,8 +264,9 @@ fxxx fxxy
 			Arrf(function(t){
 				var tA=t.split('&'),d=(tA[1]||'x,y').split(',')[0],
 				xy=/,/.test(tA[1])?tA[1]:d+',y', dA=xy.split(','),
-				tA0=tA[0], tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
-				var f=math.parse(tA[0]),A=['f'+zp(xy)+'='+e2h(tA[0])], fA=[f], vA=[''];
+				tA0=opreplace3(tA[0]), tp=/= *0/.test(tA0)?1:(/=/.test(tA0)?2:0),A;
+				tA[0]=tA0;
+				var f=math.parse(opreplace3(tA[0],1)),A=['f'+zp(xy)+'='+e2h(tA[0])], fA=[f], vA=[''];
 				for(var j=1,k=1;j<=k;j++){
 					var fA2=[], vA2=[];
 					for(var h=0,n=fA.length;h<n;h++){

@@ -1553,7 +1553,28 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 					
 					
 					
-					return latex?kroot(f(oc,1),'01√∛∜'.indexOf(of)):of+(nisVid(foc,1)?foc:pp(foc))
+					return latex?kroot(foc,'01√∛∜'.indexOf(of)):of+(nisVid(foc,1)?foc:pp(foc))
+				}
+
+				if(/[㏑]/.test(of)){
+					var foc=f(oc,1);
+					
+					
+					
+					return (latex?'\\ln ':of)+(nisVid(foc,1)?foc:pp(foc))
+				}
+
+				if(/[㏒]/.test(of)){// ㏒(x,y)
+					//console.log(A[1][oc].c);
+					var foc=A[1][A[1][oc].c];
+					
+					if(!foc){console.log(A);return ''}
+					var focv=A[1][A[1][oc].c].v;//[x,y]
+
+					var foc0=f(focv[0],1), foc1=f(focv[1],1);
+					
+					
+					return latex?'\\log_{'+foc0+'}'+(nisVid(foc1,1)?foc1:pp(foc1)):of+pp(foc0+','+focv)
 				}
 				if(of=='pow'){
 					var x0=f(ov[0],1).trim(), x1=f(ov[1],1).trim();

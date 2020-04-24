@@ -75,7 +75,7 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 
 	},A,'cp2')
 
-},gcdFrac=function(A){//分子最小公倍数
+},gcdFrac=function(A){//分子最大公约数
 	/*
 		如果有整数，则直接求gcd
 		如果有分数，则提取各数字分子的最大公约数。

@@ -1166,9 +1166,17 @@ solve['matrix']=function(inputValue, uriA){
 			var	A=Mtrx.opr1('fsiPTs',M,'iS=;fsi;iS=;jb*='),A0=A[0][0],n2=n-1-rA+n,X=subMtrx(A0,1,n-1,n,n2),Xs=[],Y=[];
 //consolelog(n2);
 			for(var i=0;i<n-rA;i++){
-				Xs.push(kfraczp(Arri(X,i),'','T'));
+				var Xi=Arri(X,i);
+				Xs.push(kfraczp(Xi,'','T'));
 				if(i){
 					Y.push('C'+(n-rA>2?sub(i,''):'')+Xs[i])
+				}else{//特解
+					var X0_kA=Mtrx.opr1('kA',Xi);
+					if(/\//.test(X0_kA[0])){//如有公分母，提取到外面）
+						Xs[0]=kfrac(X0_kA[0])+zp(X0_kA[1])+'^T'
+
+					}
+
 				}
 			}
 			return kxA(['增广矩阵化最简行',A[1]].concat(n-rA<2?
