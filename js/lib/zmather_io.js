@@ -2270,6 +2270,8 @@ var OverCanvas=function(t){
 				w.empty()
 			}
 		}
+		$('#input0Preview>.katex-display>.katex').css('text-align','left')
+
 	}catch(e){
 
 	}
@@ -2289,7 +2291,7 @@ $(function(){
 
 					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
-
+					itv('" id=input0Size tip="Font Size','format_size')+
 					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle')+
 
 					
@@ -2543,9 +2545,8 @@ $(function(){
 				'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
 
-				itv('" id=alignPreviewLeft tip="Left Align','format_align_left')+
-				itv('" id=alignPreviewCenter tip="Center Align','format_align_center')+
-				itv('" id=alignPreviewRight tip="Right Align','format_align_right')+
+
+				itv('" id=alignPreview tip="Center Align','format_align_center')+
 
 				itv('" id=linebreakEqual tip="Linebreak Equality','drag_handle')+
 				itv('" id=linebreak tip="Linebreak','subdirectory_arrow_left')+
@@ -2705,6 +2706,18 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			snippet.load(i>$('.snippet').length?1:i);
 		}
 
+	}).on('click','#input0Size',function(){
+		var me=$(this), a=+me.attr('data-size')||0.6,i=me.attr('data-sizeup')||'true';
+		
+		if(a>=2){
+			i='false'
+		}
+		if(a<=0.6){
+			i='true'
+		}
+		var b=(a+(i=='false'?-1:1)*0.2).toFixed(2);
+		me.attr({'data-sizeup':i, 'data-size':b});
+		$('#input0').css('font-size',b+'rem');
 
 	}).on('mouseover', '#TextLaTeXBox .sbsTbl td, #TextLaTeXBox .sbsTbl .td',function(e){
 
@@ -2819,9 +2832,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		var me=$(this).toggleClass('seled');
 		$('#HTMLEditor,.imgHTMLEditor').toggle(me.is('.seled'))
 
-	}).on('click',zlr('#alignPreview','Left Center Right',','),function(e){
-
-		$('#input0Preview>.katex-display>.katex').css('text-align',this.id.substr(12).toLowerCase())
+	}).on('click','#alignPreview',function(e){
+		var me=$(this),a=me.attr('data-align')||'left', A=ZLR('left center right'),
+			b=A[(A.indexOf(a)+1)%3];
+		me.attr('data-align',b);
+		$('#input0Preview>.katex-display>.katex').css('text-align',b)
 
 	}).on('click','#linebreak',function(e){
 		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
@@ -3192,6 +3207,52 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			preDisplay();
 		}
 
+
+	}).on('paste', '#input0', function (e) {
+		//console.log(e);
+		var ts = e.originalEvent.clipboardData.items;
+
+
+		if (ts.length) {
+			for (var i = 0; i < ts.length; i++) {
+				if (ts[i].kind == 'file') {
+	
+
+					var blob = ts[i].getAsFile(), reader = new FileReader();
+					//console.log(ts[i]);  DataTransferItem {type: "image/png", kind: "file"}
+					reader.onload = function (event) {
+						//console.log(event);
+						var src = event.target.result; //webkitURL.createObjectURL(blob);
+
+
+						var sne = picSrcNameExt(src);
+						$('#HTMLEditor').append('<img src="'+src+'" />');
+						$('#toggleHTMLEditor').not('.seled').click();
+						$('#preview').not('.seled').click();
+						/*
+						var img = new Image();
+						img.onerror = function(){
+							$(this).remove()
+						};
+						img.onload = function () {
+							var w = this.width;
+							var h = this.height;
+						
+		
+						};
+						img.src = src;
+						*/
+
+					};
+					reader.readAsDataURL(blob);
+					break;
+				}
+			}
+		}
+
+
+
+
 	}).on('click','#input1',function(){
 
 		$('#input0').removeClass('seled');
@@ -3481,6 +3542,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 						me.after(itv('" tip=Swap id="swap','swap_vert'));
 					}
 			
+				}
+				if(/struc/.test(id)){
+					$('#istruc .Sts.seled').click();
+					$('#struc .sbsTbl > *').hide();
 				}
 
 			}

@@ -68,6 +68,9 @@
 	border-color:transparent
 }
 
+.iTextLaTeXon input{
+	border:0
+}
 .sbsTblPg{
 	width:100%
 }

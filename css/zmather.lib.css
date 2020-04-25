@@ -183,6 +183,9 @@ body.day, .day textarea{
 body.night{
 	background-color: black;
 }
+body.night input, body.night select{
+	background-color: gainsboro;
+}
 body.day, iframe{
 	background-color:white;
 }
