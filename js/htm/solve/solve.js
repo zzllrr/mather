@@ -10,7 +10,7 @@ var r=solve[s]?solve[s](t,qa):'';
 
 $(function () {
 
-	r && OH(KxA(r));
+	r && OH(/<[a-z].* \/>/.test(r) || /<\/[a-z]+>/.test(r)?r:KxA(r));
 			
 	setTimeout(function(){
 		$('#oHTML').find('.oLaTeX').eq(0).click();

@@ -10,9 +10,9 @@ solve['relation']=function(inputValue, uriA){
 	var strA=fCC(seqA(65,n)).split('');
 
 	if(sel(uriA,'关系类型')){
-		var A=v.replace(/｛/g,'{').replace(/｝/g,'}').replace(/，/g,',').split(' '), An=A.length,set=A[0],
+		var A=v.replace(/｛/g,'{').replace(/｝/g,'}').replace(/，/g,',').split(' '), An=A.length,st=A[0],
 		bool=A[A.length-1],set2,Uset,rA=[],Rlt='{}',q,ra, rs='';
-		set=set.fromStr(set);
+		st=set.fromStr(st);
 		if(An==1){//商集确定的等价关系
 			var Q=set.fromStr(A[0].substr(4)),Ql=[],QA=[];
 			for(var i=0;i<Q.length;i++){
@@ -21,14 +21,14 @@ solve['relation']=function(inputValue, uriA){
 				QA.push(Mtrx.build.N(Qil,Qil,1,true))
 			}
 			q=true;//是商集
-			set2=set;
-			Uset=set;
+			set2=st;
+			Uset=st;
 		}else if(An==2){//集合自身与自身的关系
-			set2=set;
-			Uset=set;
+			set2=st;
+			Uset=st;
 		}else{
 			set2=set.fromStr(A[1]);
-			Uset=set.opr2('∪',set,set2);
+			Uset=set.opr2('∪',st,set2);
 		}
 
 		var rn=Uset.length;
@@ -37,11 +37,14 @@ solve['relation']=function(inputValue, uriA){
 			for(var i=0;i<rn;i++){
 				for(var j=0;j<rn;j++){
 					if(M[i][j]){
-						Si.push('&lt;'+[set.toStr(Uset[i]),set.toStr(Uset[j])].join(',')+'&gt;')
+						//Si.push('&lt;'+[set.toStr(Uset[i]),set.toStr(Uset[j])].join(',')+'&gt;')
+						Si.push('< '+[set.toStr(Uset[i]),set.toStr(Uset[j])].join(',')+' >')
 					}
 				}
 			}
-			return $B('{'+Si.join(',')+'}',1)
+			//console.log(Si);
+			Si=tableL(Si,0,3);
+			return $B('{'+Si.join(kbr)+'}',1)
 		},Arr2RltSet=function(A){
 			var Si=[];
 			for(var i=0;i<A.length;i++){
@@ -66,23 +69,45 @@ solve['relation']=function(inputValue, uriA){
 			rA=Mtrx.fromStr(bool);
 
 		}else{//关系是表达式
-			var eA=e2A(bool,'',1),o=eA[0][0], oT=oType(o);
-			//bool=Str2dom.arith(bool);
+			//console.log(bool);
+			var e2A=function(y){
+				var x=y.replace(/=+/g,'==').replace(/x\|y/g,'y%x==0') ,A=x.split(/∨|∧/g);
+				return A
+			};
+			var eA=e2A(bool),o=eA[0], oT=oType(o), isOr=/∨/.test(bool);
+
 			for(var i=0;i<rn;i++){
 				var si=Uset[i];
-				if(An>2 && set.opr2('搜',set,si)<0){
+				if(An>2 && set.opr2('搜',st,si)<0){
 					rA.push(Mtrx.build.A(rn,0));
 				}else{
 					rA.push([]);
 					for(var j=0;j<rn;j++){
-						var sj=Uset[j];
+						var sj=Uset[j], ra=0;
 						
-						consolelog(o,oT,si,sj);
+						//console.log(o,oT,si,sj);
+						for(var k=0;k<eA.length;k++){
+							try{
+								//console.log(i,j,k);
+								var m=math.parse(eA[k]);
+								//console.log(si,sj);
+								ra=m.evaluate({x:si,y:sj, x1:si[0], x2:si[1], y1:sj[0], y2:sj[1]});
+							}catch{
+								//var m=math.parse(eA[k]);
+								//console.log(i,j,k);
+								//console.log(si,sj,eA[k])
+								var o=eA[k].replace(/[xy]/g,'');
+								ra=eval(oT).is.b2[o](si,sj);
+							}
 
-						ra=eval(oT).is.b2[o](si,sj);
+							if(isOr && ra || !isOr && !ra){
+								break
+							}
+						}
+						
 
 
-						rA[i].push(ra?1:0)
+						rA[i].push(+ra)
 					}
 				}
 			}
@@ -175,7 +200,7 @@ solve['relation']=function(inputValue, uriA){
 
 		var Y='✗✓×√✕';
 //console.log(Rlt);
-		rs+=kdetail('关系R','R='+Rlt+kbr+'关系矩阵M='+Mtrx.toStr(rA)),
+		rs+=[kdetail('关系R=',Rlt+kbr+'关系矩阵M='+Mtrx.toStr(rA)),
 			kdetail('关系类型',ztable([ZLR('自反 反自反 对称 反对称 传递'),[Y[+isR],Y[+isR2],Y[+isS],Y[+isS2],Y[+isT]]])+kbr+	//,Y[+isA],Y[+isC]
 				ztable([['相容 ⇔ 自反∧对称',Y[+isE]],
 				['等价 ⇔ 自反∧对称∧传递 ⇔ 相容∧传递 ⇔ 自反∧循环',Y[+isE]],
@@ -184,7 +209,7 @@ solve['relation']=function(inputValue, uriA){
 				['全序(线序,简单序,链) ⇔ 完全∧偏序',Y[+(isP && isA)]],
 				['良序 ⇔ 线序∧非空子集都有最小元',Y[+(isP && isA)]]])),
 
-			kdetail('逆关系 R^{-1}'+(isS?'=R':''),(isS?'':'R^{-1}='+Mtrx2Rlt(rAt)+kbr+'关系矩阵：'+Mtrx.toStr(rAt)));
+			kdetail('逆关系 R^{-1}'+(isS?'=R':''),(isS?'':'R^{-1}='+Mtrx2Rlt(rAt)+kbr+'关系矩阵：'+Mtrx.toStr(rAt)))].join(br);
 
 		if(!isR){
 			var rR=Mtrx.opr1('拷',rA);
@@ -282,9 +307,15 @@ solve['relation']=function(inputValue, uriA){
 			}
 			
 //console.log(nA, reA);
+/*
+			setTimeout(function(){
+				plot.plot(dmid,'<div id='+dmid+'>'+plot.shape(dmid+'_svg','svg',plot.hasse(dmid,nA,reA))+dc);
+			},1000);
 
-			//plot.plot(dmid,'<div id='+dmid+'>'+plot.shape(dmid+'_svg','svg',plot.hasse(dmid,nA,reA))+dc);
-			rS+=DCtv('plot',plot.hasse(dmid,nA,reA));
+			*/
+			//rs+=DCtv('plot',plot.hasse(dmid,nA,reA));
+
+			rs+=DCtv('plot',svgf.id('OH'+dmid,plot.hasse(dmid,nA,reA),1,' width="300" height="400"',L.FGC,L.BGC))
 		}
 
 		rS.push(rs);

@@ -65,8 +65,8 @@ solve['function']=function(inputValue, uriA){
 
 
 				var f=math.parse(opreplace3(tA[0],1));
-				A[0]+=e2h(tA[0])+(tp?'=0':'');
-				
+				//A[0]+=e2h(tA[0])+(tp?'=0':'');
+				A[0]+=math2str(f,1)+(tp?'=0':'');
 
 				if(tp){//隐函数
 					for(var j=1,l=+tA[2]||1;j<=l;j++){
@@ -102,7 +102,8 @@ solve['function']=function(inputValue, uriA){
 
 					for(var j=1,l=+tA[2]||1;j<=l;j++){
 						var f_=math.derivative(f,d), m_=f_.toString(), r_;
-						r_=e2h(m_,1);
+						//r_=e2h(m_,1);
+						r_=math2str(f_,1);
 						A.push("f"+(j<4?"'".repeat(j):"^{("+j+")}")+"("+d+')='+r_);
 						f=f_;
 					}
@@ -202,8 +203,9 @@ fxxx fxxy
 
 				}else{
 
-console.log(tA[0],opreplace3(tA[0],1) );
-					var f=math.parse(opreplace3(tA[0],1)),A=[fn+zp(xy)+'='+e2h(tA[0])], fA=[f], vA=[''], uA=[''];
+//console.log(tA[0],opreplace3(tA[0],1) );
+					var f=math.parse(opreplace3(tA[0],1)), fA=[f], vA=[''], uA=[''];
+					var A=[fn+zp(xy)+'='+math2str(f,1)];	//A=[fn+zp(xy)+'='+e2h(tA[0])],
 					for(var j=1,k=+tA[2]||1;j<=k;j++){
 						var fA2=[], vA2=[], uA2=[];
 						for(var h=0,n=fA.length;h<n;h++){
@@ -242,9 +244,17 @@ console.log(tA[0],opreplace3(tA[0],1) );
 						}
 						for(var h=0,n=fA.length;h<n;h++){
 							ispwer=h==0||h==n-1;
+							//console.log(fA[h]);
 							f_=fA[h].evaluate(o);
 							m_=f_.toString();
-							r_=e2h(m_,1);
+							//console.log(m_);
+							if(isNaN(m_)){
+								r_='NaN';
+							}else{
+								
+								r_=e2h(m_,1);
+							}
+							
 
 							A.push("$difn('f','"+(ispwer|| dA[h].length<2?dA[h]+"'":dA[h]+"'.split('')")+",1,"+(h==0||h==n-1?dA[h].length:'')+")$"+zp(oi)+
 								"="+r_)

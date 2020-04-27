@@ -1529,14 +1529,14 @@ https://zhidao.baidu.com/question/750762700228964772.html
 	if(sel(uriA,'基ⅠⅡ，坐标[xy]，求过渡矩阵、坐标[yx]【β=αP，X=PY】')){//第1行：基1	第2行：基2	第3行：坐标&[xy]
 		var B1=MfS(VA[0]),n=B1.length,B2=MfS(VA[1]),C=VA[2]?MfS(VA[2],'vT'):'';
 		var B=Mtrx.opr1('invlPTs',Mtrx.build.B([[B1,B2]]),'iS='), P=subMtrx(B[0][0],1,n,n+1,2*n);
-		rS.push(kxA(['根据(β_1,β_2,β_3)=(α_1,α_2,α_3)P','对增广矩阵施行初等行变换，来求矩阵P']),
-			B[1], '即，过渡矩阵P = α^{-1}β = '+'\\small '+kmtrx(P));
+		rS.push(kxA(['根据('+zlrA('β_',seqA(1,n))+')=('+zlrA('α_',seqA(1,n))+')P','对增广矩阵施行初等行变换，来求矩阵P']),
+			B[1], '过渡矩阵P = [α_i]^{-1}[β_i] = '+'\\small '+kmtrx(P));
 
 		if(C){
 			var hasP=/&/.test(VA[2]),ij=hasP?VA[2].replace(/.+&/,''):'x';
 			if(ij=='x'){
 				var Y=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,C]]),'iS='), y=subMtrx(Y[0][0],1,n,n+1,n+1);
-				rS.push('下面来求坐标：y = P^{-1}x',Y[1],'即，所求坐标：y ='+'\\small '+kmtrx(y));
+				rS.push('下面来求坐标：y = P^{-1}x',Y[1],'即所求坐标：y ='+'\\small '+kmtrx(y));
 			}else{
 				rS.push('所求坐标：x = Py = '+'\\small '+kmtrx(Mtrx.opr2('*',P,C)));
 			}
@@ -1546,15 +1546,15 @@ https://zhidao.baidu.com/question/750762700228964772.html
 	if(sel(uriA,'基ⅠS=基ⅡT，坐标[xy]，求过渡矩阵、坐标[yx]【S=PT，X=PY】')){//第1行：S	第2行：T	第3行：坐标&[xy]
 		var S=MfS(VA[0]),n=S.length,T=MfS(VA[1]),C=VA[2]?MfS(VA[2],'vT'):'';
 		var B=Mtrx.opr1('invrPTs',Mtrx.build.B([[T],[S]]),'jS='), P=subMtrx(B[0][0],n+1,2*n,1,n);
-		rS.push(kxA(['根据(β_1,β_2,β_3)T=(α_1,α_2,α_3)S','以及(β_1,β_2,β_3)=(α_1,α_2,α_3)P',
+		rS.push(kxA(['根据('+zlrA('β_',seqA(1,n))+')T=('+zlrA('α_',seqA(1,n))+')S','以及('+zlrA('β_',seqA(1,n))+')=('+zlrA('α_',seqA(1,n))+')P',
 			'得知P = ST^{-1}，下面来对增广矩阵'+zmtrx([['T'],['S']]),'施行初等列变换→'+zmtrx([['I'],['ST^{-1}']])+'='+zmtrx([['I'],['P']])+'来求矩阵P']),
-			B[1], '即，过渡矩阵P = ST^{-1} = '+'\\small '+kmtrx(P));
+			B[1], '过渡矩阵P = ST^{-1} = '+'\\small '+kmtrx(P));
 
 		if(C){
 			var hasP=/&/.test(VA[2]),ij=hasP?VA[2].replace(/.+&/,''):'x';
 			if(ij=='x'){
 				var Y=Mtrx.opr1('invlPTs',Mtrx.build.B([[P,C]]),'iS='), y=subMtrx(Y[0][0],1,n,n+1,n+1);
-				rS.push('下面来求坐标：y = P^{-1}x',Y[1],'即，所求坐标：y ='+'\\small '+kmtrx(y));
+				rS.push('下面来求坐标：y = P^{-1}x',Y[1],'即所求坐标：y ='+'\\small '+kmtrx(y));
 			}else{
 				rS.push('所求坐标：x = Py = '+'\\small '+kmtrx(Mtrx.opr2('*',P,C)));
 			}
@@ -1563,7 +1563,7 @@ https://zhidao.baidu.com/question/750762700228964772.html
 
 	if(sel(uriA,'标准正交基Ⅰ基Ⅱ=P，坐标[xy]，求坐标[yx]【过渡矩阵P，X=PY】')){//第1行：P	第2行：坐标&[xy]
 		var P=MfS(VA[0]),n=P.length,C=MfS(VA[1],'vT');
-		rS.push(kxA(['('+zlr('α_',seqA(1,n).join(' '),',')+')=('+zlr('ε_',seqA(1,n).join(' '),',')+')P',
+		rS.push(kxA(['('+zlrA('αη'[+/&/.test(VA[0])]+'_',seqA(1,n))+')=('+zlrA('ε_',seqA(1,n))+')P',
 			'其中ε_i是标准正交基',
 			'从标准正交基到这组基的过渡矩阵是P = '+'\\small '+kmtrx(P),
 			'~',

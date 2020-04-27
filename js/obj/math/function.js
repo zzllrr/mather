@@ -1704,7 +1704,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 									ov[1][0]=kfrac(f(s,1))
 								}else{
 									ov[1][0]=zp(f(s,1));
-									console.log(ov[1][0]);
+									//console.log(ov[1][0]);
 								}
 							}else{
 								

@@ -117,7 +117,7 @@ SBS={
 
 	Operator:[
 		['∑∏∐⋀⋂∮∯∰⨁⨂','∫∬∭⋁⋃∱∲∳⨀⨌'],
-		['′″‴!† ¬∀∃∄∟√∛∜⨳','‵‶‷‼‡∠∂∇✓※'],
+		['′″‴!† ¬∀∃∄√∛∜⨳','‵‶‷‼‡∂∇✓※'],
 		['+×±⊕ ∧∨∩∪','-÷∓⊗∖'],
 		[ ZLR('() [] {} <> 〈〉 ⁽⁾ ┌┐ ⌈⌉ ⎰⎱ ⟦⟧ ║║ ||'),
 		ZLR('(,) [,] {,} <,> ⟨⟩ ₍₎ └┘ ⌊⌋ (,] [,)')],//⟮⟯
@@ -147,7 +147,7 @@ SBS={
 	Relation:[
 
 		['⋅∙•‧․∘°','⋆∗⁂⁑'],
-		[':‥∷  ⋯⋰∵','∶¨⁞  ⋮⋱∴'],
+		[':‥∷∟∠⋯⋰∵∦⊥','∶¨⁞⦜△⋮⋱∴▱◇'],
 		['＝≡≣≗≘≙≚≛≜≝','≠≢≐≑≓≒≔≕≟≞'],
 		['∼≈≋≀⌇≌⋍≃≅≊','≁≉⍭∾∿∽≂≄≇≆'],
 
@@ -1528,7 +1528,7 @@ SBS={
 		zlrA3("mtrx([[1,2],[3,4]],",[
 			"'small','small'",
 			"'.','.'"
-		],",'')"),
+		],",'')").concat("zmtrx([['',0,1],[0,0,1],[1,1,0],],'','I1J1','.','.')"),
 
 
 		zlrA3("zmtrx([[1,2",[
@@ -1728,6 +1728,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	return x.replace(/[]/g,'').replace(/​/g,'')	//不可见字符
 		.replace(/ |&#8194;/g,' ')	//非标空格
 		.replace(/[乘乖✖ⅹ╳‧][以于与]?/ig,'*').replace(/&#10008;/g,'*')
+		.replace(/ʸ/g,'^y')
 		
 		.replace(/&#65409;&#10135;/g,'除').replace(/ﾁ7ￊ9|&#65409;7&#65482;9|&#10135;/g,'除').replace(/[除➗梅／][以于与]?/g,'/')
 		.replace(/[减減]去?|－/g,'-').replace(/[＋加]上?/g,'+')//.replace(/\+\-/g,'±').replace(/\-\+/g,'∓')
@@ -1762,7 +1763,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		.replace(/∫{3}/g,'∭').replace(/∫+/g,'∬').replace(/∮{3}/g,'∰').replace(/∮+/g,'∯')
 		//.replace(/d([xyt])/g,'ⅾ$1')//暂用罗马数字ⅾd，表示微分算符
 		.replace(/偏/g,'∂')
-		.replace(/o+/g,'∞')
+		.replace(/o{2,}/g,'∞')
 		.replace(/㏒_([\da-z]+)\^([\da-z]+)/ig, formathjs?'log ($2,$1)':'㏒($1,$2)');
 
 	return formathjs?t.replace(/[㏒㏑]/g,'log '):t
@@ -2831,6 +2832,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
 		$('#HTMLEditor,.imgHTMLEditor').toggle(me.is('.seled'))
+
+	}).on('click','#HTMLEditor img',function(e){
+		$('#toggleHTMLEditor.seled').click()
 
 	}).on('click','#alignPreview',function(e){
 		var me=$(this),a=me.attr('data-align')||'left', A=ZLR('left center right'),

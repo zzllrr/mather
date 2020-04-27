@@ -15,7 +15,7 @@
 var Mtrx={	//矩阵
 	build:{//直接构造矩阵
 		F:function(a,m,n){//形式矩阵aij
-			var A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[];A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<m;i++){
 				A.push([]);
 				for(var j=0;j<(n||m);j++){
@@ -29,7 +29,7 @@ var Mtrx={	//矩阵
 				//k指定数量矩阵，对角线都是k
 			var isk=k!==undefined;
 			if(!n || m==n){ 
-				var A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+				var A=[];A.t='Mtrx';AtoStr(A);
 				for(var i=0;i<m;i++){
 					A.push([]);
 					for(var j=0;j<m;j++){
@@ -45,7 +45,7 @@ var Mtrx={	//矩阵
 			return A
 		},
 		N:function(m,n,k,k2num){//全为k的mxn阶矩阵	k2num指定转换为数字
-			var A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[];A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<m;i++){
 				if(k2num){
 					A.push([]);
@@ -60,7 +60,7 @@ var Mtrx={	//矩阵
 			return A
 		},
 		A:function(n,k){//全为k的n长数组 nx1
-			var A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[];A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<n;i++){
 				A.push(k);
 			}
@@ -68,13 +68,13 @@ var Mtrx={	//矩阵
 		},
 		B:function(M){//分块：M为矩阵块组成的矩阵（4层数组） 
 			//同一行的矩阵块之间, 行数要一致（列数可不作要求），才能拼接
-			var A=[];A.t='Mtrx',m=M.length;A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[];A.t='Mtrx',m=M.length;AtoStr(A);
 //consolelog(M);
 			for(var i=0;i<m;i++){
 				var Mi=M[i], n=Mi.length, Mi0=Mi[0];
 				if(!isArr(Mi)){	//M是一维数组
 					A=[].concat(M);
-					A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+					A.t='Mtrx';AtoStr(A);
 					return A;
 				}
 				var r=Mi0.length;
@@ -98,7 +98,7 @@ var Mtrx={	//矩阵
 				leftcycle指定向左循环（默认右循环）
 
 			*/
-			var A=[],n=arr.length;A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[],n=arr.length;A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<n;i++){
 				var Ai=[];
 				for(var j=0;j<n;j++){
@@ -131,7 +131,7 @@ var Mtrx={	//矩阵
 		},
 
 		LU:function(S){//上三角或下三角数组
-			var A=[],n=S.length, isu=S[0].length==n;A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[],n=S.length, isu=S[0].length==n;A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<n;i++){
 				var O=ZLR(0,isu?i:n-i-1).split(''), Si=isu?O.concat(S[i]):S[i].concat(O);
 				A.push(Si);
@@ -139,7 +139,7 @@ var Mtrx={	//矩阵
 			return A
 		},
 		S:function(S,skew){//（反）对称矩阵 S是上三角或下三角数组 skew反对称
-			var A=[],n=S.length, isu=S[0].length==n;A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[],n=S.length, isu=S[0].length==n;A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<n;i++){
 				var k=isu?i:n-i-1, O=ZLR(0, k).split(''), Si=isu?O.concat(S[i]):S[i].concat(O);
 				for(var j=0;j<k;j++){
@@ -154,7 +154,7 @@ var Mtrx={	//矩阵
 			return A
 		},
 		V:function(S,ev,T){//范德蒙矩阵数组	ev指定指数化成结果	T转置（不转置，首行都为1；转置，首列都为1）
-			var A=[],n=S.length;A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			var A=[],n=S.length;A.t='Mtrx';AtoStr(A);
 			for(var i=0;i<n;i++){
 				if(T){
 					if(i==0){
@@ -194,7 +194,7 @@ var Mtrx={	//矩阵
 
 			*/
 			var A=Mtrx.opr1('拷',M), m=A.length,n=A[0].length,i=posA[0],j=posA[1], dir=direction;
-			A.toStr=function(p){return Mtrx.toStr(this,p)};
+			AtoStr(A);
 			
 			if(!isArr(posA)){
 				if(i=='i'){
@@ -484,7 +484,7 @@ var Mtrx={	//矩阵
 
 		if(/^[\d,-; ]+$/.test(s) && /[,; ]/.test(s)){
 			if(/\d-\d/.test(s)){
-				s='['+s.split(/[ ;,]/).join(';').replace(/-?\d/g,'$& ')+']'
+				s='['+Arrf(function(x){return x.replace(/-?\d/g,'$& ').trim()},s.split(/[ ;,]+/)).join(';')+']'
 			}else{
 				s='['+s.replace(new RegExp('[^-\\d'+s.replace(/[-\d]/g,'')[0]+']','g'),';')
 					.replace(new RegExp(s.replace(/[-\d]/g,'')[0],'g'),' ')+']'
@@ -492,19 +492,19 @@ var Mtrx={	//矩阵
 
 		}
 
-
+//console.log(s);
 
 		if(typ=='v'){//行向量
-			A=s.split(/[, ]/);A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			A=s.replace(/[\[\]]/g,'').split(/[, ]/);A.t='Mtrx';AtoStr(A);
 			return A
 		}
 		if(typ=='vT'){//列向量
-			A=Arrf(function(x){return [x]},s.split(/[, ]/));A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			A=Arrf(function(x){return [x]},s.replace(/[\[\]]/g,'').split(/[, ]/));A.t='Mtrx';AtoStr(A);
 			return A
 		}
 		
 		if(/^\[\S+\]$/.test(s)){//一阶矩阵
-			A=[[s.replace(/^\[|\]$/g,'')]];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			A=[[s.replace(/^\[|\]$/g,'')]];A.t='Mtrx';AtoStr(A);
 			return A
 			
 		}
@@ -651,7 +651,7 @@ var Mtrx={	//矩阵
 				//consolelog(s);
 				e=s.replace(/ +/g,' ').trim().replace(/^\||\|$/g,'').replace(/[;,] */g,' ');//不用ntrim，因为会把开头的零去掉
 
-				A=[];A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+				A=[];A.t='Mtrx';AtoStr(A);
 				
 
 				
@@ -717,7 +717,7 @@ var Mtrx={	//矩阵
 			for(var i=0;i<m;i++){
 				A[i]=ZLR(A[i])
 			}
-			A.t='Mtrx';A.toStr=function(p){return Mtrx.toStr(this,p)};
+			A.t='Mtrx';AtoStr(A);
 		}else if(/[ij]/.test(e)){//f(i,j)表达式形式
 			//consolelog(e, ij);
 			A=Mtrx.build.N(m,n,0);
@@ -1207,6 +1207,7 @@ var Mtrx={	//矩阵
 
 		if(op=='eval'){//化简计算结果
 			if(A.t){//1个矩阵
+				//console.log(A);
 				B=Arrf(function(x){return Arrf(function(y){return Mfn.opr1('=',y,1).toStr()},x)},A);
 			}else if(isArr(A)){
 				//B=Arrf(function(x){return Mtrx.opr1('eval',x)},A)
@@ -3460,3 +3461,5 @@ https://wenku.baidu.com/view/556a39263169a4517723a347.html
 
 
 */
+
+AtoStr=function(A){A.toStr=function(p){return Mtrx.toStr(this,p)}};

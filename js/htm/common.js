@@ -347,7 +347,16 @@ function math2str(x,tex,opt){
         };
     }
     */
-    return tex?x.toTex(o):pp(x.toString(o))
+   if(tex){
+       var f=function(t){
+           //console.log(t);
+            return '\\displaystyle{}'+t.replace(/.cdot/g,'')
+                .replace(/\\left\( *([a-z])\\right\)/ig,' $1')
+                .replace(/\\left\(([^\)]+)\\right\) *\/ *\\left\(([^\)]+)\\right\) *(\^\{[^\}]+\})?/g,'\\frac{$1}{$2$3}')
+               
+       };
+   }
+    return tex?f(x.toTex(o)):pp(x.toString(o))
 }
 function mathjsOutputOpt(par,imp,f){
     return {
