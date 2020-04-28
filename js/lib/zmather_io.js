@@ -2289,6 +2289,36 @@ $(function(){
 			DCtv('pd10 resize" hidden contentEditable=true id="input0Preview')+
 			DCtv('resize','<textarea id=input0>'+(L.snippet1||'')+'</textarea>'+
 				'<div id=Snippets hidden>'+
+					
+
+					(isedi?'':itv('" id=send2textBox tip="copy2input','arrow_upward'))+
+
+					//itv('" id=navHide tip="Collapse','keyboard_arrow_up')+
+
+					'<select id=input0Type>'+optgrp(gM('Snippet Editor')+':',
+					OptGrps(jSon('[{"'+
+						gM('Math Formula')+
+						'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
+						gM('Webpage Editor')+
+						'":"Markdown HTML CSS"},{"'+
+						gM('Graphics')+
+						'":"Canvas SVG Echarts Zdog Lego 2D 3D"},{"'+
+						gM('Show')+
+						'":"Slide VR AR"},{"'+
+				
+						gM('Calculator')+' | '+gM('Script')+
+						'":"JavaScript"},{"'+
+
+						gM('Translator')+
+						'":"I18N EN"},{"'+
+
+						gM('Data')+' | '+gM('Text')+
+						'":"TXT TSV CSV XML YAML JSON"}]')
+					)
+					)+'</select>'+
+					itvc('rotate180" id="tClear')+
+					//(isedi?'':itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up'))+br+
+					br+
 
 					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
@@ -2296,7 +2326,7 @@ $(function(){
 					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle')+
 
 					
-					itvc('rotate180" id="tClear')+
+					
 					'<input type="file" id=inputSnippetFile hidden />'+
 
 
@@ -2308,38 +2338,9 @@ $(function(){
 				+dc
 			)+
 			DCtv('opac" hidden id="input0Tool',
-				itvc('" id=iClear hotkey="Ctrl + E')+
-
-				(isedi?'':itv('" id=send2textBox tip="copy2input','arrow_upward'))+
-
-				//itv('" id=navHide tip="Collapse','keyboard_arrow_up')+
-
-				'<select id=input0Type>'+optgrp(gM('Snippet Editor')+':',
-				OptGrps(jSon('[{"'+
-					gM('Math Formula')+
-					'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
-					gM('Webpage Editor')+
-					'":"Markdown HTML CSS"},{"'+
-					gM('Graphics')+
-					'":"Canvas SVG Echarts Zdog Lego 2D 3D"},{"'+
-					gM('Show')+
-					'":"Slide VR AR"},{"'+
-			
-					gM('Calculator')+' | '+gM('Script')+
-					'":"JavaScript"},{"'+
-
-					gM('Translator')+
-					'":"I18N EN"},{"'+
-
-					gM('Data')+' | '+gM('Text')+
-					'":"TXT TSV CSV XML YAML JSON"}]')
-				)
-				)+'</select>'+
-
-				(isedi?'':itv('" id=zMatherHide tip="Collapse','keyboard_arrow_up'))+
-				
 
 				'<div id=inputTools>'+
+					itvc('" id=iClear hotkey="Ctrl + E')+
 
 					strbtn+'⋮" id=Condon class=tool hidden />'+
 					SCtv('iTextLaTeXon',

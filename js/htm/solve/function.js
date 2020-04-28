@@ -229,9 +229,9 @@ fxxx fxxy
 						A.push('一二'[j-1]+'阶全微分：'+
 							'\\d '+(j>1?'^'+j:'')+fn+'='+zp(Arrf(function(x){return '\\d '+x+difn('',x,1)},dA).join('+'))+(j>1?'^'+j:'')+fn,
 							'\\d '+(j>1?'^'+j:'')+fn+'='+(
-							j==1?Arrf(function(x,i){return uA[i]=='0'?'':(i && uA[i][0]!='-'?'+':'')+uA[i]+'\\d '+x},dA).join('').replace(/^\+/,''):(j==2?
+							j==1?Arrf(function(x,i){return uA[i]=='0'?'':(i && uA[i][0]!='-'?'+':'')+pptd(uA[i],1)+'\\d '+x},dA).join('').replace(/^\+/,''):(j==2?
 								Arrf(function(x,i){return uA[i]=='0'||i==2?'':(i && uA[i][0]!='-'?'+':'')+
-									(i==1?e2h(math.parse(pp(fA[i].toString())+'*2'),1):uA[i])+
+									pptd(i==1?e2h(math.parse(pp(fA[i].toString())+'*2'),1):uA[i], 1)+
 									'\\d '+(i==1?vA[i].split('').join('\\d'):vA[i].replace(/.$/,'^2'))},uA).join('').replace(/^\+/,''):''))
 						);
 					}

@@ -306,16 +306,9 @@ solve['relation']=function(inputValue, uriA){
 				
 			}
 			
-//console.log(nA, reA);
-/*
-			setTimeout(function(){
-				plot.plot(dmid,'<div id='+dmid+'>'+plot.shape(dmid+'_svg','svg',plot.hasse(dmid,nA,reA))+dc);
-			},1000);
 
-			*/
-			//rs+=DCtv('plot',plot.hasse(dmid,nA,reA));
-
-			rs+=DCtv('plot',svgf.id('OH'+dmid,plot.hasse(dmid,nA,reA),1,' width="300" height="400"',L.FGC,L.BGC))
+			rs+=DCtv('plot',svgf.id('OH'+dmid,plot.hasse(dmid,nA,reA),1,' width="300" height="400"'));
+			sTo(dayOrNight,1000);
 		}
 
 		rS.push(rs);

@@ -541,9 +541,13 @@ $(function(){
 		p.parent().nextAll('.task.seled').filter(function(){return $(this).text()==t}).click();
 
 
+	}).on('click','#toolHistory > i:eq(0)', function(){
+		$('#Search').click();
+
+	
 	});
 
-
+	
 
 
 

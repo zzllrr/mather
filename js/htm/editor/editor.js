@@ -12,7 +12,7 @@ $(function () {
     
     
     setTimeout(function () {
-      $('#input0Type').val(tp);
+      //$('#input0Type').val(tp);
       
       if(t){
         $('#snippetNew').eq(0).click();
