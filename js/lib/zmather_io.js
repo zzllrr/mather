@@ -1389,8 +1389,9 @@ SBS={
 			[],
 
 			["iint(['P','+Q'],'L','','x;y',1,1)", "iint('ω','∂M','',' ',1,1)+'='+iint('','M','','ω',1,1)",
-			"intl('','0','2π','θ',0,'')+intl('r','0','R','r',0,'')"],
-			["oint(['P','+Q'],'L','','x;y',1,1)+'='+iint(zp(difn('Q','x',1)+'-'+difn('P','y',1)),'D','','x,y',2,1)"],
+				"intl('','0','2π','θ',0,'')+intl('f','0','1','ρ',0,'')"],
+			["oint(['P','+Q'],'L','','x;y',1,1)+'='+iint(zp(difn('Q','x',1)+'-'+difn('P','y',1)),'D','','x,y',2,1)",
+				"intl('','0','1','x',0,'')+intl('f','0','1','y',0,'')"],
 			[],
 
 
@@ -1400,7 +1401,7 @@ SBS={
 			["iint('f','Ω','','',3,1)", "iint('f','Ω','','x,y,z',3,1)","intl('f','-','+','x',6,'')"],
 			["oint(['P','+Q'],'Ω','','x,y,z;y,z,t',3,1)","intl(intl(intl('f','0','R','r',0,''),'0','π','φ',0,''),'0','2π','θ',0,'')"],
 			[],
-			["intl('','0','1','x',0,'')+intl('','0','x','y',0,'')+intl('f(x,y,z)','0','z(x,y)','z',0,'')","intl('','0','2π','θ',0,'')+intl('f','0','1','r',0,'')"],
+			["intl('','0','1','x',0,'')+intl('','0','x','y',0,'')+intl('f(x,y,z)','0','z(x,y)','z',0,'')","intl('','0','2π','θ',0,'')+intl('f','0','θ','ρ',0,'')"],
 			["intl('','0','2π','θ',0,'')+intl('','0','π','φ',0,'')+intl('f(r,φ,θ)','0','R','r',0,'')","intl('','0','2π','θ',0,'')+intl('f(ρ,θ)','ρ=0','ρ=a','',-1)"],
 			[],
 	])),
@@ -2555,8 +2556,9 @@ $(function(){
 
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
 				SCtv('imgHTMLEditor',
-					itv('" id=zoomHTMLEditor tip="Zoom Image','zoom_out')+
+					itv('" id=zoomHTMLEditor tip="Zoom Image','loupe')+
 					itv('" id=rotateHTMLEditor tip="Rotate Image','rotate_90_degrees_ccw')+
+					itv('" id=invertHTMLEditor tip="Invert Image Color','invert_colors')+
 					itv('" id=removeHTMLEditor tip="Remove Image','remove_circle_outline')
 				)+
 
@@ -2864,9 +2866,16 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			me.attr({'data-zooming':z,'title':gM('Zooming')+' '+y});
 			return y
 		})
+	}).on('click','#invertHTMLEditor',function(e){
+		$('#HTMLEditor img').css('filter',function(i,v){var me=$(this),z=+me.attr('data-invert')||0;
+
+			me.attr({'data-invert':1-z});
+
+			return 'invert('+(1-z)+')'
+		})
 
 	}).on('click','#rotateHTMLEditor',function(e){
-		$('#HTMLEditor img').css('transform',function(i,v){var me=$(this),z=+me.attr('data-rotating')||0,
+		$('#HTMLEditor img').css('transform',function(i,v){var me=$(this),z=+me.attr('data-invert')||0,
 			x=(z+1)%6, y=x<4?'rotate('+x*90+'deg)':'rotate'+'XY'[x-5]+'(180deg)';
 			me.attr({'data-rotating':x, 'title':y});
 
@@ -3215,7 +3224,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 	}).on('paste', '#input0', function (e) {
 		//console.log(e);
-		var ts = e.originalEvent.clipboardData.items;
+		var ts = e.originalEvent.clipboardData.items, shft=e.shiftKey || $('#Shift').is('.seled');
 
 
 		if (ts.length) {
@@ -3230,8 +3239,12 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 						var src = event.target.result; //webkitURL.createObjectURL(blob);
 
 
-						var sne = picSrcNameExt(src);
-						$('#HTMLEditor').append('<img src="'+src+'" />');
+						var sne = picSrcNameExt(src), img0='<img src="'+src+'" />';
+						if(shft){
+							$('#HTMLEditor').append(img0);
+						}else{
+							$('#HTMLEditor').html(img0)
+						}
 						$('#toggleHTMLEditor').not('.seled').click();
 						$('#preview').not('.seled').click();
 						/*
