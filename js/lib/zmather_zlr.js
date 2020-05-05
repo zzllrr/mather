@@ -591,6 +591,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 			.replace(/\\Rt/g,'\\text{Rt△}')	//直角三角形
 
+			.replace(/\\\(/g,'\\left(')
+			.replace(/\\\)/g,'\\right)')
+
 			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
 		//	.replace(/(inj|proj) ?(lim)/g, 'mathrm{$1~$2}')
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
@@ -663,7 +666,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	kfrac = function (t, p, tiny) {
 		if (t instanceof Array) { return frac(t[0], t[1], tiny || '') }
 		if (p) { return ('' + t).replace(/(\d+|[a-zα-ω])\/(\d+|[a-zα-ω])/ig, function (x) { return kfrac(x, '', tiny || '') }) }
-		return /\//.test(t) ? (t[0] == '-' ? '-' : '') + frac(t.split('/')[0].replace('-', ''), t.split('/')[1], tiny || '') : t
+		return /\//.test(t) && t.split('/').length==2 ? (t[0] == '-' ? '-' : '') + frac(t.split('/')[0].replace('-', ''), t.split('/')[1], tiny || '') : t
 	},
 	kfraczp = function (t, tiny, T) { return kfrac(zp(t) + (T ? '^{' + T + '}' : ''), 1, tiny || '') },
 	kxAfrac = function (A, p) { return Arrf(function (x) { return kfrac(x, 1) }, A).join(kbr2) },

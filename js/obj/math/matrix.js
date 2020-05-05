@@ -599,7 +599,7 @@ var Mtrx={	//矩阵
 
 		if(/^Linear\(/.test(s)){//从线性方程组提取系数	（齐次，不含最后一列零向量）
 			var s0=s.split('Linear(')[1].replace(/\)$/,''),deg=+fmax(s0.match(/x\d/ig).join(',').replace(/x/ig,'').split(',')), inhomo=/=[^0]/.test(s0);
-			s0=s0.split(/[;,\n]/.test(s0)?/[;,\n]/g:' ');
+			s0=s0.split(/ *[;,\n]/.test(s0)?/ *[;,\n]/g:' ');
 			var m=s0.length,M=[]; //M=Mtrx.build.N(m,deg+(+inhomo),0);
 			for(var j=0;j<m;j++){
 				var tA=Arrf(function(x){return exp2coe(s0[j],'x'+x)}, seqA(1,deg));
@@ -2899,12 +2899,8 @@ var newj=0;
 
 	http://wenku.baidu.com/link?url=4syLqIl3c1o4dP4heVbONNu7QNgT3pwj5Koy2zd6Q6-kKemvD82-OPUI1WKorwKOLCaarwblkJpla0-qWbcGv_wC7WLRqQ3Gs84n_UXYmRO
 	
-	http://wenku.baidu.com/view/d9e9f707cc1755270722081d.html?re=view
+	http://wenku.baidu.com/view/d9e9f707cc1755270722081d.html
 	
-	
-	
-	http://zhidao.baidu.com/question/138627283388033765.html?entry=qb_ihome_tag
-	这一题，使用对角化方法，k=1时，为啥不等于A？
 	
 	
 	P ⁻¹AP=Λ 		3 -2 0 -2 2 -2 0 -2 1&-1,2,5
@@ -3453,10 +3449,16 @@ https://wenku.baidu.com/view/556a39263169a4517723a347.html
 
 矩阵的特征值与特征向量的求法：亮点是增广矩阵同时求特征值、特征向量
 
+方法1： 对增广矩阵施行初等列变换，化成下三角
+λE-A	→	G
+E			Q
 
+令|G|=0，解得特征值
+特征值代入，零向量，下方对应的就是特征向量
 
-
-
+方法2：对增广矩阵施行行列互逆变换，化成若尔当Jordan矩阵
+A	→	J
+E		P
 
 
 

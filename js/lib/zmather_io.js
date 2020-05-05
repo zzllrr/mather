@@ -2875,7 +2875,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		})
 
 	}).on('click','#rotateHTMLEditor',function(e){
-		$('#HTMLEditor img').css('transform',function(i,v){var me=$(this),z=+me.attr('data-invert')||0,
+		$('#HTMLEditor img').css('transform',function(i,v){var me=$(this),z=+me.attr('data-rotating')||0,
 			x=(z+1)%6, y=x<4?'rotate('+x*90+'deg)':'rotate'+'XY'[x-5]+'(180deg)';
 			me.attr({'data-rotating':x, 'title':y});
 

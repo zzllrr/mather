@@ -4385,7 +4385,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 },e2h=function(x,sim){
 	var m=Mfn.fromStr(x);
-	return (sim?Mfn.opr1('=',m):m).toStr(1)
+	return kfrac((sim?Mfn.opr1('=',m):m).toStr(1))
 
 // 下列涉及解方程运算
 

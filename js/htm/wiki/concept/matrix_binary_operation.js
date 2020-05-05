@@ -47,7 +47,7 @@ detail('矩阵（二元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 			'行列式|AB| = |A||B| = |BA|',
 			
-			'迹tr(AB) = tr(BA)',
+			'迹\\text{tr}(AB) = \\text{tr}(BA)',
 
 			'谱'+piece([
 				piece([['A_m的特征值λ_i','其中i=1,⋯,m'],['B_n的特征值μ_j','其中j=1,⋯,n']],1)+' ⇒ A_m⊗B_n的特征值λ_iμ_j',
@@ -135,12 +135,12 @@ detail('矩阵（二元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 			'谱'+piece([
 				piece([['A_m的特征值λ_i','其中i=1,⋯,m'],['B_n的特征值μ_j','其中j=1,⋯,n']],1)+' ⇒ A_m⊗B_n的特征值λ_iμ_j',
-				'tr(A_m⊗B_n) = tr(A_m)tr(B_n)',
+				'\\text{tr}(A_m⊗B_n) = \\text{tr}(A_m)\\text{tr}(B_n)',
 				]),
 
 			'奇异值'+piece([
 				piece([['A_m的特征值λ_i','其中i=1,⋯,m'],['B_n的特征值μ_j','其中j=1,⋯,n']],1)+' ⇒ A_m⊗B_n的特征值λ_iμ_j',
-				'tr(A⊗B) = tr(A)tr(B)',
+				'\\text{tr}(A⊗B) = \\text{tr}(A)\\text{tr}(B)',
 				]),
 				
 				

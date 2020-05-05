@@ -214,6 +214,8 @@ fxxx fxxy
 								var f_=math.derivative(fA[h],dA[i]), m_=f_.toString(), r_,
 									vd=vA[h]+dA[i], ispwer=(h+i)*(n-h-1+l-i-1)==0;
 								r_=e2h(m_,1);
+								//console.log(r_);
+								
 								m_A.push(r_);
 								A.push("$difn('"+fn+"','"+(ispwer || vd.length<2?dA[i]+"'":vd+"'.split('')")+",1,"+(ispwer?j:1)+")$="+r_);
 
@@ -226,14 +228,19 @@ fxxx fxxy
 						fA=fA2;
 						vA=vA2;
 						uA=uA2;
+						//console.log(j,h,uA);
+						
 						A.push('一二'[j-1]+'阶全微分：'+
 							'\\d '+(j>1?'^'+j:'')+fn+'='+zp(Arrf(function(x){return '\\d '+x+difn('',x,1)},dA).join('+'))+(j>1?'^'+j:'')+fn,
 							'\\d '+(j>1?'^'+j:'')+fn+'='+(
-							j==1?Arrf(function(x,i){return uA[i]=='0'?'':(i && uA[i][0]!='-'?'+':'')+pptd(uA[i],1)+'\\d '+x},dA).join('').replace(/^\+/,''):(j==2?
+							j==1?Arrf(function(x,i){return uA[i]=='0'?'':(i && uA[i][0]!='-'?'+':'')+
+								(uA[i])+'\\d '+x},dA).join('').replace(/^\+/,''):(j==2?
 								Arrf(function(x,i){return uA[i]=='0'||i==2?'':(i && uA[i][0]!='-'?'+':'')+
-									pptd(i==1?e2h(math.parse(pp(fA[i].toString())+'*2'),1):uA[i], 1)+
+									kfrac(i==1?e2h(math.parse(pp(fA[i].toString())+'*2'),1):uA[i])+
+
 									'\\d '+(i==1?vA[i].split('').join('\\d'):vA[i].replace(/.$/,'^2'))},uA).join('').replace(/^\+/,''):''))
 						);
+						
 					}
 					if(tA[3]){
 						

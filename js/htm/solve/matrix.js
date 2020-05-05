@@ -299,6 +299,12 @@ solve['matrix']=function(inputValue, uriA){
 		//求逆方法题型 http://jpkc.nwpu.edu.cn/jp2005/26/bjjc/xj/zsyd2-55.htm 
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'iS=', M=MfS(t), A=Mtrx.opr1('invPTs',M,ij);
+			var A_kA=Mtrx.opr1('kA',Mtrx.opr1('inv',M));
+			//console.log(A_kA);
+			if(/\//.test(A_kA[0])){//如有公分母，提取到外面）
+				return A[1]+kbr+'即'+kfrac(A_kA[0])+'\\small '+kmtrx(A_kA[1])
+
+			}
 			return A[1]
 		},VA));
 	}
