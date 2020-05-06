@@ -5,26 +5,26 @@
  */
 
 wiki['Formula/Function/Derivative']=Kx(
-    detail(gM('Derivative Table'),Table([[gM('Indefinite Integral')+'（省略常数项）','函数','1阶导数′','2阶导数″','n阶导数^{(n)}']],[
+    detail(gM('Indefinite Integral & Derivative')+ksc('∫f→f→f\''),Table([['∫f（省略常数项）','函数f','1阶导数f\'','2阶导数f″','n阶导数f^{(n)}']],[
         
-        ZLR('a∫f ± b∫g____af ± bg____af′ ± bg′____af″ ± bg″____af^{(n)} ± bg^{(n)}','','____'),
-        ZLR('∫f'+kxf('d')+'g+∫g'+kxf('d')+'f____f⋅g____f′g + fg′____f″g + 2f′g′+ fg″____∑C_n^if^{(i)}g^{(n-i)}','','____'),
-        ZLR('∫(fg)'+kxf('d')+'h+∫(fh)'+kxf('d')+'g+∫(gh)'+kxf('d')+'f____f⋅g⋅h____f′gh + fg′h + fgh′____(f″gh + fg″h + fgh″)\\\\+2(f′g′h+f′gh′+fg′h′)____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
+        ZLR('a∫f ± b∫g____af ± bg____af\' ± bg\'____af″ ± bg″____af^{(n)} ± bg^{(n)}','','____'),
+        ZLR('∫f'+kxf('d')+'g+∫g'+kxf('d')+'f____f⋅g____f\'g + fg\'____f″g + 2f\'g\'+ fg″____∑C_n^if^{(i)}g^{(n-i)}','','____'),
+        ZLR('∫(fg)'+kxf('d')+'h+∫(fh)'+kxf('d')+'g+∫(gh)'+kxf('d')+'f____f⋅g⋅h____f\'gh + fg\'h + fgh\'____(f″gh + fg″h + fgh″)\\\\+2(f\'g\'h+f\'gh\'+fg\'h\')____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
     
     
-        ZLR('____'+frac('f','g','')+'____'+khrA([frac('f′g - fg′','g^2',''),
-            frac('f′','g','')+'-'+frac('fg′','g^2','')])+'____'+khrA([frac('f″g^2 - 2f′g′g + 2fg′^2 - fg″g','g^3',''),
-            frac('f″','g','')+'-'+frac('2f′g′','g^2','')+frac('2fg′^2','g^3','')+'-'+frac('fg″','g^2','')])+'____'+kbrA([frac('∑(-1)^{i+j}C_n^if^{(i)}g^{(j)}g^{(n-i-j)}','g^{n+1}',''),'（？猜测待验证）']),'','____'),
+        ZLR('____'+frac('f','g','')+'____'+khrA([frac('f\'g - fg\'','g^2',''),
+            frac('f\'','g','')+'-'+frac('fg\'','g^2','')])+'____'+khrA([frac('f″g^2 - 2f\'g\'g + 2fg\'^2 - fg″g','g^3',''),
+            frac('f″','g','')+'-'+frac('2f\'g\'','g^2','')+frac('2fg\'^2','g^3','')+'-'+frac('fg″','g^2','')])+'____'+kbrA([frac('∑(-1)^{i+j}C_n^if^{(i)}g^{(j)}g^{(n-i-j)}','g^{n+1}',''),'（？猜测待验证）']),'','____'),
             
-        ZLR('____'+frac('1','g','')+'____-'+frac('g′','g^2','')+'____'+khrA([frac('2g′^2 - g″g','g^3',''),frac('2g′^2','g^3','')+'-'+frac('g″','g^2','')]),'','____'),
-        ZLR('____f^{-1}(y)____'+frac('1','f′(x)','')+'____'+'-'+frac('f′(x)','f′^2(x)',''),'','____'),
-        ZLR('____f(g(x))____f′(u)g′(x)____f″(u)g′^2(x) + f′(u)g″(x)','','____'),
-        ZLR('____u(x)^{v(x)}____'+Eq(['(e^{\\ln u^v})′','(e^{v\\ln u})′','u^v(v\\ln u)′','u^v'+lrp('','v′\\ln u + '+frac('vu′','u',''),'','')])+'____'+khrA([
-            kxA(['u^v'+lrp('','(v\\ln u)′^2 + (v\\ln u)″','',''),
-                '=u^v'+lrp('',lrp('','v′\\ln u + '+frac('vu′','u',''),'','')+'^2 + v″\\ln u + '+frac('2v′u′+ vu″','u','')+'-'+frac('vu′^2','u^2',''),'','')]),
-            'u^v(t′^2 + t″)'])+'____u^v∑','','____'),
-        ZLR('____y____'+frac('y′(t)','x′(t)','')+'____'+khrA([frac('y″x′- y′x″','x′^3',''),
-            frac('y″','x′^2','')+'-'+frac('y′x″','x′^3','')]),'','____'),
+        ZLR('____'+frac('1','g','')+'____-'+frac('g\'','g^2','')+'____'+khrA([frac('2g\'^2 - g″g','g^3',''),frac('2g\'^2','g^3','')+'-'+frac('g″','g^2','')]),'','____'),
+        ZLR('____f^{-1}(y)____'+frac('1','f\'(x)','')+'____'+'-'+frac('f\'(x)','f\'^2(x)',''),'','____'),
+        ZLR('____f(g(x))____f\'(u)g\'(x)____f″(u)g\'^2(x) + f\'(u)g″(x)','','____'),
+        ZLR('____u(x)^{v(x)}____'+Eq(['(e^{\\ln u^v})\'','(e^{v\\ln u})\'','u^v(v\\ln u)\'','u^v'+lrp('','v\'\\ln u + '+frac('vu\'','u',''),'','')])+'____'+khrA([
+            kxA(['u^v'+lrp('','(v\\ln u)\'^2 + (v\\ln u)″','',''),
+                '=u^v'+lrp('',lrp('','v\'\\ln u + '+frac('vu\'','u',''),'','')+'^2 + v″\\ln u + '+frac('2v\'u\'+ vu″','u','')+'-'+frac('vu\'^2','u^2',''),'','')]),
+            'u^v(t\'^2 + t″)'])+'____u^v∑','','____'),
+        ZLR('____y____'+frac('y\'(t)','x\'(t)','')+'____'+khrA([frac('y″x\'- y\'x″','x\'^3',''),
+            frac('y″','x\'^2','')+'-'+frac('y\'x″','x\'^3','')]),'','____'),
         ZLR('ax____a____0____0____0','','____'),
         ZLR(kxA([frac('x^{a+1}','a+1',''),'其中a≠-1'])+'____x^a____ax^{a-1}____a(a-1)x^{a-2}____a(a-1)⋯(a-n+1)x^{a-n}','','____'),
         ZLR('-\\cos x____'+khrA(['\\sin x','注意：\\sin^2 x+\\cos^2 x=1'])+'____\\cos x____-\\sin x____'+khrA(['\\sin '+lrp('','x + '+frac('nπ',2,''),'',''),
@@ -70,10 +70,29 @@ wiki['Formula/Function/Derivative']=Kx(
     
     ],'wiki TBrc').replace(/\n/g,br))+
 
-    detail(gM('Implicit Function Derivative'),Table([[gM('Function'),'1阶导数′','2阶导数″','n阶导数^{(n)}']],[
+    detail(gM('Power Indefinite Integral')+ksc('∫f^n'),Table([['f','f^n','∫f^n\\d x']],[
+        
+        ['\\cos x','\\cos^nx','n=2k+1，是奇数时'+Eq([intl('\\cos^nx','','','x',0,''),
+            intl('\\cos^{n-1}x','','','~\\sin x',0,''),
+            intl('(1-\\sin^2x)^k','','','~\\sin x',0,''),
+            intl(zp(sum('i',0,'k','C_k^i(-\\sin^2x)^i',0,'')),'','','~\\sin x',0,''),
+            intl(zp(sum('i',0,'k','C_k^i(-1)^i\\sin^{2i}x',0,'')),'','','~\\sin x',0,''),
+            sum('i',0,'k',kfrac(['C_k^i(-1)^i\\sin^{2i+1}x','2i+1']),0,'')
+        ])],
+        ['\\sin x','\\sin^nx','n=2k+1，是奇数时'+Eq([intl('\\sin^nx','','','x',0,''),
+            '-'+intl('\\cos^{n-1}x','','','~\\cos x',0,''),
+            '-'+intl('(1-\\cos^2x)^k','','','~\\cos x',0,''),
+            '-'+intl(zp(sum('i',0,'k','C_k^i(-\\cos^2x)^i',0,'')),'','','~\\cos x',0,''),
+            '-'+intl(zp(sum('i',0,'k','C_k^i(-1)^i\\cos^{2i}x',0,'')),'','','~\\cos x',0,''),
+            '-'+sum('i',0,'k',kfrac(['C_k^i(-1)^i\\cos^{2i+1}x','2i+1']),0,'')
+        ])],
+
+    ],'wiki TBrc').replace(/\n/g,br))+
+
+    detail(gM('Implicit Function Derivative')+ksc('F=0'),Table([[gM('Function'),'1阶导数\'','2阶导数″','n阶导数^{(n)}']],[
         
         ['F(x,y)=0',khrA([difn('y','x','')+"=-\\frac{F_x}{F_y}",'\\d F=F_x\\d x+F_y\\d y=0']),difn('y','x','',2)+"=-\\frac{F_{xx}F_y-F_xF_{yx}}{F_y^2}",""],
-        ['F(x,y,z)=0',piece([difn('z','x',1)+'=-\\frac{F_x}{F_z} =-'+difn('z','y',1)+difn('y','x',1), '',difn('z','y',1)+'=-\\frac{F_y}{F_z}','', difn('y','x',1)+'=-\\frac{F_x}{F_y}'])+kbr,"",""],
+        ['F(x,y,z)=0',piece([difn('z','x',1)+'=-\\frac{F_x}{F_z} =-'+difn('z','y',1)+difn('y','x',1),'注意，上式末端非链式法则（多了一个负号）',difn('z','y',1)+'=-\\frac{F_y}{F_z}','', difn('y','x',1)+'=-\\frac{F_x}{F_y}'])+kbr,"",""],
     
     ],'wiki TBrc').replace(/\n/g,br))
 
