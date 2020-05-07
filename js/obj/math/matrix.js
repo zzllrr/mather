@@ -1592,7 +1592,7 @@ if(pA0.length==1 && pA2.length>1){
 				coe=[], Coe=1, Bini=Mtrx.opr1('/',A),//化成分数
 
 				TB=isinv||iscong||isfsi?(isfsi?'J'+(n-1):(isBc?'J'+n:(iscong?'I'+m:(isinvl?'J'+m:'I'+n+'  .')))):'';	//'j'+m+'r':'i'+n+'b'
-				//consolelog(TB);
+				//console.log(op,TB);
 				
 			//var ps=(p||(isBr?'jL':'iU')+'='+(isdet?';d;=':'')).split(';');
 			var ps=(p||'iU='+(isdet?';d;=':'')).split(';');

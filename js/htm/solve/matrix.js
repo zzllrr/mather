@@ -295,7 +295,7 @@ solve['matrix']=function(inputValue, uriA){
 
 //Inverse
 
-	if(sel(uriA,'A^{-1}')){
+	if(sel(uriA,'A^{-1}','Inverse')){
 		//求逆方法题型 http://jpkc.nwpu.edu.cn/jp2005/26/bjjc/xj/zsyd2-55.htm 
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,''):'iS=', M=MfS(t), A=Mtrx.opr1('invPTs',M,ij);
@@ -1007,14 +1007,15 @@ solve['matrix']=function(inputValue, uriA){
 	}
 	
 	
-	if(sel(uriA,'AB')){
+	if(sel(uriA,'AB','Multiary Operation')){
 		rS.push((n<5?strA.join(''):prod('i',1,'n','M_i','',''))+'='+'\\small '+kmtrx(
 			Arrf(function(x,y){
 					return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
 			},VA,'cp2'))
 		);
 	}
-	if(sel(uriA,'BA')){
+
+	if(sel(uriA,'BA','Multiary Operation')){
 		rS.push((n<5?strA.reverse().join(''):prod('i','n',1,'M_i','',''))+'='+'\\small '+kmtrx(
 			Arrf(function(y,x){
 					return Mtrx.opr2('*',typeof x=='string'?MfS(x):x,MfS(y))
@@ -1094,18 +1095,60 @@ solve['matrix']=function(inputValue, uriA){
 
 
 
-	if(sel(uriA,'A^{-1}B')){//	A\B 前2行是矩阵A、B，第3行，是参数
-		rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[0]),MfS(VA[1])]]),VA[2]||'iS=')[1])
+	if(sel(uriA,'A^{-1}B','Division')){//	A\B 前2行是矩阵A、B，第3行，是参数
+		var A=Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[0]),MfS(VA[1])]]),VA[2]||'iS=');
+		var m=A[0][0].length, n=A[0][0][0].length, A_kA=Mtrx.opr1('kA',subMtrx(A[0][0],1,m,m+1));
+		
+		if(/\//.test(A_kA[0])){//如有公分母，提取到外面）
+
+			rS.push(A[1]+kbr+'即'+kfrac(A_kA[0])+'\\small '+kmtrx(A_kA[1]));
+
+		}else{
+			rS.push(A[1]);
+		}
+
+
 	}
-	if(sel(uriA,'BA^{-1}')){//	B/A 前2行是矩阵A、B，第3行，是参数
-		rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[0])],[MfS(VA[1])]]),VA[2]||'jS=')[1])
+	if(sel(uriA,'BA^{-1}','Division')){//	B/A 前2行是矩阵A、B，第3行，是参数
+		var A=Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[0])],[MfS(VA[1])]]),VA[2]||'jS=');
+		
+		var m=A[0][0].length, n=A[0][0][0].length, A_kA=Mtrx.opr1('kA',subMtrx(A[0][0],n+1,m,1));
+		//console.log(A_kA);
+		if(/\//.test(A_kA[0])){//如有公分母，提取到外面）
+
+			rS.push(A[1]+kbr+'即'+kfrac(A_kA[0])+'\\small '+kmtrx(A_kA[1]));
+
+		}else{
+			rS.push(A[1]);
+		}
+		
 	}
 
-	if(sel(uriA,'AB^{-1}')){//	A/B 前2行是矩阵A、B，第3行，是参数
-		rS.push(Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[1]),MfS(VA[0])]]),VA[2]||'jS=')[1])
+	if(sel(uriA,'AB^{-1}','Division')){//	A/B 前2行是矩阵A、B，第3行，是参数
+		var A=Mtrx.opr1('invrPTs',Mtrx.build.B([[MfS(VA[1])],[MfS(VA[0])]]),VA[2]||'jS=');
+		
+		var m=A[0][0].length, n=A[0][0][0].length, A_kA=Mtrx.opr1('kA',subMtrx(A[0][0],n+1,m,1));
+		//console.log(A_kA);
+		if(/\//.test(A_kA[0])){//如有公分母，提取到外面）
+
+			rS.push(A[1]+kbr+'即'+kfrac(A_kA[0])+'\\small '+kmtrx(A_kA[1]));
+
+		}else{
+			rS.push(A[1]);
+		}
+		
 	}
-	if(sel(uriA,'B^{-1}A')){//	/BA 前2行是矩阵A、B，第3行，是参数
-		rS.push(Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[1])],[MfS(VA[0])]]),VA[2]||'iS=')[1])
+	if(sel(uriA,'B^{-1}A','Division')){//	/BA 前2行是矩阵A、B，第3行，是参数
+		var A=Mtrx.opr1('invlPTs',Mtrx.build.B([[MfS(VA[1]),MfS(VA[0])]]),VA[2]||'iS=');
+		var m=A[0][0].length, n=A[0][0][0].length, A_kA=Mtrx.opr1('kA',subMtrx(A[0][0],1,m,m+1));
+		
+		if(/\//.test(A_kA[0])){//如有公分母，提取到外面）
+
+			rS.push(A[1]+kbr+'即'+kfrac(A_kA[0])+'\\small '+kmtrx(A_kA[1]));
+
+		}else{
+			rS.push(A[1]);
+		}
 	}
 
 
