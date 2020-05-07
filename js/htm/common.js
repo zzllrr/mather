@@ -1286,9 +1286,10 @@ $(function(){
 		}
 
     }).on('click','#oHTML .katex',function(e){
-    
-        copy2clipboard($(this).find('annotation').eq(0).text());
-        var shft=e.shiftKey||$('#Shift').is('.seled');
+        
+        var shft=e.shiftKey||$('#Shift').is('.seled'), me=$(this),
+            t1=me.find('annotation').eq(0).text(), t0=me.parent('.katex0').attr('data-katex0')||t1;
+        copy2clipboard(shft?t1:t0);
         /*
         if(shft){
             OverCanvas($(this).find('annotation').eq(0).text());

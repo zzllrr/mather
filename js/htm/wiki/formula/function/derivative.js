@@ -94,7 +94,13 @@ wiki['Formula/Function/Derivative']=Kx(
         ['F(x,y)=0',khrA([difn('y','x','')+"=-\\frac{F_x}{F_y}",'\\d F=F_x\\d x+F_y\\d y=0']),difn('y','x','',2)+"=-\\frac{F_{xx}F_y-F_xF_{yx}}{F_y^2}",""],
         ['F(x,y,z)=0',piece([difn('z','x',1)+'=-\\frac{F_x}{F_z} =-'+difn('z','y',1)+difn('y','x',1),'注意，上式末端非链式法则（多了一个负号）',difn('z','y',1)+'=-\\frac{F_y}{F_z}','', difn('y','x',1)+'=-\\frac{F_x}{F_y}'])+kbr,"",""],
     
-    ],'wiki TBrc').replace(/\n/g,br))
+    ],'wiki TBrc').replace(/\n/g,br))+
+
+
+    detail(gM('Derivative Application'),ksc([
+        ['球体积4\\/3πr^3 ','球面积4πr^2','球周长（8个卦限的球面三角形中心与三个顶点距离和）8πr'].join(eq('求导','→')),
+        ['圆面积πr^2','圆周长2πr','圆周角2π'].join(eq('求导','→')),
+    ]).join(br))
 
 
 

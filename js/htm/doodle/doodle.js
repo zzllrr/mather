@@ -26,7 +26,7 @@ $(function () {
 	L.drawCopy = '';
 
 	//var cvs = $('#caps')[0], capctx = cvs.getContext('2d');
-	var x='<div id=Caps hidden>'+cap0+(L.cap0||'')+dc;
+	var x='<div id=Caps hidden>'+cap0+dc;//+(L.cap0||'')
 	if($('#splash').length){
 
 		$('#splash').after(x)

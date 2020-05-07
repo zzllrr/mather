@@ -504,6 +504,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	spanmi=function(t,v,c){return '<span class="mi-span'+(c?' '+c:'')+'" mi='+t+'>'+v+sc},
 	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~', brn='\n',
+	brA=function(A,js){return (js?$js(A):A).join(br)}, hrA=function(A,js){return (js?$js(A):A).join(hr)},
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
 	i18=function(x){return isArr(x)?Arrf(i18,x):XML.wrapE('i18',x)},	
@@ -564,12 +565,17 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	ul = function (A, c) { return '<ul class="alignl ' + (c != null ? c : '') + '">' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ul>' }, kul = function (A, c) { return ul(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c) },
 	dl = function (A, B, c) { return '<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(function (t) { return XML.wrapE('dt', t) }, A), Arrf(function (t) { return XML.wrapE('dd', t) }, B)).join('') + '</dl>' }, kdl = function (A, B, c) { return dl(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), B, c) },
 
+	$js=function(x){return x instanceof Array ?Arrf($js,x):'$$$'+x.trim()+'$$$'},
 	$A = function (A) { return Arrf(function (x) { return x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : '') }, A) },
 	tinyA=function(A, size){return A.length==0?[]:Arrf(function(x){return '\\'+ZLR('tiny scriptsize footnotesize small normalsize large Large LARGE huge Huge')[size!==undefined?size:3]+' '+$A(x)},A)},
 	encodeLatex = function (t) { return ('' + t).replace(/[\{\}]/g, '\\$&') },
 	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
 
-	Kx = function (t) { return t.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) }).replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) }) },
+	Kx = function (t) { return t.replace(/\${3}[^\$]*\${3}/g, function (x) {var t=x.substr(3, x.length - 6);return t? '㆖'+t+'㆘':''})
+		.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) })
+		.replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) })
+		.replace(/㆖[^㆖㆘]+㆘/g, function (x) { return ksc($A(x.substr(1, x.length - 2))) })
+	},
 	KxA = function (A) { return ksc(A.join(kbr2)) },
 	//KxA = function (A) { return Table([[SCtv('oLaTeX pd10" tip="thtip', 'LaTeX'), itvc('oClear')]],[[Kx(A.join(kbr2)),'']], 'edit collapse','','OHLaTeX bd0').replace('edit collapse mg10','edit') },
 	kx = function (t) {
@@ -658,7 +664,8 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	boxed = function (t) { return '\\boxed{' + t + '}' }, hp = function (t) { return '\\hphantom{' + (t || 0) + '}' },
 	kbox = function (t, p, pfx) { return boxed(kxc(t, p || 'bf', pfx || 'text')) },
 
-	ksc = function (t) { return isArr(t)?Arrf(ksc,t):SCtv('katex0', t) }, kdc = function (t) { return isArr(t)?Arrf(kdc,t):DCtv('katex0', t) },
+	ksc = function (t) { return isArr(t)?Arrf(ksc,t):SCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t) }, 
+	kdc = function (t) { return isArr(t)?Arrf(kdc,t):DCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t) },
 	ksz = function (t, n) { return '\\' + ['tiny', 'scriptsize', 'footnotesize', 'small', 'normalsize', 'large', 'Large', 'LARGE', 'huge', 'Huge'][(n || 0) + 4] + ' ' + t },
 
 

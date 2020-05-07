@@ -113,7 +113,7 @@ tooltip['API']=[
 			{'格式化':'html2txt html2html altTxt txt2A csv2A blking ubb2html md2html replaceNodeInner'},
 			{'Engin':'Engin'},
 			{'元素':[
-				{'过渡':'br hr prog'},
+				{'过渡':'br hr brA hrA prog'},
 				{'结构':'SCtv DCtv spanmi itv detail ol ul dl Options OptGrps optgrp subReg tmb Table fieldset fieldseth subtabs refer'},
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num i18 I18 colorbx rng txa txtreadonly mark del href hrefA scHotk q_key sceg sceg2 scegc scegj zMath ruby'},
@@ -142,7 +142,7 @@ tooltip['API']=[
 			{'规范化':'kx encodeLatex'},
 			{'运算符':'kos'},
 			{'标记符':'kxo kxu kancel'},
-			{'括符':'$A $B tinyA boxed kbox hp lrpfrac genfrac zp pp'},
+			{'括符':'$A $B $js tinyA boxed kbox hp lrpfrac genfrac zp pp'},
 			{'数学运算':'kroot kfrac kfraczp kxAfrac difn Opr orifun'},
 			{'数学结构':'ksups ksubs binom zmtrx kmtrx zarray ztable det zdet kdet piece aligned'},
 			{'数学关系':'kmod eq eqM Eq EqA'},
