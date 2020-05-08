@@ -55,10 +55,10 @@ solve['matrix']=function(inputValue, uriA){
 
 	}
 
-	if(sel(uriA,'Orthogonalize','Gram-Schmidt') || sel(uriA,'Gram-Schmidt','Gram-Schmidt')){
-
+	if(sel(uriA,'Orthogonalize','Gram-Schmidt','Unary Operation') || sel(uriA,'Gram-Schmidt','Gram-Schmidt','Unary Operation')){
+//console.log(uriA);
 		rS=rS.concat(Arrf(function(t){
-			var M=MfS(t), A=Mtrx.opr1('正交化',M, sel(uriA,'Gram-Schmidt','Gram-Schmidt'));
+			var M=MfS(t), A=Mtrx.opr1('正交化',M, sel(uriA,'Gram-Schmidt','Gram-Schmidt','Unary Operation'));
 
 			return A[1]
 		},VA));
@@ -636,7 +636,7 @@ solve['matrix']=function(inputValue, uriA){
 
 	}
 	
-	if(sel(uriA,'Eigen Vector')){//矩阵&特征值1,2...
+	if(sel(uriA,'Eigen Vector','Eigen Vector')){//矩阵&特征值1,2...
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'', M=MfS(t), A=Mtrx.opr1('特征向量',M,ij, 1);
 				
@@ -645,11 +645,12 @@ solve['matrix']=function(inputValue, uriA){
 
 	}
 
-	if(sel(uriA,'Eigen Vector Orthogonalize') || sel(uriA,'Eigen Vector Gram-Schmidt')){/*矩阵&特征值1,2...
+	if(sel(uriA,'Orthogonalize','Eigen Vector') || sel(uriA,'Gram-Schmidt','Eigen Vector')){/*矩阵&特征值1,2...
 		示例：17 -8 4 -8 17 -4 4 -4 11
 			22-225-4-2-45
 		*/
-		var oi=sel(uriA,'Eigen Vector Gram-Schmidt');
+		var oi=sel(uriA,'Gram-Schmidt','Eigen Vector');
+
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'',M,t0=t.replace(/&.+/,''),tA;
 			if(/x\d\^2/.test(t0) || /x\dx\d/.test(t0)){
@@ -680,18 +681,14 @@ solve['matrix']=function(inputValue, uriA){
 			return (tA?'二次型'+t0.replace(/x/g,'x_')+'对应系数矩阵\\\\ ':'')+A[1]+'\\\\ '+
 				(isS && /^1+$/.test(Arri(A[3],1).join(''))?'由于矩阵A是实对称矩阵，因此属于不同特征值的特征向量是正交的':'矩阵P施密特正交化\\\\ '+B[1])+
 				(oi?'\\\\ 单位化，得到正交矩阵Q = '+'\\small '+kmtrx(Q)+' \\normalsize ':'')+
-				'\\\\ 并且有'+'PQ'[+oi]+'^{-1}A'+'PQ'[+oi]+' = Λ = '+D+
+				'\\\\ 并且有'+'PQ'[+oi||1]+'^{-1}A'+'PQ'[+oi||1]+' = Λ = '+D+
 				
-				(oi?'​\\\\ 所求正交变换是X=QY，Y=Q^TX，且有'+
+				(oi && 0?'​\\\\ 所求正交变换是X=QY，Y=Q^TX，且有'+
 					'\\\\ X^TAX=(QY)^TAQY=Y^TQ^TAQY=Y^T'+D+'Y\\\\ '+
 					kxA(Arrf(function(t){
-							//console.log(Arri(Q,t-1), zlrA('x_',seqA(1,m)));
-							
-						return 'y'+sub(t,'')+'='+sums(Arri(Q,t-1),zlrA('x_',seqA(1,m)),1)	
-							
-					//	return 'y'+sub(t,'')+'='+sums(Arri(Q,t-1),zlrA('x_',seqA(1,m)))		//		此处有死循环 bug		sums(["-2/√5", "1/√5", "0"],["x_1", "x_2", "x_3"])	plus(["-2/√5x_1", "x_2/√5", "0"])
-					//	console.log(Arri(Q,t-1), zlrA('x_',seqA(1,m)));
-					//	return 'y'+sub(t,'')+'='
+						
+						return 'y'+sub(t,'')+'='+sums(Arri(Q,t-1),zlrA('x_',seqA(1,m)),1,1)	
+
 					},seqA(1,m)))+
 					'\\\\ 得到标准型：'+plus(Y,1)+
 					'\\\\ 得到规范型：'+(Z1?zlr3('z_',seqA(1,Z1).join(' '),'^2','+'):'')+
@@ -877,7 +874,7 @@ solve['matrix']=function(inputValue, uriA){
 						DneqD?'A':'\\small '+kmtrx(PDnP_1)]));
 					
 					if(!DneqD){
-						rs.push('使用初等列变换来求Λ^{'+n+'}P^{-1}',DnP_1s[1]);
+						//rs.push('使用初等列变换来求Λ^{'+n+'}P^{-1}',DnP_1s[1]);
 					}
 				}
 				return rs.join(kbr2)

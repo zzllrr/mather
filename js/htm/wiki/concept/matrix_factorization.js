@@ -24,7 +24,7 @@ detail('矩阵分解 Factorization, Decompostion',Table([ZLR('算法 适用于 �
 			['UR分解\n酉三角分解','可逆', 'A = UR','其中U是酉矩阵，R是上三角'],
 			['Cholesky分解\n','对称正定','A =R^TR','其中R是上三角，对角线上元素都为正'],
 			['Schur分解\n','方阵','A = URU^T',zarray(['其中U是酉矩阵，R是上三角'+kxf('schur')+'矩阵','且其主对角线上的元素为A的特征值'])],
-			['Hessenberg分解\n','方阵','A = PHp^T','其中P是酉矩阵，H是'+kxf('Hessenberg')+'矩阵'],
+			['Hessenberg分解\n','方阵','A = PHP^T','其中P是酉矩阵，H是'+kxf('Hessenberg')+'矩阵'],
 			['EVD分解\n特征值分解\nEigen Value Decomposition','方阵','AV = VD',zarray(['其中D是A的特征值对角阵，','V是A的特征向量矩阵'])],
 			['SVD分解\n奇异值分解\nSingular Value Decomposition','任意','A =U_mS_{m×n}V_n^H',
 				zarray(['其中U，V均为酉矩阵，','S是长方对角阵','【S对角线上依次为','从大到小排序的非负奇异值】','U由AA^H的正交特征向量构成，','V由A^HA的正交特征向量构成'])],

@@ -1076,7 +1076,9 @@ a b c d
 				f[1]=m.split('/');
 			
 			//	consolelog(f[1]);
-				return frac(V.split('/')[0],V.split('/')[1],'')+' = '+(f0!=V?frac(f0.split('/')[0]+'×'+gcd(V.split('/')),f0.split('/')[1]+'×'+gcd(V.split('/')),'')+' = '+f0+' = ':'')+
+				return frac(V.split('/')[0],V.split('/')[1],'')+' = '+
+					(f0!=V?frac(f0.split('/')[0]+'×'+gcd(V.split('/')),(f0.split('/')[1]||1)+'×'+gcd(V.split('/')),'')+
+					(f0.split('/')[1]?' = '+f0:'')+' = ':'')+
 					(f[1][1]?(f[0] && f[0]!='-' && f0==V?frac(f[0].replace('-','')+'×'+f[1][1]+'+'+f[1][0],f[1][1],'')+' = ':'')+
 					f[0]+frac(f[1][0],f[1][1],'')+(m==n?'':' = '+f[0]+frac(nA[0], nA[1], '')):f[1][0]);
 		},VA));

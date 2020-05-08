@@ -4307,50 +4307,50 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 
 //字符串输出
-},plus=function(A,latex){
+},plus=function(A,latex,nobug){
 	
-	return Mfn.oprs('+',A,1).toStr(latex)
+	return Mfn.oprs('+',A,!nobug).toStr(latex)
 		
-},minus=function(A,latex){
+},minus=function(A,latex,nobug){
 	
-	return Mfn.oprs('-',A,1).toStr(latex)
+	return Mfn.oprs('-',A,!nobug).toStr(latex)
 
-},neg=function(A,latex){
+},neg=function(A,latex,nobug){
 	
-	return Mfn.opr1('-',A,1).toStr(latex)
+	return Mfn.opr1('-',A,!nobug).toStr(latex)
 
 
-},times=function(A,latex){
+},times=function(A,latex,nobug){
 	
-	return Mfn.oprs('×',A,1).toStr(latex)
+	return Mfn.oprs('×',A,!nobug).toStr(latex)
 		
-},divide=function(A,latex){
+},divide=function(A,latex,nobug){
 	
-	return Mfn.oprs('÷',A,1).toStr(latex)
+	return Mfn.oprs('÷',A,!nobug).toStr(latex)
 
-},rcp=function(A,latex){
+},rcp=function(A,latex,nobug){
 	
-	return Mfn.opr1('1/',A,1).toStr(latex)
+	return Mfn.opr1('1/',A,!nobug).toStr(latex)
 		
-},pow=function(A,latex){
+},pow=function(A,latex,nobug){
 	
-	return Mfn.oprs('^',A,1).toStr(latex)
+	return Mfn.oprs('^',A,!nobug).toStr(latex)
 		
-},square=function(A,latex){
+},square=function(A,latex,nobug){
 	
-	return Mfn.opr1('^2',A,1).toStr(latex)
+	return Mfn.opr1('^2',A,!nobug).toStr(latex)
 	
-},cubic=function(A,latex){
+},cubic=function(A,latex,nobug){
 	
-	return Mfn.opr1('^3',A,1).toStr(latex)
+	return Mfn.opr1('^3',A,!nobug).toStr(latex)
 		
-},sqrt=function(A,latex){
+},sqrt=function(A,latex,nobug){
 	
-	return Mfn.opr1('√',A,1).toStr(latex)
+	return Mfn.opr1('√',A,!nobug).toStr(latex)
 		
-},cbrt=function(A,latex){
+},cbrt=function(A,latex,nobug){
 	
-	return Mfn.opr1('∛',A,1).toStr(latex)
+	return Mfn.opr1('∛',A,!nobug).toStr(latex)
 
 
 },pmtds=function(A,i,latex){//四则运算，当含有变量时，不化简，返回表达式，当常量时，返回化简结果。
@@ -4361,17 +4361,20 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 	return Mfn.oprs(o,A,!hasVar(A)).toStr(latex)
 
 
-},sums=function(A,B,latex){//形式线性组合	ax+by
+},sums=function(A,B,latex,nobug){//形式线性组合	ax+by
+	if(nobug){
+		return Mfn.fromStr(Mfn.oprs('+',Arrf(function(x,i){return Mfn.oprs('×',[A[i],x]).toStr()},B)).toStr()).toStr(latex)
+	}
 	return Mfn.fromStr(plus(Arrf(function(x,i){return times([A[i],x])},B))).toStr(latex)
 
-},sumx=function(A,x,n,latex){//向量分量的线性组合	x是向量字母
-	return sums(A,zlrA((x||'x')+'_',seqA(1,n||A.length)),latex)
+},sumx=function(A,x,n,latex,nobug){//向量分量的线性组合	x是向量字母
+	return sums(A,zlrA((x||'x')+'_',seqA(1,n||A.length)),latex,nobug)
 
-},kap=function(k,a,p,latex){//形式幂		ka^p
-	return times([k,pow([a,p])],latex)
+},kap=function(k,a,p,latex,nobug){//形式幂		ka^p
+	return times([k,pow([a,p])],latex,nobug)
 
-},sump=function(A,x,deg,latex){//多项式形式		A[0]x^deg+A[1]x^(deg-1)+...
-	return Arrf(function(k,i){var a=''+k||''; a= a && a!='0'?(times([a,pow([x,deg-i])],latex)):''; return /^-/.test(a)?a:(a?'+'+a:'')}, A).join('').replace(/^\+/,'')
+},sump=function(A,x,deg,latex,nobug){//多项式形式		A[0]x^deg+A[1]x^(deg-1)+...
+	return Arrf(function(k,i){var a=''+k||''; a= a && a!='0'?(times([a,pow([x,deg-i],'',nobug)],latex,nobug)):''; return /^-/.test(a)?a:(a?'+'+a:'')}, A).join('').replace(/^\+/,'')
 
 },fmin=function(A){//最小值
 	var B=[].concat(A);

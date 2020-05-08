@@ -6,8 +6,8 @@
  */
 /*
 	todo
-	https://zhidao.baidu.com/question/558757759834345092.html?entry=qb_uhome_recommend
-	https://zhidao.baidu.com/question/1888431984538964628.html?entry=qb_uhome_qfeed
+	https://zhidao.baidu.com/question/558757759834345092.html
+	https://zhidao.baidu.com/question/1888431984538964628.html
 	可达矩阵，布尔矩阵求幂
 	
 	
@@ -904,13 +904,16 @@ var Mtrx={	//矩阵
 			B=Mtrx.opr1('拷',A);
 			for(var j=0;j<n;j++){
 				var Aj=Arri(A,j), u=sqrt(plus(Arrf(square,Aj)));
-				//consolelog(Aj,plus(Arrf(square,Aj)),u);
+				//console.log(Aj,plus(Arrf(square,Aj)),u);
 				if(u){
 					for(var i=0;i<m;i++){
+						//console.log(Aj[i],u,divide([Aj[i],u]));
 						B[i][j]=divide([Aj[i],u])//Divide([Aj[i],u]).toStr()//divide([Aj[i],u]);
 					}
+					
 				}
 			}
+			//console.log(B)
 
 		}
 
@@ -998,13 +1001,12 @@ var Mtrx={	//矩阵
 				noteB.push('矩阵列向量已经是两两正交的');
 			}
 			if(p){
+				
 				B=Mtrx.opr1('单位化',B);
 				Bs.push(B.toStr(1));
 				noteB.push('再单位化得到');
 			}
-//consolelog('Bs = ',Bs);	//bug 22-225-4-2-45	https://zhidao.baidu.com/question/1866983200694120987.html
-	
-//consolelog('B = ',B.join(' (----) '));
+
 	
  			B.t='Mtrx';B.toStr=function(p){return Mtrx.toStr(this,p)};
  			
@@ -1613,29 +1615,6 @@ if(pA0.length==1 && pA2.length>1){
 //consolelog('变换 j ',j,'/',ps.length,' ps = ',ps.join(' ；'));
 if(j>30){break}//防止死循环 //consolelog('初等变换超过30次循环，强制break');
 
-/*
-	8-2-3-28-3-3-33
-
-8-2-3-28-3-3-33&i3+=i1×3/8
-
-8-2-3-28-3-3-33&i3+=i1×3/8;i2+=i1×1/4
-
-
-bug 列变换，有些行没有跟着处理
-
-
-
-
-矩阵对角化求幂 1243&n
-
-
-
-对角化求幂 AP=PΛ
--1112
-diag(-1,5)
-n
-
-*/
 
 				var psj=ps[j],B00=B[0][0],m=B00.length,n=B00[0].length,nextj='',end='',pts=0;
 

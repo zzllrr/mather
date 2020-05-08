@@ -7,7 +7,7 @@
 wiki['Concept/Matrix/Unary Operation']=Kx(
 
 detail('矩阵（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
-	ZLR('秩\nRank____'+khrA(['r(A)','R(A)','rank(A)'])+'____'+
+	ZLR('秩\nRank____'+khrA(['r(A)','R(A)','\\text{rank}(A)'])+'____'+
 		khrA(['初等变换化成阶梯型矩阵后\\\\ 的非零行的行数','最大阶非零子式的阶数','极大线性无关行（列）向量组中\\\\ 的向量个数：行（列）秩'])+'____'+
 		kul(['行秩 = 列秩 = 秩','r(A) ≤ \\min(m,n) ≤ '+piece(['m','n']),
 			kxA([piece(['r(A+B) = r(B+A)',

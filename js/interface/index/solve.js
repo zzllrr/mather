@@ -366,11 +366,11 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 
 
 
-		{'Eigen Value':[
+		{'Eigen':[
 			{'Eigen Vector':[
 				'Eigen Vector…A&'+gM('Eigen Value'),
-				'Eigen Vector Orthogonalize',
-				'Eigen Vector Gram-Schmidt',
+				'Orthogonalize',
+				'Gram-Schmidt',
 				'Eigen Matrix'
 			]},
 			'Eigen Polynomial',
