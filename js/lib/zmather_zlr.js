@@ -565,7 +565,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	ul = function (A, c) { return '<ul class="alignl ' + (c != null ? c : '') + '">' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ul>' }, kul = function (A, c) { return ul(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c) },
 	dl = function (A, B, c) { return '<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(function (t) { return XML.wrapE('dt', t) }, A), Arrf(function (t) { return XML.wrapE('dd', t) }, B)).join('') + '</dl>' }, kdl = function (A, B, c) { return dl(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), B, c) },
 
-	$js=function(x){return x instanceof Array ?Arrf($js,x):'$$$'+x.trim()+'$$$'},
+	$js=function(x,encode){return x instanceof Array ?Arrf(function(t){return $js(t,encode)},x):'$$$'+(encode?x.trim().replace(/\\/g,'\\\\'):x.trim())+'$$$'},
 	$A = function (A) { return Arrf(function (x) { return x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : '') }, A) },
 	tinyA=function(A, size){return A.length==0?[]:Arrf(function(x){return '\\'+ZLR('tiny scriptsize footnotesize small normalsize large Large LARGE huge Huge')[size!==undefined?size:3]+' '+$A(x)},A)},
 	encodeLatex = function (t) { return ('' + t).replace(/[\{\}]/g, '\\$&') },
@@ -599,6 +599,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 			.replace(/\\\(/g,'\\left(')
 			.replace(/\\\)/g,'\\right)')
+			.replace(/\\\[/g,'\\left[')
+			.replace(/\\\]/g,'\\right]')
+
 
 			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
 		//	.replace(/(inj|proj) ?(lim)/g, 'mathrm{$1~$2}')
@@ -1360,17 +1363,17 @@ array命令下		()	[]	\{\}	||	\|
 
 			Arrf(function (t, i) { A[t] = '\\h' + ((hline[i] || hline[0]) == '.' ? 'dash' : '') + 'line ' + A[t] }, I);
 			//	console.log(J);
-			return '\\left' + (lr || '[') + ' \\begin{array}{' + J + '}' +
-				A.join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]')) +
+			return (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\left' + (lr || '[') + ' \\begin{array}{' + J + '}' +
+				A.join(' \\\\ ') +
 				' \\end{array}' + ' \\right' + (lcr || ']')
 
 		}
 
-		return al > 3 ? '\\begin{' + (lr == '.' ? '' : (lr || 'b')) + 'matrix}' + Arrf(function (x) { return x instanceof Array ? x.join(' & ') : x }, v).join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]')) + ' \\end{' + (lcr == '.' ? '' : (lcr || 'b')) +
+		return al > 3 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{' + (lr == '.' ? '' : (lr || 'b')) + 'matrix}' + Arrf(function (x) { return x instanceof Array ? x.join(' & ') : x }, v).join(' \\\\ ') + ' \\end{' + (lcr == '.' ? '' : (lcr || 'b')) +
 			'matrix}' : SCtv('mtrx' + (lr || '') + ' inblk align' + (lcr || lr || 'c'), v instanceof Array ? Table('', v) : v)
 	},
 	zmtrx = function (A, spacing, parts,lr,lcr) { return mtrx(A, lr||'', lcr||'', spacing, parts) },
-	kmtrx = function (A, fracOff, parts,lr,lcr) { var t = mtrx((Mfn ? Arrf(function (a) { return isArr(a) ? Arrf(function (x) { return Mfn.fromStr(x).toStr(1) }, a) : Mfn.fromStr(a).toStr(1) }, A) : A), lr||'', lcr||'', /frac/.test(A) || !fracOff && /\//.test(A) ? 5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
+	kmtrx = function (A, fracOff, parts,lr,lcr) { var t = mtrx((Mfn ? Arrf(function (a) { return isArr(a) ? Arrf(function (x) { return Mfn.fromStr(x).toStr(1) }, a) : Mfn.fromStr(a).toStr(1) }, A) : A), lr||'', lcr||'', /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
 
 	zstrx = function (t, p) { return Arrf(function (x) { return ZLR(x, '', p == undefined ? ' ' : '') }, t.split(';')) },
 	zarray = function (A, spacing, parts) { return mtrx(A, '.', '.', spacing, parts) },
@@ -1400,10 +1403,10 @@ array命令下		()	[]	\{\}	||	\|
 		return B
 	},
 	ztable = function (A, nobox, spacing) { var t = mtrx(A, '.', '.', spacing || '', 'rc  _'); return nobox ? t : boxed(t) },
-	det = function (A, spacing, tiny) { var al = arguments.length; return al >= 2 ? '\\begin{vmatrix}' + Arrf(function (x) { return kfrac(x.join(' & '), 1, tiny || '') }, A).join(' \\\\' + (!spacing ? ' ' : '[' + spacing + 'pt]'))
+	det = function (A, spacing, tiny) { var al = arguments.length; return al >= 2 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{vmatrix}' + Arrf(function (x) { return kfrac(x.join(' & '), 1, tiny || '') }, A).join(' \\\\ ')
 		.replace(/⋰/g,'\\iddots') + '\\end{vmatrix}' : SCtv('bdl bdr inblk alignc', Table('', A)) },
 	zdet = function (A, spacing) { return det(Arrf(ZLR, A), spacing) },
-	kdet = function (A, fracOff) { return det(A, /frac/.test(A) || !fracOff && /\//.test(A) ? 5 : '', fracOff ? '' : 't') },
+	kdet = function (A, fracOff) { return det(A, /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', fracOff ? '' : 't') },
 
 	lp = function (l, v, zM) { var t = arguments.length == 1, t3 = arguments.length >= 3; return zM ? '\\left' + (l || '\\{') + v + '\\right.' : (!t && !l ? '' : SCtv('inblk xxlarge', t ? '{' : l)) + SCtv('inblk alignl', t ? l : v) },
 	rp = function (v, r, zM) { return arguments.length == 3 ? '\\left.' + v + '\\right' + (r || '\\{') : SCtv('inblk alignr', v) + (r === '' ? '' : SCtv('inblk xxlarge', r || '}')) },

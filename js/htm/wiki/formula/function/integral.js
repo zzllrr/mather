@@ -366,10 +366,59 @@ Eq([['（求三维质心坐标）'+kxo('z','-'),kfrac([iint('zρ','Ω','','x,y,z
 
         ],
 
-    ],'wiki TBrc'))//.replace(/\n/g,br)
+    ],'wiki TBrc'))+
 
 
 
 
+    detail(gM('Definite Integral Formula'),Table([gM(ZLR('Form.1 Value Deduction Notes'))],[
+        [$js(`intl('\\\\sin^2x','0','π','x',0,'')`),'π\\/2',$js(`Eq([
+            intl('\\\\sin^2x','0','π','x',0,''),
+            intl('1\\\\/2(1-\\\\cos2x)','0','π','x',0,''),
+            intl('1\\\\/2(1)','0','π','x',0,''),
+            'π\\\\/2',
+        ])`),''],
 
+        $js([`Eq([2+intl('x^n\\sin^2x','0','π','x',0,''),
+                2+intl('x^n\\cos^2x','0','π','x',0,''),
+                intl('x^n','0','π','x',0,'')
+            ])`,`kfrac(['π^{n+1}','n+1'])`,`Eq([
+            2+intl('x^n\\sin^2x','0','π','x',0,''),
+            intl('x^n⋅2\\sin^2x','0','π','x',0,''),
+            intl('x^n(1-\\cos2x)','0','π','x',0,''),
+            intl('(x^n-x^n\\cos2x)','0','π','x',0,''),
+            intl(zp('\\frac{x^{n+1}}{n+1}-1\\/2x^n{\\sin2x}-n\\/2'+intl('x^{n-1}\\sin2x','','','x',0,'')),'0','π','x',-1,''),
+            intl(zp('\\frac{x^{n+1}}{n+1}-n\\/2'+intl('x^{n-1}\\sin2x','','','x',0,'')),'0','π','x',-1,''),
+            
+            intl(zp('\\frac{x^{n+1}}{n+1}-n\\/4'+zp('-x^{n-1}\\cos2x+1\\/{n-1}'+intl('x^{n-2}\\cos2x','','','x',0,''))),'0','π','x',-1,''),
+            '⋯',
+            intl('\\frac{x^{n+1}}{n+1}','0','π','x',-1,''),
+            kfrac(['π^{n+1}','n+1']),
+            intl('x^n','0','π','x',0,'')
+        ])`],1),
+
+
+        $js([`intl('e^{-x^2}','0','+','x',0,'')`,`kfrac(['\\sqrt{π}','2'])`,`Eq([
+            intl('e^{-x^2}','0','+','x',0,''),
+            kroot(intl('e^{-x^2}','0','+','x',0,'')+'⋅'+intl('e^{-y^2}','0','+','y',0,'')),
+            kroot(intl(intl('e^{-(x^2+y^2)}','0','+','x',0,''),'0','+','y',0,'')),
+            kroot(intl('','0','π\\/2','θ',0,'')+intl('re^{-r^2}','0','+','r',0,'')),
+            kroot(intl('','0','π\\/2','θ',0,'')+intl(zp('-1\\/2e^{-r^2}'),'0','+∞','r',-1,'')),
+
+            kroot(intl('1\\/2','0','π\\/2','θ',0,'')),
+
+            kfrac(['\\sqrt{π}','2'])
+
+        ])`],1).concat(href(Hs+'blog.csdn.net/zhouchangyu1221/article/details/104178387','多种证法')),
+
+        
+        $js([`Eq([intl('{\\sin x}\\/x','0','+','x',0,''),
+                intl('{\\sin tx}\\/x','0','+','x',0,'')+'（t>0）'
+            ])`,`kfrac(['π','2'])`,`Eq([
+            intl('{\\sin x}\\/x','0','+','x',0,''),
+            'π\\/2',
+
+        ])`],1).concat(href(Hs+'blog.csdn.net/zhouchangyu1221/article/details/104170834','多种证法')),
+
+    ],'wiki TBrc'))
 );

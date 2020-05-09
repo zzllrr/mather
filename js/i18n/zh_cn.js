@@ -265,6 +265,7 @@ lang['zh_cn'] = {
 	'Experiment':'实验',
 	'Deduce':'演绎',
 	'Deductive':'演绎',
+	'Deduction':'推理',
 
 	'Counterpose':'对立',
 	'Penetrate':'穿透',
@@ -1335,6 +1336,7 @@ lang['zh_cn'] = {
 	'Amicable Numbers': '亲和数',
 
 	'Form': '型',
+	'Form.1': '形式',
 	'Normal Form': '标准型',
 
 	'Array': '数组',

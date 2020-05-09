@@ -64,7 +64,12 @@ wiki['Formula/Function/Derivative']=Kx(
         ZLR('____'+khrA([kxf('sech')+'^{-1}x','\\ln (1+'+kroot('1-x^2')+') - \\ln x'])+'____-'+frac(1,'x'+kroot('x^2+1'),''),'','____'),
         ZLR('____'+khrA([kxf('csch')+'^{-1}x','\\ln (1+'+kroot('1+x^2')+') - \\ln x'])+'____-'+frac(1,'x'+kroot('1-x^2'),''),'','____'),
 
-        ZLR('x\\/2\\sqrt{1-x^2}+'+frac('\\arcsin x','2','')+'____\\sqrt{1-x^2}____-'+frac('x','\\sqrt{1-x^2}','')+'____','','____'),
+        ZLR(khrA(['x\\/2\\sqrt{1-x^2}+'+frac('\\arcsin x','2',''),
+            'x\\/2\\sqrt{1-x^2}-'+frac('\\arccos x','2',''),
+            'x\\/2\\sqrt{a^2-x^2}+a^2'+frac('\\arcsin x\\/a','2','')+kbr2,
+        ])+'____'+khrA(['\\sqrt{1-x^2}','\\sqrt{a^2-x^2}'])+'____'+
+            khrA(['-'+frac('x','\\sqrt{1-x^2}',''),'-'+frac('x','\\sqrt{a^2-x^2}','')])+
+            '____','','____'),
         ZLR('x\\/2\\sqrt{1+x^2}+'+frac('\\sh^{-1} x','2','')+'____\\sqrt{1+x^2}____'+frac('x','\\sqrt{1+x^2}','')+'____','','____'),
         ZLR('x\\/2\\sqrt{x^2-1}+'+frac('\\ch^{-1} x','2','')+'____\\sqrt{x^2-1}____'+frac('x','\\sqrt{x^2-1}','')+'____','','____'),
     
