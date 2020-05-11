@@ -1623,11 +1623,15 @@ dc+
 
 
 
-	$('#SVGhide').on('click',function(){
+	$('#SVGhide').on('click',function(e){
+		var shft=e.shiftKey || $('#SVGshift path').attr('stroke')=='yellow';
 		if($('#svgs').is('.toggle')){
 			if($('#tileTool').is(':visible')){
-
-				$('#tileTool').fadeOut()
+				$('#tileTool').fadeOut();
+				if(shft){
+					//parent.document.getElementById
+					//$("iframe[src*=doodle]",parent.document).hide()	CORS blocked
+				}
 			}else{
 				$('#svgs').click();
 			}
@@ -2291,7 +2295,8 @@ dc+
 	var t = zlr('#url', 'Img Cap', ',') + ',#Caps textarea, .imgurl';
 
 	$('body').on('keydown', function (e) {
-		var k = e.keyCode, act = document.activeElement, acti = act.tagName.toLowerCase(), shft = e.shiftKey, ctrl = e.ctrlKey, alt = e.altKey, isTxt = acti == 'textarea';
+		var k = e.keyCode, act = document.activeElement, acti = act.tagName.toLowerCase(), 
+			shft=e.shiftKey || $('#SVGshift path').attr('stroke')=='yellow', ctrl = e.ctrlKey, alt = e.altKey, isTxt = acti == 'textarea';
 
 		if (ctrl) {
 

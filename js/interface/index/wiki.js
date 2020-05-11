@@ -273,8 +273,8 @@ wikis={
 			'Formal Power Series',
 		]},
 		
-		{'Function':[
-			'Function',
+		{'Expression':[
+			'Mathematical Expression',
 			'Recursive',
 		]},
 		

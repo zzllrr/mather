@@ -56,7 +56,7 @@ iswiki=/wiki\.html/.test(loch),
 issolve=/solve\.html/.test(loch),
 isedi=/editor\.html/.test(loch),
 
-hasdoodle=isdoodle || ishome || isdoc || iswiki || issolve,
+hasdoodle=isdoodle;// || ishome || isdoc || iswiki || issolve,
 
 oHTML=function(x,notMD,elem,cb){
     var o=$(elem||'#oHTML').hide();
@@ -713,6 +713,8 @@ $(function(){
         '<span id=bar>&nbsp;'+sc+
         itv('" id="zMatherOn','keyboard_arrow_up')+
         (ishome?'':itv('" id=home tip="Home','home'))+itv('" id=searchC tip="Search Content','search')+
+        
+        
         (hasdoodle?itv('" id=svgs tip="Doodle" hotkey="Esc','palette'):'')+
 
         itv('" tip=Widget id="Widget','widgets')+
@@ -721,9 +723,13 @@ $(function(){
         itv('" id="langu','language')+
         '<select id=lang hidden>'+Options(ZLR('lang en zh_cn zh_tw')).join('')+'</select>'+
 
+        
+
         (isdoc?itv('" id=padding tip="Padding','compare_arrows')+itv('" id=print tip="Print','print'):'')+
 
         (ishome?'':itv('" id=qrcode tip="Share','share'))+
+        itv('" id=SplitWindow tip="Split Window','burst_mode')+
+        
     dc+DCtv('" id=Widgets hidden for="Widget',
         '<span id=Geogebra>'+
         '<svg id=Geogebragraphing tip="GGB Graphing" viewBox="0 0 24 24"><defs><style>.ggb_c1{fill:#99f}.ggb_c2{fill:#333}.ggb_c3{fill:#666}</style></defs><title>Graphing</title><path d="M2.5 21.5C4.13 10.64 7.89.56 12 12s7.76 1.36 9.51-9.5" fill="none" stroke="#666" stroke-miterlimit="10" stroke-width="1.3"></path><circle class="ggb_c1" cx="8.5" cy="6.5" r="2.5"></circle><circle class="ggb_c1" cx="15.5" cy="17.5" r="2.5"></circle><path class="ggb_c2" d="M15.5 15a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM8.5 4A2.5 2.5 0 1 0 11 6.5 2.5 2.5 0 0 0 8.5 4zm0 4.5a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path></svg>'+
@@ -833,14 +839,33 @@ $(function(){
         open('doodle.html')
     });
 
+    $('#SplitWindow').on('click',function(e){
+        var l=location.href, shft=e.shiftKey || $('#Shift').is('.seled'), frm=$('body > .sideframe');
+        if(frm.length){
+            frm.toggle();
+            if(frm.is(':visible')){
+                $('#zMatherOn').click()
+            }
+        }else{
+
+            $('body').append('<iframe src="'+(/doodle/.test(l)?'editor':(/editor/.test(l) && shft?'index':'doodle'))+
+                '.html" width="50%" height="99%" class="resize sideframe bds" style="position:absolute;right:3rem;top:0rem"></iframe>');
+            $('#zMatherOn').click()
+        }
+        $('#WidgetOn').click()
+    });
+
+
     $('#padding').on('click',function(){
-        var o=$('#oHTML'),p=o.is('.pd20p'),pl=o.is('.pd20pl'),p20=o.is('.pd20');
-        o.removeClass('pd20p pd20pl pd20pr');
+        var o=$('#oHTML'),p=o.is('.pd20p'),pl=o.is('.pd20pl'),pr=o.is('.pd20pr'),p20=o.is('.pd20');
+        o.removeClass('pd20p pd20pl pd20pr pd20');
+        //pd20p → pd20pl → pd20pr → pd20 → pd20p
         if(p){
             o.addClass('pd20pl');
         }else if(pl){
+            o.addClass('pd20pr');
+        }else if(pr){
             o.addClass('pd20');
-        
         }else if(p20){
             o.addClass('pd20p');
         }

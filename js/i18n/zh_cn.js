@@ -599,6 +599,7 @@ lang['zh_cn'] = {
 	'Home': '首页',
 	'Homepage': '主页',
 
+	'Window':'窗口',
 	'Interface': '界面',
 	'Night': '夜间',
 	'Help': '帮助',

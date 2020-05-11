@@ -4,7 +4,41 @@
  * Released under MIT License
  */
 
-wiki['Concept/Analytic/Trigonometric']=Kx(
+wiki['Concept/Analytic/Trigonometric']='三角函数（图示）'+plot.shape('svg_trig','svg',
+[
+plot.shape("","circle","","r=80 cx=100 cy=100"),
+plot.shape("","arc","","x1=120 y1=90 x2=122 y2=100 rx=10 c=1"),
+plot.shape("","text","O","x=90 y=112 rotate=20"),
+plot.shape("","text","θ","x=130 y=95 rotate=20"),
+plot.shape("","lineHV","","hv=H8V-8","",[100,28]),
+plot.shape("","path","","d=M163,66L167,73L174,69 data-cord=100+70,100-37",""),
+
+plot.shape("","text","sin ","x=148 y=86 stroke=blue"),
+plot.shape("","text","cos ","x=124 y=110 stroke=blue"),
+plot.shape("","rect","","x=100 y=63 width=70 height=37 stroke=blue"),
+
+plot.shape("","lineHV","","hv=V40 stroke=darkred","",[180,57]),
+plot.shape("sec","path","","d=M100,100L180,57 stroke=darkred"),
+plot.shape("","textPath","sec","href=sec dx=36 dy=-2 stroke=darkred"),
+plot.shape("","text","tan ","x=180 y=82 stroke=darkred"),
+
+plot.shape("","lineHV","","hv=H150 stroke=green","",[100,20]),
+plot.shape("","lineHV","","hv=H150 stroke-dasharray=3,8 stroke=green","",[100,100]),
+plot.shape("cot2","path","","d=M170,63L241,196 stroke=green"),
+plot.shape("","text","cot ","x=162 y=18 stroke=green"),
+plot.shape("","textPath","cot ","href=cot2 dx=56 dy=-2 stroke=green"),
+
+
+plot.shape("csc","path","","d=M100,100L250,20 stroke-dasharray=3,8 stroke=green"),
+plot.shape("csc2","path","","d=M100,100L241,196 stroke=green"),
+plot.shape("","textPath","csc","href=csc dx=86 dy=-2 stroke=green"),
+plot.shape("","textPath","csc","href=csc2 dx=84 dy=-2 stroke=green"),
+
+
+plot.shape("","lineHV","","hv=V43 stroke=gray","",[100,20]),
+plot.shape("","lineHV","","hv=H80 stroke=gray","",[100,57]),
+plot.shape("","lineHV","","hv=V80 stroke=gray","",[250,20])
+].join(''),'','height:250px')+Kx(
 
 detail('三角函数 Trigonometric',Table([ZLR('函数 定义域 值域 周期 奇偶 对称 单调 凹凸')],[
 	ZLR('\\sin x____ℝ____[-1,1]____2π____奇____'+piece(['对称轴 x =kπ+'+frac('π',2,''),'对称中心 x = kπ'])+'____'+piece([['↗',
@@ -27,45 +61,6 @@ detail('三角函数 Trigonometric',Table([ZLR('函数 定义域 值域 周期 �
 
 ],'wiki').replace(/\n/g,br))+
 
-detail('三角函数（图示）',Table([ZLR('名称 记法 定义 性质')],[
-//	plot.shape('svg_trig','svg',[
-	[
-	[
-	'shape("","circle","","r=80 cx=100 cy=100")',
-	'shape("","arc","","x1=120 y1=90 x2=122 y2=100 rx=10 c=1")',
-	'shape("","text","O","x=90 y=112 rotate=20")',
-	'shape("","text","θ","x=120 y=95 rotate=20")',
-	'shape("","lineHV","","hv=H8V-8","",[100,28])',
-	'shape("","path","","d=M163,66L167,73L174,69 data-cord=100+70,100-37","")',
-
-	'shape("","text","\\sin ","x=150 y=86 stroke=blue")',
-	'shape("","text","\\cos ","x=124 y=110 stroke=blue")',
-	'shape("","rect","","x=100 y=63 width=70 height=37 stroke=blue")',
-
-	'shape("","lineHV","","hv=V40 stroke=darkred","",[180,57])',
-	'shape("sec","path","","d=M100,100L180,57 stroke=darkred")',
-	'shape("","textPath","sec","href=sec dx=36 dy=-2 stroke=darkred")',
-	'shape("","text","\\tan ","x=180 y=82 stroke=darkred")',
-
-	'shape("","lineHV","","hv=H150 stroke=green","",[100,20])',
-	'shape("","lineHV","","hv=H150 stroke-dasharray=3,8 stroke=green","",[100,100])',
-	'shape("\\cot 2","path","","d=M170,63L241,196 stroke=green")',
-	'shape("","text","\\cot ","x=162 y=18 stroke=green")',
-	'shape("","textPath","\\cot ","href=\\cot 2 dx=56 dy=-2 stroke=green")',
-
-
-	'shape("csc","path","","d=M100,100L250,20 stroke-dasharray=3,8 stroke=green")',
-	'shape("csc2","path","","d=M100,100L241,196 stroke=green")',
-	'shape("","textPath","csc","href=csc dx=86 dy=-2 stroke=green")',
-	'shape("","textPath","csc","href=csc2 dx=84 dy=-2 stroke=green")',
-
-
-	'shape("","lineHV","","hv=V43 stroke=gray","",[100,20])',
-	'shape("","lineHV","","hv=H80 stroke=gray","",[100,57])',
-	'shape("","lineHV","","hv=V80 stroke=gray","",[250,20])'
-	].join(''),'','','']
-
-],'wiki').replace(/\n/g,br))+
 
 detail('反三角函数 Inverse Trigonometric',Table([ZLR('函数 定义域 值域 奇偶 单调 凹凸')],[
 	
