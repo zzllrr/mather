@@ -1773,6 +1773,9 @@ lang['zh_cn'] = {
 
 	'Formal': '形式',
 	'Differential': '微分',
+	'Difference':'差分',
+	'Difference.1':'区别',
+
 	'Integral': '积分',
 
 	'Contour Integral': '围线积分',

@@ -167,7 +167,7 @@ loadHTML=function (x) {
     }
     
 
-    OH('<iframe src="'+src+'" width="98%" height="'+Math.max($(window).height()-(oC.length?oC.position().top:0)+
+    OH('<iframe src="'+src+'" width="'+(x=='solve'?45:98)+'%" height="'+Math.max($(window).height()-(oC.length?oC.position().top:0)+
         (fullscr && zM.length?zM.height():0)-20,200)+'px" class="resize bd0"></iframe>')
 };
 
@@ -317,7 +317,6 @@ function dayOrNight(){
 
 function copy2clipboard(t){
 
-    //toolTip('<input type=text value="'+t+'" />');
     toolTip('<input type=text value="" />');
     
 	$('#bar input').eq(0).val(t);

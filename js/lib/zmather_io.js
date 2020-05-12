@@ -1730,7 +1730,8 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		.replace(/ |&#8194;/g,' ')	//非标空格
 		.replace(/[乘乖✖ⅹ╳‧][以于与]?/ig,'*').replace(/&#10008;/g,'*')
 		.replace(/ʸ/g,'^y')
-		
+		.replace(/不等于/g,'≠').replace(/等于|＝/g,'=')
+
 		.replace(/&#65409;&#10135;/g,'除').replace(/ﾁ7ￊ9|&#65409;7&#65482;9|&#10135;/g,'除').replace(/[除➗梅／][以于与]?/g,'/')
 		.replace(/[减減]去?|－/g,'-').replace(/[＋加]上?/g,'+')//.replace(/\+\-/g,'±').replace(/\-\+/g,'∓')
 		.replace(/（/g,'(').replace(/）/g,')').replace(/[·•。]/g,'.').replace(/[和与，、]/g,',').replace(/；/g,';')
@@ -1792,6 +1793,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	return re(x.replace(/不等于/g,'≠')
 		.replace(/〉/g,'>').replace(/〈/g,'<'))
 		.replace(/大于等于/g,'≥').replace(/小于等于/g,'≤')
+		.replace(/等于|＝/g,'=')
 
 },opreplace16=function(x){//关系符规范化预处理		集合关系
 	return x.replace(/不真包含于/g,'⊄')
@@ -3720,7 +3722,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			}
 			if(shft){
 				if(k==13){
-					$('#preview').click();
+					//$('#preview').click();
 				}	
 			}
 		}

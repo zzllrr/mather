@@ -627,6 +627,7 @@ input[type="file"]{
 #oHTML{
 	position: relative;
 	overflow:auto;
+	resize:auto;
 }
 #oHTML:not([class*=pd]){
 	padding:5px;

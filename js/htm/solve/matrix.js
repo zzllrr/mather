@@ -5,15 +5,13 @@
  */
 
 solve['matrix']=function(inputValue, uriA){
-	var v=inputValue.trim(), VA=v.split('\n'), n=VA.length, rS=[];
+	var v=opreplace(inputValue).trim(), VA=v.split('\n'), n=VA.length, rS=[];
 
 	var strA=fCC(seqA(65,n)).split('');
-/*
-[λ-3 1 3 -1;1 λ-3 -1 3;-3 1 λ+3 -1;1 -3 -1 λ+3]&j4+=i1	
-*/
+
 	
 //Display
-//console.log(inputValue,uriA);
+
 	if(sel(uriA,'A','Display')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
