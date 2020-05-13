@@ -4,21 +4,21 @@
  * Released under MIT License
  */
 
-wiki['Formula/Function/Derivative']=Kx(
-    detail(gM('Indefinite Integral & Derivative')+ksc('∫f→f→f\''),Table([['∫f（省略常数项）','函数f','1阶导数f\'','2阶导数f″','n阶导数f^{(n)}']],[
+wiki['Formula/Function/Difference']=Kx(
+    detail(gM('Indefinite Difference')+ksc('Δf=f(x+1)-f(x)'),Table([['Δ^{-1}f（省略常数项）','函数f','1阶差分Δf=f(x+1)-f(x)','2阶差分Δ^2f=Δf(x+1)-Δf(x)=f(x+2)-2f(x+1)+f(x)','n阶差分Δ^nf=(f-1)^{(n)牛二, f^{(n)}≝f(x+n)']],[
         
-        ZLR('a∫f ± b∫g____af ± bg____af\' ± bg\'____af″ ± bg″____af^{(n)} ± bg^{(n)}','','____'),
-        ZLR('∫f\\d g+∫g\\d f____f⋅g____f\'g + fg\'____f″g + 2f\'g\'+ fg″____∑C_n^if^{(i)}g^{(n-i)}','','____'),
-        ZLR('∫(fg)\\d h+∫(fh)\\d g+∫(gh)\\d f____f⋅g⋅h____f\'gh + fg\'h + fgh\'____(f″gh + fg″h + fgh″)\\\\+2(f\'g\'h+f\'gh\'+fg\'h\')____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
+        ZLR('aΔ^{-1}f ± bΔ^{-1}g____af ± bg____aΔf ± bΔg____aΔ^2f ± bΔ^2g____af^{(n)} ± bg^{(n)}','','____'),
+        ZLR('Δ^{-1}f'+kxf('d')+'g+Δ^{-1}g'+kxf('d')+'f____f⋅g____Δfg + fΔg____Δ^2fg + 2ΔfΔg+ fΔ^2g____∑C_n^if^{(i)}g^{(n-i)}','','____'),
+        ZLR('Δ^{-1}(fg)'+kxf('d')+'h+Δ^{-1}(fh)'+kxf('d')+'g+Δ^{-1}(gh)'+kxf('d')+'f____f⋅g⋅h____Δfgh + fΔgh + fgh\'____(Δ^2fgh + fΔ^2gh + fgh″)\\\\+2(ΔfΔgh+Δfgh\'+fΔgh\')____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
     
     
-        ZLR('____'+frac('f','g','')+'____'+khrA([frac('f\'g - fg\'','g^2',''),
-            frac('f\'','g','')+'-'+frac('fg\'','g^2','')])+'____'+khrA([frac('f″g^2 - 2f\'g\'g + 2fg\'^2 - fg″g','g^3',''),
-            frac('f″','g','')+'-'+frac('2f\'g\'','g^2','')+frac('2fg\'^2','g^3','')+'-'+frac('fg″','g^2','')])+'____'+kbrA([frac('∑(-1)^{i+j}C_n^if^{(i)}g^{(j)}g^{(n-i-j)}','g^{n+1}',''),'（？猜测待验证）']),'','____'),
+        ZLR('____'+frac('f','g','')+'____'+khrA([frac('Δfg - fΔg','g^2',''),
+            frac('Δf','g','')+'-'+frac('fΔg','g^2','')])+'____'+khrA([frac('Δ^2fg^2 - 2ΔfΔgg + 2fΔg^2 - fΔ^2gg','g^3',''),
+            frac('Δ^2f','g','')+'-'+frac('2ΔfΔg','g^2','')+frac('2fΔg^2','g^3','')+'-'+frac('fΔ^2g','g^2','')])+'____'+kbrA([frac('∑(-1)^{i+j}C_n^if^{(i)}g^{(j)}g^{(n-i-j)}','g^{n+1}',''),'（？猜测待验证）']),'','____'),
             
-        ZLR('____'+frac('1','g','')+'____-'+frac('g\'','g^2','')+'____'+khrA([frac('2g\'^2 - g″g','g^3',''),frac('2g\'^2','g^3','')+'-'+frac('g″','g^2','')]),'','____'),
-        ZLR('____f^{-1}(y)____'+frac('1','f\'(x)','')+'____'+'-'+frac('f\'(x)','f\'^2(x)',''),'','____'),
-        ZLR('____f(g(x))____f\'(u)g\'(x)____f″(u)g\'^2(x) + f\'(u)g″(x)','','____'),
+        ZLR('____'+frac('1','g','')+'____-'+frac('Δg','g^2','')+'____'+khrA([frac('2Δg^2 - Δ^2gg','g^3',''),frac('2Δg^2','g^3','')+'-'+frac('Δ^2g','g^2','')]),'','____'),
+        ZLR('____f^{-1}(y)____'+frac('1','Δf(x)','')+'____'+'-'+frac('Δf(x)','Δf^2(x)',''),'','____'),
+        ZLR('____f(g(x))____Δf(u)Δg(x)____Δ^2f(u)Δg^2(x) + Δf(u)Δ^2g(x)','','____'),
         ZLR('____u(x)^{v(x)}____'+Eq(['(e^{\\ln u^v})\'','(e^{v\\ln u})\'','u^v(v\\ln u)\'','u^v'+lrp('','v\'\\ln u + '+frac('vu\'','u',''),'','')])+'____'+khrA([
             kxA(['u^v'+lrp('','(v\\ln u)\'^2 + (v\\ln u)″','',''),
                 '=u^v'+lrp('',lrp('','v\'\\ln u + '+frac('vu\'','u',''),'','')+'^2 + v″\\ln u + '+frac('2v\'u\'+ vu″','u','')+'-'+frac('vu\'^2','u^2',''),'','')]),
@@ -43,23 +43,20 @@ wiki['Formula/Function/Derivative']=Kx(
         ZLR('\\ln (\\csc x-\\cot x)____'+khrA(['\\csc x = '+frac(1,'\\sin x',''),'注意：\\csc^2 x-\\cot^2 x=1'])+'____-\\cot x⋅\\csc x = -'+frac('\\cos x','\\sin ^2x','')+'____\\csc x(1+2\\cot^2 x)','','____'),
         ZLR('x\\arcsin x+\\sqrt{1-x^2}____'+khrA(['\\arcsin x=π\\/2-\\text{sign}~x⋅(π\\/2-\\arcsin \\sqrt{1-x^2})','注意：\\arcsin x+\\arccos x=π\\/2'])+'____'+frac(1,kroot('1-x^2'),'')+'____x(1-x^2)^{-\\tfrac32}','','____'),
         ZLR('x\\arccos x-\\sqrt{1-x^2}____\\arccos x=\\text{sign}~x⋅\\arcsin \\sqrt{1-x^2}____-'+frac(1,kroot('1-x^2'),'')+'____-x(1-x^2)^{-\\tfrac32}','','____'),
-        ZLR('x\\arctan x-{\\ln(1+x^2)}\\/2____'+khrA(['\\arctan x=\\arcsin '+frac('x','\\sqrt{1+x^2}',''),'注意：\\arctan x+\\arccot ~x=π\\/2'])+'____'+frac(1,'1+x^2','')+'____-2x(1+x^2)^{-2}','','____'),
-        ZLR('x\\arccot ~x+{\\ln(1+x^2)}\\/2____\\arccot ~x=\\arccos '+frac('x','\\sqrt{1+x^2}','')+'____-'+frac(1,'1+x^2','')+'____2x(1+x^2)^{-2}','','____'),
-        ZLR('x\\arcsec ~x±\\ch^{-1}x____\\arcsec ~x=\\arccos 1\\/x____'+frac(1,'|x|'+kroot('x^2-1'),''),'','____'),
-        ZLR('x\\arccsc ~x±\\ch^{-1}x____\\arccsc ~x=\\arcsin 1\\/x____-'+frac(1,'|x|'+kroot('x^2-1'),''),'','____'),
-        ['','\\sinc x',kfrac(['\\cos x- \\sinc x','x']),''],
-
-
-        ZLR(frac('a^x','\\ln a','')+'____a^x____\\ln a⋅a^x____\\ln ^2a⋅a^x____'+'\\ln ^na⋅a^x','','____'),
-        ZLR('e^x____e^x____e^x____e^x____e^x','','____'),
+        ZLR('x\\arctan x-{\\ln(1+x^2)}\\/2____'+khrA(['\\arctan x=\\arcsin '+frac('x','\\sqrt{1+x^2}',''),'注意：\\arctan x+'+kxf('arccot')+'~x=π\\/2'])+'____'+frac(1,'1+x^2','')+'____-2x(1+x^2)^{-2}','','____'),
+        ZLR('x'+kxf('arccot')+'~x+{\\ln(1+x^2)}\\/2____'+kxf('arccot')+'~x=\\arccos '+frac('x','\\sqrt{1+x^2}','')+'____-'+frac(1,'1+x^2','')+'____2x(1+x^2)^{-2}','','____'),
+        ZLR('x'+kxf('arcsec')+'~x±\\ch^{-1}x____'+kxf('arcsec')+'~x=\\arccos 1\\/x____'+frac(1,'x'+kroot('x^2-1'),''),'','____'),
+        ZLR('x'+kxf('arccsc')+'~x±\\ch^{-1}x____'+kxf('arccsc')+'~x=\\arcsin 1\\/x____-'+frac(1,'x'+kroot('x^2-1'),''),'','____'),
+        ZLR(frac('a^x','a-1','')+'____a^x____(a-1)a^x____(a-1)^2a^x____(a-1)^na^x','','____'),
+        ZLR('{e^x}\\/{e-1}____e^x____(e-1)e^x____(e-1)^2e^x____(e-1)^ne^x','','____'),
         ZLR(frac('x(\\ln x-1)','\\ln a','')+'____\\log_ax____'+frac(1,'x\\ln a','')+'____-'+frac(1,'\\ln a⋅x^2','')+'____(-1)^{n-1}(n-1)!'+frac(1,'\\ln a⋅x^n',''),'','____'),
         ZLR('x(\\ln x-1)____\\ln x____'+frac(1,'x','')+'____-'+frac(1,'x^2','')+'____(-1)^{n-1}(n-1)!'+frac(1,'x^n',''),'','____'),
         ZLR('\\ch x____\\sh x = '+frac('e^x - e^{-x}',2,'')+'____\\ch x____\\sh x____'+piece([['\\sh x',kmod('n',0,2)],['\\ch x',kmod('n',1,2)]]),'','____'),
         ZLR('\\sh x____'+khrA(['\\ch x = '+frac('e^x + e^{-x}',2,''),'注意：\\ch^2 x-\\sh^2 x=1'])+'____\\sh x____\\ch x____'+piece([['\\ch x',kmod('n',0,2)],['\\sh x',kmod('n',1,2)]]),'','____'),
-        ZLR('\\ln \\ch x____\\th x = '+frac('\\sh x','\\ch x','')+'____\\sech ^2x____-2\\th x⋅\\sech ^2x____(三阶)-2\\sech ^2x(\\sech ^2x-2\\th^2 x)','','____'),
-        ZLR('\\ln \\sh x____\\cth x = '+frac('\\ch x','\\sh x','')+'____-\\csch ^2x____2\\cth x⋅\\csch ^2x____(三阶)-2\\csch ^2x(\\csch ^2x+2\\cth^2 x)','','____'),
-        ZLR('\\arcsin(\\th x)____\\sech ~x = '+frac(1,'\\ch x','')+'____-\\th x⋅\\sech ~x = -'+frac('\\sh x','\\ch^2x','')+'____-\\sech x(1-2\\th^2 x)','','____'),
-        ZLR('\\ln \\th{x}\\/2____\\csch ~x = '+frac(1,'\\sh x','')+'____-\\cth x⋅\\csch ~x = -'+frac('\\ch x','\\sh^2x','')+'____-\\csch x(1-2\\cth^2 x)','','____'),
+        ZLR('\\ln \\ch x____\\th x = '+frac('\\sh x','\\ch x','')+'____'+kxf('sech')+'^2x____-2\\th x⋅'+kxf('sech')+'^2x____(三阶)-2'+kxf('sech')+'^2x('+kxf('sech')+'^2x-2\\th^2 x)','','____'),
+        ZLR('\\ln \\sh x____\\cth x = '+frac('\\ch x','\\sh x','')+'____-'+kxf('csch')+'^2x____2\\cth x⋅'+kxf('csch')+'^2x____(三阶)-2'+kxf('csch')+'^2x('+kxf('csch')+'^2x+2\\cth^2 x)','','____'),
+        ZLR('\\arcsin(\\th x)____'+kxf('sech')+'~x = '+frac(1,'\\ch x','')+'____-\\th x⋅'+kxf('sech')+'~x = -'+frac('\\sh x','\\ch^2x','')+'____-'+kxf('sech')+'x(1-2\\th^2 x)','','____'),
+        ZLR('\\ln \\th{x}\\/2____'+kxf('csch')+'~x = '+frac(1,'\\sh x','')+'____-\\cth x⋅'+kxf('csch')+'~x = -'+frac('\\ch x','\\sh^2x','')+'____-'+kxf('csch')+'x(1-2\\cth^2 x)','','____'),
         ZLR('x\\sh^{-1}x-\\sqrt{x^2+1}____'+khrA(['\\sh^{-1}x','\\ln (x + '+kroot('x^2+1')+')'])+'____'+frac(1,kroot('x^2+1'),'')+'____'+'-x(x^2+1)^{-\\tfrac32}','','____'),
         ZLR('x\\ch^{-1}x-\\sqrt{x^2-1}____'+khrA(['\\ch^{-1}x','\\ln |x + '+kroot('x^2-1')+'|'])+'____'+frac(1,kroot('x^2-1'),'')+'____'+'-x(x^2-1)^{-\\tfrac32}','','____'),
         ZLR('x\\ch^{-1}x+{\\ln(1-x^2)}\\/2____'+khrA(['\\th^{-1}x',frac(1,2,'')+'\\ln '+frac('1+x','1-x','')])+'____'+frac(1,'1-x^2','')+'____'+frac('2x','(x^2-1)^2',''),'','____'),
@@ -78,7 +75,7 @@ wiki['Formula/Function/Derivative']=Kx(
     
     ],'wiki TBrc').replace(/\n/g,br))+
 
-    detail(gM('Power Indefinite Integral')+ksc('∫f^n'),Table([['f','f^n','∫f^n\\d x']],[
+    detail(gM('Power Indefinite Integral')+ksc('Δ^{-1}f^n'),Table([['f','f^n','Δ^{-1}f^n\\d x']],[
         
         ['\\cos x','\\cos^nx','n=2k+1，是奇数时'+Eq([intl('\\cos^nx','','','x',0,''),
             intl('\\cos^{n-1}x','','','~\\sin x',0,''),

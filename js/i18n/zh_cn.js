@@ -1354,6 +1354,7 @@ lang['zh_cn'] = {
 	'Sign':'符号',
 	'Digits':'位数',
 	'Quantity':'数量',
+	'Constant':'常数',
 	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
@@ -1472,7 +1473,7 @@ lang['zh_cn'] = {
 	'Oblique':'斜',
 
 	'Square': '正方形',
-	'Square.Alge':'平方',
+	'Square.1':'平方',
 	
 	'Rectangle': '矩形',
 	'Rectangle.1': '长方形',

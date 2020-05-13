@@ -412,7 +412,8 @@ Eq([['（求三维质心坐标）'+kxo('z','-'),kfrac([iint('zρ','Ω','','x,y,z
         ])`],1).concat(href(Hs+'blog.csdn.net/zhouchangyu1221/article/details/104178387','多种证法')),
 
         
-        $js([`Eq([intl('{\\sin x}\\/x','0','+','x',0,''),
+        $js([`Eq([intl('\\sinc x','0','+','x',0,''),
+                intl('{\\sin x}\\/x','0','+','x',0,''),
                 intl('{\\sin tx}\\/x','0','+','x',0,'')+'（t>0）'
             ])`,`kfrac(['π','2'])`,`Eq([
             intl('{\\sin x}\\/x','0','+','x',0,''),

@@ -588,6 +588,10 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 			.replace(/≢/g, '\\not \\mathrlap{} \\negthickspace \\negthickspace ≡')	// fix latex ≢ bug	V0.10.1				katex bug:	table元素中使用katex，不等号会错位	字体显示≢会丢失 删除线
 
+
+
+			//add math function names in katex.js ,"\\arccot","\\arcsec","\\arccsc","\\sech","\\csch","\\sinc","\\si","\\Si","\\ci","\\Ci","\\Shi","\\sgn"
+
 			//extension 
 			.replace(/\\b (\{[^\{\}]+\})/g,'\\pmb {\\red$1}')	//加粗斜体红色
 			.replace(/\\b ([^\{}])/g,'\\pmb {\\red{$1}}')	//加粗斜体红色(单个字)

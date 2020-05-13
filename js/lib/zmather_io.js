@@ -493,8 +493,8 @@ SBS={
 'func_tri':[zlr2('sech csch cth th sh ch','⁻¹'),'sech csch cth th sh ch',
 		zlr('arc','sin cos tan cot sec csc'),'sin cos tan cot sec csc'
 		],
-		//injlim
-'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr',
+		//injlim	
+'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr sinc si Si ci Ci Shi',
 
 /*
 'struc':{//结构
@@ -1035,11 +1035,11 @@ SBS={
 	
 ,FUNCS={
 	'Number Theory':['dr'],
-	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sign'],// ㏒ ㏑
+	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sgn'],// ㏒ ㏑
 	'Algebraic':['rank diag tr det','adj dim hom ker per','span proj Pr'],
-	'Trigonometric':['sin tan sec','cos cot csc',
+	'Trigonometric':['sin tan sec Si si sinc','cos cot csc Ci ci Cin',
 		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
-	'Hyperbolic':['sh th sech','ch cth csch',
+	'Hyperbolic':['sh th sech Shi','ch cth csch Chi',
 	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
 
 	'Analytical':['lim sup inf grad','limsup liminf curl rot','inj~lim proj~lim div'],
