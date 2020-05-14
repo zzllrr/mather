@@ -1037,10 +1037,15 @@ SBS={
 	'Number Theory':['dr'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sgn'],// ㏒ ㏑
 	'Algebraic':['rank diag tr det','adj dim hom ker per','span proj Pr'],
-	'Trigonometric':['sin tan sec Si si sinc','cos cot csc Ci ci Cin',
-		zlr('arc','sin tan sec'),zlr('arc','cos cot csc')],
-	'Hyperbolic':['sh th sech Shi','ch cth csch Chi',
-	zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}')],//⁻¹
+	'Trigonometric':['sin tan sec','cos cot csc',
+		zlr('arc','sin tan sec'),zlr('arc','cos cot csc'),
+		'Si si sinc cis','Ci ci Cin arccis'
+	],
+	'Hyperbolic':['sh th sech','ch cth csch',
+		zlr2('sh th sech','^{-1}'),zlr2('ch cth csch','^{-1}'),
+		'Shi','Chi'
+
+	],//⁻¹
 
 	'Analytical':['lim sup inf grad','limsup liminf curl rot','inj~lim proj~lim div'],
 	'Set':[],

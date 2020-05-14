@@ -590,7 +590,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 
-			//add math function names in katex.js ,"\\arccot","\\arcsec","\\arccsc","\\sech","\\csch","\\sinc","\\si","\\Si","\\ci","\\Ci","\\Shi","\\sgn"
+			//add math function names in katex.js ,"\\arccot","\\arcsec","\\arccsc","\\sech","\\csch","\\sinc","\\si","\\Si","\\ci","\\Ci","\\Shi","\\sgn","\\cis","\\arccis"
 
 			//extension 
 			.replace(/\\b (\{[^\{\}]+\})/g,'\\pmb {\\red$1}')	//加粗斜体红色

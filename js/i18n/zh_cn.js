@@ -1423,6 +1423,12 @@ lang['zh_cn'] = {
 
 	'System.Math': '系',
 	'System': '系统',
+
+
+
+	'Sine':'正弦',
+	'Cosine':'余弦',
+
 	// 几何
 
 	'Point': '点',
@@ -1719,7 +1725,8 @@ lang['zh_cn'] = {
 	'Clockwise': '顺时针',
 	'Counterclockwise': '逆时针',
 
-	'Infinite': '无限',
+	'Infinite.1': '无限',
+	'Infinite': '无穷',
 	'Finite':'有限',
 
 
