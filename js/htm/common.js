@@ -292,6 +292,7 @@ function dayOrNight(){
 	if(isnight){
 		$('#oHTML svg *[stroke=black]').attr('stroke','gainsboro');
         $('#oHTML svg *[fill=black]').attr('fill','gainsboro');
+        $('#Caps textarea').filter(function(){var c=$(this).css('color');return c=='rgb(0, 0, 0)' || /white/.test(c)}).css('color','gainsboro');
         /*
         L.canvasCode='';
         L.legoCode='';
@@ -311,6 +312,9 @@ function dayOrNight(){
         $('#oHTML svg *[fill=gainsboro]').attr('fill','black');	
         $('#allEraser').click();
         $('#color'+(isnight?3:0)).click();
+
+        $('#Caps textarea').filter(function(){var c=$(this).css('color');return c=='rgb(220, 220, 220)' || /gainsboro/.test(c)}).css('color','black');
+        
 	}
 	
 }

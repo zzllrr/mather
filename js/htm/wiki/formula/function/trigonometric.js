@@ -24,7 +24,7 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
                 '4\\/3 \\sqrt{y(y-m_a)(y-m_b)(y-m_c)}（其中y={m_a+m_b+m_c}\\/2）各边上的中线长之和的一半',
 
-                kfrac([1,'4 \\sqrt{z(z-h_a^{-1})(z-h_b^{-1})(z-h_c^{-1})}'])+'（其中z={h_a^{-1}+h_b^{-1}+h_c^{-1}}\\/2）各边上的高线长倒数之和的一半',
+                kfrac([1,'4 \\sqrt{z(z-h_a^{-1})(z-h_b^{-1})(z-h_c^{-1})}'])+'（其中z=\\frac{h_a^{-1}+h_b^{-1}+h_c^{-1}}2）各边上的高线长倒数之和的一半',
 
                 ]),
             '外径R：外接圆半径，外接圆直径D=2R',
@@ -33,14 +33,109 @@ wiki['Formula/Function/Trigonometric']=Kx(
             'c^2=a^2+b^2-2ab\\cos C'+'（余弦定理）',   
 
 
-        ].join(kbr)],
+        ].join(kbr),
     
-    ],'wiki TBrc').replace(/\n/g,br))+
+    
+        ],
+    
+    ],'wiki TBrc'))+
 
     detail(gM('Period'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
+        [Eq(['\\sin x = \\sin(x+2π⋅n) = -\\sin (-x)',
+            '\\sin(π-x) = -\\sin(x-π) = -\\sin(x+π)',
+            '\\cos'+zp('π\\/2-x')+' = \\cos'+zp('x-π\\/2')+' = -\\cos'+zp('x+π\\/2'),
+            '-\\cos'+zp('{3π}\\/2-x')+' = -\\cos'+zp('x-{3π}\\/2')+' = \\cos'+zp('x+{3π}\\/2'),
+            ]), 
+            
+            Eq(['\\sh x = \\sh(x+2πi⋅n) = -\\sh (-x)',
+                'e^x-\\ch x = \\ch x-e^{-x}'
+            
+            ]), 
+            
+            
+            
+            ''],
+        [Eq(['\\cos x = \\cos(x+2π⋅n) = \\cos (-x)',
+            '-\\cos(π-x) = -\\cos(x-π) = -\\cos(x+π)',
+            '\\sin'+zp('π\\/2-x')+' = -\\sin'+zp('x-π\\/2')+' = \\sin'+zp('x+π\\/2'),
+            '-\\sin'+zp('{3π}\\/2-x')+' = \\sin'+zp('x-{3π}\\/2')+' = -\\sin'+zp('x+{3π}\\/2'),
+          ]), 
+          
+            Eq(['\\ch x = \\ch(x+2πi⋅n) = \\ch (-x)',
+            'e^x-\\sh x = e^{-x}+ \\sh x'
         
+            ]), 
+            
+          
+          
+          ''],
+
+        [Eq(['\\tan x = \\tan(x+π⋅n) = -\\tan (-x)',
+            '-\\tan(π-x) = \\tan(x-π) = \\tan(x+π)',
+            '\\cot'+zp('π\\/2-x')+' = -\\cot'+zp('x-π\\/2')+' = -\\cot'+zp('x+π\\/2'),
+            '\\cot'+zp('{3π}\\/2-x')+' = -\\cot'+zp('x-{3π}\\/2')+' = -\\cot'+zp('x+{3π}\\/2'),
+        ]), 
+        
+        Eq(['\\th x = \\th(x+πi⋅n) = -\\th (-x)',
+
     
-    ],'wiki TBrc').replace(/\n/g,br))+
+        ]), 
+        
+        
+        
+        
+        
+            ''],
+
+        [Eq(['\\cot x = \\cot(x+π⋅n) = -\\cot (-x)',
+            '-\\cot(π-x) = \\cot(x-π) = \\cot(x+π)',
+            '\\tan'+zp('π\\/2-x')+' = -\\tan'+zp('x-π\\/2')+' = -\\tan'+zp('x+π\\/2'),
+            '\\tan'+zp('{3π}\\/2-x')+' = -\\tan'+zp('x-{3π}\\/2')+' = -\\tan'+zp('x+{3π}\\/2'),
+        ]), 
+        
+            
+            Eq(['\\cth x = \\cth(x+πi⋅n) = -\\cth (-x)',
+
+        
+            ]), 
+    
+        
+        
+        
+            ''],
+
+        [Eq(['\\sec x = \\sec(x+2π⋅n) = \\sec (-x)',
+            '-\\sec(π-x) = -\\sec(x-π) = -\\sec(x+π)',
+          '\\csc'+zp('π\\/2-x')+' = -\\csc'+zp('x-π\\/2')+' = \\csc'+zp('x+π\\/2'),
+          '\\csc'+zp('{3π}\\/2-x')+' = \\csc'+zp('x-{3π}\\/2')+' = -\\csc'+zp('x+{3π}\\/2'),
+        ]),
+        
+            
+            Eq(['\\sech x = \\sech(x+2πi⋅n) = \\sech (-x)',
+
+        
+            ]), 
+                
+        
+            ''],
+
+        [Eq(['\\csc x = \\csc(x+2π⋅n) = -\\csc (-x)',
+            '\\csc(π-x) = -\\csc(x-π) = -\\csc(x+π)',
+          '\\sec'+zp('π\\/2-x')+' = \\sec'+zp('x-π\\/2')+' = -\\sec'+zp('x+π\\/2'),
+          '\\sec'+zp('{3π}\\/2-x')+' = -\\sec'+zp('x-{3π}\\/2')+' = \\sec'+zp('x+{3π}\\/2'),
+        ]), 
+        
+        
+            Eq(['\\csch x = \\csch(x+2πi⋅n) = -\\csch (-x)',
+
+            
+            ]), 
+        
+        
+            ''],
+
+    
+    ],'wiki TBrc'))+
 
 
     detail(gM('Inverse Function'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
@@ -57,9 +152,43 @@ wiki['Formula/Function/Trigonometric']=Kx(
         ['\\tan(\\arcsin x)=\\cot(\\arccos x)='+kfrac(['x','\\sqrt{1-x^2}']), ''],
 
 
+        [Eq(['\\arcsin x',
+            '\\arccos \\sqrt{1-x^2}',
+            '\\arctan '+kfrac(['x','\\sqrt{1-x^2}']),
+            '\\arccot '+kfrac(['\\sqrt{1-x^2}','x']),
+        ]),
+            '\\sh^{-1} x = \\csch^{-1} 1\\/x'],
+
+        [Eq(['\\arccos x',
+            '\\arcsin \\sqrt{1-x^2}',
+            '\\arctan '+kfrac(['\\sqrt{1-x^2}','x']),
+            '\\arccot '+kfrac(['x','\\sqrt{1-x^2}']),
+
+        ]),
+            '\\ch^{-1} x = \\sech^{-1} 1\\/x'],
+
+        [Eq(['\\arctan x',
+            '\\arcsin '+kfrac(['x','\\sqrt{1+x^2}']),
+            '\\arccos '+kfrac(['1','\\sqrt{1+x^2}']),
+            '\\arccot '+kfrac(['1','x']),
+        ]),
+            '\\th^{-1} x = \\cth^{-1} 1\\/x'],
+
+        [Eq(['\\arccot x',
+            '\\arcsin '+kfrac(['1','\\sqrt{1+x^2}']),
+            '\\arccos '+kfrac(['x','\\sqrt{1+x^2}']),
+            '\\arctan '+kfrac(['1','x']),
+        ]),
+            '\\cth^{-1} x = \\th^{-1} 1\\/x'],
+
+        ['',
+            '\\sech^{-1} x = \\ch^{-1} 1\\/x'],
+
+        ['',
+            '\\csch^{-1} x = \\sh^{-1} 1\\/x'],
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
     detail(gM('Square.1'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
         ['\\sin^2x+\\cos^2x=1','\\ch^2 x-\\sh^2 x=1'],
@@ -72,32 +201,58 @@ wiki['Formula/Function/Trigonometric']=Kx(
         ['\\sec^2 x+\\csc^2 x=\\sec^2 x\\csc^2 x','',''],
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
     detail('变量和差',Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
-        ['\\sin(x±y)=\\sin x\\cos y±\\cos x\\sin y', '\\sh(x±y)=\\sh x\\ch y±\\ch x\\sh y'],
-        ['\\cos(x±y)=\\cos x\\cos y∓\\sin x\\sin y', '\\ch(x±y)=\\ch x\\ch y±\\sh x\\sh y'],
-        ['\\tan(x±y)={\\tan x±\\tan y}\\/{1∓\\tan x\\tan y}', '\\th(x±y)={\\th x±\\th y}\\/{1±\\th x\\th y}'],
+        ['\\sin(x±y)=\\sin x\\cos y±\\cos x\\sin y', 
+        '\\sh(x±y)=\\sh x\\ch y±\\ch x\\sh y'
+        ],
+
+        ['\\cos(x±y)=\\cos x\\cos y∓\\sin x\\sin y',
+        '\\ch(x±y)=\\ch x\\ch y±\\sh x\\sh y'
+        ],
+
+
+        ['\\tan(x±y)={\\tan x±\\tan y}\\/{1∓\\tan x\\tan y}',
+        '\\th(x±y)={\\th x±\\th y}\\/{1±\\th x\\th y}'
+        ],
+
         ['',''],
-        ['\\cot(x+y)={\\cot x\\cot y-1}\\/{\\cot x+ \\cot y}'],
-        ['\\cot(x-y)=-{\\cot x\\cot y+1}\\/{\\cot x- \\cot y}'],
+
+        ['\\cot(x+y)={\\cot x\\cot y-1}\\/{\\cot x+ \\cot y}', ''
+        ],
+
+
+        ['\\cot(x-y)=-{\\cot x\\cot y+1}\\/{\\cot x- \\cot y}',  
+        ],
+
         ['\\sec(x±y)={\\sec x\\sec y}\\/{1∓\\tan x\\tan y}={\\csc x\\csc y}\\/{\\cot x\\cot y∓1}={\\sec x\\sec y\\csc x\\csc y}\\/{\\csc x\\csc y∓\\sec x\\sec y}'],
+
+
         ['\\csc(x±y)={\\csc x\\csc y}\\/{ \\cot x±\\cot y}={\\sec x\\sec y}\\/{\\tan x+\\tan y }={\\sec x\\sec y\\csc x\\csc y}\\/{\\sec x\\csc y±\\csc x\\sec y}'],
 
 
         [['f(a,x)={x\\cos a-\\sin a}\\/{x\\sin a+\\cos a}',
             'f(a,f(b,x))=f(b,f(a,x))=f(a+b,x)={x\\cos(a+b)-\\sin(a+b)}\\/{x\\sin(a+b)+\\cos(a+b)}'].join(kbr)],
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
     detail('和差化积',Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
-        ['\\sin x± \\sin y=2\\sin {x±y}\\/2\\cos {x∓y}\\/2'],
+        ['\\sin x± \\sin y=2\\sin {x±y}\\/2\\cos {x∓y}\\/2',
+            '\\sh x± \\sh y=2\\sh {x±y}\\/2\\ch {x∓y}\\/2',
+        ],
         ['',''],
-        ['\\cos x+ \\cos y=2\\cos {x+y}\\/2\\cos {x-y}\\/2'],
-        ['\\cos x- \\cos y=-2\\sin {x+y}\\/2\\sin {x-y}\\/2'],
+        ['\\cos x+ \\cos y=2\\cos {x+y}\\/2\\cos {x-y}\\/2',
+        '\\ch x+ \\ch y=2\\ch {x+y}\\/2\\ch {x-y}\\/2',
+        ],
+        ['\\cos x- \\cos y= -2\\sin {x+y}\\/2\\sin {x-y}\\/2',
+        '\\ch x- \\ch y= 2\\sh {x+y}\\/2\\sh {x-y}\\/2',
+        ],
 
-        ['\\tan x± \\tan y=\\tan (x±y)(1∓\\tan x\\tan y)= {\\sin (x±y)}\\/{\\cos x\\cos y}'],
+        ['\\tan x± \\tan y=\\tan (x±y)(1∓\\tan x\\tan y)= {\\sin (x±y)}\\/{\\cos x\\cos y}',
+    
+        ],
         ['',''],
         ['\\cot x+ \\cot y={\\cot x\\cot y-1}\\/{\\cot (x+y)}= {\\sin (x+y)}\\/{\\sin x\\sin y}'],
         ['\\cot x- \\cot y=-{\\cot x\\cot y+1}\\/{\\cot (x-y)}= -{\\sin (x-y)}\\/{\\sin x\\sin y}'],
@@ -120,7 +275,7 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
     detail('积化和差',Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
 
@@ -132,19 +287,44 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
         ['\\arctan 1\\/x = \\arctan 1\\/{x+y} +  \\arctan y\\/{x^2+xy+1}',''],
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
-    
+
     detail('倍角半角',Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
-        ['\\sin2x = 2\\sin x\\cos x = '+kfrac(['2\\tan x','1+\\tan ^2 x']), ''],
-        ['\\cos2x = 2\\cos^2 x-1 =1-2\\sin^2 x=\\cos^2 x- \\sin^2 x = '+kfrac(['1-\\tan^2 x','1+\\tan ^2 x']), ''],
+        ['\\sin2x = 2\\sin x\\cos x = '+kfrac(['2\\tan x','1+\\tan ^2 x']), 
+            '\\sh2x = 2\\sh x\\ch x = '+kfrac(['2\\th x','1-\\th ^2 x'])],
+        
+        [Eq(['\\cos2x = 2\\cos^2 x-1',
+            '1-2\\sin^2 x',
+            '\\cos^2 x- \\sin^2 x',
+            kfrac(['1-\\tan^2 x','1+\\tan ^2 x'])
+        ]), 
+        Eq(['\\ch2x = 2\\ch^2 x-1',
+            '2\\sh^2 x+1',
+            '\\ch^2 x + \\sh^2 x',
+            kfrac(['1+\\th^2 x','1-\\th ^2 x'])
+        ]), 
+        
+        
+        ''],
 
-        ['\\tan2x = '+kfrac(['2\\tan x','1-\\tan ^2 x']),''],
-        ['\\cot2x = '+kfrac(['\\cot ^2 x-1', '2\\cot x']),''],
+        ['\\tan2x = '+kfrac(['2\\tan x','1-\\tan ^2 x']), 
+            '\\th2x = '+kfrac(['2\\th x','1+\\th ^2 x'])
+        ],
 
-        ['\\sec2x = '+kfrac(['\\sec^2 x','2-\\sec ^2 x']),''],
-        ['\\csc2x = {\\sec x\\csc x}\\/2 ',''],
+        ['\\cot2x = '+kfrac(['\\cot ^2 x-1', '2\\cot x']),
+            '\\cth2x = '+kfrac(['\\cth ^2 x+1', '2\\cth x']),
+        ''],
+
+        ['\\sec2x = '+kfrac(['\\sec^2 x','2-\\sec ^2 x']),
+            '\\sech2x = '+kfrac(['\\sech^2 x','2-\\sech ^2 x']),
+        ''],
+
+        ['\\csc2x = {\\sec x\\csc x}\\/2 ',
+        '\\csch2x = {\\sech x\\csch x}\\/2 ',
+
+        ''],
 
         [''],
 
@@ -182,13 +362,70 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
         ['\\cos^2 x\\/2 = {1+\\cos x}\\/2'],
 
-        ['\\tan x\\/2 = \\csc x - \\cot x={\\sin x}\\/{1+\\cos x} = {1-\\cos x}\\/{\\sin x} = {\\tan x}\\/{1+\\sec x} = 1\\/{\\csc x+\\cot x} = {\\sec x-1}\\/{\\tan x}'],
 
-        ['\\cot x\\/2 = \\csc x + \\cot x={\\sin x}\\/{1-\\cos x} = {1+\\cos x}\\/{\\sin x} = {\\tan x}\\/{\\sec x-1} = 1\\/{\\csc x-\\cot x} = {\\sec x+1}\\/{\\tan x}'],
+
+        ['',
+            Eq(['\\sh x\\/2',
+                '\\sgn x ⋅ \\sqrt{\\frac{\\ch x-1}2}',
+                kfrac(['\\sh x','\\sqrt{2(\\ch x+1)}'])
+          ]),
+        ],
+
+        ['',
+            Eq(['\\ch x\\/2',
+                '\\sqrt{\\frac{\\ch x+1}2}',
+          ]),
+        ],
+
+
+
+        [Eq(['\\tan x\\/2',
+            '\\csc x - \\cot x',
+            '{\\sin x}\\/{1+\\cos x}',
+            '{1-\\cos x}\\/{\\sin x}',
+            '{\\tan x}\\/{1+\\sec x}',
+            '1\\/{\\csc x+\\cot x}',
+            '{\\sec x-1}\\/{\\tan x}'
+        ]),
+            Eq(['\\th x\\/2',
+                kfrac(['\\sh x','\\ch x+1']),
+                kfrac(['\\ch x-1','\\sh x']),
+                '\\cth x - \\csch x',
+
+                '\\sgn x ⋅ \\sqrt{\\frac{\\ch x-1}{\\ch x+1}}',
+                kfrac(['e^x-1','e^x+1']),
+
+            ]),
+        ],
+
+        [Eq(['\\cot x\\/2',
+            '\\csc x + \\cot x',
+            '{\\sin x}\\/{1-\\cos x}',
+            '{1+\\cos x}\\/{\\sin x}',
+            '{\\tan x}\\/{\\sec x-1}',
+            '1\\/{\\csc x-\\cot x}',
+            '{\\sec x+1}\\/{\\tan x}'
+        ]),
+    
+    
+        ],
 
         ['\\tan {x+y}\\/2 = {\\sin x + \\sin y}\\/{\\cos x+\\cos y}'],
 
-        ['\\tan \\(x\\/2±π\\/4\\) = \\sec x ± \\tan x = 1\\/{\\sec x ∓ \\tan x} = {1±\\sin x}\\/{\\cos x} = {\\cos x}\\/{1∓\\sin x} =  {\\csc x±1}\\/{\\cot x} = {\\cot x}\\/{\\csc x∓1}'],
+
+
+
+        [Eq(['\\tan \\(x\\/2±π\\/4\\)',
+            '\\sec x ± \\tan x',
+            '1\\/{\\sec x ∓ \\tan x}',
+            '{1±\\sin x}\\/{\\cos x}',
+            '{\\cos x}\\/{1∓\\sin x}',
+            '{\\csc x±1}\\/{\\cot x}',
+            '{\\cot x}\\/{\\csc x∓1}'
+        ]),
+    
+    
+        ],
 
 
         ['\\sqrt{\\frac{1-\\sin x}{1+\\sin x}} = \\left| '+kfrac(['1-\\tan x\\/2','1+\\tan x\\/2'])+' \\right|', ''],
@@ -196,18 +433,40 @@ wiki['Formula/Function/Trigonometric']=Kx(
         ['\\sqrt{\\frac{1-\\cos x}{1+\\cos x}} = \\left| \\tan x\\/2 \\right|', ''],
 
 
-        ['\\cos x\\/2\\cos x\\/4\\cos x\\/8⋯='+prod('n',1,'+','\\cos x\\/{2^n}',0,'')+'={\\sin x}\\/x=\\sinc x '+kxf(pp('Viète '+gM('Infinite Product')))],
+        [Eq(['\\cos x\\/2\\cos x\\/4\\cos x\\/8⋯',
+            prod('n',1,'+','\\cos x\\/{2^n}',0,'')+kxf(pp('Viète '+gM('Infinite Product'))),
+            '{\\sin x}\\/x','\\sinc x '
+        ]),''],
 
-        ['\\cos x+\\cos 2x+\\cos 3x+⋯+\\cos nx='+sum('i',1,'n','\\cos nx',0,'')+'=-1\\/2+{\\sin\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2} '],
-        ['\\sin x+\\sin 2x+\\sin 3x+⋯+\\sin nx='+sum('i',1,'n','\\sin nx',0,'')+'=1\\/2\\cot x\\/2-{\\cos\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2} '+kxf(pp(gM('Lagrange Trigonometric identity')))],
-        ['1+2\\cos x+2\\cos 2x+2\\cos 3x+⋯+2\\cos nx=1+2'+sum('i',1,'n','\\cos nx',0,'')+'={\\sin\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2} '+kxf(pp(gM('Dirichlet Kernel')))],
+        [Eq(['\\cos x+\\cos 2x+\\cos 3x+⋯+\\cos nx',
+            sum('i',1,'n','\\cos nx',0,''),
+            '-1\\/2+{\\sin\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2}'
+        ]),''],
 
-        ['\\sin x+\\sin (x+t)+\\sin (x+2t)+⋯+\\sin (x+nt)='+sum('i',0,'n','\\sin (x+nt)',0,'')+'='+kfrac(['\\sin {(n+1)t}\\/2 \\sin \\(x+{nt}\\/2\\)','2\\sin \\frac x2'])],
-        ['\\cos x+\\cos (x+t)+\\cos (x+2t)+⋯+\\cos (x+nt)='+sum('i',0,'n','\\cos (x+nt)',0,'')+'='+kfrac(['\\sin {(n+1)t}\\/2 \\cos \\(x+{nt}\\/2\\)','2\\sin \\frac x2'])],
+        [Eq(['\\sin x+\\sin 2x+\\sin 3x+⋯+\\sin nx',
+            sum('i',1,'n','\\sin nx',0,''),
+            '1\\/2\\cot x\\/2-{\\cos\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2} '+kxf(pp(gM('Lagrange Trigonometric identity')))
+        ]),' '],
+
+
+        [Eq(['1+2\\cos x+2\\cos 2x+2\\cos 3x+⋯+2\\cos nx',
+            '1+2'+sum('i',1,'n','\\cos nx',0,''),
+            '{\\sin\\(n+\\frac12\\) x}\\/{2\\sin \\frac x2} '+kxf(pp(gM('Dirichlet Kernel')))
+        ]),' '],
+
+        [Eq(['\\sin x+\\sin (x+t)+\\sin (x+2t)+⋯+\\sin (x+nt)',
+            sum('i',0,'n','\\sin (x+nt)',0,''),
+            kfrac(['\\sin {(n+1)t}\\/2 \\sin \\(x+{nt}\\/2\\)','2\\sin \\frac x2'])
+        ]),' '],
+
+        [Eq(['\\cos x+\\cos (x+t)+\\cos (x+2t)+⋯+\\cos (x+nt)',
+            sum('i',0,'n','\\cos (x+nt)',0,''),
+            kfrac(['\\sin {(n+1)t}\\/2 \\cos \\(x+{nt}\\/2\\)','2\\sin \\frac x2'])
+        ]),' '],
 
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
     detail('万能公式',Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
@@ -245,8 +504,10 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
             ].join(kbr)],
+
+        ['', ''],
     
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
 
@@ -291,7 +552,7 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
     detail(ksc('x+y+z=π'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
@@ -332,7 +593,7 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
     detail(gM('Identity'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
         ['\\arctan 1\\/2 = \\arctan 1\\/3 +  \\arctan 1\\/7 '],
@@ -368,19 +629,21 @@ wiki['Formula/Function/Trigonometric']=Kx(
         ]), ''],
 
 
-        ['\\cis x = e^{ix} = \\cos x + i\\sin x'+kxf(pp('Euler Formula'))],
-        ['e^{πi}+1=0'+kxf(pp('Euler Identity'))],
+        ['\\cis x = e^{ix} = \\cos x + i\\sin x'+kxf(pp(gM('Euler Formula')))],
+        ['e^{πi}+1=0'+kxf(pp(gM('Euler Identity')))],
 
 
 
-        ['\\arcsin x+\\arccos x=π\\/2',''],
+        ['\\arcsin x+\\arccos x = π\\/2',
+            ' ',
+            '\\Si x-\\si x = π\\/2'],
 
-        ['\\arctan x+\\arccot x=π\\/2',''],
+        ['\\arctan x+\\arccot x = π\\/2',''],
 
-        ['\\arctan x+\\arctan 1\\/x=π\\/2\\sgn x',''],
+        ['\\arctan x+\\arctan 1\\/x = π\\/2\\sgn x',''],
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
     detail(gM('Infinite Product'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
         ['\\sin x=x'+prod('n',1,'+',zp('1-'+kfrac(['x^2','π^2n^2'])),'',''), '\\sh x=x'+prod('n',1,'+',zp('1+'+kfrac(['x^2','π^2n^2'])),'','')],
@@ -389,32 +652,80 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
         ['\\sinc x = {\\sin x}\\/x = '+prod('n',1,'+','\\cos x\\/{2^n}','',''), ''],
 
-        ['\\sinc πx = {\\sin πx}\\/{πx} = '+prod('n',1,'+',zp('1-{x^2}\\/{n^2}'),'','')+ ' = 1\\/{Γ(1+x)Γ(1-x)}', ''],
+        [Eq(['\\sinc πx = {\\sin πx}\\/{πx}',
+            prod('n',1,'+',zp('1-{x^2}\\/{n^2}'),'',''),
+            '1\\/{Γ(1+x)Γ(1-x)}'
+        ]), ''],
 
         ['', ''],
     
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
 
 
     detail(gM('Series Expansion'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
-        ['\\sin x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n+1}','(2n+1)!']),'',''), ''],
-
-        ['\\sin x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n}','(2n)!']),'',''), ''],
-
-
-        ['\\sinc x = {\\sin x}\\/x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n}','(2n+1)!']),'',''), ''],
-
-        ['\\sinc πx = {\\sin πx}\\/{πx} = '+sum('n',0,'+',kfrac(['(-1)^nπ^{2n}x^{2n}','(2n+1)!']),'',''), ''],
-
-        ['', ''],
+        ['\\sin x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n+1}','(2n+1)!']),'',''), 
+        '\\sh x = '+sum('n',0,'+',kfrac(['x^{2n+1}','(2n+1)!']),'',''),
     
-    ],'wiki TBrc').replace(/\n/g,br))+
+        '\\Si x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n+1}','(2n+1)(2n+1)!']),'',''),
+        ],
+
+        ['\\cos x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n}','(2n)!']),'',''),
+        '\\ch x = '+sum('n',0,'+',kfrac(['x^{2n}','(2n)!']),'',''),
+        '\\Ci x = γ+\\ln x + '+sum('n',1,'+',kfrac(['(-1)^nx^{2n}','(2n)(2n)!']),'',''),
+
+         ''],
+
+
+         ['\\tan x = ', 
+         '\\th x = '+sum('n',1,'+',kfrac(['2^{2n}(2^{2n}-1)B_{2n}x^{2n-1}','(2n)!']),'','')+'~~'+zp('|x|<π\\/2，其中B_n是伯努利数'),
+     
+         ],
+ 
+         ['\\cot x = ',
+         '\\ch x = x^{-1} + '+sum('n',1,'+',kfrac(['2^{2n}B_{2n}x^{2n}','(2n)!']),'','')+'~~'+zp('0<|x|<π'),
+ 
+          ''],
+ 
+
+        ['\\sec x = ', 
+        '\\sech x = '+sum('n',0,'+',kfrac(['E_{2n}x^{2n}','(2n)!']),'','')+'~~'+zp('|x|<π\\/2，其中E_n是欧拉数'),
+    
+        ],
+
+        ['\\csc x = ',
+        '\\csch x = x^{-1} + '+sum('n',1,'+',kfrac(['2(1-2^{2n-1})B_{2n}x^{2n}','(2n)!']),'','')+'~~'+zp('0<|x|<π'),
+
+        ''],
+
+           
+
+
+
+        ['\\sinc x = {\\sin x}\\/x = '+sum('n',0,'+',kfrac(['(-1)^nx^{2n}','(2n+1)!']),'',''), 
+
+
+        ''],
+
+        ['\\sinc πx = {\\sin πx}\\/{πx} = '+sum('n',0,'+',kfrac(['(-1)^nπ^{2n}x^{2n}','(2n+1)!']),'',''),
+
+
+        ''],
+
+        ['',
+        
+        ''],
+    
+    ],'wiki TBrc'))+
 
     detail(gM('Infinite Sum'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
 
         [sum('n',1,'+','\\sinc n','','')+'='+sum('n',1,'+','\\sinc^2 n','','')+'={π-1}\\/2'],
-        [sum('n',1,'+','(-1)^{n+1}\\sinc n','','')+'='+sum('n',1,'+','(-1)^{n+1}\\sinc^2 n','','')+'='+sum('n',1,'+','(-1)^{n+1}\\sinc^3 n','','')+'=1\\/2'],
+        [Eq([sum('n',1,'+','(-1)^{n+1}\\sinc n','',''),
+            sum('n',1,'+','(-1)^{n+1}\\sinc^2 n','',''),
+            sum('n',1,'+','(-1)^{n+1}\\sinc^3 n','',''),
+            '1\\/2'
+        ]),' '],
 
         ['\\cos (t\\sin x) = J_0(t) + 2'+sum('n',1,'+','J_{2n}(t)\\cos(2nx)','','')+'（其中J_i是'+kxf('Bessel')+'函数）', ''],
         ['\\sin (t\\sin x) = 2'+sum('n',0,'+','J_{2n+1}(t)\\sin(2n+1)x','',''), ''],
@@ -424,7 +735,7 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
 
-    ],'wiki TBrc').replace(/\n/g,br))+
+    ],'wiki TBrc'))+
 
     
     detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[

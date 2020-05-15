@@ -2330,7 +2330,13 @@ $(function(){
 
 					itv('" id=UploadSnippetFile tip="Import File','file_upload')+
 					itv('" id=DownloadSnippetFile tip="Download Snippet Text File','file_download')+
+
+					itv('" id=linebreakEqual tip="Linebreak Equality','drag_handle')+
+					itv('" id=linebreak tip="Linebreak','subdirectory_arrow_left')+
+
 					itv('" id=input0Size tip="Font Size','format_size')+
+
+
 					itv('Del" id=snippetDel tip="Delete Snippet','remove_circle')+
 
 					
@@ -2503,7 +2509,7 @@ $(function(){
 			
 
 			
-			'<div id=input0Tip>'+
+			'<div id=input0Tip hidden>'+
 			'<select id=input0TipType>'+optgrp(gM('API Help')+':',
 			OptGrps(jSon('[{"'+
 				gM('Math Object')+
@@ -2558,8 +2564,7 @@ $(function(){
 
 				itv('" id=alignPreview tip="Center Align','format_align_center')+
 
-				itv('" id=linebreakEqual tip="Linebreak Equality','drag_handle')+
-				itv('" id=linebreak tip="Linebreak','subdirectory_arrow_left')+
+
 
 				itv('" id=toggleHTMLEditor tip="Toggle HTML Editor','chrome_reader_mode')+
 				SCtv('imgHTMLEditor',
@@ -3745,4 +3750,5 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 	
 
 	$('#input0Type').val(Meleo[L.snippetType1]||L.snippetType1).change();
+	sTo(function(){$('#input0Tipon').click()},300);
 });

@@ -249,7 +249,6 @@ wikis={
 			'Fraction',
 			'Radical',
 			'Trigonometric',
-			'Hyperbolic',
 			'Infinite Series',
 			
 		]},
