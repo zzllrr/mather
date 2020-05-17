@@ -6,6 +6,28 @@
 
 wiki['Formula/Function/Trigonometric']=Kx(
 
+    detail('三角函数值表',Table([['x（角度°）','x（弧度）','\\sin x','\\cos x','\\tan x']],[
+        ['0°','0', 0, 1, 0],
+        ['5°','π\\/{36}', 'i\\/2(ε_{36}^{-1}-ε_{36})','1\\/2(ε_{36}^{-1}+ε_{36})', 'i\\frac{1-ε_{18}}{1+ε_{18}}'],        
+        ['10°','π\\/{18}', 'i\\/2(ε_{18}^{-1}-ε_{18})','1\\/2(ε_{18}^{-1}+ε_{18})', 'i\\frac{1-ε_9}{1+ε_9}'],
+
+        ['15°','π\\/{12}', '{√6-√2}\\/4','{√6+√2}\\/4', '2-√3'],
+        ['20°','π\\/{9}', 'i\\/2(ε_{9}^{-1}-ε_{9})','1\\/2(ε_{9}^{-1}+ε_{9})', 'i\\frac{1-ε_{9}^2}{1+ε_{9}^2}'],
+        ['25°','{5π}\\/{36}', 'i\\/2(ε_{36}^{-5}-ε_{36}^5)','1\\/2(ε_{36}^{-5}+ε_{36}^5)', 'i\\frac{1-ε_{18}^5}{1+ε_{18}^5}'],
+
+        ['30°','π\\/{6}', '1\\/2','{√3}\\/2', '1\\/{√3}'],
+        ['35°','{7π}\\/{36}', 'i\\/2(ε_{36}^{-7}-ε_{36}^7)','1\\/2(ε_{36}^{-7}+ε_{36}^7)', 'i\\frac{1-ε_{18}^7}{1+ε_{18}^7}'],
+        ['40°','{2π}\\/{9}', 'i\\/2(ε_{9}^{-2}-ε_{9}^2)','1\\/2(ε_{9}^{-2}+ε_{9}^2)', 'i\\frac{1-ε_{9}^4}{1+ε_{9}^4}'],
+
+        ['45°','π\\/{4}', '{√2}\\/2','{√2}\\/2', '1'],
+
+        ['60°','π\\/{3}', '{√3}\\/2','1\\/2', '√3'],
+
+        ['75°','{5π}\\/{12}', '{√6+√2}\\/4','{√6-√2}\\/4', '2+√3'],
+        
+        ['90°','{π}\\/{2}', '1','0', '/'],
+
+    ],'wiki TBrc'))+
     detail(gM('Geometry'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
         [['三角形三边a,b,c，相应对角A,B,C',
             '半周长s={a+b+c}\\/2',
@@ -157,7 +179,13 @@ wiki['Formula/Function/Trigonometric']=Kx(
             '\\arctan '+kfrac(['x','\\sqrt{1-x^2}']),
             '\\arccot '+kfrac(['\\sqrt{1-x^2}','x']),
         ]),
-            '\\sh^{-1} x = \\csch^{-1} 1\\/x'],
+            Eq(['\\sh^{-1} x',
+                '\\csch^{-1} 1\\/x',
+                '\\ln (x + '+kroot('x^2+1')+')',
+                '\\sgn x⋅ch^{-1}'+kroot('x^2+1'),
+                '\\th^{-1} '+kfrac(['x','\\sqrt{1+x^2}']),
+            ])
+        ],
 
         [Eq(['\\arccos x',
             '\\arcsin \\sqrt{1-x^2}',
@@ -165,21 +193,33 @@ wiki['Formula/Function/Trigonometric']=Kx(
             '\\arccot '+kfrac(['x','\\sqrt{1-x^2}']),
 
         ]),
-            '\\ch^{-1} x = \\sech^{-1} 1\\/x'],
+            Eq(['\\ch^{-1} x',
+                '\\sech^{-1} 1\\/x',
+                '\\ln |x + '+kroot('x^2-1')+'|',
+                '\\sh^{-1} \\sqrt{x^2-1} ~(x≥1)',
+        ])],
 
         [Eq(['\\arctan x',
             '\\arcsin '+kfrac(['x','\\sqrt{1+x^2}']),
             '\\arccos '+kfrac(['1','\\sqrt{1+x^2}']),
             '\\arccot '+kfrac(['1','x']),
         ]),
-            '\\th^{-1} x = \\cth^{-1} 1\\/x'],
+            Eq(['\\th^{-1} x',
+                '1\\/2\\ln '+kfrac(['1+x','1-x']),
+                '\\cth^{-1} 1\\/x',
+
+        ])],
 
         [Eq(['\\arccot x',
             '\\arcsin '+kfrac(['1','\\sqrt{1+x^2}']),
             '\\arccos '+kfrac(['x','\\sqrt{1+x^2}']),
             '\\arctan '+kfrac(['1','x']),
         ]),
-            '\\cth^{-1} x = \\th^{-1} 1\\/x'],
+            Eq(['\\cth^{-1} x',
+                '1\\/2\\ln '+kfrac(['x+1','x-1']),
+                '\\th^{-1} 1\\/x',
+
+        ])],
 
         ['',
             '\\sech^{-1} x = \\ch^{-1} 1\\/x'],
@@ -220,7 +260,8 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
         ['',''],
 
-        ['\\cot(x+y)={\\cot x\\cot y-1}\\/{\\cot x+ \\cot y}', ''
+        ['\\cot(x+y)={\\cot x\\cot y-1}\\/{\\cot x+ \\cot y}', 
+        '\\cth(x±y)={1±\\cth x\\cth y}\\/{\\cth x±\\cth y}'
         ],
 
 
@@ -251,13 +292,17 @@ wiki['Formula/Function/Trigonometric']=Kx(
         ],
 
         ['\\tan x± \\tan y=\\tan (x±y)(1∓\\tan x\\tan y)= {\\sin (x±y)}\\/{\\cos x\\cos y}',
-    
+        '\\th x± \\th y=\\th (x±y)(1±\\th x\\th y)= {\\sh (x±y)}\\/{\\ch x\\ch y}',
+
         ],
         ['',''],
-        ['\\cot x+ \\cot y={\\cot x\\cot y-1}\\/{\\cot (x+y)}= {\\sin (x+y)}\\/{\\sin x\\sin y}'],
+        ['\\cot x+ \\cot y={\\cot x\\cot y-1}\\/{\\cot (x+y)}= {\\sin (x+y)}\\/{\\sin x\\sin y}',
+        '\\cth x± \\cth y=(\\cth x\\cth y+1)\\/{\\cth (x±y)}= {\\sh (x±y)}\\/{\\sh x\\sh y}'],
+
         ['\\cot x- \\cot y=-{\\cot x\\cot y+1}\\/{\\cot (x-y)}= -{\\sin (x-y)}\\/{\\sin x\\sin y}'],
 
         ['\\tan x+ \\cot y={\\tan x\\cot y-1}\\/{\\tan (x-y)}= {\\cos (x-y)}\\/{\\cos x\\sin y}'],
+
         ['\\tan x- \\cot y=-{\\tan x\\cot y+1}\\/{\\tan (x+y)}= -{\\cos (x+y)}\\/{\\cos x\\sin y}'],
 
         ['',''],
@@ -407,7 +452,15 @@ wiki['Formula/Function/Trigonometric']=Kx(
             '{\\sec x+1}\\/{\\tan x}'
         ]),
     
-    
+            Eq(['\\cth x\\/2',
+            kfrac(['\\sh x','\\ch x-1']),
+            kfrac(['\\ch x+1','\\sh x']),
+            '\\cth x + \\csch x',
+
+            '\\sgn x ⋅ \\sqrt{\\frac{\\ch x+1}{\\ch x-1}}',
+            kfrac(['e^x+1','e^x-1']),
+
+    ]),
         ],
 
         ['\\tan {x+y}\\/2 = {\\sin x + \\sin y}\\/{\\cos x+\\cos y}'],
@@ -512,6 +565,17 @@ wiki['Formula/Function/Trigonometric']=Kx(
 
 
     detail(gM('Power'),Table([gM(['Trigonometric','Hyperbolic','Integral Trigonometric','Integral Hyperbolic','Ellipse Function','Ellipse Integral'])],[
+
+        [Eq(['(\\cos x+i\\sin x)^n=\\cos nx+i\\sin nx ~'+kxf(pp('棣莫弗公式')),
+            '(\\cis x)^n = (e^{ix})^{n} = e^{inx} = e^{i(nx)} = \\cis nx',
+            ]),
+
+        Eq(['(\\ch x±\\sh x)^n=\\ch nx±\\sh nx ~'+kxf(pp('棣莫弗公式')),
+
+            ]),
+        
+
+        ],
 
         ['\\sin^2 x = {1-\\cos 2x}\\/2', ''],
         ['\\cos^2 x = {1+\\cos 2x}\\/2', ''],

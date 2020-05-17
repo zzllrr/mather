@@ -261,7 +261,10 @@ Eq([['（求三维质心坐标）'+kxo('z','-'),kfrac([iint('zρ','Ω','','x,y,z
     
         ['第一类曲面积分',hrA([`
 
-            [iint('f(x,y,z)','Σ','','S',2,1)+'='+iint('f(x(u,v),y(u,v),z(u,v))'+kroot('EG-F^2'),'D','','u,v',2,1),
+            [Eq([iint('f(x,y,z)','Σ','','S',2,1)+'='+iint('f(x(u,v),y(u,v),z(u,v))'+kroot('EG-F^2'),'D','','u,v',2,1),
+            iint('f(x,y,z(x,y))'+kroot('1+z_x^2+z_y^2'),'D','','x,y',2,1),
+            iint('f(x,y,z)'+kfrac([zp('\\\\r {grad}H','‖‖'),'|H_z|']),'D','','x,y',2,1)+'~其中隐函数H(x,y,z)=0'
+                ]),
                 '\\\\text{其中Gauss系数}，',
                 piece(['E=\\\\b r_u^2=x_u^2+y_u^2+z_u^2',
                 'F=\\\\b r_u⋅\\\\b r_v=x_ux_v+y_uy_v+z_uz_v',
@@ -286,7 +289,7 @@ Eq([['（求三维质心坐标）'+kxo('z','-'),kfrac([iint('zρ','Ω','','x,y,z
 
             ['（曲面面积）Σ：H(x,y,z)=0',
                 Eq([['S',
-                    iint(kroot('1+z_x^2+f_z^2'),'D','','x,y',2,1)],
+                    iint(kroot('1+z_x^2+z_y^2'),'D','','x,y',2,1)],
                     iint(kroot('1+'+zp('-'+kfrac(['H_x','H_z']))+'^2+'+zp('-'+kfrac(['H_y','H_z']))+'^2'),'D','','x,y',2,1),
                     iint(kfrac([zp('\\\\r {grad}H','‖‖'),'|H_z|']),'D','','x,y',2,1),
                 ])

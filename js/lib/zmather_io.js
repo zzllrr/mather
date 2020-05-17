@@ -1034,7 +1034,7 @@ SBS={
 ]
 	
 ,FUNCS={
-	'Number Theory':['dr'],
+	'Number Theory':['dr Re Im'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sgn'],// ㏒ ㏑
 	'Algebraic':['rank diag tr det','adj dim hom ker per','span proj Pr'],
 	'Trigonometric':['sin tan sec','cos cot csc',
