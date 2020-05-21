@@ -8,11 +8,17 @@ wiki['Formula/Function/Derivative']=Kx(
     detail(gM('Indefinite Integral & Derivative')+ksc('∫f→f→f\''),Table([['∫f（省略常数项）','函数f','1阶导数f\'','2阶导数f″','n阶导数f^{(n)}']],[
         
         ZLR('a∫f ± b∫g____af ± bg____af\' ± bg\'____af″ ± bg″____af^{(n)} ± bg^{(n)}','','____'),
-        ZLR('∫f\\d g+∫g\\d f____f⋅g____f\'g + fg\'____f″g + 2f\'g\'+ fg″____∑C_n^if^{(i)}g^{(n-i)}','','____'),
-        ZLR('∫(fg)\\d h+∫(fh)\\d g+∫(gh)\\d f____f⋅g⋅h____f\'gh + fg\'h + fgh\'____(f″gh + fg″h + fgh″)\\\\+2(f\'g\'h+f\'gh\'+fg\'h\')____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
+        ZLR(khrA([
+            "f∫g-∫(f'∫g) "+kbr+"（分部积分）",
+
+ 
+
+        ])+'____f⋅g____f\'g + fg\'____f″g + 2f\'g\'+ fg″____∑C_n^if^{(i)}g^{(n-i)}','','____'),
+
+        ZLR('____f⋅g⋅h____f\'gh + fg\'h + fgh\'____(f″gh + fg″h + fgh″)\\\\+2(f\'g\'h+f\'gh\'+fg\'h\')____∑C_n^{i,j}f^{(i)}g^{(j)}h^{(n-i-j)}','','____'),
     
     
-        ZLR('____'+kfrac(['f','g'])+'____'+khrA([frac('f\'g - fg\'','g^2',''),
+        ZLR('____'+kfrac(['f','g'])+'____'+khrA([kfrac(["f'g - fg'",'g^2']),
             frac('f\'','g','')+'-'+kfrac(['fg\'','g^2'])])+'____'+khrA([frac('f″g^2 - 2f\'g\'g + 2fg\'^2 - fg″g','g^3',''),
             frac('f″','g','')+'-'+kfrac(['2f\'g\'','g^2'])+kfrac(['2fg\'^2','g^3'])+'-'+kfrac(['fg″','g^2'])])+'____'+kbrA([frac('∑(-1)^{i+j}C_n^if^{(i)}g^{(j)}g^{(n-i-j)}','g^{n+1}',''),'（？猜测待验证）']),'','____'),
             

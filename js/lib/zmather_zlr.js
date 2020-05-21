@@ -731,7 +731,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		return arguments.length >= 6 ? '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['int', 'iint', 'iiint', 'oint', 'oiint', 'oiiint', 'int\\dotsi\\int'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (/^[\+\-]$/.test(b) ? b + '∞' : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:''))) + '}' + 
 			(t||t===0 ? '^{' + (/^[\+\-]$/.test(t) ? t + '∞' : t) + '}' : '') + (isArr(fA)?
-			snake([zlrA3('\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g, s+'\\mathrm{d}').split(';'), '}'),fA]).join(''):fA + 
+			snake([zlrA3('\\mathrm{d}{',(d || 'x,y;y,z;z,x').replace(/,/g, s+'\\mathrm{d}').split(';'), '}'),fA]).join('')+'}':fA + 
 			(d==' '?'':'\\,'+
 			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s)+'}')) : 
 				Msubsup('∫∬∭∮∯∰∱∲∳'[p || 0], b == null ? '' : b, (/[\+\-]/.test(t) ? t + '∞' : t) || (b == null ? '' : '+∞')) + v + 'd' + (d || 'x')
@@ -759,7 +759,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 	orifun =function(x0,x1){
-		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\'+x0+'}'
+		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\ '+x0+'}'
 	},
 	difn = function (f, x, p, g) { var d = (p ? '∂' : '\\mathrm{d}') + ' ', 
 		dx= +g>1?d + (x || 'x'):d,

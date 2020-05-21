@@ -72,6 +72,7 @@ wikis={
 			'Trigonometric',
 			'Derivative',
 			'Integral',
+			'Difference',
 		]},
 
 		{'Equation':[
