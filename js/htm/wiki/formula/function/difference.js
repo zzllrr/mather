@@ -60,7 +60,7 @@ wiki['Formula/Function/Difference']=Kx(
         ZLR('____y____'+frac('y\'(t)','x\'(t)','')+'____'+khrA([frac('y″x\'- y\'x″','x\'^3',''),
             frac('y″','x\'^2','')+'-'+kfrac(['y\'x″','x\'^3'])]),'','____'),
         ZLR('ax____a____0____0____0','','____'),
-        ZLR(kxA([frac('x^{a+1}','a+1',''),'其中a≠-1'])+'____x^a____ax^{a-1}____a(a-1)x^{a-2}____a(a-1)⋯(a-n+1)x^{a-n}','','____'),
+        ZLR(kxA([frac('x^{a+1}','a+1',''),'其中a≠-1'])+'____x^a____(x+1)^a-x^a____(x+2)^a-2(x+1)^a+x^a____','','____'),
         ZLR('-\\cos x____'+khrA(['\\sin x','注意：\\sin^2 x+\\cos^2 x=1'])+'____\\cos x____-\\sin x____'+khrA(['\\sin '+zp('x + '+kfrac(['nπ',2])),
             piece([['\\sin x',kmod('n',0,4)],
                   ['\\cos x',kmod('n',1,4)],
