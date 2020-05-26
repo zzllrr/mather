@@ -2245,7 +2245,18 @@ dc+
 			$('#Text').click();
 			me.addClass('resize')
 		}
+
+	}).on('mousewheel','#capsdiv~*', function (e) {
+		var me=$(this),id=this.id, z=+(this.style.transform||'').replace(/.*rotateZ\(([-\d\.]+)deg\).*/,'$1')||0;
+		var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                  (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+
+		if(L.drawShapeNow==id){
+			this.style.transform='rotateZ('+parseInt(z+delta)+'deg)'
+		}
+		
 	});
+
 
 
 

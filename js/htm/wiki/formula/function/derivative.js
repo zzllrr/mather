@@ -114,7 +114,34 @@ wiki['Formula/Function/Derivative']=Kx(
             '____','','____'),
         ZLR('x\\/2\\sqrt{1+x^2}+'+kfrac(['\\sh^{-1} x','2'])+'____\\sqrt{1+x^2}____'+kfrac(['x','\\sqrt{1+x^2}'])+'____','','____'),
         ZLR('x\\/2\\sqrt{x^2-1}+'+kfrac(['\\ch^{-1} x','2'])+'____\\sqrt{x^2-1}____'+kfrac(['x','\\sqrt{x^2-1}'])+'____','','____'),
+
+
+        [khrA([kfrac(['e^{ax}(a\\cos bx + b\\sin bx)','a^2+b^2']), 
+                
+                 '\\frac{e^{ax}}{\\sqrt{A+B}}\\cos(bx-t)',
+                 '\\frac{(a+ib)^{-1}e^{(a+ib)x}+(a-ib)^{-1}e^{(a-ib)x}}2',
+                 '其中A=a^2，B=b^2'+kbr+
+                piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
+            ]), 
+            khrA(['e^{ax}\\cos bx', '利用\\cos x = \\frac{e^{ix}+e^{-ix}}2得到', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
+            khrA(['e^{ax}(a\\cos bx -b\\sin bx)','\\sqrt{A+B}e^{ax}\\cos(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}+(a-ib)e^{(a-ib)x}}2']), 
+            khrA(['e^{ax}((a^2-b^2)\\cos bx -2ab\\sin bx)', '\\frac{(a+ib)^2e^{(a+ib)x}+(a-ib)^2e^{(a-ib)x}}2' ]),
+            khrA(['e^{ax}((a+ib)^n+(a-ib)^n)\\cos bx+i((a+ib)^n-(a-ib)^n)\\sin bx)', '\\frac{(a+ib)^ne^{(a+ib)x}+(a-ib)^ne^{(a-ib)x}}2' ])
+        ],
     
+        [khrA([kfrac(['e^{ax}(a\\cos bx + b\\sin bx)','a^2+b^2']), 
+                
+                 '\\frac{e^{ax}}{\\sqrt{A+B}}\\cos(bx-t)',
+                 '\\frac{(a+ib)^{-1}e^{(a+ib)x}+(a-ib)^{-1}e^{(a-ib)x}}2',
+                 '其中A=a^2，B=b^2'+kbr+
+                piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
+            ]), 
+            khrA(['e^{ax}\\sin bx', '利用\\sin x = \\frac{e^{ix}-e^{-ix}}{2i}得到', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
+            khrA(['e^{ax}(a\\cos bx -b\\sin bx)','\\sqrt{A+B}e^{ax}\\cos(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}+(a-ib)e^{(a-ib)x}}2']), 
+            khrA(['e^{ax}((a^2-b^2)\\cos bx -2ab\\sin bx)', '\\frac{(a+ib)^2e^{(a+ib)x}+(a-ib)^2e^{(a-ib)x}}2' ]),
+            khrA(['e^{ax}((a+ib)^n+(a-ib)^n)\\cos bx+i((a+ib)^n-(a-ib)^n)\\sin bx)', '\\frac{(a+ib)^ne^{(a+ib)x}+(a-ib)^ne^{(a-ib)x}}2' ])
+        ],
+
     ],'wiki TBrc').replace(/\n/g,br))+
 
     detail(gM('Power Indefinite Integral')+ksc('∫f^n'),Table([['f','f^n','∫f^n\\d x']],[
