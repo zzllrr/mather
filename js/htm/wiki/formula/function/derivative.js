@@ -49,10 +49,10 @@ wiki['Formula/Function/Derivative']=Kx(
         ZLR('\\ln \\sin x____'+khrA(['\\cot x',kfrac(['\\cos x','\\sin x'])])+'____'+khrA(['-\\csc^2x','-'+kfrac([1,'\\sin ^2x'])])+'____-2\\cot x⋅\\csc^2x____(三阶)2\\csc^2x(\\sec^2x+2\\tan^2 x)','','____'),
         ZLR('\\ln (\\sec x+\\tan x)____'+khrA(['\\sec x',kfrac([1,'\\cos x']),'注意：\\sec^2 x-\\tan^2 x=1'])+'____'+khrA(['\\tan x⋅\\sec x',kfrac(['\\sin x','\\cos ^2x'])])+'____\\sec x(1+2\\tan^2 x)','','____'),
         ZLR('\\ln (\\csc x-\\cot x)____'+khrA(['\\csc x',kfrac([1,'\\sin x']),'注意：\\csc^2 x-\\cot^2 x=1'])+'____'+khrA(['-\\cot x⋅\\csc x','-'+kfrac(['\\cos x','\\sin ^2x'])])+'____\\csc x(1+2\\cot^2 x)','','____'),
-        ZLR('x\\arcsin x+\\sqrt{1-x^2}____'+khrA(['\\arcsin x','π\\/2-\\sgn x⋅(π\\/2-\\arcsin \\sqrt{1-x^2})','注意：\\arcsin x+\\arccos x=π\\/2'])+'____'+frac(1,kroot('1-x^2'),'')+'____x(1-x^2)^{-\\tfrac32}','','____'),
-        ZLR('x\\arccos x-\\sqrt{1-x^2}____'+khrA(['\\arccos x','\\sgn x⋅\\arcsin \\sqrt{1-x^2}'])+'____-'+frac(1,kroot('1-x^2'),'')+'____-x(1-x^2)^{-\\tfrac32}','','____'),
-        ZLR('x\\arctan x-{\\ln(1+x^2)}\\/2____'+khrA(['\\arctan x','\\arcsin '+frac('x','\\sqrt{1+x^2}',''),'注意：\\arctan x+\\arccot ~x=π\\/2'])+'____'+frac(1,'1+x^2','')+'____-2x(1+x^2)^{-2}','','____'),
-        ZLR('x\\arccot x+{\\ln(1+x^2)}\\/2____'+khrA(['\\arccot x','\\arccos '+frac('x','\\sqrt{1+x^2}','')])+'____-'+frac(1,'1+x^2','')+'____2x(1+x^2)^{-2}','','____'),
+        ZLR('x\\arcsin x+\\sqrt{1-x^2}____'+khrA(['\\arcsin x','π\\/2-\\sgn x⋅(π\\/2-\\arcsin \\sqrt{1-x^2})','注意：\\arcsin x+\\arccos x=π\\/2'])+'____'+frac(1,kroot('1-x^2'),'')+'____x(1-x^2)^{-\\tfrac32}____'+'(1-x^2)^{-1\\/2-n}P_{n-1}(x)','','____'),
+        ZLR('x\\arccos x-\\sqrt{1-x^2}____'+khrA(['\\arccos x','\\sgn x⋅\\arcsin \\sqrt{1-x^2}'])+'____-'+frac(1,kroot('1-x^2'),'')+'____-x(1-x^2)^{-\\tfrac32}____'+'-(1-x^2)^{-1\\/2-n}P_{n-1}(x)','','____'),
+        ZLR('x\\arctan x-{\\ln(1+x^2)}\\/2____'+khrA(['\\arctan x','\\arcsin '+frac('x','\\sqrt{1+x^2}',''),'注意：\\arctan x+\\arccot ~x=π\\/2'])+'____'+frac(1,'1+x^2','')+'____-2x(1+x^2)^{-2}____'+'-(1+x^2)^{-1\\/2-n}P_{n-1}(x)','','____'),
+        ZLR('x\\arccot x+{\\ln(1+x^2)}\\/2____'+khrA(['\\arccot x','\\arccos '+frac('x','\\sqrt{1+x^2}','')])+'____-'+frac(1,'1+x^2','')+'____2x(1+x^2)^{-2}____'+'(1+x^2)^{-1\\/2-n}P_{n-1}(x)','','____'),
         ZLR('x\\arcsec x±\\ch^{-1}x____'+khrA(['\\arcsec x','\\arccos 1\\/x'])+'____'+frac(1,'|x|'+kroot('x^2-1'),''),'','____'),
         ZLR('x\\arccsc x±\\ch^{-1}x____'+khrA(['\\arccsc x','\\arcsin 1\\/x'])+'____-'+frac(1,'|x|'+kroot('x^2-1'),''),'','____'),
         ['','\\sinc x',kfrac(['\\cos x- \\sinc x','x']),''],
@@ -123,23 +123,23 @@ wiki['Formula/Function/Derivative']=Kx(
                  '其中A=a^2，B=b^2'+kbr+
                 piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
             ]), 
-            khrA(['e^{ax}\\cos bx', '利用\\cos x = \\frac{e^{ix}+e^{-ix}}2得到', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
+            khrA(['e^{ax}\\cos bx', '利用\\cos x = \\frac{e^{ix}+e^{-ix}}2~得到', 'e^{(a+ib)x}-ie^{ax}\\sin bx', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
             khrA(['e^{ax}(a\\cos bx -b\\sin bx)','\\sqrt{A+B}e^{ax}\\cos(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}+(a-ib)e^{(a-ib)x}}2']), 
-            khrA(['e^{ax}((a^2-b^2)\\cos bx -2ab\\sin bx)', '\\frac{(a+ib)^2e^{(a+ib)x}+(a-ib)^2e^{(a-ib)x}}2' ]),
-            khrA(['e^{ax}((a+ib)^n+(a-ib)^n)\\cos bx+i((a+ib)^n-(a-ib)^n)\\sin bx)', '\\frac{(a+ib)^ne^{(a+ib)x}+(a-ib)^ne^{(a-ib)x}}2' ])
+            khrA(['e^{ax}((a^2-b^2)\\cos bx -2ab\\sin bx)', '(A+B)e^{ax}\\cos(bx+2t)','\\frac{(a+ib)^2e^{(a+ib)x}+(a-ib)^2e^{(a-ib)x}}2' ]),
+            khrA(['\\frac{e^{ax}}{2}(((a+ib)^n+(a-ib)^n)\\cos bx'+kbr+'+i((a+ib)^n-(a-ib)^n)\\sin bx)', '(A+B)^{n\\/2}e^{ax}\\cos(bx+nt)', '\\frac{(a+ib)^ne^{(a+ib)x}+(a-ib)^ne^{(a-ib)x}}2' ])
         ],
     
-        [khrA([kfrac(['e^{ax}(a\\cos bx + b\\sin bx)','a^2+b^2']), 
+        [khrA([kfrac(['e^{ax}(a\\sin bx - b\\cos bx)','a^2+b^2']), 
                 
-                 '\\frac{e^{ax}}{\\sqrt{A+B}}\\cos(bx-t)',
-                 '\\frac{(a+ib)^{-1}e^{(a+ib)x}+(a-ib)^{-1}e^{(a-ib)x}}2',
+                 '\\frac{e^{ax}}{\\sqrt{A+B}}\\sin(bx-t)',
+                 '\\frac{(a+ib)^{-1}e^{(a+ib)x}-(a-ib)^{-1}e^{(a-ib)x}}{2i}',
                  '其中A=a^2，B=b^2'+kbr+
                 piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
             ]), 
-            khrA(['e^{ax}\\sin bx', '利用\\sin x = \\frac{e^{ix}-e^{-ix}}{2i}得到', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
-            khrA(['e^{ax}(a\\cos bx -b\\sin bx)','\\sqrt{A+B}e^{ax}\\cos(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}+(a-ib)e^{(a-ib)x}}2']), 
-            khrA(['e^{ax}((a^2-b^2)\\cos bx -2ab\\sin bx)', '\\frac{(a+ib)^2e^{(a+ib)x}+(a-ib)^2e^{(a-ib)x}}2' ]),
-            khrA(['e^{ax}((a+ib)^n+(a-ib)^n)\\cos bx+i((a+ib)^n-(a-ib)^n)\\sin bx)', '\\frac{(a+ib)^ne^{(a+ib)x}+(a-ib)^ne^{(a-ib)x}}2' ])
+            khrA(['e^{ax}\\sin bx', '利用\\sin x = \\frac{e^{ix}-e^{-ix}}{2i}得到', '-i(e^{(a+ib)x}-e^{ax}\\cos bx)', '\\frac{e^{(a+ib)x}-e^{(a-ib)x}}{2i}']),
+            khrA(['e^{ax}(a\\sin bx +b\\cos bx)','\\sqrt{A+B}e^{ax}\\sin(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}-(a-ib)e^{(a-ib)x}}{2i}']), 
+            khrA(['e^{ax}(2ab\\cos bx +(a^2-b^2)\\sin bx)', '(A+B)e^{ax}\\sin(bx+2t)','\\frac{(a+ib)^2e^{(a+ib)x}-(a-ib)^2e^{(a-ib)x}}{2i}' ]),
+            khrA(['\\frac{e^{ax}}{2i}(((a+ib)^n-(a-ib)^n)\\cos bx'+kbr+'+i((a+ib)^n+(a-ib)^n)\\sin bx)', '(A+B)^{n\\/2}e^{ax}\\sin(bx+nt)', '\\frac{(a+ib)^ne^{(a+ib)x}-(a-ib)^ne^{(a-ib)x}}{2i}' ])
         ],
 
     ],'wiki TBrc').replace(/\n/g,br))+
