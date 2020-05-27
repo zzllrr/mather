@@ -74,7 +74,7 @@ wiki['Formula/Function/Derivative']=Kx(
         ZLR('x\\sh^{-1}x-\\sqrt{x^2+1}____'+khrA(['\\sh^{-1}x',
             '\\ln (x + '+kroot('x^2+1')+')',
             '\\csch^{-1} 1\\/x',
-            '\\sgn x⋅ch^{-1}'+kroot('x^2+1'),
+            '\\sgn x⋅\\ch^{-1}'+kroot('x^2+1'),
             '\\th^{-1} '+kfrac(['x','\\sqrt{1+x^2}']),
         ])+'____'+frac(1,kroot('x^2+1'),'')+'____'+'-x(x^2+1)^{-\\tfrac32}','','____'),
         ZLR('x\\ch^{-1}x-\\sqrt{x^2-1}____'+khrA(['\\ch^{-1}x',
@@ -120,8 +120,7 @@ wiki['Formula/Function/Derivative']=Kx(
                 
                  '\\frac{e^{ax}}{\\sqrt{A+B}}\\cos(bx-t)',
                  '\\frac{(a+ib)^{-1}e^{(a+ib)x}+(a-ib)^{-1}e^{(a-ib)x}}2',
-                 '其中A=a^2，B=b^2'+kbr+
-                piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
+                 '其中A=a^2，B=b^2'
             ]), 
             khrA(['e^{ax}\\cos bx', '利用\\cos x = \\frac{e^{ix}+e^{-ix}}2~得到', 'e^{(a+ib)x}-ie^{ax}\\sin bx', '\\frac{e^{(a+ib)x}+e^{(a-ib)x}}2']),
             khrA(['e^{ax}(a\\cos bx -b\\sin bx)','\\sqrt{A+B}e^{ax}\\cos(bx+t)', '\\frac{(a+ib)e^{(a+ib)x}+(a-ib)e^{(a-ib)x}}2']), 
@@ -133,7 +132,7 @@ wiki['Formula/Function/Derivative']=Kx(
                 
                  '\\frac{e^{ax}}{\\sqrt{A+B}}\\sin(bx-t)',
                  '\\frac{(a+ib)^{-1}e^{(a+ib)x}-(a-ib)^{-1}e^{(a-ib)x}}{2i}',
-                 '其中A=a^2，B=b^2'+kbr+
+                 '其中'+
                 piece(['\\cos t=\\frac{a}{\\sqrt{a^2+b^2}}=a\\/{\\sqrt{A+B}}','\\sin t =\\frac{b}{\\sqrt{a^2+b^2}}=b\\/{\\sqrt{A+B}}'])
             ]), 
             khrA(['e^{ax}\\sin bx', '利用\\sin x = \\frac{e^{ix}-e^{-ix}}{2i}得到', '-i(e^{(a+ib)x}-e^{ax}\\cos bx)', '\\frac{e^{(a+ib)x}-e^{(a-ib)x}}{2i}']),
@@ -141,6 +140,27 @@ wiki['Formula/Function/Derivative']=Kx(
             khrA(['e^{ax}(2ab\\cos bx +(a^2-b^2)\\sin bx)', '(A+B)e^{ax}\\sin(bx+2t)','\\frac{(a+ib)^2e^{(a+ib)x}-(a-ib)^2e^{(a-ib)x}}{2i}' ]),
             khrA(['\\frac{e^{ax}}{2i}(((a+ib)^n-(a-ib)^n)\\cos bx'+kbr+'+i((a+ib)^n+(a-ib)^n)\\sin bx)', '(A+B)^{n\\/2}e^{ax}\\sin(bx+nt)', '\\frac{(a+ib)^ne^{(a+ib)x}-(a-ib)^ne^{(a-ib)x}}{2i}' ])
         ],
+
+
+
+        [khrA(['?'
+            ]), 
+            khrA(['e^{ax}\\cos^m bx', '利用\\cos^m x = 得到']),
+            khrA(['e^{ax}\\cos^{m-1} bx(a\\cos bx -mb\\sin bx)','\\sqrt{A+mB}e^{ax}\\cos^{m-1} bx\\cos(bx+t)']), 
+            khrA(['?' ]),
+            khrA(['?' ])
+        ],
+    
+        [khrA(['?'
+            ]), 
+            khrA(['e^{ax}\\sin^m bx', '利用\\sin^m x = 得到']),
+            khrA(['e^{ax}\\sin^{m-1} bx(a\\sin bx +mb\\cos bx)','\\sqrt{A+mB}e^{ax}\\sin^{m-1} bx\\sin(bx+t)']), 
+            khrA(['?' ]),
+            khrA(['?' ])
+        ],
+
+
+
 
     ],'wiki TBrc').replace(/\n/g,br))+
 
