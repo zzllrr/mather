@@ -3,7 +3,7 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-cultures={index:['Art','Game','Toy','Video Game','Activity'],
+cultures={index:['Art','Toy','Video Game','Activity'],
 
 	'Art':[
 
@@ -60,52 +60,6 @@ cultures={index:['Art','Game','Toy','Video Game','Activity'],
 	],
 
 
-    'Game':[
-		{'Tessellation':[
-
-		]},
-		{'Knot':[
-
-		]},
-		{'Sudoku':[
-
-		]},
-
-		{'Origami':[
-		]},
-		
-		{'Paper Cutting':[
-
-        ]},
-	   
-        {'Chess':[
-
-		]},
-
-        {'Cards':[
-			'Poker',
-			'Bridge'
-		]},
-
-        {'Lottery':[
-
-		]},
-		
-		{'Puzzle':[
-			
-		]},
-    ],
-	
-	
-    'Toy':[
-
-		{'Rubik Cube':[
-
-		]},
-
-
-	],
-	
 
 
 	'Video Game':[

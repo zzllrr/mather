@@ -6,7 +6,7 @@
 
  
 
-culture['Toy/Rubik Cube']=
+explore['Game/Rubik Cube']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 

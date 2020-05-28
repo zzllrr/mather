@@ -6,14 +6,12 @@
 
  
 
-culture['Game/Tessellation']=
+explore['Game/Origami']=
 	Table([i18(ZLR('Name Type Features'))],[
 
 
-
-		[href(Hs+'www.tessellations.org'),gM('Web'),''],
-
-
+		[href(Hs+'www.happyfolding.com'),gM('Web'),''],
+		[href(Hs+'www.paperfolding.com'),gM('Web'),''],
 
 
 	],'TBrc')

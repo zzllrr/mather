@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 
+    <title>Explore</title>
+
+    <link rel="shortcut icon" href="img/small.png" />
+
+    <link rel="stylesheet" href="css/katex.css" />
+    <link rel="stylesheet" href="css/zmather.lib.css" />
+    <link rel="stylesheet" href="css/zmather.wiki.css" />
+    <link rel="stylesheet" href="css/zmather.doodle.css" />
+    
+    <!-- 引用第三方库 -->
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/base64.js"></script> <!-- 增加了xml的解析功能-->
+    <script src="js/lib/js-yaml.js"></script>
+
+    <!-- 富媒体 -->
+    <script src="js/lib/katex.js"></script>
+    <script src="js/lib/zdog.js" defer></script>
+    <script src="js/lib/echarts.js" defer></script>
+    <script src="js/lib/echarts-gl.js" defer></script>
+    <script src="js/lib/qrcode.js" defer></script>
+
+    <script src="js/lib/geogebra.js" defer></script>
+    <script src="js/lib/geogebra_web3d.js" defer></script>
+    <script src="js/lib/desmos_calculator.js" defer></script>
+    <script src="js/lib/desmos_geometry.js" defer></script>
+    
+    <script src="js/lib/legra.iife.js" defer></script>
+    <script src="js/lib/math.js"></script>
+    
+    <!-- i18n -->
+    <script src="js/i18n/en.js"></script>
+    <script src="js/i18n/zh_cn.js"></script>
+    
+  
+    <!-- 引用小乐库 -->
+    <script src="js/lib/zmather_zlr.js"></script>
+    <script src="js/lib/zmather_io.js"></script>
+
+
+    <!-- 底层对象 -->
+    <script src="js/obj/math/function.js"></script>
+    <script src="js/obj/math/num.js"></script>
+    <script src="js/obj/math/prime.js"></script>
+    <script src="js/obj/math/statistic.js"></script>
+    <script src="js/obj/math/geometry.js"></script>
+    <script src="js/obj/math/proposition.js"></script>
+    <script src="js/obj/math/set.js"></script>
+    <script src="js/obj/math/permutation.js"></script>
+    <script src="js/obj/math/matrix.js"></script>
+    <script src="js/obj/math/relation.js"></script>
+
+    <script src="js/obj/graphic/svg.js"></script>
+    <script src="js/obj/graphic/canvas.js"></script>
+
+
+    <!-- 底层对象封装 -->
+    <script src="js/obj/math.js"></script>
+    <script src="js/obj/graphic.js"></script>
+
+
+
+
+    <!-- 页面公有 --> 
+    <script src="js/htm/common.js"></script>
+
+
+
+
+    <!-- 当前页面私有 --> 
+
+  
+    
+    <script src="js/htm/explore/problem/problem_list.js"></script>
+    <script src="js/htm/explore/problem/unsolved/3n_1.js"></script>
+    <script src="js/htm/explore/problem/unsolved/transcendental.js"></script>
+
+    <script src="js/htm/explore/topic/topic_list.js"></script>
+    <script src="js/htm/explore/topic/notes/cuboid_surface_area.js"></script>
+    <script src="js/htm/explore/topic/notes/foldable_solids.js"></script>
+    <script src="js/htm/explore/topic/notes/two_buckets.js"></script>
+
+    <script src="js/htm/explore/game/tessellation.js"></script>
+    <script src="js/htm/explore/game/knot.js"></script>
+    <script src="js/htm/explore/game/origami.js"></script>
+    <script src="js/htm/explore/game/rubik_cube.js"></script>
+
+    <script src="js/htm/explore/game/sudoku.js"></script>
+    <script src="js/htm/explore/game/lottery.js"></script>
+    <script src="js/htm/explore/game/puzzle.js"></script>
+
+
+
+  </head>
+  <body>
+      <div id=panel></div>
+      <div id=oHTML class=pd20><progress /></div>
+
+  </body>
+</html>

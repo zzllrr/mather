@@ -6,7 +6,7 @@
 
  
 
-academic['Problem List']=
+explore['Problem/Problem List']=
 	Table([i18(ZLR('Name Author Features'))],[
 		[href(Hs+'aimath.org/problemlists/','AIM workshop'),'AIM',href(H+'aimpl.org','AimPL - AIM Problem Lists')],
 		[enwiki('List_of_unsolved_problems_in_mathematics'),'',Arrf(enwiki,zlrA('List_of_',ZLR('conjectures paradoxes'))).concat(

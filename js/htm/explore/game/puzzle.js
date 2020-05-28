@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-culture['Game/Puzzle']=detail(gM('Maze'),Table([i18(ZLR('Name Type Summary'))],[
+explore['Game/Puzzle']=detail(gM('Maze'),Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'jrmf.org/mazes-maps','Maze Maps'),'','by JRMF - Julia Robinson Mathematics Festival'],
 	[href(Hs+'mathpickle.com/project/squaring­the­square/','Math Pickle'),'square and subtracting puzzles',''],
 

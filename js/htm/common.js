@@ -117,10 +117,10 @@ loadHTML=function (x) {
    },t='';
    if(u){
        var A=Arrf(fn1,u.replace(/#.*/,'').split('/')),w=x;
-  //     console.log(A);
-       //t=w[A.slice(-1)[0]] || w[A.slice(-2).join(' ')]  || w[A.slice(-2).reverse().join(' ')] || w[A.join(' ')] || w[u];
+       //console.log(A);
+
        t=w[A.slice(-1)[0]] || w[A.slice(-2).join('/')]  || w[A.slice(-2).reverse().join('/')] || w[A.join('/')] || w[u];
-//console.log(t,w);
+//console.log(x,t);
         titleRe(gM(A.slice(-1)[0])+' - '+gM('zzllrr Mather'));
         if(/#.+/.test(u)){
             cb=function(){
@@ -204,9 +204,9 @@ solves={}, graphics={}, shows={}, wikis={}
 solveThen={}, graphicThen={}, wikiThen={},
 
 
-teaching={},academic={}, technology={}, science={}, culture={},
-teachings={},academics={}, technologys={}, sciences={}, cultures={},
-teachingThen={}, academicThen={}, technologyThen={}, scienceThen={}, cultureThen={}
+teaching={},academic={}, technology={}, science={}, culture={}, explore={},
+teachings={},academics={}, technologys={}, sciences={}, cultures={}, explores={},
+teachingThen={}, academicThen={}, technologyThen={}, scienceThen={}, cultureThen={}, exploreThen={}
 
 
 /*
@@ -515,14 +515,14 @@ function all2html(type,V,dom){
             //var C=new ctt(cvs,300,300), c=C.ctx;
             var C=$('#'+id)[0];// work!
             //var C=w.children()[0];    fail!
-           // console.log(XML.decode(v));
+   
 
 
          //  console.log(v);
+            var xdv=XML.decode(v);
+            eval(xdv);
 
-            eval(XML.decode(v));
-
-            w.addClass('zdog');
+            w.addClass('zdog').attr('data-code',xdv);
         }catch(e){
             console.log(e);
             w.html(v)
@@ -706,8 +706,8 @@ $(function(){
     titleRe(gM(d)+' - '+gM('zzllrr Mather'));
 
     d=d.toLowerCase();
-    if(/solve|graphic|wiki|teaching|academic|technology|science|culture/.test(d)){
-        //console.log(d);   editor doodle about api
+    if(/solve|graphic|wiki|teaching|academic|explore|technology|science|culture/.test(d)){
+        //console.log(d,eval(d));   //editor doodle about api
         loadHTML(eval(d));
     }
 
@@ -1086,7 +1086,7 @@ $(function(){
                 +Math.max(0.1,Math.min(2,(+x.split(' ')[1]+(shft?0.01:(ctrl?0.5:(k==91||k==92?1:0.1)))*d))).toFixed(2)});
             pa.attr('data-code',c2).html(c2);
 			all2html('zdog','',pa);
-
+            e.stopPropagation()
         }
 	}).on('click','.zdog canvas, .lego canvas',function(e){
         L.drawShapeNow=$(this).parent().attr('id')
@@ -1276,19 +1276,24 @@ $(function(){
     }).on('dblclick', function(e){
         var eos=e.originalEvent.srcElement, act=eos.tagName;
 
-        if(hasdoodle){
-            $('#caps ~ canvas').remove();
 
-        //}else if(/canvas/i.test(act)){
-            if($(eos).parent('[id^=Zdog_],.zdog').length){
-                //console.log(e,act,act.id);
-                $(eos).attr('spinning',function(i,v){return v!='true'});
+
+        if($(eos).parent('[id^=Zdog_],.zdog').length){
+            //console.log(e,act,act.id);
+            $(eos).attr('spinning',function(i,v){return v!='true'});
+            e.stopPropagation();
+        }else{
+
+            if(hasdoodle){
+                $('#caps ~ canvas').remove();
+            
+            }else if(/body/i.test(act)){
+                location.href='index.html';
+                //history.back()
             }
-
-        }else if(/body/i.test(act)){
-            location.href='index.html';
-            //history.back()
         }
+
+
 
 
 	}).on('click','#launchCap',function(){

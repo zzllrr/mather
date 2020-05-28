@@ -96,9 +96,10 @@ solve['sequence']=function(inputValue, uriA){
 		},VA));
 	}
 
-	if(sel(uriA,'频率')){
+	if(sel(uriA,'频率') || sel(uriA,'频数')){
 
 		var vA=v.split(numReg2),vAn=vA.length, U=[],UC=[],s='',B=[], n0=vAn;
+		//console.log(vA);
 		for(var i=0;i<vAn;i++){
 			var vi=vA[i],Ui=U.indexOf(vi);
 			if(Ui<0){
@@ -140,10 +141,10 @@ solve['sequence']=function(inputValue, uriA){
 		}
 		if(B.length>1){
 			fq=(vAn*100/n0).toFixed(2);
-			s+='<tr id=TxtDupliUniq><td colspan=2><b>'+gM('Uniq')+'</b>'+br+'<meter min=0 max=100 value='+fq+' title="'+vAn+'/'+n0+'=\n'+fq+'%" /> '+fq+'%</td><td><textarea>'+U.join('\n')+'</textarea></td><td><meter min=0 max=100 value=100 />'+U.length+'</td><td></td></tr>'
+			s+='<tr><td colspan=2><b>'+gM('Uniq')+'</b>'+br+'<meter min=0 max=100 value='+fq+' title="'+vAn+'/'+n0+'=\n'+fq+'%" /> '+fq+'%</td><td><textarea>'+U.join('\n')+'</textarea></td><td><meter min=0 max=100 value=100 />'+U.length+'</td><td></td></tr>'
 		}
 		//console.log(s);
-		rS.push('<table><tbody>'+s+'</tbody></table>')
+		rS.push('<table><thead><tr><th>'+gM('Times')+'</th><th>'+gM('Frequency')+'</th><th>'+gM('Content')+'</th><th>'+gM('Count')+'</th><th>'+gM('Frequency / Count')+'</th></tr></thead><tbody>'+s+'</tbody></table>')
 
 	}
 

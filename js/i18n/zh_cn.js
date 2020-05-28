@@ -736,12 +736,13 @@ lang['zh_cn'] = {
 	'Synthesis': '合成',
 	'Note': '注释',
 	'Notes':'笔记',
+	'Sticky Notes':'便笺',
 	'Notebook':'笔记本',
 	'Essay':'散文',
 	'Brainstorm':'头脑风暴',
 	'Brainstorming':'集思',
 
-
+	'Bucket':'水桶',
 
 	'Result': '结果',
 	'Title': '标题',
@@ -830,6 +831,9 @@ lang['zh_cn'] = {
 
 	// 时间		
 	'Time': '时间',
+	'Times': '次数',
+	'Frequency':'频率',
+	'Count':'计数',
 	'Speed': '速度',
 
 	// 抽象属性

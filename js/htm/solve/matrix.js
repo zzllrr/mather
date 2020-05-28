@@ -675,13 +675,11 @@ solve['matrix']=function(inputValue, uriA){
 			}
 //console.log('单位化？',oi,m,Q);
 
-
-			return (tA?'二次型'+t0.replace(/x/g,'x_')+'对应系数矩阵\\\\ ':'')+A[1]+'\\\\ '+
-				(isS && /^1+$/.test(Arri(A[3],1).join(''))?'由于矩阵A是实对称矩阵，因此属于不同特征值的特征向量是正交的':'矩阵P施密特正交化\\\\ '+B[1])+
-				(oi?'\\\\ 单位化，得到正交矩阵Q = '+'\\small '+kmtrx(Q)+' \\normalsize ':'')+
-				'\\\\ 并且有'+'PQ'[+oi||1]+'^{-1}A'+'PQ'[+oi||1]+' = Λ = '+D+
-				
-				(oi && 0?'​\\\\ 所求正交变换是X=QY，Y=Q^TX，且有'+
+			if(oi){
+				try{
+					
+					var extra=
+					'​\\\\ 所求正交变换是X=QY，Y=Q^TX，且有'+
 					'\\\\ X^TAX=(QY)^TAQY=Y^TQ^TAQY=Y^T'+D+'Y\\\\ '+
 					kxA(Arrf(function(t){
 						
@@ -691,7 +689,18 @@ solve['matrix']=function(inputValue, uriA){
 					'\\\\ 得到标准型：'+plus(Y,1)+
 					'\\\\ 得到规范型：'+(Z1?zlr3('z_',seqA(1,Z1).join(' '),'^2','+'):'')+
 							(Z_1?'-'+zlr3('z_',seqA(Z1+1,Z_1).join(' '),'^2','-'):'')
-					:'')
+				}catch(e){
+
+				}
+
+			}
+
+			return (tA?'二次型'+t0.replace(/x/g,'x_')+'对应系数矩阵\\\\ ':'')+A[1]+'\\\\ '+
+				(isS && /^1+$/.test(Arri(A[3],1).join(''))?'由于矩阵A是实对称矩阵，因此属于不同特征值的特征向量是正交的':'矩阵P施密特正交化\\\\ '+B[1])+
+				(oi?'\\\\ 单位化，得到正交矩阵Q = '+'\\small '+kmtrx(Q)+' \\normalsize ':'')+
+				'\\\\ 并且有'+'PQ'[+oi||1]+'^{-1}A'+'PQ'[+oi||1]+' = Λ = '+D+
+				
+				(oi?extra:'')
 					
 		},VA));
 

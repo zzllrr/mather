@@ -114,7 +114,7 @@ var toolSwitch=function(x){
 };
 
 $(function(){
-	var toolnames=ZLR('solve graphic show wiki teaching academic science technology culture');
+	var toolnames=ZLR('solve explore graphic show wiki teaching academic science technology culture');
 
 	$('#splash').html(DCtv('rem3',gM('zzllrr Mather')));
 	$('#zMather').prepend(
@@ -353,7 +353,7 @@ $(function(){
 		pa=me.parent(),p=pa.parents('.ground'),
 		tool=p.attr('id').split('Ground')[0],tt=tooltip[tool]||{},
 		issolve=tool=='solve', isshow=tool=='show', iswiki=tool=='wiki',
-		iswikilike=/wiki|teaching|academic|technology|science|culture/.test(tool),
+		iswikilike=/wiki|teaching|academic|technology|science|culture|explore/.test(tool),
 		istask=me.is('.task');
 
 		if(!istask){

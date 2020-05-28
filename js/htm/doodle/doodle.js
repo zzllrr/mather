@@ -2252,7 +2252,8 @@ dc+
                   (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
 
 		if(L.drawShapeNow==id){
-			this.style.transform='rotateZ('+parseInt(z+delta)+'deg)'
+			this.style.transform='rotateZ('+parseInt(z+delta)+'deg)';
+			e.stopPropagation();
 		}
 		
 	});

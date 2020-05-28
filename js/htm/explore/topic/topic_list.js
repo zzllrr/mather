@@ -6,7 +6,7 @@
 
  
 
-academic['Topic']=
+explore['Topic/Topic List']=
 	Table([i18(ZLR('Name Type Features'))],[
 		[inhref('wiki.html?q=Enclyclopedia','Enclyclopedia List'),'List',''],
 

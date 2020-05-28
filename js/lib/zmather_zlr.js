@@ -326,6 +326,11 @@ function gM(mesg, str, o) {
 		return msg.split('.')[0]
 	}
 
+	if (!x && /e?s$/.test(msg)) {// s结尾
+
+		return gM(msg.replace(/e?s$/,''), str, o)
+	}
+
 	return x || M
 }
 function cacheUsage(){
