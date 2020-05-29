@@ -540,7 +540,15 @@ $(function () {
 							
 							),'','id=bW')+
 				
+						DCtv('lightgray" id="gridType',
 				
+
+							'<label><input type=radio name=gridType value=Cartesian'+chked+' /></label>'+
+							'<label><input type=radio name=gridType value=Elliptic /></label>'+
+							'<label><input type=radio name=gridType value=Affine /></label>'+
+							'<label><input type=radio name=gridType value=Triangle /></label>'
+	
+						)+
 						DCtv('lightgray" id="MarginCopyOpt',
 				
 							'<label hidden><input type=radio name=MarginCopyOpt value=nest />'+
@@ -1741,6 +1749,10 @@ dc+
 
 	$('#copyDir').val(['1']);
 
+	$('[name=gridType]').after(function () {
+		var v = this.value;
+		return gM(v)
+	});
 	$('[name=MarginCopyOpt]').after(function () {
 		var v = this.value;
 		return { w: gM('w') + ' (' + gM('Margin') + ')', copy: gM('Copy') + ' (' + gM('Spacing') + ')' }[v]

@@ -1506,7 +1506,9 @@ lang['zh_cn'] = {
 	'Circumcircle':'外接圆',
 	'Excircle':'外切圆',
 	'Escribed':'旁切',
+	"Elliptic": "椭圆型",
 
+	"Parabolic": "抛物型",
 
 
 	'Cone': '圆锥',
@@ -1762,7 +1764,9 @@ lang['zh_cn'] = {
 	'Radial': '径向',
 	'Straight': '直',
 
-	'Polar': '极',
+	'Polar': '极坐标',
+	'Cartesian':'笛卡尔',
+	'Affine':'仿射',
 
 	'Cylindrical': '柱面',
 	'Spherical': '球面',

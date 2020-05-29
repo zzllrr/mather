@@ -856,6 +856,7 @@ function tileToolCap(t, val){
 
 	$('#gridOpt').toggle(/Grid|Lattice|2tick|[DS]hv/.test(id) && !/Sq/.test(id));
 
+	$('#gridType').toggle(/Lattice/.test(id));
 
 	$('#MarginCopyOpt').toggle(/Dbl|Wav|Copy|tick|Grid|Lattice/.test(id));
 	$('#MarginCopyH').toggle(/2tick/.test(id));

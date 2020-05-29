@@ -31,7 +31,7 @@ function mMv(e,repaint){
 	var shp=L.drawShape, shp0=/Note|Grid/.test(shp), shp1=/Poly/.test(shp),shp2=/Crop/.test(shp), shp3=/Paral|Trape|(lineangle|Triangon)[HV]|Line3YRight|cub/.test(shp), 
 		shpN=$('#'+(L.drawShapeNow||'unknown')), chd=shpN.children(),
 		x0=+L.X0, y0=+L.Y0, offX=X-x0, offY=Y-y0, rnd=/A|Rnd/.test(shp), lt=offX<0?X:x0, tp=offY<0?Y:y0,
-		MCO=$('[name=MarginCopyOpt]:checked').val(),isMargin=MCO=='w',isCpy=MCO=='copy', n=+$('#copyNum').val(),
+		MCO=$('[name=MarginCopyOpt]:checked').val(),isMargin=MCO=='w',isCpy=MCO=='copy', n=+$('#copyNum').val(), gT=$('[name=gridType]:checked').val(),
 		l=+$('#Arc3on').parent().next().val(), lR=+$('#Rton').parent().next().val(),
 		shifton=$('#SVGshift path').attr('stroke')=='yellow', shiftpath=[];
 
@@ -1912,48 +1912,217 @@ console.log('tp ',tp);
 			if(/Lattice/.test(shp)){
 				var r=+$('#gridR').val(),c=+$('#gridC').val();
 				
-				if(isMargin){
-					var	wn=c,hn=r;
-					c=Math.floor(w/c);
-					r=Math.floor(h/r);
+				if(gT=='Affine'){// 仿射坐标系
 
-					w=wn*c;
-					h=hn*r;
+					var negr=/-/.test(r)?-1:1, negc=/-/.test(c)?-1:1;
+					r=Math.abs(r);c=Math.abs(c);
+					if(isMargin){
+						var	wn=c,hn=r;
+						c=Math.floor(w/c);
+						r=Math.floor(h/r);
+
+						w=wn*c;
+						h=hn*r;
+
+					}else{
+						var wn=parseInt((w-(c+1)*sw)/c),hn=parseInt((h-(r+1)*sw)/r);
+						w=d+(sw+wn)*c;
+						h=d+(sw+hn)*r;
+
+					}
+					/*
+					var tanh=wn/h, tanv=hn/w, 
+						sinh=1/Math.sqrt(1+1/(tanh*tanh)), cosh=1/Math.sqrt(1+tanh*tanh),
+						sinv=1/Math.sqrt(1+1/(tanv*tanv)), cosv=1/Math.sqrt(1+tanv*tanv),
+						anV=hn/cosh, anH=wn/cosv, anV0=h/cosh;
+					*/
 
 					lt=offX<0?x0-w:x0;
 					tp=offY<0?y0-h:y0;
 
-				}else{
-					var wn=parseInt((w-(c+1)*sw)/c),hn=parseInt((h-(r+1)*sw)/r);
-					w=d+(sw+wn)*c;
-					h=d+(sw+hn)*r;
+					for(var i=0;i<r;i++){
+						for(var j=0;j<c;j++){
+							if(isMargin){
+								if(i==0 && j>0){
+									tArr.push('M',wn*j+d,d ,'L',wn*(j-negr)+d, h);
+								}
+								if(j==0 && i>0){
+									tArr.push('M',d,hn*i+d,'L',w,hn*(i-negc)+d);
+								}
 
-					lt=offX<0?x0-w:x0;
-					tp=offY<0?y0-h:y0;
-				}
-				for(var i=0;i<r;i++){
-					for(var j=0;j<c;j++){
-						if(isMargin){
-							if(i==0 && j>0){
-								tArr.push('M',wn*j+d,d,'V',h);
-							}
-							if(j==0 && i>0){
-								tArr.push('M',d,hn*i+d,'H',w);
-							}
-						}else{
-							var mx=(sw+wn)*j,my=(sw+hn)*i;
-							if(i==0 && j>0){
-								tArr.push('M'+parseInt(mx+sw/2)+' 0 V'+h);
-							}
-							if(j==0 && i>0){
-								tArr.push('M0 '+parseInt(my+sw/2)+' H'+w);
+
+
+							}else{
+								var mx=(sw+wn)*j,my=(sw+hn)*i;
+								if(i==0 && j>0){
+									tArr.push('M'+parseInt(mx+sw/2)+' 0 L'+(sw+wn)*(j-negr)+' '+h);
+								}
+								if(j==0 && i>0){
+									tArr.push('M0 '+parseInt(my+sw/2)+' L'+w+' '+(sw+hn)*(i-negc));
+								}
 							}
 						}
 					}
-				}
-				
-				if(!/Inner/.test(shp)){
-					tArr.push('M',d,d,'H',w,'V',h,'H',d,'V',d);
+					if(!/Inner/.test(shp)){
+						if(isMargin){
+							tArr.push('M',d,h,'L',w,hn*(r-negc),'M',w,d,'L',wn*(c-negr),h);
+						}else{
+							tArr.push('M',d,h,'L',w,(sw+hn)*(r-negc),'M',w,d,'L',(sw+wn)*(c-negr),h);
+						}
+					}
+
+
+				}else if(gT=='Triangle'){// 三角坐标系
+
+
+					if(isMargin){
+						var	wn=c, hn=Math.sqrt(3)*wn/2;
+						c=Math.floor(w/c);
+						r=Math.floor(h/hn);
+
+						w=wn*c;
+						h=Math.ceil(hn*r);
+
+					}else{
+						var wn=parseInt(w/c), hn=Math.sqrt(3)*wn/2;
+						w=d+wn*c;
+						h=Math.ceil(d+hn*r);
+
+					}
+
+
+					lt=offX<0?x0-w:x0;
+					tp=offY<0?y0-h:y0;
+
+					for(var i=0;i<r;i++){
+						tArr.push('M',d, parseInt(h-i*hn) ,'H',w);
+	
+
+							tArr.push('M',w, parseInt(h-i*hn*2) ,'L',w-parseInt(h/Math.sqrt(3)-i*wn),d);	//w-parseInt((h-i*hn*2)/Math.sqrt(3))
+
+							tArr.push('M',d, parseInt(h-i*hn*2) ,'L',parseInt(h/Math.sqrt(3)-i*wn),d);	//parseInt((h-i*hn*2)/Math.sqrt(3))
+						
+					
+					}
+
+
+					for(var j=1;j<c;j++){
+						
+						tArr.push('M',wn*j+d,h ,'L',parseInt(wn*j+h/Math.sqrt(3))+d, d);
+
+						tArr.push('M',wn*j+d,h ,'L',parseInt(wn*j-h/Math.sqrt(3))+d, d);
+						
+					}
+
+
+
+
+				}else if(gT=='Elliptic'){// 椭圆坐标系
+					var rc=r;
+					r=c;c=rc;
+
+					if(isMargin){
+						var	wn=c;//半轴长间距
+						c=Math.floor(w/c/2);// 椭圆数目
+
+						w=(sw+wn)*c*2;
+
+					}else{
+						var wn=parseInt(w/c/2);
+						w=(sw+wn)*c*2;
+
+					}
+					var hn=parseInt(h/c/2);
+					h=(sw+hn)*c*2;
+
+					var tan=h/w, ox=d+(wn+sw)*c, oy=d+(hn+sw)*c;
+					//console.log(tan, hn, ox, oy);
+					lt=offX<0?x0-w:x0;
+					tp=offY<0?y0-h:y0;
+
+					if(r%2){
+						tArr.push('M',ox, d,'V', oy);
+					}else{
+						tArr.push('M',ox, d,'V', h);
+					}
+					if(r%4){
+						for(var i=1;i<r;i++){
+							//var k=tan/Math.tan(Math.PI*i*2/r);// x^2/a^2+y^2/b^2=1  y=kx  b/a=tan  得到 x^2(1+ k^2/tan^2)=a^2   x^2=a^2sin^2
+							var ix=parseInt(ox*Math.sin(Math.PI*2*i/r)), iy=parseInt(ox*Math.cos(Math.PI*2*i/r+Math.PI)*tan);
+							tArr.push('M',ox, oy,'L',ox+ix,oy+iy);
+
+						}
+
+					}else{
+
+						for(var i=1;i<r/2;i++){
+							
+							var ix=parseInt(ox*Math.sin(Math.PI*i*2/r)), iy=parseInt(ox*Math.cos(Math.PI*i*2/r+Math.PI)*tan);
+							tArr.push('M',ox+ix,oy+iy,'L',ox-ix,oy-iy);
+
+
+						}
+
+					}
+
+
+					for(var j=0;j<c;j++){
+
+						//tArr.push('M',d+wn*j,oy,'A', wn*(c-j),hn*(c-j) ,0,1,1,d+wn*j,oy);
+						//console.log('M',d+wn*j,oy,'A', wn*(c-j),hn*(c-j) ,0,1,1,d+wn*j,oy);
+
+						tArr.push('M',d+wn*j,oy,'A', wn*(c-j),(hn-sw)*(c-j) ,0,1,1,w-wn*j,oy);
+						tArr.push('M',d+wn*j,oy,'A', wn*(c-j),(hn-sw)*(c-j) ,0,1,0,w-wn*j,oy);
+						
+					}
+
+				}else if(gT=='Cartesian'){
+
+
+					
+					if(isMargin){
+						var	wn=c,hn=r;
+						c=Math.floor(w/c);
+						r=Math.floor(h/r);
+
+						w=wn*c;
+						h=hn*r;
+
+					}else{
+						var wn=parseInt((w-(c+1)*sw)/c),hn=parseInt((h-(r+1)*sw)/r);
+						w=d+(sw+wn)*c;
+						h=d+(sw+hn)*r;
+
+					}
+
+					lt=offX<0?x0-w:x0;
+					tp=offY<0?y0-h:y0;
+
+					for(var i=0;i<r;i++){
+						for(var j=0;j<c;j++){
+							if(isMargin){
+								if(i==0 && j>0){
+									tArr.push('M',wn*j+d,d,'V',h);
+								}
+								if(j==0 && i>0){
+									tArr.push('M',d,hn*i+d,'H',w);
+								}
+							}else{
+								var mx=(sw+wn)*j,my=(sw+hn)*i;
+								if(i==0 && j>0){
+									tArr.push('M'+parseInt(mx+sw/2)+' 0 V'+h);
+								}
+								if(j==0 && i>0){
+									tArr.push('M0 '+parseInt(my+sw/2)+' H'+w);
+								}
+							}
+						}
+					}
+					
+					if(!/Inner/.test(shp)){
+						tArr.push('M',d,d,'H',w,'V',h,'H',d,'V',d);
+					}
+					tArr.push('z')
 				}
 			}
 
@@ -2095,7 +2264,7 @@ console.log('tp ',tp);
 
 			}
 
-			if(/GonRnd|Note|arrow|Lattice/.test(shp)){tArr.push('z')}
+			if(/GonRnd|Note|arrow/.test(shp)){tArr.push('z')}
 
 			WD=w+sw;
 			HT=h+sw;
