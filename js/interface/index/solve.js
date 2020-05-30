@@ -266,8 +266,8 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 			'向量夹角…α\nβ',
 			'$α×β$…α\nβ—Vector Cross Product',
 			'混合积…a\nb\nc',
-			'双重矢性积…a\nb\nc'
-
+			'双重矢性积…a\nb\nc',
+			'子空间内射影…行向量组A\n行向量b'
 		]},
 	],
 

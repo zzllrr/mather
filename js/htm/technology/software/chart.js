@@ -76,6 +76,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 	[href(Hs+'plotparade.com','Plot Parade'),'','Pick a chart and play'],
 
+	[href(Hs+'flourish.studio','Flourish'),'','Beautiful, easy data visualization and storytelling'],
 ],'TBrc'),1)+
 
 

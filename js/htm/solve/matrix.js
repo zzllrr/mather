@@ -683,7 +683,7 @@ solve['matrix']=function(inputValue, uriA){
 					'\\\\ X^TAX=(QY)^TAQY=Y^TQ^TAQY=Y^T'+D+'Y\\\\ '+
 					kxA(Arrf(function(t){
 						
-						return 'y'+sub(t,'')+'='+sums(Arri(Q,t-1),zlrA('x_',seqA(1,m)),1,1)	
+						return 'y'+sub(t,'')+('='+sums(Arri(Q,t-1),zlrA('x_',seqA(1,m)),1,1)).replace(/^0x_\{\d+\}[\+\-]/,'').replace(/[\+\-]0x_\{\d+\}/g,'')
 
 					},seqA(1,m)))+
 					'\\\\ 得到标准型：'+plus(Y,1)+

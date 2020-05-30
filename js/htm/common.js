@@ -167,8 +167,9 @@ loadHTML=function (x) {
     }
     
 
-    OH('<iframe src="'+src+'" width="'+(x=='solve'?45:98)+'%" height="'+Math.max($(window).height()-(oC.length?oC.position().top:0)+
-        (fullscr && zM.length?zM.height():0)-20,200)+'px" class="resize bd0"></iframe>')
+    OH('<iframe src="'+src+'" width="'+(x=='solve'?45:98)+'%" height="'+
+        Math.max($(window).height()-(oC.length?oC.position().top:0)+   (fullscr && zM.length?zM.height():0)-20,200)+
+        'px" class="resize bd0"></iframe>')  
 };
 
 L.removeItem('translation');
@@ -680,7 +681,7 @@ function reloadHistory(t){
             $('#toolHistory').html(itv('','history')+Arrf(function(x){
                 var A=x.split('/'),x0=A[0], x1=A[1], fx1=fn1(x1), fx1A=fx1.split('/'), y=fx1A[fx1A.length-1];
                 return SCtv('toolHistory hotk" title="'+fx1+'" data-path="'+fx1+'" data-by="'+x0,
-                hanziCoreRe.test(y)?y:(/^[a-z -]+$/i.test(y)?gM(y):zx(y))) 
+                hanziCoreRe.test(y)?y:(/^[a-z -]+$/i.test(y) || /[a-z ]{2,}[^a-z ][a-z ]{2,}/i.test(y)?gM(y):zx(y))) 
             },his).join('')+itv('clrHistory','delete_forever'));
         }else{
             $('#iframeHistory').html(ol(Arrf(function(x){
