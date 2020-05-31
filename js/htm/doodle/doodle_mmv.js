@@ -1994,6 +1994,7 @@ console.log('tp ',tp);
 					lt=offX<0?x0-w:x0;
 					tp=offY<0?y0-h:y0;
 
+					tArr.push('M',d,d,'H',w);
 					for(var i=0;i<r;i++){
 						tArr.push('M',d, parseInt(h-i*hn) ,'H',w);
 	

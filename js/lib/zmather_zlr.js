@@ -326,15 +326,16 @@ function gM(mesg, str, o) {
 		return msg.split('.')[0]
 	}
 
-	if (!x && /e?s$/.test(msg) && o) {// s结尾
+	if (!x && /e?s$/.test(msg)) {// s结尾
 		var t=msg.replace(/s$/,'');
-		if(o[t]){
+
+		if(O[t]){
 			
 		}else{
 			t=msg.replace(/es$/,'')
 		}
 
-		if(o[t]){
+		if(O[t]){
 			return gM(t, str, o)
 		}
 		
