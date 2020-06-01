@@ -21,7 +21,7 @@ detail('两水桶问题f(x,y,z)',
 
 
 
-    ],'TBrc'),1)
+    ],'TBrc'))
 
 );
 
@@ -107,7 +107,7 @@ $(function(){
 								A.push([0,0])
 							}else{
 								if(lastt[0]+lastt[1]==last[0] + last[1] ){// 交换 （左上，然后水平向右 或左下；右下，然后右上 或水平向左）	//lastt[0]==last[1] && lastt[1]==last[0] 
-									if(last[0]==0){
+									if(last[0]< lastt[0]){
 										if(lastt[0]<l1){
 											A.push([l2 ,last[1]])
 										}else{
@@ -116,7 +116,8 @@ $(function(){
 										
 
 									}else{
-										if(lastt[0]<l1){
+										//if(lastt[0]<l1){
+										if(last[1]==0){
 											A.push([last[0], l1])
 										}else{
 											A.push([0, last[1]])
@@ -131,7 +132,7 @@ $(function(){
 									}
 								}else{// 装满或倾倒小桶（左下，然后左上；右上，然后右下）
 
-									if(last[1]==0){
+									if(last[1]< lastt[1]){
 										if(lastt[0]<l1){
 											A.push([0,last[0]])
 										}else{
@@ -140,8 +141,11 @@ $(function(){
 										
 									}else{
 
-										if(lastt[0]<l1){
+										//if(lastt[0]<l1){
+										if(lastt[0]+l1<l2){
 											A.push([last[0]+last[1],0])
+
+							
 										}else{
 											A.push([l2,last[0]+last[1]-l2])
 										}
@@ -163,13 +167,19 @@ $(function(){
 								steps.push([x.length-1, [].concat(x)]);
 
 							}
-							return x.reverse().join(' → ') + '（'+(x.length-1)+'步）'},A2).join(br));
+							x=x.reverse();
+							return x.join(' → ') + '（'+(x.length-1)+'步）'},A2).join(br));
 
-						ansA.push('最短步数是'+steps[0][0]);
+						ansA.push('最少步数是'+steps[0][0]);
+						var path0=[], fxy=function(t){
+							//console.log('fxy(',t, ') = ',[d+parseInt(wn*t[1]/2)+wn*t[0], d+h-parseInt(hn*t[1])+Ihn].join(' '));
+							return [d+parseInt(wn*t[1]/2)+wn*t[0], d+h-parseInt(hn*t[1])+Ihn].join(' ')
+						};
+						Arrf(function(x){var y=x[1].reverse();y.shift(); path0.push('M'+fxy([0,0])+'L'+Arrf(fxy, y).join(' '))}, steps);
 					}
 
 					ans.html(svgf.id('buckets',svgf.path(tArr.join(' '),RandomColor()+'" stroke-linejoin="round')+
-						txtArr.join(''),
+						txtArr.join('')+svgf.path(path0.join(' '),RandomColor()+'" stroke-linejoin="round" stroke-width="4'),
 					1,'2" width="'+(w+wn+d*3)+'" height="'+parseInt(h+hn*2+d*3))+br+ansA.join(br))
 
 
