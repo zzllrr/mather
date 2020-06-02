@@ -1883,13 +1883,13 @@ var svgf = {
 	},
 	path: function (d, strk,fil) {
 		if(isArr(d)){
-			return Arrf(svgf.path,d)
+			return Arrf(function(x){return svgf.path(x, strk, fil)},d)
 		}
 		return '<path d="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></path>'
 	}, 
 	polygon: function (d, strk,fil) {
 		if(isArr(d)){
-			return Arrf(svgf.polygon,d)
+			return Arrf(function(x){return svgf.polygon(x, strk, fil)},d)
 		}
 		return '<polygon points="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></polygon>'
 	}, 
@@ -1930,6 +1930,11 @@ var svgf = {
 			return Arrf(function(x){return svgf.id(x,v,noVieWBox,w)},id)
 		}
 		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+(v||'')+'</svg>'
+	},
+	ani: function(id, attr,from,to,dur,cnt){
+		return '<animate xlink:href="#'+id+'" attributeName="'+(attr||'stroke-dashoffset')
+			+'" from="'+(from===undefined?3000:from)+'" to="'+(to===undefined?0:to)
+			+'" dur="'+(dur||10)+'s" repeatCount="'+(cnt||'indefinite')+'" />'
 	},
 	obj2js: function (obj, path, haschd) {
 		var o=$(obj), os={

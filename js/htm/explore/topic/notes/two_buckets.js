@@ -89,7 +89,7 @@ $(function(){
 
 					}
 					//4条边各一个点，每个点有两个方向，最终到达顶点（左上或右下，即只有一个桶装满水，全空，全满不考虑），若折线数最少，则步骤最少。
-					var ansA=[];
+					var ansA=[], pA=[];
 					if(q==l1 || q==l2){
 						ansA.push('只需一步（'+'小大'[+(q==l2)]+'桶装满水），即可')
 					}else{
@@ -171,16 +171,45 @@ $(function(){
 							return x.join(' → ') + '（'+(x.length-1)+'步）'},A2).join(br));
 
 						ansA.push('最少步数是'+steps[0][0]);
-						var path0=[], fxy=function(t){
-							//console.log('fxy(',t, ') = ',[d+parseInt(wn*t[1]/2)+wn*t[0], d+h-parseInt(hn*t[1])+Ihn].join(' '));
+						var path0=[], pathLen=[],
+						
+							fxy=function(t){//根据三角形坐标 计算 实际svg坐标
+							
 							return [d+parseInt(wn*t[1]/2)+wn*t[0], d+h-parseInt(hn*t[1])+Ihn].join(' ')
+
+						}, dxy=function(p0,p1){//计算线段两端点坐标间的距离
+							var d=0;
+							if(p0[0]==p1[0]){// 垂直距离，一般用不到
+								d=Math.abs(p0[1]-p1[1])*Ihn
+
+							}else if(p0[1]==p1[1]){
+								d=Math.abs(p0[0]-p1[0])*wn
+
+							}else if(p0[0]+p0[1]==p1[0]+p1[1]){
+								d=Math.abs(p0[0]-p1[0])*wn
+
+							}else if(p0[1]!=p1[1]){
+								d=Math.abs(p0[1]-p1[1])*wn
+							}
+							return d
 						};
-						Arrf(function(x){var y=x[1].reverse();y.shift(); path0.push('M'+fxy([0,0])+'L'+Arrf(fxy, y).join(' '))}, steps);
+						Arrf(function(x){var y=x[1].reverse();y.shift();
+							pathLen.push(plus(Arrf(function(t,i){return dxy(i?x[1][i-1]:[0,0], x[1][i])}, y)));
+							path0.push('M'+fxy([0,0])+'L'+Arrf(fxy, y).join(' '))}, steps);
+
+						pA=Arrf(function(t,i){
+							var lastP=fxy(steps[i][1].slice(-1)[0]).split(' ');
+							return svgf.path(t, RandomColor()+'" id="shortcut'+i+'" stroke-linejoin="round" stroke-width="4" stroke-dasharray="'+pathLen[i]+'" stroke-dashoffset="'+pathLen[i])+
+						//svgf.circle(d,d+h+Ihn,d*3,RandomColor(),RandomColor())+
+						svgf.circle(+lastP[0], +lastP[1], d*3,RandomColor(),RandomColor())+
+						svgf.ani('shortcut'+i)}, path0);
 					}
 
 					ans.html(svgf.id('buckets',svgf.path(tArr.join(' '),RandomColor()+'" stroke-linejoin="round')+
-						txtArr.join('')+svgf.path(path0.join(' '),RandomColor()+'" stroke-linejoin="round" stroke-width="4'),
-					1,'2" width="'+(w+wn+d*3)+'" height="'+parseInt(h+hn*2+d*3))+br+ansA.join(br))
+						
+						txtArr.join('')+
+						pA.join(''),
+						1,'2" width="'+(w+wn+d*3)+'" height="'+parseInt(h+hn*2+d*3))+br+ansA.join(br))
 
 
 				}
