@@ -3233,6 +3233,52 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			preDisplay();
 		}
 
+	}).on('drop', '#input0', function (e) {
+		e.stopPropagation(); e.preventDefault(); $(this).removeClass('drop');
+
+		var f = e.originalEvent.dataTransfer.files[0];
+		if (!f || f.type.indexOf('image') < 0) { return }
+		//console.log(f); File {webkitRelativePath: "", lastModifiedDate: xxx, name: "VIP.png", type: "image/png", size: 10628}
+
+		var reader = new FileReader(), shft=e.shiftKey || $('#Shift').is('.seled');
+		reader.onload = function (event) {
+			var src = this.result;
+			//console.log(this);
+			var sne = picSrcNameExt(src), img0='<img src="'+src+'" />';
+			if(shft){
+				$('#HTMLEditor').append(img0);
+			}else{
+				$('#HTMLEditor').html(img0)
+			}
+			var qr = new QrcodeDecoder();
+
+			sTo(function(){
+				qr.decodeFromImage($('#HTMLEditor img').last()[0]).then((res) => {
+					//console.log(res);
+					if(res){
+
+						var u=res.data;
+						if(/^https?:.+/.test(u)){
+							$('#input0').val(function(i,v){return v+brn+u});
+	
+						}else if(/\.html/.test(u)){
+							window.open(u)
+		
+						}else if(u.length<100){
+							$('#input0').val(function(i,v){return v+brn+u});
+						}
+
+
+					}
+	
+				});
+			},500);
+
+
+			$('#toggleHTMLEditor').not('.seled').click();
+			$('#preview').not('.seled').click();
+		};
+		reader.readAsDataURL(f);
 
 	}).on('paste', '#input0', function (e) {
 		//console.log(e);
@@ -3257,6 +3303,30 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 						}else{
 							$('#HTMLEditor').html(img0)
 						}
+						var qr = new QrcodeDecoder();
+
+						sTo(function(){
+							qr.decodeFromImage($('#HTMLEditor img').last()[0]).then((res) => {
+								//console.log(res);
+								if(res){
+
+									var u=res.data;
+									if(/^https?:.+/.test(u)){
+										$('#input0').val(function(i,v){return v+brn+u});
+				
+									}else if(/\.html/.test(u)){
+										window.open(u)
+					
+									}else if(u.length<100){
+										$('#input0').val(function(i,v){return v+brn+u});
+									}
+
+
+								}
+				
+							});
+						},500);
+
 						$('#toggleHTMLEditor').not('.seled').click();
 						$('#preview').not('.seled').click();
 						/*
