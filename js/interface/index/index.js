@@ -120,10 +120,12 @@ $(function(){
 	$('#zMather').prepend(
 		'<div id=nav>'+
 		DCtv('opac" id="navhead',
+			DCtv('hidden','<video id="videoCamera"></video>')+
 			Arrf(function(i){
 				return SCtv('subhead'+(i=='home'?' seled':'')+'" id="'+i+'" title="'+gM(i),itv('',
 					{'home':'home',
 					'about':'info_outline',
+					'scanqr':'video_camera',
 
 					}[i]))
 			},ZLR('home about')).join('')
@@ -163,13 +165,45 @@ $(function(){
 			}else{
 				OH('');
 			}
-		}else{
+		}else if(id=='about'){
 			
 			$('#menu > .toggle, #iTextFold.seled, #input0Tipon.seled').click();
 			$('#navbody').hide();
 
 			OHiframe(id,{},1);
 			
+		}else if(id=='scanqr'){
+			
+
+
+
+
+
+
+			var qr = new QrcodeDecoder();
+
+			sTo(function(){
+				qr.decodeFromImage($('#videoCamera')[0]).then((res) => {
+					//console.log(res);
+					if(res){
+
+						var u=res.data;
+						if(/^https?:.+/.test(u)){
+							window.open(u)
+	
+						}else if(/\.html/.test(u)){
+							window.open(u)
+		
+						}else if(u.length<100){
+							$('#input0').val(function(i,v){return v+brn+u});
+						}
+
+
+					}
+	
+				});
+			},500);
+
 		}
 
 		$('#iContent,#iTextFold,#input0Tipon,#go').toggle(id=='home');//,#iTextOpt i:not(#oHClear,#launch)

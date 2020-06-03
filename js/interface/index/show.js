@@ -71,6 +71,7 @@ function showThen(T) {
             //accept="audio/*" capture="microphone" 
             strbtn + gM('Play') + '" class=play id=' + T + 'Play hidden />' +
             //
+            '<video id=video_camera hidden></video>'+
             strbtn + 'QR↑" class=qrScan tip="Scan QRcode" />' +
             strbtn + 'QR↓" class=qrGen tip="Generate Text QRcode" />',
 

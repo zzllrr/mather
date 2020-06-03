@@ -98,7 +98,7 @@ $(function(){
 
 						}else{
 
-							var A2=[[[q,l1],[l2,q+l1-l2]], [[l2-l1,l1],[l2-l1,0]]];
+							var A2=[[[q,l1],[q+l1,0]], [[q,0],[q-l1,l1]]];
 						}
 						var f=function(A){
 							var last=A.slice(-1)[0], lastt=A.slice(-2)[0];
@@ -125,9 +125,11 @@ $(function(){
 									}
 
 								}else if(lastt[1]==last[1]){// 水平，装满或倾倒大桶（左，然后右下；右，然后左上）
+									
 									if(last[0]==0){
 										A.push([last[1], 0])
 									}else{
+
 										A.push([last[0]+last[1]-l1, l1])
 									}
 								}else{// 装满或倾倒小桶（左下，然后左上；右上，然后右下）

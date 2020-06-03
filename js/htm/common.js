@@ -687,7 +687,7 @@ function reloadHistory(t){
             $('#iframeHistory').html(ol(Arrf(function(x){
                 var o=H_o(x),txt=o.t||x;
                 if(/\?q=/.test(txt)){
-                    txt=gM(txt.replace(/.+\?q=/,'').split('/')).join('/')
+                    txt=gM(Arrf(fn1,txt.replace(/.+\?q=/,'').split('/'))).join('/')
                 }
                 return itv('iframeHistory','access_time')+href(x,txt ,o.qa||'')+itv('clriframeHistory','clear')
             },his)));
@@ -1529,7 +1529,28 @@ $(function(){
             $('#QRCODE').fadeToggle();
         }
 
+    }).on('click','.qrScan',function(){
+        var qr = new QrcodeDecoder();
 
+        sTo(function(){
+            qr.decodeFromImage($('#video_Camera')[0]).then((res) => {
+                //console.log(res);
+                if(res){
+
+                    var u=res.data;
+                    if(/^https?:.+$/.test(u)){
+                        window.open(u)
+
+                    }else{
+                        $('.editorText.showSlide').val(function(i,v){return v+brn+u});
+    
+                    }
+
+
+                }
+
+            });
+        },500);
 
     }).on('dblclick','.katexf',function(){
         var me=$(this);
