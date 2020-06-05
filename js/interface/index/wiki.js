@@ -86,7 +86,14 @@ wikis={
 		]},
 
 		{'Geometry':[
-
+			'Analytic Geometry',
+			'Affine Geometry',
+			'Projective Geometry',
+			'Algebraic Geometry',
+			'Differential Geometry',
+			'Spherical Geometry',
+			'Non-Euclidean Geometry',
+			'Fractal Geometry',
 		]},
 	],
 

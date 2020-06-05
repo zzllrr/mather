@@ -1370,7 +1370,7 @@ lang['zh_cn'] = {
 	'Equations': '方程组',
 	'Equation Array': '方程组',
 	'Inequation': '不等式',
-	'Analytic': '解析式',
+	'Analytic': '解析',
 	'Limit': '极限',
 
 	'Encompass':'包含',

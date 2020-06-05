@@ -1028,8 +1028,8 @@ a b c d
 	if(sel(uriA,'科学记数法')){
 		rS=rS.concat(
 			Arrf(function(t){
-				var V=t.split(/[ &,]/),dgts=V.length>1?+V[1]:0;
-				return V[0]+' = '+(isNaN(dgts)?(+V[0]).toExponential():(+V[0]).toExponential(dgts)).replace('e+0','').replace(/e(.\d+)/,'⋅10^{$1}').replace('+','')
+				var V=t.split(/[ &,]/),dgts=V.length>1?+V[1]:Math.max(V[0].replace(/^0\.0*|0+$/g,'').length-1,0);
+				return V[0]+' = '+(isNaN(dgts)?(+V[0]).toExponential():(+V[0]).toExponential(dgts)).replace('e+0','').replace(/e(.\d+)/,'×10^{$1}').replace('+','')
 		},VA));
 	}
 	if(sel(uriA,'工程记数法')){
