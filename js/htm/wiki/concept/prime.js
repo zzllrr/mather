@@ -44,7 +44,7 @@ detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质'
 			'$p_n∼ n\\ln (n)$',
 			ksc('π(x) ∼ '+frac('x','\\ln x',''))+SCtv('notes','$x$以内素数占比约为'+ksc(frac(1,'\\ln x',''))),,
 			ksc('π(x)=FUNCLi(x)+O'+lrp('','xe^{-a'+root('\\ln x','','','')+'}','','')+'=FUNCLi (x)+O'+lrp('\\Bigg(','xe^{-'+frac('A(\\ln x)^{3/5}','(\\ln \\ln x)^{1/5}','t')+'}','\\Bigg)','')),
-			'$其中FUNCLi (x)='+intl('\\ln t',2,'x','t','',1)+'=FUNCli (x)-FUNCli (2)$',
+			'$其中FUNCLi (x)='+intl('\\ln t',2,'x','t','',0)+'=FUNCli (x)-FUNCli (2)$',
 			'黎曼猜想成立情况下，'+ksc('π(x)=FUNCLi (x)+O('+root('x','','','')+'\\ln x)，以及|π(x)-FUNCli (x)| < '+frac(root('x','','','')+'\\ln x','8π',''))]),
 
 		'$n（n>1）,2n$之间至少有1个素数, 也即$p_{n+1} < 2p_n$'+scbox('Bertrand–Chebyshev定理','bold brad')+br+

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 academics={index:['Topic','Thesis','Monograph','Periodical',
-    'Meeting','Problem List','Awards',
+    'Meeting',
     'Organization'],
 
     'Topic':[
@@ -29,12 +29,6 @@ academics={index:['Topic','Thesis','Monograph','Periodical',
         'Conference',
     ],
 
-    'Problem List':[
-
-    ],
-    'Awards':[
-
-    ],
 
     'Organization':[
         'Institution',
