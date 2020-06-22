@@ -176,7 +176,7 @@ loadHTML=function (x) {
     
 }, toggler2=function(A){
     return Arrf(function(xy){return '【'+Arrf(function(x){return SCtv('toggler',x)}, 
-        /[,，、]/.test(xy)?xy.split(/[,，、]/):[xy.substr(0,xy.length/2), xy.substr(0,xy.length/2)]).join('')+'】'}, A)
+        /[,，、]/.test(xy)?xy.split(/[,，、]/):[xy.substr(0,xy.length/2), xy.substr(xy.length/2)]).join('')+'】'}, A)
 };
 
 L.removeItem('translation');
