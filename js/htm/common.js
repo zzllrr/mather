@@ -169,7 +169,14 @@ loadHTML=function (x) {
 
     OH('<iframe src="'+src+'" width="'+(x=='solve'?45:98)+'%" height="'+
         Math.max($(window).height()-(oC.length?oC.position().top:0)+   (fullscr && zM.length?zM.height():0)-20,200)+
-        'px" class="resize bd0"></iframe>')  
+        'px" class="resize bd0"></iframe>')
+
+}, toggler=function(A){
+    return Arrf(function(x){return SCtv('toggler',x)}, A)
+    
+}, toggler2=function(A){
+    return Arrf(function(xy){return '【'+Arrf(function(x){return SCtv('toggler',x)}, 
+        /[,，、]/.test(xy)?xy.split(/[,，、]/):[xy.substr(0,xy.length/2), xy.substr(0,xy.length/2)]).join('')+'】'}, A)
 };
 
 L.removeItem('translation');
@@ -1091,6 +1098,10 @@ $(function(){
         }
 	}).on('click','.zdog canvas, .lego canvas',function(e){
         L.drawShapeNow=$(this).parent().attr('id')
+
+	}).on('click','.toggler',function(e){
+        $(this).toggleClass('toggle')
+
 
 
     }).on('click','.clrHistory',function(e){

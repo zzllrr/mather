@@ -76,43 +76,10 @@ explores={index:['Topic','Problem','Pitfall','Thinking','Game'],
 
 
 	'Thinking':[
-		{'Direct':[
-			'Deduce',
-			'Converge',
-			'Enumerate',
-			'Exhaust',
-			'Classify',
-			'Concretize',
-			'Experiment',
-			'Parameterize',
-			'Functionalize',
-			
-
-		]},
-
-		{'Indirect':[
-			'Induce',
-			'Analogize',
-			'Convert',
-			'Symbolize',
-			'Visualize',
-			'Reverse',
-			'Reduction to Absurdity',
-			'Counter-example',
-			
-		]},
-
-		{'Generalize':[
-			'Extend',
-			'Diverge',
-			'Penetrate',
-			'Integrate',
-			
+		{'Methodology':[
 			'Dialectic',
-			
-			'Abstract',
-			'Forcing',
-		]},
+			'Analogy',
+		]}
 	
 	],
 

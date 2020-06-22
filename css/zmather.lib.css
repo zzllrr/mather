@@ -217,7 +217,7 @@ body.day, iframe{
 }
 
 
-.fdetail:hover summary,.task,.taskname,.Mele:hover{
+.fdetail:hover summary,.task,.taskname,.Mele:hover, .toggler:hover{
 	color:white;
 }
 .taskname{
@@ -692,7 +692,7 @@ summary ~ details summary{
 	width:98%;
 	z-index:-1;
 }
-.Mele{
+.Mele, .toggler{
 	padding: 1px 10px;
     margin: 2px 5px;
 	color:gray;
@@ -788,7 +788,7 @@ select,input:not([type="file"]), .rem13{
 }
 
 
-.sechResult, .Mele:hover,#iContent input:not(.seled):not(.Clear):not(.tool):hover{
+.sechResult, .Mele:hover, .toggler:hover, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background: rgba(50, 205, 50, 0.6);
 }
 
@@ -1043,7 +1043,10 @@ ol li:before {counter-increment:a;content:counters(a,".")" ";}
 	background:lightyellow;
 	color: rgb(27, 24, 24);
 }
-
+.toggler.toggle{
+	background:lightcyan;
+	color: rgb(27, 24, 24);
+}
 .onbox{
 	border:solid lightyellow 1px;
 }
