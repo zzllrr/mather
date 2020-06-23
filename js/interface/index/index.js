@@ -261,7 +261,7 @@ $(function(){
 				while(/"[^":,]+",/.test(x)){
 					x=x.replace(/"[^":,]+",/g,'')
 				}
-				return x
+				return x.replace(/….+/,'')
 			};
 
 			do{
@@ -313,7 +313,8 @@ $(function(){
 
 				break;
 			}
-			r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'')))
+			//console.log(t[0].replace(/"/g,''));
+			r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'').replace(/….+/g,'')))
 			
 		}
 
@@ -327,7 +328,8 @@ $(function(){
 					console.log(t[0]);
 					break;
 				}
-				r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'')))
+				//console.log(t[0].replace(/"/g,''));
+				r.push(getPathFromJSONStr(st.substr(0,t.index),t[0].replace(/"/g,'').replace(/….+/g,'')))
 			}
 
 		}

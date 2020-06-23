@@ -79,6 +79,7 @@ explores={index:['Topic','Problem','Pitfall','Thinking','Game'],
 		{'Methodology':[
 			'Dialectic',
 			'Analogy',
+			'Compound',
 		]}
 	
 	],
