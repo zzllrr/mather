@@ -1382,6 +1382,7 @@ lang['zh_cn'] = {
 	'Vector': '向量',
 	'Tensor': '张量',
 	'Matrix': '矩阵',
+	'Matroid':'拟阵',
 	'Identity Matrix': '单位矩阵',
 	'Square Matrix': '方阵',
 
@@ -2146,7 +2147,7 @@ lang['zh_cn'] = {
 "Lie Algebra": "李代数",
 "Kac-Moody Algebra": "Kac-Moody代数",
 "Ring Theory": "环论",
-"Case Theory": "格论",
+"Lattice Theory": "格论",
 "Pan-Algebraic Theory": "泛代数理论",
 "Category Theory": "范畴论",
 "Homological Algebra": "同调代数",
