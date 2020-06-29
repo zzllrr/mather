@@ -637,11 +637,11 @@ function changeTextCSS(){
 
 
 function toggleSvg(){
-	var s=$('#svgShape,#svgTool2').find('svg').filter(function(){return !/^(SVGshift|Zdogon|D2on|Legoon)$/.test(this.id)});
+	var s=$('#svgShape,.svgTool2').find('svg').filter(function(){return !/^(SVGshift|Zdogon|D2on|Legoon|TextureOn)$/.test(this.id)});
 	s.find('[stroke=yellow]').attr('stroke','white');
 	s.find('[fill=yellow]').attr('fill','white');
 
-	$('#svgTool ~ div svg').css('background-image','-webkit-linear-gradient(white, #ac0 20%, #ac0 80%, white)');
+	$('#svgTool + .svgTool2 ~ div svg').css('background-image','-webkit-linear-gradient(white, #ac0 20%, #ac0 80%, white)');
 	$('#'+L.drawShape).css('background','none').find('[stroke=white]').attr('stroke','yellow').end().find('[fill=white]').attr('fill','yellow');
 }
 

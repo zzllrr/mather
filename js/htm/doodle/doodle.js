@@ -723,6 +723,19 @@ dc+
 
 
 				dc+
+			DCtv('svgTool2',
+				svgf.id('SVGshift" tip="Shift',svgf.path('M8 17 L15 10 22 17 M8 21 H22'))+
+
+				svgf.id('D2on" tip="2D Flatten',svgf.text('2D',[22,4,16]))+
+
+				svgf.id('Legoon" tip="Lego',svgf.rect(7,7,16,16)+svgf.circle(15,15,4,'','white'))+
+
+				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
+
+				svgf.id('TextureOn" tip="Texture',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))
+
+
+			)+
 				DCtv('pg1',[
 					svgf.id('Freelin',svgf.path('M12 24 L13 25 13 24 13 23 13 21 15 18 16 17 18 12 18 10 18 9 18 7 18 5 18 4 18 3 18 2'))+
 					svgf.id('Text" hotkey="A',svgf.text('A',[25,5,28]))+
@@ -1101,30 +1114,21 @@ dc+
 				
 			dc+
 
+			DCtv('svgTool2',
 
-			'<div id=svgTool2>'+
-				svgf.id('SVGshift" tip="Shift',svgf.path('M8 17 L15 10 22 17 M8 21 H22'))+
-
-				svgf.id('D2on" tip="2D Flatten',svgf.text('2D',[22,4,16]))+
-
-				svgf.id('Legoon" tip="Lego',svgf.rect(7,7,16,16)+svgf.circle(15,15,4,'','white'))+
-
-				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
-
-				svgf.id('LayerToggle" tip="Layer Toggle',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
+				svgf.id('LayerToggle" tip="Layer Toggle',svgf.path('M5 7 V23 H27','white" stroke-dasharray="3,1')+svgf.rect(9,7,18,12))+
 
 
 				svgf.id('CanvasToggle" tip="Background Canvas Toggle',svgf.path('M5 28 L25 2')+svgf.rect(5,7,20,16))+
-
 
 
 				svgf.id('Crop" hotkey="C',svgf.path('M5 12 V7 H10 M20 7 H25 V12 M25 18 V23 H20 M10 23 H5 V18'))+
 				
 				svgf.id('allEraser" tip="bg',svgf.rect(5,7,20,16,'','white'))+
 
-				svgf.id('noteEraser" tip="Del Layer" title="Shift+Delete(D)\n'+gM('2D on → Erase All'),svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))+
+				svgf.id('noteEraser" tip="Del Layer" title="Shift+Delete(D)\n'+gM('2D on → Erase All'),svgf.path('M10 20 L20 10 M10 10 L20 20')+svgf.rect(5,7,20,16))
 			
-			dc+
+			)+
 			'<div id=svgTog>'+
 				svgf.id('svgPg1',svgf.line(10,15,20,15))+
 				svgf.id(zlrA('svgPg',seqA(2,4)),svgf.circle(15,15,5)).join('')+
@@ -1847,14 +1851,14 @@ dc+
 			caps.repaint();
 			reCanvasCode();
 			
-		} else if (!shp.parent().is('#svgTool,#svgTool2') || shp.is('#Pointer')) {
+		} else if (!shp.parent().is('#svgTool,.svgTool2') || shp.is('#Pointer')) {
 			RndColors(shpN);
 		}
 	});
 
 
 
-	$('#svgShape svg[id], #svgTool2 svg[id]').on('click', function (e) {
+	$('#svgShape svg[id], .svgTool2 svg[id]').on('click', function (e) {
 
 
 		var me=$(this),id = this.id, pa = $(this).parent(), isCopy = /Copy/.test(id), isTxt = /Text/.test(id),
@@ -1862,10 +1866,11 @@ dc+
 			shifton=$('#SVGshift path').attr('stroke')=='yellow',
 			D2on=$('#D2on text').attr('fill')=='yellow',
 			Legoon=$('#Legoon rect').attr('stroke')=='yellow',
-			D3on=$('#Zdogon text').attr('fill')=='yellow';
+			D3on=$('#Zdogon text').attr('fill')=='yellow',
+			Textureon=$('#Zdogon text').attr('fill')=='yellow';
 		Scroll('scrollT');
 
-		if(/SVGshift|D2on|Zdogon|LayerToggle|CanvasToggle/.test(id) && isNarrow && !/Pointer|Copy|Eraser/.test(L.drawShape)){
+		if(/SVGshift|D2on|Zdogon|TextureOn|LayerToggle|CanvasToggle/.test(id) && isNarrow && !/Pointer|Copy|Eraser/.test(L.drawShape)){
 			var pg=($('#'+L.drawShape).parent().attr('class')||'').replace(/\D/g,'');
 			$('#svgPg'+pg).siblings().hide();
 
@@ -1906,6 +1911,15 @@ dc+
 			
 			return
 		}
+		if(id=='TextureOn'){
+			$(this).children('path').attr('stroke',function(){return $(this).attr('stroke')=='white'?'yellow':'white'});
+			if(L.drawShapeNow){
+				mUp(e,1,L.drawShapeNow.replace(/\d+$/,''))
+			}
+			return
+		}
+
+
 		if(id=='Zdogon'){
 			$(this).children('text').attr('fill',function(){var istog=$(this).attr('fill')=='white';
 				$('.zdog').children().attr('spinning',istog);
@@ -1987,9 +2001,9 @@ dc+
 		$('#caps').css('cursor', 'crosshair')
 //		$('#caps').css('cursor', 'default');
 
-		$('#svgSel').toggle(!pa.is('#svgTool,#svgTool2,#svgTog'));
+		$('#svgSel').toggle(!pa.is('#svgTool,.svgTool2,#svgTog'));
 
-		$('#svgCssTransform').toggle(!pa.is('#svgTool,#svgTool2,#svgTog') || isCopy);
+		$('#svgCssTransform').toggle(!pa.is('#svgTool,.svgTool2,#svgTog') || isCopy);
 		$('#copyOpt').toggle(isCopy);
 
 
@@ -2091,9 +2105,11 @@ dc+
 					$('#Caps > .zdog').remove()
 				}
 
-				
+				if(Textureon){
+					$('#Caps > .zdog').remove()
+				}	
 
-				if(!D2on && !D3on || shifton){
+				if(!D2on && !D3on && !Textureon || shifton){
 					
 					
 					if(shifton){

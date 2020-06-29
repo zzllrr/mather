@@ -444,7 +444,7 @@ lang['zh_cn'] = {
 	'Feature':'特征',
 	'Features':'特色',
 
-
+	'Texture':'纹理',
 
 
 
