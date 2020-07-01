@@ -33,6 +33,7 @@ function mUp(e,Last,drawshape){
 		var shpNid=L.drawShapeNow||'unknown', shpN=$('#'+shpNid), 
 		D2on=$('#D2on text').attr('fill')=='yellow', 
 		Legoon=$('#Legoon rect').attr('stroke')=='yellow', 
+		Roughon=$('#Roughon path').attr('stroke')=='yellow', 
 		D3on=$('#Zdogon text').attr('fill')=='yellow';
 
 		if(D2on){
@@ -73,7 +74,6 @@ function mUp(e,Last,drawshape){
 						code+=SVGPath.toLego(ps,lt,tp,WD2,HT2,swd,opt)
 					}
 
-//console.log(code);
 					L.legoCode+=';'+code;
 
 
@@ -84,7 +84,43 @@ function mUp(e,Last,drawshape){
 				}
 
 
+				if(Roughon){
+					code=`var rc=rough.canvas($('#caps')[0]);`;
+					var opt=",{"+(color2?"fill:'"+color2+"'":"stroke:'"+color+"'")+'}', lt0=lt, tp0=tp;
+					if($t.is('rect')){
+					//	if(($t.attr('rx')||'')!='0' || ($t.attr('ry')||'')!='0' ){
+							code+=`rc.curve([[${+$t.attr('x')+lt0},${+$t.attr('y')+tp0}],[${$t.attr('width')},${$t.attr('height')}]]${opt})`
+							//code+="rc.path('"++"')"
+					//	}else{
 
+							code+=`rc.rectangle(${+$t.attr('x')+lt0},${+$t.attr('y')+tp0},${$t.attr('width')},${$t.attr('height')}${opt})`
+					//	}
+						
+					}
+					if($t.is('ellipse')){	//circle
+						code+=`rc.ellipse(${(+$t.attr('cx')+lt)}, ${(+$t.attr('cy')+tp)}, ${+$t.attr('rx')*2}, ${+$t.attr('ry')*2}${opt})`
+					}
+					if($t.is('line')){
+						code+=`rc.line(${(+$t.attr('x1')+lt)},${(+$t.attr('y1')+tp)},${(+$t.attr('x2')+lt)},${(+$t.attr('y2')+tp)}${opt})`
+					}
+
+					if($t.attr('points')){
+						code+='rc.polygon(['+Arrf(function(t,i){return i%2?(+t+tp)+']':'['+(+t+lt)}, chdmp.split(/[, +]/)).join(',')+']'+opt+')'
+					}
+
+					if($t.is('path')){
+						//code+='rc.linearPath(['+Arrf(function(t,i){return i%2?'['+t+',':t+'],'}, ps.split(/[, +]/)).join(',')+']${opt})'
+						code+="rc.path('"+SVGPath.toFull(ps,lt,tp)+"')"
+					}
+
+					L.roughCode+=';'+code;
+
+
+					eval(code);
+
+					return true;
+
+				}
 
 
 				if(ps){
@@ -893,7 +929,7 @@ return
 
 
 var SVGPath={
-	toFull:function(x){
+	toFull:function(x, lt, tp){// 可选偏移量 lt, tp，用于计算最终绝对坐标
 		var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
 		/*
 		while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
@@ -925,12 +961,24 @@ var SVGPath={
 		}
 	
 		while(/A *([-\d\.]+ +){8,}/.test(xs)){
-			xs=xs.replace(/C *(([-\d\.]+ +){7})([-\d\.])/g,'C$1 C$3')
+			xs=xs.replace(/A *(([-\d\.]+ +){7})([-\d\.])/g,'A$1 A$3')
 		}
+		if(lt || tp){
+
+			xs=xs.replace(/([LMT]) *([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3')
+			.replace(/C *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'C'+lt+'+$1 '+tp+'$2 '+lt+'+$3 '+tp+'$4 '+lt+'+$5 '+tp+'$6 ')
+			.replace(/([QS]) *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3 '+lt+'+$4 '+tp+'+$5')
+			//贝塞尔函数，控制点平移后，失真，有误
+			.replace(/(A *([-\d\.]+ +){5})([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$3 '+tp+'+$4')
+			.replace(/H *([-\d\.]+)/g,'H'+lt+'+$1')
+			.replace(/V *([-\d\.]+)/g,'V'+tp+'+$1')
+			.replace(/[-\d\.]+\+[-\d\.]+/g, function(xy){var ab=xy.split('+');return +ab[0]+(+ab[1])})
+
+
+		}
+
 		return xs
 	},
-
-
 
 
 	toLego:function(x,lt,tp,WD2,HT2,swd,opt){

@@ -8,6 +8,7 @@ var svgid = '#svgShape svg[id', strk, slid, dsh, shps,
 	cap0='<canvas id=caps hidden></canvas><img id=capsimg /><div hidden id=capsdiv>' + dc, reCanvasCode;
 	L.canvasCode=L.canvasCode||'';
 	L.legoCode=L.legoCode||'';
+	L.roughCode=L.roughCode||'';
 	L.FGC=/#/.test(L.FGC)?L.FGC:'#000000';
 	L.BGC1=/#/.test(L.BGC1)?L.BGC1:'#F5F5F5';
 	L.BGC=/#/.test(L.BGC)?L.BGC:'#ffffff';
@@ -37,15 +38,14 @@ $(function () {
 	caps=new ctt('#caps');
 
 	reCanvasCode=function(){
-		//console.log(L.canvasCode,L.legoCode);
-		if(L.canvasCode){
-			var c=caps.ctx;
-			eval(L.canvasCode);
-		}
-		if(L.legoCode){
-			var c=caps.ctx;
-			eval(L.legoCode);
-		}
+
+		Arrf(function(x){
+			if(L[x+'Code']){
+				var c=caps.ctx;
+				eval(L[x+'Code']);
+			}
+		}, ZLR('canvas lego rough'));
+
 	};
 
 	setTimeout(function () {
@@ -728,11 +728,13 @@ dc+
 
 				svgf.id('D2on" tip="2D Flatten',svgf.text('2D',[22,4,16]))+
 
+				svgf.id('Roughon" tip="Rough',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))+
+
 				svgf.id('Legoon" tip="Lego',svgf.rect(7,7,16,16)+svgf.circle(15,15,4,'','white'))+
 
-				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))+
+				svgf.id('Zdogon" tip="3D (Zdog)',svgf.text('3D',[22,4,16]))
 
-				svgf.id('TextureOn" tip="Texture',svgf.path('M8 22 L22 8 M8 15 L15 8 M15 22 L22 15'))
+
 
 
 			)+
@@ -1180,7 +1182,7 @@ dc+
 
 	//caps=new ctt('#caps');
 
-	$('#svgTog ~ *, .pg1 ~ div, span[for], #Legoon').hide();
+	$('#svgTog ~ *, .pg1 ~ div, span[for], #Legoon, #Roughon').hide();
 
 
 
@@ -1627,6 +1629,7 @@ dc+
 		if($('#allEraser rect').attr('stroke')=='yellow'){
 			L.canvasCode='';
 			L.legoCode='';
+			L.roughCode='';
 			scrn('eraser');
 			caps.repaint(1);
 		}
@@ -1867,10 +1870,10 @@ dc+
 			D2on=$('#D2on text').attr('fill')=='yellow',
 			Legoon=$('#Legoon rect').attr('stroke')=='yellow',
 			D3on=$('#Zdogon text').attr('fill')=='yellow',
-			Textureon=$('#Zdogon text').attr('fill')=='yellow';
+			Roughon=$('#Roughon path').attr('stroke')=='yellow';
 		Scroll('scrollT');
 
-		if(/SVGshift|D2on|Zdogon|TextureOn|LayerToggle|CanvasToggle/.test(id) && isNarrow && !/Pointer|Copy|Eraser/.test(L.drawShape)){
+		if(/SVGshift|D2on|Zdogon|Roughon|LayerToggle|CanvasToggle/.test(id) && isNarrow && !/Pointer|Copy|Eraser/.test(L.drawShape)){
 			var pg=($('#'+L.drawShape).parent().attr('class')||'').replace(/\D/g,'');
 			$('#svgPg'+pg).siblings().hide();
 
@@ -1911,8 +1914,13 @@ dc+
 			
 			return
 		}
-		if(id=='TextureOn'){
-			$(this).children('path').attr('stroke',function(){return $(this).attr('stroke')=='white'?'yellow':'white'});
+		if(id=='Roughon'){
+			$(this).children('path').attr('stroke',function(){var istog=$(this).attr('stroke')=='white';
+				if(istog){
+					$('#Legoon').children('path').attr('stroke','white');
+					$('#Legoon').children('circle').attr('fill','white')
+				}
+				return istog?'yellow':'white'});
 			if(L.drawShapeNow){
 				mUp(e,1,L.drawShapeNow.replace(/\d+$/,''))
 			}
@@ -1933,7 +1941,7 @@ dc+
 		if(id=='D2on'){
 			$(this).children('text').attr('fill',function(){var istog=$(this).attr('fill')=='white';
 				//$('.zdog').children().attr('spinning',istog);
-				$('#Legoon').toggle(istog);
+				$('#Legoon,#Roughon').toggle(istog);
 				return istog?'yellow':'white'
 			});
 
@@ -1948,6 +1956,9 @@ dc+
 			$(this).children().attr('stroke',function(){var istog=$(this).attr('stroke')=='white';
 				if($(this).is('circle')){
 					$(this).attr('fill',istog?'yellow':'white')
+				}
+				if(istog){
+					$('#Roughon').children('path').attr('stroke','white')
 				}
 				return istog?'yellow':'white'
 			});
@@ -2098,6 +2109,7 @@ dc+
 				if(D2on){
 					L.canvasCode='';
 					L.legoCode='';
+					L.roughCode='';
 					caps.repaint(1);
 				}
 
@@ -2105,11 +2117,11 @@ dc+
 					$('#Caps > .zdog').remove()
 				}
 
-				if(Textureon){
-					$('#Caps > .zdog').remove()
+				if(Roughon){
+					$('#Caps > .rough').remove()
 				}	
 
-				if(!D2on && !D3on && !Textureon || shifton){
+				if(!D2on && !D3on && !Roughon || shifton){
 					
 					
 					if(shifton){
@@ -3378,7 +3390,7 @@ function cng_popout(obj) {
 
 
 function errPath(t) {
-	return (t||'').replace(/^.*M *[LZ].+$/i,'').replace(/.+[ML] *z*$/i,'')
+	return (t||'').replace(/NaN/g,0).replace(/^.*M *[LZ].+$/i,'').replace(/.+[ML] *z*$/i,'')
 }
 
 function getcap0(){

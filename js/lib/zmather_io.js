@@ -2310,7 +2310,7 @@ $(function(){
 						gM('Webpage Editor')+
 						'":"Markdown HTML CSS"},{"'+
 						gM('Graphics')+
-						'":"Canvas SVG Echarts Zdog Lego 2D 3D"},{"'+
+						'":"Canvas SVG Echarts Zdog Lego Rough 2D 3D"},{"'+
 						gM('Show')+
 						'":"Slide VR AR"},{"'+
 				
@@ -2527,7 +2527,7 @@ $(function(){
 				gM('Webpage Editor')+
 				'":"Markdown HTML"},{"'+
 				gM('Graphics')+
-				'":"Canvas SVG Echarts Zdog Lego"},{"'+
+				'":"Canvas SVG Echarts Zdog Lego Rough"},{"'+
 				gM('Show')+
 				'":"Slide VR AR"}]'
 				),1

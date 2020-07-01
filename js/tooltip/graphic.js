@@ -1173,7 +1173,94 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 
 
 
+		
+	'Rough':[
 
+		'rough.js '+github('rough-stuff/rough/wiki'),
+		detail(gM('Initialize'),[
+			'rough.canvas(canvas);rough.svg(svg)',
+			scegj(`var rc = rough.canvas(C)`,0)
+		].join(br)),
+
+		detail(gM('Property'),[
+			'generator '+scegj(`var rc2=rc.generator; rc2.rectangle(10, 10, 100, 100);`,10),
+		].join(br)),
+
+		detail(gM('Option'),[
+			sceg2(`,{seed:11}`),
+			sceg2(`,{strokeWidth:2}`),
+			sceg2(`,{curveStepCount:9}`),
+
+
+			'[0,1]',
+			sceg2(`,{roughness:0}`),
+			sceg2(`,{bowing:0}`),
+			sceg2(`,{curveFitting:0.95}`),
+
+			detail('SVG (Only)',[
+				sceg2(`,{simplification:0.5}`),
+
+			].join(br)),
+
+			gM('Boolean'),
+			sceg2(`,{disableMultiStroke:true}`),
+			sceg2(`,{disableMultiStrokeFill:true}`),
+
+			gM('Dash Offset'),
+			sceg2(`,{strokeLineDash:[1,3]}`),
+			sceg2(`,{fillLineDash:[1,3]}`),
+			sceg2(`,{strokeLineDashOffset:3}`),
+			sceg2(`,{fillLineDashOffset:3}`),
+
+
+			detail(gM('Fill Style'),[
+				sceg2(`,{fillStyle:'hachure',fillWeight:3, hachureAngle:60, hachureGap:3}`),
+				sceg2(`,{fillStyle:'solid'}`),
+				sceg2(`,{fillStyle:'zigzag'}`),
+				sceg2(`,{fillStyle:'cross-hatch'}`),
+				sceg2(`,{fillStyle:'dots', fillWeight:3}`),
+				sceg2(`,{fillStyle:'dashed', dashOffset:2, dashGap:3}`),
+				sceg2(`,{fillStyle:'zigzag-line', zigzagOffset:2}`),
+			].join(br),1),
+
+
+
+			gM('Color'),
+			sceg2(`,{stroke: 'blue', fill: 'red'}`)
+
+
+		].join(br)),
+
+		gM('Shape'),
+		'line (x1, y1, x2, y2 [, options])',
+		scegj(`rc.line(60, 60, 190, 60)`),
+
+		'rectangle (x, y, width, height [, options])',
+		scegj(`rc.rectangle(10, 10, 100, 100)`),
+
+		'ellipse (x, y, width, height [, options])',
+		scegj(`rc.ellipse(30, 50, 150, 80)`),
+
+		'circle (x, y, diameter [, options])',
+		scegj(`rc.circle(80, 50, 80)`),
+
+		'linearPath (points [, options])',
+		scegj(`rc.linearPath([[60, 10], [70, 20], [75, 30], [69, 50]])`),
+
+		'polygon (vertices [, options])',
+		scegj(`rc.polygon([[60, 10], [90, 40], [50, 20], [20, 50]])`),
+
+
+		'arc (x, y, width, height, start, stop, closed [, options])',
+		scegj(`rc.arc(50, 30, 200, 180, Math.PI, Math.PI * 1.6, true)`),
+
+		'curve (points [, options])',
+		scegj(`rc.curve([[60, 30], [70, 40], [90, 20]])`),
+
+		'path (d [, options])',
+		scegj(`rc.path('M37,17v15H14V17z M50,0H0v50h50z')`),
+
+	].join(br),
 
 
 		
