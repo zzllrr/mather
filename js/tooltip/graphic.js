@@ -1178,7 +1178,8 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 
 		'rough.js '+github('rough-stuff/rough/wiki'),
 		detail(gM('Initialize'),[
-			'rough.canvas(canvas);rough.svg(svg)',
+			'rough.canvas(canvas);',
+			'svg.appendChild(rough.svg(svg).method);',
 			scegj(`var rc = rough.canvas(C)`,0)
 		].join(br)),
 

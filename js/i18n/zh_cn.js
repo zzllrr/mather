@@ -445,8 +445,12 @@ lang['zh_cn'] = {
 	'Features':'特色',
 
 	'Texture':'纹理',
-
-
+	'Rough':'粗糙',
+	'Roughness':'粗糙度',
+	'Hachure':'蓑状线',
+	'Simplification':'简化',
+	'Disable':'停用',
+	'Enable':'启用',
 
 	//科学
 
@@ -641,6 +645,11 @@ lang['zh_cn'] = {
 	'Box': '盒子',
 	'Node': '节点',
 	'Dash': '虚线',
+	'Dashed': '虚线',
+	'Dots': '点',
+	'Hatch':'孵化',
+	'Zigzag':'Z字形',
+
 	'Arrow': '箭头',
 	'Round Corner': '圆角',
 	'Rounded': '圆角',
@@ -1530,6 +1539,11 @@ lang['zh_cn'] = {
 	'Opposite Mid Point Line': '对边中点连线',
 	'Perpendicular Foot Line': '垂足连线',
 
+	'Bowing':'弯度',
+	'Weight':'重量',
+	'Seed':'种子',
+	'Gap':'空隙',
+	'Fitting':'贴合',
 
 	'Surface': '表面',
 	'Curved Surface': '曲面',

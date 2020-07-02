@@ -506,7 +506,8 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	num = function (x, min, max) { return '<input type=number value="' + (x||0) + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
 	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
 	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
-	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', txtreadonly = function (x) { return '<input type=text readonly value="' + fnq(x) + '" />' },
+	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', 
+	strtxt='<input type=text ', txtreadonly = function (x,id) { return strtxt+'readonly value="' + fnq(x) + '" id="'+id+'" />' },
 	meter = function (i, low, optimum, high) { return '<meter min=0 max=100' + (low || low === 0 ? ' low=' + low : '') + (optimum || optimum === 0 ? ' optimum=' + optimum : '') + (high || high === 0 ? ' high=' + high : '') + ' value=' + i + ' />' },
 	bgfrom = '-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto = '), to(', grad = function (t) {
 		//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
@@ -536,7 +537,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	zdetail = function (s, v, notsk, notvk, notEdit, o) {
 		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
 			detail(gM('Edit') + strbtn + gM('Default') + '" class="katexv0" />',
-				txa(v, 'katexv" data-katex="' + v) + br + '<input type=text class=katexvrule />' + strbtn + gM('Replace') + '" class="katexvreplace" />' + strbtn + 'GO" class="katexvgo" />')), o)
+				txa(v, 'katexv" data-katex="' + v) + br + strtxt+'class=katexvrule />' + strbtn + gM('Replace') + '" class="katexvreplace" />' + strbtn + 'GO" class="katexvgo" />')), o)
 	},
 	kdetail = function (s, v, notsk, notvk) { return zdetail(s, v, notsk, notvk, 1) },
 
@@ -569,7 +570,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 	fdetail = function (f, A) {
 		return DCtv('fdetail', eval('(function' + f + ')("' + ('' + A[0]).replace(/,/g, '","') + '")') +
-			'<input type=text class=katexf data-katexf="' + f + '" placeholder="' + A.join(';') + '" value="' + A[0] + '" />' +
+			strtxt+'class=katexf data-katexf="' + f + '" placeholder="' + A.join(';') + '" value="' + A[0] + '" />' +
 			strbtn + gM('Parameter') + '" class="katexv1" />')
 	},
 	mark = function (v, t) { return '<mark title="' + (t || 'API') + '">' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },

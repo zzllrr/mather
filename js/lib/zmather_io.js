@@ -2372,7 +2372,7 @@ $(function(){
 					DCtv('editTextBox',[
 						gM('By')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' '),
-						'<input type=text id=lineByChar />',
+							strtxt+'id=lineByChar />',
 						strbtn+gM('Merge Line.1')+'" id=lineMerge tip="Line.1 Merge" />'+
 						strbtn+gM('Split Line.1')+'" id=lineSplit tip="Line.1 Split" />'
 						]
@@ -2412,11 +2412,11 @@ $(function(){
 
 						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
-						'<input type=text id=replaceWithChar />',
+							strtxt+'id=replaceWithChar />',
 
 						strbtn+gM('Replace')+'" id=Replace />'+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
-						'<input type=text id=replaceByChar />',
+							strtxt+'id=replaceByChar />',
 
 						
 						XML.wrapE('label',strchkbx0+'id=replaceCaseSensitive />'+gM('Case Sensitive'))+
@@ -2459,7 +2459,7 @@ $(function(){
 						gM('From')+num(5)+gM('Choose')+num(2)+br+
 						strbtn+gM('Random Combination Index')+'" id=randCombinIndex tip="Random Combination Index" />'+gM('Quantity')+': '+num(5),
 
-						gM('From')+'<input type=text value="a,b,c,d,e" />'+br+
+						gM('From')+strtxt+'value="a,b,c,d,e" />'+br+
 						strbtn+gM('Random Choose')+'" id=randCombin tip="Random Combination" />'+num(2)+' '+gM('Quantity')+': '+num(5),
 
 						strbtn+gM('Random Permutation')+'" id=randPermut tip="Random Permutation" />',

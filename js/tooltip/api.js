@@ -118,7 +118,7 @@ tooltip['API']=[
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num i18 I18 colorbx rng txa txtreadonly mark del href hrefA scHotk q_key sceg sceg2 scegc scegj zMath ruby'},
 			]},
-			{'碎片':'strop strradio0 strchkbx0 strbtn btnGo imgSRC SC sC sc DC dC dc'},
+			{'碎片':'strtxt strop strradio0 strchkbx0 strbtn btnGo imgSRC SC sC sc DC dC dc'},
 			{'属性':'chked seled attr2dataset attr2jSon jSon2attr'},
 			{'兼容LaTeX':[
 				{'上下标':'sup sub msup msub msups msubs subsup msubsup Msubsup'},

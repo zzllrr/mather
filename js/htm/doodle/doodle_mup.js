@@ -34,7 +34,21 @@ function mUp(e,Last,drawshape){
 		D2on=$('#D2on text').attr('fill')=='yellow', 
 		Legoon=$('#Legoon rect').attr('stroke')=='yellow', 
 		Roughon=$('#Roughon path').attr('stroke')=='yellow', 
-		D3on=$('#Zdogon text').attr('fill')=='yellow';
+		D3on=$('#Zdogon text').attr('fill')=='yellow',
+		
+		/* for rough */
+		roughS=$('#roughStyle'),roughO=roughS.parent().nextAll(), roughNums=roughO.filter(':number'), 
+		roughStyle=roughS.val(), roughness=roughS.next().val(),
+		bowing=roughNums.eq(0).val(), curfit=roughNums.eq(1).val(),
+		roughSim=roughNums.eq(2).val(), roughSeed=roughNums.eq(3).val(),
+		fillWeight=roughNums.eq(4).val(), fillGap=roughNums.eq(5).val(),
+		roughDash=roughO.filter(':text').val(), roughDashOffset=roughNums.eq(6).val(), 
+		hachureAngle=roughNums.eq(7).val(), curStepCnt=roughNums.eq(8).val(),
+		disMultiFill=roughO.find('.roughMulti').eq(0).prop('checked'), disMultiStrk=roughO.find('.roughMulti').eq(1).prop('checked')
+		
+		;
+
+
 
 		if(D2on){
 			chd.filter(function(){return $(this).css('display')!=='none'}).each(function(){//.filter(':visible') 不起效果
@@ -42,13 +56,13 @@ function mUp(e,Last,drawshape){
 				color2=($t.attr('fill')||'').replace('none',''),
 				fill=$t.attr('fill')!='none',
 				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),// 箭头暂不实现 翻译
-				swd=$t.attr('stroke-width'),
+				swd=$t.attr('stroke-width'), sda=$t.attr('stroke-dasharray')||'', sdo=+($t.attr('stroke-dashoffset')||0),
 				c=caps.ctx, P, ps, code='';
 
 				if($t.attr('d')){
 					ps=$t.attr('d');
 				}else if($t.attr('points')){
-					ps='M'+chdmp.replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
+					ps='M'+$t.attr('points').replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
 				}
 
 
@@ -66,7 +80,7 @@ function mUp(e,Last,drawshape){
 					}
 
 					if($t.attr('points')){
-						code+='lg.polygon(['+Arrf(function(t,i){return i%2?(+t+tp)/swd+']':'['+(+t+lt)/swd}, chdmp.split(/[, +]/)).join(',')+']'+opt+')'
+						code+='lg.polygon(['+Arrf(function(t,i){return i%2?(+t+tp)/swd+']':'['+(+t+lt)/swd}, $t.attr('points').split(/[, +]/)).join(',')+']'+opt+')'
 					}
 
 					if($t.is('path')){
@@ -85,8 +99,29 @@ function mUp(e,Last,drawshape){
 
 
 				if(Roughon){
-					code=`var rc=rough.canvas($('#caps')[0]);`;
-					var opt=",{"+(color2?"fill:'"+color2+"'":"stroke:'"+color+"'")+'}', lt0=lt, tp0=tp;
+					var rS=roughStyle.replace('rough','hachure'), opt=",{stroke:'"+color+"'"+', strokeWidth:'+swd+
+						(color2?",fill:'"+color2+"'":'')+
+						
+						(sda?', strokeLineDash:['+sda+'], strokeLineDashOffset:'+sdo:'')+
+						(roughDash?', fillLineDash:['+roughDash+'], fillLineDashOffset:'+roughDashOffset:'')+
+
+						', fillStyle:\''+rS+'\', fillWeight:'+fillWeight+
+						', bowing:'+bowing+', seed:'+roughSeed+
+						
+						(rS=='hachure'?', hachureAngle:'+hachureAngle+', hachureGap:'+fillGap:'')+
+						(rS=='dashed'?', dashOffset:'+roughDashOffset+', dashGap:'+fillGap:'')+
+						(rS=='zigzag-line'?', zigzagDashOffset:'+roughDashOffset:'')+
+
+						($t.is('ellipse,arc,circle')?', curveFitting:'+curfit+', curveStepCount:'+curStepCnt:'')+
+						
+						(disMultiFill?'disableMultiStrokeFill:true':'')+
+						(disMultiStrk?'disableMultiStroke:true':'')+
+
+						'}',
+						lt0=lt, tp0=tp;
+
+
+
 					if($t.is('rect')){
 					//	if(($t.attr('rx')||'')!='0' || ($t.attr('ry')||'')!='0' ){
 							code+=`rc.curve([[${+$t.attr('x')+lt0},${+$t.attr('y')+tp0}],[${$t.attr('width')},${$t.attr('height')}]]${opt})`
@@ -97,26 +132,34 @@ function mUp(e,Last,drawshape){
 					//	}
 						
 					}
-					if($t.is('ellipse')){	//circle
+					if($t.is('ellipse')){
 						code+=`rc.ellipse(${(+$t.attr('cx')+lt)}, ${(+$t.attr('cy')+tp)}, ${+$t.attr('rx')*2}, ${+$t.attr('ry')*2}${opt})`
 					}
+					if($t.is('circle')){
+						code+=`rc.circle(${(+$t.attr('cx')+lt)}, ${(+$t.attr('cy')+tp)}, ${+$t.attr('r')*2}${opt})`
+					}
+
 					if($t.is('line')){
 						code+=`rc.line(${(+$t.attr('x1')+lt)},${(+$t.attr('y1')+tp)},${(+$t.attr('x2')+lt)},${(+$t.attr('y2')+tp)}${opt})`
 					}
 
 					if($t.attr('points')){
-						code+='rc.polygon(['+Arrf(function(t,i){return i%2?(+t+tp)+']':'['+(+t+lt)}, chdmp.split(/[, +]/)).join(',')+']'+opt+')'
+						code+='rc.'+($t.is('polygon')?'polygon':'linearPath')+'(['+Arrf(function(t,i){return i%2?(+t+tp)+']':'['+(+t+lt)}, $t.attr('points').split(/[, +]/)).join(',')+']'+opt+')'
 					}
 
 					if($t.is('path')){
-						//code+='rc.linearPath(['+Arrf(function(t,i){return i%2?'['+t+',':t+'],'}, ps.split(/[, +]/)).join(',')+']${opt})'
-						code+="rc.path('"+SVGPath.toFull(ps,lt,tp)+"')"
+						code+="rc.path('"+SVGPath.toFull(ps,lt,tp)+"'"+opt+")"
 					}
 
-					L.roughCode+=';'+code;
+					if(code){
+						code="var rc=rough.canvas($('#caps')[0]);"+code;
+						L.roughCode+=';'+code;
 
 
-					eval(code);
+						eval(code);
+
+					}
+
 
 					return true;
 
@@ -124,7 +167,7 @@ function mUp(e,Last,drawshape){
 
 
 				if(ps){
-					P=new Path2D(ps);
+					P=new Path2D(ps);	// Path2D 传递SVG path命令，或者 canvas某个path命令
 					code=`var P=new Path2D('${ps}');`;
 
 				}else{
@@ -717,7 +760,87 @@ return
 		}		
 		
 
+		if(!D2on && !D3on && roughStyle!='rough'){
+			var rc=rough.svg(shpN[0]);
 
+			chd.filter(function(){return $(this).css('display')!=='none'}).each(function(){//.filter(':visible') 不起效果
+				var $t=$(this),color=($t.attr('stroke')||'').replace('none',''),
+				color2=($t.attr('fill')||'').replace('none',''),
+				fill=$t.attr('fill')!='none',
+				markerS=$t.attr('marker-start'),markerE=$t.attr('marker-end'),// 箭头暂不实现 翻译
+				swd=$t.attr('stroke-width'), sda=$t.attr('stroke-dasharray')||'', sdo=+($t.attr('stroke-dashoffset')||0),
+				P, ps, code='';
+
+				if($t.attr('d')){
+					ps=$t.attr('d');
+				}else if($t.attr('points')){
+					ps='M'+$t.attr('points').replace(/[\d\.]+ [\d\.]+/,'$&L')+'Z'
+				}
+
+
+				var rS=roughStyle,opt=",{stroke:'"+color+"'"+', strokeWidth:'+swd+
+					(color2?",fill:'"+color2+"'":'')+
+
+					(sda?', strokeLineDash:['+sda+'], strokeLineDashOffset:'+sdo:'')+
+					(roughDash?', fillLineDash:['+roughDash+'], fillLineDashOffset:'+roughDashOffset:'')+
+
+					", fillStyle:'"+rS+"', fillWeight:"+fillWeight+
+					', bowing:'+bowing+', seed:'+roughSeed+', simplification:'+roughSim+
+					
+					(rS=='hachure'?', hachureAngle:'+hachureAngle+', hachureGap:'+fillGap:'')+
+					(rS=='dashed'?', dashOffset:'+roughDashOffset+', dashGap:'+fillGap:'')+
+					(rS=='zigzag-line'?', zigzagDashOffset:'+roughDashOffset:'')+
+
+					($t.is('ellipse,arc,circle')?', curveFitting:'+curfit+', curveStepCount:'+curStepCnt:'')+
+					
+					(disMultiFill?'disableMultiStrokeFill:true':'')+
+					(disMultiStrk?'disableMultiStroke:true':'')+
+
+					'}';
+
+
+
+				if($t.is('rect')){
+				//	if(($t.attr('rx')||'')!='0' || ($t.attr('ry')||'')!='0' ){
+						//code+=`rc.curve([[${+$t.attr('x')},${+$t.attr('y')}],[${$t.attr('width')},${$t.attr('height')}]]${opt})`
+						//code+="rc.path('"++"')"
+				//	}else{
+
+						code+=`rc.rectangle(${+$t.attr('x')},${+$t.attr('y')},${$t.attr('width')},${$t.attr('height')}${opt})`
+				//	}
+					
+				}
+				if($t.is('ellipse')){
+					code+=`rc.ellipse(${(+$t.attr('cx'))}, ${(+$t.attr('cy'))}, ${+$t.attr('rx')*2}, ${+$t.attr('ry')*2}${opt})`
+				}
+				if($t.is('circle')){
+					code+=`rc.circle(${(+$t.attr('cx'))}, ${(+$t.attr('cy'))}, ${+$t.attr('r')*2}${opt})`
+				}
+
+				if($t.is('line')){
+					code+=`rc.line(${(+$t.attr('x1'))},${(+$t.attr('y1'))},${(+$t.attr('x2'))},${(+$t.attr('y2'))}${opt})`
+				}
+
+				if($t.attr('points')){
+					code+='rc.'+($t.is('polygon')?'polygon':'linearPath')+'(['+Arrf(function(t,i){return i%2?(+t)+']':'['+(+t)}, $t.attr('points').split(/[, +]/)).join(',')+']'+opt+')'
+				}
+
+				if($t.is('path')){
+					code+="rc.path('"+SVGPath.toFull(ps)+"'"+opt+")"
+				}
+
+				if(code){
+
+					var svgChild=eval(code);
+					//console.log(code,svgChild);
+	
+					shpN[0].appendChild(svgChild);
+				}
+			});
+
+			shpN.children('g').eq(0).prevAll().remove();
+			//shpN.remove();
+		}
 		L.cap1=getcap0();
 	};
 	
@@ -966,7 +1089,7 @@ var SVGPath={
 		if(lt || tp){
 
 			xs=xs.replace(/([LMT]) *([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3')
-			.replace(/C *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'C'+lt+'+$1 '+tp+'$2 '+lt+'+$3 '+tp+'$4 '+lt+'+$5 '+tp+'$6 ')
+			.replace(/C *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'C'+lt+'+$1 '+tp+'+$2 '+lt+'+$3 '+tp+'+$4 '+lt+'+$5 '+tp+'+$6 ')
 			.replace(/([QS]) *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3 '+lt+'+$4 '+tp+'+$5')
 			//贝塞尔函数，控制点平移后，失真，有误
 			.replace(/(A *([-\d\.]+ +){5})([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$3 '+tp+'+$4')

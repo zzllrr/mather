@@ -119,8 +119,8 @@ $(function () {
 										'<label hidden>'+gM('Fill')+strchkbx0+'class=fillon'+chked+' /></label>'+
 										'<input type=color value="#eeeeee" class=color />'+
 										'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
-										gM('Gradient Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+br+
-										gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+										gM('Gradient Color')+strtxt+'placeholder="0 color,0.5 color,1 color" class=gradcolor />'+br+
+										gM('Linear / Radial')+strtxt+'placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 									)+
 								sc+
 							sc+dc+
@@ -130,8 +130,8 @@ $(function () {
 									DCtv('multi',
 										'<div>'+gM('Import')+'<input type=file class=imgurlfile placeholder="drop & drag" />'+dc+
 										'<div>'+gM('Image URL')+'<input type=url class=imgurl placeholder="image URL/Clipboard" />'+dc+
-										'<div>'+gM('Cut Position and Size')+'<input type=text class=poswh placeholder="sx,sy,swidth,sheight" />'+dc+
-										'<div>'+gM('Paste Position and Size')+'<input type=text class=poswh placeholder="x,y,width,height" />'+dc+
+										'<div>'+gM('Cut Position and Size')+strtxt+'class=poswh placeholder="sx,sy,swidth,sheight" />'+dc+
+										'<div>'+gM('Paste Position and Size')+strtxt+'class=poswh placeholder="x,y,width,height" />'+dc+
 										'<div>'+itv('Add','add')+itv('Del','clear')+dc
 					
 									)+
@@ -152,7 +152,7 @@ $(function () {
 					
 								'<span for=dotOn>'+
 									DCtv('multi',
-										'<div><span>'+gM('Coordinate')+'<input type=text class=pos placeholder="20 20,30 30" />'+sc+
+										'<div><span>'+gM('Coordinate')+strtxt+'class=pos placeholder="20 20,30 30" />'+sc+
 											'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
 											itv('Add','add')+itv('Del','clear')+
 										dc
@@ -163,9 +163,9 @@ $(function () {
 						'<div>'+spanmi('add_circle_outline',gM('Axis'),'" id="axis')+
 							'<span for=axis><label>'+strchkbx0+'id=axisOn class=on /></label>'+
 								'<span for=axisOn>'+
-									'<span>'+gM('Range')+'<input type=text value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" />'+sc+
-									'<div>'+gM('Arrow')+'分类 (左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】) <input type=text value="0101" id=axisArrowType placeholder="0101" />'+dc+
-									'<div>'+gM('Arrow')+'参数 (侧翼点长,宽;箭尾点偏移) <input type=text value="8,4" id=axisArrowPoints placeholder="8,4;-2" />'+dc+
+									'<span>'+gM('Range')+strtxt+'value="" id=axisRange placeholder="-360,360;-240,240 || 360;240 || 360" />'+sc+
+									'<div>'+gM('Arrow')+'分类 (左右下上，各取1个数字【0:无, 1:个字形, 2:空心闭合, 3:实心闭合】) '+strtxt+'value="0101" id=axisArrowType placeholder="0101" />'+dc+
+									'<div>'+gM('Arrow')+'参数 (侧翼点长,宽;箭尾点偏移) '+strtxt+'value="8,4" id=axisArrowPoints placeholder="8,4;-2" />'+dc+
 									'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
 								sc+
 							sc+dc+
@@ -173,11 +173,11 @@ $(function () {
 							'<span for=tick><label>'+strchkbx0+'id=tickOn class=on /></label>'+
 								'<span for=tickOn>'+
 									'<span>'+
-										gM('Range')+'<input type=text value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" />'+
+										gM('Range')+strtxt+'value="" id=tickRange placeholder="-100,100;-50,50 || 100;50 || 100" />'+
 									sc+
 									DCtv('multi',
-										'<div><span>'+gM('Tick Length')+' (负号表示负轴方向) <input type=text value="-5,-5" class=tickLength placeholder="-5,-5" size=10 />'+sc+
-											'<span>'+gM('Spacing')+'<input type=text value=20 class=tickSpacing placeholder="20,20" size=10 />'+sc+
+										'<div><span>'+gM('Tick Length')+' (负号表示负轴方向) '+strtxt+'value="-5,-5" class=tickLength placeholder="-5,-5" size=10 />'+sc+
+											'<span>'+gM('Spacing')+strtxt+'value=20 class=tickSpacing placeholder="20,20" size=10 />'+sc+
 											'<span>'+gM('Color')+'<input type=color value="#000000" class=color />'+sc+
 											itv('Add','add')+itv('Del','clear')+
 										dc
@@ -189,7 +189,7 @@ $(function () {
 							'<span for=gridCross><label>'+strchkbx0+'id=gridCrossOn class=on /></label>'+
 								'<span for=gridCrossOn>'+
 									SCtv('orig',
-										'<span>'+gM('Range')+'<input type=text value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" />'+sc+
+										'<span>'+gM('Range')+strtxt+'value="" id=gridCrossRange placeholder="-700,700;-500,500 || 700;500 || 700" />'+sc+
 										'<label>'+gM('Origin')+strchkbx0+'id=gridCrossOrigOn class=on />'+'</label>'+
 										'<span for=gridCrossOrigOn>'+
 											'<label>x='+num('600" class="Ox')+'</label>'+
@@ -197,14 +197,14 @@ $(function () {
 					
 									)+
 									DCtv('primary',
-										'<span>'+gM('Primary Grid Spacing')+'<input type=text value=200 id=gridCrossSpacing placeholder="200,200" size=10 />'+sc+
-										'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
+										'<span>'+gM('Primary Grid Spacing')+strtxt+'value=200 id=gridCrossSpacing placeholder="200,200" size=10 />'+sc+
+										'<span>'+gM('Primary Grid Dash')+strtxt+'class=dash placeholder="2,4,2" size=10 />'+sc+
 										br+
 										'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
 									)+
 									DCtv('secondary',
-										'<span>'+gM('Secondary Grid Spacing')+'<input type=text value=40 id=gridCross2Spacing placeholder="40,40" size=10 />'+sc+
-										'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
+										'<span>'+gM('Secondary Grid Spacing')+strtxt+'value=40 id=gridCross2Spacing placeholder="40,40" size=10 />'+sc+
+										'<span>'+gM('Secondary Grid Dash')+strtxt+'class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
 										br+
 										'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
 									)+
@@ -224,7 +224,7 @@ $(function () {
 									DCtv('primary',
 										'<span>'+gM('Primary Grid Spacing')+' r '+num('200" id="gridPolarxSpacing')+sc+
 										'<span>'+gM('Primary Grid')+'角等分线数'+num('1" id="gridPolaryNum')+sc+
-										'<span>'+gM('Primary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" size=10 />'+sc+
+										'<span>'+gM('Primary Grid Dash')+strtxt+'class=dash placeholder="2,4,2" size=10 />'+sc+
 										br+
 										'<span>'+gM('Primary Grid Color')+'<input type=color value="#a0a0a0" class=color />'+sc
 					
@@ -232,7 +232,7 @@ $(function () {
 									DCtv('secondary',
 										'<span>'+gM('Secondary Grid Spacing')+' r '+num('0" id="gridPolar2xSpacing')+sc+
 										'<span>'+gM('Secondary Grid')+'角等分线数'+num('0" id="gridPolar2yNum')+sc+
-										'<span>'+gM('Secondary Grid Dash')+'<input type=text class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
+										'<span>'+gM('Secondary Grid Dash')+strtxt+'class=dash placeholder="2,4,2" value=5 size=10 />'+sc+
 										br+
 										'<span>'+gM('Secondary Grid Color')+'<input type=color value="#cecece" class=color />'+sc
 									)+
@@ -248,8 +248,8 @@ $(function () {
 							'<span for=circle><label>'+strchkbx0+'id=circleOn class=on /></label>'+
 								'<span for=circleOn>'+
 									DCtv('multi',
-										'<div>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 200,300 300" />'+dc+
-										'<div>'+gM('Radii')+'<input type=text class=rad placeholder="15,10" />'+dc
+										'<div>'+gM('Centroid Coordinate')+strtxt+'class=pos placeholder="200 200,300 300" />'+dc+
+										'<div>'+gM('Radii')+strtxt+'class=rad placeholder="15,10" />'+dc
 					
 									)+
 								sc+
@@ -261,32 +261,32 @@ $(function () {
 									DCtv('multi',
 										'<div>'+strchkbx0+'class=multinput'+chked+' />'+
 											'<span>'+
-												gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
+												gM('Centroid Coordinate')+strtxt+'class=pos placeholder="200 400;" />'+
 											sc+
 											'<span>'+
-												gM('Radii')+' (半长轴,半短轴,半焦距 3选2) <input type=text class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" />'+
+												gM('Radii')+' (半长轴,半短轴,半焦距 3选2) '+strtxt+'class=rad placeholder="ra50 rb30;rc40 ra50;rb30 rc40" />'+
 											sc+
 											'<span>'+
-												gM('Rotate')+'°<input type=text class=rot placeholder="45,-30" />'+
-											sc+
-										dc+
-										'<div>'+strchkbx0+'class=multinput />'+
-											'<span>'+
-												gM('Foci Coordinate')+'<input type=text class=pos placeholder="300 400,380 400;" />'+
-											sc+
-											'<span>'+
-												gM('Radii')+' (半长轴,半短轴 2选1) <input type=text class=rad placeholder="ra50;rb30" />'+
+												gM('Rotate')+'°'+strtxt+'class=rot placeholder="45,-30" />'+
 											sc+
 										dc+
 										'<div>'+strchkbx0+'class=multinput />'+
 											'<span>'+
-												gM('Vertex Coordinate')+'<input type=text class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 />'+
+												gM('Foci Coordinate')+strtxt+'class=pos placeholder="300 400,380 400;" />'+
+											sc+
+											'<span>'+
+												gM('Radii')+' (半长轴,半短轴 2选1) '+strtxt+'class=rad placeholder="ra50;rb30" />'+
+											sc+
+										dc+
+										'<div>'+strchkbx0+'class=multinput />'+
+											'<span>'+
+												gM('Vertex Coordinate')+strtxt+'class=pos placeholder="150 400,400 360,650 400,400 440;" size=50 />'+
 											sc+
 										dc+
 										'<div>'+strchkbx0+'class=multinput />'+
 											'<span>'+
 												gM('CircumRectangle')+
-												gM('Vertex Coordinate')+'<input type=text class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 />'+
+												gM('Vertex Coordinate')+strtxt+'class=pos placeholder="box150 360,250 360,250 440,150 440;" size=50 />'+
 											sc+
 										dc
 					
@@ -299,8 +299,8 @@ $(function () {
 							'<span for=rect><label>'+strchkbx0+'id=rectOn class=on /></label>'+
 								'<span for=rectOn>'+
 									DCtv('multi',
-										'<div>'+gM('Vertex Coordinate')+' ('+gM('Left Top')+') <input type=text class=pos placeholder="200 400;" size=50 />'+dc+
-										'<div>'+gM('Length Width')+'<input type=text class=rad placeholder="300 200;" />'+dc
+										'<div>'+gM('Vertex Coordinate')+' ('+gM('Left Top')+') '+strtxt+'class=pos placeholder="200 400;" size=50 />'+dc+
+										'<div>'+gM('Length Width')+strtxt+'class=rad placeholder="300 200;" />'+dc
 									)+
 								sc+
 							sc+dc+
@@ -309,8 +309,8 @@ $(function () {
 							'<span for=line><label>'+strchkbx0+'id=lineOn class=on /></label>'+
 								'<span for=lineOn>'+
 									DCtv('multi',
-										'<div>'+gM('Vertex Coordinate')+' (或斜°长) <input type=text class=pos placeholder="200 200,300 300,d45 l100;" size=60 />'+dc+
-										'<div>'+gM('Round Corner')+ gM('Radii')+'<input type=text class=rad2 placeholder="0,10" />'+dc+
+										'<div>'+gM('Vertex Coordinate')+' (或斜°长) '+strtxt+'class=pos placeholder="200 200,300 300,d45 l100;" size=60 />'+dc+
+										'<div>'+gM('Round Corner')+ gM('Radii')+strtxt+'class=rad2 placeholder="0,10" />'+dc+
 										'<div><label>'+gM('Closed')+' ('+gM('Polygon')+') '+strchkbx0+'class=close /></label>'+dc
 									)+
 					
@@ -323,19 +323,19 @@ $(function () {
 								'<span for=isogonOn>'+
 									DCtv('multi',
 										'<div>'+strchkbx0+'class=multinput'+chked+' />'+
-											'<span>'+gM('Centroid Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
-											'<span>'+gM('Radii')+'<input type=text class=rad placeholder="50;" />'+sc+
-											'<span>'+gM('Rotate')+'° ('+gM('Start Radius offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
+											'<span>'+gM('Centroid Coordinate')+strtxt+'class=pos placeholder="200 400;" />'+sc+
+											'<span>'+gM('Radii')+strtxt+'class=rad placeholder="50;" />'+sc+
+											'<span>'+gM('Rotate')+'° ('+gM('Start Radius offset x-axis')+') '+strtxt+'class=rot placeholder="45,-30" />'+sc+
 										dc+
 										'<div>'+strchkbx0+'class=multinput />'+
-											'<span>'+gM('Start Point')+' '+gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+sc+
-											'<span>'+gM('Side Length')+'<input type=text class=rad placeholder="50;" />'+sc+
-											'<span>'+gM('Rotate')+'° ('+gM('Start side offset x-axis')+') <input type=text class=rot placeholder="45,-30" />'+sc+
+											'<span>'+gM('Start Point')+' '+gM('Coordinate')+strtxt+'class=pos placeholder="200 400;" />'+sc+
+											'<span>'+gM('Side Length')+strtxt+'class=rad placeholder="50;" />'+sc+
+											'<span>'+gM('Rotate')+'° ('+gM('Start side offset x-axis')+') '+strtxt+'class=rot placeholder="45,-30" />'+sc+
 											'<label>'+gM('Counterclockwise')+' ('+gM('Direction')+') '+strchkbx0+'class=dir'+chked+' />'+'</label>'+
 										dc+
 					
-										'<div>'+gM('Round Corner Radii')+'<input type=text class=rad2 placeholder="0,0,5;10;" />'+dc+
-										'<div>'+gM('Sides')+'<input type=text class=line placeholder="3,4,5" value=3 />'+dc
+										'<div>'+gM('Round Corner Radii')+strtxt+'class=rad2 placeholder="0,0,5;10;" />'+dc+
+										'<div>'+gM('Sides')+strtxt+'class=line placeholder="3,4,5" value=3 />'+dc
 					
 									)+
 								sc+
@@ -348,7 +348,7 @@ $(function () {
 									DCtv('multi',
 										'<div>'+
 											gM('Point Coordinate')+' ('+gM('Start Point')+','+gM('Control Point')+'1、2;' +gM('End Point')+ 
-											') <input type=text class=pos placeholder="20 20,30 50;80 60" size=50 />'+
+											') '+strtxt+'class=pos placeholder="20 20,30 50;80 60" size=50 />'+
 										dc+
 										'<div><label>'+gM('Closed')+strchkbx0+'class=close /></label>'+dc
 					
@@ -360,7 +360,7 @@ $(function () {
 							'<span for=path><label>'+strchkbx0+'id=pathOn class=on /></label>'+
 								'<span for=pathOn>'+
 									DCtv('multi',
-										'<div>SVG命令 (MLHVAQC) <input type=text class=svg placeholder="M20 20L30 50" size=50 />'+dc+
+										'<div>SVG命令 (MLHVAQC) '+strtxt+'class=svg placeholder="M20 20L30 50" size=50 />'+dc+
 										'<div><label>'+
 												gM('Closed')+strchkbx0+'class=close />'+
 											'</label>'+dc
@@ -377,11 +377,11 @@ $(function () {
 								'<span for=txtOn>'+
 									DCtv('multi',
 										'<span>'+
-											gM('Coordinate')+'<input type=text class=pos placeholder="200 400;" />'+
+											gM('Coordinate')+strtxt+'class=pos placeholder="200 400;" />'+
 										sc+
-										'<input type=text class=value size=80 />'+
+										strtxt+'class=value size=80 />'+
 										'<div><label>'+
-												gM('Font')+' <input type=text class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" />'+
+												gM('Font')+' '+strtxt+'class=font placeholder="normal italic oblique / small-caps / bold bolder lighter | italic small-caps bold 32px 微软雅黑" />'+
 											'</label>'+
 											'<label>'+gM('Horizontal Align')+' <select class=halign>'+Options(ZLR('center end left right start'),1).join('')+'</select></label>'+
 											'<label>'+gM('Vertical Align')+' <select class=valign>'+Options(ZLR('alphabetic top hanging middle ideographic bottom'),1).join('')+'</select></label>'+
@@ -407,7 +407,7 @@ $(function () {
 					
 								'<span for=sceneOn>'+
 									DCtv('multi',
-										'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1500" />'+sc+
+										'<span>'+gM('Time')+' (ms) '+strtxt+'class=times size=80 placeholder="0 1500" />'+sc+
 										'<div>Frame '+txa('','json" placeholder="每一场初始静态化数据')+dc
 									)+
 								sc+
@@ -418,7 +418,7 @@ $(function () {
 					
 								'<span for=actOn>'+
 									DCtv('multi',
-										'<span>'+gM('Time')+' (ms) <input type=text class=times size=80 placeholder="0 1000" />'+sc+
+										'<span>'+gM('Time')+' (ms) '+strtxt+'class=times size=80 placeholder="0 1000" />'+sc+
 										'<div>JS '+txa('','js" placeholder="动作指令JS代码')+dc
 									)+
 								sc+
@@ -456,7 +456,7 @@ $(function () {
 						detail(gM('Editor')+SCtv('ediHot" for="HTML',Arrf(function(x){return strbtn+gM(x)+'" data-v='+x+' />'},ZLR('widget editor document slide index')).join('')),
 						
 						DCtv('hidden" for="HTML', [].concat(
-							'iframe URL: ','<input type=text class="iframesrc" value="" placeholder="solve.html?" />',
+							'iframe URL: ',strtxt+'class="iframesrc" value="" placeholder="solve.html?" />',
 							Arrf(function(x){return XML.wrapE('label',x)}, zlrA3('<input type=',['radio name=name1','checkbox'],' />')).join('')+meter(50),
 							rng(5,0,10),
 							num(0,0,'9" step="1')+XML.wrapE('select',Options([1,2,3,4]).join(''))+XML.wrapE('select',Options(['A','B','C','D']).join('')),
@@ -499,11 +499,11 @@ $(function () {
 						detail(gM('FontSize')+num('24" id=fontSize title="px',12)+
 							gM('center')+rng('','','2" step=1 tip=center id="tileFontCenter'),
 							'<div id=fontCSS>'+SCtv('bold" title="B')+SCtv('italic" title="I')+SCtv('underline')+SCtv('overline')+SCtv('through')+dc+
-							'<div>'+gM('fonT')+'<input type=text id=font list=CSS_fontfamily />'+dc,
+							'<div>'+gM('fonT')+strtxt+'id=font list=CSS_fontfamily />'+dc,
 							'','id=Font hidden')+
 							
 						'<div id=Dash hidden>'+
-							gM('dash')+'<input type=text id=strkDash />'+
+							gM('dash')+strtxt+'id=strkDash />'+
 							gM('offset')+num('1" id="strkDashOffset')+dc+
 				
 						detail('<label id=SIDES>'+gM('Sides') + '× '+num('5" id="Sides',3)+'</label>'+
@@ -604,10 +604,10 @@ sc,
 DCtv('lightgray" id="CssTransform',
 	DCtv('lightgray" hidden id="CssTransOpt',
 		'<div>'+gM('Perspective')+num('0" title=px id="cssPerspec')+
-			gM('Origin')+'<input type=text id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
+			gM('Origin')+strtxt+'id=cssPerspecOrig value="50% 50%" placeholder="[xy]=left center right length %" title="x y" />'+
 		dc+
 		'<div><label>'+gM('Preserve 3D')+strchkbx0+'id=cssTranStyle /></label>'+
-			gM('Origin')+'<input type=text id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
+			gM('Origin')+strtxt+'id=cssTransOrig value="50% 50% 0" placeholder="[xy]=left center right length %; [z]=length" title="x y z" />'+
 		dc+
 		'<div><label>'+gM('backvisi')+strchkbx0+'id=cssBackVisi'+chked+ ' /></label>'+
 		dc
@@ -618,7 +618,7 @@ DCtv('lightgray" id="CssTransform',
 		'<span id=cssTransOpt>'+gM('Opts')+sc+
 	dc+
 
-	'<div id=cssMatrix3D hidden><input type=text id=cssMatrix3d placeholder="n,n...{6|16}" />'+
+	'<div id=cssMatrix3D hidden>'+strtxt+'id=cssMatrix3d placeholder="n,n...{6|16}" />'+
 	dc+
 
 	'<div id=CssScale><img class=scale>'+gM('Scale')+
@@ -652,7 +652,7 @@ DCtv('lightgray" id="CssTransform',
 		'</label>'+dc+
 		
 		'<div id=CssRotate3d><label><input type=radio value=cssRotate3d />'+
-			'<img class=rotate1>'+gM('Rotate')+' 3D<input type=text id=cssRotate3d placeholder="x,y,z,angle" /></label>'+
+			'<img class=rotate1>'+gM('Rotate')+' 3D'+strtxt+'id=cssRotate3d placeholder="x,y,z,angle" /></label>'+
 		dc+
 
 	dc
@@ -663,13 +663,27 @@ DCtv('lightgray" id="CssTransform',
 '','id=svgCssTransform')+
 
 detail(
-'<input type=text id=color0 title="Snow" readonly />'+
-'<input type=text id=color1 title="Blue Sky" readonly />'+
-'<input type=text id=color2 title="Pink Girl" readonly />'+
-'<input type=text id=color3 title="Black Rhythm" readonly />'+
-'<input type=text id=color4 title="Red Charm" readonly />'+
-'<input type=text id=color5 tip="Random Color" value="?" readonly />'+
-'<input type=text id=RandomColorson tip="Inner-Random Colors" value="#" class="tool seled" readonly />',
+	'<select id=roughStyle>'+Options(['rough','hachure','solid','zigzag','cross-hatch','dots','dashed','zigzag-line'],1).join('')+'</select>'+
+	gM('Roughness')+' '+num(1,0,2),
+	[
+		gM('Bowing')+' '+num(1,0,1)+gM('Curve Fitting')+' '+num(0.95,0,1),
+		gM('Simplification')+' '+num(0.5,0,1)+gM('Seed')+' '+num(0),
+		gM('Fill Weight')+' '+num(1)+gM('Gap')+' '+num(8),
+		gM('Dash Offset')+' '+num()+gM('Hachure Angle')+' '+num(60),
+		gM('Curve Step Count')+' '+num(9),
+		gM('Fill Line Dash')+strtxt+'value="" placeholder="2,5" />',
+		'<label>'+gM('Disable Multi Fill')+strchkbx0+' class=roughMulti /></label><label>'+gM('Disable Multi Stroke')+strchkbx0+' class=roughMulti /></label>'
+	].join(br),
+	'','id=svgRough'
+)+
+detail(
+	txtreadonly('','color0" title="Snow')+
+	txtreadonly('','color1" title="Blue Sky')+
+	txtreadonly('','color2" title="Pink Girl')+
+	txtreadonly('','color3" title="Black Rhythm')+
+	txtreadonly('','color4" title="Red Charm')+
+	txtreadonly('?','color5" title="Random Color')+
+	txtreadonly('#','RandomColorson" tip="Inner-Random Colors" class="tool seled'),
 
 
 '<div id=Color>'+Arrf(function (X) {
@@ -1228,31 +1242,31 @@ dc+
 			'<label>'+gM('Stroke')+strchkbx0+'class=strokeon'+chked+' /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
-			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+			gM('Color')+strtxt+'placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			gM('Linear / Radial')+strtxt+'placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
 		)+DCtv('fill',
 			'<label>'+gM('Fill')+strchkbx0+'class=fillon /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			'<label>'+gM('Gradient')+strchkbx0+'class=gradon /></label>'+br+
-			gM('Color')+'<input type=text placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
-			gM('Linear / Radial')+'<input type=text placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
+			gM('Color')+strtxt+'placeholder="0 color,0.5 color,1 color" class=gradcolor />'+
+			gM('Linear / Radial')+strtxt+'placeholder="x0 y0 (r0) x1 y1 (r1)" class=grad />'
 
 		)+DCtv('shadow',
 			'<label>'+gM('dropShadow')+strchkbx0+'class=shadowon /></label>'+
 			'<input type=color value="#000000" class=color />'+
 			gM('Blur')+num('0" class="blur')+
-			gM('Offset')+'<input type=text placeholder="0 0" class=offset />'
+			gM('Offset')+strtxt+'placeholder="0 0" class=offset />'
 		)+'<div>'+itv('Add','add')+itv('Del','clear')+dc;
 
 	$('div[for=text] .multi').append(colorTmpl);
 	$('div[for=shape] .multi').append(
 		'<div>'+gM('Overlap')+'<select class=comp>'+Options(['source-over','source-atop','source-in','source-out','destination-over','destination-atop','destination-in','destination-out','lighter','copy','xor']).join('')+'</select>'+
-			gM('Dash')+'<input type=text class=dash placeholder="2,4,2" />'+dc+colorTmpl
+			gM('Dash')+strtxt+'class=dash placeholder="2,4,2" />'+dc+colorTmpl
 
 	);
 
-	$('.color').after(function(){return '<input type=text value="'+$(this).val()+'" class=colorhex size=4 />'+gM('opa')+num('1" step=.1 class="opa',0,1)});
+	$('.color').after(function(){return strtxt+'value="'+$(this).val()+'" class=colorhex size=4 />'+gM('opa')+num('1" step=.1 class="opa',0,1)});
 
 	//val
 
@@ -2014,7 +2028,7 @@ dc+
 
 		$('#svgSel').toggle(!pa.is('#svgTool,.svgTool2,#svgTog'));
 
-		$('#svgCssTransform').toggle(!pa.is('#svgTool,.svgTool2,#svgTog') || isCopy);
+		$('#svgCssTransform,#svgRough').toggle(!pa.is('#svgTool,.svgTool2,#svgTog') || isCopy);
 		$('#copyOpt').toggle(isCopy);
 
 
@@ -2121,7 +2135,7 @@ dc+
 					$('#Caps > .rough').remove()
 				}	
 
-				if(!D2on && !D3on && !Roughon || shifton){
+				if(!D2on && !D3on || shifton){
 					
 					
 					if(shifton){
