@@ -6,8 +6,8 @@
 
 var showTool = [
     'IL LaTeX MD HTML',
-    'D2 D3 Canvas SVG',
-    'Echarts Zdog Lego',
+    'D2 D3 Canvas SVG RF',
+    'Echarts Zdog Rough Lego',
     'JS I18 EN YAML'
 ];
 shows = {
@@ -17,7 +17,7 @@ shows = {
         'Slide': ['Slide section'].concat(showTool),
         'Speech': [],
         'Sound': [],
-        '3D': ['D3 D2 Canvas SVG','Echarts Zdog Lego'],
+        '3D': ['D3 D2 Canvas SVG RF','Echarts Zdog Lego Rough'],
         'Image': [],
         'Video': [],
         'VR': ['VR a-scene'],

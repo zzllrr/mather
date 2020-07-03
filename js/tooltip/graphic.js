@@ -1180,7 +1180,7 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 		detail(gM('Initialize'),[
 			'rough.canvas(canvas);',
 			'svg.appendChild(rough.svg(svg).method);',
-			scegj(`var rc = rough.canvas(C)`,0)
+			scegj(`var rc=rough.canvas(C)`,0)+scegj(`var rc=rough.svg(C)`,0)+scegj(`C.appendChild(rc.line)`,0)
 		].join(br)),
 
 		detail(gM('Property'),[

@@ -2000,6 +2000,13 @@ var svgf = {
 				return `svgf.id('${id+(wd||ht?'" width="'+wd+'" height="'+ht+'"':'')}',${v},'${vBox||1}','${w}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`.replace(/,'','',''\)$/,')')
 
 			},
+			g: function () {
+				/*
+				var A=[];o.children().each(function(){A.push(os[this.tagName.toLowerCase()]())});
+				return A.join('+')
+				*/
+				return "'"+o.html()+"'"
+			}
 		};
 		
 		//console.log(o[0].tagName.toLowerCase(), os[o[0].tagName.toLowerCase()]);
