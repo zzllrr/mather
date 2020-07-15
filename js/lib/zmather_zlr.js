@@ -317,7 +317,7 @@ function gM(mesg, str, o) {
 		x = Arrf(function (t) { return gM(t, str, o) }, msg.split('-')).join('-');
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
-			x = x.replace(/-/g, '')
+			x = x.replace(/-(\D)/g, '$1')
 		}
 	}
 
@@ -2420,7 +2420,7 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 
 }, Admin = {
 	testAjax: function (t) { $.ajax({ type: 'get', url: t, success: function (d) { saveText(d, '123.txt') } }) },
-	testAjax2: function (t,e) { $.ajax({ type: 'get', url: t, success: function (d) { console.log($(d).find(e).text()) } }) }
+	testAjax2: function (t,e,f) { $.ajax({ type: 'get', url: t, success: function (d) { var x=$(d).find(e).text();console.log(f?f(x):x) } }) }
 }, fCC = function (A) {
 	return String.fromCharCode.apply(null, A)
 }, sizeKB = function (sz) {
@@ -2764,11 +2764,10 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 		return a - b
 	},
-	chr: function (x, y) {//按字母排序	也就是默认的Array.sort()
+	chr: function (x, y) {//按字母排序	也就是默认的Array.sort()	此处有误，字符相减得到NaN
 		var a = '' + x, b = '' + y;
 		return a - b
 	},
-
 	chrlen: function (x, y) {//按字母及长度排序	
 		var a = '' + x, b = '' + y;
 
@@ -2777,6 +2776,20 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 		for (var i = 0; i < m; i++) {
 			var t = a[i].charCodeAt(0) - b[i].charCodeAt(0);
+			if (t) {
+				return Math.sign(t)
+			}
+		}
+		return la - lb
+	},
+	chrlen2: function (x, y) {//按字母及长度排序	大小写不敏感
+		var a = '' + x, b = '' + y;
+
+		if (a == b) { return 0 }
+		var la = a.length, lb = b.length, m = Math.min(la, lb);
+
+		for (var i = 0; i < m; i++) {
+			var t = a[i].toLowerCase().charCodeAt(0) - b[i].toLowerCase().charCodeAt(0);
 			if (t) {
 				return Math.sign(t)
 			}
@@ -2850,7 +2863,61 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	});
 
 
+}, compressBy={
+	prefix:function(v, decompress){
+		var vA=v.split(brn);
+		if(decompress){
+			for(var i=0;i<vA.length-1;i++){
+				var vi=vA[i], vit=vi.trim(),
+					vj=vA[i+1], v0=vj.length-vj.replace(/^ +/,'').length;
+				if(!/^ /.test(vi) && v0){
+					if(vi==vit){
 
+					}else{
+						vA.splice(i,1);
+						vA[i]=vA[i].replace(/^ +/,vi)
+					}
+					
+					for(var j=i+1;j<vA.length;j++){
+						var vj=vA[j], vj0=vj.length-vj.replace(/^ +/,'').length;
+						if(vj0==v0){
+							vA[j]=vj.replace(/^ +/,vi+(vi==vit?' ':''))
+	
+						}else if(!vj0){
+							break
+						}
+					}
+					if(vi!=vit){
+						i--;
+					}
+				}
+			}
+
+			return vA
+		}
+		for(var i=0;i<vA.length-1;i++){
+			var vi=vA[i], viA=vi.trim().split(' '), v0=viA[0], v0indx=vi.indexOf(v0),
+				vj=vA[i+1], vjA=vj.trim().split(' ');
+			if(/[A-Z]/i.test(v0) && vj.indexOf(v0)==v0indx && vjA.indexOf(v0)==0){
+				if(viA.length>1){
+					vA.splice(i,0,vi.substr(0,v0indx+v0.length+1))
+				}else{
+					//vA[i]=vi.substr(0,v0indx+v0.length+1);
+				}
+				
+				for(var j=i+1;j<vA.length;j++){
+					var vj=vA[j], vjA=vj.trim().split(' ');
+					if(vj.indexOf(v0)==v0indx && vjA.indexOf(v0)==0){
+						vA[j]=vj.replace(v0,'')
+
+					}else{
+						break
+					}
+				}
+			}
+		}
+		return vA
+	}
 
 }, Latin = function (t, caps) {
 	var f = function (i) { var s = html2txt('&' + String.fromCharCode(i) + t + ';'); if (/;/.test(s)) { s = '' } return s };
@@ -3266,7 +3333,11 @@ function md2html(str, sep) {
 
 	}
 
-
+	while(/<math .+alttext=".+">[\s\S]+<\/math>/.test(s)){// 替换mathml 为 katex
+		var t=s.split('</math>'), t0=t[0].split('<math ');
+		console.log(s.substr(t0[0].length,t[0].length-t0[0].length+7), '\n\n',t0[1].replace(/.+alttext="([^"]+)".+/,'$1'));
+		s=s.replace(s.substr(t0[0].length,t[0].length-t0[0].length+7), '$'+t0[1].replace(/.+alttext="([^"]+)".+/,'$1')+'$')
+	}
 
 	while (/\$[^\$]+\$#.+#/.test(s)) {
 		s = s.replace(/\$[^\$]+\$#.+#/, function (x) {

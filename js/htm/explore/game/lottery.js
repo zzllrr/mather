@@ -36,7 +36,7 @@ explore['Game/Lottery']=XML.wrapE('style',
 		'</textarea>'+strbtn+'←'+gM('AppendTo')+'" id=ltr_add2my /> <textarea id=ltr_result class=ltr_txta />'+dc+
 		'<p><label hidden>期号<input type=number id=ltr_vol value='+
 		T[3]+('00'+(T[1]*3+(T[2]<3||T[2]==3 && T[0]==0?0:(T[2]>5||T[2]==5 && T[0]==4?2:1 )))).substr(-3)+
-		'/></label><label>'+href(H+'www.jslottery.com/Lottery?PlayType=1','开奖号码')+
+		'/></label><label>'+href(H+'www.jslottery.com/trend?locale=zh-CN','开奖号码')+
 		' <input type=text id=ltr_last_result value="9 13 14 19 22 25 2" /><label hidden>联网'+
 		strchkbx0+'id=ltr_lastOnline'+chked+' /></label>'+
 		strbtn+gM('Check')+'" id=ltr_chk /></label></p><p><label>胆 '+
@@ -330,8 +330,9 @@ s=A.join(brn);
 		
 		};
 		if(0 && isonline){
+			/*
 			$.ajax({
-				url:H+'jslottery.com/Lottery?PlayType=1',
+				url:H+'www.jslottery.com/trend?locale=zh-CN',
 				success: function(d){
 				    var nums=[[]];
 				    $(d).find('#lotteryNumberList a:contains('+$('#ltr_vol').val()+')').parent().nextAll().each(function(i){
@@ -347,7 +348,60 @@ s=A.join(brn);
 				    $('#ltr_result').val(Arrf(chkprize,txt.split('\n')).join('\n'));
 				}
 			});
+			*/
+
+			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.unshift(m.BasicNumber.sort())}); return A})
+			/* Echarts 极坐标 
+
+			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){Arrf(function(z){if(i%5==0){A.push([100-i,z])}},m.BasicNumber.sort())}); return jSoff(A)})
 			
+
+			获取近100期
+			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.push(m.BasicNumber.sort())}); return jSoff(A)})
+			
+
+
+			var AA=[];
+			var prec=1;
+			var Goal=AA[0], sameNums=function(x,weak){var n=0;for(var i=0;i<6;i++){if(Goal.indexOf(('0'+x[i]).substr(-2))>-1 || weak && (Goal.indexOf(('0'+((x[i]-1)%33 || 33)).substr(-2))>-1 || Goal.indexOf(('0'+((x[i]+1)%33 || 33)).substr(-2))>-1)){n++}} return n};
+			var A=prec?AA:AA.slice(1), n=A.length, a=Arrf(Number,A[0]), B=[a], c=[].concat(a);
+			for(var i=1-prec;i<n;i++){
+				var Ai=Arrf(Number,A[i]),r=0, Bi;
+				for(var j=0;j<5;j++){
+					var d=a[0]-Ai[j], b=Arrf(function(x){return (33+x+d)%33 || 33},Ai);
+					var rj=eval(Arrf(function(x,i){return (x-a[i])**2},b).join('+'));
+					if(!r || rj<r){
+						r=rj;Bi=[].concat(b);
+					}
+				}
+				B.push(Bi)
+			}
+			for(var i=1-prec;i<n;i++){
+				for(var j=0;j<5;j++){
+					c[j]+=B[i][j]
+				}
+			}
+			var D=Arrf(function(x){return Math.round(x/n) || 33},c), X=[];
+			for(var j=1;j<=33;j++){
+				if(prec || ((D[0]+j)%33 || 33)==+Goal[0]){
+                    var t=Arrf(function(x){return (x+j)%33 || 33}, D)
+					if(!prec){
+						X.push(t.concat(sameNums(t),sameNums(t,1)));
+					}else{
+						X.push(t.sort(sortBy.numInt));
+					}
+				}
+
+			}
+			if(!prec){
+				re=X[0].concat(sameNums(X[0]),sameNums(X[0],1));
+			}else{
+				re=X
+            }
+            re
+
+
+			*/
 		}else{
 
 			$('#ltr_result').val(Arrf(chkprize,txt.split('\n')).join('\n'));

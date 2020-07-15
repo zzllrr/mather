@@ -13,6 +13,8 @@ Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'mathvault.ca','Math Vault'),'','Learn Higher Mathematics The Online Way. '+hrefA('mathvault.ca/math-test/','Math Test')],
 
+	[href(Hs+'www.aurelienalvarez.org','维度影片数学教授网站'),'','作者Aurélien Alvarez 是2010年达朗贝尔奖获奖影片《维度：数学漫步》的主要作者之一，目前担任里昂高师数学教授'],
+
 	[href(Hs+'brilliant.org','brilliant'),'','以数学，物理为主，含有大量wiki与测试题，适合自学 A social learning platform dedicated to gifted students in math and science, where users learn by solving interesting problems of increasing difficulties.'],
 
 	[href(H+'tutorial.math.lamar.edu',"Paul's Online Math Notes"),'',"by a math professor of Lamar University, provides a complete set of free math notes and tutorials on specific math topics, with review questions and solutions integrated in between and other handy features such as cheat sheets and tables."],

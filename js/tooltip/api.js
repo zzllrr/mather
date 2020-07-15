@@ -192,7 +192,7 @@ tooltip['API']=[
 		
 		{'字符':[
 			{'识别':'isStr isObj isVar hasVar'},
-			{'编码':'Base64 UTF8 XML ZML'},
+			{'编码':'Base64 UTF8 XML ZML compressBy'},
 			{'特殊字符':'fCC Latin entity'},
 			{'翻译':'gM GM sbc2dbc dbc2sbc zh2big'},
 			{'数字转换':'n2Zh Zh2n nTrim wrapTrim subwd'},

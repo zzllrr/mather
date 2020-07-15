@@ -103,6 +103,15 @@ oHTML=function(x,notMD,elem,cb){
         }
     },100);
 
+    o.find('math[alttext]').each(function(){// 替换mathml 为 katex
+        //$(this).replaceWith()
+        //console.log($(this).attr('alttext'));
+        katex.render($(this).attr('alttext'), this, {
+            throwOnError: false,
+            displayMode: false,
+            trust:true
+        });
+    });
 },
 loadHTML=function (x) {
    var o=H_o(),tp=(o['type']||'HTML').toUpperCase(), s=o['src'], u=o['qa']||o['q'],refreshheads=function(){
@@ -452,7 +461,7 @@ var rng2=function(t,neg){
 
 function all2html(type,V,dom){
     var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||'').toUpperCase(),ivl=iv.toUpperCase();
-   // console.log(V,type);
+    //console.log(V,type);
     if(/UNICODE_MATH|UM/.test(iv)){
         var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
         if(l){
@@ -660,6 +669,17 @@ function all2html(type,V,dom){
     }else{// if(iv=='HTML')
         w.html(v);
     }
+//console.log(w.html());
+    w.find('math[alttext]').each(function(){// 替换mathml 为 katex
+        //$(this).replaceWith()
+        //console.log($(this).attr('alttext'));
+        katex.render($(this).attr('alttext'), this, {
+            throwOnError: false,
+            displayMode: false,
+            trust:true
+        });
+    });
+
 }
 
 function toolTip(s){
