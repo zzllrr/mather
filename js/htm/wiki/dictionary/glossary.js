@@ -19,17 +19,20 @@ Table([i18(ZLR('Name Type Features'))],[
 
 $(function(){
 	$('table').last().before(Arrf(function(x){return detail(x,
-		DCtv('GlossaryIndexes'),0,'class=Glossary')}, seqsA('0,A~Z')).join(''));
+		DCtv('GlossaryIndexes'),0,'class="Glossary floatl"')}, seqsA('0,A~Z')).join(''));
 
 
 	$(document).on('click','.Glossary summary',function(){
-		var me=$(this), c=me.next(), ii=me.text();
+		var me=$(this), c=me.next(), ii=me.text(),iit=ii.toLowerCase();
 		if(!me.is('.ready')){
 			me.addClass('ready');
-			var GI=wiki['GlossaryIndex'],
-				i0=ii=='0'?'0':GI.indexOf('\n'+ii), i1=ii=='Z'?GI.length:GI.indexOf('\n'+(ii=='0'?'A':String.fromCharCode(ii.charCodeAt(0)+1)));
-
-			var vA=compressBy.prefix(GI.substr(i0,i1).trim(),1), A=[];
+			var GI=compressBy.prefix(wiki['GlossaryIndex'],1).join(brn), ii2=brn+(ii=='0'?'A':String.fromCharCode(ii.charCodeAt(0)+1)), ii2t=ii2.toLowerCase();
+        i0=ii=='0'?0:GI.indexOf(brn+ii), i1=ii=='Z'?GI.length:GI.indexOf(ii2), i00=GI.indexOf(brn+iit), i10=GI.indexOf(ii2t);
+      if(i0<0 || i00>0 && i00 < i0){i0=i00}
+      if(i1<0 || i10>0 && i10 < i1){i1=i10}
+//console.log(ii,iit,i0,i1,ii2,i00, i10);
+//Arrf(function(x){console.log(x,GI.indexOf(brn+x), x.toLowerCase(), GI.indexOf(brn+x.toLowerCase()));}, seqsA('A~Z'));
+			var vA=GI.substring(i0,i1).trim().split(brn), A=[];
 
 			
 			for(var i=0, l=vA.length;i<l;i++){
@@ -64,7 +67,7 @@ ZIG JS
 https://mathworld.wolfram.com/letters/[*A-Z].html
 */
 
-// var A=[[],[],[]];$('#directory tr').each(function(){$(this).children().filter(':has(a)').each(function(i){var a=$(this).find('a'),t=a.attr('href').replace(/^.*\/|.html$/g,''),tx=a.text(),txA=tx.split('...');A[i].push(txA.length>1?(txA[0]+t.replace(txA[0].replace(/OverscriptBox\[([A-Z]), _\]/g,'Q-Bar').replace(/(\d)\//g,'$1Over').replace(/[ '_,\(\.\/\)]/g,'').replace(/--/g,'').replace(/\^\*/g,'-Star').replace(/\*/g,'Star').replace(/=/g,'Equals').replace(/\+/g,'Plus').replace(/[áãăâà]/g,'a').replace(/ä/g,'ae').replace(/[ćç]/g,'c').replace(/[Č]/g,'C').replace(/[éêè]/g,'e').replace(/[Ł]/g,'L').replace(/[ń]/g,'n').replace(/[óôőø]/g,'o').replace(/ö/g,'oe').replace(/śš/g,'s').replace(/ß/g,'ss').replace(/[ű]/g,'u').replace(/ü/g,'ue'),'').replace(/[A-Z]/g,' $&')).replace(/- ([A-Z])/g,'-$1'):tx)})});return A[0].concat(A[1],A[2]).join('\n')
+// var A=[[],[],[]];$('#directory tr').each(function(){$(this).children().filter(':has(a)').each(function(i){var a=$(this).find('a'),t=a.attr('href').replace(/^.*\/|.html$/g,''),tx=a.text(),txA=tx.split('...');A[i].push(txA.length>1?(txA[0]+t.replace(txA[0].replace(/OverscriptBox\[([A-Z]), _\]/g,'Q-Bar').replace(/(\d)\//g,'$1Over').replace(/[ '_,\(\.\/\)]/g,'').replace(/--/g,'').replace(/\^\*/g,'-Star').replace(/\*/g,'Star').replace(/=/g,'Equals').replace(/\+/g,'Plus').replace(/[áãăâà]/g,'a').replace(/ä/g,'ae').replace(/[ćç]/g,'c').replace(/[Č]/g,'C').replace(/[éêè]/g,'e').replace(/[Ł]/g,'L').replace(/[ń]/g,'n').replace(/[óôőø]/g,'o').replace(/ö/g,'oe').replace(/śš/g,'s').replace(/ß/g,'ss').replace(/[ű]/g,'u').replace(/ü/g,'ue'),'').replace(/[A-Z]/g,' $&').replace('ofthe',' of the')).replace(/- ([A-Z])/g,'-$1'):tx)})});return A[0].concat(A[1],A[2]).join('\n')
 
 wiki['GlossaryIndex']=`(-1,0,1)-Matrix
 (-1,1)-Matrix
@@ -19369,7 +19372,7 @@ Vojta's Conjecture
 Volterra 
  Algebra
  Integral 
-  Equationofthe 
+  Equation of the 
    First Kind
    Second Kind
 Volume

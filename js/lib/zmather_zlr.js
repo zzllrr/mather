@@ -269,6 +269,7 @@ function GM(txt,fromLang,toLang) {
 }
 function gM(mesg, str, o) {
 	if (isArr(mesg)) { return Arrf(function (i) { return gM(i, str, o) }, mesg) }
+	
 	var msg = '' + mesg, m0=msg[0] || '', m1=(msg || '').substr(1),
 		M = m0 + m1, M_=m0.toUpperCase()+m1, O = o || i18n, x = O ? O[msg] || O[M] || O[M_] || '' : '';
 	try {
@@ -280,6 +281,18 @@ function gM(mesg, str, o) {
 
 
 	}
+	var iscn=O['Anti']=='反', front=msg.replace(/ [^ ]+$/,''), fronted=front+'ed', fronting=front+'ing';
+
+	if(!x && msg.split(' ').length==3 && (O[front] || O[fronted] || O[fronting])){
+		return (O[front] || O[fronted] || O[fronting])+(iscn?'':' ')+gM(msg.replace(/.+ /,''))
+	}
+
+
+	
+	if(iscn && !x && / of /.test(msg)){
+		return msg.replace(/(.+) of (.+)/, function(t){var A=t.split(' of '); return gM(A[1]) + gM(A[0])})
+	}
+
 	if (!x && /[a-z]+2[a-z]/i.test(msg)) {
 		x = gM(msg.replace(/2/g, ' to '), str, o)
 	}
@@ -326,20 +339,32 @@ function gM(mesg, str, o) {
 		return msg.split('.')[0]
 	}
 
-	if (!x && /e?s$/.test(msg)) {// s结尾
-		var t=msg.replace(/s$/,'');
-
-		if(O[t]){
-			
-		}else{
-			t=msg.replace(/es$/,'')
-		}
+	if (!x && /[e']?s$/.test(msg)) {// s结尾
+		var t=msg.replace(/'?s$/,'');
 
 		if(O[t]){
 			return gM(t, str, o)
 		}
+			
 		
+		t=msg.replace(/es$/,'')
+		if(O[t]){
+			return gM(t, str, o)
+		}
+
+		
+		t=msg.replace(/ies$/,'y');
+		if(O[t]){
+			return gM(t, str, o)
+		}
+
+
+		if(iscn && /'s$/.test(msg)){
+			return msg.replace(/'?s$/,'')
+		}
 	}
+
+	
 
 	return x || M
 }

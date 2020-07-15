@@ -183,6 +183,8 @@ lang['zh_cn'] = {
 	'Lemma': '引理',
 	'Principle':'原理',
 	'Law.Math':'定律',
+	'Criteria':'准则',
+	'Criterion':'准则',
 
 	'Conjecture':'猜想',
 	'Hypothesis': '假设',
@@ -598,6 +600,9 @@ lang['zh_cn'] = {
 	'by-product': '副产品',
 	'Goal': '目标',
 
+	'Virtual':'虚拟',
+	'Virtual Machine':'虚拟机',
+	'Machine':'机器',
 	'Web': '网络',
 	'Webpage': '网页',
 	'Home': '首页',
@@ -625,10 +630,14 @@ lang['zh_cn'] = {
 	'Statistics': '统计',
 	'Population':'总体',//统计学中
 	'Sample':'样本',
+	'Mean':'平均',
+	'Intermediate':'中',
 	'Correlation':'相关系数',
 	'Covariance':'协方差',
+	'Coefficient':'系数',
 	'Variance':'方差',
-	'variation':'变分',
+	'Variation':'变分',
+	'Variational Calculus':'变分法',
 	'Convolution':'卷积',
 
 	'Lottery': '彩票',
@@ -773,6 +782,9 @@ lang['zh_cn'] = {
 	'Ordered': '有序',
 	'Unordered': '无序',
 
+	'Well Order':'良序',
+	'Well-Defined':'良定',
+
 	'Superscript': '上标',
 	'Subscript': '下标',
 	'Prefix': '前缀',
@@ -837,6 +849,7 @@ lang['zh_cn'] = {
 	'Sepia': '色偏',
 	'Invert': '反相',
 	'DropShadow':'投影',
+	'Projection':'投影',
 
 	// 时间		
 	'Time': '时间',
@@ -852,6 +865,8 @@ lang['zh_cn'] = {
 	'Type': '类型',
 	'Classification': '分类',
 	'Parameter': '参数',
+	'Argument':'参数',
+
 	'Structure': '结构',
 	'Hotkey': '快捷键',
 
@@ -1293,6 +1308,7 @@ lang['zh_cn'] = {
 
 	// structure entity
 
+	'Zero':'零',
 	'One':'一',
 	'Two':'二',
 	'Three':'三',
@@ -1336,6 +1352,10 @@ lang['zh_cn'] = {
 	'Nineteenth':'第十九',
 	'Twentyth':'第二十',
 
+	'One-Third':'三分之一',
+	'Two-Thirds':'三分之二',
+
+
 	'Sort':'排序',
 	'Ascending':'升序',
 	'Descending':'降序',
@@ -1368,6 +1388,10 @@ lang['zh_cn'] = {
 	'Digits':'位数',
 	'Quantity':'数量',
 	'Constant':'常数',
+	'Variable':'变量',
+	'Variant':'变量',
+	'Invariant':'不变量',
+
 	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
@@ -1395,14 +1419,21 @@ lang['zh_cn'] = {
 	'Identity Matrix': '单位矩阵',
 	'Square Matrix': '方阵',
 
+	'Potential':'势',
+	'Vector Field':'向量场',
+	'Vector Space':'向量空间',
+
 	'Space': '空格',
 	'Space.1': '空间',
 	'Linear Space': '线性空间',
+	'Subspace':'子空间',
 	'Kernel': '核',
 
 	'Spectral':'',
 
 	'Permutation': '置换',
+	'Substitution':'替换',
+	'Substitute':'替换',
 	'Relation': '关系',
 	'Function': '函数',
 	'Proposition': '命题',
@@ -1413,12 +1444,13 @@ lang['zh_cn'] = {
 	'Straight-edge':'直尺',
 	'Compass':'圆规',
 	'Graph': '图',
+	'Diagram':'图',
 	'Graphing': '作图',
 
 	'Set': '集合',
 	'Subset':'子集',
 	'Group.Math': '群',
-	'Group': '群组',
+	'Group': '群',
 
 	'Ring': '环',
 	'Field': '域',
@@ -1426,6 +1458,7 @@ lang['zh_cn'] = {
 
 	'Equality': '等式',
 	'Non-equality': '不等式',
+	'Inequality':'不等式',
 
 	'Equivalence': '等价关系',
 	'Partial Order': '偏序',
@@ -1442,6 +1475,10 @@ lang['zh_cn'] = {
 
 	'Sine':'正弦',
 	'Cosine':'余弦',
+	'Tangent':'正切',
+	'Cotangent':'余切',
+	'Secant':'正割',
+	'Cosecant':'余割',
 
 	// 几何
 
@@ -1535,6 +1572,7 @@ lang['zh_cn'] = {
 	'Median': '中位数',
 	'Median Line': '中线',
 	'Altitude': '高',
+	'Magnitude':'大小',
 	'MidPoint Line': '中点连线',
 	'Opposite Mid Point Line': '对边中点连线',
 	'Perpendicular Foot Line': '垂足连线',
@@ -1601,6 +1639,8 @@ lang['zh_cn'] = {
 	'Cuboid':'长方体',
 
 
+	'Manifold':'流形',
+
 	// measure
 	//代数
 	'Domain': '定义域',
@@ -1611,7 +1651,15 @@ lang['zh_cn'] = {
 	'Expansion': '展开',
 	'Sum': '求和',
 	'Prod': '求积',
+	'Direct Sum':'直和',
+	'Direct Product':'直积',
+
+
+	'Addition':'加法',
+	'Subtraction':'减法',
+	'Multiplication':'乘法',
 	'Harmonic': '调和',
+	'Law':'法则',
 
 	'Combination': '组合',
 	'Combination Number':'组合数',
@@ -1624,8 +1672,10 @@ lang['zh_cn'] = {
 	'Least Common Multiple': '最小公倍数',
 	'Division': '除法',
 
-
+	'Bundle':'丛',
 	'Base': '基',
+	'Basis':'基',
+
 	'Product': '积',
 	'Cross Product': '叉积',
 	'Digit': '数位',
@@ -1678,6 +1728,7 @@ lang['zh_cn'] = {
 
 	'Transpose': '转置',
 	'Normalize': '单位化',
+	'Orthogonal':'正交',
 	'Orthogonalize': '正交化',
 	'Gram-Schmidt': '正交单位化',
 	'Enumerate': '枚举',
@@ -1685,16 +1736,20 @@ lang['zh_cn'] = {
 
 	// 几何
 
-	'Transform': '变形',
+	'Transform': '变换',
 	'Transformation': '变换',
 
 	'Map': '地图',
 	'Bridge':'桥',
 	'Mapping': '映射',
 
-
+	'Wavelet':'小波',
 
 	// adj
+	'Strong':'强',
+	'Weak':'弱',
+	'Weakly':'弱',
+	'Perfect':'完全',
 
 	//代数
 	'Absolute': '绝对',
@@ -1819,6 +1874,10 @@ lang['zh_cn'] = {
 	'Theory':'理论',
 	// 人名
 
+'von':'冯·',//⋅
+'van':'范·',
+'der':'德',
+
 
 	'Diophantine':'丢番图',
 	'Platonic':'柏拉图',
@@ -1873,6 +1932,7 @@ lang['zh_cn'] = {
 'Gauss':'高斯',
 'Germain':'热尔曼',
 'Godel':'哥德尔',
+'Gödel':'哥德尔',
 'Goldbach':'哥德巴赫',
 
 'Grothendieck':'格罗滕迪克',
@@ -1916,6 +1976,7 @@ lang['zh_cn'] = {
 'Pingala':'平格拉',
 'Plato':'柏拉图',
 'Poincare':'庞加莱',
+'Poisson':'泊松',
 'Ptolemy':'托勒密',
 'Pythagoras':'毕达哥拉斯',
 'Ramanujan':'拉马努金',
@@ -1928,7 +1989,11 @@ lang['zh_cn'] = {
 'Tartaglia':'塔尔塔利亚',
 'Thales':'泰勒斯',
 'Turing':'图灵',
+
+'Vandermonde':'范德蒙',
+'Vieta':'韦达',
 'Viete':'韦达',
+
 'Wallis':'瓦利斯',
 'Wiles':'怀尔斯',
 	
