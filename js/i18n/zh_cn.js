@@ -54,7 +54,9 @@ lang['zh_cn'] = {
 	'Lang': '语言',
 	'English':'英语',
 	'Chinese':'中文',
-
+	'Egyptian':'埃及',
+	'Arabic':'阿拉伯',
+	'Babylonian':'巴比伦',
 
 	'The':' ',
 	'the First Kind':'第一类',
@@ -91,7 +93,7 @@ lang['zh_cn'] = {
 	'resetAlert': '确定重置吗？',
 
 
-	'Five-year research plan': '未来五年主要工作计划',
+
 	'International Standard Open-Sourced Math Tool Program by Experts': '国际通用标准的专家级开源数学工具项目',
 	'Customized Math Tool Program based on Mather by zzllrr': '小乐基于Mather个性化开发的数学工具项目',
 	'Customized Math Tool Program based on Mather by someone': '某人基于Mather个性化开发的数学工具项目',
@@ -159,7 +161,6 @@ lang['zh_cn'] = {
 
 	'Other':'其他',
 	'Tip':'提示',
-	'Tips':'提示',
 	'Syntax':'句法',
 
 
@@ -201,12 +202,16 @@ lang['zh_cn'] = {
 	'Conjecture':'猜想',
 	'Hypothesis': '假设',
 	'Suppose': '假设',
+	'Postulate': '假设',
 
 	'Antinomy':'悖论',
 	'Paradox':'矛盾',
-	'Error':'错误',
+	'Error':'误差',
+	'Error.1':'错误',
 	'Deviation':'偏差',
 	'Possibility':'可能性',
+	'Posteriori':'后验',
+	'Priori':'先验',
 
 	'Denial':'否定',
 	'Deny':'否定',
@@ -223,7 +228,7 @@ lang['zh_cn'] = {
 	'Calculate': '计算',
 	'Computation': '计算',
 	'Calculation': '计算',
-	'Estimate':'估算',
+	'Estimate':'估计',
 
 	'Extension':'扩张',
 	'Extension.1':'扩展',
@@ -234,7 +239,9 @@ lang['zh_cn'] = {
 	'Method': '方法',
 	'Methodology': '方法论',
 
-	
+	'Revenge':'复仇',
+	'Recurrence':'复现',
+
 	'Formula': '公式',
 	'Formulae': '公式',
 	'Formulas': '公式',
@@ -261,6 +268,7 @@ lang['zh_cn'] = {
 	'Period':'周期',
 	'Periodic':'周期',
 	'Periodicity':'周期',
+	'Aperiodic':'反周期',
 
 	'Comprehensive':'综合',
 	'Holistic':'整体性',
@@ -388,6 +396,13 @@ lang['zh_cn'] = {
 	'Triennial':'三年一次',
 	'Quadrennial':'四年一次',
 	'Annals':'年鉴',
+	'Year':'年',
+	'Month':'月',
+	'Date':'日',
+	'Minute':'分',
+	'Second.1':'秒',
+	'Arc Second':'弧秒',
+
 
 	'Reference': '引用',
 	'Newsletter':'新闻通讯',
@@ -486,6 +501,7 @@ lang['zh_cn'] = {
 	'Simplification':'简化',
 	'Disable':'停用',
 	'Enable':'启用',
+	'Plan':'计划',
 
 	//科学
 
@@ -558,6 +574,7 @@ lang['zh_cn'] = {
 	'Sudoku':'数独',
 	'Tangram':'七巧板',
 	'Tessellation':'镶嵌',
+	'Tiling':'镶嵌',
 	'Knot':'纽结',
 
 	'Unknot':'解纽',
@@ -1039,6 +1056,7 @@ lang['zh_cn'] = {
 	'Discrete':'离散',
 	'Continuous':'连续',
 	'Continuation':'延拓',
+	'Continued':'连',
 
 	'Big': '大',
 	'Small': '小',
@@ -1309,8 +1327,10 @@ lang['zh_cn'] = {
 	'Offset': '偏移',
 	'Scale': '缩放',
 	'Skew': '扭曲',
-	'Translate': '翻译',
-	'Translate.Math': '平移',
+	'Translate': '平移',
+	'Translate.1': '翻译',
+	'Transitive':'传递',
+
 	'Rotate': '旋转',
 	'Display': '显示',
 	'Toggle': '切换',
@@ -1400,6 +1420,7 @@ lang['zh_cn'] = {
 	'Ansatz':'拟设',
 
 	'Communicate':'交流',
+	'Tortoise':'乌龟',
 	//Math concept
 
 	// noun
@@ -1497,6 +1518,9 @@ lang['zh_cn'] = {
 	'Variant':'变量',
 	'Invariant':'不变量',
 
+	'Spline':'样条',
+	'Monster':'魔',
+
 	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
@@ -1526,8 +1550,8 @@ lang['zh_cn'] = {
 	'Equations': '方程组',
 	'Equation Array': '方程组',
 	'Inequation': '不等式',
-	'Analytic': '分析',
-	'Analytical': '解析',
+	'Analysis': '分析',
+	'Analytic': '解析',
 	'Limit': '极限',
 
 	'Encompass':'包含',
@@ -1565,7 +1589,7 @@ lang['zh_cn'] = {
 
 	'Kernel': '核',
 	'Pair':'对',
-	'Egyptian':'埃及',
+
 
 	'Spectral':'谱',
 	'Actuarial':'精算',
@@ -1589,10 +1613,12 @@ lang['zh_cn'] = {
 	'Graphing': '作图',
 	'Digraph':'有向图',
 
-	'Set': '集合',
+	'Set': '集',
+	'Set.1': '集合',
 	'Subset':'子集',
+
 	'Empty':'空',
-	'Empty Set':'空集',
+
 
 	'Group.1': '群组',
 	'Group': '群',
@@ -1607,6 +1633,8 @@ lang['zh_cn'] = {
 	'Arbitrary':'任意',
 	'Approximate':'近似',
 	'Approximately':'约',
+	'Approximation':'逼近',
+
 	'Equal':'等',
 	'Equals':'等于',
 	'Equal To':'等于',
@@ -1625,8 +1653,8 @@ lang['zh_cn'] = {
 
 	'Dot': '点',
 
-	'System.Math': '系',
-	'System': '系统',
+	'System': '系',
+	'System.1': '系统',
 
 
 
@@ -1683,9 +1711,10 @@ lang['zh_cn'] = {
 	'Velocity':'速度',
 
 	'gon': '边形',
+	'Polygon':'多边形',
 	'Regular Polygon': '正多边形',
 	'Triangle': '三角形',
-	'Triangular':'三角',
+	'Angular':'角',
 	'Right Triangle': '直角三角形',
 	'Outer Napoleon Triangle':'第一拿破仑三角形',
 	'Inner Napoleon Triangle':'第二拿破仑三角形',
@@ -1735,6 +1764,7 @@ lang['zh_cn'] = {
 	'Section':'等分',
 	'Conic Section': '圆锥曲线',
 	'Arc': '弧',
+	'Arc.1': '反',
 	'Polyline': '折线',
 	'lineHV': '横竖线',
 	'Vertex Line': '顶点连线',
@@ -1790,8 +1820,12 @@ lang['zh_cn'] = {
 	'Rhombohedron.1':'斜方六面体',
 
 	'Stellating':'星形',
+	'Stellation':'星形',
+	'Astroid':'星状',
 	'Prismatoid':'拟柱体',
+	'Diamond':'钻石',
 
+	'Broken':'坏',
 	'Prism':'棱柱',
 	'Pyramid':'棱锥',
 
@@ -1844,6 +1878,7 @@ lang['zh_cn'] = {
 	'Additive':'加性',
 	'Addend':'加数',
 	'Adjunct':'附加',
+	'Ambient':'连带',
 	'Admittance':'导纳',
 
 	'Subtraction':'减法',
@@ -1874,6 +1909,7 @@ lang['zh_cn'] = {
 	'Division': '除法',
 	'Aliquant':'除不尽',
 
+	'Fiber':'纤维',
 	'Bundle':'丛',
 	'Base': '基',
 	'Basis':'基',
@@ -1997,6 +2033,7 @@ lang['zh_cn'] = {
 	'Solution':'解',
 
 	'Ratio':'比例',
+	'Rate':'比',
 	//'Ratio':'比率',
 	'Account for':'占',
 
@@ -2076,11 +2113,14 @@ lang['zh_cn'] = {
 	'Quadric': '二次',
 	'Cubic': '三次',
 
+	'Quadruple':'四元',
 
 
 	'Regress':'回归',
 	'Regressive':'回归',
 	'Regression':'回归',
+
+
 
 	//几何
 
@@ -2102,6 +2142,7 @@ lang['zh_cn'] = {
 	'Polar': '极坐标',
 	'Cartesian':'笛卡尔',
 	'Affine':'仿射',
+	'Affine Hull':'仿射包',
 
 	'Agonic':'无偏',
 
@@ -2114,6 +2155,10 @@ lang['zh_cn'] = {
 	'Sphenocorona':'球形屋根',
 
 	'Curvature':'曲率',
+	'Torsion':'挠率',
+
+
+
 
 	//of Math subject
 	'Arithmetic': '算术',
@@ -2129,6 +2174,11 @@ lang['zh_cn'] = {
 	'Probability':'概率',
 
 	'Topology': '拓扑',
+	'Anchor Ring':'环面',
+	'Torus':'环面',
+
+
+
 	'Spreadsheet':'表格',
 
 	'Operator':'算子',
@@ -2140,6 +2190,7 @@ lang['zh_cn'] = {
 	'Schema':'模式',
 
 	'Formal': '形式',
+	'Conformal':'共形',
 	'Differential': '微分',
 	'Differentiable':'可微',
 
@@ -2157,7 +2208,8 @@ lang['zh_cn'] = {
 	'Convergence':'收敛',
 	'Uniform Convergence':'一致收敛',
 
-
+	'Ant':'蚂蚁',
+	'Ant Colony':'蚁群',
 	'Percolation':'渗流',
 
 	'Abacus':'算盘',
@@ -2168,6 +2220,8 @@ lang['zh_cn'] = {
 	
 	'Braid':'辫',
 	'Spiral':'螺旋',
+	'Helix':'螺旋线',
+
 	'Accelerate':'加速',
 	'Accuracy':'精度',
 	'Precision':'精度',
@@ -2210,6 +2264,8 @@ lang['zh_cn'] = {
 'Achilles.1':'阿喀琉斯',
 'Ackermann':'阿克曼',
 
+'Adams':'亚当斯',
+'Adelard':'阿德拉德',
 'Adèle':'阿黛尔',
 'Ado':'阿朵',
 'Adomian':'阿朵米安',
@@ -2217,20 +2273,42 @@ lang['zh_cn'] = {
 'Agnesi':'阿涅西',
 "Agnesi's Witch":'箕舌线',	//意大利语versoria 与女巫versiera 类似
 'Agnésienne':'箕舌线',
+
+'Ahlfors':'阿尔福斯',
 'Ahmed':'阿麦德',
 
+'Aida Yasuaki':'会田安明',
+'Airy':'艾里',
+'Aitken':'艾特肯',
 'Aiyar':'艾亚尔',
+'Ajima Naonobu':'安岛直圆',
 
+'Albanese':'阿尔巴内塞',
 'Albers':'阿尔伯斯',
+'Albert':'阿尔伯特',
+'Alberti':'阿尔贝蒂',
+
 'Alcuin':'阿尔昆',
 
-'Al-haytham':'海什木',
-'Alhazen':'阿尔哈曾',
-'Al-karaji':'卡拉吉',
-'Al-khwarizmi':'花拉子米',
-'Alexander':'亚历山大',
 
+'Alhazen':'阿尔哈曾',
+'Al-haytham':'海什木',
+'Al-karaji':'卡拉吉',
+'Al-kashi':'卡西',
+'Al-khwarizmi':'花拉子米',
+
+'Allendoerfer':'艾伦多弗',
+
+'Alexander':'亚历山大',
 'Alexandrov':'亚历山德罗夫',
+'Aleksandrov':'亚历山德罗夫',
+
+'Anderson':'安德森',
+'Andrew':'安德鲁',
+'Andrews':'安德鲁斯',
+'Anosov':'阿诺索夫',
+
+'Appell':'阿佩尔',
 'Apollonius':'阿波罗尼奥斯',
 'Archimedes':'阿基米德',
 'Aristotle':'亚里士多德',
@@ -2239,11 +2317,13 @@ lang['zh_cn'] = {
 'Artin':'阿廷',
 'Aryabhata':'阿耶波多',
 
-'Aitken':'艾特肯',
+
 
 
 
 'Babbage':'巴贝奇',
+'Banach':'巴拿赫',
+
 'Bernoulli':'伯努利',
 'Bhaskara':'婆什伽罗',
 'Blackwell':'布莱克威尔',
@@ -2256,6 +2336,9 @@ lang['zh_cn'] = {
 'Cauchy':'柯西',
 'Cavalieri':'卡瓦列里',
 'Cayley':'凯莱',
+
+'Čech':'切赫',
+
 'Conway':'康威',
 'Copernicus':'哥白尼',
 'De-moivre':'棣莫弗',
@@ -2280,6 +2363,8 @@ lang['zh_cn'] = {
 'Godel':'哥德尔',
 'Gödel':'哥德尔',
 'Goldbach':'哥德巴赫',
+'Gordan':'戈丹',
+'Gorden':'戈登',
 
 'Grothendieck':'格罗滕迪克',
 'Hamilton':'哈密尔顿',
@@ -2333,11 +2418,15 @@ lang['zh_cn'] = {
 
 'Ruffini':'鲁菲尼',
 'Russell':'罗素',
+
+'Schur':'舒尔',
 'Shannon':'香农',
 'Shijie':'朱世杰',
 
 'Spanier':'斯帕尼尔',
 'Stevin':'斯蒂文',
+'Stirling':'斯特林',
+
 'Tartaglia':'塔尔塔利亚',
 'Thales':'泰勒斯',
 'Turing':'图灵',
@@ -2347,6 +2436,8 @@ lang['zh_cn'] = {
 'Viete':'韦达',
 
 'Wallis':'瓦利斯',
+
+'Wiener':'维纳',
 'Wiles':'怀尔斯',
 	
 	//Math subject

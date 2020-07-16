@@ -528,11 +528,11 @@ function gM(mesg, str, o) {
 		}
 
 		
-		if (/^(Quasi|Multi|Hyper|Super)/i.test(msg)) {// 5字开头
-			var t=msg.substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+		if (/^(Quasi|Multi|Hyper|Super|Arc)/i.test(msg)) {// 5字开头
+			var t=msg.replace(/Arc/i,'$&.1').substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
 	
 			if(ot){
-				return gM(msg.substr(0,5), str, o) + ot
+				return gM(msg.replace(/Arc/i,'$&.1').substr(0,5), str, o) + ot
 			}
 		}
 
