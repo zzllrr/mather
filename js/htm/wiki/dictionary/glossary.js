@@ -197,7 +197,6 @@ Abhyankar's Conjecture
 Abi-Khuzam Inequality
 Ablowitz-Ramani-Segur Conjecture
 Abnormal Number
-Abs
 Abscissa
 Absolute 
  Convergence
@@ -259,7 +258,6 @@ Ackermann
  Number
 Acnode
 Acoptic Polyhedron
-Acos
 Action
 Actual Trilinear Coordinates
 Actuarial 
@@ -962,7 +960,7 @@ Associated
  Polynomial
  Principal Bundle
  Sequence
- Stirling Numberofthe First Kind
+ Stirling Number of the First Kind
  Triangles
  Vector Bundle
 Associative
@@ -995,7 +993,6 @@ Asymptotic
  Notation
  Series
 At Least One
-Atan
 Atiyah-Singer Index Theorem
 Atkin-Goldwasser-Kilian-Morain Certificate
 Atlas
@@ -1389,7 +1386,7 @@ Bernoulli
   of the Second Kind
  Percolation Model
  Polynomial
-  ofthe Second Kind
+  of the Second Kind
  Scheme
  Site 
   Model
@@ -2600,7 +2597,7 @@ Chebyshev
  Deviation
  Differential Equation
  Function 
-  ofthe 
+  of the 
    First Kind
    Second Kind
  Functions
@@ -2610,7 +2607,7 @@ Chebyshev
  Iteration
  Phenomenon
  Polynomial 
-  ofthe 
+  of the 
    First Kind
    Second Kind
  Quadrature
@@ -2697,7 +2694,7 @@ Christoffel
  Formula
  Number
  Symbol
-  ofthe 
+  of the 
    First Kind
    Second Kind
 Christoffel-Darboux 
@@ -3158,10 +3155,10 @@ Complete
  Direct Sum
  Elliptic 
   Integral
-  Integralofthe 
-   First Kind
-   Second Kind
-   Third Kind
+   of the 
+    First Kind
+    Second Kind
+    Third Kind
  Functions
  Gamma Function
  Graph
@@ -3352,7 +3349,7 @@ Confluent
  Hypergeometric 
   Differential Equation
   Function
-  Functionofthe 
+  Function
    First Kind
    Second Kind
   Limit Function
@@ -5209,7 +5206,7 @@ Ellipsoidal
  Calculus
  Coordinates
  Harmonic
-  ofthe 
+  of the 
    First Kind
    Second Kind
  Section
@@ -6541,7 +6538,7 @@ Frattini
 Fredholm 
  Alternative
  Integral 
-  Equationofthe 
+  Equation
    First Kind
    Second Kind
  Operator
@@ -7201,7 +7198,7 @@ Gordon
  Function
  Matrix
 Gordon's 
- Combinatorial Generalizationofthe Rogers-Ramanujan Identities
+ Combinatorial GeneralizationRogers-Ramanujan Identities
  Partition Theorem
 Gordon-Luecke Theorem
 Gorenstein Ring
@@ -8751,10 +8748,10 @@ Incomplete
  Beta Function
  Elliptic 
   Integral
-  Integralofthe 
-   First Kind
-   Second Kind
-   Third Kind
+   of the 
+    First Kind
+    Second Kind
+    Third Kind
  Gamma Function
 Incompleteness
 Inconic
@@ -10240,7 +10237,7 @@ Legendre
  Identity
  Normal Form
  Polynomial
-  ofthe Second Kind
+  of the Second Kind
  Quadrature
  Relation
  Series
@@ -11317,7 +11314,7 @@ Meissner
  Tetrahedron
 Meixner 
  Polynomial 
-  ofthe 
+  of the 
    First Kind
    Second Kind
 Meixner-Pollaczek Polynomial
@@ -11594,7 +11591,7 @@ Modified
  Bernoulli Number
  Bessel 
   Differential Equation
-  Functionofthe 
+  Function of the 
    First Kind
    Second Kind
    Third Kind
@@ -11604,10 +11601,10 @@ Modified
   Bessel 
    Differential Equation
    Function
-   Functionofthe 
-    First Kind
-    Second Kind
-    Third Kind
+    of the 
+     First Kind
+     Second Kind
+     Third Kind
  Struve Function
 Modul
 Modular 
@@ -16959,10 +16956,10 @@ Spherical
  Bessel 
   Differential Equation
   Function
-  Functionofthe 
-   First Kind
-   Second Kind
-   Third Kind
+   of the 
+    First Kind
+    Second Kind
+    Third Kind
  Cap
  Code
  Cone
@@ -16978,7 +16975,7 @@ Spherical
  Geometry
  Group
  Hankel 
-  Functionofthe 
+  Function of the 
    First Kind
    Second Kind
  Harmonic
@@ -16991,7 +16988,7 @@ Spherical
  Mirror
  Modified 
   Bessel 
-   Functionofthe 
+   Function of the 
     First Kind
     Second Kind
  Packing

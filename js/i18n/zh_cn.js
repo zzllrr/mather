@@ -56,6 +56,10 @@ lang['zh_cn'] = {
 	'Chinese':'中文',
 
 
+	'The':' ',
+	'the First Kind':'第一类',
+	'the Second Kind':'第二类',
+	'the Third Kind':'第三类',
 
 	'Del': '删除',
 
@@ -93,6 +97,7 @@ lang['zh_cn'] = {
 	'Customized Math Tool Program based on Mather by someone': '某人基于Mather个性化开发的数学工具项目',
 	'Unless Otherwise Stated': '如无特殊说明',
 	'Standing on the shoulders of giants!':'站在巨人的肩膀上！',
+
 	// standard 
 
 
@@ -102,10 +107,12 @@ lang['zh_cn'] = {
 	'Person': '人物',
 	'User': '用户',
 
-
+	'Officer':'军官',
 	'Student': '学生',
 	'Parent': '父母',
 	'Teacher': '老师',
+	'Schoolgirl':'女生',
+	'Schoolboy':'男生',
 	'Enthusiast': '爱好者',
 	'Geek': '极客',
 	'Author':'作者',
@@ -179,9 +186,14 @@ lang['zh_cn'] = {
 	'Monograph':'专著',
 	
 	'Theorem': '定理',
+	'Aureum Theorema':'黄金定理',
 	'Axiom': '公理',
+	'Axiomatic':'公理',
 	'Lemma': '引理',
 	'Principle':'原理',
+	'Principal':'主',
+	'Auxiliary':'辅助',
+
 	'Law.Math':'定律',
 	'Criteria':'准则',
 	'Criterion':'准则',
@@ -193,19 +205,31 @@ lang['zh_cn'] = {
 	'Antinomy':'悖论',
 	'Paradox':'矛盾',
 	'Error':'错误',
-	'Impossibility':'不可能性',
+	'Deviation':'偏差',
+	'Possibility':'可能性',
 
+	'Denial':'否定',
+	'Deny':'否定',
+	
 	'Proof': '证明',
 	'Prove': '证明',
+	'Prover':'证明机',
+
 	'Inference': '推断',
 	'Corollary':'推论',
 
+	'Admissible':'可接受',
 
 	'Calculate': '计算',
 	'Computation': '计算',
 	'Calculation': '计算',
 	'Estimate':'估算',
 
+	'Extension':'扩张',
+	'Extension.1':'扩展',
+	'Extensionality':'外延',
+
+	'Category':'范畴',
 
 	'Method': '方法',
 	'Methodology': '方法论',
@@ -233,8 +257,11 @@ lang['zh_cn'] = {
 	
 	'Holographic':'全息',
 	'Conservation':'守恒',
-	'Periodicity':'周期',
+
 	'Period':'周期',
+	'Periodic':'周期',
+	'Periodicity':'周期',
+
 	'Comprehensive':'综合',
 	'Holistic':'整体性',
 
@@ -288,6 +315,8 @@ lang['zh_cn'] = {
 	'Folding':'折叠',
 
 
+
+
 	//教学
 
 	'MOOC':'慕课',
@@ -297,6 +326,9 @@ lang['zh_cn'] = {
 	'Curricula':'全部课程',
 	'Pedagogy':'教学法',
 	'Test Question Library':'试题库',
+
+	'Test':'检验',
+	'Test.1':'测验',
 	'Drill': '练习',
 	'Assign':'布置',
 	'Assignment':'作业',
@@ -435,6 +467,7 @@ lang['zh_cn'] = {
 	'Programming': '编程',
 	'Programmatic': '程序化',
 	'Algorithm':'算法',
+	'Algorithmic':'算法',
 
 	'Standard':'标准',
 	'Software': '软件',
@@ -460,7 +493,7 @@ lang['zh_cn'] = {
 	'Scientific':'科学',
 	'Fiction':'幻想',
 	'Science Fiction':'科幻',
-	'Pseudoscience':'伪科学',
+
 	'Potential Science':'潜科学',
 	'Religion':'宗教',
 	'Superstition':'迷信',
@@ -493,7 +526,7 @@ lang['zh_cn'] = {
 	//文化
 
 	'Culture':'文化',
-	'Subculture':'亚文化',
+
 	'Humanism':'人文主义',
 	'Humanity':'人性',
 	'Innumeracy':'数盲',
@@ -514,7 +547,7 @@ lang['zh_cn'] = {
 	'Video Game':'电玩',
 	'Simulation':'模拟',
 
-
+	'Billiard':'台球',
 	'Recreational':'消遣',
 	'Maze':'迷宫',
 	'Paper Cutting':'剪纸',
@@ -525,7 +558,10 @@ lang['zh_cn'] = {
 	'Sudoku':'数独',
 	'Tangram':'七巧板',
 	'Tessellation':'镶嵌',
-	'Knot':'绳结',
+	'Knot':'纽结',
+
+	'Unknot':'解纽',
+
 	'Plasticine':'橡皮泥',
 	'Tetris':'俄罗斯方块',
 	'Puzzle':'解谜',
@@ -582,6 +618,8 @@ lang['zh_cn'] = {
 	'Museum':'博物馆',
 	'Camp':'营',
 
+	'Fair':'公平',
+
 	// 工程	
 
 	'Making':'制作',
@@ -595,7 +633,7 @@ lang['zh_cn'] = {
 	'Toolset':'工具箱',
 	'File': '文件',
 	'Engine': '引擎',
-	'Subproject': '子项目',
+
 	'Application': '应用',
 	'by-product': '副产品',
 	'Goal': '目标',
@@ -604,6 +642,10 @@ lang['zh_cn'] = {
 	'Virtual Machine':'虚拟机',
 	'Machine':'机器',
 	'Web': '网络',
+	'Network': '网络',
+
+	'Pursuit':'追及',
+
 	'Webpage': '网页',
 	'Home': '首页',
 	'Homepage': '主页',
@@ -623,14 +665,17 @@ lang['zh_cn'] = {
 	'Textarea': '文本框',
 	'Computer': '计算机',
 
-
+	'Stack':'栈',
 	'Pitfall': '陷阱',
 	'Todo': '待办',
 
-	'Statistics': '统计',
+	'Statistic': '统计',
 	'Population':'总体',//统计学中
 	'Sample':'样本',
 	'Mean':'平均',
+	'Average':'平均',
+	'Seek':'寻找',
+
 	'Intermediate':'中',
 	'Correlation':'相关系数',
 	'Covariance':'协方差',
@@ -638,7 +683,17 @@ lang['zh_cn'] = {
 	'Variance':'方差',
 	'Variation':'变分',
 	'Variational Calculus':'变分法',
+	'Surely':'肯定',
+
+	'Prune':'剪枝',
+	'Amalgamate':'合并',
+
+	'Alphabet':'字母表',
+	'Variety':'簇',
+
 	'Convolution':'卷积',
+	'Distribution':'分布',
+
 
 	'Lottery': '彩票',
 	'Sudoku': '数独',
@@ -653,6 +708,8 @@ lang['zh_cn'] = {
 	'Container': '容器',
 	'Box': '盒子',
 	'Node': '节点',
+	'Acnode':'孤立点',
+
 	'Dash': '虚线',
 	'Dashed': '虚线',
 	'Dots': '点',
@@ -667,6 +724,7 @@ lang['zh_cn'] = {
 	'Black':'黑',
 	'Gray':'灰',
 	'Gold':'金',
+	'Golden':'黄金',
 	'Silver':'银',
 	'Bronze':'铜',
 	'Iron':'铁',
@@ -730,6 +788,7 @@ lang['zh_cn'] = {
 	'Speech': '语音',
 	'Voice': '嗓音',
 	'Music': '音乐',
+	'Chord':'和弦',
 	'Noise': '噪音',
 	'Usage': '使用量',
 	'Cache': '缓存',
@@ -790,14 +849,21 @@ lang['zh_cn'] = {
 	'Prefix': '前缀',
 	'Suffix': '后缀',
 	'Infix': '中缀',
+	'Affix':'缀',
+
+	'Gate':'门',
+	'Aggregate':'总数',
 
 	// 助词	或 词根
 	'if':'如果',
 	'iif':'当且仅当',
 	'when':'当',
-
+	'And': '与',
 	'and': '和',
 	'or': '或',
+	
+
+
 	'About': '关于',
 	'Anti': '反',
 	'Non':'非',
@@ -812,12 +878,22 @@ lang['zh_cn'] = {
 	'Hemi': '半',
 	'Per': '每',
 
+	'Super':'超',
+	'Hyper':'超',
+
 	'Sub': '子',
 	'Quasi': '准',
+	'Pseudo':'伪',
+	'Pseudoprime':'伪素数',
 	'Multi': '多',
 	'Except': '除了',
 
 	'With': '以',
+
+	'Alternant':'交错',
+	'Alternate':'交错',
+	'Alternate.1':'交替',
+
 	// measure
 
 	// 空间
@@ -956,9 +1032,14 @@ lang['zh_cn'] = {
 	'Cooperation': '合作',
 	'Condition': '条件',
 
+	'Absorb':'吸收',
+
 	// adj.	prep.
 
 	'Discrete':'离散',
+	'Continuous':'连续',
+	'Continuation':'延拓',
+
 	'Big': '大',
 	'Small': '小',
 	'Double': '双',
@@ -1031,7 +1112,10 @@ lang['zh_cn'] = {
 
 	'Checkbox': '勾选框',
 
+	'Almost':'几乎',
 	'All': '全部',
+	'Everywhere':'处处',
+
 	'Summarize': '概括',
 
 	'Systematized': '系统化',
@@ -1039,7 +1123,7 @@ lang['zh_cn'] = {
 	'Structural': '结构化',
 	'Organized': '组织化',
 
-	'Organic': '有机的',
+	'Organic': '有机',
 	'Self-improvement': '自我完善的',
 	'Self-consistent': '自洽的',
 
@@ -1049,8 +1133,9 @@ lang['zh_cn'] = {
 	'Portable': '便携的',
 
 	'Efficient': '高效的',
-
-	'Automatic': '自动化',
+	
+	'Auto':'自',
+	'Automate': '自动',
 	'Flexible': '灵活的',
 	'Agile': '敏捷的',
 	'Compact': '紧凑的',
@@ -1061,7 +1146,9 @@ lang['zh_cn'] = {
 	'Convenient': '方便的',
 	'Handy': '便利的',
 	'Easy': '容易的',
-	'Free': '免费的',
+	'Free': '自由的',
+	'Free.1':'免费',
+
 	'Layered': '分层的',
 	'Hierarchical': '等级的',
 	'Practical': '实用的',
@@ -1072,7 +1159,7 @@ lang['zh_cn'] = {
 	'Detailed': '详细的',
 	'Stepwise': '提供步骤的',
 	'Interpretable': '可解释的',
-	'Multipath': '多途径的',
+
 	'Timely': '及时',
 	'Non-discriminatory': '无歧视',
 	'Kind': '友善的',
@@ -1091,7 +1178,7 @@ lang['zh_cn'] = {
 	'Open Access': '开放获取',
 
 	'Symbol': '符号',
-	'Symbolic': '符号',
+
 	'Numeral': '数值',
 	'Numerical': '数值',
 	'String': '字符串',
@@ -1112,6 +1199,7 @@ lang['zh_cn'] = {
 	'Basic':'基本',
 	'Option': '选项',
 
+	'Branch':'分支',
 	'Attribute': '属性',
 	// action
 	'Append': '添加',
@@ -1152,6 +1240,15 @@ lang['zh_cn'] = {
 
 	'More':'更多',
 	'Less':'更少',
+
+	'More than':'多于',
+	'Less than.1':'少于',
+
+	'Greater than':'大于',
+	'Less than':'小于',
+
+	'At Least':'至少',
+	'At Most':'至多',
 
 	'Solve': '解题',
 	'Question Type': '题型',
@@ -1244,6 +1341,7 @@ lang['zh_cn'] = {
 	'Replace': '替换',
 	'Copy': '复制',
 	'Clone': '克隆',
+	'Duplicate':'复制',
 	'Cut': '剪切',
 	'Delete': '删除',
 	'Clear': '清除',
@@ -1301,7 +1399,7 @@ lang['zh_cn'] = {
 	'Metaphor':'隐喻',
 	'Ansatz':'拟设',
 
-
+	'Communicate':'交流',
 	//Math concept
 
 	// noun
@@ -1355,6 +1453,7 @@ lang['zh_cn'] = {
 	'One-Third':'三分之一',
 	'Two-Thirds':'三分之二',
 
+	'Zeros':'零点',
 
 	'Sort':'排序',
 	'Ascending':'升序',
@@ -1367,11 +1466,16 @@ lang['zh_cn'] = {
 	'Semicolon':'分号',
 
 	'Prime Mersenne Number': '梅森素数',
-	'Amicable Numbers': '亲和数',
+	'Amicable':'亲和',
 
 	'Form': '型',
 	'Form.1': '形式',
 	'Normal Form': '标准型',
+
+	'Abnormal':'反常',
+	'Anomalous':'异常',
+	'Anomaly':'异常',
+	'Cancellation':'消去',
 
 	'Array': '数组',
 	'Integer': '整数',
@@ -1383,6 +1487,7 @@ lang['zh_cn'] = {
 
 	'Reducible':'可约',
 	'Irreducible':'既约',
+	'Irreducibility':'不可约',
 
 	'Sign':'符号',
 	'Digits':'位数',
@@ -1395,15 +1500,34 @@ lang['zh_cn'] = {
 	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
-	'Polynomial': '多项式',
+	'Poly':'多',
+	'Uni':'单',
+	'Bi':'二',
+	'Tri':'三',
+	'Tetra':'四',
+	'Penta':'五',
+	'Hexa':'六',
+
+	'Octa':'八',
+	'Hendeca':'十一',
+	'Dodeca':'十二',
+	'Icosa':'二十',
+
+
+
+
+
+	'Nomial': '项式',
 	'Power': '幂',
 	'Series': '级数',
+	'Logarithm':'对数',
 
 	'Equation': '方程',
 	'Equations': '方程组',
 	'Equation Array': '方程组',
 	'Inequation': '不等式',
-	'Analytic': '解析',
+	'Analytic': '分析',
+	'Analytical': '解析',
 	'Limit': '极限',
 
 	'Encompass':'包含',
@@ -1411,6 +1535,18 @@ lang['zh_cn'] = {
 	'Consecutive':'连续',
 	'Derivative': '导数',
 	'Partial Derivative': '偏导数',
+
+	'Ideal':'理想',
+	'Cohomology':'上同调',
+	'Homology':'同调',
+	'Homography':'单应性',
+
+	'Congruent':'全等',
+	'Congruence':'同余式',
+	'mod':'模',
+
+	'Separate':'分隔',
+	'Connectivity':'连通性',
 
 	'Vector': '向量',
 	'Tensor': '张量',
@@ -1423,13 +1559,16 @@ lang['zh_cn'] = {
 	'Vector Field':'向量场',
 	'Vector Space':'向量空间',
 
-	'Space': '空格',
-	'Space.1': '空间',
-	'Linear Space': '线性空间',
-	'Subspace':'子空间',
-	'Kernel': '核',
+	'Space': '空间',
+	'Space.1': '空格',
 
-	'Spectral':'',
+
+	'Kernel': '核',
+	'Pair':'对',
+	'Egyptian':'埃及',
+
+	'Spectral':'谱',
+	'Actuarial':'精算',
 
 	'Permutation': '置换',
 	'Substitution':'替换',
@@ -1440,22 +1579,37 @@ lang['zh_cn'] = {
 
 	'Logic': '逻辑',
 	'Algebra': '代数',
+	'Algebroidal':'代数体',
+
 	'Geometry': '几何',
 	'Straight-edge':'直尺',
 	'Compass':'圆规',
 	'Graph': '图',
 	'Diagram':'图',
 	'Graphing': '作图',
+	'Digraph':'有向图',
 
 	'Set': '集合',
 	'Subset':'子集',
-	'Group.Math': '群',
+	'Empty':'空',
+	'Empty Set':'空集',
+
+	'Group.1': '群组',
 	'Group': '群',
+
+	'Monoid':'幺半群',
+	'Monoid.1':'独异点',
 
 	'Ring': '环',
 	'Field': '域',
 	'Lattice': '格',
 
+	'Arbitrary':'任意',
+	'Approximate':'近似',
+	'Approximately':'约',
+	'Equal':'等',
+	'Equals':'等于',
+	'Equal To':'等于',
 	'Equality': '等式',
 	'Non-equality': '不等式',
 	'Inequality':'不等式',
@@ -1465,6 +1619,9 @@ lang['zh_cn'] = {
 	'Cover': '覆盖',
 	'Chain': '链',
 	'Inversion': '逆序',
+
+	
+	'Connect':'连接',
 
 	'Dot': '点',
 
@@ -1480,10 +1637,11 @@ lang['zh_cn'] = {
 	'Secant':'正割',
 	'Cosecant':'余割',
 
-	// 几何
+	// 几何相关
 
 	'Point': '点',
 	'Vertex': '顶点',
+	'Vertices': '顶点',
 	'Origin': '原点',
 	'Centroid': '质心',
 	'Orthocenter': '垂心',
@@ -1494,14 +1652,19 @@ lang['zh_cn'] = {
 	'Perpendicular Foot': '垂足',
 	'Foci': '焦点',
 
+	'Horned':'有角',
+
 	'Quadrant':'象限',
 	'Over': '上',
 	'Under': '下',
 
 	'Coordinate': '坐标',
 	'Centroid Coordinate': '中心坐标',
+	'Abscissa':'横坐标',
+	'Ordinate':'纵坐标',
 
 	'Axis': '轴',
+	'Axial':'轴',
 	'Tick': '刻度',
 	'Grid': '网格',
 
@@ -1515,11 +1678,14 @@ lang['zh_cn'] = {
 
 	'Angle': '角',
 	'Rt': '直角',
+	'Angle-Preserving':'保角',
+	'Distance':'距离',
+	'Velocity':'速度',
 
-
-	'Polygon': '多边形',
+	'gon': '边形',
 	'Regular Polygon': '正多边形',
 	'Triangle': '三角形',
+	'Triangular':'三角',
 	'Right Triangle': '直角三角形',
 	'Outer Napoleon Triangle':'第一拿破仑三角形',
 	'Inner Napoleon Triangle':'第二拿破仑三角形',
@@ -1528,6 +1694,8 @@ lang['zh_cn'] = {
 	'Medial':'中位',
 	'Median Triangle':'中线三角形',
 	'Oblique':'斜',
+	'Acute':'锐',
+	'Acute Triangle':'锐角三角形',
 
 	'Square': '正方形',
 	'Square.1':'平方',
@@ -1540,6 +1708,8 @@ lang['zh_cn'] = {
 	'Rhombus': '菱形',
 	'Trapezoid': '梯形',
 
+	'Pentagon':'五边形',
+	'Hexagon':'六边形',
 	'Enneagon':'九边形',
 	'Nonagon':'九边形',
 
@@ -1562,6 +1732,7 @@ lang['zh_cn'] = {
 	'Cylinder': '圆柱',
 
 	'Curve': '曲线',
+	'Section':'等分',
 	'Conic Section': '圆锥曲线',
 	'Arc': '弧',
 	'Polyline': '折线',
@@ -1572,7 +1743,12 @@ lang['zh_cn'] = {
 	'Median': '中位数',
 	'Median Line': '中线',
 	'Altitude': '高',
+	'Latitude':'纬度',
+	'Longitude':'经度',
+	'Amplitude':'振幅',
+
 	'Magnitude':'大小',
+	'Midpoint': '中点',
 	'MidPoint Line': '中点连线',
 	'Opposite Mid Point Line': '对边中点连线',
 	'Perpendicular Foot Line': '垂足连线',
@@ -1597,6 +1773,7 @@ lang['zh_cn'] = {
 
 
 	'Polytope':'多胞形',
+	'Hedron':'面体',
 	'Polyhedron':'多面体',
 	'Polyhedra':'多面体',
 	'Regular Polyhedron':'正多面体',
@@ -1606,8 +1783,12 @@ lang['zh_cn'] = {
 
 	'Tetrahedron':'四面体',
 	'Octahedron':'八面体',
+	'Hendecahedron':'十一面体',
 	'Dodecahedron':'十二面体',
 	'Icosahedron':'二十面体',
+	'Rhombohedron':'菱面体',
+	'Rhombohedron.1':'斜方六面体',
+
 	'Stellating':'星形',
 	'Prismatoid':'拟柱体',
 
@@ -1624,10 +1805,11 @@ lang['zh_cn'] = {
 
 
 
-
+	'Isosceles': '等腰',
 	'Isogonal':'等角',
 	'Isotoxal':'等边',
 	'Isohedral':'等面',
+	'Isotopy':'合痕',
 
 	'Kepler–Poinsot':'正星形',
 
@@ -1641,14 +1823,17 @@ lang['zh_cn'] = {
 
 	'Manifold':'流形',
 
+
+	'Persistence':'持久性',
+	'Adequate':'足够',
+	'Adiabatic':'绝热',
+
 	// measure
 	//代数
 	'Domain': '定义域',
 	'Range': '值域',
 
-	'Factorization': '分解',
-	'Factorize': '分解',
-	'Expansion': '展开',
+
 	'Sum': '求和',
 	'Prod': '求积',
 	'Direct Sum':'直和',
@@ -1656,21 +1841,38 @@ lang['zh_cn'] = {
 
 
 	'Addition':'加法',
+	'Additive':'加性',
+	'Addend':'加数',
+	'Adjunct':'附加',
+	'Admittance':'导纳',
+
 	'Subtraction':'减法',
 	'Multiplication':'乘法',
 	'Harmonic': '调和',
+	'Harmonic.1': '和谐',
+	'Anharmonic':'不和谐',
 	'Law':'法则',
+
+	'Anonymous':'匿名',
 
 	'Combination': '组合',
 	'Combination Number':'组合数',
 	'Permutation Number':'排列数',
+
+	'Factorization': '分解',
+	'Factorize': '分解',
+	'Expansion': '展开',
 	'Factorial': '阶乘',
 	'Factorial Base': '阶乘进制',
 	'Factoriadic': '阶乘进制',
 
+	'Divisor':'因子',
+	'Factor':'因子',
+
 	'Greatest Common Divisor': '最大公约数',
 	'Least Common Multiple': '最小公倍数',
 	'Division': '除法',
+	'Aliquant':'除不尽',
 
 	'Bundle':'丛',
 	'Base': '基',
@@ -1696,25 +1898,48 @@ lang['zh_cn'] = {
 
 	'Leading Principle Minor': '顺序主子式',
 
-	'Max':'最大值',
-	'Min':'最小值',
+	'Dependent':'相关',
+	'Independent':'无关',
+	'Max':'最大',
+	'Min':'最小',
+	'Extremum':'极值',
+
+	'Maximum':'最大值',
+	'Minimum':'最小值',
+
+	'Maximal':'最大',
+	'Minimal':'最小',
+
+	'Moment':'矩',
+	'Involution':'对合',
+	'Involution.1':'内卷',
+	'Monotone':'单调',
+
+	'Interpolation':'插值',
+	'Extrapolation':'外推',
+
 	'Binom': '二项式',
 	'Subsup': '上下标',
 
 	'Dimension': '维度',
+	'Phenomenon':'现象',
 	// 几何
 
 	'Diameter': '直径',
 	'Radii': '半径',
+	'Side':'边',
 	'Sides': '边数',
 	'Side Length': '边长',
 	'Perimeter':'周长',
 	'Area':'面积',
 	'Surface Area':'表面积',
 	'Similar':'相似',
-	'Congruent':'全等',
+
 
 	'Contour':'等高线',
+	'Adjacent':'邻',
+
+	'Island':'岛',
 
 	// verb
 
@@ -1722,7 +1947,11 @@ lang['zh_cn'] = {
 
 	'Convert': '转换',
 	'Express': '表示',
+	'Representation':'表示',
 	'Simplify': '化简',
+
+	'Simply':'简单',
+	'Simplicial':'单',
 
 	'Divide': '整除',
 
@@ -1748,7 +1977,7 @@ lang['zh_cn'] = {
 	// adj
 	'Strong':'强',
 	'Weak':'弱',
-	'Weakly':'弱',
+
 	'Perfect':'完全',
 
 	//代数
@@ -1757,20 +1986,36 @@ lang['zh_cn'] = {
 	'Negative': '负',
 	'Natural': '自然',
 	'Prime': '质',
+	'Primality':'素性',
+
 	'Rational': '有理',
 	'Irrational': '无理',
 	'Rationalize':'有理化',
 	
 	'Radical': '根式',
 	'Root': '根',
+	'Solution':'解',
+
+	'Ratio':'比例',
+	//'Ratio':'比率',
+	'Account for':'占',
 
 	'Transcendental': '超越',
 	'Real': '实',
 	'Imaginary': '虚',
 	'Complex': '复',
+
+	'Complexity':'复杂度',
 	'Implicit':'隐',
+	'Cycle':'循环',
+
+	'Cyclic':'周期',
+	'Acyclic':'非周期',
 
 	'Regular': '正则',
+	'Regularized':'正则化',
+
+
 	'Singular': '奇异',
 	'Linear': '线性',
 
@@ -1792,6 +2037,9 @@ lang['zh_cn'] = {
 	'Parentheses': '括号',
 	'Nest': '嵌套',
 	'Symmetry': '对称',
+	'Asymptotic':'渐进',
+	'Asymptote':'渐近线',
+	'Asymptosy':'渐近线',
 
 	'Primary': '主',
 	'Secondary': '次',
@@ -1804,8 +2052,20 @@ lang['zh_cn'] = {
 	'Infinite.1': '无限',
 	'Infinite': '无穷',
 	'Finite':'有限',
+	'Infinity':'无限',
 
-
+	'Cell':'胞',
+	
+	'Cellular':'元胞',
+	'Automaton':'自动机',
+	'Automata':'自动机',
+	'Automorphy':'自守',
+	'Automorphism':'自同构',
+	'Morphism':'态射',
+	'Diffeomorphism':'微分同胚',
+	'Homeomorphism':'同胚',
+	'Homomorphism':'同态',
+	'Isomorphism':'同构',
 
 	'Unary': '一元',
 	'Binary': '二元',
@@ -1816,6 +2076,10 @@ lang['zh_cn'] = {
 	'Quadric': '二次',
 	'Cubic': '三次',
 
+
+
+	'Regress':'回归',
+	'Regressive':'回归',
 	'Regression':'回归',
 
 	//几何
@@ -1824,7 +2088,7 @@ lang['zh_cn'] = {
 	'Convex': '凸',
 	'Concave': '凹',
 	'Circum': '外接',
-	'Isosceles': '等腰',
+	
 
 	'Equilateral':'等边',
 	'Scalene':'不等边',
@@ -1834,37 +2098,83 @@ lang['zh_cn'] = {
 	'Radial': '径向',
 	'Straight': '直',
 
+	'Pole':'极',
 	'Polar': '极坐标',
 	'Cartesian':'笛卡尔',
 	'Affine':'仿射',
 
+	'Agonic':'无偏',
+
 	'Cylindrical': '柱面',
 	'Spherical': '球面',
 
+	'Truncate':'截短',
+	'Truncate.1':'缩短',
+	
+	'Sphenocorona':'球形屋根',
 
+	'Curvature':'曲率',
 
 	//of Math subject
 	'Arithmetic': '算术',
 	'Algebraic': '代数',
+	'Algebraically':'代数',
+
 	'Geometric': '几何',
 	'Trigonometric': '三角',
 	'Hyperbolic': '双曲',
-	'Analytical': '分析',
-	'Logistical': '逻辑',
+
+	'Logistic': '逻辑',
 	'Probabilistic': '概率',
 	'Probability':'概率',
-	'Statistical': '统计',
-	'Topological': '拓扑',
+
+	'Topology': '拓扑',
 	'Spreadsheet':'表格',
+
+	'Operator':'算子',
+	'Functor':'函子',
+	'Attractor':'吸引子',
+	'Attract':'吸引',
+
+	'Scheme':'概形',
+	'Schema':'模式',
 
 	'Formal': '形式',
 	'Differential': '微分',
+	'Differentiable':'可微',
+
 	'Difference':'差分',
 	'Difference.1':'区别',
 
 	'Integral': '积分',
+	'Integrable':'可积',
 
 	'Contour Integral': '围线积分',
+
+
+	'Uniform':'一致',
+	'Uniform.1':'统一',
+	'Convergence':'收敛',
+	'Uniform Convergence':'一致收敛',
+
+
+	'Percolation':'渗流',
+
+	'Abacus':'算盘',
+
+	'Abundancy':'丰度',
+	'Abundance':'丰富性',
+	'Abundant':'盈',
+	
+	'Braid':'辫',
+	'Spiral':'螺旋',
+	'Accelerate':'加速',
+	'Accuracy':'精度',
+	'Precision':'精度',
+
+	'Accumulate':'积累',
+	'Accrete':'堆积',
+	'Advect':'平流',
 
 	'Boolean': '布尔',
 
@@ -1872,7 +2182,12 @@ lang['zh_cn'] = {
 	'Definite': '定',
 
 	'Theory':'理论',
+
+	'Set Theory':'集合论',
 	// 人名
+
+	'Abelian':'阿贝尔',
+	'Abelianization':'阿贝尔化',
 
 'von':'冯·',//⋅
 'van':'范·',
@@ -1882,7 +2197,8 @@ lang['zh_cn'] = {
 	'Diophantine':'丢番图',
 	'Platonic':'柏拉图',
 	'Archimedean':'阿基米德',
-	'Napoleon':'拿破仑',
+	
+	'Hamiltonian':'哈密顿',
 
 	'Green.1':'格林',
 	'Black.1':'布莱克',
@@ -1890,13 +2206,43 @@ lang['zh_cn'] = {
 	'White.1':'怀特',
 
 'Abel':'阿贝尔',
+'Achilles':'阿基里斯',
+'Achilles.1':'阿喀琉斯',
+'Ackermann':'阿克曼',
+
+'Adèle':'阿黛尔',
+'Ado':'阿朵',
+'Adomian':'阿朵米安',
+
+'Agnesi':'阿涅西',
+"Agnesi's Witch":'箕舌线',	//意大利语versoria 与女巫versiera 类似
+'Agnésienne':'箕舌线',
+'Ahmed':'阿麦德',
+
+'Aiyar':'艾亚尔',
+
+'Albers':'阿尔伯斯',
+'Alcuin':'阿尔昆',
+
 'Al-haytham':'海什木',
+'Alhazen':'阿尔哈曾',
 'Al-karaji':'卡拉吉',
 'Al-khwarizmi':'花拉子米',
+'Alexander':'亚历山大',
+
+'Alexandrov':'亚历山德罗夫',
 'Apollonius':'阿波罗尼奥斯',
 'Archimedes':'阿基米德',
 'Aristotle':'亚里士多德',
+'Arrow.1':'阿罗',
+
+'Artin':'阿廷',
 'Aryabhata':'阿耶波多',
+
+'Aitken':'艾特肯',
+
+
+
 'Babbage':'巴贝奇',
 'Bernoulli':'伯努利',
 'Bhaskara':'婆什伽罗',
@@ -1949,6 +2295,7 @@ lang['zh_cn'] = {
 'Lagrange':'拉格朗日',
 'Lambert':'兰伯特',
 'Laplace':'拉普拉斯',
+'Legendre':'勒让德',
 'Leibniz':'莱布尼兹',
 'Leonardo':'列奥纳多',
 'Lie':'李',
@@ -1961,6 +2308,7 @@ lang['zh_cn'] = {
 'Mirzakhani':'米尔扎哈尼',
 'Monge':'蒙日',
 'Napier':'纳皮尔',
+'Napoleon':'拿破仑',
 'Nash':'纳什',
 'Neumann':'诺依曼',
 'Newton':'牛顿',
@@ -1982,9 +2330,13 @@ lang['zh_cn'] = {
 'Ramanujan':'拉马努金',
 'Regiomontanus':'雷格蒙塔努斯',
 'Riemann':'黎曼',
+
+'Ruffini':'鲁菲尼',
 'Russell':'罗素',
 'Shannon':'香农',
 'Shijie':'朱世杰',
+
+'Spanier':'斯帕尼尔',
 'Stevin':'斯蒂文',
 'Tartaglia':'塔尔塔利亚',
 'Thales':'泰勒斯',
@@ -2184,9 +2536,9 @@ lang['zh_cn'] = {
 "Math Logic and Math Basis": "数理逻辑与数学基础",
 "Number Theory": "数论",
 //"Algebra": "代数学",
-"Algebraic Geometry": "代数几何学",
+"Algebraic Geometry": "代数几何",
 //"Geometry": "几何学",
-"Topology": "拓扑学",
+"Topology": "拓扑",
 "Mathematical Analysis": "数学分析",
 "Non-standard Analysis": "非标准分析",
 "Functionalism": "函数论",

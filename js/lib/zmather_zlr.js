@@ -339,32 +339,215 @@ function gM(mesg, str, o) {
 		return msg.split('.')[0]
 	}
 
-	if (!x && /[e']?s$/.test(msg)) {// s结尾
-		var t=msg.replace(/'?s$/,'');
 
-		if(O[t]){
-			return gM(t, str, o)
+	
+	if(!x && iscn){
+		//无需翻译的后缀
+		if (/[sd]$/.test(msg)) {
+			var t=msg.replace(/.$/,''), ot=O[t];
+
+			if(ot){
+				return ot
+			}
 		}
+
+		if (/'s$/.test(msg)) {
+			var t=msg.replace(/.{2}$/,'.1'), t2=msg.replace(/.{2}$/,''), ot=O[t] || O[t2];
+
+			if(ot){
+				return ot
+			}
+			return t2
+		}
+		if (/s'$/.test(msg)) {
+			var t=msg.replace(/.$/,'.1'), t2=msg.replace(/.$/,''), ot=O[t] || O[t2];
+
+			if(ot){
+				return ot
+			}
+			return t2
+		}
+
+
+		if (/([e]s|ly|ed)$/.test(msg)) {
+			var t=msg.replace(/.{2}$/,''), ot=O[t];
+
+			if(ot){
+				return ot
+			}
+		}
+		
+
+		if (/cy$/.test(msg)) {
+			var t=msg.replace(/.{2}$/,''), ot=O[t] || O[t+'t'] || O[t+'te'];
+
+			if(ot){
+				return ot+'度'
+			}
+		}
+
+		if (/ic$/.test(msg)) {
+			var t=msg.replace(/.{2}$/,''), ot=O[t] || O[t+'e'] || O[t+'y'];
+
+			if(ot){
+				return ot
+			}
+		}
+
+		if (/(ive|ity)$/.test(msg)) {
+			var t=msg.replace(/.{3}$/,''), ot=O[t] || O[t+'e'];
+
+			if(ot){
+				return ot
+			}
+		}
+
+		if (/ie[sd]$/.test(msg)) {
 			
-		
-		t=msg.replace(/es$/,'')
-		if(O[t]){
-			return gM(t, str, o)
+			var t=msg.replace(/ies$/,'y'), ot=O[t];
+			if(ot){
+				return ot
+			}
+
+		}
+
+		if (/(al)$/.test(msg)) {
+			var t=msg.replace(/.{2}$/,''), ot=O[t];
+
+			if(ot){
+				return ot
+			}
+
+			var t=msg.replace(/ical$/,'y'), ot=O[t];
+
+			if(ot){
+				return ot
+			}
+
+		}
+
+		if (/ing$/.test(msg)) {
+			
+			var t=msg.replace(/ing$/,''), ot=O[t];
+			if(ot){
+				return ot
+			}
+
+			t+='e';ot=O[t];
+			if(ot){
+				return ot
+			}
+
+			t=msg.replace(/ying$/,'')+'ie'; ot=O[t];
+			if(ot){
+				return ot
+			}
+
+			t=msg.replace(/(.)\1ing$/,'$1'); ot=O[t];
+			if(ot){
+				return ot
+			}
+		}
+
+		if (/ion$/.test(msg)) {
+			
+			var t=msg.replace(/ion$/,''), ot=O[t];
+			if(ot){
+				return ot
+			}
+			t+='e';ot=O[t];
+			if(ot){
+				return ot
+			}
+
+			t=msg.replace(/ption$/,'b'); ot=O[t];
+			if(ot){
+				return ot
+			}
+		}
+
+
+		if (/est$/.test(msg)) {
+			var t=msg.replace(/.{3}$/,''), ot=O[t] || O[t+'e'];
+
+			if(ot){
+				return '最'+ot
+			}
+		}
+
+		if (/ness$/.test(msg)) {
+			var t=msg.replace(/.{4}$/,''), ot=O[t];
+
+			if(ot){
+				return ot+'性'
+			}
+		}
+
+		if (/(ment|atic)$/.test(msg)) {
+			var t=msg.replace(/.{4}$/,''), ot=O[t];
+
+			if(ot){
+				return ot
+			}
+		}
+
+		//可拆开翻译的前缀
+		if (/^(I[mn]|Ab)/i.test(msg)) {// 2字开头
+			var t=msg.substr(2).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return '不' + ot
+			}
+				
+		}
+		if (/^(Bi)/i.test(msg)) {// 2字开头
+			var t=msg.substr(2).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,2), str, o) + ot
+			}
+				
+		}
+
+		if (/^(Su[bp]|Non|Tri)/i.test(msg)) {// 3字开头
+			var t=msg.substr(3).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,3), str, o) + ot
+			}
+				
+		}
+
+		if (/^([SDH]emi|Poly|Anti|Auto)/i.test(msg)) {// 4字开头
+			var t=msg.substr(4).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+
+			if(ot){
+				return gM(msg.substr(0,4), str, o) + ot
+			}
+				
 		}
 
 		
-		t=msg.replace(/ies$/,'y');
-		if(O[t]){
-			return gM(t, str, o)
+		if (/^(Quasi|Multi|Hyper|Super)/i.test(msg)) {// 5字开头
+			var t=msg.substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,5), str, o) + ot
+			}
 		}
 
-
-		if(iscn && /'s$/.test(msg)){
-			return msg.replace(/'?s$/,'')
+		if (/^(Pseudo)/i.test(msg)) {// 6字开头
+			var t=msg.substr(6).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,6), str, o) + ot
+			}
+				
 		}
 	}
 
-	
+
+
 
 	return x || M
 }
