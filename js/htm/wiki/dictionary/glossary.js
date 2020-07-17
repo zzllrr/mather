@@ -67,7 +67,7 @@ ZIG JS
 https://mathworld.wolfram.com/letters/[*A-Z].html
 */
 
-// var A=[[],[],[]];$('#directory tr').each(function(){$(this).children().filter(':has(a)').each(function(i){var a=$(this).find('a'),t=a.attr('href').replace(/^.*\/|.html$/g,''),tx=a.text(),txA=tx.split('...');A[i].push(txA.length>1?(txA[0]+t.replace(txA[0].replace(/OverscriptBox\[([A-Z]), _\]/g,'Q-Bar').replace(/(\d)\//g,'$1Over').replace(/[ '_,\(\.\/\)]/g,'').replace(/--/g,'').replace(/\^\*/g,'-Star').replace(/\*/g,'Star').replace(/=/g,'Equals').replace(/\+/g,'Plus').replace(/[áãăâà]/g,'a').replace(/ä/g,'ae').replace(/[ćç]/g,'c').replace(/[Č]/g,'C').replace(/[éêè]/g,'e').replace(/[Ł]/g,'L').replace(/[ń]/g,'n').replace(/[óôőø]/g,'o').replace(/ö/g,'oe').replace(/śš/g,'s').replace(/ß/g,'ss').replace(/[ű]/g,'u').replace(/ü/g,'ue'),'').replace(/[A-Z]/g,' $&').replace('ofthe',' of the')).replace(/- ([A-Z])/g,'-$1'):tx)})});return A[0].concat(A[1],A[2]).join('\n')
+// var A=[[],[],[]];$('#directory tr').each(function(){$(this).children().filter(':has(a)').each(function(i){var a=$(this).find('a'),t=a.attr('href').replace(/^.*\/|.html$/g,''),tx=a.text().replace(/([a-z])([A-Z])/g, '$1 $2'),txA=tx.split('...');A[i].push(txA.length>1?(txA[0]+t.replace(txA[0].replace(/OverscriptBox\[([A-Z]), _\]/g,'Q-Bar').replace(/(\d)\//g,'$1Over').replace(/[ '_,\(\.\/\)]/g,'').replace(/--/g,'').replace(/\^\*/g,'-Star').replace(/\*/g,'Star').replace(/=/g,'Equals').replace(/\+/g,'Plus').replace(/[áãăâà]/g,'a').replace(/ä/g,'ae').replace(/[ćç]/g,'c').replace(/[Č]/g,'C').replace(/[éêè]/g,'e').replace(/[Ł]/g,'L').replace(/[ń]/g,'n').replace(/[óôőø]/g,'o').replace(/ö/g,'oe').replace(/śš/g,'s').replace(/ß/g,'ss').replace(/[ű]/g,'u').replace(/ü/g,'ue'),'').replace(/[A-Z]/g,' $&').replace('ofthe',' of the')).replace(/- ([A-Z])/g,'-$1'):tx)})});return A[0].concat(A[1],A[2]).join('\n')
 
 wiki['GlossaryIndex']=`(-1,0,1)-Matrix
 (-1,1)-Matrix
@@ -272,7 +272,7 @@ Acyclic
  Digraph
  Graph
  Polynomial
-AcyclicGraphQ
+Acyclic Graph Q
 ad
 Adams' 
  Circle
@@ -363,14 +363,14 @@ Airy
  Projection
  Zeta Function
 Airy-Fock Functions
-AiryAi
-AiryAiPrime
-AiryAiZero
-AiryBi
-AiryBiPrime
-AiryBiZero
-AiryGi
-AiryHi
+Airy Ai
+Airy Ai Prime
+Airy Ai Zero
+Airy Bi
+Airy Bi Prime
+Airy Bi Zero
+Airy Gi
+Airy Hi
 Aitken Interpolation
 Aitken's 
  Array
@@ -610,7 +610,7 @@ Angel Problem
 Anger 
  Differential Equation
  Function
-AngerJ
+Anger J
 Angle
  Addition Formulas
  Bisector
@@ -764,7 +764,7 @@ Appell
  Polynomial
  Sequence
  Transformation
-AppellF1
+Appell F1
 Apple Surface
 Approximate 
  Identity
@@ -897,7 +897,7 @@ Arithmetic-Geometric Mean
 Arithmetic-Harmonic Mean
 Arithmetic-Logarithmic-Geometric Mean Inequality
 Arithmetical Function
-ArithmeticGeometricMean
+Arithmetic Geometric Mean
 Armanios-Wells Graph
 Armstrong Number
 Arnauld's Paradox
@@ -911,7 +911,7 @@ Arrangement
  Graph
  Number
 Array
-ArrayFlatten
+Array Flatten
 Arrow's 
  Impossibility Theorem
  Paradox
@@ -1221,7 +1221,7 @@ Barlow Packing
 Barnes G-Function
 Barnes' Lemma
 Barnes-Wall Lattice
-BarnesG
+Barnes G
 Barnette's Conjecture
 Barnette-Bosák-Lederberg Graph
 Barnsley's 
@@ -1337,11 +1337,11 @@ Bell
  Number
  Polynomial
  Triangle
-BellB
+Bell B
 Bellhop Paradox
 Bellman-Ford Algorithm
 Bellows Conjecture
-BellY
+Bell Y
 Belphegor 
  Number
  Prime
@@ -1397,7 +1397,7 @@ Bernoulli's
  Method
  Paradox
  Theorem
-BernoulliB
+Bernoulli B
 Bernstein 
  Basis
  Expansion
@@ -1446,12 +1446,12 @@ Bessel's
  Interpolation Formula
  Second Integral
  Statistical Formula
-BesselI
-BesselJ
-BesselJZero
-BesselK
-BesselY
-BesselYZero
+Bessel I
+Bessel J
+Bessel JZero
+Bessel K
+Bessel Y
+Bessel YZero
 Beta
  Binomial Distribution
  Distribution
@@ -1461,7 +1461,7 @@ Beta
  Integral
  Invariant
  Prime Distribution
-BetaRegularized
+Beta Regularized
 Bethe Lattice
 Betrothed Numbers
 Betti 
@@ -1650,7 +1650,7 @@ Bipartite
  Graph
  Kneser Graph
  Wheel Graph
-BipartiteGraphQ
+Bipartite Graph Q
 Biplanar Double Point
 Bipolar 
  Coordinates
@@ -1692,14 +1692,14 @@ Bit
  Complexity
  Length
  Rate
-BitAnd
+Bit And
 Bitangent
  Vector
-BitNot
-BitOr
+Bit Not
+Bit Or
 Bits Per Second
 Bitwin Chain
-BitXor
+Bit Xor
 Biunitary Divisor
 Bivalent
  Range
@@ -2035,8 +2035,8 @@ Brusselator Equations
 Brute 
  Force
   Factorization
-BSplineCurve
-BSplineSurface
+BSpline Curve
+BSpline Surface
 Bubble
 Buchberger's Algorithm
 Buchowski Paradox
@@ -2211,7 +2211,7 @@ Cantor's
  Paradox
  Theorem
 Cantor-Dedekind Axiom
-CantorMesh
+Cantor Mesh
 Cap
 Cap-Cyclide Coordinates
 Capacity
@@ -2219,7 +2219,7 @@ Capacity
 Capping
 Capricornoid
 Capsule
-CapsuleShape
+Capsule Shape
 Carathéodory 
  Derivative
  Extension
@@ -2265,7 +2265,7 @@ Carmichael's
  Conjecture
  Theorem
  Totient Function Conjecture
-CarmichaelLambda
+Carmichael Lambda
 Carnot's 
  Polygon Theorem
  Theorem
@@ -2618,8 +2618,8 @@ Chebyshev's
 Chebyshev-Gauss Quadrature
 Chebyshev-Radau Quadrature
 Chebyshev-Sylvester Constant
-ChebyshevT
-ChebyshevU
+Chebyshev T
+Chebyshev U
 Checker-Jumping Problem
 Checkerboard
 Checkers
@@ -2652,7 +2652,7 @@ Chi-Squared
  Distribution
  Goodness of Fit Test
  Test
-Chicken McNugget Number
+Chicken Mc Nugget Number
 Child
 Chinese 
  Checkers
@@ -2663,11 +2663,11 @@ Chinese
  Remainder Theorem
  Rings
  Theorem
-ChineseRemainder
+Chinese Remainder
 Chiral
  Knot
 Chisini Mean
-ChiSquareDistribution
+Chi Square Distribution
 Chió Pivotal Condensation
 Chmutov Surface
 Choice 
@@ -2781,7 +2781,7 @@ Circle-Ellipse Intersection
 Circle-Line Intersection
 Circle-Point Midpoint Theorem
 Circled Set
-CirclePoints
+Circle Points
 Circles-and-Squares Fractal
 Circuit
  Rank
@@ -2887,7 +2887,7 @@ Clebsch
  Graph
 Clebsch-Aronhold Notation
 Clebsch-Gordan Coefficient
-ClebschGordan
+Clebsch Gordan
 Clement Matrix
 Clenshaw Recurrence Formula
 Cliff Random Number Generator
@@ -3186,8 +3186,8 @@ Complete
  the Square
  Tree
  Tripartite Graph
-CompleteGraphQ
-CompleteKaryTree
+Complete Graph Q
+Complete Kary Tree
 Completely 
  Monotonic Function
  Multiplicative Function
@@ -3446,9 +3446,9 @@ Connected
   Decomposition
  Surface
  Topology
-ConnectedComponents
-ConnectedGraphComponents
-ConnectedGraphQ
+Connected Components
+Connected Graph Components
+Connected Graph Q
 Connecting Homomorphism
 Connection
  Coefficient
@@ -3640,7 +3640,7 @@ Coplanarity
 Copolar Triangles
 Copositive Matrix
 Coprime
-CoprimeQ
+Coprime Q
 Coproduct
 Copson's Inequality
 Copson-de Bruijn Constant
@@ -3668,7 +3668,7 @@ Cosecant
 Coset
  Space
 Cosh
-CoshIntegral
+Cosh Integral
 Cosine
  Apodization Function
  Circle
@@ -3681,7 +3681,7 @@ Cosine
  Superposition Constant
  Transform
 Cosines Law
-CosIntegral
+Cos Integral
 Cosinus
 Cosmic Figure
 Cosmological Theorem
@@ -4029,7 +4029,7 @@ Cycle
  Graph
  Index
  Polynomial
-CycleIndexPolynomial
+Cycle Index Polynomial
 Cyclic 
  Code
  Graph
@@ -4170,7 +4170,7 @@ Davey-Stewartson Equations
 Dawson's 
  Function
  Integral
-DawsonF
+Dawson F
 dc
 de 
  Bruijn 
@@ -4253,7 +4253,7 @@ Dedekind
 Dedekind's 
  Axiom
  Problem
-DedekindEta
+Dedekind Eta
 Deducible
 Deduction
  Theorem
@@ -4296,7 +4296,7 @@ Delaunay Triangulation
 Delay Differential Equation
 Delboeuf Illusion
 Deletable Prime
-DeleteDuplicates
+Delete Duplicates
 Delian 
  Constant
  Problem
@@ -4460,7 +4460,7 @@ Difference
   Order
  Table
 Difference-Differential Equation
-DifferenceDelta
+Difference Delta
 Different
  Prime Factors
 Differentiable
@@ -4575,7 +4575,7 @@ Dirac
  Notation
  Operator
 Dirac's Theorem
-DiracDelta
+Dirac Delta
 Direct 
  Analytic Continuation
  Factor
@@ -4596,7 +4596,7 @@ Directed
  Infinity
  Set
  Strongly Regular Graph
-DirectedGraphQ
+Directed Graph Q
 Direction
  Cosine
  Field
@@ -4642,10 +4642,10 @@ Dirichlet's
  Test
  Theorem
 Dirichlet-Hardy Test
-DirichletBeta
-DirichletL
-DirichletLambda
-DirichletTransform
+Dirichlet Beta
+Dirichlet L
+Dirichlet Lambda
+Dirichlet Transform
 Disc
 Disconnected 
  Form
@@ -4685,9 +4685,9 @@ Discrete
  Theodorus Spiral
  Topology
  Uniform Distribution
-DiscreteConvolve
-DiscreteRatio
-DiscreteShift
+Discrete Convolve
+Discrete Ratio
+Discrete Shift
 Discriminant
  Analysis
 Disdyakis 
@@ -4718,7 +4718,7 @@ Disk
  Triangle Picking
 Disk-Cyclide Coordinates
 Disks Method
-DiskSegment
+Disk Segment
 Dispersion 
  Numbers
  Relation
@@ -4788,8 +4788,8 @@ Divisor
  Product
  Theory
 Divisors
-DivisorSigma
-DivisorSum
+Divisor Sigma
+Divisor Sum
 Divorce Digraph
 Dixon's 
  Factorization Method
@@ -5089,7 +5089,7 @@ Edge-Graceful Graph
 Edge-Induced Subgraph
 Edge-to-Vertex Dual Graph
 Edge-Transitive Graph
-EdgeCoverQ
+Edge Cover Q
 Edgeless Graph
 Edgeworth Series
 Edmonds' Map
@@ -5270,17 +5270,17 @@ Elliptic-Cylinder Coordinates
 Elliptical 
  Cone
  Projection
-EllipticE
-EllipticExp
-EllipticExpPrime
-EllipticF
+Elliptic E
+Elliptic Exp
+Elliptic Exp Prime
+Elliptic F
 Ellipticity
-EllipticK
-EllipticLog
-EllipticNomeQ
-EllipticPi
-EllipticTheta
-EllipticThetaPrime
+Elliptic K
+Elliptic Log
+Elliptic Nome Q
+Elliptic Pi
+Elliptic Theta
+Elliptic Theta Prime
 Elongated 
  Cupola
  Dipyramid
@@ -5331,7 +5331,7 @@ Empty
  Clause
  Graph
  Set
-EmptyGraphQ
+Empty Graph Q
 Emulate
 EMWA
 Enantiomer
@@ -5662,9 +5662,9 @@ Euler-Mascheroni
 Euler-Poincaré Characteristic
 Euler-Poisson-Darboux Equation
 Euler-Zagier Sum
-EulerE
-EulerEquations
-EulerGamma
+Euler E
+Euler Equations
+Euler Gamma
 Eulerian 
  Circuit
  Cycle
@@ -5679,8 +5679,8 @@ Eulerian
  Tour
  Trail
  Walk
-EulerianGraphQ
-EulerPhi
+Eulerian Graph Q
+Euler Phi
 Eutactic Star
 Evans 
  Conic
@@ -5788,8 +5788,8 @@ Experiment
 Experimental 
  Design
  Mathematics
-ExpIntegralE
-ExpIntegralEi
+Exp Integral E
+Exp Integral Ei
 Explicit Formula
 Exploration Problem
 Exponent
@@ -5839,7 +5839,7 @@ Extended
  Real Numbers
  Rhombic Dodecahedron
  Riemann Hypothesis
-ExtendedGCD
+Extended GCD
 Extension 
  Field
   Degree
@@ -5921,10 +5921,10 @@ Factorial
  Sums
 Factorial2
 Factoring
-FactorInteger
+Factor Integer
 Factorion
 Factorization
-FactorTermsList
+Factor Terms List
 Fagnano's 
  Inequality
  Point
@@ -6144,20 +6144,20 @@ Filon's Integration Formula
 Filter
 Filtered Ring
 Filtration
-FindClusters
-FindEdgeCover
-FindEdgeCut
-FindEulerianCycle
-FindGeneratingFunction
-FindHamiltonianCycle
-FindHamiltonianPath
-FindIndependentEdgeSet
-FindIndependentVertexSet
-FindIntegerNullVector
-FindLinearRecurrence
-FindSequenceFunction
-FindVertexCover
-FindVertexCut
+Find Clusters
+Find Edge Cover
+Find Edge Cut
+Find Eulerian Cycle
+Find Generating Function
+Find Hamiltonian Cycle
+Find Hamiltonian Path
+Find Independent Edge Set
+Find Independent Vertex Set
+Find Integer Null Vector
+Find Linear Recurrence
+Find Sequence Function
+Find Vertex Cover
+Find Vertex Cut
 Fine's Equation
 Finite
  Additivity
@@ -6191,9 +6191,9 @@ Finite
  Subadditivity
  Volume Method
 Finite-to-One Factor
-FiniteAbelianGroupCount
-FiniteGroupCount
-FiniteGroupData
+Finite Abelian Group Count
+Finite Group Count
+Finite Group Data
 Finitely 
  Generated
  Presented Group
@@ -6309,7 +6309,7 @@ Fixed
   Star
   Theorem
  Precision
-FixedPointList
+Fixed Point List
 Flag
  Manifold
 Flag-Transitive Graph
@@ -6480,9 +6480,9 @@ Fourier-Budan Theorem
 Fourier-Legendre Series
 Fourier-Mellin Integral
 Fourier-Stieltjes Transform
-FourierCoefficient
-FourierCosCoefficient
-FourierSinCoefficient
+Fourier Coefficient
+Fourier Cos Coefficient
+Fourier Sin Coefficient
 Fournoid
 Fourth 
  Brocard Triangle
@@ -6491,7 +6491,7 @@ Fourth
 Fox 
  Derivative
  H-Function
-FoxTrot Series
+Fox Trot Series
 Frac
 Fractal
  Dimension
@@ -6530,7 +6530,7 @@ Franklin
 Franks-Williams-Morton Inequality
 Fransén-Robinson Constant
 Fraser's Spiral
-FRatioDistribution
+FRatio Distribution
 Frattini 
  Extension
  Factor
@@ -6572,8 +6572,8 @@ Fresnel Integrals
 Fresnel's 
  Elasticity Surface
  Wave Surface
-FresnelC
-FresnelS
+Fresnel C
+Fresnel S
 Freudenthal Suspension Theorem
 Frey 
  Curve
@@ -6608,7 +6608,7 @@ Frobenius
  Triangle Identities
 Frobenius-König Theorem
 Frobenius-Perron Equation
-FrobeniusSolve
+Frobenius Solve
 Frontier
 Frucht Graph
 Frucht's Theorem
@@ -6707,7 +6707,7 @@ Fundamental
    Symmetric Functions
  Theorems of Calculus
  Unit
-FundamentalDiscriminantQ
+Fundamental Discriminant Q
 Fundierungsaxiom
 Funnel
 Funny Curve
@@ -6777,7 +6777,7 @@ Gamma
  Product
  Statistic
 Gamma-Modular Function
-GammaRegularized
+Gamma Regularized
 Gamow-Stern Elevator Problem
 Garage Door
 Gardner Equation
@@ -6891,7 +6891,7 @@ Gegenbauer
  Differential Equation
  Function
  Polynomial
-GegenbauerC
+Gegenbauer C
 Gegenpunkte
 Gelfand 
  Mazur Theorem
@@ -7198,7 +7198,7 @@ Gordon
  Function
  Matrix
 Gordon's 
- Combinatorial GeneralizationRogers-Ramanujan Identities
+ Combinatorial Generalization Rogers-Ramanujan Identities
  Partition Theorem
 Gordon-Luecke Theorem
 Gorenstein Ring
@@ -7339,8 +7339,8 @@ Graph
  Two-Coloring
  Union
  Vertex
-GraphAutomorphismGroup
-GraphData
+Graph Automorphism Group
+Graph Data
 Graphic 
  Matroid
  Sequence
@@ -7348,9 +7348,9 @@ Graphical
  Partition
  Representation
 Graphoid
-GraphPlot
-GraphPlot3D
-GraphQ
+Graph Plot
+Graph Plot3D
+Graph Q
 Grassmann 
  Algebra
  Coordinates
@@ -7655,7 +7655,7 @@ Hadwiger
 Hadwiger's Principal Theorem
 Hadwiger-Nelson Problem
 Haferman Carpet
-Hafner-Sarnak-McCurley Constant
+Hafner-Sarnak-Mc Curley Constant
 Hahn Polynomial
 Hahn-Banach Theorem
 Hailstone Number
@@ -7685,7 +7685,7 @@ Half-Period
 Half-Plane
 Half-Space
 Half-Turn
-HalfNormalDistribution
+Half Normal Distribution
 Halfspace Intersection
 Halin Graph
 Hall Graph
@@ -7742,8 +7742,8 @@ Hamiltonian
  Path
  System
  Walk
-HamiltonianGraphQ
-HamiltonianQ
+Hamiltonian Graph Q
+Hamiltonian Q
 Hammer Projection
 Hammer's X-Ray Problems
 Hammer-Aitoff Equal-Area Projection
@@ -7775,8 +7775,8 @@ Hankel
 Hankel's 
  Integral
  Symbol
-HankelH1
-HankelH2
+Hankel H1
+Hankel H2
 Hann 
  Function
  Window
@@ -7796,7 +7796,7 @@ Happy
  Ending Problem
  Number
 Harada-Norton Group
-HaradaNortonGroupHN
+Harada Norton Group HN
 Harary 
  Graph
  Index
@@ -8072,7 +8072,7 @@ Hermite's
  Theorem
 Hermite-Gauss Quadrature
 Hermite-Lindemann Theorem
-HermiteH
+Hermite H
 Hermitian 
  Conjugate
  Form
@@ -8113,16 +8113,16 @@ Heule Graphs
 Heuman Lambda Function
 Heun Functions
 Heun's Differential Equation
-HeunB
-HeunBPrime
-HeunC
-HeunCPrime
-HeunD
-HeunDPrime
-HeunG
-HeunGPrime
-HeunT
-HeunTPrime
+Heun B
+Heun BPrime
+Heun C
+Heun CPrime
+Heun D
+Heun DPrime
+Heun G
+Heun GPrime
+Heun T
+Heun TPrime
 Heuristic
 Hex
  Game
@@ -8462,8 +8462,8 @@ Hurwitz's
  Root Theorem
  Theorem
 Hurwitz-Radon Theorem
-HurwitzLerchPhi
-HurwitzZeta
+Hurwitz Lerch Phi
+Hurwitz Zeta
 Hutton's 
  Formula
  Method
@@ -8554,9 +8554,9 @@ Hypergeometric1F1
 Hypergeometric1F1Regularized
 Hypergeometric2F1
 Hypergeometric2F1Regularized
-HypergeometricPFQ
-HypergeometricPFQRegularized
-HypergeometricU
+Hypergeometric PFQ
+Hypergeometric PFQRegularized
+Hypergeometric U
 Hypergraph
 Hypergroup
 Hypericosahedron
@@ -8927,11 +8927,11 @@ Integer
  Value
 Integer-Matrix Form
 Integer-Representing Polynomial
-IntegerDigits
-IntegerLength
-IntegerPartitions
-IntegerQ
-IntegerReverse
+Integer Digits
+Integer Length
+Integer Partitions
+Integer Q
+Integer Reverse
 Integers
 Integrable
  Differential Ideal
@@ -9005,7 +9005,7 @@ Internally
  Tangent
 International System Prefixes
 Interpolant
-InterpolatingPolynomial
+Interpolating Polynomial
 Interpolation
 Interpretation
 Interprime
@@ -9106,26 +9106,26 @@ Inverse
  Tangent
   Integral
  Trigonometric Functions
-InverseBetaRegularized
-InverseChiSquareDistribution
-InverseEllipticNomeQ
-InverseGammaRegularized
-InverseJacobiCD
-InverseJacobiCN
-InverseJacobiCS
-InverseJacobiDC
-InverseJacobiDN
-InverseJacobiDS
-InverseJacobiNC
-InverseJacobiND
-InverseJacobiNS
-InverseJacobiSC
-InverseJacobiSD
-InverseJacobiSN
+Inverse Beta Regularized
+Inverse Chi Square Distribution
+Inverse Elliptic Nome Q
+Inverse Gamma Regularized
+Inverse Jacobi CD
+Inverse Jacobi CN
+Inverse Jacobi CS
+Inverse Jacobi DC
+Inverse Jacobi DN
+Inverse Jacobi DS
+Inverse Jacobi NC
+Inverse Jacobi ND
+Inverse Jacobi NS
+Inverse Jacobi SC
+Inverse Jacobi SD
+Inverse Jacobi SN
 Inversely 
  Proportional
  Similar
-InverseWeierstrassP
+Inverse Weierstrass P
 Inversion
  Center
  Circle
@@ -9191,7 +9191,7 @@ Irreducible
  Submodule
  Tensor
  Variety
-IrreduciblePolynomialQ
+Irreducible Polynomial Q
 Irredundant 
  Ramsey Number
  Set
@@ -9252,7 +9252,7 @@ Isomorphic
  Graphs
  Groups
  Posets
-IsomorphicGraphQ
+Isomorphic Graph Q
 Isomorphism
 Isoperimetric 
  Inequality
@@ -9363,20 +9363,20 @@ Jacobian
  Determinant
  Group
  Matrix
-JacobiCD
-JacobiCN
-JacobiCS
-JacobiDC
-JacobiDN
-JacobiDS
-JacobiNC
-JacobiND
-JacobiNS
-JacobiP
-JacobiSC
-JacobiSD
-JacobiSN
-JacobiZeta
+Jacobi CD
+Jacobi CN
+Jacobi CS
+Jacobi DC
+Jacobi DN
+Jacobi DS
+Jacobi NC
+Jacobi ND
+Jacobi NS
+Jacobi P
+Jacobi SC
+Jacobi SD
+Jacobi SN
+Jacobi Zeta
 Jacobson 
  Canonical Form
  Radical
@@ -9580,7 +9580,7 @@ Kaup's Equation
 Kawaguchi Geometry
 Kawasaki's Theorem
 Kayak Paddle Graph
-KEdgeConnectedGraph
+KEdge Connected Graph
 Kei
 Keith Number
 Keller Graph
@@ -9596,10 +9596,10 @@ Kelvin
  Problem
  Transformation
 Kelvin's Conjecture
-KelvinBei
-KelvinBer
-KelvinKei
-KelvinKer
+Kelvin Bei
+Kelvin Ber
+Kelvin Kei
+Kelvin Ker
 Kempe 
  Chain
  Linkage
@@ -9621,7 +9621,7 @@ Kepler-Poinsot Solid
 ker
 Keratoid Cusp
 Kerkhoffs' Principle
-Kermack-McKendrick Model
+Kermack-Mc Kendrick Model
 Kernel
  Polynomial
 Kervaire's Characterization Theorem
@@ -9746,7 +9746,7 @@ Knot
  Symmetry
  Theory
  Vector
-KnotData
+Knot Data
 Knuth 
  Arrow Notation
  Number
@@ -9874,7 +9874,7 @@ Kuratowski's
 Kurtosis
  Excess
 KV-Map
-KVertexConnectedGraph
+KVertex Connected Graph
 Kynea Number
 Kähler 
  Form
@@ -9974,7 +9974,7 @@ Laguerre's
  Method
  Repeated Fraction
 Laguerre-Gauss Quadrature
-LaguerreL
+Laguerre L
 Lah Number
 Laisant's Recurrence Formula
 Lakshmi Star
@@ -9999,7 +9999,7 @@ Lambert's
  Continued Fraction
  Method
  Transcendental Equation
-LambertW
+Lambert W
 Lamina
 Laminated Lattice
 Lamp Paradox
@@ -10117,8 +10117,8 @@ Lattice
  Theory
  Tolerance
 Lattice-Ordered Set
-LatticeData
-LatticeReduce
+Lattice Data
+Lattice Reduce
 Latus Rectum
 Latzko Differential Equation
 Laurent 
@@ -10254,8 +10254,8 @@ Legendre's
  Quadratic Reciprocity Law
 Legendre-Gauss Quadrature
 Legendre-Jacobi Elliptic Integral
-LegendreP
-LegendreQ
+Legendre P
+Legendre Q
 Legion's Numbers
 Lehmer 
  Cotangent Expansion
@@ -10321,7 +10321,7 @@ Leonardo's Paradox
 Leptokurtic
 Lerch Transcendent
 Lerch's Theorem
-LerchPhi
+Lerch Phi
 Less
 Lester Circle
 Letter
@@ -10501,7 +10501,7 @@ Linearly
   Vectors
  Independent
  Ordered Set
-LinearRecurrence
+Linear Recurrence
 Link
  Complement
  Crossing Number
@@ -10535,7 +10535,7 @@ Liouville's
  Principle
  Sphere-Preserving Theorem
 Liouville-Roth Constant
-LiouvilleLambda
+Liouville Lambda
 Liouvillian Number
 Lipschitz 
  Class
@@ -10546,7 +10546,7 @@ Lissajous
  Curve
  Figure
 List
-ListGraphs
+List Graphs
 Literal
 Little 
  Joe
@@ -10592,7 +10592,7 @@ Local
  Group Theory
  Higman-Sims Graph
  Maximum
- McLaughlin Graph
+ Mc Laughlin Graph
  Minimum
  P-Algebra
  Polarity
@@ -10675,10 +10675,10 @@ Logarithmically
  Convex Function
  Decreasing Function
  Increasing Function
-LogBarnesG
+Log Barnes G
 Logconcave Function
 Logconvex Function
-LogGamma
+Log Gamma
 Logic
 Logical 
  And
@@ -10687,8 +10687,8 @@ Logical
  Not
  Or
  Paradox
-LogicalExpand
-LogIntegral
+Logical Expand
+Log Integral
 Logistic 
  Differential Equation
  Distribution
@@ -10701,14 +10701,14 @@ Logistic
  Map--r=2
  Map--r=4
  Regression
-LogisticSigmoid
+Logistic Sigmoid
 Logit 
  Function
  Transformation
 Logo
 Logocyclic Curve
 Logos
-LogSeriesDistribution
+Log Series Distribution
 Lollipop Graph
 Lommel 
  Differential Equation
@@ -10831,7 +10831,7 @@ Lucas's
 Lucas-Lehmer 
  Residue
  Test
-LucasL
+Lucas L
 Lucky 
  Number
   of Euler
@@ -10861,7 +10861,7 @@ Lyapunov's
 Lychrel Number
 Lyndon Word
 Lyons Group
-LyonsGroupLy
+Lyons Group Ly
 Lyusternik-Schnirelmann Theorem
 Léon Anne's Theorem
 Lévy 
@@ -10889,7 +10889,7 @@ M_22 Graph
 M_23 Graph
 Mac Lane's Theorem
 Macaulay Ring
-MacBeath 
+Mac Beath 
  Circle
  Circumconic
  Ellipse
@@ -10914,8 +10914,8 @@ Maclaurin
   Inverse Curve
 Maclaurin-Bézout Theorem
 Maclaurin-Cauchy Theorem
-MacMahon's Prime Numberof Measurement
-MacRobert's E-Function
+Mac Mahon's Prime Numberof Measurement
+Mac Robert's E-Function
 Macron
 Madelung Constants
 Maeder's Owl Minimal Surface
@@ -10985,7 +10985,7 @@ Mandelbrot
   Lemniscate
  Tree
 Mangoldt Function
-MangoldtLambda
+Mangoldt Lambda
 Manhattan Distance
 Manifold
  Orientation
@@ -11024,7 +11024,7 @@ Mapping
  Space
 Marble Problem
 Marcum Q-Function
-MarcumQ
+Marcum Q
 Marcus's Theorem
 Margin of Error
 Marginal 
@@ -11097,12 +11097,12 @@ Mathieu
   M23
   M24
  Groups
-MathieuC
-MathieuCharacteristicA
-MathieuCharacteristicB
-MathieuCPrime
-MathieuS
-MathieuSPrime
+Mathieu C
+Mathieu Characteristic A
+Mathieu Characteristic B
+Mathieu CPrime
+Mathieu S
+Mathieu SPrime
 Maths
 Matrix
  1-Inverse
@@ -11141,8 +11141,8 @@ Matrix
  Transpose
  Tree Theorem
  Variate
-MatrixConditionNumber
-MatrixExp
+Matrix Condition Number
+Matrix Exp
 Matroid
 Maurer Rose
 Max
@@ -11198,29 +11198,29 @@ Maximum
  Path Matrix
  Spanning Tree
  Vertex Degree
-MaxValue
+Max Value
 Maxwell Distribution
 Maxwell's Equations
 May's Theorem
 May-Thomason Uniqueness Theorem
 Maze
 Mazur's Theorem
-McCarthy 91-Function
-McCay 
+Mc Carthy 91-Function
+Mc Cay 
  Circles
   Radical Circle
  Cubic
-McCoy's Theorem
-McGee Graph
-McGregor 
+Mc Coy's Theorem
+Mc Gee Graph
+Mc Gregor 
  Graph
  Map
-McLaughlin 
+Mc Laughlin 
  Graph
  Group
-McLaughlinGroupMcL
-McMahon's Theorem
-McNugget Number
+Mc Laughlin Group Mc L
+Mc Mahon's Theorem
+Mc Nugget Number
 Meager Set
 Mean
  Absolute Deviation
@@ -11307,7 +11307,7 @@ Meijer
  Function
  G-Function
  Transform
-MeijerG
+Meijer G
 Meissel's Formula
 Meissner 
  Body
@@ -11530,7 +11530,7 @@ Minus
  or Plus
  Sign
 Minute
-MinValue
+Min Value
 Miquel 
  Circles
  Configuration
@@ -11632,7 +11632,7 @@ Modular
   Basis
  Transformation
 Modularity Theorem
-ModularLambda
+Modular Lambda
 Modulation Theorem
 Module
  Direct Sum
@@ -11653,7 +11653,7 @@ Modulus
 Modus 
  Ponens
  Tollens
-MoebiusMu
+Moebius Mu
 Moessner's Theorem
 Mohammed Sign
 Moiré Pattern
@@ -11667,7 +11667,7 @@ Moment
  Sequence
 Moment-Generating Function
 Momental Skewness
-MomentOfInertia
+Moment Of Inertia
 Monad
 Money-Changing Problem
 Monge 
@@ -11697,7 +11697,7 @@ Monohedral Tiling
 Monoid
 Monomial
  Order
-MonomialList
+Monomial List
 Monomino
 Monomorph
 Monomorphism
@@ -11910,7 +11910,7 @@ Multivariate
   Constant
   Function
   Value
-MultivariateTDistribution
+Multivariate TDistribution
 Multiway System
 Munching Squares
 Murata's Constant
@@ -11990,7 +11990,7 @@ Nagel
 Nahm's Equation
 Naive Set Theory
 Nakajima Quiver Variety
-NaN
+Na N
  Payload
 Nand
  Gate
@@ -12134,7 +12134,7 @@ Nested
  Radical
   Constant
  Root
-NestList
+Nest List
 Net
  Graph
 Netto's Conjecture
@@ -12159,10 +12159,10 @@ Nevanlinna
  Theory
 Neville Theta Functions
 Neville's Algorithm
-NevilleThetaC
-NevilleThetaD
-NevilleThetaN
-NevilleThetaS
+Neville Theta C
+Neville Theta D
+Neville Theta N
+Neville Theta S
 New 
  Kind of Science
  Mersenne Prime Conjecture
@@ -12312,16 +12312,16 @@ Noncentral
  Distribution
  F-Distribution
  Student's t-Distribution
-NoncentralChiSquareDistribution
-NoncentralFRatioDistribution
-NoncentralStudentTDistribution
+Noncentral Chi Square Distribution
+Noncentral FRatio Distribution
+Noncentral Student TDistribution
 Noncommutative 
  Geometry
  Group
  Multiplication
  Ring
  Topology
-NonCommutativeMultiply
+Non Commutative Multiply
 Nonconformal Map
 Nonconstructive Proof
 Noncototient
@@ -12385,7 +12385,7 @@ Nor
  Gate
  Logic Gate
 Nordstrand's Weird Surface
-NorlundB
+Norlund B
 Norm
  Theorem
  Topology
@@ -12423,7 +12423,7 @@ Normal
  to a Plane
  Vector
 Normal-Form Game
-NormalCI
+Normal CI
 Normalized 
  Laplacian Matrix
  Vector
@@ -12505,9 +12505,9 @@ Number
  Theory
  Triangle
  Wall
-NumberFieldClassNumber
-NumberFieldFundamental Units
-NumberFieldRegulator
+Number Field Class Number
+Number Field Fundamental Units
+Number Field Regulator
 Numeral
 Numerator
 Numeric Function
@@ -12936,11 +12936,11 @@ Overlapping
  Resonance Method
 Overline
 Oversampling
-OverscriptBox[Q, _]
-OverscriptBox[R, _]
+Overscript Box[Q, _]
+Overscript Box[R, _]
 Ovoid
 Owen T-Function
-OwenT
+Owen T
 P 
  Graph
  Versus NP Problem
@@ -12990,7 +12990,7 @@ Paley
 Paley's Theorem
 Palindrome
  Number
-PalindromeQ
+Palindrome Q
 Palindromic 
  Number
   Conjecture
@@ -13064,7 +13064,7 @@ Parabolic
  Spiral
  Umbilic Catastrophe
 Parabolic-Cylinder Coordinates
-ParabolicCylinderD
+Parabolic Cylinder D
 Paraboloid
  Geodesic
 Paraboloidal Coordinates
@@ -13168,8 +13168,8 @@ Partition
   q
   Q Congruences
  of Unity
-PartitionsP
-PartitionsQ
+Partitions P
+Partitions Q
 Partizan Game
 Party Problem
 Parzen 
@@ -13210,7 +13210,7 @@ Path
  Space
  Trace
 Path-Connected
-PathGraphQ
+Path Graph Q
 Pathological
 Pathwidth
 Pathwise-Connected
@@ -13258,8 +13258,8 @@ Pearson's
  r
  Skewness Coefficients
 Pearson-Cunningham Function
-PearsonSkewness1
-PearsonSkewness2
+Pearson Skewness1
+Pearson Skewness2
 Peaucellier 
  Cell
  Inversor
@@ -13423,7 +13423,7 @@ Perfect
   Dissection
  Tetrahedron
 Perfectly Weighted Tree
-PerfectNumberQ
+Perfect Number Q
 Perforation
 Periapsis
 Perigon
@@ -13441,7 +13441,7 @@ Periodic
  Point
  Sequence
  Zeta Function
-PeriodicForm
+Periodic Form
 Periodogram
 Periods
 Peripheral Point
@@ -13695,7 +13695,7 @@ Plesiohedron
 Plethysm
 Plot
 Plot3D
-PlotPolyaField
+Plot Polya Field
 Plotting Position
 Plouffe's Constants
 Plumbing
@@ -13865,7 +13865,7 @@ Polydude
 Polyedge
 Polyform
 Polyfrob
-PolyGamma
+Poly Gamma
 Polygamma Function
 Polygenic Function
 Polygon
@@ -13910,7 +13910,7 @@ Polyhedron
  Hinging
  Packing
  Vertex
-PolyhedronData
+Polyhedron Data
 Polyhex
  Tiling
 Polyiamond
@@ -13918,7 +13918,7 @@ Polyiamond
 Polykay
 Polyking
 Polykite
-PolyLog
+Poly Log
 Polylogarithm
 Polymorph
  Tessellation
@@ -13952,9 +13952,9 @@ Polynomial
  Term
  Time
  Triangle Center
-PolynomialGCD
-PolynomialLCM
-PolynomialMod
+Polynomial GCD
+Polynomial LCM
+Polynomial Mod
 Polyomino
  Tiling
 Polyplet
@@ -14073,7 +14073,7 @@ Power
 Power-Reduction Formulas
 Powerfree
 Powerful Number
-PowerMod
+Power Mod
 Poweroid
 Powerset
 PPMCC
@@ -14199,14 +14199,14 @@ Prime
 Prime-Distance Graph
 Prime-Generating Polynomial
 Primefree Sequence
-PrimeNu
-PrimeOmega
-PrimePi
-PrimePowerQ
-PrimeQ
+Prime Nu
+Prime Omega
+Prime Pi
+Prime Power Q
+Prime Q
 Primequad
 Primes
-PrimeZetaP
+Prime Zeta P
 Primitive 
  Abundant Number
  Character
@@ -14321,7 +14321,7 @@ Product-Moment Coefficientof Correlation
 Productive 
  Property
  Set
-ProductLog
+Product Log
 Program
  Machine
 Projection
@@ -14575,10 +14575,10 @@ Q^+
 QBinomial
 QFactorial
 QGamma
-QHypergeometricPFQ
+QHypergeometric PFQ
 QMR
 QPochhammer
-QPolyGamma
+QPoly Gamma
 QR Decomposition
 QRS Constant
 Quadrable
@@ -14671,7 +14671,7 @@ Quartile
  Range
  Skewness Coefficient
  Variation Coefficient
-QuartileSkewness
+Quartile Skewness
 Quartoid
 Quasi-Concave Function
 Quasi-Convex Function
@@ -14732,7 +14732,7 @@ Question Mark Function
 Queue
 Queuing Theory
 Quicksort
-Quiet NaN
+Quiet Na N
 Quillen-Lichtenbaum Conjecture
 Quillen-Suslin Theorem
 Quincunx
@@ -14869,10 +14869,10 @@ Ramanujan-Eisenstein Series
 Ramanujan-Nagell Equation
 Ramanujan-Petersson Conjecture
 Ramanujan-Soldner Constant
-RamanujanTau
-RamanujanTauL
-RamanujanTauTheta
-RamanujanTauZ
+Ramanujan Tau
+Ramanujan Tau L
+Ramanujan Tau Theta
+Ramanujan Tau Z
 Ramification 
  Group
  Index
@@ -15053,7 +15053,7 @@ Recurrence
  Relation
   Signature
  Sequence
-RecurrenceTable
+Recurrence Table
 Recurring 
  Decimal
  Digital Invariant
@@ -15132,7 +15132,7 @@ Reflexive
 Reflexivity
 Regge Calculus
 Region
-RegionMeasure
+Region Measure
 Register Machine
 Regression
  Coefficient
@@ -15444,10 +15444,10 @@ Riemannian
  Manifold
  Metric
  Submersion
-RiemannR
-RiemannSiegelTheta
-RiemannSiegelZ
-RiemannXi
+Riemann R
+Riemann Siegel Theta
+Riemann Siegel Z
+Riemann Xi
 Riesel 
  Conjecture
  Number
@@ -15608,12 +15608,12 @@ Root
  Vertex
 Root-Finding Algorithm
 Root-Mean-Square
-RootApproximant
+Root Approximant
 Rooted 
  Graph
  Tree
 Roots
-RootSum
+Root Sum
 Rosatti's Theorem
 Rose
 Rosenbrock 
@@ -15622,8 +15622,8 @@ Rosenbrock
 Rosser's 
  Rule
  Theorem
-RotateLeft
-RotateRight
+Rotate Left
+Rotate Right
 Rotating Square Illusion
 Rotation
  Formula
@@ -15663,7 +15663,7 @@ Row
  Vector
 Row-Convex Polyomino
 Row-Reduced Echelon Form
-RowReduce
+Row Reduce
 Roy-Floyd Algorithm
 Roy-Warshall Algorithm
 Royle Graphs
@@ -16190,7 +16190,7 @@ Sequence
  Density
  Dispersion
  Rank
-SequenceLimit
+Sequence Limit
 Sequency
  Function
 Sequent Calculus
@@ -16371,8 +16371,8 @@ Siegel's
  Paradox
  Theorem
  Upper Half-Space
-SiegelTheta
-SierpinskiMesh
+Siegel Theta
+Sierpinski Mesh
 Sierpiński 
  Arrowhead Curve
  Carpet
@@ -16425,7 +16425,7 @@ Sigmoidal Curve
 Sign
  of the Devil
 Signal-to-Noise Ratio
-Signaling NaN
+Signaling Na N
 Signalizer Functor Theorem
 Signature
  Sequence
@@ -16492,7 +16492,7 @@ Simple
  Root
  Stationary Point Process
  Zero
-SimpleGraphQ
+Simple Graph Q
 Simplex
  Method
  Plot
@@ -16563,13 +16563,13 @@ Singular
   Decomposition
  Values
 Singularity
-SingularValueList
+Singular Value List
 Sinh
 Sinh-Gordon Equation
 Sinh-Poisson Equation
 Sinhc Function
-SinhIntegral
-SinIntegral
+Sinh Integral
+Sin Integral
 Sink
 Sinus
 Sinusoid
@@ -16590,7 +16590,7 @@ Six-Color Theorem
 Six-j Symbol
 Six-Sphere Coordinates
 Six-Vertex Entropy Constant
-SixJSymbol
+Six JSymbol
 Skein Relationship
 Skeleton
  Division
@@ -16950,7 +16950,7 @@ Sphere
 Sphere-Cone Intersection
 Sphere-Cylinder Intersection
 Sphere-Sphere Intersection
-SpherePoints
+Sphere Points
 Spheric Section
 Spherical 
  Bessel 
@@ -17010,11 +17010,11 @@ Spherical
  Trigonometry
  Vector Harmonic
  Wedge
-SphericalBesselJ
-SphericalBesselY
-SphericalHankelH1
-SphericalHankelH2
-SphericalHarmonicY
+Spherical Bessel J
+Spherical Bessel Y
+Spherical Hankel H1
+Spherical Hankel H2
+Spherical Harmonic Y
 Sphericon
 Spheroid
 Spheroidal 
@@ -17024,17 +17024,17 @@ Spheroidal
  Section
  Wave Function
  Wavefunction
-SpheroidalEigenvalue
-SpheroidalJoiningFactor
-SpheroidalPS
-SpheroidalPSPrime
-SpheroidalQS
-SpheroidalQSPrime
-SpheroidalRadialFactor
-SpheroidalS1
-SpheroidalS1Prime
-SpheroidalS2
-SpheroidalS2Prime
+Spheroidal Eigenvalue
+Spheroidal Joining Factor
+Spheroidal PS
+Spheroidal PSPrime
+Spheroidal QS
+Spheroidal QSPrime
+Spheroidal Radial Factor
+Spheroidal S1
+Spheroidal S1Prime
+Spheroidal S2
+Spheroidal S2Prime
 Sphinx
 Spider 
  and Fly Problem
@@ -17154,9 +17154,9 @@ Squarefree
  Factorization
  Part
  Word
-SquareFreeQ
+Square Free Q
 Squareful
-SquaresR
+Squares R
 Squaring
  the Circle
 Squeezing Theorem
@@ -17190,7 +17190,7 @@ Stacked
  Prism Graph
 Stadium
  Billiards
-StadiumShape
+Stadium Shape
 Staircase 
  Function
  Polygon
@@ -17330,7 +17330,7 @@ Stellated
  Truncated Hexahedron
 Stellation
 Stem-and-Leaf Diagram
-StemLeafPlot
+Stem Leaf Plot
 Step
  Function
  Polynomial
@@ -17357,7 +17357,7 @@ Stieltjes
  Transform
 Stieltjes' Theorem
 Stieltjes-Wigert Polynomial
-StieltjesGamma
+Stieltjes Gamma
 Stiff Differential Equation
 Stirling 
  Cycle Number
@@ -17374,8 +17374,8 @@ Stirling's
  Finite Difference Formula
  Formula
  Series
-StirlingS1
-StirlingS2
+Stirling S1
+Stirling S2
 Stirrup Curve
 Stochastic
  Approximation
@@ -17473,7 +17473,7 @@ Strong
  Triangle Inequality
  Twin Prime Conjecture
  Variety
-StrongComponents
+Strong Components
 Strongly 
  Binary Tree
  Carefree Constant
@@ -17499,12 +17499,12 @@ Struve
  Function
  H-Function
  L-Function
-StruveH
-StruveL
+Struve H
+Struve L
 Student's 
  t-Distribution
  z-Distribution
-StudentTDistribution
+Student TDistribution
 Study's Theorem
 Sturm 
  Chain
@@ -17601,7 +17601,7 @@ Sum
 Sum-Free Set
 Sum-of-Divisors Transform
 Sum-Product Number
-SumConvergence
+Sum Convergence
 Summand
 Summation
  by Parts
@@ -17685,7 +17685,7 @@ Suzuki
  Graph
  Group
  Tower
-SuzukiGroupSuz
+Suzuki Group Suz
 Swallowtail Catastrophe
 Swan-Like Curve
 Swastika
@@ -18158,7 +18158,7 @@ Three-In-A-Row
 Three-j Symbol
 Three-Valued Logic
 Threefoil Knot
-ThreeJ Symbol
+Three J Symbol
 Threshold Results
 Thue 
  Constant
@@ -18444,8 +18444,8 @@ Tree
  Spread
 Tree-Depth
 Tree-Planting Problem
-TreeGraphQ
-TreePlot
+Tree Graph Q
+Tree Plot
 Treewidth
 Trefoil 
  Curve
@@ -18580,7 +18580,7 @@ Tridiminished
 Tridyakis Icosahedron
 Trifolium
 Trigamma Function
-TrigFactor
+Trig Factor
 Trigon
 Trigonal 
  Deltohedron
@@ -18625,7 +18625,7 @@ Trigonometry
  Angles--Pi30
  Angles--Pi32
  Circle
-TrigReduce
+Trig Reduce
 Trigyrate Rhombicosidodecahedron
 Trihedral Angle
 Trihedron
@@ -18943,7 +18943,7 @@ Underlying
 Underscore
 Undetermined Coefficients Method
 Undirected Graph
-UndirectedGraphQ
+Undirected Graph Q
 Undulating Number
 Unduloid
 Unequal
@@ -19266,7 +19266,7 @@ Vector
  Transformation Law
  Triple Product
 Vector-Valued Function
-VectorPlot
+Vector Plot
 Vee
 Veitch Diagram
 Velocity
@@ -19314,8 +19314,8 @@ Vertex
 Vertex-Edge Graph
 Vertex-Induced Subgraph
 Vertex-Transitive Graph
-VertexCoverQ
-VertexEccentricity
+Vertex Cover Q
+Vertex Eccentricity
 Vertical
  Angle
  Line Test
@@ -19507,7 +19507,7 @@ Weber's
  Formula
  Theorem
 Weber-Sonine Formula
-WeberE
+Weber E
 Wedderburn's Theorem
 Wedderburn-Etherington Number
 Weddle's Rule
@@ -19544,12 +19544,12 @@ Weierstrass's
 Weierstrass-Casorati Theorem
 Weierstrass-Erdman Corner Condition
 Weierstrass-Mandelbrot Function
-WeierstrassHalfPeriods
-WeierstrassInvariants
-WeierstrassP
-WeierstrassPPrime
-WeierstrassSigma
-WeierstrassZeta
+Weierstrass Half Periods
+Weierstrass Invariants
+Weierstrass P
+Weierstrass PPrime
+Weierstrass Sigma
+Weierstrass Zeta
 Weighing
 Weight
  Function
@@ -19564,7 +19564,7 @@ Weighted
  Mean
  Shift
  Tree
-WeightedGraphQ
+Weighted Graph Q
 Weighting Function
 Weil Conjectures
 Weil-Brezin Map
@@ -19636,8 +19636,8 @@ Whittaker
  Differential Equation
  Function
 Whittaker-Hill Differential Equation
-WhittakerM
-WhittakerW
+Whittaker M
+Whittaker W
 Whole Number
 Width
 Wiedersehen 
@@ -19675,7 +19675,7 @@ Wigner
  Distribution
 Wigner's Semicircle Law
 Wigner-Eckart Theorem
-WignerD
+Wigner D
 Wilbraham-Gibbs Constant
 Wilcoxon 
  Nonparametric Criteria
@@ -19708,7 +19708,7 @@ Window Function
 Winkler Conditions
 Winograd Transform
 Winquist's Identity
-WireWorld
+Wire World
 Wirtinger's Inequality
 Wirtinger-Sobolev Isoperimetric Constants
 Wishart Distribution
@@ -19862,7 +19862,7 @@ Zermelo-Fraenkel
  Axioms
  Set Theory
 Zernike Polynomial
-ZernikeR
+Zernike R
 Zero
  Divisor
  Element
@@ -19899,7 +19899,7 @@ Zeta
 Zeta-Regularized 
  Product
  Sum
-ZetaZero
+Zeta Zero
 Zeuthen's 
  Rule
  Theorem

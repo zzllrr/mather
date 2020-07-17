@@ -115,6 +115,8 @@ lang['zh_cn'] = {
 	'Teacher': '老师',
 	'Schoolgirl':'女生',
 	'Schoolboy':'男生',
+	'Baby':'婴儿',
+
 	'Enthusiast': '爱好者',
 	'Geek': '极客',
 	'Author':'作者',
@@ -133,6 +135,7 @@ lang['zh_cn'] = {
 	'Legal Worker': '法律工作者',
 
 	'Amateur': '业余者',
+	'Barber':'理发师',
 
 	'Participant': '参与者',
 
@@ -222,6 +225,7 @@ lang['zh_cn'] = {
 
 	'Inference': '推断',
 	'Corollary':'推论',
+	'Statement':'陈述',
 
 	'Admissible':'可接受',
 
@@ -271,6 +275,9 @@ lang['zh_cn'] = {
 	'Aperiodic':'反周期',
 
 	'Comprehensive':'综合',
+	'Complete':'完全',
+	'Incomplete':'不完全',
+
 	'Holistic':'整体性',
 
 	'Predict':'预测',
@@ -402,6 +409,7 @@ lang['zh_cn'] = {
 	'Minute':'分',
 	'Second.1':'秒',
 	'Arc Second':'弧秒',
+	'Arcsecond':'秒',
 
 
 	'Reference': '引用',
@@ -651,6 +659,7 @@ lang['zh_cn'] = {
 	'File': '文件',
 	'Engine': '引擎',
 
+	'Design':'设计',
 	'Application': '应用',
 	'by-product': '副产品',
 	'Goal': '目标',
@@ -663,6 +672,9 @@ lang['zh_cn'] = {
 
 	'Pursuit':'追及',
 
+	'Balance':'平衡',
+	'Balanced':'平衡',
+
 	'Webpage': '网页',
 	'Home': '首页',
 	'Homepage': '主页',
@@ -674,6 +686,7 @@ lang['zh_cn'] = {
 	'Example': '示例',
 	'Format': '格式',
 	'Preview': '预览',
+
 
 
 	'Ubiquitous':'普遍存在的',
@@ -734,6 +747,7 @@ lang['zh_cn'] = {
 	'Zigzag':'Z字形',
 
 	'Arrow': '箭头',
+	'Arrowhead':'箭头',
 	'Round Corner': '圆角',
 	'Rounded': '圆角',
 
@@ -814,6 +828,7 @@ lang['zh_cn'] = {
 	'Browser': '浏览器',
 	'Share': '分享',
 	'Check':'检查',
+	'Necklace':'项链',
 
 	'Effects': '特效',
 	'Action': '动作',
@@ -1047,9 +1062,11 @@ lang['zh_cn'] = {
 
 	'Consensus': '共识',
 	'Cooperation': '合作',
+	'Reciprocity':'互惠',
 	'Condition': '条件',
 
 	'Absorb':'吸收',
+	'Tangle':'缠结',
 
 	// adj.	prep.
 
@@ -1077,6 +1094,7 @@ lang['zh_cn'] = {
 	'Static': '静态',
 	'Dynamic': '动态',
 
+	'Accident':'意外',
 	'Universal': '普适',
 	'Typical': '典型',
 	'Elementary': '初等',
@@ -1089,6 +1107,8 @@ lang['zh_cn'] = {
 	'Inner': '内',
 	'Outer': '外',
 	'Symmetric': '对称',
+	'Asymmetric': '反对称',
+	'Symmetry': '对称',
 
 	'Unsolved': '未解',
 	'Solved':'已解决',
@@ -1104,6 +1124,10 @@ lang['zh_cn'] = {
 	'Down': '下',
 	'Left': '左',
 	'Right': '右',
+	'Backward':'后向',
+	'Backward.1':'向后',
+	'Forward':'前向',
+	'Forward.1':'向前',
 
 	'Clockwise': '顺时针',
 	'Anticlockwise': '逆时针',
@@ -1148,6 +1172,8 @@ lang['zh_cn'] = {
 	'Legal': '合法的',
 
 	'Stable': '稳定的',
+	'Stability':'稳定性',
+
 	'Portable': '便携的',
 
 	'Efficient': '高效的',
@@ -1206,6 +1232,7 @@ lang['zh_cn'] = {
 	'Data Base':'数据库',
 	'Opacity': '透明度',
 
+	'Band':'带',
 	'Width': '宽',
 	'Height': '高',
 	'Shadow': '阴影',
@@ -1420,7 +1447,39 @@ lang['zh_cn'] = {
 	'Ansatz':'拟设',
 
 	'Communicate':'交流',
+
+
+	//自然事物 0000
+
+	'Arch':'拱',
+	'Atlas':'地图册',
+	'Atom':'原子',
+
+	'Banana':'香蕉',
+	'Bean':'豆',
+	'Beast':'野兽',
+	'Bee':'蜜蜂',
+	'Bridge':'桥',
+
+	'Cattle':'牛',
+
+	'Fern':'蕨',
+	'Gallery':'画廊',
+	'Island':'岛',
+
+	
+	'Pistol':'手枪',
+	'Propeller':'螺旋桨',
 	'Tortoise':'乌龟',
+
+	'Tree':'树',
+
+	'Wave':'波',
+
+	'Wheel':'车轮',
+	'Worm':'蠕虫',
+
+
 	//Math concept
 
 	// noun
@@ -1511,6 +1570,8 @@ lang['zh_cn'] = {
 	'Irreducibility':'不可约',
 
 	'Sign':'符号',
+	'Asterisk':'星号',
+
 	'Digits':'位数',
 	'Quantity':'数量',
 	'Constant':'常数',
@@ -1563,11 +1624,13 @@ lang['zh_cn'] = {
 	'Ideal':'理想',
 	'Cohomology':'上同调',
 	'Homology':'同调',
+	'Homologous':'同调',
 	'Homography':'单应性',
 
 	'Congruent':'全等',
 	'Congruence':'同余式',
 	'mod':'模',
+	'Mod':'模',
 
 	'Separate':'分隔',
 	'Connectivity':'连通性',
@@ -1706,13 +1769,24 @@ lang['zh_cn'] = {
 
 	'Angle': '角',
 	'Rt': '直角',
+
 	'Angle-Preserving':'保角',
+	'Length-Preserving':'保长',
+	'Sphere-Preserving':'保球面',
+	'Area-Preserving':'保积',
+	'Measure-Preserving':'保测',
+	'Orientation-Preserving':'保向',
+	'Orientation-Reversing':'逆向',
+
 	'Distance':'距离',
 	'Velocity':'速度',
 
 	'gon': '边形',
 	'Polygon':'多边形',
 	'Regular Polygon': '正多边形',
+
+
+	'Polyiamond':'三角面多边形',
 	'Triangle': '三角形',
 	'Angular':'角',
 	'Right Triangle': '直角三角形',
@@ -1732,6 +1806,7 @@ lang['zh_cn'] = {
 	'Rectangle': '矩形',
 	'Rectangle.1': '长方形',
 
+	'Lateral':'边',
 	'Quadrilateral': '四边形',
 	'Parallelogram': '平行四边形',
 	'Rhombus': '菱形',
@@ -1739,6 +1814,7 @@ lang['zh_cn'] = {
 
 	'Pentagon':'五边形',
 	'Hexagon':'六边形',
+	'Hex':'六边形',
 	'Enneagon':'九边形',
 	'Nonagon':'九边形',
 
@@ -1763,6 +1839,9 @@ lang['zh_cn'] = {
 	'Curve': '曲线',
 	'Section':'等分',
 	'Conic Section': '圆锥曲线',
+	'Catacaustic':'回光',
+
+
 	'Arc': '弧',
 	'Arc.1': '反',
 	'Polyline': '折线',
@@ -1845,6 +1924,11 @@ lang['zh_cn'] = {
 	'Isohedral':'等面',
 	'Isotopy':'合痕',
 
+	'Anisohedral':'非等面',
+
+	'Authalic':'等积',
+	'Equidistant':'等距',
+
 	'Kepler–Poinsot':'正星形',
 
 
@@ -1893,6 +1977,7 @@ lang['zh_cn'] = {
 	'Combination': '组合',
 	'Combination Number':'组合数',
 	'Permutation Number':'排列数',
+	'Arrangement':'排列',
 
 	'Factorization': '分解',
 	'Factorize': '分解',
@@ -1911,6 +1996,9 @@ lang['zh_cn'] = {
 
 	'Fiber':'纤维',
 	'Bundle':'丛',
+	'Cluster':'聚类',
+	'Cluster.1':'集群',
+
 	'Base': '基',
 	'Basis':'基',
 
@@ -1971,11 +2059,12 @@ lang['zh_cn'] = {
 	'Surface Area':'表面积',
 	'Similar':'相似',
 
+	'Density':'密度',
+	'Fixed':'不动',
 
 	'Contour':'等高线',
 	'Adjacent':'邻',
 
-	'Island':'岛',
 
 	// verb
 
@@ -2004,9 +2093,12 @@ lang['zh_cn'] = {
 	'Transform': '变换',
 	'Transformation': '变换',
 
-	'Map': '地图',
-	'Bridge':'桥',
+	'Map': '映射',
+	'Map.1': '地图',
 	'Mapping': '映射',
+
+
+
 
 	'Wavelet':'小波',
 
@@ -2015,6 +2107,8 @@ lang['zh_cn'] = {
 	'Weak':'弱',
 
 	'Perfect':'完全',
+	'Antipode':'对跖',
+	'Antipodal':'对跖',
 
 	//代数
 	'Absolute': '绝对',
@@ -2061,6 +2155,7 @@ lang['zh_cn'] = {
 	'Adjugate': '伴随',	 //伴随矩阵，代数余子式矩阵转置
 	'Conjugate': '共轭',
 	'Augmented': '增广',
+	'Augmentation': '增广',
 	'Diagonal': '对角',
 	'Hermitian': '共轭转置',
 
@@ -2070,6 +2165,7 @@ lang['zh_cn'] = {
 
 	'Commutative':'交换',
 	'Associative':'结合',
+	'Associated':'相伴',
 
 	'Parentheses': '括号',
 	'Nest': '嵌套',
@@ -2128,7 +2224,7 @@ lang['zh_cn'] = {
 	'Convex': '凸',
 	'Concave': '凹',
 	'Circum': '外接',
-	
+
 
 	'Equilateral':'等边',
 	'Scalene':'不等边',
@@ -2157,7 +2253,7 @@ lang['zh_cn'] = {
 	'Curvature':'曲率',
 	'Torsion':'挠率',
 
-
+	'Gasket':'垫圈',
 
 
 	//of Math subject
@@ -2175,6 +2271,7 @@ lang['zh_cn'] = {
 
 	'Topology': '拓扑',
 	'Anchor Ring':'环面',
+	'Annulus':'圆环',
 	'Torus':'环面',
 
 
@@ -2184,6 +2281,8 @@ lang['zh_cn'] = {
 	'Operator':'算子',
 	'Functor':'函子',
 	'Attractor':'吸引子',
+	'Commutator':'交换子',
+
 	'Attract':'吸引',
 
 	'Scheme':'概形',
@@ -2240,19 +2339,32 @@ lang['zh_cn'] = {
 	'Set Theory':'集合论',
 	// 人名
 
-	'Abelian':'阿贝尔',
-	'Abelianization':'阿贝尔化',
 
 'von':'冯·',//⋅
 'van':'范·',
 'der':'德',
 
+'Abelian':'阿贝尔',
+'Abelianization':'阿贝尔化',
 
-	'Diophantine':'丢番图',
-	'Platonic':'柏拉图',
-	'Archimedean':'阿基米德',
+'Apollonian':'阿波罗',
+'Archimedean':'阿基米德',
+'Artinian':'阿廷',
+
+'Bayesian':'贝叶斯',
+
+'Diophantine':'丢番图',
+
+'Hamiltonian':'哈密顿',
+
+
+'Noetherian':'诺特',
+
+'Platonic':'柏拉图',
+
 	
-	'Hamiltonian':'哈密顿',
+
+
 
 	'Green.1':'格林',
 	'Black.1':'布莱克',
@@ -2308,10 +2420,17 @@ lang['zh_cn'] = {
 'Andrews':'安德鲁斯',
 'Anosov':'阿诺索夫',
 
+'Antoine':'安托万',
+
+'Apéry':'阿佩里',
 'Appell':'阿佩尔',
 'Apollonius':'阿波罗尼奥斯',
 'Archimedes':'阿基米德',
+'Argand':'阿甘得',
+
 'Aristotle':'亚里士多德',
+
+'Armstrong':'阿姆斯特朗',
 'Arrow.1':'阿罗',
 
 'Artin':'阿廷',
@@ -2322,9 +2441,58 @@ lang['zh_cn'] = {
 
 
 'Babbage':'巴贝奇',
+
+'Bachelier':'巴舍利耶',
+'Bachet':'巴谢',
+
+'Backhouse':'巴克豪斯',
+
+'Baer':'巴尔',
+
+
+'Bailey':'拜莱',
+
+'Baire':'拜尔',
+
+'Baker':'拜克',
+
+'Balaban':'巴拉班',
+
 'Banach':'巴拿赫',
 
+'Barbier':'巴比尔',
+'Barnes':'巴恩斯',
+'Barnette':'巴尼特',
+'Barnsley':'巴恩斯利',
+'Bartlett':'巴特利特',
+
+'Bateman':'贝特曼',
+'Batman':'蝙蝠侠',
+'Bauer':'鲍尔',
+
+'Baxter':'百特',
+'Bayes':'贝叶斯',
+
+'Beelphegor':'贝尔菲戈尔',
+'Belphegor':'贝尔菲戈尔',
+'Behrmann':'贝尔曼',
+
+'Bell':'贝尔',
+'Beltrami':'贝尔特拉米',
+
+
+'Benford':'本福特',
+'Benson':'本森',
+
 'Bernoulli':'伯努利',
+
+'Bernstein':'伯恩斯坦',
+
+'Bertrand':'伯特兰德',
+
+'Bessel':'贝塞尔',
+'Bézier':'贝塞尔',
+
 'Bhaskara':'婆什伽罗',
 'Blackwell':'布莱克威尔',
 'Bolyai':'波尔约',
@@ -2348,6 +2516,8 @@ lang['zh_cn'] = {
 'Descartes':'笛卡尔',
 'Diophantus':'丢番图',
 'Einstein':'爱因斯坦',
+
+'Emmy':'艾米',
 'Eratosthenes':'埃拉托色尼',
 'Erdos':'厄多斯',
 'Escher':'艾舍尔',
@@ -2369,6 +2539,8 @@ lang['zh_cn'] = {
 'Grothendieck':'格罗滕迪克',
 'Hamilton':'哈密尔顿',
 'Hardy':'哈代',
+
+'Hausdorff':'豪斯道夫',
 'Hilbert':'希尔伯特',
 'Hypatia':'希帕蒂娅',
 'Jacob':'雅克布',
@@ -2377,7 +2549,9 @@ lang['zh_cn'] = {
 'Johnson':'约翰逊',
 'Kepler':'开普勒',
 'Khayyam':'哈亚姆',
+
 'Lagrange':'拉格朗日',
+'Laguerre':'拉盖尔',
 'Lambert':'兰伯特',
 'Laplace':'拉普拉斯',
 'Legendre':'勒让德',
@@ -2424,9 +2598,12 @@ lang['zh_cn'] = {
 'Shijie':'朱世杰',
 
 'Spanier':'斯帕尼尔',
+
+'Steinhaus':'斯坦因豪斯',
 'Stevin':'斯蒂文',
 'Stirling':'斯特林',
 
+'Tarski':'塔斯基',
 'Tartaglia':'塔尔塔利亚',
 'Thales':'泰勒斯',
 'Turing':'图灵',
