@@ -492,7 +492,46 @@ function gM(mesg, str, o) {
 		}
 
 		//可拆开翻译的前缀
-		if (/^(I[mn]|Ab)/i.test(msg)) {// 2字开头
+
+		if (/^(Pseudo)/i.test(msg)) {// 6字开头
+			var t=msg.substr(6).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,6), str, o) + ot
+			}
+				
+		}
+
+		
+		if (/^(Quasi|Multi|Hyper|Super|Ultra|Arc)/i.test(msg)) {// 5字开头
+			var t=msg.replace(/Arc/i,'$&.1').substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.replace(/Arc/i,'$&.1').substr(0,5), str, o) + ot
+			}
+		}
+
+
+		if (/^([SDH]emi|Poly|Anti|Auto)/i.test(msg)) {// 4字开头
+			var t=msg.substr(4).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+
+			if(ot){
+				return gM(msg.substr(0,4), str, o) + ot
+			}
+				
+		}
+
+		if (/^(Su[bp]|Non|Tri|Uni)/i.test(msg)) {// 3字开头
+			var t=msg.substr(3).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+	
+			if(ot){
+				return gM(msg.substr(0,3), str, o) + ot
+			}
+				
+		}
+
+
+		if (/^([UI][mn]|Ab)/i.test(msg)) {// 2字开头
 			var t=msg.substr(2).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
 	
 			if(ot){
@@ -509,41 +548,11 @@ function gM(mesg, str, o) {
 				
 		}
 
-		if (/^(Su[bp]|Non|Tri)/i.test(msg)) {// 3字开头
-			var t=msg.substr(3).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
-	
-			if(ot){
-				return gM(msg.substr(0,3), str, o) + ot
-			}
-				
-		}
 
-		if (/^([SDH]emi|Poly|Anti|Auto)/i.test(msg)) {// 4字开头
-			var t=msg.substr(4).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
 
-			if(ot){
-				return gM(msg.substr(0,4), str, o) + ot
-			}
-				
-		}
 
-		
-		if (/^(Quasi|Multi|Hyper|Super|Arc)/i.test(msg)) {// 5字开头
-			var t=msg.replace(/Arc/i,'$&.1').substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
-	
-			if(ot){
-				return gM(msg.replace(/Arc/i,'$&.1').substr(0,5), str, o) + ot
-			}
-		}
 
-		if (/^(Pseudo)/i.test(msg)) {// 6字开头
-			var t=msg.substr(6).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
-	
-			if(ot){
-				return gM(msg.substr(0,6), str, o) + ot
-			}
-				
-		}
+
 	}
 
 

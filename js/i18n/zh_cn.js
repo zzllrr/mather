@@ -17,8 +17,7 @@ lang['zh_cn'] = {
 	'fonT': '字体',
 	'bW': '边宽',
 	'Bw': '边宽',
-	'W': '宽',
-	'H': '高',
+
 	'H1': '一级标题',
 	'Fgc': '前景色',
 	'bg': '背景',
@@ -116,7 +115,7 @@ lang['zh_cn'] = {
 	'Schoolgirl':'女生',
 	'Schoolboy':'男生',
 	'Baby':'婴儿',
-
+'Neighborhood':'邻居',
 	'Enthusiast': '爱好者',
 	'Geek': '极客',
 	'Author':'作者',
@@ -302,6 +301,8 @@ lang['zh_cn'] = {
 
 	'Integrate':'整合',
 	'Reduction to Absurdity':'归谬',
+
+	'Illusion':'幻觉',
 
 	'Dialectical':'辩证的',
 	'Dialectic':'辩证',
@@ -644,7 +645,7 @@ lang['zh_cn'] = {
 	'Camp':'营',
 
 	'Fair':'公平',
-
+	'Happy':'开心',
 	// 工程	
 
 	'Making':'制作',
@@ -723,6 +724,7 @@ lang['zh_cn'] = {
 
 	'Convolution':'卷积',
 	'Distribution':'分布',
+	'Distributed':'分布',
 
 
 	'Lottery': '彩票',
@@ -772,7 +774,9 @@ lang['zh_cn'] = {
 
 	'Borderless': '无框',
 	'Visible':'可见',
+	'Visibility':'可视',
 
+	
 	'Pie': '饼',
 	'Bar': '条形',
 	'Flowchart': '流程',
@@ -899,6 +903,7 @@ lang['zh_cn'] = {
 	'About': '关于',
 	'Anti': '反',
 	'Non':'非',
+	'Un':'不',
 	'Co': '互',
 	'By': '按',
 	'From': '从',
@@ -912,6 +917,8 @@ lang['zh_cn'] = {
 
 	'Super':'超',
 	'Hyper':'超',
+	'Ultra':'超',
+	'Ultimate':'终极',
 
 	'Sub': '子',
 	'Quasi': '准',
@@ -1095,7 +1102,8 @@ lang['zh_cn'] = {
 	'Dynamic': '动态',
 
 	'Accident':'意外',
-	'Universal': '普适',
+	'Universal': '全称',
+	'Universal.1': '普适',
 	'Typical': '典型',
 	'Elementary': '初等',
 	'Key': '关键',
@@ -1128,6 +1136,12 @@ lang['zh_cn'] = {
 	'Backward.1':'向后',
 	'Forward':'前向',
 	'Forward.1':'向前',
+
+
+	'Upper':'上',
+	'Lower':'下',
+
+	'Half':'半',
 
 	'Clockwise': '顺时针',
 	'Anticlockwise': '逆时针',
@@ -1232,9 +1246,11 @@ lang['zh_cn'] = {
 	'Data Base':'数据库',
 	'Opacity': '透明度',
 
+	'Edge':'边',
 	'Band':'带',
 	'Width': '宽',
 	'Height': '高',
+	'Depth':'深度',
 	'Shadow': '阴影',
 	'Direction': '方向',
 	'Directional': '方向',
@@ -1470,6 +1486,9 @@ lang['zh_cn'] = {
 	
 	'Pistol':'手枪',
 	'Propeller':'螺旋桨',
+
+
+	'Sieve':'筛',
 	'Tortoise':'乌龟',
 
 	'Tree':'树',
@@ -1579,6 +1598,7 @@ lang['zh_cn'] = {
 	'Variant':'变量',
 	'Invariant':'不变量',
 
+	'Variate':'变量',
 	'Spline':'样条',
 	'Monster':'魔',
 
@@ -1873,7 +1893,7 @@ lang['zh_cn'] = {
 	'Plane': '平面',
 	'Sphere': '球面',
 
-
+	'Volume':'体',
 	'Solid': '立体',
 	'Solids': '多面体',
 
@@ -1889,6 +1909,7 @@ lang['zh_cn'] = {
 	'Uniform Polyhedron':'正多边形多面体',
 	'Noble polyhedron':'正直多面体',
 
+	'Polychoron':'四维多胞体',
 
 	'Tetrahedron':'四面体',
 	'Octahedron':'八面体',
@@ -2014,7 +2035,11 @@ lang['zh_cn'] = {
 
 	'Det': '行列式',
 	'Determinant': '行列式',
+	'Determined':'定',
 
+	'Unexpected':'意外',
+	'Unfinished':'未完成',
+	'Underdamped':'欠阻尼',
 	'Norm': '模',
 	'Inverse': '逆',
 	'Cofactor': '余子式',
@@ -2024,9 +2049,11 @@ lang['zh_cn'] = {
 
 	'Dependent':'相关',
 	'Independent':'无关',
+	'Independence':'独立',
 	'Max':'最大',
 	'Min':'最小',
 	'Extremum':'极值',
+	'Extreme':'极',
 
 	'Maximum':'最大值',
 	'Minimum':'最小值',
@@ -2307,6 +2334,16 @@ lang['zh_cn'] = {
 	'Convergence':'收敛',
 	'Uniform Convergence':'一致收敛',
 
+	'Uniformization':'单值化',
+	'Unimodal':'单峰',
+	'Unimodular':'幺模',
+	'Modular':'模',
+
+	'Union':'并',
+	'Unitary':'酉',
+
+	'Complemented':'补',
+
 	'Ant':'蚂蚁',
 	'Ant Colony':'蚁群',
 	'Percolation':'渗流',
@@ -2405,9 +2442,11 @@ lang['zh_cn'] = {
 
 'Alhazen':'阿尔哈曾',
 'Al-haytham':'海什木',
+
 'Al-karaji':'卡拉吉',
 'Al-kashi':'卡西',
 'Al-khwarizmi':'花拉子米',
+'Al-khowarizmi':'花拉子米',
 
 'Allendoerfer':'艾伦多弗',
 
@@ -2415,18 +2454,27 @@ lang['zh_cn'] = {
 'Alexandrov':'亚历山德罗夫',
 'Aleksandrov':'亚历山德罗夫',
 
+'Anaxagoras':'安纳萨格拉斯',
 'Anderson':'安德森',
 'Andrew':'安德鲁',
 'Andrews':'安德鲁斯',
 'Anosov':'阿诺索夫',
 
+'Anthonisz':'安托尼兹',
+'Antiphon':'安蒂丰',
+
 'Antoine':'安托万',
 
 'Apéry':'阿佩里',
-'Appell':'阿佩尔',
 'Apollonius':'阿波罗尼奥斯',
+
+'Appell':'阿佩尔',
+
+
 'Archimedes':'阿基米德',
-'Argand':'阿甘得',
+'Archytas':'阿契塔斯',
+
+'Argand':'阿尔冈',
 
 'Aristotle':'亚里士多德',
 
@@ -2436,6 +2484,7 @@ lang['zh_cn'] = {
 'Artin':'阿廷',
 'Aryabhata':'阿耶波多',
 
+'Atiyah':'阿蒂亚',
 
 
 
@@ -2447,109 +2496,635 @@ lang['zh_cn'] = {
 
 'Backhouse':'巴克豪斯',
 
-'Baer':'巴尔',
+'Backus':'巴克斯',
 
+
+'Baer':'巴尔',
+'Bahadur':'巴哈杜尔',
 
 'Bailey':'拜莱',
 
 'Baire':'拜尔',
 
-'Baker':'拜克',
+'Baker':'贝克',
 
 'Balaban':'巴拉班',
 
 'Banach':'巴拿赫',
-
+'Bang':'邦',
 'Barbier':'巴比尔',
+
+'Bargmann':'巴格曼',
+
 'Barnes':'巴恩斯',
 'Barnette':'巴尼特',
 'Barnsley':'巴恩斯利',
+'Barrow':'巴罗',
 'Bartlett':'巴特利特',
 
 'Bateman':'贝特曼',
 'Batman':'蝙蝠侠',
 'Bauer':'鲍尔',
 
-'Baxter':'百特',
+'Baxter':'巴克斯特',
 'Bayes':'贝叶斯',
 
+'Beda':'比德',
 'Beelphegor':'贝尔菲戈尔',
 'Belphegor':'贝尔菲戈尔',
 'Behrmann':'贝尔曼',
 
 'Bell':'贝尔',
+'Bellman':'贝尔曼',
 'Beltrami':'贝尔特拉米',
 
+'Bendixson':'本迪克松',
 
 'Benford':'本福特',
+
 'Benson':'本森',
 
+'Bergman':'伯格曼',
+'Berkeley':'伯克莱',
+'Bernays':'贝尔奈斯',
 'Bernoulli':'伯努利',
 
 'Bernstein':'伯恩斯坦',
 
+'Bers':'贝尔斯',
 'Bertrand':'伯特兰德',
 
+'Bessaga':'贝沙加',
 'Bessel':'贝塞尔',
+
+'Betti':'贝蒂',
 'Bézier':'贝塞尔',
 
+'Bézout':'贝祖',
+
 'Bhaskara':'婆什伽罗',
+
+'Bhattacharyya':'巴塔恰里亚',
+'Bianchi':'比安基',
+'Bieberbach':'比伯巴赫',
+'Binet':'比内',
+'Bing':'宾',
+'Biot':'比奥',
+'Birch':'伯奇',
+'Birkhoff':'伯克霍夫',
+'Bitsadze':'比察捷',
+'Bjerknes':'比耶克内斯',
+
 'Blackwell':'布莱克威尔',
+
+'Blaschke':'布拉施克',
+
+'Bloch':'布洛赫',
+
+'Bluementhal':'布卢门塔尔',
+'Bochner':'博赫纳',
+'Boethius':'博伊西斯',
+'Bogolyubov':'博戈柳博夫',
+'Bogorelov':'波格列洛夫',
+'Bohr':'波尔',
+'Bolibruch':'鲍里布鲁克',
+
+'Boltzmann':'玻尔兹曼',
+
+
 'Bolyai':'波尔约',
+'Bolza':'博尔扎',
+'Bolzano':'波尔扎诺',
+'Bombelli':'邦贝利',
+'Bombieri':'邦别里',
+'Bonnet':'博内',
+
 'Boole':'布尔',
+'Borcherds':'博切尔兹',
+'Borel':'博雷尔',
+'Born':'博恩',
+'Bosse':'博斯',
+'Bott':'博特',
+'Bourbaki':'布尔巴基',
+'Bourgain':'布尔盖恩',
+'Boussinesq':'布西内斯克',
+
+'Box':'博克斯',
+'Boyer':'博耶',
+
+'Bradwardine':'布拉德沃丁',
+
+
+
 'Brahmagupta':'婆罗摩及多',
+
+
+'Branges':'布朗斯',
+
+'Brauer':'布饶尔',
+'Bravais':'布拉维',
+'Brianchon':'布里昂雄',
+'Briggs':'布里格斯',
+
+'Brillouin':'布里渊',
+'Brouncker':'布隆克尔',
+
+'Brouwer':'布劳威尔',
+'Browder':'布劳德',
+'Bruhat':'布吕阿',
+'Brun':'布伦',
+'Bryson':'布里松',
+'Bucy':'布西',
+'Burgi':'比尔吉',
+'Buffon':'蒲丰',
+'Bunyakovski':'布尼亚科夫斯基',
+'Burali':'布拉里',
+'Burnside':'伯恩赛德',
+'Busemann':'布斯曼',
+'Byron':'拜伦',
+
+
+'Cajory':'卡约里',
+'Calabi':'卡拉比',
+'Caldron':'卡尔德龙',
+'Campanus':'坎帕努斯',
+'Campbell':'坎贝尔',
+
+
+
 'Cantor':'康托尔',
 'Cardano':'卡丹诺',
+'Carleman':'卡莱曼',
+
+'Carleson':'卡勒松',
+'Carlson':'卡尔松',
+'Carnot':'卡诺',
+
+
 'Carroll':'卡罗尔',
+
+'Cartan':'嘉当',
+'Cartier':'卡吉耶',
+'Cassels':'卡塞尔斯',
+
+'Catalan':'卡塔兰',
+
+
+
+
+
 'Cauchy':'柯西',
 'Cavalieri':'卡瓦列里',
 'Cayley':'凯莱',
 
 'Čech':'切赫',
 
+'Cesaro':'切萨罗',
+'Chan-chan Tsoo':'姜立夫',
+'Chandra':'钱德拉',
+'Chang Sun-Yung':'张圣蓉',
+'Chaplygin':'恰普雷金',
+
+'Chapman':'查普曼',
+'Charpit':'沙比',
+
+'Chasles':'沙勒',
+'Chebyshev':'切比雪夫',
+'Chen Ching-Jun':'陈景润',
+'Chen Kien-Kwong':'陈建功',
+'Chen Shiing-Shen':'陈省身',
+
+'Chevalley':'谢瓦莱',
+'Chiang L.F.':'姜立夫',
+'Chou Wei-Liang':'周炜良',
+
+'Christoffel':'克里斯托费尔',
+
+'Chun Kai-Lai':'钟开莱',
+
+'Chuquet':'许凯',
+'Church':'丘奇',
+
+'Civita':'齐维塔',
+'Clairaut':'克莱罗',
+
+'Clavius':'克拉维乌斯',
+'Clliford':'克利福德',
+
+'Cohen':'科恩',
+'Cohn-Vossen':'康福森',
+'Cole':'科尔',
+'Condorcet':'孔多塞',
+'Connes':'孔涅',
+
+
+
 'Conway':'康威',
+
+'Cooper':'库珀',
+
+
+
 'Copernicus':'哥白尼',
+
+'Cormack':'科马克',
+
+'Cornu':'考纽',
+
+'Corput':'科普',
+
+'Cotes':'科茨',
+'Courant':'库朗',
+'Cousin':'库赞',
+'Coxeter':'考克斯特',
+'Cramer':'卡莱姆',
+'Cramer':'克拉默',
+'Crelle':'克雷尔',
+'Cremona':'克雷莫纳',
+'Curtis':'柯蒂斯',
+
+
+
+"d'Alembert":'达朗贝尔',
+'da Vinci':'达芬奇',
+'Daniel':'丹尼尔',
+'Dantzig':'丹齐格',
+'Darboux':'达布',
+'Darwin':'达尔文',
+'Davenport':'达文波特',
+'Davis':'戴维斯',
+
+
+
+'de':'德',
 'De-moivre':'棣莫弗',
+
+
+'Deacartes':'笛卡尔',
+
+'Debreu':'德布鲁',
+'Debye':'德拜',
 'Dedekind':'戴德金',
+
+'Dehn':'德恩',
+'Deligne':'德利涅',
+'Delone':'杰洛涅',
+
 'Democritus':'德谟克利特',
+
+'Denjoy':'当茹瓦',
+
+'Der':'德',
 'Desargues':'德萨格',
 'Descartes':'笛卡尔',
+
+'Deuring':'多伊林',
+
+'Dickson':'狄克森',
+'Dieudonne':'迪厄多内',
+
+'Dini':'迪尼',
+
+'Dinostratus':'狄诺斯特拉托斯',
 'Diophantus':'丢番图',
+
+'Dirac':'狄拉克',
+'Dirichlet':'狄利克雷',
+
+'Donaldson':'唐纳森',
+'Doob':'杜布',
+'Douglas':'道格拉斯',
+"Drinfel'd":'德林费尔德',
+
+'du':'杜',
+'Du Bois-Reymond':'杜布瓦雷蒙',
+
+'Duhamel':'杜阿梅尔',
+'Dunford':'邓福德',
+'Dupin':'迪潘',
+
+'Dyer':'戴尔',
+'Dynkin':'邓肯',
+
+'Efimov':'叶菲莫夫',
+'Egorov':'叶戈罗夫',
+'Ehresmann':'埃雷斯曼',
+'Eilenberg':'艾伦伯格',
+
+
+
 'Einstein':'爱因斯坦',
+'Eisenhart':'艾森哈特',
+'Eisenstein':'艾森斯坦',
+
 
 'Emmy':'艾米',
+'Engquist':'恩奎斯特',
+'Enskog':'恩斯库格',
+
+
 'Eratosthenes':'埃拉托色尼',
 'Erdos':'厄多斯',
 'Escher':'艾舍尔',
 'Euclid':'欧几里得',
+'Eudemus':'欧德莫斯',
+'Eudoxus':'欧多克索斯',
 'Euler':'欧拉',
+
+
+'Faddeev':'法捷耶夫',
+'Fagnano':'法尼亚诺',
+'Faltings':'法尔廷斯',
+'Fano':'法诺',
+'Farey':'法里',
+'Farkas':'法卡斯',
+
+'Fatou':'法图',
+'Federer':'费德雷尔',
+'Fefferman':'费弗曼',
+'Feit':'费特',
+'Feller':'费勒',
 'Fermat':'费马',
+'Ferrari':'费拉里',
+'Ferro':'费罗',
 'Fibonacci':'斐波那契',
+'Fields':'菲尔兹',
+"Fikhtengol'tz":'菲赫金戈尔兹',
+'Filon':'菲隆',
+
+'Fine':'范因',
+'Fink':'芬克',
+'Finsler':'芬斯勒',
+'Fior':'费奥尔',
+'Fischer':'费舍尔',
+'Fisher':'费希尔',
+'Fitting':'菲廷',
+
+
 'Fourier':'傅里叶',
+'Forti':'福蒂',
+
+'Fraenkel':'弗伦克尔',
+'Frank':'弗兰克',
+'Frechet':'弗雷歇',
+'Fredholm':'弗雷德霍姆',
+'Freedman':'弗里德曼',
+'Frege':'弗雷格',
+'Fresnel':'菲涅尔',
+'Freudenthal':'弗罗伊登塔尔',
+'Friedrichs':'弗里德里希斯',
+'Frisch':'弗里施',
+'Frobenius':'弗罗贝尼乌斯',
+'Frohlich':'弗勒利希',
+'Fubini':'富比尼',
+'Fuchs':'富克斯',
+'Furstenberg':'弗斯腾伯格',
+
 'Galileo':'伽利略',
+'Galle':'加勒',
+
 'Galois':'伽罗瓦',
+'Galton':'高尔顿',
 'Gauss':'高斯',
+'Gegenbauer':'盖根鲍尔',
+'Gelfand':'盖尔范德',
+'Gelfond':'盖尔丰德',
+'Gentzen':'根岑',
+'Gerard':'杰拉德',
+'Gerbert':'热尔贝',
+'Gergonne':'热尔岗',
+
 'Germain':'热尔曼',
+'Gevrey':'热夫雷',
+'Gibbs':'吉布斯',
+'Girard':'吉拉尔',
+'Givens':'吉文斯',
+
+
+'Giorgi':'乔治',
+
+'Gleason':'格利森',
+'Glimm':'格利姆',
+'Gnedenko':'格涅坚科',
+
 'Godel':'哥德尔',
 'Gödel':'哥德尔',
+'Godunov':'戈杜诺夫',
 'Goldbach':'哥德巴赫',
+'Goldstein':'戈尔德施泰因',
+'Golubev':'戈卢别夫',
+'Gomory':'戈莫里',
 'Gordan':'戈丹',
 'Gorden':'戈登',
+'Gordon':'戈登',
+
+'Gosset':'戈塞特',
+'Goursat':'古尔萨',
+'Gowers':'高尔斯',
+'Gram':'格拉姆',
+'Grandi':'格兰迪',
+'Grassmann':'格拉斯曼',
+'Gregory':'格雷戈里',
+'Griess':'格里斯',
+'Griffiths':'格里菲斯',
+'Gromov':'格罗莫夫',
+'Gronwall':'格朗沃尔',
+'Grossmann':'格罗斯曼',
 
 'Grothendieck':'格罗滕迪克',
+'Gudermann':'古德曼',
+
+'Haar':'哈尔',
+'Hadamard':'阿达马',
+'Haefliger':'黑夫利格尔',
+'Hall':'霍尔',
+'Halley':'哈雷',
+'Halmos':'哈尔莫斯',
+'Hamel':'哈梅尔',
 'Hamilton':'哈密尔顿',
+'Hamilton.1':'哈密顿',
+'Hammerstein':'哈默斯坦',
+'Hamming':'汉明',
+'Hankel':'汉克尔',
 'Hardy':'哈代',
+'Harish':'哈里希',
+
+'Harnack':'哈纳克',
+'Hasse':'哈塞',
+
 
 'Hausdorff':'豪斯道夫',
+'Hawking':'霍金',
+
+'Hayashi Tsuruichi':'林鹤一',
+'Hayman':'海曼',
+
+
+'Haytham':'海塞姆',
+
+'Heath':'希思',
+'Heaviside':'赫维赛德',
+'Heawood':'希伍德',
+'Hecke':'赫克',
+'Heegaard':'赫戈',
+
+'Heilbronn':'海尔布伦',
+'Heine':'海涅',
+'Heisenberg':'海森伯',
+'Hellinger':'黑林格',
+'Helmert':'赫尔默特',
+'Helmholtz':'亥姆赫兹',
+'Hensel':'亨泽尔',
+'Hermite':'埃尔米特',
+'Heron':'海伦',
+'Heyting':'海廷',
+'Higman':'希格曼',
+
 'Hilbert':'希尔伯特',
+'Hill':'希尔',
+'Hipparchus':'希帕科斯',
+'Hippias':'希比阿斯',
+'Hippocrates':'希波克拉底',
+'Hire':'伊尔',
+'Hironaka Heisuke':'广中平佑',
+
+'Hirzebruch':'希策布鲁赫',
+'Hobbes':'霍布斯',
+'Hochschild':'霍赫希尔德',
+'Hodge':'霍奇',
+'Holmgren':'霍姆格伦',
+
+'Hopf':'霍普夫',
+'Hopkins':'霍普金斯',
+'Horner':'霍纳',
+'Hotelling':'霍特林',
+'Householder':'豪斯霍尔德',
+'Hsiang':'项',
+'Hsiang Wu Yi':'项武义',
+
+'Hsu Pao Lu':'许宝騄',
+'Hua Loo Keng':'华罗庚',
+'Hudde':'许德',
+'Hukuhara Masuo':'福原满洲雄',
+'Hunt':'亨特',
+'Huntington':'亨廷顿',
+'Hurewitz':'胡尔维奇',
+'Hurwitz':'赫尔维茨',
+'Huygens':'惠更斯',
+
+
+
 'Hypatia':'希帕蒂娅',
+
+
+'Ibn':'伊本',
+'Ince':'英斯',
+
+'Infeld':'因费尔德',
+
+'Iwasawa Kenkichi':'岩泽健吉',
+'Iyanaga Shokichi':'弥永昌吉',
+
+
+
 'Jacob':'雅克布',
 'Jacobi':'雅可比',
-'Jiushao':'秦九韶',
-'Johnson':'约翰逊',
-'Kepler':'开普勒',
-'Khayyam':'哈亚姆',
+'Jacobson':'雅各布森',
 
+'Janko':'扬科',
+
+'Jevons':'杰文斯',
+
+'Jiushao':'秦九韶',
+
+'John':'约翰',
+'Johnson':'约翰逊',
+
+'Jones':'琼斯',
+'Jordan':'若尔当',
+'Julia':'茹利亚',
+
+
+'Kac':'卡茨',
+'Kakutani Shizuo':'角谷静夫',
+'Kalman':'卡尔曼',
+'Kamke':'卡姆克',
+
+'Kampen':'坎彭',
+
+'Kant':'康德',
+
+'Kantorovich':'康托洛维奇',
+
+'Kaplansky':'卡普兰斯基',
+'Karlin':'卡林',
+'Karpinsky':'卡尔平斯基',
+'Kato Tosio':'加藤敏夫',
+
+'Kawada Yukiyoshi':'河田敬义',
+'Keldysh':'凯尔迪什',
+'Keller':'凯勒',
+'Kellogg':'凯洛格',
+'Kelvin':'开尔文',
+
+'Kempe':'肯普',
+'Kendall':'肯德尔',
+
+'Kepler':'开普勒',
+
+'Khatri':'卡德里',
+
+'Khayyam':'哈亚姆',
+'Khayyam.1':'海亚姆',
+
+'Khinchin':'辛钦',
+'Kiang Tsai Han':'江泽涵',
+
+'Kiefer':'基弗',
+'King Lai Hiong':'熊庆来',
+
+'Kirchhoff':'基尔霍夫',
+'Kleene':'克林',
+
+'Klein':'克莱因',
+'Kleinberg':'克莱因伯格',
+'Kline':'克莱因',
+
+'Kloosterman':'克鲁斯特曼',
+
+'Knopp':'克诺普',
+
+'Knuth':'克努特',
+'Koch':'柯赫',
+
+'Kodaira Kunihiko':'小平邦彦',
+
+'Koebe':'克贝',
+'Kolmogorov':'科尔莫戈洛夫',
+
+'Kontsevich':'孔采维奇',
+'Koopmans':'库普曼斯',
+'Korteweg':'科尔泰沃赫',
+
+'Kostant':'科斯坦特',
+'Koszul':'科斯居尔',
+
+'Kovalevskaya':'柯瓦列夫斯卡娅',
+
+'Kravchuk':'克拉夫丘克',
+
+'Krein':'克赖因',
+'Kronecker':'克罗内克',
+'Krull':'克鲁尔',
+'Kruskal':'克鲁斯卡尔',
+'Kubota Tadahiko':'洼田忠彦',
+'Kummer':'库默尔',
+'Kuratowski':'库拉托夫斯基',
+'Kurosh':'库洛什',
+'Kutta':'库塔',
+
+
+'La':'拉',
 'Lagrange':'拉格朗日',
 'Laguerre':'拉盖尔',
 'Lambert':'兰伯特',
@@ -2557,66 +3132,705 @@ lang['zh_cn'] = {
 'Legendre':'勒让德',
 'Leibniz':'莱布尼兹',
 'Leonardo':'列奥纳多',
+
+"L'Hospital":'洛必达',
 'Lie':'李',
 'Lobachevsky':'罗巴切夫斯基',
+
+'Lacroix':'拉克鲁瓦',
+'Ladyzhenskaya':'拉德任斯卡娅',
+'Lafforgue':'拉福格',
+'Lagrange':'拉格朗日',
+'Laguerre':'拉盖尔',
+'Lalande':'拉朗德',
+
+'Lambert':'兰伯特',
+'Lanchester':'兰彻斯特',
+
+'Lanczos':'兰乔斯',
+'Landau':'兰道',
+'Landen':'兰登',
+
+'Lane':'莱恩',
+'Langlands':'朗兰兹',
+'Laplace':'拉普拉斯',
+'Laurent':'洛朗',
+"Lavrent'ev":'拉夫连季耶夫',
+
+'Lax':'拉克斯',
+
+'Le':'勒',
+'Lebesgue':'勒贝格',
+
+'Leffler':'列夫勒',
+'Lefschetz':'莱夫谢茨',
+
+'Legendre':'勒让德',
+'Lehmer':'莱默',
+
+'Leibler':'莱布勒',
+
+'Leibniz':'莱布尼兹',
+'Leontief':'列昂惕夫',
+'Leray':'勒雷',
+'Levi':'莱维',
+
+'Levinson':'莱文森',
+'Levitan':'列维坦',
+'Levy':'莱维',
+
+'Lewy':'卢伊',
+'Lie':'李',
+'Lieb':'利布',
+"Lin Chia Chiao":'林加翘',
+
+'Lindeloef':'林德勒夫',
+'Lindemann':'林德曼',
+'Linnik':'林尼克',
+'Lions':'利翁斯',
+'Liouville':'刘维尔',
+'Lipschitz':'利普希茨',
+'Listing':'利斯廷',
+'Littlewood':'李特尔伍德',
+'Lobachevsky':'罗巴切夫斯基',
+'Lojasiewicz':'洛雅西维奇',
+'Loomis':'卢米斯',
+'Lorentz':'洛伦兹',
+
+
 'Lorenz':'洛伦兹',
 'Lovelace':'拉芙蕾丝',
+'Luzin':'卢津',
+'Lyapunov':'李雅普诺夫',
+
+
+'Mac':'麦克',
+'Maclaurin':'麦克劳林',
+
 'Madhava':'玛德瓦',
-'Mandelbrot':'芒德勃罗',
+
+'Magenes':'马格内斯',
+
+'Mahler':'马勒',
+'Malliavin':'马利亚万',
+
+'Mandelbrot':'芒德布罗',
+'Mandelbrot.1':'芒德勃罗',
+
+'Manin':'马宁',
+
+'Margulis':'马尔古利斯',
+'Markov':'马尔科夫',
+
+'Markushevich':'马尔库舍维奇',
+'Matiyasevich':'马蒂雅舍维奇',
+'Matsunaga Yoshisuke':'松永良别',
+
+'Maupertuis':'莫佩蒂',
+
+'Maxwell':'麦克斯韦',
+
+'McMullen':'麦克马伦',
+'Menaechmus':'梅内克缪斯',
+
+'Menelaus':'门纳劳斯',
+'Mercator':'梅卡托',
+
+
+
 'Mersenne':'梅森',
+
+'Mikami Yoshio':'三上义夫',
+
+'Mills':'米尔斯',
+'Milnor':'米尔诺',
+'Minfu Tan Hu':'胡明复',
+
+'Minkowski':'闵可夫斯基',
+
+
+'Mises':'米泽斯',
+'Mittag':'米塔',
+
 'Mirzakhani':'米尔扎哈尼',
 'Monge':'蒙日',
+'Montel':'蒙泰尔',
+
+'Montgomery':'蒙哥马利',
+'Montucla':'蒙蒂克拉',
+'Morawetz':'莫拉维兹',
+'Mordell':'莫德尔',
+'Morgenstern':'莫根施特恩',
+'Mori Shigefumi':'森重文',
+
+'Morgan':'摩根',
+'Morley':'莫利',
+'Morse':'莫尔斯',
+'Moser':'莫泽',
+'Mosteller':'莫斯特勒',
+'Mostow':'莫斯托',
+'Mostowski':'莫斯托夫斯基',
+
+'Moulton':'莫尔顿',
+'Mumford':'芒福德',
+'Murray':'默里',
+
+
+'Nagata Masayosi':'永田雅宜',
+
+'Naimark':'奈马克',
+
+'Nakayama Tadasi':'中山正',
+
+
 'Napier':'纳皮尔',
 'Napoleon':'拿破仑',
 'Nash':'纳什',
+
+'Navier':'纳维',
+'Neugebauer':'诺伊格鲍尔',
+
+
 'Neumann':'诺依曼',
+
+'Nevanlinna':'奈望林纳',
+'Newman':'纽曼',
+
+
 'Newton':'牛顿',
+'Neyman':'奈曼',
+
+'Nichomachus':'尼科马库斯',
+'Nichomedes':'尼科米德',
+
+
+'Nicolaus':'尼古拉',
 'Nicomachus':'尼科马库斯',
+
+'Nieuwentijt':'纽文泰特',
+
+
+
 'Nightingale':'南丁格尔',
+
+'Nirenberg':'尼伦伯格',
+
+
 'Noether':'诺特',
+'Novikov':'诺维科夫',
+
+
+'Obuhov':'奥布霍夫',
+
+'Ohm':'欧姆',
+'Okounkov':'奥昆科夫',
+'Ore':'奥尔',
+
 'Oresme':'奥里斯姆',
+'Oresme.1':'奥雷姆',
+
+'Orlicz':'奥尔利奇',
+'Ornstein':'奥恩斯坦',
+'Ostrogradsky':'奥斯特罗格拉茨基',
+'Otto':'奥托',
+'Oughtred':'奥特雷德',
+
+
+
+
 'Pacioli':'帕西奥里',
+'Pacioli.1':'帕乔利',
+
+'Papakyriakopoulos':'帕帕基里亚科普洛斯',
+'Parent':'帕朗',
+'Parmenides':'巴门尼德斯',
+'Parseval':'帕塞瓦尔',
+
 'Pascal':'帕斯卡',
+'Pasch':'帕施',
+'Peacock':'皮科克',
+
 'Peano':'皮亚诺',
+
+'Pearson':'皮尔逊',
+'Peirce':'皮尔斯',
+'Pell':'佩尔',
+
+
+
 'Penrose':'彭罗斯',
+
+'Percival':'珀西瓦尔',
 'Perelman':'佩雷尔曼',
+
+'Perron':'佩龙',
+'Peterson':'彼得松',
+'Petrov':'彼得罗夫',
+'Petrovsky':'彼得罗夫斯基',
+'Peurbach':'波伊尔巴赫',
+
+'Pfaff':'普法夫',
+'Philolaus':'费洛劳斯',
+
+'Piatetski':'皮亚捷茨基',
+
+'Picard':'皮卡',
+
 'Pingala':'平格拉',
+
+'Pinsker':'平斯克',
+'Planck':'普朗克',
+'Plateau':'普拉托',
+
+
 'Plato':'柏拉图',
+
+'Playfair':'普莱菲尔',
+'Plemelj':'普勒梅利',
+'Plutarch':'普鲁塔克',
+
 'Poincare':'庞加莱',
 'Poisson':'泊松',
+
+'Pol':'波尔',
+'Polya':'波利亚',
+
+
+'Poncelet':'蓬斯莱',
+'Pontryagin':'庞特里亚金',
+'Post':'波斯特',
+'Powell':'鲍威尔',
+'Prandtl':'普朗特',
+'Privalov':'普里瓦洛夫',
+'Proclus':'普罗克鲁斯',
+
+
 'Ptolemy':'托勒密',
+
+'Puppus':'帕波斯',
+'Putnam':'普特南',
 'Pythagoras':'毕达哥拉斯',
+
+
+'Radau':'拉道',
+
+'Rademacher':'拉德马赫',
+'Radon':'拉东',
+
 'Ramanujan':'拉马努金',
+'Ramsey':'拉姆齐',
+'Rankin':'兰金',
+'Rao':'拉奥',
+'Raphson':'拉弗森',
+'Ratner':'拉特纳',
+'Rayleigh':'瑞利',
+
+'Razbborov':'拉兹波洛夫',
+'Regiomontanus':'雷巧蒙塔努斯',
+'Reidemeister':'赖德迈斯特',
+
+
 'Regiomontanus':'雷格蒙塔努斯',
+'Remes':'列梅兹',
+'Reynolds':'雷诺',
+
+
+'Rham':'拉姆',
+
+'Rheticus':'雷蒂库斯',
+
+'Ricatti':'里卡蒂',
+'Ricci':'里奇',
+'Richardson':'理查森',
+
+
+
 'Riemann':'黎曼',
 
+'Riesz':'里斯',
+
+'Ritt':'里特',
+'Ritz':'里茨',
+
+'Robert':'罗伯特',
+
+'Roberval':'罗伯瓦尔',
+
+'Robin':'罗宾',
+
+'Robinson':'鲁滨逊',
+'Roch':'罗赫',
+
+'Rodrigues':'罗德里格斯',
+'Rogers':'罗杰斯',
+
+'Rohrl':'勒尔',
+'Rokhlin':'罗赫林',
+'Rolle':'罗尔',
+'Rosen':'罗森',
+'Roth':'罗特',
+
+"Rozenfel'd":'罗森菲尔德',
+
 'Ruffini':'鲁菲尼',
+'Runge':'龙格',
 'Russell':'罗素',
 
+
+
+
+'Saccheri':'萨凯里',
+
+'Samuelson':'萨缪尔森',
+
+'Sasaki Shigeo':'佐佐木重夫',
+
+'Sato Mikio':'佐藤干夫',
+
+'Schauder':'绍德尔',
+
+'Schimidt':'施密特',
+'Schmid':'施密德',
+
+'Schneider':'施耐德',
+
+'Schoenfeld':'舍恩菲尔德',
+
+'Schooten':'斯霍滕',
+'Schubert':'舒伯特',
+
+
 'Schur':'舒尔',
+
+'Schwartz':'施瓦兹',
+'Schwarz':'施瓦兹',
+'Segre':'塞格雷',
+'Seidel':'赛德尔',
+'Seifert':'塞弗特',
+'Seki Takakazu':'关孝和',
+
+'Selberg':'塞尔贝格',
+'Serre':'塞尔',
+
+'Shafarevich':'沙法列维奇',
+
+
+
 'Shannon':'香农',
+
+
+
+'Shane':'沙恩',
+'Shapiro':'沙皮罗',
+
+'Shelah':'希拉',
+'Shelah.1':'谢拉赫',
+
+
 'Shijie':'朱世杰',
 
+'Shimura Goro':'志村五郎',
+"Shnirel'man":'施尼雷尔曼',
+
+'Shoda Kenjiro':'正田建次郎',
+
+'Shor':'肖尔',
+
+'Siegel':'西格尔',
+
+'Simon':'西蒙',
+
+'Simpson':'辛普森',
+
+'Singer':'辛格',
+'Siu Yum Tong':'萧荫堂',
+
+'Skolem':'斯科伦',
+
+
+'Sluse':'斯吕塞',
+
+'Smale':'斯梅尔',
+
+'Smirnov':'斯米尔诺夫',
+
+'Smith':'史密斯',
+'Smogolenski':'穆尼阁',
+'Snell':'斯涅尔',
+
+'Sobolev':'索伯列夫',
+
+
 'Spanier':'斯帕尼尔',
+'Spencer':'斯潘塞',
+
+'Sperner':'施佩纳',
+
+'Sridhara':'斯里达拉',
+
+
+
+'Staudt':'施陶特',
+'Steenrod':'斯廷罗德',
+
+'Stein':'斯坦',
+'Steinberg':'斯坦贝格',
+'Steiner':'施泰纳',
 
 'Steinhaus':'斯坦因豪斯',
+'Steinhaus.1':'施坦豪斯',
+'Steinitz':'施泰尼兹',
+
+'Steklov':'斯杰克洛夫',
+
+'Stepanov':'斯杰潘诺夫',
+
+
 'Stevin':'斯蒂文',
+
+'Stickelberger':'施蒂克贝格',
+
+
+'Stieltjes':'斯蒂尔切斯',
+
+'Stiefel':'斯蒂弗尔',
+'Stifel':'施蒂费尔',
+
+
 'Stirling':'斯特林',
+
+'Stokes':'斯托克斯',
+
+'Stone':'斯通',
+'Struik':'斯特罗伊克',
+'Strutt':'斯特拉特',
+'Sturm':'斯图姆',
+
+'Su Bu Chin':'苏步青',
+
+'Sudan':'苏丹',
+'Suetuna Zyoiti':'末纲恕一',
+
+'Sullivan':'沙利文',
+'Suslin':'苏斯林',
+
+'Swinnerton':'斯温纳顿',
+
+'Sylow':'西罗',
+
+'Sylvester':'西尔维斯特',
+
+
+
+
+'Takagi Teiji':'高木贞治',
+
+'Takebe Katahiro':'建部贤弘',
+
+'Tamarkin':'塔马金',
+
+'Taniyama Yutaka':'谷山丰',
+
+'Tannery':'塔内里',
 
 'Tarski':'塔斯基',
 'Tartaglia':'塔尔塔利亚',
+
+'Taryan':'塔尔杨',
+
+'Tate':'泰特',
+
+'Tauber':'陶伯',
+
+'Taylor':'泰勒',
+'Teichmueller':'泰希米勒',
+
+
 'Thales':'泰勒斯',
+
+'Theaetetus':'泰特托斯',
+
+'Theodorus':'西奥多罗斯',
+'Theodosius':'西奥多修斯',
+
+'Theon':'塞翁',
+'Thom':'托姆',
+
+'Thompson':'汤普森',
+'Thomson':'汤姆森',
+
+'Thurston':'瑟斯顿',
+'Tikhonov':'吉洪诺夫',
+
+'Tinbergen':'丁伯根',
+'Tissot':'蒂索',
+
+'Titchmarsh':'蒂奇马什',
+'Tits':'蒂茨',
+
+'Toeplitz':'特普利茨',
+'Tonelli':'托内利',
+
+'Torricelli':'托里拆利',
+'Treves':'特利夫斯',
+
+'Tricomi':'特里科米',
+'Truesdell':'特鲁斯德尔',
+
+'Tschirnhaus':'奇恩豪斯',
+
+'Tsen Chiung Tze':'曾炯之',
+'Tsen Tze Fan':'郑之藩',
+'Tuan Hsio Fu':'段学复',
+'Tucker':'塔克',
+'Tukey':'图基',
 'Turing':'图灵',
 
+
+'Uhlenbeck':'乌伦贝克',
+'Ulam':'乌拉姆',
+'Urbanik':'乌尔班尼克',
+'Uryson':'乌雷松',
+
+
+'Valiant':'瓦林特',
+'Valiron':'瓦利龙',
+
 'Vandermonde':'范德蒙',
+'Varadhan':'瓦拉德汉',
+
+'Veblen':'维布伦',
+'Venn':'维恩',
+
+'Verrier':'维耶',
 'Vieta':'韦达',
-'Viete':'韦达',
+'Viète':'韦达',
+
+'Vietoris':'菲托里斯',
+'Ville':'维尔',
+
+'Vinogradov':'维诺格拉多夫',
+'Viterbi':'维特比',
+'Viviani':'维维亚尼',
+'Voevodsky':'沃耶沃茨基',
+'Volterra':'沃尔泰拉',
+
+'Von':'冯',
+
+'Voronoi':'沃罗诺伊',
+
+'Vries':'弗里斯',
+
+
+'Waerden':'瓦尔登',
+
+'Wagner':'瓦格纳',
+
+'Wagstaff':'瓦格斯塔夫',
+
+'Wald':'瓦尔德',
+'Wall':'沃尔',
+'Wallace':'华莱士',
+
 
 'Wallis':'瓦利斯',
+'Wallis.1':'沃利斯',
+
+'Walras':'瓦尔拉',
+
+'Walsh':'沃尔什',
+
+'Wang Hao':'王浩',
+
+'Wang Hsien Chung':'王宪钟',
+'Wang Shianghaw':'王湘浩',
+'Wantzel':'旺策尔',
+
+'Waring':'华林',
+
+'Watson':'沃森',
+
+'Weber':'韦伯',
+'Wedderburn':'韦德伯恩',
+
+'Weierstrass':'魏尔斯特拉斯',
+'Weil':'韦伊',
+'Werner':'维尔纳',
+
+'Wessel':'韦塞尔',
+
+'Weyl':'外尔',
+
+'Whewell':'休厄尔',
+'Whitehead':'怀特黑德',
+'Whitney':'惠特尼',
+
+'Whittaker':'惠特克',
+'Whyburn':'怀伯恩',
+
+
 
 'Wiener':'维纳',
+'Widgerson':'威格森',
+
+'Wilder':'怀尔德',
+
+
 'Wiles':'怀尔斯',
-	
+
+'Wilkes':'威尔克斯',
+
+'Willmore':'威尔莫',
+'Wiman':'威曼',
+'Wintner':'温特纳',
+'Wishart':'威沙特',
+'Witt':'维特',
+
+'Witten':'威顿',
+'Witten.1':'威滕',
+
+'Wittgenstein':'维特根斯坦',
+'Wolf':'沃尔夫',
+'Wren':'雷恩',
+'Wrongski':'朗斯基',
+
+'Wu Hung Hsi':'伍鸿熙',
+'Wylie':'伟烈亚力',
+
+'Yanghui':'杨辉',
+'Yang Chen Ning':'杨振宁',
+'Yang Ko Chuen':'杨武之',
+
+'Yates':'耶茨',
+'Yau Shing Tung':'丘成桐',
+'Yoccoz':'约柯兹',
+'Yosida Kosaku':'吉田耕作',
+'Youden':'尤登',
+'Young':'杨',
+
+
+'Yuk Wing Lee':'李郁荣',
+
+'Yukawa Hideki':'汤川秀树',
+
+'Yushkevich':'尤什凯维奇',
+
+
+'Zabusky':'扎布斯基',
+'Zadeh':'扎德',
+'Zariski':'扎里斯基',
+'Zeeman':'塞曼',
+'Zelmanov':'泽尔曼诺夫',
+'Zeno':'芝诺',
+'Zermelo':'策梅洛',
+'Zeuthen':'措伊滕',
+'Zhukovsky':'茹科夫斯基',
+'Zipping':'齐平',
+
+'Zorn':'佐恩',
+
+
+
 	//Math subject
 	'Level-1': '一级',
 	'Level-2': '二级',
