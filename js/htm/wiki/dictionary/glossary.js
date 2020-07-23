@@ -18,6 +18,10 @@ Table([i18(ZLR('Name Type Features'))],[
 
 
 $(function(){
+if(/q=Dictionary\/Glossary/.test(location.href)){
+
+
+ 
 	$('table').last().before(Arrf(function(x){return detail(x,
 		DCtv('GlossaryIndexes'),0,'class="Glossary floatl"')}, seqsA('0,A~Z')).join(''));
 
@@ -59,7 +63,8 @@ $(function(){
 			}
 			c.html(ul(A))
 		}
-	});
+  });
+}
 });
 
 /*

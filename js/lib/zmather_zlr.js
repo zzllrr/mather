@@ -326,12 +326,16 @@ function gM(mesg, str, o) {
 			x = x.replace(/. ./g, function (x) { return /[a-z] [a-z]/i.test(x) ? x : x.replace(/ /g, '') })
 		}
 	}
-	if (!x && /-/.test(msg)) {
-		x = Arrf(function (t) { return gM(t, str, o) }, msg.split('-')).join('-');
+	if (!x && /[-]/.test(msg)) {
+		x = Arrf(function (t) { return gM(t, str, o) }, msg.split(/[-]/)).join('-');
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
-			x = x.replace(/-(\D)/g, '$1')
+			x = x.replace(/[-](\D)/g, '$1')
 		}
+	}
+
+	if (!x && /[–]/.test(msg)) {
+		x = Arrf(function (t) { return gM(t, str, o) }, msg.split(/[–]/)).join('–');
 	}
 
 	if (!x && /\./.test(msg)) {// .无需翻译
@@ -359,7 +363,7 @@ function gM(mesg, str, o) {
 			}
 			return t2
 		}
-		if (/s'$/.test(msg)) {
+		if (/[sz]'$/.test(msg)) {
 			var t=msg.replace(/.$/,'.1'), t2=msg.replace(/.$/,''), ot=O[t] || O[t2];
 
 			if(ot){
