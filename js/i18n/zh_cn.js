@@ -203,6 +203,7 @@ lang['zh_cn'] = {
 
 	'Conjecture':'猜想',
 	'Hypothesis': '假设',
+	'Hypotheses': '假设',
 	'Suppose': '假设',
 	'Postulate': '假设',
 
@@ -224,10 +225,13 @@ lang['zh_cn'] = {
 	'Proved':'已证明',
 	'Disproved':'已否定',
 
+	'such that':'满足',
+
 	'Inference': '推断',
 	'Corollary':'推论',
 	'Statement':'陈述',
 
+	'Restriction':'限制',
 	'Admissible':'可接受',
 
 	'Calculate': '计算',
@@ -289,6 +293,11 @@ lang['zh_cn'] = {
 	'Uniq':'去重',
 	'Unique':'唯一',
 	'Repeat':'重复',
+
+	'Same':'相同',
+	'Distinct':'不同',
+	'Different':'不同',
+
 
 	'Ergodic':'遍历',
 	'Ergodicity':'遍历',
@@ -420,6 +429,9 @@ lang['zh_cn'] = {
 	'Arc Second':'弧秒',
 	'Arcsecond':'秒',
 
+	'Now':'现在',
+	'Tomorrow':'明天',
+	'Yesterday':'昨天',
 
 	'Reference': '引用',
 	'Newsletter':'新闻通讯',
@@ -716,6 +728,7 @@ lang['zh_cn'] = {
 	'Mean':'平均',
 	'Average':'平均',
 	'Seek':'寻找',
+	'See':'参见',
 
 	'Intermediate':'中',
 	'Correlation':'相关系数',
@@ -920,6 +933,10 @@ lang['zh_cn'] = {
 	'Co.2': '同',
 
 	'By': '按',
+	'For':'为了',
+	'For.1':'因为',
+	'For.2':'至于',
+
 	'From': '从',
 	'From.1':'于',
 
@@ -1135,6 +1152,7 @@ lang['zh_cn'] = {
 	'Outer': '外',
 	'Symmetric': '对称',
 	'Asymmetric': '反对称',
+	'Antisymmetric':'反对称',
 	'Symmetry': '对称',
 
 	'Unsolved': '未解',
@@ -1217,7 +1235,8 @@ lang['zh_cn'] = {
 	'Automate': '自动',
 	'Flexible': '灵活的',
 	'Agile': '敏捷的',
-	'Compact': '紧凑的',
+	'Compact': '紧',
+	'Noncompact':'非紧',
 	'Extend':'扩展',
 	'Extendable': '可扩展',
 	'Enumeration':'枚举',
@@ -1332,6 +1351,9 @@ lang['zh_cn'] = {
 
 	'Greater than':'大于',
 	'Less than':'小于',
+
+	'Earlier than':'先于',
+	'Later than':'晚于',
 
 	'At Least':'至少',
 	'At Most':'至多',
@@ -1455,6 +1477,8 @@ lang['zh_cn'] = {
 	'Reference':'参考资料',
 
 	'Reflect':'反射',
+	'Reflexive':'自反',
+
 	'Link': '链',
 	'href': '超链接',
 	'Lerp': '线性插值',
@@ -1662,9 +1686,10 @@ lang['zh_cn'] = {
 	'Dodeca':'十二',
 	'Icosa':'二十',
 
+	'Grand':'大',
 
-
-
+	'Partite':'分',
+	'Bipartite':'二分',
 
 	'Nomial': '项式',
 	'Polynomial': '多项式',
@@ -1788,6 +1813,9 @@ lang['zh_cn'] = {
 
 	'Equivalence': '等价关系',
 	'Partial Order': '偏序',
+	'Total Order': '全序',
+
+	'Poset':'偏序集',
 	'Cover': '覆盖',
 	'Chain': '链',
 	'Inversion': '逆序',
@@ -2103,6 +2131,7 @@ lang['zh_cn'] = {
 	'Rank': '秩',
 	'Trace': '迹',
 	'Order': '阶',
+	'Order.1': '序',
 	'Piece': '分段',
 
 	'Det': '行列式',
@@ -2144,7 +2173,7 @@ lang['zh_cn'] = {
 	'Binom': '二项式',
 	'Subsup': '上下标',
 
-	'Dimension': '维度',
+	'Dimension': '维',
 	'Phenomenon':'现象',
 	// 几何
 
@@ -2309,6 +2338,8 @@ lang['zh_cn'] = {
 	'Homeomorphism':'同胚',
 	'Homomorphism':'同态',
 	'Isomorphism':'同构',
+
+	'Holomorphic':'全纯',
 
 	'Reconstruction':'重构',
 
@@ -2872,9 +2903,14 @@ lang['zh_cn'] = {
 'Browder':'布劳德',
 'Bruhat':'布吕阿',
 
+
+'Bruijn':'布鲁因',
+
 'Brumer':'布鲁默',
 
 'Brun':'布伦',
+
+'Bryan':'布莱恩',
 'Bryson':'布里松',
 'Bucy':'布西',
 
@@ -3091,6 +3127,8 @@ lang['zh_cn'] = {
 
 'Elliott':'艾略特',
 
+'Elon':'埃隆',
+
 'Emmy':'艾米',
 'Engquist':'恩奎斯特',
 'Enskog':'恩斯库格',
@@ -3227,6 +3265,8 @@ lang['zh_cn'] = {
 'Gowers':'高尔斯',
 'Gram':'格拉姆',
 'Grandi':'格兰迪',
+
+'Granville':'格兰威尔',
 'Grassmann':'格拉斯曼',
 'Gregory':'格雷戈里',
 'Griess':'格里斯',
@@ -3308,7 +3348,11 @@ lang['zh_cn'] = {
 'Hobbes':'霍布斯',
 'Hochschild':'霍赫希尔德',
 'Hodge':'霍奇',
+
+
 'Holmgren':'霍姆格伦',
+
+'Holowinsky':'霍洛温斯基',
 
 'Hopf':'霍普夫',
 'Hopkins':'霍普金斯',
@@ -3348,6 +3392,8 @@ lang['zh_cn'] = {
 'Jacobi':'雅可比',
 'Jacobson':'雅各布森',
 
+'James':'詹姆斯',
+
 'Janko':'扬科',
 
 'Jevons':'杰文斯',
@@ -3363,12 +3409,18 @@ lang['zh_cn'] = {
 
 
 'Kac':'卡茨',
+
+'Kadison':'卡迪生',
+
+'Kakeya':'挂谷',
 'Kakutani Shizuo':'角谷静夫',
 'Kalman':'卡尔曼',
 'Kamke':'卡姆克',
 
 'Kampen':'坎彭',
 
+
+'Kannan':'坎楠',
 'Kant':'康德',
 
 'Kantorovich':'康托洛维奇',
@@ -3378,7 +3430,9 @@ lang['zh_cn'] = {
 'Karpinsky':'卡尔平斯基',
 
 'Kato':'加藤',
-'Tosio':'敏夫',
+
+
+
 
 'Katz':'卡茨',
 
@@ -3386,6 +3440,8 @@ lang['zh_cn'] = {
 
 
 'Kayal':'卡亚勒',
+
+
 
 'Kazdan':'卡兹丹',
 
@@ -3482,11 +3538,14 @@ lang['zh_cn'] = {
 
 'Lang':'朗',
 
+'Langevin':'朗之万',
 'Langlands':'朗兰兹',
 'Laplace':'拉普拉斯',
 'Laurent':'洛朗',
 "Lavrent'ev":'拉夫连季耶夫',
 
+
+'Lawson':'罗森',
 'Lax':'拉克斯',
 
 
@@ -3536,7 +3595,11 @@ lang['zh_cn'] = {
 "Lin Chia Chiao":'林加翘',
 
 'Lindeloef':'林德勒夫',
+'Lindelöf':'林德勒夫',
+
 'Lindemann':'林德曼',
+'Lindenstrauss':'林登施特劳斯',
+
 'Linnik':'林尼克',
 'Lions':'利翁斯',
 'Liouville':'刘维尔',
@@ -3593,6 +3656,8 @@ lang['zh_cn'] = {
 'Maupertuis':'莫佩蒂',
 
 'Maxwell':'麦克斯韦',
+
+'Maynard':'梅纳德',
 
 'Mazur':'马祖尔',
 
@@ -3782,6 +3847,7 @@ lang['zh_cn'] = {
 'Polignac':'波利尼亚克',
 
 'Polya':'波利亚',
+'Pólya':'波利亚',
 
 'Pomerance':'波默朗斯',
 
@@ -3860,7 +3926,12 @@ lang['zh_cn'] = {
 'Rohrl':'勒尔',
 'Rokhlin':'罗赫林',
 'Rolle':'罗尔',
+
+
+'Roman':'罗曼',
 'Rosen':'罗森',
+
+'Rosenberg':'罗森伯格',
 'Roth':'罗特',
 
 "Rozenfel'd":'罗森菲尔德',
@@ -3994,6 +4065,7 @@ lang['zh_cn'] = {
 
 'Sobolev':'索伯列夫',
 
+'Soundararajan':'桑德拉拉金',
 
 'Spanier':'斯帕尼尔',
 'Spencer':'斯潘塞',
@@ -4116,6 +4188,9 @@ lang['zh_cn'] = {
 
 'Torricelli':'托里拆利',
 
+
+'Tosio':'敏夫',
+
 'Traub':'特劳伯',
 
 'Treves':'特利夫斯',
@@ -4165,6 +4240,9 @@ lang['zh_cn'] = {
 'Vizing':'维津',
 
 'Voevodsky':'沃耶沃茨基',
+
+'Vojta':'沃伊塔',
+
 'Volterra':'沃尔泰拉',
 
 'Von':'冯',
@@ -4249,6 +4327,10 @@ lang['zh_cn'] = {
 
 'Wittgenstein':'维特根斯坦',
 'Wolf':'沃尔夫',
+
+'Woods':'伍兹',
+
+
 'Wren':'雷恩',
 'Wrongski':'朗斯基',
 

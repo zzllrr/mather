@@ -564,6 +564,13 @@ function gM(mesg, str, o) {
 
 	return x || M
 }
+
+function gM2(t,reverse, sep,f){
+	var s=gM(t), ft=f?f(t):t;
+	return s==t?s:(reverse?s+(sep?sep+t:' ('+t+')'):ft+(sep?sep+s:' ('+s+')'))
+
+}
+
 function cacheUsage(){
 	var x=0;
 	for(item in L) {
