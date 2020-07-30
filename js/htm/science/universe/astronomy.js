@@ -12,7 +12,7 @@ science['Universe/Astronomy']=detail('Star',Table([i18(ZLR('Name Type Summary'))
 
     [href(H+'www.datasketch.es/may/code/nadieh/','Figures in the Sky'),'','How cultures across the World have seen their myths and legends in the stars'],
 
-
+    [href(H+'spaceengine.org','Space Engine'),'','Space Engine – the universe simulator'],
 
 
 ],'TBrc'),1)+detail('Satellites',Table([i18(ZLR('Name Type Summary'))],[

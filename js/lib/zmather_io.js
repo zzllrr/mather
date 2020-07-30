@@ -10,7 +10,7 @@
 
 
 var SBSi=[zlr('Num',' 1 2 3'),
-	zlr('ABC',' 1 2'),
+	zlr('ABC',' 1 2 3'),
 	zlr('DEF',' 1 2 3'),
 	zlr('Operator',' 1 2'),
 	zlr('Relation',' 1 2'),
@@ -90,9 +90,15 @@ SBS={
 
 		['⒜⒝⒞⒟⒠⒦⒧⒨⒩⒪⒰⒱⒲⒳⒴','⒡⒢⒣⒤⒥⒫⒬⒭⒮⒯⒵'],
 		['ⓐⓑⓒⓓⓔⓚⓛⓜⓝⓞⓤⓥⓦⓧⓨ','ⓕⓖⓗⓘⓙⓟⓠⓡⓢⓣⓩ'],
-		['ⒶⒷⒸⒹⒺⓀⓁⓂⓃⓄⓊⓋⓌⓍⓎ','ⒻⒼⒽⒾⒿⓅⓆⓇⓈⓉⓏ']
+		['ⒶⒷⒸⒹⒺⓀⓁⓂⓃⓄⓊⓋⓌⓍⓎ','ⒻⒼⒽⒾⒿⓅⓆⓇⓈⓉⓏ'],
 	],
 
+	ABC3:[
+		['ᴬᴮᒼᴰᴱᴷᴸᴹᴺᴼᵁ៴ᵂ  ',' ᴳᴴᴵᴶᴾ ᴿ  ᙆ'],
+		['ᵃᵇᶜᵈᵉᵏˡᵐⁿᵒᵘᵛʷˣʸ','ᶠᵍʰⁱʲᵖ ʳˢᵗz'],
+		['ₐ ₑₒᵣᵪᵧ','  ᵤᵥₓ'],
+		['␆␇␈␘␍␛␗␃␌␜␞␏␎␁␠','␡␐␙␅␄␝␉␊␕␤␂␚␖␟␋'],
+	],
 
 	DEF:[
 		['āáǎàaēéěèeūúǔùu','ōóǒòoīíǐìiǖǘǚǜü'],
@@ -2105,7 +2111,7 @@ sbsTbl=function(){
 		for(var j=0;j<S.length;j++){
 			var K=S[j],A=FUNCS[K];
 			str+=Arrf(function(x){return strK(K,ZLR(x))},A).join('');
-			str2+='<td class=Fns>'+SCtv('symboli" data-i="'+K, gM(K))+'</td>'
+			str2+='<td class=Fns>'+SCtv('symboli" data-i="'+K, gM(K.replace(/^Set$/,'Set.1')))+'</td>'
 
 		}
 		str2+='</tr>';
