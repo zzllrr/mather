@@ -158,7 +158,7 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 	['Liouville函数','λ(n)','n素因子指数和奇偶性(-1或1)',
 		ul(['积性函数',])],
 
-	['根\nRadical\n',kxf('rad'),khrA(['n的所有不同素因子乘积',kxf('rad')+'(n) = '+prod('','素数p|n','','p','','')]),
+	['根\n根积\nRadical\n',kxf('rad'),khrA(['n的所有不同素因子（只取一次）乘积',kxf('rad')+'(n) = '+prod('','素数p|n','','p','','')]),
 		ul([''])
 	],
 	['指数\nExponential',kbrA(['e^n','\\exp n']),'e的n次幂',''],

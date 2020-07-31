@@ -89,17 +89,17 @@ var Graphic={
 									gl='Arc';
 									
 									if(g.indexOf('/Shape/')>0){
-										egs=$('.inputTip[data-uri*="Plane Coordinate System.Math/Shape"] .eg')
+										egs=$('.inputTip[data-uri*="Plane Coordinate System/Shape"] .eg')
 									}
 									
 								}
 
 								if(egs.length<1){
 									if(gl=='Semi Circle' && g.indexOf('/Shape/')>0){
-										egs=$('<div>'+tooltip.graphic['Plane Coordinate System.Math/Shape']+dc).find('.eg')
+										egs=$('<div>'+tooltip.graphic['Plane Coordinate System/Shape']+dc).find('.eg')
 									}else{
 										egs=$('<div>'+tooltip.graphic[g.replace(/\/[^\/]+$/,'')]+dc).find('.eg');
-										//'Plane Coordinate System.Math/Curve'
+										//'Plane Coordinate System/Curve'
 									}
 									
 								}

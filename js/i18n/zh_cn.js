@@ -2458,6 +2458,7 @@ lang['zh_cn'] = {
 	'Modular':'模',
 
 	'Module':'模',
+	'modulo':'模',
 
 	'Union':'并',
 	'Unitary':'酉',
@@ -2810,6 +2811,7 @@ lang['zh_cn'] = {
 
 'Betti':'贝蒂',
 'Bézier':'贝塞尔',
+'Bezier':'贝塞尔',
 
 'Bézout':'贝祖',
 

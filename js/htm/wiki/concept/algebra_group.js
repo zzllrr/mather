@@ -9,6 +9,9 @@ wiki['Concept/Algebra/Group.Math']=Kx(
 
 detail('群 Group',Table([['名称','记法','定义','性质']],[
 	ZLR('群\nGroup____ < G,*>____封闭性，结合律，单位元，可逆____','','____'),
+
+	ZLR('平凡群\nTrivial Group____ < {e},*>____只有1个元素的群____','','____'),
+
 	ZLR('子群\nSubgroup____ < S,*>____非空子集，且是群____'+
 		'平凡子群'+piece([' < e,*>','< G,*>'])+'____','','____'),
 	ZLR('群同态\nGroup Homomorphism____ < G,*> ≃  < H,∘>____'+kbrA(['< G,*>\\xrightarrow ψ< H,∘>',

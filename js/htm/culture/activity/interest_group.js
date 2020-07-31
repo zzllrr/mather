@@ -18,7 +18,7 @@ culture['Activity/Interest Group']=detail(gM('Social'),Table([i18(ZLR('Name Type
 ],'TBrc'))+
 detail(gM('Blog'),Table([i18(ZLR('Name Type Features'))],[
 	[href(H+'xahlee.info','xahlee'),'','博主xah，内容：编程，几何图形，镶嵌'],
-
+	[href(Hs+'www.changhai.org','卢昌海'),'','博主xah，内容：编程，几何图形，镶嵌'],
 
 ],'TBrc'))+
 detail(gM('Resource List'),Table([i18(ZLR('Name Type Features'))],[

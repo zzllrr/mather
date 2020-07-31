@@ -18,7 +18,7 @@ culture['Activity/Project']=detail(gM('Math'),Table([i18(ZLR('Name Founder Featu
 
 	[href(H+'amuseum.cdstm.cn/AMuseum/math/1/1.htm','数学博览馆'),'','中国数字科技馆，资源建设维护单位: 中国科学院数学与系统科学研究院（资源很久未更新）'],
 
-
+	[href(Hs+'boinc.netsoft-online.com/e107_plugins/boinc/bp_summary.php','BOINC'),'','BOINC Combined Statistics, A Place for BOINC Cross-project statistics'],
 
 /*
 todo

@@ -1040,7 +1040,7 @@ SBS={
 ]
 	
 ,FUNCS={
-	'Number Theory':['dr Re Im'],
+	'Number Theory':['dr Re Im rad'],
 	'Arithmetic':['gcd log exp Arg','lcm ln lg arg','mod sgn'],// ㏒ ㏑
 	'Algebraic':['rank diag tr det','adj dim hom ker per','span proj Pr'],
 	'Trigonometric':['sin tan sec','cos cot csc',
@@ -1169,35 +1169,46 @@ SBS={
 		$A(zlrA3("aligned(['x','= 1','= 2']",[
 			"",
 			",1"
-		],")").concat("aligned(['~ \\\\quad x','= 1','= 2'])")),
+		],")").concat("aligned(['~ \\\\quad x','= 1','= 2'])")).concat(
+			$A(zlrA3("Eq([",[
+				"['x','1'],'2']",
+				"'x','1','2']",
+				],')')
+			)
+		),
 
-		[],
-
-		$A(zlrA3("Eq([",[
-			"['x','1'],'2']",
-			"'x','1','2']",
-			"['x','1'],'2'],'','','≡'",
-			"'x','1','2'],'','','≡'",
-			],')')),
-	],
-
-	'Non-equality':[['≤'].concat($A(zlrA3("Eq([",[
-		"'x','y',2],'','line',['=','≤']",
-		"'x','y',2],'','line',['=','≠']",
-
-		],')'))),
-		['≥','≠'].concat($A([
-			"Eq(['x',''],'','line',['≤'])",
-			"kmod('a','b',2,1)",
-		])),
 		[],
 		$A([
 			"kmod('a','b',2)",
 			"eq0(['x','y'],3,5)",
 		]),
-		$A([
-			"eqM([1,-1],2)"
-		]),
+
+		$A(zlrA3("Eq([",[
+			"['x','1'],'2'],'','','≡'",
+			"'x','1','2'],'','','≡'",
+			],')').concat([
+				"eqM([1,-1],2)"
+			])
+		),
+		
+		[],
+
+
+	],
+
+	'Non-equality':[['≤'].concat($A(zlrA3("Eq([",[
+		"'x',''],'','line',['≤']",
+		"'x','y',2],'','line',['=','≤']",
+
+		],')'))),
+		['≥'].concat($A([
+
+			"Eq(['x','y',2],'','line',['=','≠'])",
+		])),
+		['≠'].concat($A([
+			"kmod('a','b',2,1)",
+		])),
+
 	],
 
 

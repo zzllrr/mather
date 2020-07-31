@@ -5,8 +5,8 @@
  */
  
 graphics={
-	index:['Plane Coordinate System.Math','Space.1 Coordinate System.Math','Surface','Solid','Discrete Mathematics','Statistics','Fractal'],
-	'Plane Coordinate System.Math':[
+	index:['Plane Coordinate System','Space Coordinate System','Surface','Solid','Discrete Mathematics','Statistics','Fractal'],
+	'Plane Coordinate System':[
 		
 		{'Curve':[
 			{'Arc':''},
@@ -50,7 +50,7 @@ graphics={
 	
 
 	
-	'Space.1 Coordinate System.Math':[
+	'Space Coordinate System':[
 		{'Cartesian':[
 			'Axis','Grid'
 		]},
@@ -90,7 +90,7 @@ graphics={
 
 tooltip.graphic={
 
-	'Plane Coordinate System.Math/Shape':[
+	'Plane Coordinate System/Shape':[
 		'shape(id,type,content,attrs,style,translateA)',
 		[
 			gM('Ellipse')+': ellipse【rx ry cx cy fill】',
@@ -130,23 +130,23 @@ tooltip.graphic={
 
 
 
-	'Plane Coordinate System.Math/Shape/Ellipse':[
+	'Plane Coordinate System/Shape/Ellipse':[
 		'【rx ry cx cy fill】',
 		sceg('40 30 60 50 red',20)
 		].join(br),
 
-	'Plane Coordinate System.Math/Shape/Circle':[
+	'Plane Coordinate System/Shape/Circle':[
 		'【r cx cy】',
 		sceg('40 60 50 blue',20)
 		].join(br),
 
-	'Plane Coordinate System.Math/Shape/Semi Circle':[
+	'Plane Coordinate System/Shape/Semi Circle':[
 		'【x1 y1 x2 y2 c[clockwise:↻1|↺0] z是否闭合 end mid start】',
 		sceg('30 150 200 150 1 1',20)
 		].join(br),
 
 
-	'Plane Coordinate System.Math/Shape/Rectangle':[
+	'Plane Coordinate System/Shape/Rectangle':[
 		'【x y width height】',
 		sceg('40 30 160 50',20),
 		
@@ -155,7 +155,7 @@ tooltip.graphic={
 		
 		].join(br),
 
-	'Plane Coordinate System.Math/Shape/Square':[
+	'Plane Coordinate System/Shape/Square':[
 		'【x y width】',
 		sceg('40 30 160',20),
 		
@@ -165,12 +165,12 @@ tooltip.graphic={
 		].join(br),
 
 
-	'Plane Coordinate System.Math/Shape/Polygon':[
+	'Plane Coordinate System/Shape/Polygon':[
 		'【points】',
 		sceg('50 60 150 20 130 80 70 80',20)
 		].join(br),
 
-	'Plane Coordinate System.Math/Shape/Regular Polygon':[
+	'Plane Coordinate System/Shape/Regular Polygon':[
 		'【r cx cy width a n】',
 		sceg('150 100 50 9',20)
 		].join(br),
@@ -178,7 +178,7 @@ tooltip.graphic={
 
 
 
-	'Plane Coordinate System.Math/Curve':['shape(id,type,content,attrs,style,translateA)',
+	'Plane Coordinate System/Curve':['shape(id,type,content,attrs,style,translateA)',
 				gM('Arc')+': arc【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
 		sceg("shape('test','arc','','x1=100 y1=100 x2=100 y2=50 rx=40 ry=30 m=1 c=0')"),
 			
@@ -199,36 +199,36 @@ tooltip.graphic={
 
 
 
-	'Plane Coordinate System.Math/Curve/Arc':[
+	'Plane Coordinate System/Curve/Arc':[
 		'【x1 y1 x2 y2 rx ry m[Major1|minor0] c[↻1|↺0] deg z end mid start】',
 		sceg('100 100 100 50 40 30 1 0',20)
 		].join(br),
 
-	'Plane Coordinate System.Math/Curve/Semi Circle':[
+	'Plane Coordinate System/Curve/Semi Circle':[
 		'【x1 y1 x2 y2 c[clockwise:↻1|↺0] end mid start】',
 		sceg('30 150 200 150 1',20)
 		].join(br),
 
 
-	'Plane Coordinate System.Math/Curve/Line Segment':[
+	'Plane Coordinate System/Curve/Line Segment':[
 		'【x1 y1 x2 y2 end mid start】',
 		sceg('100 50 160 100'),					
 		].join(br),
 
-	'Plane Coordinate System.Math/Curve/lineHV':[
+	'Plane Coordinate System/Curve/lineHV':[
 		'【hv r】',
 		sceg('V80H100V120 4',20)
 		].join(br),
 
 
-	'Plane Coordinate System.Math/Curve/Polyline':[
+	'Plane Coordinate System/Curve/Polyline':[
 		'【points】',
 		sceg('100 100 150 130 180 70',20)
 		].join(br),
 
 
 
-	'Plane Coordinate System.Math/Text':[
+	'Plane Coordinate System/Text':[
 		gM('Text')+' text【x y dx dy rotate】',
 		sceg("shape('','text','O','x=90 y=112 rotate=20')"),
 		
@@ -237,12 +237,12 @@ tooltip.graphic={
 		
 		].join(br),
 
-	'Plane Coordinate System.Math/Text/Text':[
+	'Plane Coordinate System/Text/Text':[
 		"【'text' x y rotate dx dy】",
 		sceg("'O' 90 112 20"),
 		].join(br),
 		
-	'Plane Coordinate System.Math/Text/Text Path':[
+	'Plane Coordinate System/Text/Text Path':[
 		
 		'textPath【d href pathid】',
 		sceg("'路径文本' 'M20 20 L120 102' path1"),
@@ -250,7 +250,7 @@ tooltip.graphic={
 
 
 
-	'Plane Coordinate System.Math/nodesXY':[
+	'Plane Coordinate System/nodesXY':[
 		detail('nodesXY(id,types,texts,relations,aligns,translates,nodeMargin,nodeXYs,nodeAttr,nodeStyle,specialNodes)',[
 			
 		detail("types： 'nodeType lineType arrowType'",[

@@ -82,6 +82,7 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 detail(gM('Methodology'),Table([i18(ZLR('Name Type Summary'))],[
 
+	[href(Hs+'datavizcatalogue.com/ZH/','数据可视化工具目录'),'',''],
 	[href(Hs+'datastori.es','Data Stories'),'','A podcast on data visualization with Enrico Bertini and Moritz Stefaner'],
 	[href(H+'rojects.christianlaesser.com/100-data-stories/','100 Data Stories'),'','A small visual exploration of the episodes and guests of the Data Stories podcast by Christian Laesser.' + href(Hs+'www.christianlaesser.com','Christian Laesser')],
 
