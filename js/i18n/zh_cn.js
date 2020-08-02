@@ -298,6 +298,7 @@ lang['zh_cn'] = {
 	'Distinct':'不同',
 	'Different':'不同',
 
+	'Given':'给定',
 
 	'Ergodic':'遍历',
 	'Ergodicity':'遍历',
@@ -310,6 +311,7 @@ lang['zh_cn'] = {
 
 	'Divergent':'发散',
 
+	'Generalise':'推广',
 	'Generalize':'推广',
 	'Generalising':'推广',
 	'Generalized':'广义',
@@ -930,7 +932,10 @@ lang['zh_cn'] = {
 	'Co': '互',
 	'Co.1': '共',
 
+
 	'Co.2': '同',
+
+	
 
 	'By': '按',
 	'For':'为了',
@@ -1662,6 +1667,7 @@ lang['zh_cn'] = {
 	'Variable':'变量',
 	'Variant':'变量',
 	'Invariant':'不变量',
+	'Equivariant':'等变',
 
 	'Variate':'变量',
 	'Spline':'样条',
@@ -2031,7 +2037,7 @@ lang['zh_cn'] = {
 	'Coaxal':'共轴',
 
 
-
+	'Equi':'等',
 	'Isosceles': '等腰',
 	'Isogonal':'等角',
 	'Isotoxal':'等边',
@@ -2044,6 +2050,8 @@ lang['zh_cn'] = {
 	'Equidistant':'等距',
 
 	'Identical':'恒等',
+
+	'Reduced':'简化',
 
 	'Kepler–Poinsot':'正星形',
 
@@ -2260,6 +2268,7 @@ lang['zh_cn'] = {
 	
 	'Radical': '根式',
 	'Root': '根',
+	'Roots': '根',
 	'Solution':'解',
 
 	'Ratio':'比例',
@@ -3385,7 +3394,8 @@ lang['zh_cn'] = {
 
 'Infeld':'因费尔德',
 
-'Iwasawa Kenkichi':'岩泽健吉',
+'Iwasawa':'岩泽',
+
 'Iyanaga Shokichi':'弥永昌吉',
 
 
@@ -3456,6 +3466,8 @@ lang['zh_cn'] = {
 
 'Kempe':'肯普',
 'Kendall':'肯德尔',
+
+'Kenkichi':'健吉',
 
 'Kepler':'开普勒',
 

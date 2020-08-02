@@ -30,16 +30,17 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Andrica's conjecture",'',br,enwiki0),gM("Number Theory"),"<la>$kroot('p_{n+1}')$-$kroot('p_n')$ < 1 </la><la>即g_n=p_{n+1}-p_n< 2$kroot('p_n')$ + 1 </la>",""],
 [enwiki0("Artin conjecture (L-functions)")+br+gM("Artin conjecture")+'('+gM('L Function')+')',gM("Number Theory"),"非平凡不可约表示的Artin L函数在整个复平面解析",""],
 [gM2("Artin's conjecture on primitive roots",'',br,enwiki0),gM("Number Theory"),"给定一个整数a（完全平方和-1除外）⇒a是模无限多素数的原根",""+br+"⇐"+gM2("Generalized Riemann Hypothesis")+br+"⇐"+gM2("Selberg conjecture")+" B"],
-[gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
-[gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
-[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
-[gM2("Beilinson conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
-[gM2("Berry–Tabor conjecture",'',br,enwiki0),gM("Geodesic flow"),"",""],
-[gM2("Birch and Swinnerton–Dyer conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
+[gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
+[gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
+[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),"<la>A^x+B^y=C^z ⇒ A,B,C有共同素因子\\\\其中各字母都是非零整数且x,y,z≥3</la>", href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏")],
+[gM2("Beilinson conjecture",'',br,enwiki0),gM("Number Theory"),"莱布尼兹π/4公式如何改写替换π为另一个超越数",""],
+[gM2("Berry–Tabor conjecture")+enwiki('Quantum_chaos#Berry–Tabor_conjecture'),gM("Geodesic flow"),"紧黎曼面上的地测流的量子动力学中，量子能量特征值行为像独立随机变量数列，隐含经典动力学是完全可积的",""],
+[gM2("Birch and Swinnerton-Dyer conjecture",'',br,enwiki0),gM("Number Theory"),"BSD","BSD "+gM('conjecture')+'克莱数学研究所七大千禧年问题之一'],
 [gM2("Birch–Tate conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("Birkhoff conjecture",'',br,enwiki0),gM("Integrable Systems"),"",""],
 [gM2("Bloch–Beilinson conjectures",'',br,enwiki0),gM("Number Theory"),"",""],
-[gM2("Bloch–Kato conjecture",'',br,enwiki0),gM("Algebraic K–theory"),"",""],
+[gM2("Bloch–Kato conjecture",'',br,enwiki0),gM("Algebraic K–theory"),"",gM2("Norm residue isomorphism theorem")],
+[gM2("Bloch–Kato conjecture for special values",'',br,enwiki0),gM("Algebraic K–theory"),"",gM2("Norm residue isomorphism theorem")+br+'推广了'+gM2('Milnor conjecture')+br+gM2('Tamagawa number conjecture')],
 [gM2("Bochner–Riesz conjecture",'',br,enwiki0),gM("Harmonic analysis"),"",""+br+"⇒"+gM2("Restriction conjecture")+br+"⇒"+gM2("Kakeya Maximal Function conjecture")+br+"⇒"+gM2("Kakeya Dimension conjecture")],
 [gM2("Bombieri–Lang conjecture",'',br,enwiki0),gM("Diophantine Geometry"),"",""],
 [gM2("Borel conjecture",'',br,enwiki0),gM("Geometric topology"),"",""],
@@ -114,7 +115,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Pillai's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("De Polignac's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("quantum unique ergodicity conjecture",'',br,enwiki0),gM("Dynamical Systems"),"","2004, "+gM2('Elon Lindenstrauss')+", "+gM("for Arithmetic Hyperbolic Surfaces")+", 2008, "+gM2("Kannan Soundararajan")+" & "+gM2("Roman Holowinsky")+", "+gM("for.2 Holomorphic Forms")+" of increasing weight for Hecke eigenforms "+gM("on Noncompact Arithmetic Surfaces")],
-[gM2("Reconstruction conjecture",'',br,enwiki0),gM("Graph Theory"),"",""],
+[gM2("Reconstruction conjecture",'',br,enwiki0),gM("Graph Theory"),"任一至少含有3顶点的有限图可重构（所有与之亚重构（删掉一个点的全部子图集合存在双射）的图都与之同构）",""],
 [gM2("Riemann hypothesis",'',br,enwiki0),gM("Number Theory"),"",""+br+"⇐"+gM2("Generalized Riemann hypothesis")+br+"⇐"+gM2("Grand Riemann Hypothesis")+br+"⇔"+gM2("De Bruijn–Newman Constant")+"=0"+br+"⇒"+gM("Density Hypothesis")+', '+gM2("Lindelöf Hypothesis")+' '+gM("See")+' '+gM2("Hilbert–Pólya conjecture")+". "+gM("For.2 Other Riemann Hypotheses")+", "+gM("See")+' '+gM("Weil conjectures")+" (now theorems)."],
 [gM2("Ringel–Kotzig conjecture",'',br,enwiki0),gM("Graph Theory"),"",""],
 [gM2("Rudin's conjecture",'',br,enwiki0),gM("Additive Combinatorics"),"",""],
@@ -147,6 +148,16 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 
 ],'TBrc'))+
+
+detail(gM('Unsolved Conjecture')+' 2',
+Table([i18(ZLR('Name Field Content Relation'))],[
+	['Convex Polygons and Erdős-Szekeres Problem',gM('Discrete Math'),'平面一般位置（不存在3点共线）的f(n)个点中存在n(≥3)个点构成凸多边形，猜测f(n)最小值是<la>2^{n-2}+1</la>','']
+
+	['P=NP',gM('Discrete Math'),'非确定性图灵机在多项式时间可以解决的判定问题在确定性图灵机上能用多项式时间解决','']
+
+
+],'TBrc'))+
+
 
 detail(gM('Proved Conjecture'),
 Table([i18(ZLR('Name Field Content Relation'))],[

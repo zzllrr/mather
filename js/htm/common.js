@@ -305,7 +305,7 @@ var MfS=function(x,typ){return Mtrx.fromStr(x,typ)},
 function dayOrNight(){
 	var isnight=L.night=='true';
 	//$('#oHTML svg').css({"background-color":(isnight?'gainsboro':'transparent')});
-    $('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
+    //$('#oHTML svg').css({"border":(isnight?'gainsboro solid 1px':'none')});
 
 	if(isnight){
 		$('#oHTML svg *[stroke=black]').attr('stroke','gainsboro');

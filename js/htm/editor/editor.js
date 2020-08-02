@@ -21,7 +21,7 @@ $(function () {
 
 		  $('#splash').hide().nextAll().fadeIn();
 
-      if(full){
+      if(full || !location.search){
         
       }else{
         $('#input0Preview,#iTextMain,#iContent').siblings().hide();
