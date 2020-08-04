@@ -84,6 +84,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 		return detail(gM('Reference'),ol(A))
 
 	}, jslib={
+		'katex':referf(delivr('katex')),
 		'echarts':referf(delivr('echarts'))+referf(unpkg('echarts-gl')),
 		// www.npmjs.com/package/echarts
 		'echarts_eval':function(t){return '<div id=echarts0 style="width:90%;height:600px">'+

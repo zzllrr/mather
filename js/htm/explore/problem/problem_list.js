@@ -32,7 +32,54 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Artin's conjecture on primitive roots",'',br,enwiki0),gM("Number Theory"),"给定一个整数a（完全平方和-1除外）⇒a是模无限多素数的原根",""+br+"⇐"+gM2("Generalized Riemann Hypothesis")+br+"⇐"+gM2("Selberg conjecture")+" B"],
 [gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
 [gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
-[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),"<la>A^x+B^y=C^z ⇒ A,B,C有共同素因子\\\\其中各字母都是非零整数且x,y,z≥3</la>", href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏")],
+[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>A^x+B^y=C^z \\\\ ⇒ A,B,C有共同素因子\\\\其中各字母都是正整数\\\\且x,y,z≥3</la>",
+	brA(['由 p|(A,B) ⇒ p|C',
+	'得到反例必要条件之一：A,B,C两两互素',
+	'即(A,B)=(B,C)=(A,C)=1',
+	'当x=y=z时与费马最后定理FLT矛盾!',
+	'因此反例必要条件之二：x,y,z不能同时相等',
+	'且(x,y,z)=1或2（>2时，可改写成FLT形式，与无解矛盾！）',
+	'当(x,y,z)=1时，',
+	'当(x,y,z)=2时，',
+	
+
+	'<la>原方程参数解之一：[a(a^{m}+b^{m})]^{m}+[b(a^{m}+b^{m})]^{m}=(a^{m}+b^{m})^{m+1}</la>',
+	'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{m}</la>',
+	'下面有其他形式的解',
+	ul(['<la>2^n+2^n=2^{n+1}</la>',
+
+
+		'<la>1+2^3=3^2 (等式两边同乘3^{3k})</la>',
+		'<la>1+7=2^3 (等式两边同乘7^{3k})</la>',
+		'<la>2^3+(2⋅23)^3=312^2 (等式两边同乘312^{3k}，312=2^3‧3‧13)</la>',
+
+		'<la>1+(3⋅5)^3=2^4⋅211 (等式两边同乘211^{3+12k})</la>',
+		'<la>1+31^3=2^4⋅1862 (等式两边同乘1862^{3+12k}，1862 = 2‧7^2‧19)</la>',
+		
+		'<la>1+(2⋅13)^3=3^4⋅217 (等式两边同乘217^{3+12k})</la>',
+		'<la>1+53^3=3^4⋅1838 (等式两边同乘1838^{3+12k}，1838 = 2‧919)</la>',
+
+		'<la>1+2^4⋅307=17^3 (等式两边同乘307^{3+12k})</la>',
+		'<la>1+2^4⋅2246=(3⋅11)^3 (等式两边同乘2246^{3+12k}，2246 = 2‧1123)</la>',
+
+		'<la>1+3^4⋅271=(2^2⋅7)^3 (等式两边同乘271^{3+12k})</la>',
+
+		
+		'<la>2^3+5^6=3^4⋅193 (等式两边同乘193^{3+12k})</la>',
+		
+		'<la>2^3+3^4⋅301=29^3 (等式两边同乘301^{3+12k}，301=7⋅43)</la>',
+
+		'<la>60^3+90=7^4⋅90 (等式两边同乘90^{3+12k})</la>',
+		
+
+	])
+
+])
+), refer([href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏"),
+	href(Hs+'www.planetmath.org/BealConjecture','planetmath.org'),
+	href(H+'www.duodaa.com/blog/index.php/archives/71/','哆嗒数学网'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	])],
 [gM2("Beilinson conjecture",'',br,enwiki0),gM("Number Theory"),"莱布尼兹π/4公式如何改写替换π为另一个超越数",""],
 [gM2("Berry–Tabor conjecture")+enwiki('Quantum_chaos#Berry–Tabor_conjecture'),gM("Geodesic flow"),"紧黎曼面上的地测流的量子动力学中，量子能量特征值行为像独立随机变量数列，隐含经典动力学是完全可积的",""],
 [gM2("Birch and Swinnerton-Dyer conjecture",'',br,enwiki0),gM("Number Theory"),"BSD","BSD "+gM('conjecture')+'克莱数学研究所七大千禧年问题之一'],
@@ -151,9 +198,9 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 detail(gM('Unsolved Conjecture')+' 2',
 Table([i18(ZLR('Name Field Content Relation'))],[
-	['Convex Polygons and Erdős-Szekeres Problem',gM('Discrete Math'),'平面一般位置（不存在3点共线）的f(n)个点中存在n(≥3)个点构成凸多边形，猜测f(n)最小值是<la>2^{n-2}+1</la>','']
+	['Convex Polygons and Erdős-Szekeres Problem',gM('Discrete Math'),'平面一般位置（不存在3点共线）的f(n)个点中存在n(≥3)个点构成凸多边形，猜测f(n)最小值是<la>2^{n-2}+1</la>',''],
 
-	['P=NP',gM('Discrete Math'),'非确定性图灵机在多项式时间可以解决的判定问题在确定性图灵机上能用多项式时间解决','']
+	['P=NP',gM('Discrete Math'),'非确定性图灵机在多项式时间可以解决的判定问题在确定性图灵机上能用多项式时间解决',''],
 
 
 ],'TBrc'))+
@@ -180,7 +227,7 @@ Table([i18(ZLR('Name Field Content'))],[
 				ZLR('statistics physics computer_science astronomy biology chemistry economics geoscience information_theory linguistics medicine neuroscience philosophy')))
 		).join(br)],
 
-
+		[href(H+'garden.irmacs.sfu.ca/','Open Problem Garden'),'',''],
 
 	],'TBrc')
 ;

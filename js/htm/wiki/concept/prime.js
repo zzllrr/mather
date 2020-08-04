@@ -67,7 +67,45 @@ detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质'
 		
 		])],
 
-],'wiki').replace(/____/g,br))
+],'wiki').replace(/____/g,br))+
+
+detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise coprime',
+	'互素的等价条件：'+
+	ul($A([
+		'(a,b)=1',
+		'(2^a-1,2^b-1)=1',
+		'存在整数x,y使得，ax+by=1',
+		'存在整数y使得，'+kmod('by',1,'a'),
+		'[a,b]=ab',
+		'b=cd ⇒ (a,c)=(a,d)=1'
+
+	]))+
+	kbrA([
+		
+		'(n^a-1,n^b-1) = n^{(a,b)}-1 ~ (n>1)',
+
+	])+br+
+	'三者及以上互素的等价条件：'+
+	ul($A([
+		'(a_1,a_2,⋯,a_n)=1',
+		'(2^{a_1}-1,2^{a_2}-1,⋯,2^{a_n}-1)=1',
+		'存在整数x_i使得，Σa_ix_i=1',
+
+	]))+br+
+	'两两互素的等价条件：'+
+	ul($A([
+		'(a_1,a_2,⋯,a_n)=1',
+		'(2^{a_1}-1,2^{a_2}-1,⋯,2^{a_n}-1)=1',
+		'存在整数x_i使得，Σa_ix_i=1',
+
+	]))
+)+
+
+detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[enwiki('Coprime_integers'),'',''],
+	[enwiki("Bézout's_identity"),'',''],
+],'TBrc'),1)
 
 
 

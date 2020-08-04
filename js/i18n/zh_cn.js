@@ -1283,6 +1283,10 @@ lang['zh_cn'] = {
 
 	'Symbol': '符号',
 
+	'if':'如果',
+	'iff':'当且仅当',
+
+
 	'Numeral': '数值',
 	'Numerical': '数值',
 	'String': '字符串',
@@ -1621,6 +1625,7 @@ lang['zh_cn'] = {
 
 	'Twin':'孪生',
 	'Twin Prime':'孪生素数',
+	'Pairwise Coprime':'两两互素',
 	'Zeros':'零点',
 
 	'Sort':'排序',
