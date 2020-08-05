@@ -32,16 +32,80 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Artin's conjecture on primitive roots",'',br,enwiki0),gM("Number Theory"),"给定一个整数a（完全平方和-1除外）⇒a是模无限多素数的原根",""+br+"⇐"+gM2("Generalized Riemann Hypothesis")+br+"⇐"+gM2("Selberg conjecture")+" B"],
 [gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
 [gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
-[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>A^x+B^y=C^z \\\\ ⇒ A,B,C有共同素因子\\\\其中各字母都是正整数\\\\且x,y,z≥3</la>",
-	brA(['由 p|(A,B) ⇒ p|C',
+[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>A^x+B^y=C^z \\\\ ⇒ 正整数A,B,C有共同素因子\\\\且正整数x,y,z≥3</la>",
+	brA(['若A,B,C中有完全幂，可以通过改写，使得底数不含完全幂，因此下面讨论仅限A,B,C都不是完全幂',
+	'由 p|(A,B) ⇒ p|C',
 	'得到反例必要条件之一：A,B,C两两互素',
 	'即(A,B)=(B,C)=(A,C)=1',
+	'⇔存在整数使得<la>m_1A+m_2B=m_3B+m_4C=m_5A+m_6C=1</la>',
+
+	
+
 	'当x=y=z时与费马最后定理FLT矛盾!',
 	'因此反例必要条件之二：x,y,z不能同时相等',
 	'且(x,y,z)=1或2（>2时，可改写成FLT形式，与无解矛盾！）',
+
 	'当(x,y,z)=1时，',
 	'当(x,y,z)=2时，',
 	
+
+	'当C是奇数时，A,B一奇一偶，不妨设A偶=2a',
+	'当C是偶数时，A,B同奇（因为互素所以不可能同偶），',	
+
+	detail('对于3^x+5^y=2^z（z > x,2y）',
+		['更精确地，<la>z ≥ \\log_2(3^x+5^3), \\log_2(3^3+5^y)</la>',
+		'等式两边同时取模2，3或5',
+		'得知<la>'+piece([kmod('(-1)^y','(-1)^z',3)+'⇔'+kmod('y','z',2)+'即y,z同奇偶',
+			kmod('(-2)^x','2^z',5)+'⇔'+kmod('(2^3)^x','2^z',5)+'⇔'+kmod('3x','z',4)+'（2是模5原根）',
+		])+'</la>',
+		'则<la>'+piece(['z=3x-4k > x ≥3 则 4k < 2x 则 k < x\\/2',
+
+			'y=z-2j，即6≤ 2y=2(z-2j)=2(3x-4k-2j) < z = 3x-4k 则  3 ≤ x < z=3x-4k < 4j≤ 2(z-3)=2(3x-4k-3) 则 x\\/4 < j ≤ {3x-4k-3}\\/2',
+		])+'</la>'+
+
+		'更精确地<la>'+piece(['3x-4k ≥ \\log_2(3^x+5^3) 则 4k ≤ 3x-\\log_2(3^x+5^3)=\\log_2(2^{3x}/(3^x+125)) 则 k ≤ \\log_{16}(2^{3x}/(3^x+125)) = (3x-\\log_2(3^x+125) )/4',
+
+
+			'z=y+2j > \\log_2(3^3+5^y) 则j > \\log_4[(3^3+5^y)/2^y] > y\\log_4(5/2) = (z-2j)\\log_4(5/2) 则j > \\log_4(5/2)z/(1+\\log_2(5/2)) = (\\log_{25}(5/2))z = (\\log_{25}(5/2))(3x-4k)',
+		])+'</la>'+
+
+		'原方程即：<la>3^{x}+5^{3x-4k-2l}=2^{3x-4k}</la>',
+		'<la>(x,3x-4k-2l,3x-4k)=1或2</la>',
+
+		'当(x,y,z)=1时，x是奇数且(k,x)=(2k+j,x)=1',
+		detail('遍历代码',
+`
+function tuple(X,K,J){
+	for(var x=X||3,l=2**54;x<=l;x+=2){
+		if(x%100000000 == 0){saveText(x,'beal_cache_x');}
+		for(var k=K||Math.floor((3*x-Math.log(3**x+125)/Math.log(2))/4);k>-l;k--){
+			if(k%10000 == 0){saveText('x='+x+', k='+k,'beal_cache_x_k')}
+			if(gcd([k,x])=='1'){
+				var z=3*x-4*k;
+				for(var j=J||Math.ceil(Math.log(2.5)/Math.log(25)*z);j<l;j++){
+					if(j%100000000 == 0){console.log(x,k,j)}
+					if(gcd([2*k+j,x])=='1'){
+						var y=z-2*j, z2=2**z, x3=3**x, y5=5**y;
+						if(z2==x3+y5){
+							saveText([x,y,z].join(' '),'beal_xyz');
+							return [x,y,z]
+						}
+					}
+				}
+			}
+
+		}
+	}
+}
+
+
+`			
+		
+		),
+		'当(x,y,z)=2时，x是偶数且',
+
+		].join(br))+
+
 
 	'<la>原方程参数解之一：[a(a^{m}+b^{m})]^{m}+[b(a^{m}+b^{m})]^{m}=(a^{m}+b^{m})^{m+1}</la>',
 	'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{m}</la>',

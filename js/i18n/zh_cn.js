@@ -915,6 +915,8 @@ lang['zh_cn'] = {
 	'Gate':'门',
 	'Aggregate':'总数',
 
+	'Converse':'反命题',
+	
 	// 助词	或 词根
 	'if':'如果',
 	'iif':'当且仅当',
