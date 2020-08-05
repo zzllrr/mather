@@ -52,7 +52,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 	'当C是奇数时，A,B一奇一偶，不妨设A偶=2a',
 	'当C是偶数时，A,B同奇（因为互素所以不可能同偶），',	
 
-	detail('对于3^x+5^y=2^z（z > x,2y）',
+	detail('对于<la>3^x+5^y=2^z（z > x,2y）</la>',
 		['更精确地，<la>z ≥ \\log_2(3^x+5^3), \\log_2(3^3+5^y)</la>',
 		'等式两边同时取模2，3或5',
 		'得知<la>'+piece([kmod('(-1)^y','(-1)^z',3)+'⇔'+kmod('y','z',2)+'即y,z同奇偶',
@@ -82,7 +82,7 @@ function tuple(X,K,J){
 			if(k%10000 == 0){saveText('x='+x+', k='+k,'beal_cache_x_k')}
 			if(gcd([k,x])=='1'){
 				var z=3*x-4*k;
-				for(var j=J||Math.ceil(Math.log(2.5)/Math.log(25)*z);j<l;j++){
+				for(var j=J||Math.ceil(Math.log(2.5)/Math.log(25)*z);j< l;j++){
 					if(j%100000000 == 0){console.log(x,k,j)}
 					if(gcd([2*k+j,x])=='1'){
 						var y=z-2*j, z2=2**z, x3=3**x, y5=5**y;

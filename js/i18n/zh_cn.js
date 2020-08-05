@@ -202,6 +202,8 @@ lang['zh_cn'] = {
 	'Criterion':'准则',
 
 	'Conjecture':'猜想',
+	'Conjectures':'猜想',
+
 	'Hypothesis': '假设',
 	'Hypotheses': '假设',
 	'Suppose': '假设',
@@ -995,6 +997,8 @@ lang['zh_cn'] = {
 	'Colorful':'彩色',
 
 	'Colouring':'着色',
+	'Coloring':'着色',
+
 	'Packing':'装填',
 	'Packing.1':'填充',
 
@@ -1030,6 +1034,8 @@ lang['zh_cn'] = {
 
 	'Unit': '单位',
 	'Value': '值',
+	'Values': '值',
+
 	'Information': '信息',
 	'Font': '字体',
 	'Padding':'内边距',
@@ -1683,6 +1689,7 @@ lang['zh_cn'] = {
 	'Pure':'纯',
 	'Decimal': '小数',
 	'Sequence': '数列',
+	'Sequences': '数列',
 
 	'Aliquot':'因数和余',
 
@@ -1703,6 +1710,7 @@ lang['zh_cn'] = {
 
 	'Partite':'分',
 	'Bipartite':'二分',
+	'Partition':'分割',
 
 	'Nomial': '项式',
 	'Polynomial': '多项式',
@@ -2043,7 +2051,7 @@ lang['zh_cn'] = {
 
 	'Coaxal':'共轴',
 
-
+	'Special':'特殊',
 	'Equi':'等',
 	'Isosceles': '等腰',
 	'Isogonal':'等角',

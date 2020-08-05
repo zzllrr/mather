@@ -125,11 +125,35 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 		])
 	],
-	['a（对）模m的阶\n次数\n\nmultiplicative order of a modulo n\ndegree',kbrA(['δ_m(a)','e_m(a)']),kbrA(['最小的正整数d，满足',piece([[0,'当(a,m)>1时'],[kmod('a^d',1,'m'),'当(a,m)=1时']])]),
+	['a（对）模m的阶\n次数\n\nmultiplicative order of a modulo n\ndegree',kbrA(['δ_m(a)','e_m(a)']),kbrA(['最小的正整数d，满足',piece([[0,'当(a,m)>1时，规定'],[kmod('a^d',1,'m'),'当(a,m)=1时']])]),
 		kul([kmod('a','b','m')+' ⇒ δ_m(a)=δ_m(b)',
-			'(a,m)=1 ⇒ '+piece([kmod('a^k',1,'m')+'⇔δ_m(a)|k',
-			'特别地，δ_m(a)|φ(m) ~ '+kxc('(根据Euler定理)','bf',''),
-			'推论：φ(m)是素数 ⇒ δ_m(a)=1或φ(m)']),
+			'(a,m)=1 ⇒ '+piece([
+				kmod('a^k',1,'m')+'⇔δ_m(a)|k',
+				'δ_m(a)|φ(m) ~ '+kxc('(根据Euler定理)','bf',''),
+				'推论：φ(m)是素数 ⇒ δ_m(a)=1或φ(m)',
+
+				kmod('a^{k_1}','a^{k_2}','m')+'⇔δ_m(a)|k_1-k_2',
+
+				'a^0,a^1,⋯,a^{δ_m(a)-1}对模m两两不同余',
+
+				'δ_m(a^c)='+kfrac(['δ_m(a^c)','(δ_m(a),c)']),
+
+			'k|δ_m(a) ⇒ δ_m(a^k)=δ_m(a)/k',
+
+			'(δ_m(a),c)=1 ⇒ δ_m(a^c)=δ_m(a)',
+
+			'∀a,b,存在c，使得δ_m(c)=[δ_m(a), δ_m(b)]',
+
+			'(δ_m(a),δ_m(b))=1 ⇒ δ_m(ab)=δ_m(a)δ_m(b)',
+
+			'(c,d)=1 ⇒ '+piece([
+				'δ_{cd}(a)=[δ_c(a), δ_d(a)]',
+
+				'∀a_1,a_2，存在a，使得δ_{cd}(a)=[δ_c(a_1), δ_d(a_2)]',
+			]),
+
+
+			]),
 			'p是素数 ⇒ 模p的原根的次数|φ(p)=p-1',
 		])],
 
@@ -139,8 +163,13 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 			'素数p有φ(p-1)=φ(φ(p))个原根',
 			kxA(['原根求法：从2到p-1穷举，检测此数的若干个幂','（须为p-1的因子）模p余数是否只有p-1次幂模p等于1']),
 			'原根的0,1,⋯,p-1次幂，构成模p的简化剩余系',
+
 			'g是模素数p的原根 ⇔ g的阶（次数）是ϕ(p)=p-1',
 			'g是模素数p的原根 ⇒ g是模p^k的原根或'+kmod('g^{p-1}',1,'p^2')+'（此时g+p是模p^k的原根）',
+
+			'g是模素数p的原根 ⇒ 存在整数t，使得g+tp是模p^k (所有k≥1)的原根）',
+
+			'g是模p^k（k≥2）的原根 ⇒ g是模p^{k-1}的原根',
 			'g是模p^k的原根 ⇒ g或g+p^k（其中之一是奇数）是模2p^k的原根',
 
 			kmod('素数p（3除外）所有原根的乘积',1,'p')+'~(\\text{Gauss})',
@@ -154,22 +183,38 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 
 	['原根\n模m的原根\nPrimitive Root modulo m','',kbrA(['g满足1,g,g^2,⋯,g^{ϕ(m)-1}两两互不同余（\\mod m）']),
-	kul(['模m有原根 ⇔ m=2,4,p^k,2p^k其中p是奇素数',
+	kul(['模m有原根 ⇔ m=2,4,p^k,2p^k其中p是奇素数 （k是正整数）',
+
+		'模m有原根g ⇒ m有ϕ(ϕ(m))个模m不同余的原根g^t（其中t是比ϕ(m)小且与ϕ(m)互素的正整数）',
+		'模m有原根g，d通过模ϕ(m)的最小非负完全剩余系 ⇒ g^d通过模m的一个简化剩余系',
+
 		'g是模m的原根 ⇔ g的阶（次数）是ϕ(m)',
-		'g是模素数p的原根 ⇔ g的阶（次数）是ϕ(p)=p-1',
-		'g是模素数p的原根 ⇒ g是模p^k的原根或'+kmod('g^{p-1}',1,'p^2')+'（此时g+p是模p^k的原根）',
+
+		'g是模p^k（k≥2）的原根 ⇒ g是模p^{k-1}的原根',
 		'g是模p^k的原根 ⇒ g或g+p^k（其中之一是奇数）是模2p^k的原根',
 
-		
+		'm>1, (g,m)=1, 则g是模m的原根 ⇔ '+kmod('g^{ϕ(m)/q_i}',1,'m')+'其中q_i是ϕ(m)的不同素因数',
 	])],
 
-	['以原根g为底a模p的指标\na模p的指数\n离散对数\ndiscrete logarithm',kbrA(['I(a)','\\text{ind}_ga','\\text{ind}~a','离散\\log_g(a)','DLP离散对数问题']),kbrA(['k满足'+kmod('g^k','a','p'),'其中1≤k≤p-1，g是模p原根']),
+	['以原根g为底a模p的指标\na模p的指数\n离散对数\ndiscrete logarithm',
+		kbrA(['I(a)','\\text{ind}_ga','\\text{ind}~a','离散\\log_g(a)','DLP离散对数问题']),
+		kbrA(['k满足'+kmod('g^k','a','p'),'其中1≤k≤p-1，g是模p原根']),
+		
 		kul([kmod('I(ab)','I(a)+I(b)','p-1'),
 			kmod('I(a^k)','kI(a)','p-1'),
 
+			'I(1)=0',
+			'I(g)=1',
+			'I(-1)=ϕ(m)/2（m>2）',
+
+
 			kmod('I(a)','m','p-1')+'其中任意m满足'+kmod('g^m','a','p'),
 
-			'\\text{ind}_ga=\\text{ind}_gb\\text{ind}_ba（换底公式）'
+			'\\text{ind}_ga=\\text{ind}_gb\\text{ind}_ba（换底公式）',
+
+			kmod('\\text{ind}_gh⋅\\text{ind}_hg',1,'ϕ(m)'),
+
+			'δ_m(a)=ϕ(m)/(\\text{ind}_ga, ~ϕ(m))',
 		
 		])],
 
