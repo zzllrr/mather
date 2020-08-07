@@ -226,6 +226,7 @@ $.each({
 
 	'LaTeX':[
 		href(Hs+'katex.org/docs/supported.html','KaTeX API') + ' ' + href(Hs+'mathlive.io/reference.html','Mathlive'),
+		github('mathjax/MathJax-demos-web'),
 		href(H+'dralpha.altervista.org/zh/tech/tech.htm','LaTeX History中文'),
 		
 	].join(br),

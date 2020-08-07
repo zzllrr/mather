@@ -2272,10 +2272,10 @@ var OverCanvas=function(t){
 			w.add('#previewTool').hide();
 			
 		}else if(iv=='LaTeX' && o!='H'){
-			var x=v;
+			var x=v, kxx=kx(sub2n(v,1));
 
 			if(o=='P' && v){
-				katex.render(kx(sub2n(v,1)), w[0], {
+				katex.render(kxx, w[0], {
 					throwOnError: false,
 					displayMode: true,
 					trust:true
@@ -2283,7 +2283,66 @@ var OverCanvas=function(t){
 				x=XML.wrapE('code',XML.encode(w.find('.katex-mathml').html().replace(/math/,'math xmlns="'+xmml+'"')));
 				
 			}
+
+
+
 			w.html(x).add('#previewTool').show();
+
+			if(o=='S' && v && MathJax){
+				//console.log(w[0]);
+				w.empty();
+				var options = MathJax.getMetricsFor(w[0]);
+				options.display = $('#displayMode').is('.seled');
+
+				//MathJax.tex2svg 返回node  示例：MathJax.tex2svg('\\frac{1}{x^2-1}', {display: true});
+				MathJax.tex2svgPromise(kxx, options).then(function (node) {
+				  //
+				  //  The promise returns the typeset node, which we add to the output
+				  //  Then update the document to include the adjusted CSS for the
+				  //    content of the new equation.
+				  //
+				  //console.log(node);
+				  w[0].appendChild(node);
+				  /*
+				  MathJax.startup.document.clear();
+				  MathJax.startup.document.updateDocument();
+				  */
+				}).catch(function (err) {
+				  //
+				  //  If there was an error, put the message into the output instead
+				  //
+				  w[0].appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+				}).then(function () {
+				  //
+				  //  Error or not
+				  //
+				  if(!$('#SVGLinkMode').is('.seled')){
+
+					/* https://www.jb51.net/article/166239.htm
+
+
+标签里的background的url()里，地址不能加引号，单引号双引号都不行，否则会被微信编辑器过滤掉。
+标签里不能有id属性
+不能有style script a标签
+
+涉及动画，需要给涉及到的元素的 <g> 设置style="outline:none"，包括 <g> 内的所有子 <g> 
+
+					*/
+					var MJ=$('#input0Preview .MathJax');
+					MJ.find('use').each(function(){
+						var id=$(this).attr('xlink:href');
+						$(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /,''))
+					});
+					MJ.find('defs, style, script, a').remove();
+					MJ.find('svg').removeAttr('aria-hidden role focusable');
+					MJ.find('g').removeAttr('data-mml-node data-mjx-texclass');
+					MJ.find('[stroke="currentColor"]').removeAttr('stroke');
+					MJ.find('[fill="currentColor"]').removeAttr('fill');
+				  }
+				  
+				});
+				
+			}
 
 			
 		}else if(o=='H'){
@@ -2576,6 +2635,7 @@ $(function(){
 */
 
 				'<select id=output0Type>'+optgrp(gM('Output Format')+':', Options(ZLR('HTML Ascii_Math Unicode_Math Presentation_MathML')))+'</select>'+
+
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
 
 
@@ -2861,6 +2921,20 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		tr.slice(i,i+3).show();
 		
+
+
+		
+	}).on('click','#SVGLinkMode,#displayMode',function(e){
+		var me=$(this).toggleClass('seled');
+		preDisplay();
+
+	}).on('dblclick','#input0Preview',function(e){
+		var m=$(this).find('svg'), shft=e.shiftKey||$('#Shift').is('.seled'), ctrl=e.ctrlKey;
+		if(m.length){
+			copy2clipboard(m[0].outerHTML)
+		}
+
+
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
 		$('#HTMLEditor,.imgHTMLEditor').toggle(me.is('.seled'))
@@ -3439,8 +3513,8 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		$('.snippet.seled').attr('data-type',p);
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
-		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML'),
-			i<0?[[0]]:[[0,2,4],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
+		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML SVG'),
+			i<0?[[0]]:[[0,2,4,6],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
 		)));
 		$('.inputTypeTip').remove();
 
@@ -3487,10 +3561,17 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 
 	}).on('change','#output0Type', function(){
-
+		var me=$(this), v=me.val(), isSVG=v=='SVG';
 		if($('#preview.seled').length){
 			preDisplay()
 		}
+		if(isSVG && $('#displayMode').length<1){
+			me.after(
+				itv('" id=displayMode tip="Display / Inline','wrap_text')+
+				itv('seled" id=SVGLinkMode tip="SVG Link','link')
+			)
+		}
+		$('#displayMode,#SVGLinkMode').toggle($(this).val()=='SVG')
 	
 	}).on('click','#send2textBox',function(){
 

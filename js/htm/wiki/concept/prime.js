@@ -61,7 +61,7 @@ detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质'
 			'$n(≥396738),(1+'+frac(1,'25\\ln ^2 n','t')+')n之间必有1个素数$'+scbox('Pierre Dusart 2010','bold brad'),
 			'$n(≥468991632),(1+'+frac(1,'5000\\ln ^2 n','t')+')n之间必有1个素数$'+scbox('Pierre Dusart 2016','bold brad'),
 			'$n(足够大),n+O(n^{21/40})之间必有1个素数$'+scbox('Baker, Harman, Pintz','bold brad'),
-			'$有无穷多个4k+1形素数$',
+			'$有无穷多个4k+1, 8k-1, 8k+5形素数$',
 			]),
 		ol(['$n^2,(n+1)^2之间（n>1）是否一定存在素数？$'+scbox('Legendre猜想','bold brad'),
 			'$n^2+1素数是否无穷多？$',],'unknown')
