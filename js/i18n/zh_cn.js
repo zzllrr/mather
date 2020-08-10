@@ -4203,6 +4203,7 @@ lang['zh_cn'] = {
 'Thompson':'汤普森',
 'Thomson':'汤姆森',
 
+'Thue':'图厄',
 'Thurston':'瑟斯顿',
 'Tikhonov':'吉洪诺夫',
 

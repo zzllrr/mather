@@ -59,17 +59,19 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 	),
 
 
-	detail('当C是偶数时，A,B同奇（同偶则不互素！），x,y也同奇（反证法）',
+	detail('当C是偶数时，A,B同奇（同偶则不互素！），x,y也同奇（反证法）'+br+
+		'则必有(x,y,z)=1',
 
-		$A(['设p是C的任意质因子（显然p不整除A,B）',
-		kmod('A^x+B^y',0,'p^z'),
-		kmod('A^x+B^y',0,'p'),
-		'设'+kmod('AW',1,'p')+'（显然此方程必有解）',	
-		'假设y是偶数，则'+kmod(['(AW)^x+(BW)^y','1+(BW)^y'],0,'p'),
-		'则-1是模p的二次剩余',
-		'则p是4k+1形素数，这与p可以取2矛盾！',
-		'因此，y不能是偶数，同理x不能是偶数'
-	]).join(br)),
+		ksc(['设p是C的任意质因子（显然p不整除A,B）',
+			kmod('A^x+B^y',0,'p^z'),
+			kmod('A^x+B^y',0,'p'),
+			'设'+kmod('AW',1,'p')+'（显然此方程必有解）',	
+			'假设y是偶数，则',
+			kmod(['(AW)^x+(BW)^y','1+(BW)^y'],0,'p'),
+			'则-1是模p的二次剩余',
+			'则p是4k+1形素数，这与p可以取2矛盾！',
+			'因此，y不能是偶数，同理x不能是偶数'
+		]).join(br)),
 	
 	
 
@@ -93,7 +95,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 		'原方程即：<la>3^{x}+5^{3x-4k-2l}=2^{3x-4k}</la>',
 		'<la>(x,3x-4k-2l,3x-4k)=1或2</la>',
 
-		'当(x,y,z)=1时，x是奇数且(k,x)=(2k+j,x)=1',
+		'当(x,y,z)=1时，x是奇数（事实上y,z也是奇数）且(k,x)=(2k+j,x)=1',
 		detail('遍历代码',
 `
 function tuple(X,K,J){

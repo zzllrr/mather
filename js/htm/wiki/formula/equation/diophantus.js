@@ -309,6 +309,19 @@ detail(ksc('4\\/n=1\\/x+1\\/y+1\\/z')+ gM2('Erdős–Straus conjecture')+'认为
 	'等价于方程'+ksc('4xyz=yzn+xzn+xyn=n(yz+xz+xy)')
 )+
 
+detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equation"),
+	'根据对称性，一般只需考虑y>0的非平凡解',
+	ksc('y^2=x^3-2')+'（y>0）只有整数解(3,5)'+gM2('Fermat')+
+	ksc('y^2=x^3-4')+'（y>0）只有整数解(2,2),(5,11)'+gM2('Fermat')+'（但未给出证明）'+
+	ksc('y^2=x^3+1')+'（y>0）只有整数解(2,3)'+gM2('Euler')+'（但证明不完全）'+
+	ksc('y^2=x^3+n')+'（n>0）最多只有有限多组整数解'+gM2('Thue–Siegel–Roth')+''+
+
+	refer([
+		enwiki("Mordell_curve"),
+		inhref('explore.html?q=Problem/Problem List'),
+	
+	])
+)+
 
 detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+gM2("Catalan's conjecture"),
 	'方程'+ksc('x^a-y^b=n')+
