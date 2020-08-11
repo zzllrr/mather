@@ -217,7 +217,15 @@ detail('求和公式',Table([ZLR('前n项求和 记法 结果')],[
 ,'wiki').replace(/\n/g,br))+
 
 detail(i18('Reference'),ol([
+
+	enwiki("Catalan's_conjecture"),
+	enwiki('Diophantine_equation','2020-8-4'),
+	enwiki('Faulhaber%27s_formula','2019-11-21'),
+	enwiki('Umbral_calculus','2019-11-22'),
+	enwiki("Sums_of_powers",'2020-8-11'),
+	
 	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('explore.html?q=Problem/Problem List'),
 	'《数学手册》，高等教育出版社，1979.5 第1版',
 	'《实用数学手册》，科学出版社，2006.1 第2版',
 	'《数学指南——实用数学手册》，科学出版社，2012.1 第1版',

@@ -84,7 +84,7 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 	['方根\nroot',kroot('x','n'),'',''],
 		
-	['欧拉函数\n(Euler) Totient Function\n(Euler) phi function','φ(n)',khrA(['小于n且与n互素的正整数个数','不妨特别定义φ(0)=φ(1)=1',
+	['欧拉函数\n(Euler) Totient Function\n(Euler) phi function','φ(n)',khrA(['不大于n且与n互素的正整数个数','不妨特别定义φ(0)=φ(1)=1',
 		'φ(n) = n'+prod('','p|n','',lrp('','1-'+frac(1,'p',''),'',''),'','')+'\\\\ '+kxc('证明：n因式分解后，根据积性，连乘','bf','text'),
 		'φ(n) = n'+sum('','d|n','',frac('μ(d)','d',''),'','')+'其中μ是'+kxc('Möbius','bf')+'函数',
 		'φ(n) = '+sum('k','1','n','(k,n)\\cos'+frac('2kπ','n',''),'',''),
@@ -94,11 +94,13 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 			'推论：p是素数⇒'+piece(['φ(p)是素数 ⇔ p=3','φ(p)是偶数 ⇔ p≥3',
 			'φ(p^k) =p^k-p^{k-1}=p^k'+lrp('','1-'+frac(1,'p',''),'','')+'=p^{k-1}φ(p)',
 			]),
-		'(a,m)=1⇒'+piece(['积性φ(am) = φ(a)φ(m)',
+		'(a,m)=1⇒'+piece(['φ(am) = φ(a)φ(m)'+' ~ '+kbox('积性'),
 			kmod('a^{φ(m)}',1,'m')+' ~ '+kbox('Euler定理'),
-			'特别地，p是素数 ⇒ '+kmod('a^{p-1}',1,'p'),
+			'特别地，(a,p)=1，p是素数 ⇒ '+kmod('a^{p-1}',1,'p'),
 			kbox('Fermat\'s little theorem费马小定理'),
-			'即'+kmod('a^p','a','p')
+			'即'+kmod('a^p','a','p'),
+
+			'素数p ⇒ '+kmod('(a+b+c+⋯)^p','a^p+b^p+c^p+⋯','p')+' ~ '+kbox('Gauss'),
 			]),
 		'n = '+sum('','d|n','','φ(d)','','')+' ~ '+kbox('Gauss定理'),
 		'a|b ⇒ φ(a)|φ(b)',
@@ -107,6 +109,8 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 		'φ(mn) = φ(m)φ(n)'+frac('(m,n)','φ((m,n))','')+' = (m,n)φ([m,n]) = '+frac('mnφ([m,n])','[m,n]',''),
 		'φ(2m) = '+piece([['2φ(m)','当m是偶数'],['φ(m)','当m是奇数']]),
 		'φ(n^m) = n^{m-1}φ(n)',
+		'φ(A) = A'+frac('a-1','a')+frac('b-1','b')+frac('c-1','c')+'⋯~其中a,b,c,⋯是A的所有不同的素因子',
+
 		frac('φ(n)','n','')+' = '+frac('φ('+kxf('rad')+'(n))',kxf('rad')+'(n)',''),
 		frac('n','φ(n)','')+' = '+sum('','d|n','',frac('μ^2(d)','φ(d)',''),'',''),
 		sum('',['1≤k≤n','(k,n)=1'],'','k','','')+' = '+frac('nφ(n)',2,'')+' 当n>1时',
@@ -188,9 +192,9 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 		],
 
 
-	['原根\n模m的原根\nPrimitive Root modulo m','',kbrA([
+	['原根\n模m的原根\nPrimitive Root modulo m','g',kbrA([
 		'∀a满足(a,m)=1，都存在k，'+kmod('a','g^k','m')+'【wikipedia定义】',
-		'g满足1,g,g^2,⋯,g^{ϕ(m)-1}两两互不同余（\\mod m）【数学手册】，此定义有问题，例如m=4时',
+		'g满足1,g,g^2,⋯,g^{ϕ(m)-1}两两互不同余（\\mod m）【数学手册，此定义有问题，例如m=4时】',
 		'另一种定义：\\text{Ord}_m(g) = ϕ(m)'
 		]),
 		kul(['模m有原根 ⇔ m=2,4,p^k,2p^k其中p是奇素数 （k是正整数）⇔ 方程'+kmod('x^2',1,'m')+'只有解±1',
@@ -229,13 +233,37 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 
 			kmod('I(a)','k','p-1')+'其中任意k满足'+kmod('g^k','a','p'),
 
-			'\\text{ind}_ga=\\text{ind}_gb⋅\\text{ind}_ba（换底公式）',
+			'I_ga=I_gb⋅I_ba（换底公式）',
 
-			kmod('\\text{ind}_gh⋅\\text{ind}_hg',1,'ϕ(m)'),
+			kmod('I_gh⋅I_hg',1,'ϕ(m)'),
 
-			'δ_m(a)=ϕ(m)/(\\text{ind}_ga, ~ϕ(m))',
+			'δ_m(a)=ϕ(m)/(I_ga, ~ϕ(m))',
 		
 		])],
+
+
+	['模p的n次方根\n',
+		kbrA([kroot('A','n')+'\\pmod p']),
+		kbrA(['满足'+kmod('x^n','A','p')]),
+		
+		kul([kmod('nI(x)','I(A)','p-1'),
+			'x要么无意义（方程无解），要么有(n,p-1)个不同的值',
+
+			'I(1)=0',
+			'I(g)=1',
+			'I(-1)=ϕ(m)/2（m>2）',
+
+
+			kmod('I(a)','k','p-1')+'其中任意k满足'+kmod('g^k','a','p'),
+
+			'I_ga=I_gb⋅I_ba（换底公式）',
+
+			kmod('I_gh⋅I_hg',1,'ϕ(m)'),
+
+			'δ_m(a)=ϕ(m)/(I_ga, ~ϕ(m))',
+		
+		])],
+
 
 	['Liouville函数\n','λ(n)','n素因子指数和奇偶性(-1或1)',
 		ul(['积性函数',])],
@@ -440,7 +468,7 @@ detail('整数（二元运算）',Table([ZLR('名称 记法 定义 性质')],[
 		kul(['c='+piece([['1','当a=b，即(a,b)=a=b时'],['a','当(a,b)≠b时（例如a < b或b∤a时）'],['a/b~'+kxf('pow')+'~ b','当b|a，即(a,b)=b时']])
 		])
 	],
-	['Legendre symbol\n勒让德符号',lrpfrac('a','p'), kbrA(['p是奇素数 m='+frac('p-1',2,''),piece([[1,'a是二次剩余'],[-1,'a是二次非剩余'],[0,'p|a']])]),
+	['Legendre symbol\n勒让德符号',lrpfrac('a','p'), kbrA(['p是奇素数 m='+frac('p-1',2,''),piece([[1,'a是p的二次剩余'],[-1,'a是p的二次非剩余'],[0,'p|a']])]),
 		kul([kmod('a','b','p')+' ⇒ '+lrpfrac('a','p')+'='+lrpfrac('b','p'),
 			kxA([kmod(lrpfrac('a','p'),'a^m','p')+kbox('Euler criterion判别准则'),
 				' ⇔ '+piece([[kmod('a^m',1,'p'),'a是二次剩余'],[kmod('a^m',-1,'p'),'a是二次非剩余'],[kmod('a^m',0,'p'),'p|a']]),
@@ -529,6 +557,12 @@ detail('整数（二元关系）',Table([ZLR('名称 记法 定义 性质')],[
 				'δ_m(a)=δ_m(b) 对模m的阶相等',
 				
 				]),
+
+		'素数p ⇒ '+kmod('(a+b+c+⋯)^p','a^p+b^p+c^p+⋯','p')+kbox('Gauss'),
+		'推论：素数p ⇒ '+kmod('(kx)^p','kx^p','p')+' ⇒ '+kmod(['(kx)^p','kx^p'],'kx','p')+'（若(x,p)=1）',
+
+		'奇数q，n>2  ⇒ '+kmod('q^{2^{n-2}}',1,'2^n')+kbox('Gauss'),
+
 		kmod('a','b','m_i')+' i=1,2,⋯,k ⇒ \\\\ '+kmod('a','b','[m_1,m_2,⋯,m_k]'),
 		
 		kxA(['一次同余方程'+kmod('ax','c','m'),'(a,m)=g=au_0+mv_0',
@@ -567,12 +601,44 @@ detail('整数（二元关系）',Table([ZLR('名称 记法 定义 性质')],[
 
 		])
 	],
-	['二次剩余QR\n平方剩余\nquadratic residue\n二次非剩余NR\n平方非剩余\nquadratic non-residue','',kul([kmod('x^2','a','b')+' （其中(a,b)=1）\\\\ 方程有解 ⇔ 二次剩余',
-		]),kul(['p是素数, m='+frac('p-1',2,'')+' ⇒ '+piece(['模p缩系1,2,⋯,p-1中，二次剩余和二次非剩余各占一半（m个）\\\\ '+
+	['剩余\n二次剩余QR\n平方剩余\nquadratic residue\n二次非剩余NR\n平方非剩余\nquadratic non-residue','',kul([kmod('x^2','a','b')+' （其中(a,b)=1）\\\\ 方程有解 ⇔ a是模b的二次剩余',
+		]),kul(['p是奇素数, m='+frac('p-1',2,'')+' ⇒ '+piece(['模p缩系1,2,⋯,p-1中，二次剩余和二次非剩余各占一半（m个）\\\\ '+
 				'且1,2^2,3^2,⋯,m^2 \\pmod p是全部二次剩余',
-				'a是二次剩余 ⇔ '+kmod('a^m',1,'p')+br+'a是二次非剩余 ⇔ '+kmod('a^m',-1,'p'),
-				piece(['二次剩余的乘积QR*QR','2个二次非剩余的乘积NR*NR'],1)+'是二次剩余',
-				'1个二次剩余与1个二次非剩余的乘积QR*NR是二次非剩余'])
+				piece(['a是二次剩余 ⇔ '+kmod('a^m',1,'p'),'a是二次非剩余 ⇔ '+kmod('a^m',-1,'p')]),
+				piece(['二次剩余的乘积QR*QR','2个二次非剩余的乘积NR*NR'],1)+'是二次剩余QR',
+				'1个二次剩余与1个二次非剩余的乘积QR*NR是二次非剩余NR']),
+			'a不被p整除 ⇒ '+piece(['a是p的二次剩余 ⇒ a是p^n的二次剩余','a是p的二次非剩余 ⇒ a是p^n的二次非剩余']),
+
+			'奇素数p，a是p的二次剩余 ⇒ p=4k+1'+kbox('Gauss'),
+			'-1是4k+1型素数的二次剩余，是4k-1型素数的二次非剩余'+kbox('Gauss'),
+	
+			'-2是8k+1型、8k+3型素数的二次剩余，是8k-1型、8k-3型素数的二次非剩余'+kbox('Gauss'),
+	
+			'2是8k±1型素数的二次剩余，是8k±3型素数的二次非剩余'+kbox('Gauss'),
+	
+	
+			'-3是12k+1型、12k-5型、3k+1型素数、QR3型素数（是3的二次剩余）的二次剩余，是12k+5型、12k-1型、6k+5型素数的二次非剩余'+kbox('Gauss'),
+	
+			'3是12k±1型素数的二次剩余，是12k±5型素数的二次非剩余'+kbox('Gauss'),
+
+			'对于二次同余方程'+kmod('x^2','a','n'),
+			piece([
+				[kmod('x','±a^{(n+1)/4}','n'),'当'+kmod('n',3,4)+' 且勒让德符号'+lrpfrac('a','n')+'=1'+kbox('Lagrange')],
+
+				
+				
+				[piece([[kmod('x','±a^{(n+3)/8}','n'),lrpfrac('a','n')+'=1'],[kmod('x','±a^{(n+3)/8}2^{(n-1)/4}','n'),lrpfrac('a','n')+'=-1']]),'当'+kmod('n',5,8)+kbox('Legendre')],
+
+
+			]),
+		])+
+		refer([
+			enwiki("Quadratic_residue"),
+			enwiki("Power_residue_symbol"),
+			enwiki("Eisenstein_reciprocity"),
+			inhref('wiki.html?q=Formula/Equation/Diophantus'),
+			inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+		
 		])
 	],
 	

@@ -129,7 +129,7 @@ ksc(['∵',
 
 
 ])).join(br))+
-detail('$1=x^3+y^3+z^3$ 费马立方面 Fermat cubic' ,
+detail('$1=x^3+y^3+z^3$ 费马立方数 Fermat cubic' ,
 		
 	'参数解如下：'+br+
 	ksc([
@@ -279,10 +279,12 @@ ksc([
 
 refer([
 	enwiki("Catalan's_conjecture"),
-	inhref('wiki.html?q=Formula/Sequence/Sum'),
 	enwiki('Diophantine_equation','2020-8-4'),
 	enwiki('Faulhaber%27s_formula','2019-11-21'),
 	enwiki('Umbral_calculus','2019-11-22'),
+	enwiki("Sums_of_powers",'2020-8-11'),
+	
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
 	inhref('explore.html?q=Problem/Problem List'),
 
 ]))+
@@ -292,8 +294,17 @@ detail(ksc('a^2+b^2=c^2 ⇔ (m^2-n^2)^2+(2mn)^2=(m^2+n^2)^2')+' 勾股数' ,
 detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
 
 )+
-detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+' 例如：哈代与拉马努金出租车数12^3 + 1^3 = 9^3 + 10^3 = 1729' ,
+detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+' 例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
+	ksc([
+		'解的一般形式：'+piece([
+			'a=1-(m-3n)(m^{2}+3n^{2})',
+			'b=(m+3n)(m^{2}+3n^{2})-1}',
+			'c=(m+3n)-(m^{2}+3n^{2})^{2}',
+			'd=(m^{2}+3n^{2})^{2}-(m-3n)}',
+			
+		])
 
+	]).join(br)
 )+
 detail(ksc('x^2-ny^2=±1')+'（'+gM2('Pell Equation')+'）',
 
@@ -301,9 +312,74 @@ detail(ksc('x^2-ny^2=±1')+'（'+gM2('Pell Equation')+'）',
 detail(ksc('61x^2+1=y^2')+'（最小的正整数解x=226153980, y = 1766319049）',
 
 )+
-detail(ksc('a^4+b^4+c^4=d^4')+' (Euler曾错误猜测无非平凡解) Elkies证明有无穷多组非平凡解' ,
+detail(ksc('a^4+b^4+c^4=d^4')+' (Euler曾错误猜测无非平凡解：'+ksc('a_1^k+a_2^k+⋯+a_n^k=b^k ⇒ n ≥ k')+'其中整数n,k都>1）' ,
 
+	
+	ksc([
+		
+		'2682440^4 + 15365639^4 + 18796760^4 = 20615673^4（Noam Elkies 1986）',
+		'(85v^2 + 484v − 313)^4 + (68v^2 − 586v + 10)^4 + (2u)^4 = (357v^2 − 204v + 363)^4',
+		'其中u^2=22030 + 28849v − 56158v^2 + 36941v^3 − 31790v^4（可令v=-\\frac{31}{467}，代入上式化简）',
+		'95800^4 + 217519^4 + 414560^4 = 422481^4 （Roger Frye 1988）',
+
+
+		'a_1^k+a_2^k+⋯+a_n^k=b^k ⇒ n ≥ k （其中整数n,k>1，更一般的Euler幂和猜想，已被否证）',
+		'k=3时成立（因为费马大定理FLT成立，则可以用反证法得知此结论）',
+		'k=4、5时，不成立',
+		'k=5时的一些反例：',
+
+		'27^5 + 84^5 + 110^5 + 133^5 = 144^5 （Lander & Parkin, 1966）',
+		'(−220)^5 + 5027^5 + 6237^5 + 14068^5 = 14132^5 （Scher & Seidl 1996）',
+		'55^5 + 3183^5 + 28969^5 + 85282^5 = 85359^5 （Frye 2004）',
+
+		'k>5时，是否成立未知unknown',
+
+		'其它非反例的例子：',
+		'30^4 + 120^4 + 272^4 + 315^4 = 353^4 （Norrie 1911，最小例子）',
+		'19^5 + 43^5 + 46^5 + 47^5 + 67^5 = 72^5 （Lander, Parkin, Selfridge, 1967 最小例子）',
+
+		'7^5 + 43^5 + 57^5 + 80^5 + 100^5 = 107^5（Sastry 1934，第三小的例子）',
+		
+		'127^7 + 258^7 + 266^7 + 413^7 + 430^7 + 439^7 + 525^7 = 568^7 （Dodrill 1999）',
+
+		'90^8 + 223^8 + 478^8 + 524^8 + 748^8 + 1088^8 + 1190^8 + 1324^8 = 1409^8 （Chase 2000）',
+	
+	]).join(br)+
+	refer([
+		enwiki("Euler%27s_sum_of_powers_conjecture"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
 )+
+
+detail(ksc('a^3+b^3+c^3=d^3')+' 有无穷多组非平凡解，如(3,4,5,6)' ,
+
+	
+	ksc([
+		'3^3+4^3+5^3=6^3（令下式a=1,b=1即得）',
+		'(3a^{2}+5ab-5b^{2})^{3}+(4a^{2}-4ab+6b^{2})^{3}+(5a^{2}-5ab-3b^{2})^{3}=(6a^{2}-4ab+4b^{2})^{3}（拉马努金公式）',
+		'a^{3}(a^{3}+b^{3})^{3}=b^{3}(a^{3}+b^{3})^{3}+a^{3}(a^{3}-2b^{3})^{3}+b^{3}(2a^{3}-b^{3})^{3}',
+		'a^{3}(a^{3}+2b^{3})^{3}=a^{3}(a^{3}-b^{3})^{3}+b^{3}(a^{3}-b^{3})^{3}+b^{3}(2a^{3}+b^{3})^{3}',
+		'2100000可以用9种方法表示成3个立方数之和',
+	
+	
+	
+	]).join(br)+
+	refer([
+		enwiki("Euler%27s_sum_of_powers_conjecture"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+)+
+
+detail(ksc('a^4=b^4+c^2')+'无正整数解 (Fermat直角三角形定理，使用无限递降法证明) ' ,
+	refer([
+		enwiki("Fermat%27s_right_triangle_theorem"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+)+
+
 
 detail(ksc('4\\/n=1\\/x+1\\/y+1\\/z')+ gM2('Erdős–Straus conjecture')+'认为对于任何n>1，都有正整数解',
 	'等价于方程'+ksc('4xyz=yzn+xzn+xyn=n(yz+xz+xy)')

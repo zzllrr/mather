@@ -32,9 +32,12 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Artin's conjecture on primitive roots",'',br,enwiki0),gM("Number Theory"),"给定一个整数a（完全平方和-1除外）⇒a是模无限多素数的原根",""+br+"⇐"+gM2("Generalized Riemann Hypothesis")+br+"⇐"+gM2("Selberg conjecture")+" B"],
 [gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
 [gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
-[gM2("Beal's conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>A^x+B^y=C^z \\\\ ⇒ 正整数A,B,C有共同素因子\\\\且正整数x,y,z≥3</la>",
+[gM2("Beal conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>A^x+B^y=C^z（字母都是正整数） \\\\ ⇒ A,B,C有共同素因子\\\\且x,y,z≥3</la>",
 	brA(['【分析】','若A,B,C中有完全幂，可以通过改写，使得底数不含完全幂，因此下面讨论仅限A,B,C都不是完全幂',
-	
+	'显然A=B=1不符题意（因为此时必有C=2，z=1）',
+
+
+
 	'① 反例必要条件之一：A,B,C两两互素（由 p|(A,B) ⇒ p|C ）',
 	'即<la>(A,B)=(B,C)=(A,C)=1</la>',
 	'⇔ 存在整数使得<la>m_1A+m_2B=m_3B+m_4C=m_5A+m_6C=1</la>',
@@ -170,6 +173,9 @@ function tuple(X,K,J){
 	href(Hs+'www.planetmath.org/BealConjecture','planetmath.org'),
 	href(H+'www.duodaa.com/blog/index.php/archives/71/','哆嗒数学网'),
 	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	enwiki('Beal_conjecture','2020-8-11'),
+
+
 	])],
 [gM2("Beilinson conjecture",'',br,enwiki0),gM("Number Theory"),"莱布尼兹π/4公式如何改写替换π为另一个超越数",""],
 [gM2("Berry–Tabor conjecture")+enwiki('Quantum_chaos#Berry–Tabor_conjecture'),gM("Geodesic flow"),"紧黎曼面上的地测流的量子动力学中，量子能量特征值行为像独立随机变量数列，隐含经典动力学是完全可积的",""],

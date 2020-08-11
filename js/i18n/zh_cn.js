@@ -2205,6 +2205,7 @@ lang['zh_cn'] = {
 	'Side':'边',
 	'Sides': '边数',
 	'Side Length': '边长',
+	'Hypotenuse':'斜边',
 	'Perimeter':'周长',
 	'Area':'面积',
 	'Surface Area':'表面积',
