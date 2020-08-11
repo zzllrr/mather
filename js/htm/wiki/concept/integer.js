@@ -631,6 +631,8 @@ detail('整数（二元关系）',Table([ZLR('名称 记法 定义 性质')],[
 
 
 			]),
+
+			kmod('ax^2+bx+c',0,'m')+'⇔'+kmod('4a^2x^2+4abx+4ac',0,'4am')+'⇔'+kmod('(2ax+b)^2','b^2-4ac','4am')
 		])+
 		refer([
 			enwiki("Quadratic_residue"),
@@ -638,6 +640,7 @@ detail('整数（二元关系）',Table([ZLR('名称 记法 定义 性质')],[
 			enwiki("Eisenstein_reciprocity"),
 			inhref('wiki.html?q=Formula/Equation/Diophantus'),
 			inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+			'Gauss 《算术探索》P83',
 		
 		])
 	],
