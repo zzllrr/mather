@@ -13,7 +13,6 @@ explores={index:['Topic','Problem','Pitfall','Thinking','Game'],
 			'Foldable Solids',
 			'Cuboid Surface Area',
 			'Two Buckets',
-			'费马大定理中的方程1解变6解',
 		]}
 
 		

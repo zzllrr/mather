@@ -313,7 +313,10 @@ function tuple(X,K,J){
 [gM2("Oppermann's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("Petersen coloring conjecture",'',br,enwiki0),gM("Graph Theory"),"",""],
 [gM2("Pierce–Birkhoff conjecture",'',br,enwiki0),gM("Real Algebraic Geometry"),"",""],
-[gM2("Pillai's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
+[gM2("Pillai's conjecture",'',br,enwiki0),gM("Number Theory"),ksc([
+	'Ax^{n}-By^{m}=C只有有限多组整数解',
+	'其中(m, n) ≠ (2, 2)，A,B,C是任意正整数'
+]).join(br),""+br+"⇐"+gM2("abc conjecture")],
 [gM2("De Polignac's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("quantum unique ergodicity conjecture",'',br,enwiki0),gM("Dynamical Systems"),"","2004, "+gM2('Elon Lindenstrauss')+", "+gM("for Arithmetic Hyperbolic Surfaces")+", 2008, "+gM2("Kannan Soundararajan")+" & "+gM2("Roman Holowinsky")+", "+gM("for.2 Holomorphic Forms")+" of increasing weight for Hecke eigenforms "+gM("on Noncompact Arithmetic Surfaces")],
 [gM2("Reconstruction conjecture",'',br,enwiki0),gM("Graph Theory"),"任一至少含有3顶点的有限图可重构（所有与之亚重构（删掉一个点的全部子图集合存在双射）的图都与之同构）",""],
