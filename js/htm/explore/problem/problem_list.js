@@ -21,7 +21,17 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 	'按此猜想，显然若c是素数p时，有'+XML.wrapE('LA',"\\text{rad}(ab)^{1+ε} p^ε< 1"),
 	'2004年Eric Reyssat找到截至目前最大的q值：1.6299'
 	]),
-	""+br+"⇔"+gM2('Granville–Langevin conjecture')+', 1-'+gM("Dimension")+gM2("Vojta's conjecture")+br+"⇒"+gM2('Erdős–Woods conjecture')+", "+gM2("Fermat–Catalan conjecture")+" Formulated by David Masser and Joseph Oesterlé. Proof Claimed in 2012 by Shinichi Mochizuki"],
+	""+br+"⇔"+gM2('Granville–Langevin conjecture')+', 1-'+gM("Dimension")+gM2("Vojta's conjecture")+br+"⇒"+gM2('Erdős–Woods conjecture')+", "+gM2("Fermat–Catalan conjecture")+" Formulated by David Masser and Joseph Oesterlé. Proof Claimed in 2012 by Shinichi Mochizuki"+
+
+	refer([href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
+	enwiki('abc_conjecture','2020-8-12'),
+	enwiki('Fermat–Catalan_conjecture','2020-8-12'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	enwiki('Beal_conjecture','2020-8-11'),
+
+
+	])
+	],
 [gM2("Agoh–Giuga conjecture",'',br,enwiki0),gM("Number Theory"),"<la>p是素数~ ⇔ ~p$kmod('B_{p-1}','-1','p')$</la>","如果成立，前p-1项正整数的指数和、指数积，分别模p等于-1、1"],
 
 [gM2("Agrawal's conjecture",'',br,enwiki0),gM("Number Theory"),"<la>$kmod('(X-1)^n','X^n-1','n,X^r-1')+kbr+'（其中n,r是互素正整数）'+kbr$ ⇒ n是素数或$kmod('n^2','1','r')$</la>",""],
@@ -132,15 +142,24 @@ function tuple(X,K,J){
 
 		].join(br)),
 
-	detail('原方程参数解之一：',[
+	detail('原方程参数解(不完全列举)：',[
 
 		'<la>[a(a^{m}+b^{m})]^{m}+[b(a^{m}+b^{m})]^{m}=(a^{m}+b^{m})^{m+1}</la>',
 		'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{m}</la>',
+
+
+		'<la>[a(a^{m}+b^{m})^k]^{m}+[b(a^{m}+b^{m})^k]^{m}=(a^{m}+b^{m})^{km+1}</la>',
+		'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{km}</la>',
+
+		'<la>[b(a^{m}-b^{m})^k]^{m}+(a^{m}-b^{m})^{km+1}=[a(a^{m}-b^{m})^k]^{m}</la>',
+		'即上式b→-b，并视n为奇数',
+
 		].join(br)
 	),
-	detail('下面有其他形式的解',
+	detail('下面有其他形式的解（都不是反例）',
 		ul(['<la>2^n+2^n=2^{n+1}</la>',
-
+		'<la>3^{3n}+(2⋅3^n)^3=3^{3n+2}</la>',
+		'例如：令上式中n=4，得到<la>27^4+162^3=9^7</la>',
 
 			'<la>1+2^3=3^2 (等式两边同乘3^{3k})</la>',
 			'<la>1+7=2^3 (等式两边同乘7^{3k})</la>',
@@ -164,6 +183,17 @@ function tuple(X,K,J){
 
 			'<la>60^3+90=7^4⋅90 (等式两边同乘90^{3+12k})</la>',
 			
+			'递推形式：',
+			'已知解：<la>A_1^x+B_1^x=C_1^x</la>',
+
+			'令<la>'+piece([
+				'A_{{n}}=(A_{{n-1}}^{{yz+1}})(B_{{n-1}}^{{yz}})(C_{{n-1}}^{{yz}})',
+				'B_{{n}}=(A_{{n-1}}^{{xz}})(B_{{n-1}}^{{xz+1}})(C_{{n-1}}^{{xz}})',
+				'C_{{n}}=(A_{{n-1}}^{{xy}})(B_{{n-1}}^{{xy}})(C_{{n-1}}^{{xy+1}})',
+		
+			])+'</la>',
+
+
 
 		])
 	)
@@ -211,6 +241,33 @@ function tuple(X,K,J){
 [gM2("Erdős–Gyárfás conjecture",'',br,enwiki0),gM("Graph Theory"),"",""],
 [gM2("Erdős–Straus conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("Farrell–Jones conjecture",'',br,enwiki0),gM("Geometric topology"),"",""],
+
+[gM2("Fermat–Catalan conjecture",'',br,enwiki0),gM("Number Theory"),detail("<la>a^x+b^y=c^z（字母都是正整数） \\\\ (a,b,c)=1\\\\ 1\\/x + 1\\/y +1\\/z <1 只有有限个非平凡解</la>",
+	brA([
+		'已知的平凡解<la>1^m+2^3=3^2 ~(m>6)</la>',
+		'已知的9个非平凡解：',
+		'<la>2^5+7^2=3^4</la>',
+		'<la>7^3+13^2=2^9</la>',
+		'<la>2^{7}+17^{3}=71^{2}</la>',
+		'<la>3^{5}+11^{4}=122^{2}',
+		'<la>33^{8}+1549034^{2}=15613^{3}</la>',
+		'<la>1414^{3}+2213459^{2}=65^{7}</la>',
+		'<la>9262^{3}+15312283^{2}=113^{7}</la>',
+		'<la>17^{7}+76271^{3}=21063928^{2}</la>',
+		'<la>43^{8}+96222^{3}=30042907^{2}</la>',
+		
+		
+	])
+),""+br+"⇐"+gM2("abc conjecture")+refer([
+	enwiki('Fermat–Catalan_conjecture','2020-8-12'),
+	enwiki('Beal_conjecture','2020-8-11'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
+
+
+	])],
+
+
 [gM2("Filling area conjecture",'',br,enwiki0),gM("Differential Geometry"),"",""],
 [gM2("Firoozbakht's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("Fortune's conjecture",'',br,enwiki0),gM("Number Theory"),"",""],
