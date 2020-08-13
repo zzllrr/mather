@@ -43,7 +43,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Artin's conjecture on primitive roots",'',br,enwiki0),gM("Number Theory"),"给定一个整数a（完全平方和-1除外）⇒a是模无限多素数的原根",""+br+"⇐"+gM2("Generalized Riemann Hypothesis")+br+"⇐"+gM2("Selberg conjecture")+" B"],
 [gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
 [gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
-[gM2("Beal conjecture",'',br,enwiki0)+gM2('Tijdeman-Zagier'),gM("Number Theory"),detail("<la>A^x+B^y=C^z（字母都是正整数） \\\\ ⇒ A,B,C有共同素因子\\\\且x,y,z≥3</la>",
+[gM2("Beal conjecture",'',br,enwiki0)+gM2('Tijdeman-Zagier conjecture'),gM("Number Theory"),detail("<la>A^x+B^y=C^z（字母都是正整数） \\\\ ⇒ A,B,C有共同素因子\\\\且x,y,z≥3</la>",
 	brA(['【分析】','若A,B,C中有完全幂，可以通过改写，使得底数不含完全幂，因此下面讨论仅限A,B,C都不是完全幂',
 	'显然A=B=1不符题意（因为此时必有C=2，z=1）',
 

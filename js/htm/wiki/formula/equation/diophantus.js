@@ -306,22 +306,35 @@ detail(ksc('a^2+b^2=c^2 ⇔ (m^2-n^2)^2+(2mn)^2=(m^2+n^2)^2')+' 勾股数' ,
 
 detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
 	ksc([
-		'有理形式：x^n+y^n=1 ~（上式等式两边同时除以c^n）',
-		'对于n=3情况，被Euler所证明',
+		'有理形式：x^n+y^n=1 ~①~（上式等式两边同时除以c^n）',
+		'对于n=3情况，被\\text{Euler}所证明',
+		'下面是另一个证明思路：',
 		'设y=k-x, k≠0',
 		'x^3+(k-x)^3=k^3-3k^2x+3kx^2=k(3x^2-3kx+k^2)=1',
 		'即3kx^2-3k^2x+k^3-1=0',
 		'Δ=9k^4-4(3k)(k^3-1)=3k(3k^3-4(k^3-1))=3k(4-k^3)须为有理数的平方',
-		'设k=p/q 最简形式(正整数q，p非零整数,(p,q)=1)',
+		'设k=p/q 最简形式(正整数q，整数p≠0,(p,q)=1)',
 		'Δ=3(p/q)(4-(p/q)^3)=3p(4q^3-p^3)/q^4',
 		'即3p(4q^3-p^3)须为整数的完全平方',
 
+		'等价的有理方程①的1解变6解：',
+		piece([
+			'纵横坐标互换：(x,y) → (y,x) ',
+			'x,y字母对换：(x,y) → (y,x)',
+			'横坐标倒数：(x,y) → \\(1\\/x,-y\\/x\\)',
+			'纵坐标倒数：(x,y) → \\(-x\\/y,1\\/y\\)',
+	
+			'横纵倒数：(x,y) → \\(-y\\/x,1\\/x\\)',
+			'纵横倒数：(x,y) → \\(1\\/y,-x\\/y\\)',
 
+		])
+	
 
 
 	]).join(br)
 )+
-detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+br+'例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
+detail(ksc('a^3+b^3=c^3+d^3')+' (有无穷多组非平凡解)'+br+
+	'例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
 	ksc([
 		'解的一般形式：'+piece([
 			'a=1-(m-3n)(m^{2}+3n^{2})',
@@ -335,7 +348,8 @@ detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+br+'例如：哈代�
 )+
 
 
-detail(ksc('a^4+b^4=c^4+d^4 (有无穷多组非平凡解，Euler给出多项式解)')+br+'例如：'+ksc('133^4 + 134^4 = 59^4 + 158^4 = 635318657') ,
+detail(ksc('a^4+b^4=c^4+d^4')+' (有无穷多组非平凡解，Euler给出多项式解)'+br+
+	'例如：'+ksc('133^4 + 134^4 = 59^4 + 158^4 = 635318657') ,
 	ksc([
 		'解的一般形式：'+piece([
 			'a=',
@@ -440,7 +454,8 @@ detail(ksc('a^3+b^3+c^3=d^3')+' 有无穷多组非平凡解，如(3,4,5,6)' ,
 	])
 )+
 
-detail(ksc('a^4=b^4+c^2')+'无正整数解 (Fermat直角三角形定理，使用无限递降法证明) ' ,
+detail(ksc('a^4=b^4+c^2')+'无正整数解'+br+
+	' (Fermat直角三角形定理，使用无限递降法证明) ' ,
 	refer([
 		enwiki("Fermat%27s_right_triangle_theorem"),
 		inhref('explore.html?q=Problem/Problem List'),
@@ -449,26 +464,9 @@ detail(ksc('a^4=b^4+c^2')+'无正整数解 (Fermat直角三角形定理，使用
 )+
 
 
-detail(ksc('4\\/n=1\\/x+1\\/y+1\\/z')+ gM2('Erdős–Straus conjecture')+'认为对于任何n>1，都有正整数解',
+detail(ksc('4\\/n=1\\/x+1\\/y+1\\/z')+'猜想对于任何n>1，都有正整数解'+ gM2('Erdős–Straus conjecture'),
 	'等价于方程'+ksc('4xyz=yzn+xzn+xyn=n(yz+xz+xy)')
 )+
-
-detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equation"),
-	[
-	'根据对称性，一般只需考虑y>0的非平凡解',
-	ksc('y^2=x^3-2')+'（y>0）只有整数解(3,5)'+gM2('Fermat'),
-	ksc('y^2=x^3-4')+'（y>0）只有整数解(2,2),(5,11)'+gM2('Fermat')+'（但未给出证明）',
-	ksc('y^2=x^3+1')+'（y>0）只有整数解(2,3)'+gM2('Euler')+'（但证明不完全）',
-	ksc('y^2=x^3+n')+'（n>0）最多只有有限多组整数解'+gM2('Thue–Siegel–Roth')+'',
-
-	refer([
-		enwiki("Mordell_curve"),
-		inhref('explore.html?q=Problem/Problem List'),
-	
-	])
-	].join(br)
-)+
-
 
 detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equation"),
 	[
@@ -530,7 +528,8 @@ detail(ksc('x^3+y^4=z^5')+'有解：(209952, 11664, 1944)，即'+br+
 )+
 
 
-detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+gM2("Catalan's conjecture")+' （Preda Mihăilescu 2002证明，因此已是定理）'+br+
+detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+br+
+	gM2("Catalan's conjecture")+' （Preda Mihăilescu 2002证明，因此已是定理）'+br+
 	'幂差方程'+ksc('x^a-y^b=n')+'解的情况统计如下',
 	'方程'+ksc('x^a-y^b=n')+
 	Table([['幂差形式','=','差值','解的情况']],Arrf(ksc,[
@@ -609,11 +608,11 @@ detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+gM2("Catalan's
 )+
 
 detail(ksc('x^p+y^q=z^r (各字母都是正整数，广义费马方程)')+br+
-	gM2("Beal's conjecture")+' （当p,q,r>2时，(x,y,z)>1）'+br+
+	gM2("Beal's conjecture")+'，即'+gM2('Tijdeman-Zagier conjecture')+' （当p,q,r>2时，(x,y,z)>1）'+br+
 	gM2("Fermat–Catalan conjecture")+'（广义费马猜想）：'+br+
 	'（当(x,y,z)=1（本原, 互素），且'+ksc('1\\/p + 1\\/q +1\\/r <1')+'时，只有下列有限多个非平凡解）'+br+
 	'Darmon, Granville证明只有有限多个解（但没说只有下列解）',
-	'满足(x,y,z)=1的解的情况统计如下',
+	'满足(x,y,z)=1的解的情况统计如下'+
 	ksc([
 		'已知的平凡解1^m+2^3=3^2 ~(m>6)',
 		'已知的9个非平凡解：',

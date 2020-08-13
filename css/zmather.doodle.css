@@ -18,7 +18,7 @@
 	
 	#tileToolCap:not(.Narrow) svg[id]{width:15%;}
 	#Crop {display: none}
-	body{
+	#Caps{
 		touch-action: none;
 		overflow: hidden;
 	}
