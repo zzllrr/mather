@@ -1631,6 +1631,9 @@ lang['zh_cn'] = {
 	'One-Third':'三分之一',
 	'Two-Thirds':'三分之二',
 
+	'Twice':'两次',
+	'Thrice':'三次',
+
 	'Twin':'孪生',
 	'Twin Prime':'孪生素数',
 	'Pairwise Coprime':'两两互素',
@@ -1934,6 +1937,7 @@ lang['zh_cn'] = {
 
 	'Square': '正方形',
 	'Square.1':'平方',
+	'Squarefree':'无平方',
 	
 	'Rectangle': '矩形',
 	'Rectangle.1': '长方形',
@@ -2271,6 +2275,7 @@ lang['zh_cn'] = {
 	'Primality':'素性',
 
 	'Primitive':'原',
+	'Primitive.1':'本原',
 
 	'Totient':'与因子互素数',
 

@@ -266,6 +266,9 @@ ZLR('⋮ ⋮ ⋮ ⋮'),
 		href(H+'math.mit.edu/~drew/Waterloo2019.pdf')+', 2019-11-21',
 	]))
 	
+
+
+
 	
 )+detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的等幂和' ,
 
@@ -288,12 +291,19 @@ refer([
 	inhref('explore.html?q=Problem/Problem List'),
 
 ]))+
+
+
+
+
 detail(ksc('a^2+b^2=c^2 ⇔ (m^2-n^2)^2+(2mn)^2=(m^2+n^2)^2')+' 勾股数' ,
 	ksc([
 		'有理形式：(t^2-1)^2+(2t)^2=(t^2+1)^2 ~（上式等式两边同时除以n^2）'
 
 	]).join(br)
 )+
+
+
+
 detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
 	ksc([
 		'有理形式：x^n+y^n=1 ~（上式等式两边同时除以c^n）',
@@ -305,13 +315,13 @@ detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
 		'设k=p/q 最简形式(正整数q，p非零整数,(p,q)=1)',
 		'Δ=3(p/q)(4-(p/q)^3)=3p(4q^3-p^3)/q^4',
 		'即3p(4q^3-p^3)须为整数的完全平方',
-		
+
 
 
 
 	]).join(br)
 )+
-detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+' 例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
+detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+br+'例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
 	ksc([
 		'解的一般形式：'+piece([
 			'a=1-(m-3n)(m^{2}+3n^{2})',
@@ -323,12 +333,43 @@ detail(ksc('a^3+b^3=c^3+d^3 (有无穷多组非平凡解)')+' 例如：哈代与
 
 	]).join(br)
 )+
+
+
+detail(ksc('a^4+b^4=c^4+d^4 (有无穷多组非平凡解，Euler给出多项式解)')+br+'例如：'+ksc('133^4 + 134^4 = 59^4 + 158^4 = 635318657') ,
+	ksc([
+		'解的一般形式：'+piece([
+			'a=',
+			'b=',
+			'c=',
+			'd=',
+			
+		])
+
+	]).join(br)
+)+
+
+
+detail(ksc('a^5+b^5=c^5+d^5 (有无穷多组多项式解非平凡解，但含有虚数i)'),
+	ksc([
+		'解的形式之一？：'+piece([
+			'a,b=2t ± (t^2 − 2)',
+			'c,d=2t ± i(t^2 − 2)',
+			
+		])
+
+	]).join(br)
+)+
+
 detail(ksc('x^2-ny^2=±1')+'（'+gM2('Pell Equation')+'）',
 
-)+
-detail(ksc('61x^2+1=y^2')+'（最小的正整数解x=226153980, y = 1766319049）',
+	detail(ksc('61x^2+1=y^2')+'（最小的正整数解x=226153980, y = 1766319049）',
 
+	)
 )+
+
+
+
+
 detail(ksc('a^4+b^4+c^4=d^4')+' (Euler曾错误猜测无非平凡解：'+ksc('a_1^k+a_2^k+⋯+a_n^k=b^k ⇒ n ≥ k')+'其中整数n,k都>1）' ,
 
 	
@@ -368,6 +409,9 @@ detail(ksc('a^4+b^4+c^4=d^4')+' (Euler曾错误猜测无非平凡解：'+ksc('a_
 
 	])
 )+
+
+
+
 
 detail(ksc('a^3+b^3+c^3=d^3')+' 有无穷多组非平凡解，如(3,4,5,6)' ,
 
@@ -426,6 +470,64 @@ detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equatio
 )+
 
 
+detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equation"),
+	[
+	'根据对称性，一般只需考虑y>0的非平凡解',
+	ksc('y^2=x^3-2')+'（y>0）只有整数解(3,5)'+gM2('Fermat'),
+	ksc('y^2=x^3-4')+'（y>0）只有整数解(2,2),(5,11)'+gM2('Fermat')+'（但未给出证明）',
+	ksc('y^2=x^3+1')+'（y>0）只有整数解(2,3)'+gM2('Euler')+'（但证明不完全）',
+	ksc('y^2=x^3+n')+'（n>0）最多只有有限多组整数解'+gM2('Thue–Siegel–Roth')+'',
+
+	refer([
+		enwiki("Mordell_curve"),
+		inhref('explore.html?q=Problem/Problem List'),
+	
+	])
+	].join(br)
+)+
+
+
+
+detail(ksc('x^2+y^3=z^5'),
+	ksc([
+		piece([
+			'x= (t^{10} + 12^4) (t^{20} − 12^2522 t^{15} − 12^410006 t^{10} + 12^6522 t^5 + 12^8)',
+			'y=−t^{20} − 12^2228 t^{15} − 12^4494 t^{10} + 12^6228 t^5 − 12^8',
+			'z=12(−t^{11} + 12^211 t^6 + 12^4t)'
+		]),
+		'36934790165857^2 + 240546239^3 = 267828^5（令t=1）',
+	]).join(br)+
+
+
+	refer([
+		href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
+		enwiki('abc_conjecture','2020-8-12'),
+		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
+		inhref('explore.html?q=Problem/Problem List'),
+	
+	])
+
+)+
+
+
+
+detail(ksc('x^3+y^4=z^5')+'有解：(209952, 11664, 1944)，即'+br+
+	ksc('(2^53^8)^3+(2^43^6)^4=(2^33^5)^5，也即2^{15}3^{24}(1+2)=2^{15}3^{24}3'),
+	brA([
+
+
+	])+
+
+
+	refer([
+		href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
+		enwiki('abc_conjecture','2020-8-12'),
+		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
+		inhref('explore.html?q=Problem/Problem List'),
+	
+	])
+
+)+
 
 
 detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+gM2("Catalan's conjecture")+' （Preda Mihăilescu 2002证明，因此已是定理）'+br+
@@ -503,6 +605,36 @@ detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+gM2("Catalan's
 		enwiki('Diophantine_equation','2020-8-4'),
 		inhref('explore.html?q=Problem/Problem List'),
 	
+	])
+)+
+
+detail(ksc('x^p+y^q=z^r (各字母都是正整数，广义费马方程)')+br+
+	gM2("Beal's conjecture")+' （当p,q,r>2时，(x,y,z)>1）'+br+
+	gM2("Fermat–Catalan conjecture")+'（广义费马猜想）：'+br+
+	'（当(x,y,z)=1（本原, 互素），且'+ksc('1\\/p + 1\\/q +1\\/r <1')+'时，只有下列有限多个非平凡解）'+br+
+	'Darmon, Granville证明只有有限多个解（但没说只有下列解）',
+	'满足(x,y,z)=1的解的情况统计如下',
+	ksc([
+		'已知的平凡解1^m+2^3=3^2 ~(m>6)',
+		'已知的9个非平凡解：',
+		'2^5+7^2=3^4',
+		'7^3+13^2=2^9',
+		'2^{7}+17^{3}=71^{2}',
+		'3^{5}+11^{4}=122^{2}',
+		'33^{8}+1549034^{2}=15613^{3}',
+		'1414^{3}+2213459^{2}=65^{7}',
+		'9262^{3}+15312283^{2}=113^{7}',
+		'17^{7}+76271^{3}=21063928^{2}',
+		'43^{8}+96222^{3}=30042907^{2}',
+	]).join(br)+
+	refer([
+		enwiki("Catalan's_conjecture"),
+		enwiki('Diophantine_equation','2020-8-4'),
+		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
+		enwiki('Beal_conjecture','2020-8-11'),
+		
+		inhref('explore.html?q=Problem/Problem List'),
+		inhref('wiki.html?q=Formula/Sequence/Sum'),
 	])
 );
 
