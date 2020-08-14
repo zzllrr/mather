@@ -44,7 +44,57 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 [gM2("Bateman–Horn conjecture",'',br,enwiki0),gM("Number Theory"),"一个给定的多项式集合的正整数中都含有质数的密度",""],
 [gM2("Baum–Connes conjecture",'',br,enwiki0),gM("Operator K–theory"),"从等变K同调到Γ（一个第二可数局域紧群，例如可数离散群）的简化C*代数K理论的态射是同构的",""+br+"⇒"+gM2("Gromov–Lawson–Rosenberg conjecture")+br+"⇒"+gM2("Kaplansky–Kadison conjecture")+br+"⇒"+gM2("Novikov conjecture")],
 [gM2("Beal conjecture",'',br,enwiki0)+gM2('Tijdeman-Zagier conjecture'),gM("Number Theory"),detail("<la>A^x+B^y=C^z（字母都是正整数） \\\\ ⇒ A,B,C有共同素因子\\\\且x,y,z≥3</la>",
-	brA(['【分析】','若A,B,C中有完全幂，可以通过改写，使得底数不含完全幂，因此下面讨论仅限A,B,C都不是完全幂',
+	brA([
+		'【已知结论】',
+		'高斯整数环中有解'+ksc('(-2+i)^{3}+(-2-i)^{3}=(1+i)^{4}'),
+		gM2('Catalan solution')+ksc('2^3+1^n=3^2'),
+		detail('下列情况已被证明无反例：',
+		Table([['x','y','z',gM('Non Catalan solution'),gM('Year')]],[
+			['x','x','x≥3','根据FLT无正整数解',1994],
+			[2,3,7,4,2005],
+			[2,3,8,1,2003],
+			[2,3,9,1,2003],
+
+			[2,3,10,0+'只有'+gM('Catalan solution'),2009],
+			[2,3,11,0+'只有'+gM('Catalan solution'),2020],
+			[2,3,15,0+'只有'+gM('Catalan solution'),2013],
+
+			[2,4,4,0+'无解 Fermat & Euler','1640,1738'],
+			[2,4,5,1,2003],
+			[2,4,'n≥6',0,2009],
+			[2,6,'n≥3',0,'2011,2014'],
+			[2,'2n',3,0+'(3 ≤ n ≤ 10^7,7除外)',''],
+
+			[2,'2n','9,10,15',0,'2014'],
+			[3,3,'n','(3 ≤ n ≤ 10^9)',0,''],
+			[3,4,5,0,2011],
+			[3,5,5,0,1998],
+			[3,6,'n≥3','','2014'],
+			[4,'2n','3','(n≥2)','2014'],
+			[5,5,7,'',2013],
+			[5,5,19,'',2013],
+			[7,7,5,'',2013],
+			['n≥4','n',2,'','1995'],
+			['n≥3','n',3,'',''],
+			['2n','2n',5,'(n≥2)','2006'],
+			['2l','2m','n','(素数l,m≥5，n=3,5,7,11,13)',''],
+
+			['3l','3m','n','(l,m≥5，n≥3)',''],
+
+			['≤7','≤7','≤7','(A, B, C ≤ 250,000)','Google numerical search'],
+			['≤100','≤100','≤100','(A, B, C ≤ 10,000)','Google numerical search'],
+		])),
+		
+		
+		
+		
+		
+		'【分析】',
+	
+	
+	
+	
+	'若A,B,C中有完全幂，可以通过改写，使得底数不含完全幂，因此下面讨论仅限A,B,C都不是完全幂',
 	'显然A=B=1不符题意（因为此时必有C=2，z=1）',
 
 

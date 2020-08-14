@@ -2036,6 +2036,7 @@ lang['zh_cn'] = {
 	'Icosahedron':'二十面体',
 	'Rhombohedron':'菱面体',
 	'Rhombohedron.1':'斜方六面体',
+	'Parallelepiped':'平行六面体',
 
 	'Stellating':'星形',
 	'Stellation':'星形',

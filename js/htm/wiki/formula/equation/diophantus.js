@@ -270,38 +270,136 @@ ZLR('⋮ ⋮ ⋮ ⋮'),
 
 
 	
-)+detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的等幂和' ,
-
-ksc([
-	sum('i',1,'n','i^p','','')+' = 1\\/{p+1}'+sum('j',0,'p',binom('p+1','j')+'B_jn^{p+1-j}','',''),
-	kxf('阴影形式 Umbral form')+' = 1\\/{p+1}'+sum('j',0,'p',binom('p+1','j')+'B^jn^{p+1-j}','','')+' = '+frac('(B+n)^{p+1}-B^{p+1}','p+1',''),
-
-
-
-]).join(br)+
-
-refer([
-	enwiki("Catalan's_conjecture"),
-	enwiki('Diophantine_equation','2020-8-4'),
-	enwiki('Faulhaber%27s_formula','2019-11-21'),
-	enwiki('Umbral_calculus','2019-11-22'),
-	enwiki("Sums_of_powers",'2020-8-11'),
-	
-	inhref('wiki.html?q=Formula/Sequence/Sum'),
-	inhref('explore.html?q=Problem/Problem List'),
-
-]))+
-
-
-
-
-detail(ksc('a^2+b^2=c^2 ⇔ (m^2-n^2)^2+(2mn)^2=(m^2+n^2)^2')+' 勾股数' ,
-	ksc([
-		'有理形式：(t^2-1)^2+(2t)^2=(t^2+1)^2 ~（上式等式两边同时除以n^2）'
-
-	]).join(br)
 )+
 
+detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的等幂和' ,
+
+	ksc([
+		sum('i',1,'n','i^p','','')+' = 1\\/{p+1}'+sum('j',0,'p',binom('p+1','j')+'B_jn^{p+1-j}','',''),
+		kxf('阴影形式 Umbral form')+' = 1\\/{p+1}'+sum('j',0,'p',binom('p+1','j')+'B^jn^{p+1-j}','','')+' = '+frac('(B+n)^{p+1}-B^{p+1}','p+1',''),
+
+
+
+	]).join(br)+
+
+	refer([
+		enwiki("Catalan's_conjecture"),
+		enwiki('Diophantine_equation','2020-8-4'),
+		enwiki('Faulhaber%27s_formula','2019-11-21'),
+		enwiki('Umbral_calculus','2019-11-22'),
+		enwiki("Sums_of_powers",'2020-8-11'),
+		
+		inhref('wiki.html?q=Formula/Sequence/Sum'),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+)+
+
+
+detail(ksc(sum('i',1,'n','i^k','','')+'=1^k+2^k+⋯+n^k=(n+1)^k')+br+'Erdős猜测无'+ksc('1^1+2^1=3^1')+'之外的正整数解'+br+gM2('Erdős–Moser equation') ,
+
+	ksc([
+		'2|k且m<10^{1000000}都没有另外的解\\text{Leo Moser}',
+		'6 ≤ k + 2 < m < 2k ~（1966年）',
+		'lcm(1,2,⋯,200)|k~（1994年）',
+		'm+1的任意素因子是不规则的(irregular)且大于1000',
+		'm>1.485×10^{9321155} （1999年）',
+		'200,1000区间内的素数 | k（2002年）',
+		'm>2.7139 × 10^{1,667,658,416}（2009年）',
+
+
+	]).join(br)+
+
+	refer([
+		enwiki("Erdős–Moser_equation",'2020-8-14'),
+		enwiki('Diophantine_equation','2020-8-4'),
+		enwiki("Sums_of_powers",'2020-8-11'),
+		
+		inhref('wiki.html?q=Formula/Sequence/Sum'),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+)+
+
+
+
+detail(ksc('a^2+b^2=c^2 ⇔ (k‧(m^2-n^2))^2+(k‧2mn)^2=(k‧(m^2+n^2))^2')+br+
+	'Pythagorean triple勾股数，其中(m,n)=1，且一奇一偶'+br+
+	'k=1时，称为a,b,c本原勾股数（3元组primitive Pythagorean triple）',
+	ksc([
+		'有理形式：(t^2-1)^2+(2t)^2=(t^2+1)^2 ~（上式等式两边同时除以n^2, 令t=m\\/n）'
+
+	]).join(br)+
+	refer([
+		enwiki("Pythagorean_triple",'2020-8-14'),
+		enwiki('Diophantine_equation','2020-8-4'),
+		enwiki("Sums_of_powers",'2020-8-11'),
+		
+		inhref('wiki.html?q=Formula/Sequence/Sum'),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+)+
+
+
+detail(ksc(piece(['a^2+b^2=d^2','a^2+c^2=e^2','b^2+c^2=f^2','a^2+b^2+c^2=g^2（加上这一条，就是完美长方体）']))+br+
+	'欧拉砖Euler Brick（长方体边长、面对角线都是整数），'+br+
+	'如体对角线也是整数，就变成完美长方体（至今不知是否存在）',
+
+
+	brA(ksc([
+		'(a,b,c)是解 ⇒ '+piece(['(ka,kb,kc)','(bc,ac,ab)'])+'都是解',
+		'已知解(a,b,c;d,e,f)：',
+		'(44, 117, 240 ; 125, 244, 267) \\text{Paul Halcke in 1719}即',
+		piece([
+			'(2‧11‧2)^2+(11^2-2^2)^2=(11^2+2^2)^2=(5^3)^2',
+			'(2‧12‧10)^2+(12^2-10^2)^2=(12^2+10^2)^2=(2^{2}‧61)^2',
+			'(2‧8‧5‧3)^2+((8^2-5^2)‧3)^2=((8^2+5^2)‧3)^2=(3‧89)^2',
+
+		]),
+		piece(['(a,b,c)=(2^{2}‧11,3^{2}‧13,2^{4}‧3‧5)','(d,e,f)=(5^{3},2^{2}‧61,3‧89)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(5‧17,2^{2}‧3‧11,2^{4}‧3^{2}‧5)','(d,e,f)=(157,5^{2}‧29,2^{2}‧3‧61)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(2^{2}‧5‧7,2^{5}‧3‧5,3^{2}‧7‧11)','(d,e,f)=(2^{2}‧5^{3},7‧101,3‧281)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(2^{5}‧5,3‧7‧11,2^{3}‧9‧11)','(d,e,f)=(281,2^{3}‧101,3‧5^{2}‧11)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(11‧17,2^{2}‧3‧5‧17,2^{4}‧9‧11)','(d,e,f)=(17‧61,5‧11‧29,2^{2}‧3‧157)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(3‧5‧13,2^{2}‧11‧17,2^{6}‧9‧11)','(d,e,f)=(773,3‧2113,2^{2}‧5‧11‧29)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(2^{4}‧3‧5,2^{2}‧3^{2}‧7,5^{2}‧11)','(d,e,f)=(2^{2}‧3‧29,5‧73,373)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(3‧11‧13,2^{4}‧5‧11,2^{2}‧3^{2}‧5‧13)','(d,e,f)=(11‧89,3‧13‧61,2^{2}‧5^{4})','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(5‧9‧11,2^{3}‧13‧47,2^{5}‧3‧5‧17)','(d,e,f)=(17^{3},3‧5^{2}‧109,2^{3}‧29‧41)','(u,v,w)=(,,)']),
+		piece(['(a,b,c)=(2^{4}‧3‧11,2^{2}‧3^{2}‧7‧23,5^{2}‧11‧23)','(d,e,f)=(2^{2}‧3‧5‧97,11‧577,23‧373)','(u,v,w)=(,,)']),
+		
+
+		'参数解之一（不完全，上述倒数第4个解，就不符合下列参数形式）：',
+		piece([
+			'a=u|4v^2-w^2|',
+			'b=v|4u^2-w^2|',
+			'c=4uvw',
+			'd=w^3',
+			'e=u(4v^2+w^2)',
+			'f=v(4u^2+w^2)',
+
+		]),
+		'',
+
+	]).concat(['完美长方体的条件：',
+		'奇数边长'+ksc('>2.5×10^{13}'),
+		'最短边长'+ksc('>5×10^{11}'),
+
+		'体对角线g奇数，既不是素数幂，也不是两个素数积，且只能含有4k+1型素因子',
+		'd,e,f三条面对角线长有2个奇数1个偶数（且被4整除）',
+		'边a奇数,边b,c都是偶数，且分别被4,16整除',
+		'两条边长分别被3,9整除',
+		'存在1条边长被5整除',
+		'存在1条边长被7整除',
+		'存在1条边长被11整除',
+		'存在1条边长被19整除',
+		'体对角线g或存在1条边，被13整除',
+		'体对角线g或存在1条边、1条面对角线，被17整除',
+		'体对角线g或存在1条边、1条面对角线，被29整除',
+		'体对角线g或存在1条边、1条面对角线，被37整除',
+	]))
+
+)+
 
 
 detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
@@ -607,7 +705,7 @@ detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+br+
 	])
 )+
 
-detail(ksc('x^p+y^q=z^r (各字母都是正整数，广义费马方程)')+br+
+detail(ksc('x^p+y^q=z^r')+' (各字母都是正整数，广义费马方程)'+br+
 	gM2("Beal's conjecture")+'，即'+gM2('Tijdeman-Zagier conjecture')+' （当p,q,r>2时，(x,y,z)>1）'+br+
 	gM2("Fermat–Catalan conjecture")+'（广义费马猜想）：'+br+
 	'（当(x,y,z)=1（本原, 互素），且'+ksc('1\\/p + 1\\/q +1\\/r <1')+'时，只有下列有限多个非平凡解）'+br+
