@@ -79,6 +79,10 @@ wikis={
 			'Diophantus'
 		]},
 
+		{'Inequalities':[
+			'Algebraic',
+		]},
+
 		{'Matrix':[
 			'Inverse',
 			'Determinant',

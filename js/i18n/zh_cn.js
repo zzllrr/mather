@@ -1834,6 +1834,7 @@ lang['zh_cn'] = {
 	'Equality': '等式',
 	'Non-equality': '不等式',
 	'Inequality':'不等式',
+	'Inequalities':'不等式',
 
 	'Equivalence': '等价关系',
 	'Partial Order': '偏序',

@@ -396,7 +396,7 @@ p-x^2=1 mod p
 
 },isPrime=function(a,fact){/*是否素数
 	
-	参数 fact指定返回1个非平凡因子（如果是合数时）
+	参数 fact指定返回1个非平凡因子（如果是合数时，这里修改为必须返回1个素因子，否则Factor(2**6*9*11)，分解式中含有合数，分解不彻底）
 	返回 0 或某个非平凡因数（字符串格式或数字格式）(指定fact参数时)	合数时
 		1										素数时
 	*/
@@ -416,20 +416,24 @@ p-x^2=1 mod p
 
 	//基于数位特征判断合数
 	if(/^([^1])\1+$/.test(s.replace(/0/g,''))){//数位0之外数字都是同一个数字(非1)
-		consolelog('数位0之外数字都是',s0);
-		return fact?+s0:0
+		//console.log('数位0之外数字都是',s0);
+		//return fact?+s0:0
+
+		return fact?+factorA(s0)[0][0]:0
+
+
 	}else if(/^1+$/.test(s)){//数位全为1
-		consolelog('数位全为1',s);
+		//console.log('数位全为1',s);
 		if([2,19,23,317,1031,49081,86453,109297].indexOf(l)>-1){
 			return 1
 		}
 		
 		var fac=isPrime(l,1);//位数的一个因子
 		
-		consolelog('fac=',fac);
+		//console.log('fac=',fac);
 		if(fac==1){
 			if(!fact){return 0}
-			consolelog('全为1',l);//l<=120之内的合数得到全部分解：
+			//console.log('全为1',l);//l<=120之内的合数得到全部分解：
 			return [3,41,239,21649,53,2071723,3191,2791,2028119,83,173,35121409,107,2559647034361,733,493121,241573142393627673576957439049,
 				12171337159,317,3367147378267,497867,12004721,4531530181816613234555190841,1031,643,1192679,227][
 					[3,5,7,11,13,17,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113].indexOf(l)]
@@ -439,11 +443,11 @@ p-x^2=1 mod p
 		}
 
 	}else if(/^(.+)\1+$/.test(s)){
-		consolelog('周期性数位字符串');
+		//console.log('周期性数位字符串');
 		return fact?s.replace(/^(.+)\1+$/,'$1'):0
 
 	}else if(/^10+1$/.test(s)){
-		consolelog('101数');
+		//console.log('101数');
 		if(s=='101'){
 			return 1
 		}
@@ -458,7 +462,7 @@ p-x^2=1 mod p
 		
 	}
 
-consolelog('判断数位和被3整除');
+//console.log('判断数位和被3整除');
 	var t=0;
 	for(var i=0;i<l;i++){
 		if(/[0369]/.test(s[i])){
@@ -470,29 +474,29 @@ consolelog('判断数位和被3整除');
 	if(!t){return fact?3:0}
 
 
-consolelog('奇偶分组相减，判断是否被10...01数整除');
+//console.log('奇偶分组相减，判断是否被10...01数整除');
 
 	t=0;
 	for(var k=1;k<l-1;k++){//	for(var k=0;k<l-1;k++) 871貌似被识别为能被11整除，因此把k=0，改为k=1
 		var z=+(1+ZLR(0,k)+1);
-		consolelog(z,'k=',k,'所检验的数是：',a);
+		//console.log(z,'k=',k,'所检验的数是：',a);
 		for(var i=0,j=Math.ceil(l/(k+1));i<j;i++){
 			if(i%2){
-				consolelog('i=',i,'s',s.substr(l-(k+1)*(i+1)-1,k+1),'t=',t,+s.substr(l-(k+1)*(i+1)-1,k+1)+t);
+				//console.log('i=',i,'s',s.substr(l-(k+1)*(i+1)-1,k+1),'t=',t,+s.substr(l-(k+1)*(i+1)-1,k+1)+t);
 				t=(+s.substr(l-(k+1)*(i+1)-1,k+1)+t)%z;
 				
-				consolelog(z,t);
+				//console.log(z,t);
 			}else{
-				consolelog('i=',i,'s',s.substr(l-(k+1)*(i+1)-1,k+1),'t=',t,-(+s.substr(l-(k+1)*(i+1)-1,k+1))+t);
+				//console.log('i=',i,'s',s.substr(l-(k+1)*(i+1)-1,k+1),'t=',t,-(+s.substr(l-(k+1)*(i+1)-1,k+1))+t);
 				t=(-(+s.substr(l-(k+1)*(i+1)-1,k+1))+t)%z
 					
-				consolelog(z,t);
+				//console.log(z,t);
 			}
 		}
 		if(!t){return fact?z:0}
 	}
 	
-consolelog('周期性数位（随机间隔若干个0）字符串');
+//console.log('周期性数位（随机间隔若干个0）字符串');
 	for(var k=1;k<l-1;k++){
 		//if(/^(.+)0*\10*\10*$/.test(s)){
 		if((new RegExp('^(.+)0*'+ZLR('\\1[0]*',k)+'$')).test(s)){
@@ -554,7 +558,7 @@ consolelog('周期性数位（随机间隔若干个0）字符串');
 	}
 	
 	
-//	consolelog(a);
+//	//console.log(a);
 //	var i=5001, sqrtn=Math.floor(Math.sqrt(n));	
 	/*注意，JS整数最多15位，超过会有意外 9234567890123451 变成 9234567890123452	451902452332423231 变成 451902452332423230
 		并且下方的Math函数、> 需要用Integer改造
@@ -694,7 +698,7 @@ p是偶数时（即p=2, 忽略讨论）令m=p/2 = k-1则mod('m!(m-1)!',(-1)^(m+1
 			t.push(i)
 		}
 	}
-	consolelog('方法1：耗时：'+(+Time.now5()-(+t0)));
+	//console.log('方法1：耗时：'+(+Time.now5()-(+t0)));
 	return t
 	*/
 	
@@ -893,7 +897,7 @@ m指定从A中选m个数作为一个组合
 
 		
 },factor=function(a,fact){/*合数分解因数未合并 返回表达式
-		参数fact指定，只需分解为两数（不必是素数）之积
+		参数fact指定，只需分解为两数（不必是素数）之积（此处修改为要求返回第1个因数是素数）
 		
 		返回 因式分解×	合数时
 			本身	质数时
@@ -991,10 +995,10 @@ factor2(1113123223111)
 	
 
 	var s=''+n,l=s.length,R=[],s0=s.substr(-1),S=Arrf(function(t){return [t[0],t[1],(+t[0])*(t[1])]},tMod(s0)), comp2=function(x){
-	//consolelog(x);
+	//console.log(x);
 		var a=x[0],b=x[1],m=a.length,ab=''+x[2],abl=ab.length,abm=abl<m+1?0:+ab.substr(-m-1)[0],a1=+a.substr(-1),b1=+b.substr(-1),al=a.replace(/^0+/,'').length,bl=b.replace(/^0+/,'').length,
 			SS=[],sm=l<m+1?0:s.substr(-m-1)[0],slm=+s.substr(0,l-m),m10=Math.pow(10,m);
-//consolelog(al+bl,l);	//ab=''+(+a)*(+b)
+//console.log(al+bl,l);	//ab=''+(+a)*(+b)
 		
 		if(al+bl>l+1){
 			return []
@@ -1011,25 +1015,25 @@ factor2(1113123223111)
 				
 				var jb=j+b,jbl=jb.replace(/^0+/,'').length,ij=i*j, ijl=ij?(''+ij).length:0;
 				
-				//consolelog('ia=',ia,'jb=',jb);
+				//console.log('ia=',ia,'jb=',jb);
 				
 				if(ial+jbl>l+1){
 					break;
 				}
 
-				//consolelog('ia=',ia,'jb=',jb);
+				//console.log('ia=',ia,'jb=',jb);
 				var s2=''+(i*b1+j*a1),s2l=s2.length;
 
 if(ia=='11' && jb=='23'){//
-				consolelog('\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n',ia,jb,n,S);
+				//console.log('\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n',ia,jb,n,S);
 
 }
 				if((+s2.substr(-1)+abm+'').substr(-1)==sm){
-				//	consolelog('前1位符合',ia,jb,n,S,ijm);	ia*jb=ab+(ib+aj)*10^m+ijm*10^m
+				//	//console.log('前1位符合',ia,jb,n,S,ijm);	ia*jb=ab+(ib+aj)*10^m+ijm*10^m
 					var ijm=i*j*m10,	r=+ab.substr(0,abl-m)+(+s2)+ijm;
 
 					if(r==slm){
-						//consolelog();
+						//console.log();
 						if(/^0+1$/.test(ia) || /^0+1$/.test(jb)){
 							break
 						}
@@ -1113,15 +1117,15 @@ if(ia=='11' && jb=='23'){//
 	}
 	
 	
-//	consolelog(S);
+//	//console.log(S);
 	while(!R.length){//按广度优先，用凑尾数法分解为两数乘积
-	//	consolelog('S[0]',S[0]);
-	//	consolelog('S',S.join(' ; '));
+	//	//console.log('S[0]',S[0]);
+	//	//console.log('S',S.join(' ; '));
 		if(S.length){
 			var t=comp2(S[0]);
 			S.splice(0,1);
 			if(t.length){
-			//	consolelog('t',t);
+			//	//console.log('t',t);
 				S=S.concat(t);
 			}
 		}else{
@@ -1225,7 +1229,7 @@ if(ia=='11' && jb=='23'){//
 		条件表达式：常数,2n,2n+1,3n,3n-1,p素数,c合数
 			
 			
-	consolelog('sums',n,m,minv);
+	//console.log('sums',n,m,minv);
 	
 	*/
 
