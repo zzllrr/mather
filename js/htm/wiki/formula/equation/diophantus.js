@@ -8,7 +8,7 @@ wiki['Diophantus']=Kx(
 
 	detail('$n=x^2+y^2$ 两平方和 Sums of two squares' ,
 	
-	ksc(['p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
+	ksc(['素数p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
 	refer([
 		enwiki('Fermat%27s_theorem_on_sums_of_two_squares','2019-11-21'),
 
@@ -17,7 +17,7 @@ wiki['Diophantus']=Kx(
 
 	detail('$n=x^2+y^2+z^2$ 三平方和 Sums of three squares' ,
 	
-	ksc(['n=x^2+y^2+z^2 ⇔ n ≠ 4^a(8b+7) 其中a,b非负整数'])+scbox("Legendre's three-square theorem")+
+	ksc(['n=x^2+y^2+z^2 ⇔ n \\ne 4^a(8b+7) 其中a,b非负整数'])+scbox("Legendre's three-square theorem")+
 	refer([
 		enwiki('Legendre%27s_three-square_theorem','2019-11-21'),
 
@@ -71,7 +71,7 @@ ksc(['∵',
 	kmod('x^3≡(x \\mod 9)^3','0,±1',9),
 	kmod('y^3≡(y \\mod 9)^3','0,±1',9),
 	kmod('z^3≡(z \\mod 9)^3','0,±1',9),
-	'∴'+kmod('n=x^3+y^3+z^3','±4',9,1),
+	'∴（\\ne）'+kmod('n=x^3+y^3+z^3','±4',9,1),
 ]).concat(
 	'附录：'+ksc('∀k∈ℤ, '),
 	'使用下方JS代码',
@@ -482,14 +482,18 @@ detail(ksc(piece(['a^2+b^2=d^2','a^2+c^2=e^2','b^2+c^2=f^2','a^2+b^2+c^2=g^2（�
 		记sin^2 X = A, sin^2 Y = B
 		cos^2 X =1-A, cos^2 Y =1-B, 
 		
-		A,B都是有理数
+		A,B,1-A,1-B都是有理平方数
 		B+A-AB、 AB+1-B是有理平方数
 
-去分母后，显然存在整数p,q，使得
-p+q-pq，pq-q+1都是完全平方
+		设s,t正整数>=2，
+		A=\\(\\frac{s^2-1}{s^2+1}\\)^2
+		1-A=\\(\\frac{2s}{s^2+1}\\)^2
+		B=\\(\\frac{2t}{t^2+1}\\)^2
+		1-B=\\(\\frac{t^2-1}{t^2+1}\\)^2
 
-		而p+1是两整数的平方和
-		p-1+2(q-pq)=(p-1)(1-2q)是两整数平方差
+		设g=(s^2+1)(t^2+1)
+		
+
 
 */
 
