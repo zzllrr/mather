@@ -441,6 +441,8 @@ Table([i18(ZLR('Name Field Content'))],[
 
 		[href(H+'garden.irmacs.sfu.ca/','Open Problem Garden'),'',''],
 
+		[href(Hs+'link.springer.com/book/10.1007/978-3-319-32162-2','数学中的开放性问题'),'Nash and Rassias, Springer (2016)','Open Problems in Mathematics'],
+
 	],'TBrc')
 ;
 

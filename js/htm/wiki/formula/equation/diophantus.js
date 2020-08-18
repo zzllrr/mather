@@ -366,7 +366,7 @@ detail(ksc(piece(['a^2+b^2=d^2','a^2+c^2=e^2','b^2+c^2=f^2','a^2+b^2+c^2=g^2（�
 
 		
 
-		'参数解之一（不完全）：',
+		'参数解之一（不完全，\\text{by Nicholas Saunderson}）：',
 		piece([
 			'a=u|4v^2-w^2|=u|3v^2-u^2|',
 			'b=v|4u^2-w^2|=v|3u^2-v^2|',
@@ -514,8 +514,13 @@ detail(ksc(piece(['a^2+b^2=d^2','a^2+c^2=e^2','b^2+c^2=f^2','a^2+b^2+c^2=g^2（�
 		'体对角线g或存在1条边、1条面对角线，被17整除',
 		'体对角线g或存在1条边、1条面对角线，被29整除',
 		'体对角线g或存在1条边、1条面对角线，被37整除',
-	]))
+	]))+
+	
+	refer([
+		href(Hs+'arxiv.org/search/math?query=euler+brick&searchtype=all&abstracts=show&order=-announced_date_first&size=50','arxiv'),
+		inhref('explore.html?q=Problem/Problem List'),
 
+	])
 ),
 
 
