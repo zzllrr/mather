@@ -10,7 +10,7 @@ wiki['Diophantus']=Kx(
 	
 	ksc(['素数p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
 	refer([
-		enwiki('Fermat%27s_theorem_on_sums_of_two_squares','2019-11-21'),
+		enwiki("Fermat'_theorem_on_sums_of_two_squares",'2019-11-21'),
 
 	]))+
 
@@ -19,7 +19,7 @@ wiki['Diophantus']=Kx(
 	
 	ksc(['n=x^2+y^2+z^2 ⇔ n \\ne 4^a(8b+7) 其中a,b非负整数'])+scbox("Legendre's three-square theorem")+
 	refer([
-		enwiki('Legendre%27s_three-square_theorem','2019-11-21'),
+		enwiki("Legendre'_three-square_theorem",'2019-11-21'),
 
 	]))+
 
@@ -32,8 +32,8 @@ wiki['Diophantus']=Kx(
 	'=8\\sum _{m|n,4∤m}m')+scbox("Jacobi's four-square theorem")+br+
 	ksc('特别地，当n是素数p时，r_4(p)=8(p+1)')+
 	refer([
-		enwiki('Lagrange%27s_four-square_theorem','2019-11-21'),
-		enwiki('Jacobi%27s_four-square_theorem','2019-11-21'),
+		enwiki("Lagrange'_four-square_theorem",'2019-11-21'),
+		enwiki("Jacobi'_four-square_theorem",'2019-11-21'),
 
 	]))+
 
@@ -60,7 +60,7 @@ wiki['Diophantus']=Kx(
 		'其中p=2n(2n+1)/2=n(2n+1) 偶数序号的三角数'
 ])).join(br)+
 	refer([
-		enwiki('Faulhaber%27s_formula','2019-11-21'),
+		enwiki("Faulhaber'_formula",'2019-11-21'),
 		href(Hs+'search.proquest.com/openview/f8786728002514b2de4eaa379d175640/1?pq-origsite=gscholar&cbl=2035960','Derby, Nigel (2015), "A search for sums of powers", The Mathematical Gazette.'),
 
 	]))+
@@ -285,7 +285,7 @@ detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的�
 	refer([
 		enwiki("Catalan's_conjecture"),
 		enwiki('Diophantine_equation','2020-8-4'),
-		enwiki('Faulhaber%27s_formula','2019-11-21'),
+		enwiki("Faulhaber'_formula",'2019-11-21'),
 		enwiki('Umbral_calculus','2019-11-22'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
@@ -551,7 +551,12 @@ detail(ksc('a^n+b^n=c^n (n>2时无正整数解)')+' 费马大定理FLT' ,
 	
 
 
-	]).join(br)
+	]).join(br)+
+	refer([
+		enwiki('Symmetric_polynomial'),
+		enwiki("Fermat's_Last_Theorem")
+
+	])
 ),
 detail(ksc('a^3+b^3=c^3+d^3')+' (有无穷多组非平凡解)'+br+
 	'例如：哈代与拉马努金出租车数'+ksc('12^3 + 1^3 = 9^3 + 10^3 = 1729') ,
@@ -851,7 +856,8 @@ detail(ksc('x^p+y^q=z^r')+' (各字母都是正整数，广义费马方程)'+br+
 		enwiki('Diophantine_equation','2020-8-4'),
 		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
 		enwiki('Beal_conjecture','2020-8-11'),
-		
+		enwiki('Symmetric_polynomial'),
+
 		inhref('explore.html?q=Problem/Problem List'),
 		inhref('wiki.html?q=Formula/Sequence/Sum'),
 	])

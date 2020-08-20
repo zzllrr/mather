@@ -59,4 +59,9 @@ detail('多项式恒等式（因式分解公式）',Table([ZLR('名称 记法 �
 	
 
 ],'wiki').replace(/\n/g,br))
-);
+)+refer([
+	enwiki('Symmetric_polynomial'),
+	enwiki('Symmetric_group'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
+]);

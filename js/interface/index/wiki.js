@@ -41,18 +41,7 @@ wikis={
 			]},
 
 		]},
-		{'Axiom':[
 
-		]},
-		{'Theorem':[
-
-		]},
-		{'Corollary':[
-
-		]},
-		{'Law.Math':[
-
-		]},
 
 	],
 
@@ -76,7 +65,8 @@ wikis={
 		]},
 
 		{'Equation':[
-			'Diophantus'
+			'Diophantus',
+			'Algebraic',
 		]},
 
 		{'Inequalities':[
@@ -119,7 +109,7 @@ wikis={
 				'Prime Mersenne Number',
 				
 			]},
-			'Algebraic',
+
 			'Transcendental',
 			'Complex',
 			{'Sequence':[
@@ -180,7 +170,7 @@ wikis={
 		
 		{'Algebra':[
 			'Algebra',
-			'Group.Math',
+			'Group',
 			'Ring',
 			'Lattice',
 		]},

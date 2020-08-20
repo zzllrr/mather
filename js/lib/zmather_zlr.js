@@ -283,6 +283,13 @@ function gM(mesg, str, o) {
 
 	}
 	var iscn=O['Anti']=='反', front=msg.replace(/ [^ ]+$/,''), fronted=front+'ed', fronting=front+'ing';
+	if(!x && /\.\d+$/.test(x)){// 多义字
+		return O[msg.replace(/\..+/,'')].split(';')[+msg.replace(/.+\./,'')]
+	}
+	if( /;/.test(x)){
+		return x.split(';')[0]
+	}
+
 
 	if(!x && msg.split(' ').length==3 && (O[front] || O[fronted] || O[fronting])){
 		return (O[front] || O[fronted] || O[fronting])+(iscn?'':' ')+gM(msg.replace(/.+ /,''))
