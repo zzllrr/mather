@@ -109,6 +109,12 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 	'② 反例必要条件之二：x,y,z不能同时相等（当x=y=z时与费马最后定理FLT矛盾!）',
 	'且(x,y,z)=1或2 （>2时，可改写成FLT形式，与无解矛盾！）',
 
+
+	'③ 反例必要条件之三：模运算下等式仍成立',
+	ksc(kmod('A^x+B^y','C^z','p')),
+	'例如：'+ksc(kmod('A^x','-B^y','C')),
+
+
 	detail('当(x,y,z)=1时，',
 		''
 	),
@@ -290,7 +296,82 @@ function tuple(X,K,J){
 		])
 	),
 
+	detail('遍历代码之一',
 
+	ksc(['满足条件：',
+	'A,B,C两两互素≤1000000，其中至少之一≥250001',
+	'x,y,z两两互素,介于101，1000之间',
+	'A,B是奇数，C是偶数',
+	
+	'101≤奇数x, 奇数y, z<1000',
+	'3≤奇数A、奇数B<1000000',
+	'且A,B两者至少有1个≥250001',
+	
+	'2≤偶数C≤1000000'
+	]).join(br)+br+
+
+	`
+
+	function tuple(X,Y,Z,a,b,c){
+		var maxxyz=1000n, maxABC=1000000n, minAB1=250001n;
+		for(var x=X||101n;x<=maxxyz;x+=2n){
+			
+			for(var y=Y||101n;y<=maxxyz;y+=2n){
+				
+				if(gcd([x,y])=='1'){
+
+					for(var z=Z||101n;z<=maxxyz;z++){
+						if(gcd([x,z])=='1' && gcd([y,z])=='1'){
+							console.log(x,y,z);
+							for(var A=a||3n;A<=maxABC;A+=2n){
+
+								for(var B=b||3n;B<=maxABC;B+=2n){
+									if(A<minAB1){B=minAB1}
+				
+									if(gcd([A,B])=='1'){
+										var Ax_By=A**x+B**y;
+										for(var C=c||2n;C<=maxABC;C+=2n){
+											if(x>=z){
+												C=A+1n;
+												if(y>=z){
+													C=Math.max(A,B)+1n;
+												}
+											}else if(y>=z){
+												C=B+1n;
+											}
+
+
+											
+												
+											if(Ax_By==C**z){
+												if(gcd([A,C])=='1' && gcd([B,C])=='1'){
+													console.log('counter-example: ',A,'^',x,'+',B,'^',y,'=',C,'^',z);
+													saveText([A,x,B,y,C,z].join(', '),'beal_counter-example');
+													return [A,x,B,y,C,z];
+												}
+											}
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+					}
+				}
+	
+			}
+		}
+	}
+
+
+
+	
+	`)
 
 ])
 ), refer([href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏"),
