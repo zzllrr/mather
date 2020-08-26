@@ -303,11 +303,13 @@ function tuple(X,K,J){
 	'x,y,z两两互素,介于101，1000之间',
 	'A,B是奇数，C是偶数',
 	
-	'101≤奇数x, 奇数y, z<1000',
+	'101≤奇数x, 奇数y(≥x), z<1000',
 	'3≤奇数A、奇数B<1000000',
 	'且A,B两者至少有1个≥250001',
 	
-	'2≤偶数C≤1000000'
+	'2≤偶数C≤1000000',
+
+	'估算C的取值范围介于max\\(A^{x/z},B^{y/z}\\)、A^{x/z}+B^{y/z}',
 	]).join(br)+br+
 
 	`
@@ -316,7 +318,7 @@ function tuple(X,K,J){
 		var maxxyz=1000n, maxABC=1000000n, minAB1=250001n;
 		for(var x=X||101n;x<=maxxyz;x+=2n){
 			
-			for(var y=Y||101n;y<=maxxyz;y+=2n){
+			for(var y=Y||x;y<=maxxyz;y+=2n){
 				
 				if(gcd([x,y])=='1'){
 
@@ -324,33 +326,45 @@ function tuple(X,K,J){
 						if(gcd([x,z])=='1' && gcd([y,z])=='1'){
 							console.log(x,y,z);
 							for(var A=a||3n;A<=maxABC;A+=2n){
+								if(A%31n==0n){console.log('A,B,C,x,y,z '+[A,B,C,x,y,z].join(', '))}
 
-								for(var B=b||3n;B<=maxABC;B+=2n){
-									if(A<minAB1){B=minAB1}
-				
+
+								for(var B=b||(A<minAB1?minAB1:3n);B<=maxABC;B+=2n){
+									
+																	
 									if(gcd([A,B])=='1'){
-										var Ax_By=A**x+B**y;
-										for(var C=c||2n;C<=maxABC;C+=2n){
-											if(x>=z){
-												C=A+1n;
-												if(y>=z){
-													C=Math.max(A,B)+1n;
+										var Ax=A**x, By=B**y, Ax_By=Ax+By,
+											Nz=Number(z),
+											Ax_z=Math.pow(Number(A),Number(x)/Nz),
+											By_z=Math.pow(Number(B),Number(y)/Nz),
+											Ax_z_By_z=Math.ceil(Ax_z+By_z),
+											maxAx_zBy_z=Math.ceil(Math.max(Ax_z,By_z)),
+											minC=BigInt(Math.max(maxAx_zBy_z, Number(c||2n))),
+											maxC=BigInt(Math.min(Ax_z_By_z, Number(maxABC)));
+
+										for(var C=minC;C<=maxC;C+=2n){
+											/*
+											if(C==c || C==2n){
+												if(x>=z){
+													C=A+1n;
+													if(y>=z){
+														C=Math.max(A,B)+1n;
+													}
+												}else if(y>=z){
+													C=B+1n;
 												}
-											}else if(y>=z){
-												C=B+1n;
 											}
-
-
+											*/
 											
-												
+
 											if(Ax_By==C**z){
+												console.log('equation: ',A,'^',x,'+',B,'^',y,'=',C,'^',z);
 												if(gcd([A,C])=='1' && gcd([B,C])=='1'){
 													console.log('counter-example: ',A,'^',x,'+',B,'^',y,'=',C,'^',z);
 													saveText([A,x,B,y,C,z].join(', '),'beal_counter-example');
 													return [A,x,B,y,C,z];
 												}
 											}
-
 										}
 
 									}
