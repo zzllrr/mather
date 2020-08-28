@@ -10,7 +10,7 @@ wiki['Diophantus']=Kx(
 	
 	ksc(['素数p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
 	refer([
-		enwiki("Fermat'_theorem_on_sums_of_two_squares",'2019-11-21'),
+		enwiki("Fermat's_theorem_on_sums_of_two_squares",'2019-11-21'),
 
 	]))+
 
@@ -19,7 +19,7 @@ wiki['Diophantus']=Kx(
 	
 	ksc(['n=x^2+y^2+z^2 ⇔ n \\ne 4^a(8b+7) 其中a,b非负整数'])+scbox("Legendre's three-square theorem")+
 	refer([
-		enwiki("Legendre'_three-square_theorem",'2019-11-21'),
+		enwiki("Legendre's_three-square_theorem",'2019-11-21'),
 
 	]))+
 
@@ -32,8 +32,8 @@ wiki['Diophantus']=Kx(
 	'=8\\sum _{m|n,4∤m}m')+scbox("Jacobi's four-square theorem")+br+
 	ksc('特别地，当n是素数p时，r_4(p)=8(p+1)')+
 	refer([
-		enwiki("Lagrange'_four-square_theorem",'2019-11-21'),
-		enwiki("Jacobi'_four-square_theorem",'2019-11-21'),
+		enwiki("Lagrange's_four-square_theorem",'2019-11-21'),
+		enwiki("Jacobi's_four-square_theorem",'2019-11-21'),
 
 	]))+
 
@@ -60,7 +60,7 @@ wiki['Diophantus']=Kx(
 		'其中p=2n(2n+1)/2=n(2n+1) 偶数序号的三角数'
 ])).join(br)+
 	refer([
-		enwiki("Faulhaber'_formula",'2019-11-21'),
+		enwiki("Faulhaber's_formula",'2019-11-21'),
 		href(Hs+'search.proquest.com/openview/f8786728002514b2de4eaa379d175640/1?pq-origsite=gscholar&cbl=2035960','Derby, Nigel (2015), "A search for sums of powers", The Mathematical Gazette.'),
 
 	]))+
@@ -285,7 +285,7 @@ detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的�
 	refer([
 		enwiki("Catalan's_conjecture"),
 		enwiki('Diophantine_equation','2020-8-4'),
-		enwiki("Faulhaber'_formula",'2019-11-21'),
+		enwiki("Faulhaber's_formula",'2019-11-21'),
 		enwiki('Umbral_calculus','2019-11-22'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
@@ -325,7 +325,8 @@ detail(ksc(sum('i',1,'n','i^k','','')+'=1^k+2^k+⋯+n^k=(n+1)^k')+br+'Erdős猜�
 
 detail(ksc('a^2+b^2=c^2 ⇔ (k‧(m^2-n^2))^2+(k‧2mn)^2=(k‧(m^2+n^2))^2')+br+
 	'Pythagorean triple勾股数，其中(m,n)=1，且一奇一偶'+br+
-	'k=1时，称为a,b,c本原勾股数（3元组primitive Pythagorean triple）',
+	'当k=1时，称为a,b,c本原勾股数（3元组primitive Pythagorean triple）'+br+
+	'当c是素数时，'+ksc(kmod('c=m^2+n^2','1','4')),
 	ksc([
 		'有理形式：(t^2-1)^2+(2t)^2=(t^2+1)^2 ~（上式等式两边同时除以n^2, 令t=m\\/n）'
 
@@ -688,6 +689,40 @@ detail(ksc('a^4=b^4+c^2')+'无正整数解'+br+
 	])
 ),
 
+detail(ksc('c‧p^n=a‧p^l+b‧p^m（任意素数p∤abc；l,m,n都不相等；abclmn≠0）无整数解(a,b,c)')+'（幂线性无关）'+br+
+	ksc('a‧p^l+b‧p^m+c‧p^n=0（任意素数p∤abc；l,m,n都不相等；abclmn≠0）无整数解(a,b,c)')+'（可推广至超过3项）'+br+
+	ksc('q^n=a‧p^l+b‧p^m（任意素数p∤ab；l,m,n都不相等；ablmn≠0）无整数解(a,b)令q=kp,c=k^n'),
+
+
+	refer([
+		enwiki("Fermat%27s_right_triangle_theorem"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+),
+
+detail(ksc('a^2-b^2=4k+2，即(a+b)(a-b)=2(2k+1) 无整数解(a,b)')+'（因为无法作同奇同偶的因式分解）'+br+
+	'',
+
+	refer([
+		enwiki("Fermat%27s_right_triangle_theorem"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+),
+
+
+detail(ksc('a^2+b^2=(4k-1)^2 无整数解(a,b)')+'（因为本原勾股数弦数因子须为4k+1形式）'+br+
+	ksc(''),
+
+	refer([
+		enwiki("Fermat%27s_right_triangle_theorem"),
+		inhref('explore.html?q=Problem/Problem List'),
+
+	])
+),
+
+
 
 detail(ksc('4\\/n=1\\/x+1\\/y+1\\/z')+'猜想对于任何n>1，都有正整数解'+ gM2('Erdős–Straus conjecture'),
 	'等价于方程'+ksc('4xyz=yzn+xzn+xyn=n(yz+xz+xy)')
@@ -823,6 +858,8 @@ detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+br+
 		['2^6-1^b=12^2-3^4=2^{10}-31^2=(2^3‧71)^3-13537^2','=','63'],
 		['10^2-6^2=2^7-2^6=17^2-15^2=24^2-2^9','=','64'],
 		['(k+1)^2-k^2','=','2k+1','恒有解'],
+		['x^2-y^2','=','4k+2','无解（无法作同奇同偶因式分解）'],
+		['x^2+y^2','=','(4k-1)^2','无解（本原勾股数弦数因子须为4k+1形式）'],
 	]))+
 	refer([
 		enwiki("Catalan's_conjecture"),
