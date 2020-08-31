@@ -133,11 +133,30 @@ detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise
 		'存在整数x_i使得，Σa_ix_i=1',
 
 	]))+br+
+
+	'Bézout贝祖定理：(a,b)=d'+br+
+	kbrA([
+		'存在整数x,y使得，ax+by=d',
+		'对任意整数k也成立：a(x-kb/d)+b(y+ka/d)=d',
+
+	])+br+
+	'三者及以上：(a,b,c)=d'+br+
+	kbrA([
+		'存在整数x,y,z使得，ax+by+cz=d',
+		'对任意整数k也成立：'+
+		piece([
+			'a(x+kc/(a,b,c))+b(y+kc/(a,b,c))+c(z-k(a+b)/(a,b,c))=1',
+			'a(x+kb/(a,b,c))+b(y-k(a+c)/(a,b,c))+c(z+kb/(a,b,c))=1',
+			'a(x-k(b+c)/(a,b,c))+b(y+ka/(a,b,c))+c(z+ka/(a,b,c))=1',
+			])
+
+	])+br+
+
 	'两两互素的等价条件：'+
 	ul($A([
-		'(a_1,a_2,⋯,a_n)=1',
-		'(2^{a_1}-1,2^{a_2}-1,⋯,2^{a_n}-1)=1',
-		'存在整数x_i使得，Σa_ix_i=1',
+		'abx+bcy+acz=1（充要条件）',
+		'充分性显然；必要性证明：利用(a,bc)=(b,c)=1',
+		piece(['au+bcv=1','bs+act=1'])+'⇒ 两式相乘整理得ab(us+c^2vt)+ac(aut)+bc(bvs)=1'
 
 	]))
 )+
@@ -150,6 +169,7 @@ detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
 	[enwiki('Agoh–Giuga_conjecture','2020-8-11'),'',''],
 	[enwiki('Coprime_integers'),'',''],
 	[enwiki("Bézout's_identity"),'',''],
+	[enwiki("Extended_Euclidean_algorithm"),'',''],
 ],'TBrc'),1)
 
 

@@ -58,6 +58,12 @@ detail('多项式恒等式（因式分解公式）',Table([ZLR('名称 记法 �
 		],
 	
 
+
+	['平方和乘积','(a^2+b^2)(c^2+d^2)','(ac-bd)^2+(ad+bc)^2'+kbr+'(ac+bd)^2+(ad-bc)^2',gM2('Brahmagupta–Fibonacci Identity')+'用复数模来证明'],
+
+	['平方和乘积扩展','(a^2+nb^2)(c^2+nd^2)','(ac-nbd)^2+n(ad+bc)^2'+kbr+'(ac+nbd)^2+n(ad-bc)^2',gM2('Brahmagupta Identity')],
+
+
 ],'wiki').replace(/\n/g,br))+
 detail('基本对称多项式',Table([ZLR('名称 记法 结果 性质')],[
 	
@@ -102,6 +108,7 @@ detail('基本对称多项式',Table([ZLR('名称 记法 结果 性质')],[
 
 ],'wiki').replace(/\n/g,br))
 )+refer([
+	enwiki('Brahmagupta–Fibonacci_identity'),
 	enwiki('Symmetric_polynomial'),
 	enwiki('Symmetric_group'),
 	inhref('wiki.html?q=Formula/Equation/Diophantus'),

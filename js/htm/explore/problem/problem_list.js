@@ -101,7 +101,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 	'① 反例必要条件之一：A,B,C两两互素（由 p|(A,B) ⇒ p|C ）',
 	'即<la>(A,B)=(B,C)=(A,C)=1</la>',
-	'⇔ 存在整数使得<la>m_1A+m_2B=m_3B+m_4C=m_5A+m_6C=1</la>',
+	'⇔ 存在整数使得<la>m_1AB+m_2BC+m_3AC=1</la>',
 
 	
 
@@ -116,7 +116,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 
 	detail('当(x,y,z)=1时，',
-		''
+		'存在整数使得<la>k_1x+k_2y+k_3z=1</la>'
 	),
 	detail('当(x,y,z)=2时，可改写成勾股数平方和形式，且C的质因子只能是4k+1形式',
 		''

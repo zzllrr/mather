@@ -7,10 +7,24 @@
 wiki['Diophantus']=Kx(
 
 	detail('$n=x^2+y^2$ 两平方和 Sums of two squares' ,
-	
-	ksc(['素数p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares")+
+	brA([
+		ksc(['素数p=x^2+y^2 ⇔ '+kmod('p','1',4)])+scbox("Fermat's theorem on sums of two squares"),
+		
+		ksc(['n=x^2+y^2 ⇔ n因子中的奇素数p=4k+3，即'+kmod('p','-1',4)+'的次数不是奇数']),
+		'例如：'+ksc(['2450 = 2 · 5^2 · 7^2 = 7^2+49^2', '3430=2 · 5 · 7^3 无法写成两数平方和']),
+
+
+
+	])+
+
+
+
 	refer([
 		enwiki("Fermat's_theorem_on_sums_of_two_squares",'2019-11-21'),
+		enwiki("Sum_of_two_squares_theorem",'2020-8-31'),
+
+		enwiki("Brahmagupta–Fibonacci_identity",'2020-8-31'),
+		inhref('wiki.html?q=Formula/Polynomial/Identity'),
 
 	]))+
 
@@ -36,6 +50,8 @@ wiki['Diophantus']=Kx(
 		enwiki("Jacobi's_four-square_theorem",'2019-11-21'),
 
 	]))+
+
+
 
 
 	detail('$x^2+(x+1)^2+⋯+(x+n)^2 = (x+n+1)^2+⋯+(x+2n)^2$ 连续平方和 Sums of consecutive squares' ,
