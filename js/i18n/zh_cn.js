@@ -2346,8 +2346,11 @@ lang['zh_cn'] = {
 	'Quintic':'五次',
 	'Sextic':'六次',
 
+	'Triplet':'三元',
 	'Quadruple':'四元',
-
+	'Quaternion':'四元数',
+	'Octonion':'八元数',
+	'Sedenion':'十六元数',
 
 	'Regress':'回归',
 	'Regressive':'回归',
@@ -3794,6 +3797,8 @@ lang['zh_cn'] = {
 'Peurbach':'波伊尔巴赫',
 
 'Pfaff':'普法夫',
+'Pfister':'菲斯特',
+
 'Philolaus':'费洛劳斯',
 
 'Piatetski':'皮亚捷茨基',

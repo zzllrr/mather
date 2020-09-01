@@ -14,8 +14,8 @@ detail('数集',
 
 
 detail('数类型',Table([ZLR('名称 记法 定义 性质')],[
-	['自然数\n非负整数\nnatural\nnonnegative integer','自然数集$'+ksc('N')+'$','',ul([''])],
-	['整数\ninteger','整数集$'+ksc('Z')+'$',''],
+	['自然数\n非负整数\nnatural\nnonnegative integer','自然数集N','',ul([''])],
+	['整数\ninteger','整数集Z',''],
 	['小数\ndecimal','','',ul([''])],
 	['有限小数\nfinite decimal','','',ul([''])],
 	['无限小数\ninfinite decimal','','',ul([''])],
@@ -61,22 +61,77 @@ detail('数类型',Table([ZLR('名称 记法 定义 性质')],[
 		
 	['无理数\nirrational','','无限不循环小数的统称','无理数（无限不循环小数）'+piece(['无理代数数','超越数']),''],
 	['实数\nreal','','有理数和无理数的统称',piece(['实数'+piece(['有理数','无理数']),'实数'+piece(['正数',0,'负数'])])],
-	['虚数\nimaginary',piece([['a+bi','代数形式'],['(a,b)','几何形式'],['r(\\cosθ+i\\sinθ)','三角形式（极形式）'],['re^{iθ}','指数形式'],[zmtrx([['a','b'],['-b','a']]),'矩阵形式']]),
+	['虚数\nimaginary',piece([['a+bi','代数形式'],['(a,b)','几何形式'],['r(\\cosθ+i\\sinθ)','三角形式（极形式）'],['re^{iθ}','指数形式'],
+			[zmtrx([['a','b'],['-b','a']]),'矩阵形式（共轭等于转置）']]),
 		'',piece(['虚数'+piece(['纯虚数','非纯虚数'])])],
 	['纯虚数\npure imaginary','bi','',ul([''])],
-	['复数\ncomplex',piece([['a+bi','代数形式'],['(a,b)','几何形式'],['r(\\cosθ+i\\sinθ)','三角形式（极形式）'],['re^{iθ}','指数形式'],[zmtrx([['a','b'],['-b','a']]),'矩阵形式']]),
+	['复数\ncomplex',piece([['a+bi','代数形式'],['(a,b)','几何形式'],['r(\\cosθ+i\\sinθ)','三角形式（极形式）'],['re^{iθ}','指数形式'],
+			[zmtrx([['a','b'],['-b','a']]),'矩阵形式（共轭等于转置）'],
+			[kdet(MfS('a bi;bi a')),'模的平方'],
+			]),
 		'实数和虚数的统称',piece(['复数'+piece(['实数','虚数'])])],
 
-	['四元数\n哈密顿数\nHamilton Number','','',ul([
+	['四元数\n哈密顿数\nHamilton Number\nQuaternion','','',ul([
 		])],
 
-	['八元数\n','','',ul([
+	['八元数\nOctonion','','',ul([
+		])],
+
+	['十六元数\nSedenion','','',ul([
+		])],
+
+	['分裂复数\n双曲复数\nSplit Complex\nHyperbolic complex numbers',piece([['a+bj','代数形式'],['(a,b)','几何形式'],['r(\\cosh θ+j\\sinh θ)','三角形式（极形式）'],['re^{iθ}','指数形式'],
+		[zmtrx([['a','b'],['b','a']]),'矩阵形式（共轭等于转置）'],
+		[kdet(MfS('a bj;-bj a')),'模的平方']
+		])+kbr+'j^2=+1',
+		'',''],
+
+
+	['三元数\nTernion number',piece([['i^2=j^2=ij=ji=0',''],
+		['a+bi+cj','代数形式'],['(a,b,c)','几何形式'],['','三角形式（极形式）'],['','指数形式'],
+		[zmtrx([['a','bi','cj'],['cj','a','bi'],['bi','cj','a']]),'矩阵形式（轮换矩阵）'],
+		['注意','共轭不等于转置'],
+		[kdet(MfS('a bi cj;cj a bi;bi cj a'))+'=a^3','']
+		])
+		,
+		
+	'',piece(['A=(a,b,c)',
+			'B=(x,y,z)',
+			'A+B=(a+x,b+y,c+z)',
+			'A-B=(a-x,b-y,c-z)',
+			'AB=(ax, ay+bx, az+cx)',
+			'kA=k(a, b, c) 其中k是实数',
+			'iA=(0, a, 0) 旋转',
+			'jA=(0, 0, a) 旋转',
+
+			'双线性'+piece(['(k+l)A=kA+lA','k(A+B)=kA+kB']),
+			'A^*=(a,-b,-c)',
+			'模|A|=|a|',
+			'AA^*=|A|^2=║A║=a^2',
+			'A^n=(a^n,na^{n-1}b,na^{n-1}c)',
+			'A^{-1}=(1/a,-b/a^2,-c/a^2)=\\frac{A^*}{a^2}=\\frac{A^*}{|A|^2}=\\frac{A^*}{║A║}',
+			'A/B=(a/x, a(-y/x^2)+b/x, a(-z/x^2)+c/x)',
+			'='+zp('a\\/x,~ -\\frac{ay}{x^2},~ -\\frac{az}{x^2}')+'= a\\/{x^2}B^*',
+			'A^{1\\/n}='+kroot('A','n')+'=('+kroot('a','n')+', ba^{1-1/n}/n, ca^{1-1/n}/n) ',
+				'= '+zp(kroot('a','n')+', \\frac{ab}{n'+kroot('a','n')+'}, \\frac{ac}{n'+kroot('a','n')+'}'),
+		])+kbr+piece(['满足加法交换率、结合律','满足乘法交换率、结合律','满足乘法对加法的分配率',
+			'数域',
+			])+kbr+'定义特点（缺点）：'+kbr+
+		piece([
+			'模与虚元无关，只与实数项分量的绝对值有关',
+			'开方可能无解（负实数时），也可能有无穷多组解（改变任意虚元）',
+			'代数学基本定理不再成立'
 		])],
 
 
+],'wiki').replace(/\n/g,br))
++refer([
+	enwiki("Split-complex_number"),
 
-],'wiki').replace(/\n/g,br))+
 
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('wiki.html?q=Formula/Polynomial/Identity'),
+])+
 
 
 detail('乘积尾数（个位数）',Table([['a尾数','a^{4n}尾数','a^{4n+1}尾数','a^{4n+2}尾数（例如平方尾数）','a^{4n+3}尾数（例如立方尾数）','因子分解']],[
