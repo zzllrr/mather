@@ -105,17 +105,31 @@ detail('数类型',Table([ZLR('名称 记法 定义 性质')],[
 			'jA=(0, 0, a) 旋转',
 
 			'双线性'+piece(['(k+l)A=kA+lA','k(A+B)=kA+kB']),
-			'A^*=(a,-b,-c)',
+			'共轭A^*=(a,-b,-c)=-A+2a',
+			'A+A^*=2a',
 			'模|A|=|a|',
 			'AA^*=|A|^2=║A║=a^2',
-			'A^n=(a^n,na^{n-1}b,na^{n-1}c)',
-			'A^{-1}=(1/a,-b/a^2,-c/a^2)=\\frac{A^*}{a^2}=\\frac{A^*}{|A|^2}=\\frac{A^*}{║A║}',
+			'-A=(-a,-b,-c)',
+			'A^n=(a^n,na^{n-1}b,na^{n-1}c)=na^{n-1}A-(n-1)a^n',
+			'A^2=(a^2,2ab,2ac)=a(a,2b,2c)=2aA-a^2',
+			'A^3=(a^3,3a^2b,3a^2c)=a^2(a,3b,3c)=3a^2A-2a^3', 
+			'多项式P_n(A)=a_nA^n+a_{n-1}A^{n-1}+⋯+a_1A+a_0',
+				'=(na_na^{n-1}+(n-1)a_{n-1}a^{n-2}+⋯+2a_2a+a_1)A','+a_0-a_2a^2-2a_3a^3-⋯-(n-1)a_na^n',
+			'1/A=A^{-1}=(1/a,-b/a^2,-c/a^2)=\\frac{A^*}{a^2}=\\frac{A^*}{|A|^2}=\\frac{A^*}{║A║}',
+
+			'1/A^n=A^{-n}=(1/a^n,-nb/a^{n+1},-nc/a^{n+1})=-nA/a^{n+1}+(n+1)/a^n',
 			'A/B=(a/x, a(-y/x^2)+b/x, a(-z/x^2)+c/x)',
-			'='+zp('a\\/x,~ -\\frac{ay}{x^2},~ -\\frac{az}{x^2}')+'= a\\/{x^2}B^*',
-			'A^{1\\/n}='+kroot('A','n')+'=('+kroot('a','n')+', ba^{1-1/n}/n, ca^{1-1/n}/n) ',
-				'= '+zp(kroot('a','n')+', \\frac{ab}{n'+kroot('a','n')+'}, \\frac{ac}{n'+kroot('a','n')+'}'),
+				'='+zp('a\\/x,~ -\\frac{ay-bx}{x^2},~ -\\frac{az-cx}{x^2}')+'= 1\\/{x^2}(ax, bx-ay, cx-az)',
+				'=1\\/xA-a\\/{x^2}B+a\\/x = 1\\/xA+a\\/{x^2}B^*-a\\/x',
+			'1/A^*=(A^*)^{-1}=A\\/{a^2}',
+			'A/A^*='+zp('1,~ 2\\frac{b}{a},~ 2\\frac{c}{a}')+'= 2\\/aA-1',
+
+			'A^{1\\/n}='+kroot('A','n')+'='+zp(kroot('a','n')+',~ \\frac{'+kroot('a','n')+'}{an}b,~ \\frac{'+kroot('a','n')+'}{an}c'),
+				'= '+kroot('a','n')+zp('1, \\frac{b}{an}, \\frac{c}{an}')+
+				'= \\frac{'+kroot('a','n')+'}{an}A+\\frac{n-1}{n}'+kroot('a','n'),
 		])+kbr+piece(['满足加法交换率、结合律','满足乘法交换率、结合律','满足乘法对加法的分配率',
 			'数域',
+			'三元数是实数域上的线性空间',
 			])+kbr+'定义特点（缺点）：'+kbr+
 		piece([
 			'模与虚元无关，只与实数项分量的绝对值有关',
