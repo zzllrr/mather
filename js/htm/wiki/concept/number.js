@@ -145,7 +145,7 @@ detail('数类型',Table([ZLR('名称 记法 定义 性质')],[
 				'-nA/a^{n+1}+(n+1)/a^n',
 				'((n+1)a-nA)/a^{n+1}'
 			],'','br'),
-			Eq([['A/B','AB^{-1}'],
+			Eq([['A/B','AB^{-1} = \\frac{AB^*}{x^2}'],
 				'(a/x, a(-y/x^2)+b/x, a(-z/x^2)+c/x)',
 				zp('a\\/x,~ -\\frac{ay-bx}{x^2},~ -\\frac{az-cx}{x^2}'),
 				'1\\/{x^2}(ax, bx-ay, cx-az)',
