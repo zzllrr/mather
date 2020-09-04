@@ -111,54 +111,129 @@ detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质'
 ],'wiki').replace(/____/g,br))+
 
 detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise coprime',
-	'互素的等价条件：'+
-	ul($A([
-		'(a,b)=1',
-		'(2^a-1,2^b-1)=1',
-		'存在整数x,y使得，ax+by=1',
-		'存在整数y使得，'+kmod('by',1,'a'),
-		'[a,b]=ab',
-		'b=cd ⇒ (a,c)=(a,d)=1'
+	detail('两数互素的等价条件：',
+		ul($A([
+			'(a,b)=1',
+			'(2^a-1,2^b-1)=1',
+			'存在整数x,y（无穷多对）使得，ax+by=1',
+			'注意：此时(x,y)=(x-kb,y+ka)=(a,b)=(a-ky,b+kx)=1，也互素',
+			'(x,y)解集对应直线y=(-a/b)x+1/b上的整数点（等距间隔kb,-ka）',
+			'(a,b)解集对应直线b=(-x/y)a+1/y上的整数点（等距间隔ky,-kx）',
 
-	]))+
-	kbrA([
-		
-		'(n^a-1,n^b-1) = n^{(a,b)}-1 ~ (n>1)',
 
-	])+br+
-	'三者及以上互素的等价条件：'+
-	ul($A([
-		'(a_1,a_2,⋯,a_n)=1',
-		'(2^{a_1}-1,2^{a_2}-1,⋯,2^{a_n}-1)=1',
-		'存在整数x_i使得，Σa_ix_i=1',
 
-	]))+br+
+			
+			'a+b=q，且(q,a)=(q,b)=1',
+			'a-b=q，且(q,a)=(q,b)=1',
+			'存在整数u,v使得，ua+vb=q，且(q,a)=(q,b)=1',
+			'存在整数u,v使得，ua+vb=q，且(q,ab)=1',
 
-	'Bézout贝祖定理：(a,b)=d'+br+
-	kbrA([
-		'存在整数x,y使得，ax+by=d',
-		'对任意整数k也成立：a(x-kb/d)+b(y+ka/d)=d',
 
-	])+br+
-	'三者及以上：(a,b,c)=d'+br+
-	kbrA([
-		'存在整数x,y,z使得，ax+by+cz=d',
-		'对任意整数k也成立：'+
-		piece([
-			'a(x+kc/(a,b,c))+b(y+kc/(a,b,c))+c(z-k(a+b)/(a,b,c))=1',
-			'a(x+kb/(a,b,c))+b(y-k(a+c)/(a,b,c))+c(z+kb/(a,b,c))=1',
-			'a(x-k(b+c)/(a,b,c))+b(y+ka/(a,b,c))+c(z+ka/(a,b,c))=1',
-			])
 
-	])+br+
 
-	'两两互素的等价条件：'+
-	ul($A([
-		'abx+bcy+acz=1（充要条件）',
-		'充分性显然；必要性证明：利用(a,bc)=(b,c)=1',
-		piece(['au+bcv=1','bs+act=1'])+'⇒ 两式相乘整理得ab(us+c^2vt)+ac(aut)+bc(bvs)=1'
+			'(a+b, ab)=1（两数和与积互素，则两数互素）',
+			'(a-b, ab)=1（两数差与积互素，则两数互素）',
+			'(ua+vb, ab)=1（两数线性组合与积互素，则两数互素）',
 
-	]))
+			'存在整数y使得，'+kmod('by',1,'a'),
+			'[a,b]=ab',
+			'b=cd ⇒ (a,c)=(a,d)=1'
+
+		]))+
+		kbrA([
+			
+			'(n^a-1,n^b-1) = n^{(a,b)}-1 ~ (n>1)',
+
+		])
+	)+
+	detail('两数互素的充分条件：',
+		kbrA([
+			'a+b=c（c∤ab）',
+			'a+b=p（p素数）',
+			'a+b=2p（p素数，a≠b，且都是奇数）',
+			'特别地，(p+k)+(p-k)=2p（p素数，k≠0）⇒ ∀k∈(1,p), (p+k,p-k)=1',
+			'a+b=3p（p素数，3∤a, p∤a）',
+			'a+b=p^n（p素数，p∤ab）',
+			'特别地，(2^n+1)+(2^n-1)=2^{n+1} ⇒ (2^n+1, 2^n-1)=1',
+			'∀奇数q，(2^n+q)+(2^n-q)=2^{n+1} ⇒ (2^n+q, 2^n-q)=1',
+
+			'a+b=2p^n（p素数，p∤ab，a,b都是奇数）',
+			'∀q，素数p（一奇一偶），(p^n+q)+(p^n-q)=2p^n ⇒ (p^n+q, p^n-q)=1',
+
+
+
+
+
+			'a-b=c（c∤ab）',
+			'a-b=1（相邻数互素）',
+			'a-b=2（a,b都是奇数，相邻奇数互素）',
+			'a-b=3（3∤ab）',
+			'a-b=p（p素数∤ab）',
+			'a-b=2p（p素数∤ab，且a,b都是奇数）',
+			'特别地，(k+p)-(k-p)=2p ⇒ ∀k>p（p素数∤k，k,p一奇一偶）, (k+p,k-p)=1',
+			'a-b=3p（p素数，3∤a, p∤a）',
+			'a-b=p^n（p素数，p∤ab）',
+			
+			'特别地，(a+2^n)-a=2^n（a奇数） ⇒ (a, a+2^n)=1',
+			'∀p素数∤a，(a+p^n)-a=p^n ⇒ (a+p^n, a)=1',
+
+			'a-b=2p^n（p素数，p∤ab，a,b都是奇数）',
+			'∀p素数∤k（一奇一偶），(k+p^n)-(k-p^n)=2p^n ⇒ (k+p^n, k-p^n)=1',
+
+		])
+	)+
+
+	detail('三者及以上互素的等价条件：',
+		ul($A([
+			'(a_1,a_2,⋯,a_n)=1',
+			'(2^{a_1}-1,2^{a_2}-1,⋯,2^{a_n}-1)=1',
+			'存在整数x_i使得，Σa_ix_i=1',
+
+			'(a-b,b-c,c-a)=1（充要条件，a,b,c两两互素）',
+			'证明：利用u(a-b)+v(b-c)+w(c-a)=a(u-w)+b(v-u)+c(w-v)=1',
+		]))
+	)+
+
+	detail('Bézout贝祖定理：(a,b)=d 则',
+		kbrA([
+			'存在整数x,y使得，ax+by=d',
+			'对任意整数k也成立：a(x-kb/d)+b(y+ka/d)=d',
+
+		])+br+
+		'三者及以上：(a,b,c)=d'+br+
+		kbrA([
+			'存在整数x,y,z使得，ax+by+cz=d',
+			'对任意整数k也成立：'+
+			piece([
+				'a(x+kc/(a,b,c))+b(y+kc/(a,b,c))+c(z-k(a+b)/(a,b,c))=1',
+				'a(x+kb/(a,b,c))+b(y-k(a+c)/(a,b,c))+c(z+kb/(a,b,c))=1',
+				'a(x-k(b+c)/(a,b,c))+b(y+ka/(a,b,c))+c(z+ka/(a,b,c))=1',
+				])
+
+		])
+	)+
+
+	detail('两两互素的等价条件：',
+		ul($A([
+			'(a,b)=(b,c)=(c,a)=1',
+			'(ab,c)=(a,b)=1',
+			'abx+bcy+acz=1（充要条件，a,b,c两两互素）',
+			'也即x\\/a+y\\/b+z\\/c=\\frac{1}{abc} 有整数解',
+			'充分性显然；必要性证明：利用(a,bc)=(b,c)=1',
+			piece(['au+bcv=1','bs+act=1'])+'⇒ 两式相乘整理得ab(us+c^2vt)+ac(aut)+bc(bvs)=1',
+			'或利用(a,b)=(b,c)=(c,a)=1',
+			piece(['aA+bB=1','bC+cD=1','cE+aF=1'])+'⇒ 三式相乘整理',
+			'得(aA+bB)(bC+cD)(cE+aF)=ab(AC(cE+aF)+BCFb)+ac(AD(cE+aF))+bc(BD(cE+aF)+BCEb)=1',
+
+	
+
+			'abcw+bcdx+cday+dabz=1（充要条件，a,b,c,d两两互素）',
+			'也即x\\/a+y\\/b+z\\/c+w\\/d=\\frac{1}{abcd} 有整数解',
+			'充分性显然；必要性证明：利用(a,b)=(b,c)=(c,d)=(d,a)=1',
+			piece(['aA+bB=1','bC+cD=1','cE+dF=1','dG+aH=1'])+'⇒ 四式相乘',
+			'得(aA+bB)(bC+cD)(cE+dF)(dG+aH)=abc(ACE(dG+aH)+HBD(cE+dF))+bcd(?)+cda(?)+dab(?)=1'
+		]))
+	)
 )+
 
 

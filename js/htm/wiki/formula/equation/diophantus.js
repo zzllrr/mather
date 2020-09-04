@@ -13,7 +13,10 @@ wiki['Diophantus']=Kx(
 		ksc(['n=x^2+y^2 ⇔ n因子中的奇素数p=4k+3，即'+kmod('p','-1',4)+'的次数不是奇数']),
 		'例如：'+ksc(['2450 = 2 · 5^2 · 7^2 = 7^2+49^2', '3430=2 · 5 · 7^3 无法写成两数平方和']),
 
-
+		ksc(['素数p=x^2+2y^2 ⇔ '+kmod('p','1或3',8)]),
+		ksc(['素数p=x^2+3y^2 ⇔ '+kmod('p',1,3)]),
+		ksc(['素数p=x^2+5y^2 ⇔ '+kmod('p','1或9',20)]),
+		ksc(['素数p，2p=x^2+5y^2 ⇔ '+kmod('p','3或7',20)]),
 
 	])+
 
@@ -615,6 +618,27 @@ detail(ksc('a^5+b^5=c^5+d^5 (有无穷多组多项式解非平凡解，但含有
 
 	]).join(br)
 ),
+
+
+detail(brA([ksc('ax+by=1')+'（a,b互素 ①）',
+	ksc('ax+by=q')+'（②）',
+
+	]),
+	brA(['方程①有无穷多整数解，因为a(x-kb)+b(y+ka)=1',
+		'方程②有整数解 ⇔ (a,b)|q',
+		'方程②，当(a,b)=1时，利用方程①的解，乘以q倍，得到',
+		'方程②，当(a,b)=d>1时，方程等式两边同时除以d，转化成上述情况求解',
+		'也即方程(a/d)x+(b/d)y=1的解，乘以q/d倍，得到',
+	])+
+	
+	refer([
+		enwiki("Bézout's_identity",'2020-9-4'),
+		enwiki("Pell's_equation",'2020-9-1'),
+		inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+
+	])
+),
+
 
 detail(brA([ksc('x^2-ny^2=1')+'（'+gM2('Pell Equation')+'①）',
 	ksc('x^2-ny^2=-1')+'（'+gM2('Negative Pell Equation')+'②）',

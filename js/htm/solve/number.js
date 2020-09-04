@@ -587,7 +587,8 @@ solve['number']=function(inputValue, uriA){
 
 		rS=rS.concat(
 			Arrf(function(x){
-				var xs=x.split(/ |&/),xs0=xs[0],xs0s=xs0.split(/\D/),x0=xs0s.length>1?+xs0s[0]:1,x1=+xs0s[1]||+xs0s[0],pA=seqsA(xs[1]),qA=seqsA(xs[2]),rA=[],A=[];
+				var xs=x.split(/ |&/g),xs0=xs[0],xs0s=xs0.split(/\D/),x0=xs0s.length>1?+xs0s[0]:1,x1=+xs0s[1]||+xs0s[0],
+					pA=seqsA(xs[1]),qA=seqsA(xs[2]),rA=[],A=[];
 				
 				rA=rA.concat(Arrf(function(d){
 					var t=Idivide(x0,x1,d);
@@ -595,6 +596,7 @@ solve['number']=function(inputValue, uriA){
 					return t[0]
 				},pA));
 				
+				var mA=pA.concat(qA);
 				if(mA.length==2){
 					var lm=lcm(mA), t=Idivide(x0,x1,lm);
 					rA.push(t[0]);
@@ -603,6 +605,7 @@ solve['number']=function(inputValue, uriA){
 					rA.push('能被'+pA.join('或')+'整除，且不能被'+qA.join('或')+'整除的数的个数等于'+nA[0]+'-'+nA[1]+'='+Mfn.oprs('-',nA).toStr(1));//(n1-lm))
 					rA.push('和等于'+A[0][3]+'-'+t[3]+'='+Mfn.oprs('-',[A[0][3],t[3]]).toStr(1));
 				}
+				
 				return kxA(rA)
 				
 			},VA)
