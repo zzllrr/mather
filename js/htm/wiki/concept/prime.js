@@ -122,7 +122,7 @@ detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise
 
 
 
-			
+
 			'a+b=q，且(q,a)=(q,b)=1',
 			'a-b=q，且(q,a)=(q,b)=1',
 			'存在整数u,v使得，ua+vb=q，且(q,a)=(q,b)=1',
@@ -179,6 +179,20 @@ detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise
 
 			'a-b=2p^n（p素数，p∤ab，a,b都是奇数）',
 			'∀p素数∤k（一奇一偶），(k+p^n)-(k-p^n)=2p^n ⇒ (k+p^n, k-p^n)=1',
+
+
+		])
+	)+
+
+	detail('互素概率',
+		kbrA([
+
+			'随机选择两整数，互素的概率：\\prod _{素数p}\\left(1-{\\frac {1}{p^2}}\\right)',
+			'=\\left(\\prod _{素数p}{\\frac {1}{1-p^{-2}}}\\right)^{-1}=\\frac {1}{ζ(2)}=\\frac {6}{π^2}≈ 0.607927102≈ 61\\%',
+			'其中利用两数不都被p整除的概率是1-{\\frac {1}{p^2}}',
+
+			'随机选择k个整数，互素的概率：\\prod _{素数p}\\left(1-{\\frac {1}{p^k}}\\right)',
+			'=\\left(\\prod _{素数p}{\\frac {1}{1-p^{-k}}}\\right)^{-1}=\\frac {1}{ζ(k)}',
 
 		])
 	)+
