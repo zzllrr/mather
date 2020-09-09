@@ -128,12 +128,34 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 			],'TBrc'),
 			ksc('A^x')+'尾数和幂可能：'+Table('',[[ksc('A^x')+'尾数','A尾数','幂x'],
 				['0','0',''],
+
 				['1','1',''],
-				['1','9','2s+1'],
+				['1','9','2s'],
 				['1','3,7','4s'],
 
 				['2','2','4s+1'],
 				['2','8','4s+3'],
+
+				['3','3','4s+1'],
+				['3','7','4s+3'],
+
+				['4','4','2s+1'],
+				['4','2,8','4s+2'],
+
+				['5','5',''],
+
+				['6','6',''],
+				['6','4','2s'],
+				['6','2,8','4s'],
+
+				['7','7','4s+1'],
+				['7','3','4s+3'],
+
+				['8','8','4s+1'],
+				['8','2','4s+3'],
+
+				['9','9','2s+1'],
+				['9','3,7','4s+2'],
 
 			],'TBrc')+
 			'简记为：'+br+
@@ -368,33 +390,50 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 		'<la>(x,3x-4k-2l,3x-4k)=1或2</la>',
 
 		'当(x,y,z)=1时，x是奇数（事实上y,z也是奇数）且(k,x)=(2k+j,x)=1',
-		detail('遍历代码',
+		detail('遍历代码：x,y,z都是大于100的不同素数',
+		ksc(piece(['z>max{x,2y}',kmod('x+z',0,4)]))+
+		br+precode(
 `
-function tuple(X,K,J){
-	for(var x=X||3,l=2**54;x<=l;x+=2){
-		if(x%100000000 == 0){saveText(x,'beal_cache_x');}
-		for(var k=K||Math.floor((3*x-Math.log(3**x+125)/Math.log(2))/4);k>-l;k--){
-			if(k%10000 == 0){saveText('x='+x+', k='+k,'beal_cache_x_k')}
-			if(gcd([k,x])=='1'){
-				var z=3*x-4*k;
-				for(var j=J||Math.ceil(Math.log(2.5)/Math.log(25)*z);j< l;j++){
-					if(j%100000000 == 0){console.log(x,k,j)}
-					if(gcd([2*k+j,x])=='1'){
-						var y=z-2*j, z2=2**z, x3=3**x, y5=5**y;
-						if(z2==x3+y5){
-							saveText([x,y,z].join(' '),'beal_xyz');
-							return [x,y,z]
-						}
-					}
-				}
-			}
+function tuple(I,J,Z){
+	var PA=PrimeA(1000000,0,100) || '78473个', Pl=PA.length, Pm=PA.slice(-1)[0];
+	for(var j=J||0;j<Pl;j++){
+		if(j && j % 1000 == 0){saveText(j,'beal_cache_j');}
+		var y=PA[j];
+		
+		for(var i=I||0;i<Pl;i++){
+			if(i!=j){
+				if(i && i % 10000 == 0){saveText('i='+i+', j='+j,'beal_cache_i_j')}
+				var x=PA[i], x4=x % 4, z=Math.max(x+2,y*2+1), k=-1;
+				
+				do{
+					
+					var z4=z % 4;
+					if(x4+z4==4){
+						if(z % 5 != 0 && PA.indexOf(z)>0){
+							var z2=2n**BigInt(z), x3=3n**BigInt(x), y5=5n**BigInt(y), x3y5=x3+y5;
+							if(z2==x3y5){
+								saveText([x,y,z].join(' '),'beal_3x5y2z');
+								return [x,y,z]
+							}else if(z2>x3y5){
+								k=0;
+								break
+							}
 
+						}
+						z+=4;
+					}else{
+						z+=2;
+					}
+					
+				}while(k<0)
+	
+			}
 		}
 	}
 }
 
 
-`			
+`)
 		
 		),
 		'当(x,y,z)=2时，由于2不是4k+1形式，所以无解',
@@ -508,7 +547,8 @@ function tuple(X,K,J){
 	'2≤偶数C≤1000000',
 
 	'估算C的取值范围介于max\\(A^{x/z},B^{y/z}\\)、A^{x/z}+B^{y/z}',
-	]).join(br)+br+
+	]).join(br)+
+	br+precode(
 
 	`
 
@@ -579,11 +619,9 @@ function tuple(X,K,J){
 			}
 		}
 	}
-
-
-
 	
 	`)
+	)
 
 ])
 ), refer([href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏"),

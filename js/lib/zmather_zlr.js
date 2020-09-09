@@ -3522,6 +3522,9 @@ function linear2nest(Arr) {//平面线性二维数组[[相对层级,内容]+] �
 	return f(A)
 }
 
+function precode(t){
+	return XML.wrapE('pre', XML.wrapE('code',t))
+}
 function md2html(str, sep) {
 	var codeblockA = [], headA = [], listA = [], listOU = {},
 		lnk = {}, footlnk = {}, footlnkA = [],
@@ -3842,7 +3845,7 @@ function md2html(str, sep) {
 
 	if (codeblockA.length) {
 		s = s.replace(/<codeblockquote>\d+<.codeblockquote>/g, function (x) {
-			return XML.wrapE('pre', XML.wrapE('code', XML.encode(codeblockA[+x.replace(/\D/g, '')])))
+			return precode(XML.encode(codeblockA[+x.replace(/\D/g, '')]))
 		});
 	}
 
