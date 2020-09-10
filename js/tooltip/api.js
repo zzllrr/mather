@@ -41,7 +41,7 @@ tooltip['API']=[
 			{'识别':'isPrime feet1'},
 			{'因子分解':'tMod factor2 factor factorA factorA2n factors cntfactors Rho Factor odd odd_5'},
 
-			{'同余':'Mod modP multiMod factorMod'},
+			{'同余':'Mod modP multiMod factorMod Ord_1 Ord'},
 			{'数位性质':'lastDigitsOfPower last0OfFact'},
 			{'多元运算':'gcd lcm gcdFrac lcmFrac lcp'},
 			{'数论函数':'Primorial'},

@@ -109,7 +109,7 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 		'φ(mn) = φ(m)φ(n)'+frac('(m,n)','φ((m,n))','')+' = (m,n)φ([m,n]) = '+frac('mnφ([m,n])','[m,n]',''),
 		'φ(2m) = '+piece([['2φ(m)','当m是偶数'],['φ(m)','当m是奇数']]),
 		'φ(n^m) = n^{m-1}φ(n)',
-		'φ(A) = A'+frac('a-1','a')+frac('b-1','b')+frac('c-1','c')+'⋯~其中a,b,c,⋯是A的所有不同的素因子',
+		'φ(A) = A'+kfrac(['a-1','a'])+kfrac(['b-1','b'])+kfrac(['c-1','c'])+'⋯~其中a,b,c,⋯是A的所有不同的素因子',
 
 		frac('φ(n)','n','')+' = '+frac('φ('+kxf('rad')+'(n))',kxf('rad')+'(n)',''),
 		frac('n','φ(n)','')+' = '+sum('','d|n','',frac('μ^2(d)','φ(d)',''),'',''),
@@ -164,6 +164,12 @@ detail('整数（一元运算）',Table([ZLR('名称 记法 定义 性质')],[
 			'p是素数 ⇒ 模p的原根的次数|φ(p)=p-1',
 		])],
 
+	['a（对）模m的半阶by zzllrr\n半次数\n\nmultiplicative semi-order of a modulo n\nsemi-degree',kbrA(['δ^-_m(a)','e_m(a)','\\text{Ord}^-_m(a)']),
+		kbrA(['最小的正整数d，满足',piece([[0,'当(a,m)>1时，规定'],[-1,'当(a,m)=1，且不存在d满足'+kmod('a^d',-1,'m')+'时，规定'],[kmod('a^d',-1,'m'),'当(a,m)=1，且存在d时']])]),
+
+		kul([
+			'd≠-1是a模m的半阶 ⇔ 2d是a模m的阶',
+		])],
 
 	['素数p的原根\n模素数p的原根\nPrimitive Root modulo prime p','',kbrA(['a满足阶（次数）δ_p(a)=p-1','即'+kmod('a^{p-1}',1,'p'),'且'+kmod('a^q',1,'p',1)+' ~ 当q < p-1时']),
 		kul([

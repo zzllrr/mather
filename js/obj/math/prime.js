@@ -144,29 +144,52 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 			['15','35','55','57','59'],['16','23','28','44','49','66','78'],['17','39'],['18','24','29','36','47','68'],['19','33','77']][+n]
 
 
-},Mod=function(a,p,fast){//求绝对最小剩余(简化剩余系)，例如3%5=-2	返回BigInt类型
+},Mod=function(a,p,fast,n){//求绝对最小剩余(简化剩余系)，例如3%5=-2	返回BigInt类型
 	/*
-		参数fast 指定不使用js自带的%取余运算，而是使用modP
+		参数n，指定求a^n 模 p
+		参数fast 指定不使用js自带的%取余运算，而是使用Ord_1半阶（指定了幂n时）
 			快慢比较，测试下列代码：
 			Arrf(modP,PrimeA(1000,0,6))
 			var t=Random(100000,1),n=BigInt(t),m=BigInt(t)%29n;'\n mod 29 = \n'+m
 	*/
-	var isneg=/-/.test(a),A=BigInt(a), P=BigInt(p), b=isneg?-A:A, b2=BigInt(2)*b;	//Math.abs不支持BigInt 
-	if(b2<P){
-		return A
-	}else if(b2==P){
-		return b
+	var an=n?(Number(a)>Number(p)? Number(a) % Number(p) : a):a, isneg=/-/.test(an),A=BigInt(an), P=BigInt(p), b=isneg?-A:A, b2=BigInt(2)*b;	//Math.abs不支持BigInt 
+	if(!n){
+		if(b2<P){
+			return A
+		}else if(b2==P){
+			return b
+		}
+		if(b<=P){
+			return isneg?A+P:A-P
+		}
+
+
 	}
-	if(b<=P){
-		return isneg?A+P:A-P
-	}
+
 	
-	if(fast){
-		
+	if(fast && n){//使用Ord_1半阶
+		var o=Ord_1(an,p);
+
+		if(o<0){//半阶
+			var n2=+n % -o, q=(+n-n2) / (-o);
+			if(q%2){
+				return -(A**BigInt(n2) % P )
+
+			}else{
+				return A**BigInt(n2) % P 
+			}
+
+		}else if(o){
+			var t=(n?A**BigInt(n2):A)%P;
+			return Mod(t,P)
+
+		}else{
+			return 0
+		}
 		
 		
 	}else{
-		var t=A%P;
+		var t=(n?A**BigInt(n):A)%P;
 		return Mod(t,P)
 	}
 
@@ -1197,6 +1220,58 @@ if(ia=='11' && jb=='23'){//
 
 },Primorial=function(n){//素数阶乘 前n个素数相乘
 	return times(PrimeA(n,2))
+
+},Ord=function(a,m, mIsPrime){/* a（对）模m的阶(次数，全阶)
+	*/
+	var x=Ord_1(a,m, mIsPrime);
+	if(x<0){
+		return -x*2
+	}
+	return x
+
+},Ord_1=function(a,m, mIsPrime){/* a（对）模m的-1阶(次数，半阶)（相对全阶而言）	
+		(a,m)>1为0；
+		(a,m)=1时，求出最小正整数d，满足a^d≡-1（如存在，此时返回-d，定义为半阶）
+		或a^d≡1 (mod m)（此时d是a模m的阶的通常定义）
+
+	*/
+	if(gcd([a,m])=='1'){// 利用阶整除欧拉函数φ δ_m(a)|φ(m) (根据Euler定理)
+		if(mIsPrime){// m是素数时，相当于求a模m的半阶
+			var A=factors(+m-1);
+			for(var i=1,l=A.length;i<l;i++){
+				var b=BigInt(a)**BigInt(A[i]) % BigInt(m);	//这里使用BigInt，以防止JS丢失精度引起异常出错
+				if(b==BigInt(m)-1n){
+					return -A[i]
+
+				}else if(b==1n){
+					return A[i]
+				}
+			}
+		}
+		var A=factorA(m), b=1, l=A[0].length;/* m不是素数时，因式分解
+		利用(c,d)=1   ⇒   δ_{cd}(a)=[δ_c(a), δ_d(a)]
+		以及 δ_m(a^c)= δ_m(a)/(δ_m(a),c)
+
+		这里认为上述两个阶的性质，对半阶也同样成立。
+		*/
+		if(l==1 && A[1][0]==1){// m是质数
+
+			return Ord_1(a,m,1)
+
+		}
+		for(var i=0,l=A[0].length;i<l;i++){
+			var o=Ord_1(a,A[0][i],1), c=A[1][i];
+			if(c>1){// 质因数重数>1
+				o=o/gcd([o,c])
+			}
+			b=lcm([b,o])
+
+		}
+		return b
+
+	}else{
+		return 0
+	}
 
 
 },SUMs=function(N,M,minv,maxv,dup,pos,neg,pos1,neg1){/*生成数和(正整数n分解为m个正整数之和

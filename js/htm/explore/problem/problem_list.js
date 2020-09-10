@@ -394,13 +394,17 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 		ksc(piece(['z>max{x,2y}',kmod('x+z',0,4)]))+
 		br+precode(
 `
-function tuple(I,J,Z){
-	var PA=PrimeA(1000000,0,100) || '78473个', Pl=PA.length, Pm=PA.slice(-1)[0];
-	for(var j=J||0;j<Pl;j++){
+function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3,5,2)模p的阶整除p-1)验证等式；第25个后面的素数用于尝试取值
+	var PA=PrimeA(1000000) || '25+78473个', Pl=PA.length, Pm=PA.slice(-1)[0],
+
+		modA=[2,3,5].concat(Arrf(function(x){return Arrf(function(t){return Ord_1(t,x,1)}, [3,5,2])}, PA.slice(3,25)));
+
+
+	for(var j=J||25;j<Pl;j++){
 		if(j && j % 1000 == 0){saveText(j,'beal_cache_j');}
-		var y=PA[j];
+		var y=PA[j], y5=5n**BigInt(y);
 		
-		for(var i=I||0;i<Pl;i++){
+		for(var i=I||25;i<Pl;i++){
 			if(i!=j){
 				if(i && i % 10000 == 0){saveText('i='+i+', j='+j,'beal_cache_i_j')}
 				var x=PA[i], x4=x % 4, z=Math.max(x+2,y*2+1), k=-1;
@@ -408,15 +412,38 @@ function tuple(I,J,Z){
 				do{
 					
 					var z4=z % 4;
+					if(z>Pm){
+						k=0;
+						break;
+					}
 					if(x4+z4==4){
 						if(z % 5 != 0 && PA.indexOf(z)>0){
-							var z2=2n**BigInt(z), x3=3n**BigInt(x), y5=5n**BigInt(y), x3y5=x3+y5;
-							if(z2==x3y5){
-								saveText([x,y,z].join(' '),'beal_3x5y2z');
-								return [x,y,z]
-							}else if(z2>x3y5){
-								k=0;
-								break
+
+							var bad=0;
+							for(var m=3;m<25;m++){								
+								var A=modA[m];
+
+								var r=
+								(A[0]<0 && BigInt(x)/BigInt(A[0]) % 2n?-1n:1n)*(3n**BigInt( x % Math.abs(A[0]))) + 
+								(A[1]<0 && BigInt(x)/BigInt(A[1]) % 2n?-1n:1n)*(5n**BigInt( y % Math.abs(A[0]))) - 
+								(A[2]<0 && BigInt(x)/BigInt(A[2]) % 2n?-1n:1n)*(2n**BigInt( z % Math.abs(A[0])));
+								if(r % BigInt(PA[3]) != 0n){
+									bad=1;
+									break;
+								}
+								
+							}
+
+
+							if(!bad){
+								var z2=2n**BigInt(z), x3=3n**BigInt(x),  x3y5=x3+y5;
+								if(z2==x3y5){
+									saveText([x,y,z].join(' '),'beal_3x5y2z');
+									return [x,y,z]
+								}else if(z2>x3y5){
+									k=0;
+									break
+								}
 							}
 
 						}
