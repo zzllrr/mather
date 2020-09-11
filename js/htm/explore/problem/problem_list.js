@@ -99,19 +99,41 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 	detail('反例必要条件',
 		[
-		'① 条件一：A,B,C两两互素（由 p|(A,B) ⇒ p|C ）',
-		'即<la>(A,B)=(B,C)=(A,C)=1</la>',
-		'⇔ 存在整数使得<la>m_1AB+m_2BC+m_3AC=1</la>',
+		detail('① 条件一：A,B,C两两互素',[
+			'用反证法： p|(A,B) ⇒ p|C ',
+			'<la>(A,B)=(B,C)=(A,C)=1</la>',
+			'⇔ 存在整数使得<la>m_1AB+m_2BC+m_3AC=1</la>',
+			'也即<la>(A^x,B^y)=(B^y,C^z)=(A^x,C^z)=1</la>',
+			'⇔ 存在整数a,b,c满足(a,b,c)=(a,A)=(b,B)=(c,C)=1，使得',
+			'<la>cA^xB^y+aB^yC^z+bA^xC^z=1</la>',
+			'把<la>C^z=A^x+B^y</la>代入上式，并令a+b+c=d',
+			'显然(d,(a,b))=1（否则(c,(a,b))=1）得到',
+			'<la>bA^{2x}+aB^{2y}+dA^xB^y=1</la>',
+			'',
+			'令<la>s=A^{x}, t=B^{y}</la>得到',
+			'<la>bs^2+at^2+dst=1</la>',
 
-		'② 条件二：x,y,z不能同时相等（当x=y=z时与费马最后定理FLT矛盾!）',
-		'且(x,y,z)=1或2 （>2时，可改写成FLT形式，与无解矛盾！）',
 
+			'',
+			'除此之外，也可利用存在整数，使得',
+			'<la>'+piece(['dA^x+eB^y=1','fB^y+gC^z=1','hA^x+iC^z=1'])+'</la>',
+		].join(br)
+		),
+		'',
+		detail('② 条件二：(x,y,z)=1或2',
+			['x,y,z不能同时相等（当x=y=z时与费马最后定理FLT矛盾!）',
+			'(x,y,z)>2时，可改写成FLT形式，与无解矛盾！'
+			].join(br)
+		),
 
-		'③ 条件三：模运算下等式仍成立',
-		ksc(kmod('A^x+B^y','C^z','p')),
-		'例如：'+ksc(kmod('A^x','-B^y','C')),
+		'',
+		detail('③ 条件三：模运算下等式仍成立',
+			[ksc(kmod('A^x+B^y','C^z','p')),
+			'例如：'+ksc(kmod('A^x','-B^y','C')),
+			].join(br)
+		),
 
-
+		'',
 		'④ 条件四：幂的个位数满足下表',
 		detail('周期性：'+Table([ksc(['n尾数','n^2尾数','n^3尾数','n^4尾数','周期'])],[
 				[0,0,0,0,1],

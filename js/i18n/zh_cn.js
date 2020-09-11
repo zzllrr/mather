@@ -679,7 +679,10 @@ lang['zh_cn'] = {
 	'Tool':'工具',
 	'Toolset':'工具箱',
 	'File': '文件',
+	'Folder':'文件夹',
 	'Engine': '引擎',
+	'Favourite':'最爱',
+	'Like':'喜欢',
 
 	'Design':'设计',
 	'Application': '应用',
@@ -2063,7 +2066,7 @@ lang['zh_cn'] = {
 	'Direct Sum':'直和',
 	'Direct Product':'直积',
 
-
+	'Add':'添加',
 	'Addition':'加法',
 	'Additive':'加性',
 	'Addend':'加数',
