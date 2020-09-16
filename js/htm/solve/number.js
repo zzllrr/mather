@@ -1407,7 +1407,6 @@ a b c d
 		);
 	}
 
-
 	if(sel(uriA,'Numerical Calculator JS Native')){
 		rS=rS.concat(
 			Arrf(function(s){
@@ -1415,7 +1414,16 @@ a b c d
 				return s+' ≈ '+t
 		},VA));
 	}
-	
+	if(sel(uriA,'Big Integer Simplify')){
+		rS=rS.concat(
+			Arrf(function(s){
+				var t=eval(bigintsim(s));
+				return bigintsim(s,1)+' = '+t.toString();
+		},VA));
+	}
+
+
+	/*
 	if(sel(uriA,'Numerical Calculator')){
 		rS=rS.concat(
 			Arrf(function(s){
@@ -1423,6 +1431,7 @@ a b c d
 				return t+' ≈ '
 		},VA));
 	}
+	*/
 	if(sel(uriA,'Symbolic Calculator')){
 		//十二分之五加十四分之三加十二分之一
 		rS=rS.concat(

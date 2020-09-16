@@ -67,6 +67,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 
 			{'Integer':[
 				'竖式计算…算式&保留小数位数“124/3&3',
+				'Big Integer Simplify',
 			]},
 
 			{'Fraction':[

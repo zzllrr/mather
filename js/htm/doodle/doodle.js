@@ -543,7 +543,8 @@ $(function () {
 						DCtv('lightgray" id="gridType',
 				
 
-							'<label><input type=radio name=gridType value=Cartesian'+chked+' /></label>'+
+							'<label><input type=radio name=gridType value=Cartesian'+chked+' /></label>'+							
+							'<label><input type=radio name=gridType value=Circle /></label>'+
 							'<label><input type=radio name=gridType value=Elliptic /></label>'+
 							'<label><input type=radio name=gridType value=Affine /></label>'+
 							'<label><input type=radio name=gridType value=Triangle /></label>'

@@ -352,7 +352,7 @@ function copy2clipboard(t){
 function mathsimp(x,tostr){
     if(math){
         var o=math.simplify(math.parse(x));
-        return tostr?(toStr==1?math2str(o):Mfn.fromStr(o.toString()).toStr()):o
+        return tostr?(tostr==1?math2str(o):Mfn.fromStr(o.toString()).toStr()):o
     }
     return x
 }

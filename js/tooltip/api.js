@@ -209,7 +209,7 @@ tooltip['API']=[
 			{'矩阵':'fMatrixPly fMatrix tableT'},
 			{'随机':'Random'},
 			{'统计':'max min countA CntN Cnt sizeKB'},
-			{'数值':'fixed4'},
+			{'数值':'fixed4 bigintsim'},
 			{'差分':'diff antidiff'},
 		]},
 

@@ -2018,9 +2018,10 @@ console.log('tp ',tp);
 
 
 
-				}else if(gT=='Elliptic'){// 椭圆坐标系
+				}else if(gT=='Elliptic' || gT=='Circle'){// 椭圆坐标系
 					var rc=r;
 					r=c;c=rc;
+
 
 					if(isMargin){
 						var	wn=c;//半轴长间距
@@ -2032,6 +2033,14 @@ console.log('tp ',tp);
 						var wn=parseInt(w/c/2);
 						w=(sw+wn)*c*2;
 
+					}
+
+
+										
+					if(gT=='Circle'){
+	
+						h=w
+						
 					}
 					var hn=parseInt(h/c/2);
 					h=(sw+hn)*c*2;
