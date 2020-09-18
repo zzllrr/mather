@@ -11,9 +11,9 @@ detail('素数定义与性质',Table([ZLR('名称 定义 第n项 前n项 性质'
 	['素数____质数____Prime','只能被1和自身整除','P_n \\\\ p_n',
 		'2,3,5,7,11,13,17,19,21,23'.split(',').join(br),
 		ul(['有无穷多个',SCtv('notes','证明方法很多，例如：'+SCtv('prov','欧几里德反证法：全部素数都不能整除$P_1 ⋯ P_k+1$')),
-		href(H+'primes.utm.edu/curios/includes/primetest.php','素数测试'),
+		href(Hs+'primes.utm.edu/curios/includes/primetest.php','素数测试'),
 		href(Hs+'www.alpertron.com.ar/ECM.HTM','ECM(Elliptic Curve Method) ____椭圆曲线方法测试'),
-		href(H+'primes.utm.edu/primes/search.php','素数搜索'),
+		href(Hs+'primes.utm.edu/primes/search.php','素数搜索'),
 		ksc('p是素数 ⇔ '+mod('(p-1)!',-1,'p','','',''))+scbox('Wilson定理','bold brad')+br+
 		'也即'+ksc(mod(prod('i',1,'p-1','i','',''),-1,'p','','',''))+br+
 		'即$p|(p-1)!+1$'+br+
@@ -259,6 +259,7 @@ detail(gM('Reference'),Table([i18(ZLR('Name Type Summary'))],[
 	[enwiki('Coprime_integers'),'',''],
 	[enwiki("Bézout's_identity"),'',''],
 	[enwiki("Extended_Euclidean_algorithm"),'',''],
+	[href(Hs+'primes.utm.edu'),'','素数大全'],
 ],'TBrc'),1)
 
 

@@ -24,7 +24,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	cssLinkRe = /\.css($|\?.*)/i, fontRe = /\.(eot|[ot]tf|ttc|font?|woff2?)($|#|\?.*)/i,
 	cssImgReg = 'url\\([\'"]?[^\\\'"\\)\\s]+[\'"]?\\)', cssImgRe = new RegExp(cssImgReg, 'gi'), textCssImgRe = new RegExp('([\\s:,]|^)' + cssImgReg, 'gi'),
 
-	imgReg = '(bmp|gif|ico|jpeg|jpg|apng|png|svg|webp)',
+	imgReg = '(avif|bmp|gif|ico|jpeg|jpg|apng|png|svg|webp)',
 	hrefImgRe = new RegExp('\\S*\\.' + imgReg + '[\\?\\&]*.*', 'i'), textImgRe = new RegExp('(file|ftp|https?):[/]+[^\'"\\s\\(\\)]*\\.' + imgReg, 'gi'),
 	digiReg = /^\d+(\.\d)?$/,
 	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}]/g, '\\$&') },
@@ -2997,7 +2997,10 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 	//下列涉及排序、去重
 
-}, Uniq = function (s) {//字符或数字（数组，逗号隔开）去重，结果会自动排序	此方法去重不彻底，换成 Array.from(new Set([])).sort().join(',')
+}, Uniq = function (s,useSet) {//字符或数字（数组，逗号隔开）去重，结果会自动排序	此方法去重不彻底，换成 Array.from(new Set([])).sort().join(',')
+	if(useSet){//只返回去重后的排序数组，不join
+		return Array.from(new Set(isStr(s)?s.split(','):s)).sort()
+	}
 	return (','+s.split(',').sort().join(',,') + ',').replace(/(,[^,]+,)\1+/g, '$1').replace(/,{2,}/g, ',').replace(/^,|,$/g, '')
 
 }, sortBy = {
