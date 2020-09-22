@@ -134,7 +134,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 		),
 
 		'',
-		'④ 条件四：幂的个位数满足下表',
+		detail('④ 条件四：幂的个位数满足下表',
 		detail('周期性：'+Table([ksc(['n尾数','n^2尾数','n^3尾数','n^4尾数','周期'])],[
 				[0,0,0,0,1],
 				[1,1,1,1,1],
@@ -349,7 +349,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 
 
 			],'TBrc')
-		)
+		))
 		].join(br)
 	),
 
@@ -489,41 +489,255 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 
 		].join(br)),
 
-	detail('原方程参数解(不完全列举)：',[
+	
 
-		'<la>[a(a^{m}+b^{m})]^{m}+[b(a^{m}+b^{m})]^{m}=(a^{m}+b^{m})^{m+1}</la>',
-		'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{m}</la>',
-
-
-		'<la>[a(a^{m}+b^{m})^k]^{m}+[b(a^{m}+b^{m})^k]^{m}=(a^{m}+b^{m})^{km+1}</la>',
-		'<la>即等式a^{m}+b^{m}=(a^{m}+b^{m})两边同乘：(a^{m}+b^{m})^{km}</la>',
-
-		'<la>[b(a^{m}-b^{m})^k]^{m}+(a^{m}-b^{m})^{km+1}=[a(a^{m}-b^{m})^k]^{m}</la>',
-		'即上式b→-b，并视n为奇数',
-
-		].join(br)
-	),
-
-	detail('递推形式：已知解：<la>A_1^x+B_1^y=C_1^z</la>',
+	detail('递推形式的解：',
 		ul([
 
-			'令<la>'+piece([
+			'一、'+ksc('A^x+B^y=C^z'),
+			ksc(piece([
+				['(q^{yz}A)^x+(q^{xz}B)^y=(q^{xy}C)^z','等式两边同时乘以q^{xyz}'],
+				['(A^{yz+1})^x+(A^{xz}B)^y=(A^{xy}C)^z','等式两边同时乘以A^{xyz}'],
+				['(AB^{yz})^x+(B^{xz+1})^y=(B^{xy}C)^z','等式两边同时乘以B^{xyz}'],
+				['(AC^{yz})^x+(BC^{xz})^y=C^{(xy+1)z}','等式两边同时乘以C^{xyz}'],
+				['(A^{x/d})^d+(B^{y/d})^d=(C^{z/d})^d','其中d=(x,y,z)，则d<3'],
+				['(qA^{x/d})^d+(qB^{y/d})^d=(qC^{z/d})^d','等式两边同时乘以q^d，其中d=(x,y,z)，则d<3'],
+
+				['(A^{yz+1}(BC)^{yz})^x+(B^{xz+1}(AC)^{xz})^y=(C^{xy+1}(AB)^{xy})^z','等式两边同时乘以(ABC)^{xyz}']
+			])),
+
+
+
+			'二、根据'+ksc('a^m+b^m=q'),
+			ksc(piece([
+				['(aq)^m+(bq)^m=q^{m+1}', '等式两边同时乘以q^m'],
+				['(aq^k)^m+(bq^k)^m=q^{km+1}', '等式两边同时乘以q^{km}']
+			])),
+
+
+			'或根据'+ksc('a^m-b^m=q'),
+
+			ksc(piece([
+				['(bq)^m+q^{m+1}=(aq)^m', '等式两边同时乘以q^m，然后移项'],
+				['(bq^k)^m+q^{km+1}=(aq^k)^m', '等式两边同时乘以q^{km}，然后移项']
+			])),
+
+
+			detail('参数解即：',[
+
+				ksc('[a(a^{m}+b^{m})]^{m}+[b(a^{m}+b^{m})]^{m}=(a^{m}+b^{m})^{m+1}'),
+				'即等式'+ksc('a^{m}+b^{m}=(a^{m}+b^{m}')+'两边同乘：'+ksc('(a^{m}+b^{m})^{m}'),
+		
+		
+				ksc('[a(a^{m}+b^{m})^k]^{m}+[b(a^{m}+b^{m})^k]^{m}=(a^{m}+b^{m})^{km+1}'),
+				'即等式'+ksc('a^{m}+b^{m}=(a^{m}+b^{m})')+'两边同乘：'+ksc('(a^{m}+b^{m})^{km}'),
+		
+				ksc('[b(a^{m}-b^{m})^k]^{m}+(a^{m}-b^{m})^{km+1}=[a(a^{m}-b^{m})^k]^{m}'),
+				'即上式b→-b，并视n为奇数',
+		
+				].join(br)
+			),
+
+			'或根据'+ksc('a^m+b^n=q'),
+
+			ksc(piece([
+				['(aq^n)^m+(bq^m)^n=q^{mn+1}', '等式两边同时乘以q^{mn}'],
+				['(aq^{kn})^m+(bq^{km})^n=q^{kmn+1}', '等式两边同时乘以q^{kmn}']
+			])),
+
+			'或根据'+ksc('a^m-b^n=q'),
+
+			ksc(piece([
+				['(bq^m)^n+q^{mn+1}=(aq^n)^m', '等式两边同时乘以q^{mn}，然后移项'],
+				['(bq^{km})^n+q^{kmn+1}=(aq^{kn})^m', '等式两边同时乘以q^{kmn}，然后移项']
+			])),
+
+
+			'三、已知解：<la>A_1^x+B_1^y=C_1^z</la>',
+				'令<la>'+piece([
 				'A_{{n}}=(A_{{n-1}}^{{yz+1}})(B_{{n-1}}^{{yz}})(C_{{n-1}}^{{yz}})',
 				'B_{{n}}=(A_{{n-1}}^{{xz}})(B_{{n-1}}^{{xz+1}})(C_{{n-1}}^{{xz}})',
 				'C_{{n}}=(A_{{n-1}}^{{xy}})(B_{{n-1}}^{{xy}})(C_{{n-1}}^{{xy+1}})',
 		
 			])+'</la>',
-			'即原等式两边同时乘以<la>A_i^{xyz}B_i^{xyz}C_i^{xyz}</la>'
+			'即原等式两边同时乘以<la>A_i^{xyz}B_i^{xyz}C_i^{xyz}</la>',
+
+		])
+	),
+	detail('当x,y,z两两互素时，有构造解',[
+	detail('<la>p-q=1型，即1/p + q/p = 1</la>'+br+'<la>(q^a p^b)^x+(q^c p^d)^y = (q^X p^Y)^z</la>',
+		ul([
+
+			'解不定方程组<la>'+piece([
+				'ax-tyz=1',
+				'Yz-sxy=1',
+		
+			])+'</la>',
+			'得到一组特解a,t,Y,s，则',
+			'<la>'+piece([
+				'a=(tyz+1)/x',
+				'c=tz',
+				'X=ty',
+				'Y=(sxy+1)/z',
+				'b=sy',
+				'd=sx',
+		
+			])+'</la>',
+			'通解<la>'+piece([
+				'a=(tyz+1)/x+myz',
+				'c=tz+mxz',
+				'X=ty+mxy',
+				'Y=(sxy+1)/z+nxy',
+				'b=sy+nyz',
+				'd=sx+nxz',
+		
+			])+'</la>m,n是任意自然数',
+			'满足<la>(q^{(tyz+1)/x+myz} p^{sy+nyz})^x+(q^{tz+mxz} p^{sx+nxz})^y = (q^{ty+mxy} p^{(sxy+1)/z+nxy})^z</la>',
+
 
 
 
 		])
 	),
 
+
+	detail('<la>p-q=k型，即k/p + q/p = 1</la>'+br+'<la>方程A^x+kB^y=C^z</la>'+br+'<la>有解(q^a p^b)^x+k(q^c p^d)^y = (q^X p^Y)^z</la>',
+		ul([
+
+			'解不定方程组<la>'+piece([
+				'ax-tyz=1',
+				'Yz-sxy=1',
+		
+			])+'</la>',
+			'得到一组特解a,t,Y,s，则',
+			'<la>'+piece([
+				'a=(tyz+1)/x',
+				'c=tz',
+				'X=ty',
+				'Y=(sxy+1)/z',
+				'b=sy',
+				'd=sx',
+		
+			])+'</la>',
+			'通解<la>'+piece([
+				'a=(tyz+1)/x+myz',
+				'c=tz+mxz',
+				'X=ty+mxy',
+				'Y=(sxy+1)/z+nxy',
+				'b=sy+nyz',
+				'd=sx+nxz',
+		
+			])+'</la>m,n是任意自然数',
+			'满足<la>(q^{(tyz+1)/x+myz} p^{sy+nyz})^x+k(q^{tz+mxz} p^{sx+nxz})^y = (q^{ty+mxy} p^{(sxy+1)/z+nxy})^z</la>',
+
+
+		])
+	),
+
+	detail('<la>p-q=j+k型，即k/p + (q+j)/p = 1</la>'+br+'<la>方程A^x+kB^y=C^z</la>'+br+'<la>有解((q+j)^a p^b)^x+k((q+j)^c p^d)^y = ((q+j)^X p^Y)^z</la>',
+		ul([
+
+			'解不定方程组<la>'+piece([
+				'ax-tyz=1',
+				'Yz-sxy=1',
+		
+			])+'</la>',
+			'得到一组特解a,t,Y,s，则',
+			'<la>'+piece([
+				'a=(tyz+1)/x',
+				'c=tz',
+				'X=ty',
+				'Y=(sxy+1)/z',
+				'b=sy',
+				'd=sx',
+		
+			])+'</la>',
+			'通解<la>'+piece([
+				'a=(tyz+1)/x+myz',
+				'c=tz+mxz',
+				'X=ty+mxy',
+				'Y=(sxy+1)/z+nxy',
+				'b=sy+nyz',
+				'd=sx+nxz',
+		
+			])+'</la>m,n是任意自然数',
+			'满足<la>((q+j)^{(tyz+1)/x+myz} p^{sy+nyz})^x+k((q+j)^{tz+mxz} p^{sx+nxz})^y = ((q+j)^{ty+mxy} p^{(sxy+1)/z+nxy})^z</la>',
+
+
+		])
+	),
+
+
+	detail('<la>p-q=k^y型，即k^y/p + q/p = 1</la>'+br+'<la>(q^a p^b)^x+(kq^c p^d)^y = (q^X p^Y)^z</la>',
+		ul([
+
+			'解不定方程组<la>'+piece([
+				'ax-tyz=1',
+				'Yz-sxy=1',
+		
+			])+'</la>',
+			'得到一组特解a,t,Y,s，则',
+			'<la>'+piece([
+				'a=(tyz+1)/x',
+				'c=tz',
+				'X=ty',
+				'Y=(sxy+1)/z',
+				'b=sy',
+				'd=sx',
+		
+			])+'</la>',
+			'通解<la>'+piece([
+				'a=(tyz+1)/x+myz',
+				'c=tz+mxz',
+				'X=ty+mxy',
+				'Y=(sxy+1)/z+nxy',
+				'b=sy+nyz',
+				'd=sx+nxz',
+		
+			])+'</la>m,n是任意自然数',
+			'满足<la>(q^{(tyz+1)/x+myz} p^{sy+nyz})^x+(kq^{tz+mxz} p^{sx+nxz})^y = (q^{ty+mxy} p^{(sxy+1)/z+nxy})^z</la>',
+
+		])
+	),
+
+	detail('<la>p-q=j^x+k^y型，即k^y/p + (q+j^x)/p = 1</la>'+br+'<la>((q+j^x)^a p^b)^x+(k(q+j^x)^c p^d)^y = ((q+j^x)^X p^Y)^z</la>',
+		ul([
+
+			'解不定方程组<la>'+piece([
+				'ax-tyz=1',
+				'Yz-sxy=1',
+		
+			])+'</la>',
+			'得到一组特解a,t,Y,s，则',
+			'<la>'+piece([
+				'a=(tyz+1)/x',
+				'c=tz',
+				'X=ty',
+				'Y=(sxy+1)/z',
+				'b=sy',
+				'd=sx',
+		
+			])+'</la>',
+			'通解<la>'+piece([
+				'a=(tyz+1)/x+myz',
+				'c=tz+mxz',
+				'X=ty+mxy',
+				'Y=(sxy+1)/z+nxy',
+				'b=sy+nyz',
+				'd=sx+nxz',
+		
+			])+'</la>m,n是任意自然数',
+			'满足<la>((q+j^x)^{(tyz+1)/x+myz} p^{sy+nyz})^x+(k(q+j^x)^{tz+mxz} p^{sx+nxz})^y = ((q+j^x)^{ty+mxy} p^{(sxy+1)/z+nxy})^z</la>',
+
+		])
+	)].join(br)),
+
+
+
 	detail('下面有其他形式的解（都不是反例）',
-		ul(['<la>2^n+2^n=2^{n+1}</la>',
-		'<la>3^{3n}+(2⋅3^n)^3=3^{3n+2}</la>',
-		'例如：令上式中n=4，得到<la>27^4+162^3=9^7</la>',
+		ul(['<la>2^n+2^n=2^{n+1}（2-1=1型）</la>',
+		'<la>3^{3n}+(2⋅3^n)^3=3^{3n+2}（2-1=1型）</la>',
+		'<la>即利用1+2^3=3^2(等式两边同乘3^{3k})</la>',
 
 		'<la>利用1+b^3=c^4⋅d(等式两边同乘d^{3+12k})</la>',
 
@@ -561,11 +775,6 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 		'<la>2^3+(2⋅23)^3=312^2 (等式两边同乘312^{3k}，312=2^3‧3‧13)</la>',
 		'<la>1+23^3=2^3‧(3‧13)^2 (等式两边同乘(2^3)^{3k+1}‧(3‧13)^{3k})</la>',
 
-
-
-
-		'<la>利用1+b^3=c^2(等式两边同乘c^{3k})</la>',
-		'<la>1+2^3=3^2 (等式两边同乘3^{3k})</la>',
 
 
 		'<la>利用1+b=c^3(等式两边同乘b^{3k})</la>',
