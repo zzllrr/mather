@@ -2633,8 +2633,10 @@ function bigintsim(s, toLaTeX){// + - * /
 			.replace(/>=/g,'≥').replace(/<=/g,'≤')
 			.replace(/!=/g,'≠').replace(/==/g,'=')
 	}
-	return eval((s||'').replace(/\)\(/g,')*(').replace(/\d+/g,'($&n)')
-		.replace(/\^/g,'**')
+	return eval((s||'').replace(/[\{\[]]/g,'(').replace(/[\}\]]/g,')')
+		.replace(/\)(\d)/g,')*$1').replace(/(\d)\(/g,'$1*(')
+		.replace(/\)\(/g,')*(').replace(/\d+/g,'($&n)')
+		.replace(/\^/g,'**').replace(/‧/g,'*')
 		.replace(/≥/g,'>=').replace(/≤/g,'<=')
 		.replace(/≠/g,'!=').replace(/([^\!><=])=([^\!><=])/g,'$1==$2')
 		)
