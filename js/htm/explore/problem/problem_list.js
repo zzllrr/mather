@@ -27,7 +27,7 @@ Table([i18(ZLR('Name Field Content Relation'))],[
 	href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
 	enwiki('abc_conjecture','2020-8-12'),
 	enwiki('Fermat–Catalan_conjecture','2020-8-12'),
-	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	
 	enwiki('Beal_conjecture','2020-8-11'),
 
 
@@ -496,30 +496,30 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 
 			'一、'+ksc('A^x+B^y=C^z'),
 			ksc(piece([
-				['(q^{yz}A)^x+(q^{xz}B)^y=(q^{xy}C)^z','等式两边同时乘以q^{xyz}'],
-				['(A^{yz+1})^x+(A^{xz}B)^y=(A^{xy}C)^z','等式两边同时乘以A^{xyz}'],
-				['(AB^{yz})^x+(B^{xz+1})^y=(B^{xy}C)^z','等式两边同时乘以B^{xyz}'],
-				['(AC^{yz})^x+(BC^{xz})^y=C^{(xy+1)z}','等式两边同时乘以C^{xyz}'],
+				['(q^{yz}A)^x+(q^{xz}B)^y=(q^{xy}C)^z','同乘q^{xyz}'],
+				['(A^{yz+1})^x+(A^{xz}B)^y=(A^{xy}C)^z','同乘A^{xyz}'],
+				['(AB^{yz})^x+(B^{xz+1})^y=(B^{xy}C)^z','同乘B^{xyz}'],
+				['(AC^{yz})^x+(BC^{xz})^y=C^{(xy+1)z}','同乘C^{xyz}'],
 				['(A^{x/d})^d+(B^{y/d})^d=(C^{z/d})^d','其中d=(x,y,z)，则d<3'],
-				['(qA^{x/d})^d+(qB^{y/d})^d=(qC^{z/d})^d','等式两边同时乘以q^d，其中d=(x,y,z)，则d<3'],
+				['(qA^{x/d})^d+(qB^{y/d})^d=(qC^{z/d})^d','同乘q^d，其中d=(x,y,z)，则d<3'],
 
-				['(A^{yz+1}(BC)^{yz})^x+(B^{xz+1}(AC)^{xz})^y=(C^{xy+1}(AB)^{xy})^z','等式两边同时乘以(ABC)^{xyz}']
+				['(A^{yz+1}(BC)^{yz})^x+(B^{xz+1}(AC)^{xz})^y=(C^{xy+1}(AB)^{xy})^z','同乘(ABC)^{xyz}']
 			])),
 
 
 
 			'二、根据'+ksc('a^m+b^m=q'),
 			ksc(piece([
-				['(aq)^m+(bq)^m=q^{m+1}', '等式两边同时乘以q^m'],
-				['(aq^k)^m+(bq^k)^m=q^{km+1}', '等式两边同时乘以q^{km}']
+				['(aq)^m+(bq)^m=q^{m+1}', '同乘q^m'],
+				['(aq^k)^m+(bq^k)^m=q^{km+1}', '同乘q^{km}']
 			])),
 
 
 			'或根据'+ksc('a^m-b^m=q'),
 
 			ksc(piece([
-				['(bq)^m+q^{m+1}=(aq)^m', '等式两边同时乘以q^m，然后移项'],
-				['(bq^k)^m+q^{km+1}=(aq^k)^m', '等式两边同时乘以q^{km}，然后移项']
+				['(bq)^m+q^{m+1}=(aq)^m', '同乘q^m，然后移项'],
+				['(bq^k)^m+q^{km+1}=(aq^k)^m', '同乘q^{km}，然后移项']
 			])),
 
 
@@ -541,15 +541,15 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 			'或根据'+ksc('a^m+b^n=q'),
 
 			ksc(piece([
-				['(aq^n)^m+(bq^m)^n=q^{mn+1}', '等式两边同时乘以q^{mn}'],
-				['(aq^{kn})^m+(bq^{km})^n=q^{kmn+1}', '等式两边同时乘以q^{kmn}']
+				['(aq^n)^m+(bq^m)^n=q^{mn+1}', '同乘q^{mn}'],
+				['(aq^{kn})^m+(bq^{km})^n=q^{kmn+1}', '同乘q^{kmn}']
 			])),
 
 			'或根据'+ksc('a^m-b^n=q'),
 
 			ksc(piece([
-				['(bq^m)^n+q^{mn+1}=(aq^n)^m', '等式两边同时乘以q^{mn}，然后移项'],
-				['(bq^{km})^n+q^{kmn+1}=(aq^{kn})^m', '等式两边同时乘以q^{kmn}，然后移项']
+				['(bq^m)^n+q^{mn+1}=(aq^n)^m', '同乘q^{mn}，然后移项'],
+				['(bq^{km})^n+q^{kmn+1}=(aq^{kn})^m', '同乘q^{kmn}，然后移项']
 			])),
 
 
@@ -560,7 +560,7 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 				'C_{{n}}=(A_{{n-1}}^{{xy}})(B_{{n-1}}^{{xy}})(C_{{n-1}}^{{xy+1}})',
 		
 			])+'</la>',
-			'即原等式两边同时乘以<la>A_i^{xyz}B_i^{xyz}C_i^{xyz}</la>',
+			'即原等式同乘<la>A_i^{xyz}B_i^{xyz}C_i^{xyz}</la>',
 
 		])
 	),
@@ -885,7 +885,7 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 ), refer([href(Hs+'www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules',"百万美元悬赏"),
 	href(Hs+'www.planetmath.org/BealConjecture','planetmath.org'),
 	href(H+'www.duodaa.com/blog/index.php/archives/71/','哆嗒数学网'),
-	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	
 	enwiki('Beal_conjecture','2020-8-11'),
 
 
@@ -944,8 +944,8 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 ),""+br+"⇐"+gM2("abc conjecture")+refer([
 	enwiki('Fermat–Catalan_conjecture','2020-8-12'),
 	enwiki('Beal_conjecture','2020-8-11'),
-	inhref('wiki.html?q=Formula/Equation/Diophantus'),
-	inhref('wiki.html?q=Formula/Sequence/Sum'),
+	
+	
 
 
 	])],
@@ -1072,6 +1072,11 @@ Table([i18(ZLR('Name Field Content'))],[
 		[href(Hs+'link.springer.com/book/10.1007/978-3-319-32162-2','数学中的开放性问题'),'Nash and Rassias, Springer (2016)','Open Problems in Mathematics'],
 
 	],'TBrc')
-;
++refer([
+	inhref('explore.html?q=Problem/Problem List'),
+	inhref('wiki.html?q=Formula/Polynomial/Identity'),
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
+	inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+]);
 
 	

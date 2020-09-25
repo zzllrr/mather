@@ -183,6 +183,54 @@ detail('互素coprime、两两互素pairwise coprime、无公共素因子setwise
 
 		])
 	)+
+	detail('共轭互素对ac+bd=1',
+		kbrA([
+			'⇒'+piece([
+				'(ac+b^2)(ac+d^2)+[-a(b-d)][c(b-d)]=1',
+				'(bd+a^2)(bd+c^2)+[-b(a-c)][d(a-c)]=1',
+
+				'(ac-b^2)(ac-d^2)+[a(b+d)][c(b+d)]=1',
+				'(bd-a^2)(bd-c^2)+[b(a+c)][d(a+c)]=1',
+
+				'[(ac+b^2)(ac+d^2)+a^2(b-d)^2][(ac+b^2)(ac+d^2)+c^2(b-d)^2]+[(ac+b^2)(a+c)(b-d)][-(ac+d^2)(a+c)(b-d)]=1',
+				'等等',
+
+			])+' 也是共轭互素对',
+
+			'若(x,y)=1 ⇒ (xc-yb, xd+ya)=1=(yc-xb, yd+xa)',
+/*写成矩阵形式
+			a -d    y    x
+			b c     -x   -y
+*/
+
+			'反证法：'+piece([
+				'a(xc-yb)+b(xd+ya)=x',
+				'-d(xc-yb)+c(xd+ya)=y',
+			]),
+			'则公因子d|(x,y)矛盾！',
+
+			'继而(a(xc-yb)+d(xd+ya), b(xc-yb)-c(xd+ya))=(-c(xc-yb)+b(xd+ya), d(xc-yb)+a(xd+ya))=1',
+			'即(x(ac+d^2)+ya(d-b), xc(b-d)-y(ac+b^2))=(x(bd-c^2)+yb(a+c), xd(a+c)+y(a^2-bd))=1',
+
+			'则可以生成更多的互素组合',
+
+
+			'设另一组共轭互素对ux+vy=1 ⇒ ',
+			piece([
+				'(xc-yb, xd+ya)=(yc-xb, yd+xa)=1',
+				'(uc-vb, ud+va)=(vc-ub, vd+ua)=1',
+			])
+
+
+		])
+	)+
+	detail('多个互素对',
+		kbrA([
+			'(a,b)=(c,d)=1',
+			'⇒ (ac'
+
+		])
+	)+
 
 	detail('互素概率',
 		kbrA([

@@ -27,7 +27,7 @@ wiki['Diophantus']=Kx(
 		enwiki("Sum_of_two_squares_theorem",'2020-8-31'),
 		enwiki("Brahmagupta–Fibonacci_identity",'2020-8-31'),
 		enwiki("Pell's_equation",'2020-9-1'),
-		inhref('wiki.html?q=Formula/Polynomial/Identity'),
+		
 
 	]))+
 
@@ -308,8 +308,8 @@ detail(ksc(sum('i',1,'n','i^p','','')+'=1^p+2^p+⋯+n^p')+' 前n个正整数的�
 		enwiki('Umbral_calculus','2019-11-22'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
-		inhref('wiki.html?q=Formula/Sequence/Sum'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
+		
 
 	])
 ),
@@ -334,8 +334,8 @@ detail(ksc(sum('i',1,'n','i^k','','')+'=1^k+2^k+⋯+n^k=(n+1)^k')+br+'Erdős猜�
 		enwiki('Diophantine_equation','2020-8-4'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
-		inhref('wiki.html?q=Formula/Sequence/Sum'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
+		
 
 	])
 ),
@@ -355,8 +355,8 @@ detail(ksc('a^2+b^2=c^2 ⇔ (k‧(m^2-n^2))^2+(k‧2mn)^2=(k‧(m^2+n^2))^2')+br
 		enwiki('Diophantine_equation','2020-8-4'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
-		inhref('wiki.html?q=Formula/Sequence/Sum'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
+		
 
 	])
 ),
@@ -538,7 +538,7 @@ detail(ksc(piece(['a^2+b^2=d^2','a^2+c^2=e^2','b^2+c^2=f^2','a^2+b^2+c^2=g^2（�
 	
 	refer([
 		href(Hs+'arxiv.org/search/math?query=euler+brick&searchtype=all&abstracts=show&order=-announced_date_first&size=50','arxiv'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 
 	])
 ),
@@ -619,25 +619,6 @@ detail(ksc('a^5+b^5=c^5+d^5 (有无穷多组多项式解非平凡解，但含有
 	]).join(br)
 ),
 
-
-detail(brA([ksc('ax+by=1')+'（a,b互素 ①）',
-	ksc('ax+by=q')+'（②）',
-
-	]),
-	brA(['方程①有无穷多整数解，因为a(x-kb)+b(y+ka)=1',
-		'方程②有整数解 ⇔ (a,b)|q',
-		'方程②，当(a,b)=1时，利用方程①的解，乘以q倍，得到',
-		'方程②，当(a,b)=d>1时，方程等式两边同时除以d，转化成上述情况求解',
-		'也即方程(a/d)x+(b/d)y=1的解，乘以q/d倍，得到',
-	])+
-	
-	refer([
-		enwiki("Bézout's_identity",'2020-9-4'),
-		enwiki("Pell's_equation",'2020-9-1'),
-		inhref('wiki.html?q=Concept/Number/Prime/Prime'),
-
-	])
-),
 
 
 detail(brA([ksc('x^2-ny^2=1')+'（'+gM2('Pell Equation')+'①）',
@@ -784,7 +765,7 @@ detail(brA([ksc('x^2-ny^2=1')+'（'+gM2('Pell Equation')+'①）',
 		enwiki("Sum_of_two_squares_theorem",'2020-8-31'),
 		enwiki("Brahmagupta–Fibonacci_identity",'2020-8-31'),
 		enwiki("Pell's_equation",'2020-9-1'),
-		inhref('wiki.html?q=Formula/Polynomial/Identity'),
+		
 
 	])
 ),
@@ -827,7 +808,7 @@ detail(ksc('a^4+b^4+c^4=d^4')+' (Euler曾错误猜测无非平凡解：'+ksc('a_
 	]).join(br)+
 	refer([
 		enwiki("Euler%27s_sum_of_powers_conjecture"),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 
 	])
 ),
@@ -857,7 +838,7 @@ detail(ksc('a^3+b^3+c^3=d^3')+' 有无穷多组非平凡解，如(3,4,5,6)' ,
 	]).join(br)+
 	refer([
 		enwiki("Euler%27s_sum_of_powers_conjecture"),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 
 	])
 ),
@@ -866,7 +847,7 @@ detail(ksc('a^4=b^4+c^2')+'无正整数解'+br+
 	' (Fermat直角三角形定理，使用无限递降法证明) ' ,
 	refer([
 		enwiki("Fermat%27s_right_triangle_theorem"),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 
 	])
 ),
@@ -878,7 +859,7 @@ detail(ksc('c‧p^n=a‧p^l+b‧p^m（任意素数p∤abc；l,m,n都不相等；
 
 	refer([
 		enwiki("Fermat%27s_right_triangle_theorem"),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 
 	])
 ),
@@ -899,7 +880,7 @@ detail(ksc('y^2=x^3+n 椭圆曲线（其中整数n>0）')+gM2("Mordell's Equatio
 
 	refer([
 		enwiki("Mordell_curve"),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 	
 	])
 	].join(br)
@@ -1050,7 +1031,7 @@ detail(ksc('x^2+y^3=z^5')+'有解',
 		href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
 		enwiki('abc_conjecture','2020-8-12'),
 		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 	
 	])
 
@@ -1073,7 +1054,7 @@ detail(ksc('x^3+y^4=z^5')+'有解，例如：'+br+
 		href(Hs+'dash.harvard.edu/handle/1/2793857',"Elkies' paper on the ABC's of Number Theory (PDF)"),
 		enwiki('abc_conjecture','2020-8-12'),
 		enwiki('Fermat–Catalan_conjecture','2020-8-12'),
-		inhref('explore.html?q=Problem/Problem List'),
+		
 	
 	])
 
@@ -1086,7 +1067,7 @@ detail(ksc('x^a-y^b=1 (已被证明唯一正整数解3^2-2^3=1)')+br+
 	refer([
 		enwiki("Catalan's_conjecture"),
 		enwiki('Diophantine_equation','2020-8-4'),
-		inhref('explore.html?q=Problem/Problem List'),
+
 	
 	])
 ),
@@ -1183,7 +1164,7 @@ detail('幂差方程'+ksc('x^a-y^b=n')+'解的情况统计如下',
 	refer([
 		enwiki("Catalan's_conjecture"),
 		enwiki('Diophantine_equation','2020-8-4'),
-		inhref('explore.html?q=Problem/Problem List'),
+
 	
 	])
 ),
@@ -1195,7 +1176,7 @@ detail('平方差'+ksc('a^2-b^2=k'),
 
 		refer([
 			enwiki("Fermat%27s_right_triangle_theorem"),
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
@@ -1203,28 +1184,28 @@ detail('平方差'+ksc('a^2-b^2=k'),
 		'（2k+1是素数时，正整数解唯一）',
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
 	detail(ksc('a^2-b^2=4k，恒有解(k+1)^2-(k-1)^2=4k'),
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
 	detail(ksc('a^2-b^2=m(m+2n)，恒有解(m+n)^2-n^2=m(m+2n)'),
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
 	detail(ksc('a^2-b^2=k^2(m^2-n^2)^2，恒有解k(m^2+n^2, 2mn)')+br+
 		ksc('a^2-b^2=4(kmn)^2，恒有解k(m^2+n^2, m^2-n^2)'),
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)
@@ -1240,13 +1221,13 @@ detail('平方和'+ksc('a^2+b^2=k'),
 
 		refer([
 			enwiki("Fermat%27s_right_triangle_theorem"),
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+detail(ksc('a^2+b^2=(m^2+n^2)^2 恒有解(m^2-n^2)^2+(2mn)^2=(m^2+n^2)^2'),
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 		])
 	),
 ),
@@ -1259,7 +1240,7 @@ detail('立方差'+ksc('a^3-b^3=k'),
 		'（根据FLT）',
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
@@ -1269,14 +1250,14 @@ detail('立方差'+ksc('a^3-b^3=k'),
 		
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)+
 	detail(ksc('a^3-b^3=k^3(3s^2+3s+1)=k^3((s+1)^2+s(s+1)+s^2)，恒有解((s+1)k,sk)'),
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 
 		])
 	)
@@ -1291,14 +1272,13 @@ detail('立方和'+ksc('a^3+b^3=k'),
 
 		refer([
 			enwiki("Fermat%27s_right_triangle_theorem"),
-			inhref('explore.html?q=Problem/Problem List'),
 
 		])
 	)+detail(ksc('a^3+b^3=k(k^2-3kb+3b^2)=k[k^2-3b(k-b)] 恒有解(k-b,b)')+br+
 		ksc('a^3+b^3=sb^3(s^2-3s+3)，恒有解((s-1)b,b)'), 
 
 		refer([
-			inhref('explore.html?q=Problem/Problem List'),
+
 		])
 	),
 ),
@@ -1332,21 +1312,64 @@ detail(ksc('x^p+y^q=z^r')+' (各字母都是正整数，广义费马方程)'+br+
 		enwiki('Beal_conjecture','2020-8-11'),
 		enwiki('Symmetric_polynomial'),
 
-		inhref('explore.html?q=Problem/Problem List'),
-		inhref('wiki.html?q=Formula/Sequence/Sum'),
 	])
 ),
 
 
+detail(ksc('ax+by=c 有整数解 ⇔ (a,b)|c'),
+		
+	refer([
+		enwiki("Bézout's_identity",'2020-9-4'),
+		enwiki("Pell's_equation",'2020-9-1'),
+
+
+	])
+),
+
+
+detail(ksc('ax+by=c，其中(a,b)=1 有通解'),
+	brA(
+		ksc([
+			'存在整数(p,q)=1，ap+bq=1',
+			'a(cp)+b(cq)=c',
+			'a(cp-kb)+b(cq+ka)=c',
+			'通解(cp-kb, cq+ka)',
+			'特解c(p,q)，c(p-kb, q+ka)',
+			'注意，当(c,k)=1时，(cp-kb, cq+ka)=1（反证法）',
+
+		])
+	)+
+
+	refer([
+
+	])
+),
+
 detail(ksc(piece(['x^2+1=kx 只有平凡整数解x=±1，即(1,2)，(-1,-2)',
 			'x^2-1=kx 只有平凡整数解x=±1，即(1,0)，(-1,0)'
 		])),
-	brA([
-		'证明',
-		ksc(['k=x+1/x，k是整数 ⇔ x=±1']),
+	brA(
+		ksc(['证明：k=x+1/x，k是整数 ⇔ x=±1']),
+
+	)+
 
 
-	])+
+
+	refer([
+
+	])
+),
+
+
+detail(ksc(piece(['ax^2+by=1 ',
+			''
+		])),
+	brA(
+		ksc(['先解ax+by=1，得到解(c-kb, d+ka)',
+			'设c(a-bj)+b(d+jc)=1',
+			'令c-kb=()^2'  //
+		]),
+	)+
 
 
 
@@ -1364,6 +1387,9 @@ detail(ksc(piece(['x^2+y^2=kxy 只有平凡整数解y=±x，即(0,0,k)，(x,x,2)
 		ksc(piece(['(x^2+y^2, xy)=1=(x^2-y^2, xy)',
 			'本原勾股数中,x,y,z两两互素',
 			'(x^2+y^2,x^2-y^2)|2(x,y)',
+
+
+
 			'(x,y)=1⇒'+piece([
 				'(x^2+y^2,x^2-y^2)|2',
 				'(x^2+kxy+y^2,xy)=1',
@@ -1373,7 +1399,7 @@ detail(ksc(piece(['x^2+y^2=kxy 只有平凡整数解y=±x，即(0,0,k)，(x,x,2)
 					'(x^m+y^n,xy)=1',
 					'((x+y)^n, xy)=1',
 					'((x-y)^n, xy)=1',
-					'((sx-ty)^n, xy)=1',
+					'(s,y)=(t,x)=1 ⇒ ((sx-ty)^n, xy)=1',
 					'存在整数a,b，使得axy+b(x+y)=1=x(ay+b)+by=y(ax+b)+bx',
 					'两个不同质数p,q ⇒存在整数a,b，使得apq+b(p+q)=1',
 					'任意两个奇质数p,q ⇒存在整数a,b，使得b(p+q)=1-apq'
@@ -1392,12 +1418,16 @@ detail(ksc(piece(['x^2+y^2=kxy 只有平凡整数解y=±x，即(0,0,k)，(x,x,2)
 
 
 	refer([
-		inhref('explore.html?q=Problem/Problem List'),
-		inhref('wiki.html?q=Formula/Polynomial/Identity'),
 
 	])
 )
 
+])+
+refer([
+	inhref('explore.html?q=Problem/Problem List'),
+	inhref('wiki.html?q=Formula/Polynomial/Identity'),
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
+	inhref('wiki.html?q=Concept/Number/Prime/Prime'),
 ]);
 
 
