@@ -982,6 +982,8 @@ $(function(){
         me.html(isnight?'wb_sunny':'brightness_3');
         $('body').toggleClass('night',isnight).toggleClass('day',!isnight);
 
+        //$('html').toggleClass('darkmode', !isnight);
+
         L.night=isnight;
 
         dayOrNight();
