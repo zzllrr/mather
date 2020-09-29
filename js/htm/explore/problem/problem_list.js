@@ -1077,6 +1077,7 @@ Table([i18(ZLR('Name Field Content'))],[
 	inhref('wiki.html?q=Formula/Polynomial/Identity'),
 	inhref('wiki.html?q=Formula/Sequence/Sum'),
 	inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
 ]);
 
 	

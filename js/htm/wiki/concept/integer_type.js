@@ -172,8 +172,8 @@ detail('整数（按表达式）',Table([ZLR('名称 定义 前n项 性质')],[
 			'$前n项倒数和：$____$极限：0.596063172117821⋯无理数$',
 			'$前n项积F_0⋯F_{n-1}$____$=F_n-2$',
 			
-			'$n>1时，费马数F_n的每一个因子形如$____$t⋅2^{n+2}+1（t>0）$____'+scbox('Lucas定理','bold brad'),
-		'不同的费马数互素 $(F_m,F_n) = 1$____'+scbox('Goldbach定理','bold brad'),
+			'$n>1时，费马数F_n的每一个因子形如$____$t⋅2^{n+2}+1（t>0）设t个位数是s$____$s≠[1397]当n模4为[0123]时$____'+scbox('Lucas定理','bold brad'),
+		'不同的费马数互素 $(F_m,F_n) = 1$____'+scbox('Goldbach定理','bold brad'),0
 			SCtv('prov','反证，根据$F_n=F_0⋯F_{n-1}+2$____假设有公因子$d（d>1）则d|2，即d=2$，与费马数都是奇数矛盾！'),
 			SCtv('notes','得到推论：素数有无穷多个____（利用费马数列中分别取素因子得到无穷个素数的数列）'),
 		'$n>1时，F_n个位数都是7$____'+SCtv('prov','因为16的平方以及平方后继，尾数都是6'),
@@ -670,4 +670,11 @@ detail('整数（按与其余整数的关系）',Table([ZLR('名称 定义 前n�
 
 ],'TBrc wiki').replace(/____/g,br))
 
-);
+)+refer([
+	inhref('wiki.html?q=Concept/Number/Integer/Fermat Number'),
+	inhref('explore.html?q=Problem/Problem List'),
+	inhref('wiki.html?q=Formula/Polynomial/Identity'),
+	inhref('wiki.html?q=Formula/Sequence/Sum'),
+	inhref('wiki.html?q=Concept/Number/Prime/Prime'),
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+]);
