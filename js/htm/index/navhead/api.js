@@ -16,7 +16,7 @@
 			[
 				detail(gM('Encode | Decode'.split(' ')).join(' '),
 					ul(Arrf(gitjs,
-						ZLR('base64 jquery qrcode qrcode-decoder zlr js-yaml terrain webslides'))),1),
+						ZLR('base64 jquery qrcode qrcode-decoder zmather_zlr zmather_io js-yaml terrain webslides'))),1),
 				detail(gM('Media | Graphic'.split(' ')).join(' '),
 					ul(Arrf(gitjs,
 						ZLR('katex echarts echarts-gl effects aframe aframe-ar zdog d3 geogebra desmos rough ztext'))),1),

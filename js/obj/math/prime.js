@@ -410,6 +410,37 @@ p-x^2=1 mod p
 	return Mod(x*x,p)
 
 
+},fermatN=function(x){ //Fermat费马数
+	return Number(x)==0?3n:((fermatN(BigInt(x)-1n)-1n)**2n+1n)
+
+},k2n1=function(k,n){ //k*2^n+1 用于检测费马数因子
+	return BigInt(k)*(2n**BigInt(n))+1n
+
+},isk2n1DivideFermatN=function(kStart,n,x){ /* 遍历检测可能的费马数因子   
+isk2n1DivideFermatN(1,7,5) = 5
+isk2n1DivideFermatN(1,8,6) = 1071
+isk2n1DivideFermatN(1,9,7) = 116503103764643
+
+
+	​	
+	 k的个位数s≠[1397] 当x模4为[0123]时
+	 */
+	var f=fermatN(x), Bn=BigInt(n), Bx=BigInt(x), n2=2n**Bn, x4=Bx % 4n, k=BigInt(kStart), kMax=2n**(2n**BigInt(x)-Bn), k2n=k*n2, kLen=[];
+	while(f % (k2n+1n) != 0n && k<kMax){
+		var kl=(''+k).length;
+		if(kl % 2 == 0 && kLen.indexOf(kl)<0){
+			kLen.push(kl);
+			console.log(k);
+		}
+		k+=2n;
+		if(k % 10n == BigInt('1397'[Number(x4)])){
+			k+=2n;
+		}
+		k2n=k*n2;
+	}
+	return [k,n,x]
+
+
 //下列涉及识别、判断性质
 
 },feet1=function(n,s){//得到4种判别式：割尾法1中，判断一个数是否被某个素数整除

@@ -4,7 +4,7 @@
  * Released under MIT License
  */
 
-var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',loch=location.href,losh={},
+var HOME=Hs+'sites.google.com/site/zzllrrMather', GMAIL='mailto:zzllrr@gmail.com?subject=zzllrr%20Mather',
 
 qrAli=Hs+'qr.alipay.com/', qrqq=Hs+'i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=122618817&ac=ZZLLRR&n=%E5%B0%8F%E4%B9%90%E7%AC%91%E4%BA%86&f=wallet',
 qrwx='wxp://',
@@ -50,12 +50,7 @@ github=function(x,githubio,text){return href(git(x,githubio),(text||githubio||x)
 
 tooltip={
 },
-caps,ishome=/index\.html|mather\/$|^\/$/.test(location.pathname), 
-isdoodle=/doodle\.html/.test(loch), 
-isdoc=/document\.html/.test(loch),
-iswiki=/wiki\.html/.test(loch),
-issolve=/solve\.html/.test(loch),
-isedi=/editor\.html/.test(loch),
+caps,
 
 hasdoodle=isdoodle;// || ishome || isdoc || iswiki || issolve,
 
@@ -190,12 +185,6 @@ loadHTML=function (x) {
 };
 
 L.removeItem('translation');
-var Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog Lego Rough',
-Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D3 D2 ZD LG RF',
-Mele2='LT LX LTX TEX IL YML',
-Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'},
-Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
-Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
 
 var oH,navhead={},navheadThen={},
 

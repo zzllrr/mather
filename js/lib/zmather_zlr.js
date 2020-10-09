@@ -6,7 +6,17 @@
  */
 
 var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'www.w3.org/', xmlns = H + w3c + '2000/svg', xhtml = H + w3c + '1999/xhtml', xmlnsxlink = H + w3c + '1999/xlink', xmml = H + w3c + '1998/Math/MathML',
-	logon = false, isMobile=/Mobile/.test(navigator.userAgent), i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || L.lang || 'zh_cn'] || '';
+	logon = false, isMobile=/Mobile/.test(navigator.userAgent), i18n = typeof lang == 'undefined' ? '' : lang[H_o().lang || L.lang || 'zh_cn'] || '', loch=location.href,losh={}, ishome=/index\.html|mather\/$|^\/$/.test(location.pathname), 
+	isdoodle=/doodle\.html/.test(loch), 
+	isdoc=/document\.html/.test(loch),
+	iswiki=/wiki\.html/.test(loch),
+	issolve=/solve\.html/.test(loch),
+	isedi=/editor\.html/.test(loch),
+	Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog Lego Rough',
+	Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D3 D2 ZD LG RF',
+	Mele2='LT LX LTX TEX IL YML',
+	Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'};
+	
 if (typeof BigInt == 'undefined') {
 	var BigInt = function (x) { return +x }
 }
@@ -4003,3 +4013,6 @@ function detectZoom (){
 		
 	return ratio;
 }
+
+var Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
+	Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));

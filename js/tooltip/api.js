@@ -86,10 +86,10 @@ tooltip['API']=[
 		{'URL':[
 			{'常量':[
 				{'通用':'H Hs w3c xmlns xhtml xmlnsxlink webStore'},
-				{'小乐':'ZRL ZRC ZIG ZIL ZIV ZAin1 HOM'},
+				{'小乐':'ZRL ZRC ZIG ZIL ZIV ZAin1 HOM ishome isdoodle isdoc iswiki issolve isedi'},
 			]},
 			{'正则':'uri uriRe'},
-			{'解析':'H_u H_w H_w1 H_W H_W1 H_d H_h H_a H_o urlTran picSrcNameExt'},
+			{'解析':'H_u H_w H_w1 H_W H_W1 H_d H_h H_a H_o urlTran picSrcNameExt loch losh'},
 			{'封装':'imgFav pathTxt fn0 fn1 fna fna0 fnb fnc fnd fne fnt fnx fnr fns'},
 			{'转换':'dataURItoBlob'},
 			{'接口':'FNS Admin txt2audio xhrcb csslib git jslib delivr unpkgTmp unpkg referf'},
@@ -117,6 +117,7 @@ tooltip['API']=[
 				{'结构':'SCtv DCtv spanmi itv detail ol ul dl Options OptGrps optgrp subReg tmb Table fieldset fieldseth subtabs refer'},
 				{'样式':'scRed scGain sci scit scib scil scir scbt sclr scbox scblr sctlr'},
 				{'用途':'imgdatasrc num i18 I18 colorbx rng txa txtreadonly precode mark del href hrefA scHotk q_key sceg sceg2 scegc scegj zMath ruby'},
+				{'自定义标签':'Mele Meles Mele2 Meleo'},
 			]},
 			{'碎片':'strtxt strop strradio0 strchkbx0 strbtn btnGo imgSRC SC sC sc DC dC dc'},
 			{'属性':'chked seled attr2dataset attr2jSon jSon2attr'},
@@ -223,7 +224,7 @@ tooltip['API']=[
 			{'提取':'exp2arr exp2coe'}
 		]},
 		{'输出':[
-			{'DOM':'OH'},
+			{'DOM':'OH preDisplay'},
 			{'HTML':'zxdetail Mtrx2str'},
 			{'KaTeX':'zx zxdet zxmtrx zxul zxsum zxprod zxfrac zxroot zxmod zxEq'},
 
