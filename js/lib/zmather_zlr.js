@@ -842,6 +842,21 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	KxA = function (A) { return ksc(A.join(kbr2)) },
 	kx = function (t) {
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
+			.replace(/\$[^\x00-\xff][^\$]+\$/g, function (x) {
+				var x0=x.replace(/\$/g, ''), x00=x0.split('(')[0], x01=x0.substr(x00.length+1).replace(/\)$ */,''), o0={
+					'竖式+':'Decimal.oprs',
+					'竖式-':'Decimal.oprs',
+					'竖式*':'Decimal.oprs',
+					'竖式/':'Decimal.oprs',
+				},o1={
+
+				};
+				if(o0[x00]){
+	
+					return eval(x0.replace(x00+'(', o0[x00]+"('"+x00+"',"))
+				}
+				return eval(x0.replace(x00, o1[x00])) 
+			})
 			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
 
 			//	.replace(/≠/g,'=\\not\\mathrlap{}').replace(/≢/g,'≡\\not\\mathrlap{}')

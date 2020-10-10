@@ -1161,13 +1161,14 @@ var Integer={/*整数 (本质是字符串)
 			aA=Arrf(Decimal.build.D,aA);
 		}
 		
-		if(op=='竖式+-'){//参数p：+或-，支持二元以上同一种运算（但不支持+-混合）
+		if(/竖式[\+-]/.test(op)){//参数p：+或-，支持二元以上同一种运算（但不支持+-混合）
 
 //console.log(aA.join(brn),al);
-			aA.push(Decimal.oprs(p,aA));
+			var p0=p || op.slice(-1)[0];
+			aA.push(Decimal.oprs(p0,aA));
 			aA=Arrf(Decimal.toStr,aA);
 //console.log(aA.join(brn),al);
-			t=aA.slice(0,al).join(p)+'='+aA[al];
+			t=aA.slice(0,al).join(p0)+'='+aA[al];
 			Arrf(function(x,i){aA[i]=(''+x).split('.')},aA);
 //console.log(aA.join(';'),max(Arri(aA,0)),max(Arri(aA,1)));
 
@@ -1185,7 +1186,7 @@ var Integer={/*整数 (本质是字符串)
 				}
 				
 			},aA);
-			aA[al-1][0]=p;
+			aA[al-1][0]=p0;
 //console.log(aA.join(brn),al);
 			return [mtrx(aA,'.','.','','I'+al),t,''].join(kbr+'\\widetilde{'+'~'.repeat(27)+'}'+kbr);
 		}
