@@ -5,14 +5,14 @@
  * Released under MIT License
  */
 
-var Plnm={//多项式 本质上是一维数组（行向量，n列）升幂
+var Plnm={//单变量多项式 本质上是一维数组（行向量，n列）升幂
 	//A.t='Polynm';A.d=第0项次数（默认是0）
 
 	build:{//直接构造
 		F:function(a,m){//形式∑aix^i
 			var A=[];A.t='Polynm';
 			for(var i=0;i<m;i++){
-				A.push(a+sub((i+1)+''+(j+1)))	//sci lp
+				A.push(a+sub(i+1,1))
 			}
 			return A
 		},
@@ -87,37 +87,6 @@ var Plnm={//多项式 本质上是一维数组（行向量，n列）升幂
 	fromStr:function(s){
 		var A,m,n,ij,e;
 
-		if(/^c?diag\(/.test(s)){
-			//var D=eval('['+s.replace(/ +/g,' ').trim().substr(5,s.length-6)+']');
-			var isC=/^c/.test(s), D=s.substr(+isC+5,s.length-6-(+isC)).split(',');
-			return Polynm.build.D(D,isC);
-		}else{
-			e=s.replace(/ +/g,' ').trim().replace(new RegExp('['+SBS.SupSub[1]+']+,*['+SBS.SupSub[1]+']*'),'').replace(/^\[|\]$/g,'');
-			ij=sub2n(s.replace(/ +/g,' ').trim().substr(e.length+2*(+/\[/.test(s)))).split(',');
-			m=+ij[0]||1;
-			n=ij.length<2?m:+ij[1];
-//console.log(e);
-//console.log(ij);
-			if(/[ ;]/.test(e)){
-				A=e.split(';');
-				m=A.length;
-				for(var i=0;i<m;i++){
-					A[i]=ZLR(A[i])
-				}
-				A.t='Polynm';
-			}else if(/[ij]/.test(e)){//f(i,j)表达式形式
-				A=Polynm.build.N(m,n,0);
-				var d=Str2dom.arith(e);
-				for(var i=0;i<m;i++){
-					for(var j=0;j<n;j++){
-						A[i][j]=+Calc["计算器"](d,true,{"i":i+1,"j":j+1})[1];
-					}
-				}
-			}else{//（拟）单位矩阵I、零矩阵O、元素相同矩阵[2]
-				A=Polynm.build[/I/.test(e)?'I':'N'](m,n,/O/.test(e)?0:e,!isNaN(e))
-			}
-
-		}
 		return A
 	},
 
@@ -150,7 +119,7 @@ console.log(op,A,p);
 		var B=[],n=A.length,ar=arguments, arl=ar.length; B.t='Polynm';
 
 
-		if(op=='eval'){//化简计算结果
+		if(op=='eval'){//化简计算结果，参数p是单变元赋值，可以是数字，单变量字母，矩阵，及其他数学对象
 			//初期先实现纯常量计算。后期实现符号计算
 			for(var j=0;j<n;j++){
 				B.push(Calc['计算器'](A[j])[1])	//eval(A[j])

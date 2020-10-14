@@ -2652,14 +2652,26 @@ function rgb2hex(r, g, b) {//r*256^2 + g*256 + b = r*2^16 + g*2^8+ b
 	return '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).substring(1);
 }
 
-function bigintsim(s, toLaTeX){// + - * /
+function bigintsim(s, toLaTeX, vars){// + - * /	vars指定字母变量赋值（整数）
 	if(toLaTeX){
 		return s.replace(/\)\*\(/g,')(').replace(/\*/g,'‧')
 			.replace(/\*\*/g,'^').replace(/\d+/g,'{$&}')
 			.replace(/>=/g,'≥').replace(/<=/g,'≤')
 			.replace(/!=/g,'≠').replace(/==/g,'=')
 	}
-	return eval((s||'').replace(/[\{\[]]/g,'(').replace(/[\}\]]/g,')')
+	var t=s||'';
+	if(vars){
+		if(vars['n']){
+			t=t.replace(new RegExp('n','g'), '('+vars['n']+')')
+		}
+		$.each(vars,function(i,v){
+			if(i!='n'){
+				t=t.replace(new RegExp(i,'g'), '('+v+')')
+			}
+		});
+	}
+
+	return eval(t.replace(/[\{\[]/g,'(').replace(/[\}\]]/g,')')
 		.replace(/\)(\d)/g,')*$1').replace(/(\d)\(/g,'$1*(')
 		.replace(/\)\(/g,')*(').replace(/\d+/g,'($&n)')
 		.replace(/\^/g,'**').replace(/‧/g,'*')
