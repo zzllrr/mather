@@ -172,7 +172,7 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			a.type='Mfn';a.toStr=function(l,p){return Mfn.toStr(this,l,p)};a.toStr4=function(p){return Mfn.toStr4(this,p)};a.ref=function(r){return Mfn.ref(this,r)};
 			return a
 		},
-		Polynomial:function(a){
+		Polynomy:function(a){
 			
 		},
 		A:function(A,ref){//A是已知Mfn对象		ref是某一个子表达式的引用(@\d+$)
@@ -1847,9 +1847,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 			return A[1][A[0]].f
 		}
 
-		if(op=='obj'){//返回Num类数学对象（Integer, Decimal, Frac, Root）	或 Polynomial
+		if(op=='obj'){//返回Num类数学对象（Integer, Decimal, Frac, Root）	或 Polynomy
 			var t=Mfn.toStr(A);
-			return Num.fromStr(t)||Polynomial.fromStr(t)||A
+			return Num.fromStr(t)||Polynomy.fromStr(t)||A
 		}
 
 		if(op=='obj.type'){//返回对象子类型
@@ -3962,7 +3962,9 @@ var Fun={//抽象函数 [函数名, 参数数组expA] 	本质是数组
 
 	
 
-}, Polynomial={/*多元多项式（一种典型（含未知变量）的函数、重要的数学表达式）	复数的算术运算（i^2 = -1），矩阵多项式（乘法不可交换）的化简都依赖它
+}, Polynomy={/*多元多项式（一种典型（含未知变量）的函数、重要的数学表达式）	复数的算术运算（i^2 = -1），矩阵多项式（乘法不可交换）的化简都依赖它
+
+		为了与其他开源的多项式库Polynomial区别开，改用Polynomy名字
 
 		用n维矩阵来存储n元多项式，
 		与1元多项式（使用数组存储）有区别

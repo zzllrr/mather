@@ -1161,6 +1161,17 @@ var Integer={/*整数 (本质是字符串)
 			aA=Arrf(Decimal.build.D,aA);
 		}
 		
+
+		if(op=='竖式'){// 此时arrA是算式，字符串
+			t=opreplace0(opreplace(arrA),1);
+			var sep=t.match(/[\+\-\*\/]/);
+			if(sep){
+				
+				return Decimal.oprs('竖式'+sep[0], t.split(sep))
+			}
+			return t
+		}
+
 		if(/竖式[\+-]/.test(op)){//参数p：+或-，支持二元以上同一种运算（但不支持+-混合）
 
 //console.log(aA.join(brn),al);

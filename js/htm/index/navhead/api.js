@@ -22,8 +22,8 @@
 						ZLR('katex echarts echarts-gl effects aframe aframe-ar zdog d3 geogebra desmos rough ztext'))),1),
 
 				detail(gM('Math'),
-					ul(Arrf(gitjs,
-						ZLR('math'))),1),
+					ul(Arrf(github,
+						ZLR('josdejong/mathjs '+zlr3('infusion/','Polynomial Fraction Complex Quaternion','.js')))),1),
 
 				href('./css/fonts','Fonts'),
 				detail('Icon Font',
@@ -31,6 +31,7 @@
 
 			
 			].join(br)
+
 		,1);
 
 	}else{

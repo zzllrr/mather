@@ -844,6 +844,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
 			.replace(/\$[^\x00-\xff][^\$]+\$/g, function (x) {
 				var x0=x.replace(/\$/g, ''), x00=x0.split('(')[0], x01=x0.substr(x00.length+1).replace(/\)$ */,''), o0={
+					'竖式':'Decimal.oprs',
 					'竖式+':'Decimal.oprs',
 					'竖式-':'Decimal.oprs',
 					'竖式*':'Decimal.oprs',
