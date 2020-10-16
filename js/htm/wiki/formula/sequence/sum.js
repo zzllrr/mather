@@ -141,35 +141,50 @@ detail('等幂和公式',Table([ZLR('前n项求和 记法 结果')],[
 		])
 	],
 
+],'wiki').replace(/\n/g,br),1)+
+
+detail('等幂和通用公式',Table([ZLR('前n项求和 记法 结果')],[
 
 	[ZLR3('',ZLR('1 2 3 ⋯ n'),'^m','+'),
-		Eq([sum('i',1,'n','i^m','',''),
+		Eq(['f(m,n) ~其中m是等幂次，n项和', sum('i',1,'n','i^m','',''),
 			piece([
 				['a','奇数m=1'],
 				[frac(4,'m+1','')+'a^2⋯','奇数m>3'],
 				[frac(2,'m+1','')+'a(2n+1)⋯','偶数m']
 			])
-		]),
+		])+kbr+
+		'另外，利用'+kbr+Eq(['(n+1)^{k+1}-1',
+			sum('m',1,'n','((m+1)^{k+1}-m^{k+1})','',''),
+			sum('m',1,'n',sum('i',0,'k',binom('k+1','i')+'m^i','',''),'',''),
+			sum('i',0,'k',binom('k+1','i')+sum('m',1,'n','m^i','',''),'',''),
+			sum('i',0,'k',binom('k+1','i')+zp(ZLR3('',ZLR('1 2 3 ⋯ n'),'^i','+')),'',''),
+		])+kbr+
+		'则得到递推式'+kbr+'f(k+1,n+1)-1='+sum('i',0,'k+1',binom('k+1','i')+'f(i,n)','',''),
+
 		Eq([piece([
 				[frac(1,'2','')+'n(n+1)','奇数m=1'],
 				[frac(1,'m+1','')+'n^2(n+1)^2⋯','奇数m>3'],
 				[frac(1,'m+1','')+'n(n+1)(2n+1)⋯','偶数m']
 			]),
-			'1\\/{m+1}'+sum('j',0,'m',binom('m+1','j')+'B_jn^{m+1-j}','',''),
+			'1\\/{m+1}'+sum('j',0,'m',binom('m+1','j')+'(-1)^jB^-_jn^{m+1-j}','',''),
+			'1\\/{m+1}'+sum('j',0,'m',binom('m+1','j')+'B^+_jn^{m+1-j}','',''),
 			'1\\/{m+1}'+sum('j',0,'m',binom('m+1','j')+'B^jn^{m+1-j}','',''),
-			frac('(B+n)^{m+1}-B^{m+1}','m+1',''),
+			frac('(\\bold B+n)^{m+1}-\\bold B^{m+1}','m+1',''),
 
+			'm!'+sum('j',0,'m','\\frac{B^+_jn^{m+1-j}}{j!(m+1-j)!}','',''),
 			frac('n^{m+1}','m+1','')+'+'+frac('n^{m}','2','')+'+'+'1\\/{m+1}'+sum('j',2,'m',binom('m+1','j')+'B_jn^{m+1-j}','',''),
 
 
 			
-		])+kbr+kxf(' 阴影形式 Umbral form')+'将B下标替换为上标'
+		])+kbr+kxf(' 阴影形式 Umbral form')+'将B下标替换为上标'+kbr+
+		' (1-2\\bold {B} )^{m}=(2-2^{m})B_{m}'
+			
 	],
 
 
 
-	[ZLR3('',ZLR('1 2 3 ⋯ n'),'^m','+'),
-		'm奇数时'+kbr+sum('i',1,'n','i^m','',''),
+	['m奇数时'+kbr+ZLR3('',ZLR('1 2 3 ⋯ n'),'^m','+'),
+		sum('i',1,'n','i^m','',''),
 		Eq([
 			'c_1a^2+c_2a^3+ ⋯ + c_{\\tfrac{m-1}2}a^{\\tfrac{m+1}2}',
 			'a'+zp('c_1a+c_2a^2+ ⋯ + c_{\\tfrac{m-1}2}a^{\\tfrac{m-1}2}'),
@@ -180,8 +195,8 @@ detail('等幂和公式',Table([ZLR('前n项求和 记法 结果')],[
 	],
 
 
-	[ZLR3('',ZLR('1 2 3 ⋯ n'),'^m','+'),
-		'm偶数时'+kbr+sum('i',1,'n','i^m','',''),
+	['m偶数时'+kbr+ZLR3('',ZLR('1 2 3 ⋯ n'),'^m','+'),
+		sum('i',1,'n','i^m','',''),
 
 		Eq([
 			frac('n+1/2','m+1','')+zp('c_12a+c_23a^2+ ⋯ + c_{\\tfrac{m}2}(\\tfrac{m}2+1)a^{\\tfrac{m}2}'),
@@ -191,6 +206,34 @@ detail('等幂和公式',Table([ZLR('前n项求和 记法 结果')],[
 		])+kbr+'注意：第一个式子后面括号，是对m+1时公式中的a求导'+kbr+"f(m)="+frac('n+1/2','m+1','')+"f'(m+1)",
 
 	],
+
+	['等奇次幂和'+kbr+ZLR3('',ZLR('1 2 3 ⋯ n'),'^{2m+1}','+'),
+		sum('i',1,'n','i^{2m+1}','',''),
+		Eq([
+			'c_1a^2+c_2a^3+ ⋯ + c_{m}a^{m+1}',
+			'a'+zp('c_1a+c_2a^2+ ⋯ + c_{m}a^{m}'),
+			frac('1','2^{2m+2}(2m+2)','')+sum('j',0,'m',binom('2m+2','2j')+'(2-2^{2j})B_{2j}\\[(8a+1)^{m+1-j}-1\\]','',''),
+			frac('1','2^{2m+1}(2m+2)','')+sum('j',0,'m',binom('2m+1','2j')+'(1-2^{2j-1})B_{2j}\\[(8a+1)^{m+1-j}-1\\]','',''),
+			frac('1','2m+2','')+sum('j',0,'2m+1',binom('2m+2','j')+'B_{j}n^{2m+2-j}','',''),
+		]),
+
+	],
+
+
+	['等偶次幂和'+kbr+ZLR3('',ZLR('1 2 3 ⋯ n'),'^{2m}','+'),
+		sum('i',1,'n','i^{2m}','',''),
+
+		Eq([
+			frac('n+1/2','2m+1','')+zp('c_12a+c_23a^2+ ⋯ + c_{m}(m+1)a^{m}'),
+			frac('n+1/2','2m+1','')+'a'+zp('2c_1+3c_2a+ ⋯ + (m+1)c_{m}a^{m-1}'),
+			frac('1','2^{2m}(m+1)','')+sum('j',0,'m',binom('2m+2','2j')+'(m+1-j)(2-2^{2j})B_{2j}(8a+1)^{m-j}','',''),
+			frac('1','2^{2m-1}(m+1)','')+sum('j',0,'m',binom('2m+1','2j')+'(m+1-j)(1-2^{2j-1})B_{2j}(8a+1)^{m-j}','',''),
+			frac('1','2m+1','')+sum('j',0,'2m',binom('2m+1','j')+'B_{j}n^{2m+1-j}','',''),
+			
+		])+kbr+'注意：第一个式子后面括号，是对2m+1时公式中的a求导'+kbr+"f(m)="+frac('n+1/2','2m+1','')+"f'(m+1)",
+
+	],
+
 
 ],'wiki').replace(/\n/g,br),1)+
 
@@ -458,11 +501,13 @@ detail(i18('Reference'),ol([
 	enwiki('Umbral_calculus','2019-11-22'),
 	enwiki("Sums_of_powers",'2020-8-11'),
 	enwiki("Bernoulli_number",'2020-10-15'),
+	enwiki("Bernoulli_polynomials",'2020-10-16'),
 	enwiki("Faulhaber's_formula",'2020-10-15'),
 	enwiki("Squared_triangular_number",'2020-10-15'),
-
+	enwiki("Q-analog",'2020-10-15'),
 
 	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('wiki.html?q=Concept/Number/Sequence/Rational'),
 	inhref('explore.html?q=Problem/Problem List'),
 	'《数学手册》，高等教育出版社，1979.5 第1版',
 	'《实用数学手册》，科学出版社，2006.1 第2版',

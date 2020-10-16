@@ -334,7 +334,10 @@ detail(ksc(sum('i',1,'n','i^k','','')+'=1^k+2^k+⋯+n^k=(n+1)^k')+br+'Erdős猜�
 		enwiki('Diophantine_equation','2020-8-4'),
 		enwiki("Sums_of_powers",'2020-8-11'),
 		
-		
+		enwiki("Bernoulli_number",'2020-10-15'),
+		enwiki("Faulhaber's_formula",'2020-10-15'),
+		enwiki("Squared_triangular_number",'2020-10-15'),
+		inhref('wiki.html?q=Concept/Number/Sequence/Rational'),
 		
 
 	])

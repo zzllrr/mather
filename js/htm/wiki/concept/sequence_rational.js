@@ -66,11 +66,44 @@ detail('有理数列',Table([ZLR('名称 定义 第n项 前n项 性质')],[
 
 		]),
 		khrA([
-		kxA(['递推关系：','B_0 = 1','B_n = '+sum('k',0,'n','C_n^kB_k','','')+' ⇔ '+sum('k',0,'n-1','C_n^kB_k','','')+' = 0（n≥2）']),
-		'推导过程：指数型母函数'+frac('x','e^x-1','')+' = '+sum('n',0,'∞',frac('B_n','n!','')+'x^n','','')]),
+			kxA(['递推关系：','B_0 = 1','B_n = '+sum('k',0,'n','C_n^kB_k','','')+' ⇔ '+sum('k',0,'n-1','C_n^kB_k','','')+' = 0（n≥2）']),
+			'推导过程：指数型母函数'+frac('x','e^x-1','')+' = '+sum('n',0,'∞',frac('B_n','n!','')+'x^n','',''),
+			'伯努利数有两种定义，B_n^-，B_n^+=(-1)^nB_n^-',
+			'区别是B_1^- =-1\\/2，B_1^+=1\\/2，其余一样',
+			'B_n^+ = −nζ(1 − n) （n ≥ 1时）',
+			'B_{2n}=\\frac {(-1)^{n+1}2(2n)!}{(2π )^{2n}}ζ(2n)',
+			'即ζ(2n)=\\frac {(-1)^{n+1}(2π )^{2n}}{2(2n)!}B_{2n}',
+			'也即ζ(n)=\\frac {(-1)^{n/2+1}(2π )^{n}}{2(n)!}B_{n}',
+			'|B_{2n}| ∼ 4{\\sqrt {π n}}\\({\\frac {n}{π e}}\\)^{2n}（n → ∞）',
+			'\\text{Digamma函数}ψ (z) ∼ \\ln z-\\sum _{k=1}^∞{\\frac {B_{k}^{+}}{kz^{k}}}',
+
+		]),
 		kbrA(['1, -'+frac(1,2,'t'),frac(1,6,'t')+', 0','-'+frac(1,30,'t')+', 0',frac(1,42,'t')+', 0','-'+frac(1,30,'t')+', 0',frac(5,66,'t')+', 0']),
-		kul(['前n奇数项和：','前n奇数项倒数和：','前n奇数项积：','奇数项为0（B_1除外）', sum('n',1,'',frac(1,'n^{2k}','')+' = (-1)^{k+1}'+frac('(2π)^{2k}B_{2k}','2(2k)!',''),'','')+'（k≥1）',
-		lim('k','',frac(zp('B_{2k}','||'), frac('2k!','2^{2k-1}π^{2k}','t'),''),'','')+' = 1'])],
+		kul(['前n奇数项和：','前n奇数项倒数和：','前n奇数项积：','奇数项为0（B_1除外）',
+			sum('n',1,'',frac(1,'n^{2k}','')+' = (-1)^{k+1}'+frac('(2π)^{2k}B_{2k}','2(2k)!',''),'','')+'（k≥1）',
+			lim('k','',frac(zp('B_{2k}','||'), frac('2k!','2^{2k-1}π^{2k}','t'),''),'','')+' = 1',
+			'等幂和f(m,n)=1\\/{m+1}'+sum('j',0,'m',binom('m+1','j')+'B^+_jn^{m+1-j}','',''),
+			'B_{n}=-\\sum _{k=1}^{n+1}{\\frac {(-1)^{k}}{k}}{\\binom {n+1}{k}}\\sum _{j=1}^{k}j^{n} （n ≥ 0）',
+			'\\frac {1}{n}\\sum _{k=1}^{n}{\\binom {n}{k}}B_{k}B_{n-k}+B_{n-1}=-B_{n}（n ≥ 1）',
+			'\\sum _{k=0}^{n}{\\binom {n+1}{k}}(n+k+1)B_{n+k}=0（n ≥ 1）',
+			'(-1)^{m}\\sum _{r=0}^{m}{\\binom {m}{r}}B_{n+r}=(-1)^{n}\\sum _{s=0}^{n}{\\binom {n}{s}}B_{m+s}（m,n ≥ 1）',
+			' (n+2)\\sum_{k=2}^{n-2}B_k B_{n-k}-2\\sum_{l=2}^{n-2}\\binom{n+2}{l} B_l B_{n-l}=n(n+1)B_n （n ≥ 4）',
+
+			'(-1)^{m+1}\\sum _{j=0}^{k}{\\binom {k}{j}}{\\frac {B_{m+1+j}}{m+1+j}}+(-1)^{k+1}\\sum _{j=0}^{m}{\\binom {m}{j}}{\\frac {B_{k+1+j}}{k+1+j}}={\\frac {k!m!}{(k+m+1)!}}',
+
+			gM('Bernoulli polynomial')+'定义',
+			Eq(['B_{n}(x)','\\sum _{k=0}^{n}{n \\choose k}B_{n-k}x^{k}',
+				'-n ζ(1-n,x)'
+			]),
+			'B_m(x)=\\sum_{n=0}^m \\frac{1}{n+1}\\sum_{k=0}^n (-1)^k {n \\choose k} (x+k)^m',
+			'B_n(1-x)=(-1)^nB_n(x)（n ≥ 0）',
+			'(-1)^{n}B_{n}(-x)=B_{n}(x)+nx^{n-1}',
+			'B_{n}\\(\\frac  {1}{2}\\)=(2^{1-n}-1)B_n（n ≥ 0）',
+			'B_n(mx)= m^{n-1} \\sum_{k=0}^{m-1} B_n \\(x+\\frac{k}{m}\\)',
+
+
+
+		])],
 	
 	['两连续自然数乘积倒数数列\nPronic数的倒数\nHeteromecic数的倒数',frac(1,'n(n+1)',''),
 		khrA([kxA(['递推关系：','a_1='+frac(1,2,''),'a_n='+frac('n-1','n+1','')+'a_{n-1}='+lrp('','1-'+frac(2,'n+1',''),'','')+'a_{n-1}'])]),
@@ -113,4 +146,18 @@ detail('阵型',Table([ZLR('名称 记法 定义 性质')],[
 ],'wiki').replace(/____/g,br))
 
 
-);
+)+
+
+detail(i18('Reference'),ol([
+
+
+	enwiki("Sums_of_powers",'2020-8-11'),
+	enwiki("Bernoulli_number",'2020-10-15'),
+	enwiki("Bernoulli_polynomials",'2020-10-16'),
+	enwiki("Faulhaber's_formula",'2020-10-15'),
+
+
+	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	inhref('explore.html?q=Problem/Problem List'),
+]))
+;
