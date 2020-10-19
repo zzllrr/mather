@@ -11,7 +11,7 @@ tooltip['API']=[
 		{'Entity 实体':[{'数':'Num','整数':'Integer','小数':'Decimal','分数':'Frac','根数':'Root',
 			'矩阵':'Mtrx',
 		
-			'多项式':'Polynomial',
+			'多项式':'Polynomy',
 			'命题':'Prop',
 			'集合':'Set',
 			'置换':'Perm',
@@ -19,7 +19,7 @@ tooltip['API']=[
 			'数学表达式':'Mfn',
 			'函数':'Fun',
 		}]},
-		{'function.js':[{'实体':'Fun Mfn Polynomial'},
+		{'function.js':[{'实体':'Fun Mfn Polynomy'},
 			{'识别':'eType oType'},
 			{'运算符变换':'opneg opinv'},
 			{'上下文处理':'pptd pppow visiplus visiplusk simFactTimes simTimesOf1 simPowOf1 simFracOf1 simExpression deepClone e2h mathsimp'},
