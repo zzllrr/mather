@@ -1610,12 +1610,20 @@ if(tA.length>1){
 				
 				//console.log('然后 c=',c );
 				
+
+
+
 				if(/⓪+$/.test(c)){
 					
 					c=c.replace(/⓪+$/,function(x){return '0'.repeat(x.length)})
 				}
 				
-				
+				if(/⑤\d+⓪+①$/.test(c)){
+					
+					c=c.replace(/(⓪+)①$/,function(x){return '0'.repeat(x.length-1)+'①'})
+				}
+
+
 			}
 			var cl=c.length;
 			Arrf(function(x,i){
@@ -1640,6 +1648,11 @@ if(tA.length>1){
 						tA[i]=tA[i].replace(/00+$/, function(x){return x.replace(/0/g,'⓪').replace(/⓪$/,'0')});
 						tA[i]=tA[i].replace(/^\D*0+[1-9]/, function(x){return x.replace(/0/g,'⓪')});
 //console.log(tA[i]);
+
+						tA[i]=tA[i].replace(/^\D*0+0/, function(x){return x.substr(0,x.length-1).replace(/0/g,'⓪')+0});
+						tA[i]=tA[i].replace(/^0\D+[1-9]/, function(x){return x.replace(/0/g,'⓪').replace(/③/,'⑤')});
+
+						tA[i]=tA[i].replace(/\./g, '①');
 					}
 				}
 				
@@ -1651,7 +1664,7 @@ if(tA.length>1){
 
 			
 			c=rep4(c);
-//console.log('尾声r = ',r);
+//console.log('尾声r = ',r,c);
 if(r.length<sl){
 	r+=sa.substr(r.length);
 	//console.log('实际上 r = ',r);
