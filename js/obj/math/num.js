@@ -1650,7 +1650,7 @@ if(tA.length>1){
 //console.log(tA[i]);
 
 						tA[i]=tA[i].replace(/^\D*0+0/, function(x){return x.substr(0,x.length-1).replace(/0/g,'⓪')+0});
-						tA[i]=tA[i].replace(/^0\D+[1-9]/, function(x){return x.replace(/0/g,'⓪').replace(/③/,'⑤')});
+						tA[i]=tA[i].replace(/^\D*0\D+[1-9]/, function(x){return x.replace(/0/g,'⓪').replace(/③/,'⑤')});
 
 						tA[i]=tA[i].replace(/\./g, '①');
 					}
