@@ -1715,6 +1715,7 @@ lang['zh_cn'] = {
 	'Cohomology':'上同调',
 	'Homology':'同调',
 	'Homologous':'同调',
+	'Homological':'同调',
 	'Homography':'单应性',
 
 	'Congruent':'全等',
@@ -2308,6 +2309,8 @@ lang['zh_cn'] = {
 	'Primary': '主',
 	'Secondary': '次',
 
+	'Symplectic':'辛',
+
 	'Simple': '简单',
 	'Closed': '闭合',
 	'Clockwise': '顺时针',
@@ -2454,6 +2457,8 @@ lang['zh_cn'] = {
 
 	'Module':'模',
 	'modulo':'模',
+
+	'Moduli':'模',
 
 	'Union':'并',
 	'Unitary':'酉',

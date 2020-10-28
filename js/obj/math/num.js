@@ -1148,6 +1148,14 @@ var Integer={/*整数 (本质是字符串)
 			if(/\./.test(A) && p>A.split('.')[1].length){
 				A+='0'.repeat(p-A.split('.')[1].length)
 			}
+			if(p && (!/\./.test(A) || p>A.split('.')[1].length)){
+				if(/\./.test(A)){
+					A+='0'.repeat(p-A.split('.')[1].length)
+				
+				}else{
+					A+='.'+'0'.repeat(p)
+				}
+			}
 			
 			return A
 		}
