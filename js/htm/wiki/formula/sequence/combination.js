@@ -2,7 +2,12 @@ wiki['Formula/Sequence/Combination']=Kx(
 
 
     detail('排列组合公式',Table([ZLR('名称 公式 证明')],[
-        ['选排列____choice permutation','A_n^m = n(n-1)⋯(n-m+1) = '+frac('n!','(n-m)!',''),''],
+        ['选排列____choice permutation','A_n^m = n(n-1)⋯(n-m+1) = '+frac('n!','(n-m)!'+kbr+
+            Eq(['x^m=A_x^m+C_m^2A_x^{m-1}+⋯+'+kbr+
+            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅A_x^4/4!+(3^m-C_3^22^m+C_3^1)⋅A_x^3/3!+(2^m-C_2^1)⋅A_x^2/2!+A_x^1',
+            'm!C_x^m+C_m^2⋅(m-1)!C_x^{m-1}+⋯+'+kbr+
+            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅C_x^4+(3^m-C_3^22^m+C_3^1)⋅C_x^3+(2^m-C_2^1)⋅C_x^2+C_x^1'
+            ]),''),''],
         ['全排列（置换）____all permutation','A_n^n = n!',''],
         ['组合____Combination____n choose m',kxA([Eq([['C_n^m','C_n^{n-m}'],frac('A_n^m','m!',''),frac('n!','(n-m)!m!',''),
             ['',frac('n(n-1)⋯(n-m+1)','m(m-1)⋯1',''),frac('n(n-1)⋯(m+1)','(n-m)(n-m-1)⋯1','')],
@@ -15,7 +20,9 @@ wiki['Formula/Sequence/Combination']=Kx(
                 'C_n^m=C_{n-1}^{m}+C_{n-1}^{m-1}',
                 'C_n^{m+1}=C_{n-1}^{m+1}+C_{n-1}^{m}',
                 'C_{n+1}^{m}=C_n^m+C_n^{m-1}',
-                'C_{n+1}^{m+1}=C_n^{m+1}+C_n^m'
+                'C_{n+1}^{m+1}=C_n^{m+1}+C_n^m',
+
+                'C_n^mC_m^k=C_n^kC_{n-k}^{n-m}=C_n^kC_{n-k}^{m-k}=C_n^{n-k}C_{n-k}^{n-m}=C_n^{n-k}C_{n-k}^{m-k}=\\frac{n!m!}{m!k!(n-m)!(m-k)!}',
             ])
             ])],
         
