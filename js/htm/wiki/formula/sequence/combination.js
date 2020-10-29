@@ -2,12 +2,12 @@ wiki['Formula/Sequence/Combination']=Kx(
 
 
     detail('排列组合公式',Table([ZLR('名称 公式 证明')],[
-        ['选排列____choice permutation','A_n^m = n(n-1)⋯(n-m+1) = '+frac('n!','(n-m)!'+kbr+
-            Eq(['x^m=A_x^m+C_m^2A_x^{m-1}+⋯+'+kbr+
-            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅A_x^4/4!+(3^m-C_3^22^m+C_3^1)⋅A_x^3/3!+(2^m-C_2^1)⋅A_x^2/2!+A_x^1',
-            'm!C_x^m+C_m^2⋅(m-1)!C_x^{m-1}+⋯+'+kbr+
-            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅C_x^4+(3^m-C_3^22^m+C_3^1)⋅C_x^3+(2^m-C_2^1)⋅C_x^2+C_x^1'
-            ]),''),''],
+        ['选排列____choice permutation','A_n^m = n(n-1)⋯(n-m+1) = '+frac('n!','(n-m)!','')+kbr+
+            Eq(['x^m='+kbr+'A_x^m+C_m^2A_x^{m-1}+⋯+'+kbr+
+            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅A_x^4/4!+'+kbr+'(3^m-C_3^22^m+C_3^1)⋅A_x^3/3!+'+kbr+'(2^m-C_2^1)⋅A_x^2/2!+'+kbr+'A_x^1',
+            kbr+'m!C_x^m+C_m^2⋅(m-1)!C_x^{m-1}+⋯+'+kbr+
+            '(4^m-C_4^33^m+C_4^22^m-C_4^1)⋅C_x^4+'+kbr+'(3^m-C_3^22^m+C_3^1)⋅C_x^3+'+kbr+'(2^m-C_2^1)⋅C_x^2+'+kbr+'C_x^1'
+            ]),''],
         ['全排列（置换）____all permutation','A_n^n = n!',''],
         ['组合____Combination____n choose m',kxA([Eq([['C_n^m','C_n^{n-m}'],frac('A_n^m','m!',''),frac('n!','(n-m)!m!',''),
             ['',frac('n(n-1)⋯(n-m+1)','m(m-1)⋯1',''),frac('n(n-1)⋯(m+1)','(n-m)(n-m-1)⋯1','')],
@@ -21,8 +21,15 @@ wiki['Formula/Sequence/Combination']=Kx(
                 'C_n^{m+1}=C_{n-1}^{m+1}+C_{n-1}^{m}',
                 'C_{n+1}^{m}=C_n^m+C_n^{m-1}',
                 'C_{n+1}^{m+1}=C_n^{m+1}+C_n^m',
+            ]),
+            Eq([
+                'C_n^mC_m^k=C_n^mC_m^{m-k}=C_n^{n-m}C_m^k=C_n^{n-m}C_m^{m-k}',
+                'C_m^kC_n^m=\\frac{n!m!}{m!k!(n-m)!(m-k)!}=\\frac{n!}{k!(n-m)!(m-k)!}',
+                '\\frac{n!(n-k)!}{(n-k)!k!(n-m)!(m-k)!}=\\frac{n!(n-m+k)!}{(m-k)!(n-m+k)!k!(n-m)!}',
+                'C_n^kC_{n-k}^{n-m}=C_n^kC_{n-k}^{m-k}=C_n^{n-k}C_{n-k}^{n-m}=C_n^{n-k}C_{n-k}^{m-k}',
+                
+                'C_n^{m-k}C_{n-m+k}^{k}=C_n^{m-k}C_{n-m+k}^{n-m}=C_n^{n-m+k}C_{n-m+k}^{k}=C_n^{n-m+k}C_{n-m+k}^{n-m}'
 
-                'C_n^mC_m^k=C_n^kC_{n-k}^{n-m}=C_n^kC_{n-k}^{m-k}=C_n^{n-k}C_{n-k}^{n-m}=C_n^{n-k}C_{n-k}^{m-k}=\\frac{n!m!}{m!k!(n-m)!(m-k)!}',
             ])
             ])],
         
@@ -54,6 +61,10 @@ wiki['Formula/Sequence/Combination']=Kx(
             sum('i',0,'m','C_{n-i}^{n-m}','','')+' = C_n^{n-m}+C_{n-1}^{n-m}+⋯+C_{n-m}^{n-m}=C_{n+1}^{m}',
             sum('i',0,'m','C_{n+i}^{i}','','')+' = C_n^0+C_{n+1}^1+⋯+C_{n+m}^{m}=C_{n+m+1}^{m}=C_{n+m+1}^{n+1}',
             sum('i',0,'m','C_{n+i}^{n}','','')+' = C_n^n+C_{n+1}^{n}+⋯+C_{n+m}^{n}=C_{n+m+1}^{n+1}=C_{n+m+1}^{m}',
+            '特别地，'+sum('i',1,'m','C_i^{1}','','')+' = C_1^1+C_2^1+⋯+C_{m}^{1}=C_{m+1}^2',
+            '特别地，'+sum('i',2,'m','C_i^{2}','','')+' = C_2^2+⋯+C_{m}^{2}=C_{m+1}^3',
+            '特别地，'+sum('i',3,'m','C_i^{3}','','')+' = C_3^3+⋯+C_{m}^{3}=C_{m+1}^4',
+            sum('i','n','m','C_i^{n}','','')+' = C_n^n+⋯+C_{m}^{n}=C_{m+1}^{n+1}',
             ]),
             'Pascal三角形，____将左肩上的数迭代分解为上一层左右肩之和，____最后只剩下右肩数沿右斜线向上的所有数和'],
     
