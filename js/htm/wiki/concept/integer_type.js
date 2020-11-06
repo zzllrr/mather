@@ -406,6 +406,11 @@ detail('整数（按表达式）',Table([ZLR('名称 定义 前n项 性质')],[
 		'$F_m|F_{mn} 也即 m|n → F_m|F_{mn}$',
 		'与Pascal三角关系：____Pascal三角左对齐时，左对角线上的数字和',
 
+		sum('i',2,'+','F_{n}10^{-i}','','')+'=1\\/{89}',
+		sum('i',2,'+','F_{n}5^{-i}','','')+'=1\\/{19}',
+		sum('i',2,'+','F_{n}2^{-i}','','')+'=1',
+		sum('i',2,'+','F_{n}0.6^{i}','','')+'=9',
+		sum('i',2,'+','F_{n}k^{i}','','')+'=\\frac{k^2}{1-k-k^2}=\\frac{1}{(1/k)^2-1/k-1} 收敛域[0,0.618)',
 
 		'有11项是素数（是否有其他素数未知）'
 		])],
@@ -677,4 +682,7 @@ detail('整数（按与其余整数的关系）',Table([ZLR('名称 定义 前n�
 	inhref('wiki.html?q=Formula/Sequence/Sum'),
 	inhref('wiki.html?q=Concept/Number/Prime/Prime'),
 	inhref('wiki.html?q=Formula/Equation/Diophantus'),
+	href(H+'www2.math.ou.edu/~dmccullough/teaching/miscellanea/miner.html','The Remarkable Number 1/89'),
+	href(Hs+'www.fq.math.ca','Fibonacci Quarterly'),
+	href(Hs+'www.mathstat.dal.ca/fibonacci/','The Fibonacci Association')
 ]);
