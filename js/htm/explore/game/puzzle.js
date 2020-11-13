@@ -13,7 +13,10 @@ https://jrmf.org/public/files/activities/ActivitiesListAug2019.pdf booklet中链
 https://jrmf.org/more-resources
 
 	*/
+
+	[href(H+'www.geometrygames.org','geometry games'),'','Topology and Geometry Software by Jeff Weeks'],
 ],'TBrc'))+
+
 
 Table([i18(ZLR('Name Type Summary'))],[
 	[href(git('chvin','react-tetris/?lan=zh'),i18('Tetris')),'JS + HTML',href(git('chvin/react-tetris'),'Github')],

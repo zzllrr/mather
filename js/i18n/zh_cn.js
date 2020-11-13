@@ -675,7 +675,8 @@ lang['zh_cn'] = {
 	'Split': '分开',
 	'Merge': '合并',
 
-	'Program': '项目',
+	'Program': '项目;纲领',
+
 	'Tool':'工具',
 	'Toolset':'工具箱',
 	'File': '文件',
@@ -746,6 +747,7 @@ lang['zh_cn'] = {
 
 	'Alphabet':'字母表',
 	'Variety':'簇',
+	'Varieties':'簇',
 
 	'Convolution':'卷积',
 	'Distribution':'分布',

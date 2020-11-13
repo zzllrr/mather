@@ -1406,24 +1406,33 @@ $Decimal.oprs('竖式/',[0.02,0.01])$\\
 				
 				c='', d=aA[0][1]-aA[1][1],q='',
 				Da=Decimal.toStr(aA[0]), Db=Decimal.toStr(aA[1]),
-				sa=Da, sb=/\./.test(Db)?Db.replace('.','③'):Db.replace(/0+$/,function(x){return x.replace(/0/g,'②')}),
+				sa=Da, sb=/\./.test(Db)?Db.replace('.','③'):Db, //.replace(/0+$/,function(x){return x.replace(/0/g,'②')}),
 				rep01=function(x){return x.replace(/[\d②]/g,'⓪').replace(/[\.③]/g,'①')},//.replace(/[\.③⑤]/g,'①')},
 				rep4=function(x){return x.replace(/[⓪①②③⑤]/g,'')},
 				repI=function(x){return x.replace(/[①③⑤\.]/g,'').replace(/[⓪②]/g,'0').replace(/^0+/,'')},
 				repopa=function(x){return x.replace(/[①③⑤]/g,'.').replace(/[⓪②]/g,'0')};
 			//把b化成整数（a相应扩大或缩小倍数）		透明0：⓪ 		透明. :①		kancel(0): ②		kancel('.')：③			hp(kancel('.'))：⑤	
+
+
+
+
+			 
  			if(btens){
  				sa=sa.replace('.','③');
- 			}
+			 }
+
 			if(btens>0){//sa小数点向左偏移	
 				if(/0$/.test(sa)){//atens>0
+					
 					var r0=sa.replace(/.*[^0]/,'').length;
-					if(r0>=btens){
+					if(r0>=btens){// atens >=btens 
 						sa=sa.substr(0,sa.length-btens)+'②'.repeat(btens)
 					}else{
-						sa=sa.substr(0,sa.length-btens)+'.'+sa.substr(sa.length-btens,sa.length-r0)+'②'.repeat(r0)
+						//sa=sa.substr(0,sa.length-btens)+'.'+sa.substr(sa.length-btens,sa.length-r0)+'②'.repeat(r0)
+						sa=sa.substr(0,sa.length-btens)+'.'+sa.substr(sa.length-btens,sa.length-r0)+'0'.repeat(r0)
 						
 					}
+					
 
 				}else{//atens<=0
 					var n=atens<0?sa.split('③')[0].length:al;
@@ -1437,6 +1446,17 @@ $Decimal.oprs('竖式/',[0.02,0.01])$\\
 
 
 			}
+			if(btens>0){
+				aA[1][0]=aA[1][0]+'0'.repeat(btens);
+				btens=0;
+				aA[1][1]=0;
+				
+			}
+
+			/*
+			bug 45000÷1250    45000÷125000
+			*/
+
 			if(btens<0){//sa小数点向右偏移
 				if(atens>=0){//atens>0
 					sa+='0'.repeat(-btens);

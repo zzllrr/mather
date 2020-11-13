@@ -91,7 +91,9 @@ Table([i18(ZLR('Name Nationality Time Image Summary Reference'))],[
 				[href(H+'eulerarchive.maa.org','The Euler Archive by MAA'),'',''],
 				[href(Hs+'www.cs.purdue.edu/homes/wxg/EulerLect.pdf','Leonhard Euler: His Life, the Man, and His Works'),'Walter Gautschi','2008'],
 				[href(H+'www.doc88.com/p-0691743387056.html','Leonhard Euler and the Bernoullis - Mathematicians from Basel'),'',''],
-				[href(H+'mathshistory.st-andrews.ac.uk/Extras/Euler_Fuss_Eulogy.html','Eulogy of Leonhard Euler'),'Nicolas Fuss','1783'],
+				[href(Hs+'mathshistory.st-andrews.ac.uk/Extras/Euler_Fuss_Eulogy/','Eulogy of Leonhard Euler'),'Nicolas Fuss','1783'],
+				[href(Hs+'scholarlycommons.pacific.edu/','Scholarly Commons - University of the Pacific'),'',''],
+				[href(Hs+'scholarlycommons.pacific.edu/euler-works','EULER ARCHIVE - ALL WORKS BY ENESTRÖM NUMBER'),'',''],
 				[href(Hs+'www.unibas.ch/en/University/About-University/History.html',''),'',''],
 				[href(Hs+'www.sohu.com/a/196971673_224832','欧拉轶事：他就像数学界中的贝多芬 '),'知社学术圈','2017-10-9'],
 				[href(H+'www.qulishi.com/article/201903/326811.html','趣历史：莱昂哈德·欧拉是谁 他所获的评价是什么样的'),'',''],
@@ -173,7 +175,7 @@ Table([i18(ZLR('Symbol Name English History'))],[
 detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
 
 	[href(Hs+'mathigon.org/timeline','Timeline'),'','Mathigon.org',hrefA('mathigon.org',ZLR('Activities Courses')).join(' ')],
-	[href(Hs+'www.genealogy.math.ndsu.nodak.edu','The Math Genealogy Project - 师生谱'),'','Dept. Math, North Dakota State University'+br+gM('or')+href(Hs+'genealogy.ams.org'),''],
+	[href(Hs+'www.mathgenealogy.org','The Math Genealogy Project - 师生谱'),'','Dept. Math, North Dakota State University'+br+gM('or')+href(Hs+'genealogy.ams.org')+href(Hs+'www.genealogy.math.ndsu.nodak.edu','旧链接'),''],
 
 	[href(H+'jeff560.tripod.com/stamps.html','Images of Mathematicians on Postage Stamps'),'',''],
 
