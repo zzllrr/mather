@@ -3728,7 +3728,7 @@ function md2html(str, sep) {
 		});
 	};
 
-	if (/-+:?\|:?-+/.test(s)) {
+	if (/-+ *:?\|:?-+/.test(s)) {
 		//Table
 		var ftb = function (x) {
 			var sep, sepi, A = Arrf(function (t, i) {
@@ -3768,7 +3768,7 @@ function md2html(str, sep) {
 
 			return Table(A.slice(0, sepi), A.slice(sepi + 1, A.length), c)
 		};
-		s = s.replace(/\n?(.+\n)*\|?:?-+:?(\|:?-+:?)+.+(\n.+)*\n/g, ftb);
+		s = s.replace(/\n?(.+\n)*\|?:?-+ *:?(\|:?-+ *:?)+.+(\n.+)*\n/g, ftb);
 	}
 
 
@@ -4040,6 +4040,13 @@ function detectZoom (){
 	}
 		
 	return ratio;
+}
+
+function copy2clipboard(t){
+    $('body').append('<input id=zzllrrclip hidden type=text value="'+t+'" />');
+    $('#zzllrrclip').select();
+    document.execCommand('copy', false, null);
+    $('#zzllrrclip').remove();
 }
 
 var Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};

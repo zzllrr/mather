@@ -3,7 +3,26 @@
  * zzllrr@gmail
  * Released under MIT License
  */
-var seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值，类型（决定终止条件）,fn是主迭代函数，fnstop是终止条件函数（返回布尔值false或者数字0，或空字符串） 递归（或迭代）次数未知 (maxl限定最多迭代次数，防止死循环)
+var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整数
+	var n=BigInt(x),A=[n], cnt=0n;
+	while(n!=1n){
+		if(n % 2n){
+			n=n*3n+1n;
+		}
+		
+		while(n%2n == 0n){
+			n/=2n;
+		}
+
+		if(cache){
+			A.push(n)
+		}else if(count){
+			cnt++
+		}
+	}
+	return cache?A:(count?cnt:1)
+
+}, seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值，类型（决定终止条件）,fn是主迭代函数，fnstop是终止条件函数（返回布尔值false或者数字0，或空字符串） 递归（或迭代）次数未知 (maxl限定最多迭代次数，防止死循环)
 	var y=type||'3n+1',hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
 	if(/^\d+n[\+\-]\d+$/.test(y)){//
 		/*
@@ -192,7 +211,89 @@ explore['Problem/Unsolved/3n+1']=function(){
 		'n<label class=numsign>+</label>'+
 		num('1" id="b_kn_b',-1000,1000)+
 		'<div id=knb>'+dc+
-		detail(gM('Notes'),
+
+		detail(gM('Notes 1'),
+		[	KxA([
+				Eq([['f(x)',
+					'\\frac{1+(-1)^x}{2}⋅\\frac{x}2+\\frac{1-(-1)^x}{2}⋅\\frac{3x+1}2'],
+					'\\frac{4x+1}4-(-1)^x\\frac{2x+1}4',
+					'x+\\frac{1}4-(-1)^x\\frac{2x+1}4',
+					'x+\\frac{1}4-e^{iπx}\\frac{2x+1}4',
+				]),
+				'x=0是不动点，x=1不是，f(1)=2，f^{(2)}(1)=1',
+
+				'使用泰勒展开f^{[n]}(x)=f^{[n]}(a)+(x-a)\\left.{\\frac {d}{dx}}f^{[n]}(x)\\right|_{x=a}+{\\frac {(x-a)^{2}}{2}}\\left.{\\frac {d^{2}}{dx^{2}}}f^{[n]}(x)\\right|_{x=a}+⋯ ',
+				'其中a是f(x)的不动点',
+
+				" f^{[n]}(x)=f^{[n]}(a)+(x-a)f'(a)f'(f(a))f'(f^{[2]}(a))⋯ f'(f^{[n-1]}(a))+⋯ ",
+				"利用不动点性质f^{[k]}(a)=a",
+				"f^{[n]}(x)=a+(x-a)f'(a)^{n}+{\\frac {(x-a)^{2}}{2}}(f''(a)f'(a)^{n-1})\\left(1+f'(a)+⋯ +f'(a)^{n-1}\\right)+⋯",
+		
+				"=a+(x-a)f'(a)^{n}+{\\frac {(x-a)^{2}}{2}}(f''(a)f'(a)^{n-1}){\\frac {f'(a)^{n}-1}{f'(a)-1}}+⋯",
+
+				"如果满足f'(a)=1，则",
+				"f^{[n]}(x)=x+{\\frac {(x-a)^{2}}{2}}(nf''(a))+{\\frac {(x-a)^{3}}{6}}\\left({\\frac {3}{2}}n(n-1)f''(a)^{2}+nf'''(a)\\right)+⋯",
+
+				Eq([["f'(x)",
+					'1-(-1)^x\\frac{2πix+πi+2}4'],
+
+				]),
+				"f'(0)=\\frac{2-πi}4，f'(1)=\\frac{3πi+6}4",
+				Eq([["f''(x)",
+					'-πi(-1)^x\\frac{2πix+πi+4}4'],
+
+				]),
+				Eq([["f'''(x)",
+					'-(πi)^2(-1)^x\\frac{2πix+πi+6}4'],
+					'π^2(-1)^x\\frac{2πix+πi+6}4'
+
+				]),
+				Eq([["f^{n}(x)",
+				'-(πi)^{n-1}(-1)^x\\frac{2πix+πi+2n}4'],
+				'-(πi)^{n-1}(-1)^x\\frac{πi(2x+1)+2n}4',
+				]),
+				"f^{n'}(0)=-(πi)^{n-1}\\frac{πi+2n}4",
+
+
+
+				'设g(x)=h^{−1} ○ f ○ h (x) = h^{−1}'+zp('h(x)+\\frac{1}4-e^{iπh(x)}\\frac{2h(x)+1}4'),
+				
+				'g^{[n]}(x)=h^{−1} ○ f^{[n]} ○ h (x)',
+				"g(x)=f'(0)x= \\frac{2-πi}4x",
+				"f(x) = Ψ^{−1}(f '(0) Ψ(x))=Ψ^{−1}\\(\\frac{2-πi}4Ψ(x)\\)",
+				"f^{[n]}(x)=Ψ^{−1}\\(f '(0)^n Ψ(x)\\) = Ψ^{−1}\\(\\frac{(2-πi)^n}{4^n} Ψ(x)\\) = "
+
+
+			])
+
+		].join(br)
+
+	)+
+		detail(gM('Notes 2'),
+			[	'假设3x+1猜想存在一种反例：奇数x，满足每次迭代（先3x+1，然后除以2，仍为奇数，称为一次迭代）后一直上升',
+				'设<LA>f(x)=\\frac{3x+1}2={3x}\\/2+1=x+x\\/2+1\\/2</LA>',
+				'<LA>f^{[n]}(x)=\\frac{3f^{[n-1]}(x)}{2}+1</LA>',
+				'<LA>f^{[n]}(x)+1=\\frac{3}{2}(f^{[n-1]}(x)+1)  = \\(\\frac{3}{2}\\)^2(f^{[n-2]}(x)+1) </LA>',
+				'<LA>= ⋯ = \\(\\frac{3}{2}\\)^n(f^{[n-n]}(x)+1)=\\(\\frac{3}{2}\\)^n(x+1)</LA>',
+
+
+				'<LA>f^{[n]}(x)=\\(\\frac{3}{2}\\)^n(x+1)-1</LA>',
+				'则<LA>2^n | x+1</LA>',
+				'对于给定奇数x，不可能存在无限多n满足上式',
+				'因此不存在一个奇数x，满足3x+1猜想迭代时一直上升（单调增）',
+				'即3x+1猜想的例外情况，只能是循环形式（落入不同于1→4→2→1的循环）',
+				'设这个非平凡循环中最小奇数为n',
+				'则<LA>'+kmod('n','11',16)+'或'+kmod('n','15或-1',32)+'</LA>',
+				'这里有<LA>'+kmod('n','3',4)+'</LA>',
+
+
+			].join(br)
+
+		)+
+
+
+
+		detail(gM('Notes 3'),
 	XML.wrapE('LA',`
 	\\begin{aligned}
 	设\\\\
@@ -307,7 +408,7 @@ explore['Problem/Unsolved/3n+1']=function(){
 	\\end{aligned}\\\\ 
 	 
 		`))+
-	detail(gM('Refer'),enwiki('Collatz_conjecture'));
+	detail(gM('Refer'),[enwiki('Collatz_conjecture'),enwiki('Iterated_function'),enwiki("Schröder's_equation")].join(br));
 }();
 
 

@@ -19,6 +19,7 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 
 	[href(Hs+'mathway.com/graph','MathWay Graph'),gM('Web'),'更加高级的函数支持'],
 
+	[href(Hs+'www.netpad.net.cn/svg.html','网络画板'),'',href(Hs+'www.netpad.net.cn/resource_web','教学资源包')],
 
 	[github('mathjax/MathJax-demos-web'),gM('Web'),'MathJaX Demos, TEX + CHTML + SVG + MathML'],
 

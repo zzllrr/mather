@@ -1683,6 +1683,9 @@ if(tA.length>1){
 						tA[i]=tA[i].replace(/\./g, '①');
 					}
 				}
+				if(i>1 &&  /\./.test(tA[i])){
+					tA[i]=tA[i].replace('.','①')
+				}
 				
 				tA[i]=(i?hp(sb+')'):sb+')')+tA[i]
 			},tA);
