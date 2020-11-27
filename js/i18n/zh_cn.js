@@ -1152,6 +1152,7 @@ lang['zh_cn'] = {
 	'Phantom': '隐形',
 	'Inner': '内',
 	'Outer': '外',
+	'Endo':'内',
 	'Symmetric': '对称',
 	'Asymmetric': '反对称',
 	'Antisymmetric':'反对称',
@@ -2336,6 +2337,7 @@ lang['zh_cn'] = {
 	'Homeomorphism':'同胚',
 	'Homomorphism':'同态',
 	'Isomorphism':'同构',
+	'Endomorphism':'自同态',
 
 	'Holomorphic':'全纯',
 

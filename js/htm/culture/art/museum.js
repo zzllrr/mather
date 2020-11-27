@@ -8,7 +8,7 @@ culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 
 	[href(Hs+'momath.org/explore/exhibits/','Museum of Mathematics - MoMath'),'',href(Hs+'momath.org/gallery/','Photo Gallery')+' '+href(Hs+'mathmidway.org/mm2go/exhibits.php','Math Midway 2 Go - mm2go (Exhibits)')],
 
-
+	[href(Hs+'gallery.bridgesmathart.org','bridges math art'),'','Mathematical Art Galleries, he online home of the mathematical art exhibitions from the annual Bridges Conference, Joint Mathematics Meetings (JMM), and ICERM Illustrating Mathematics program; as well as the Bridges Conference Short Film Festival and Bridges Conference Fashion Show'],
 	
 	[href(Hs+'www.astc.org','Association of Science & Technology Centers - ASTC'),'Community',href(Hs+'www.astc.org/about-astc/about-science-centers/find-a-science-center/','local center')],
 

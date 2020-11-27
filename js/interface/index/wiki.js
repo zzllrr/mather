@@ -62,6 +62,7 @@ wikis={
 			'Derivative',
 			'Integral',
 			'Difference',
+			'Iteration',
 		]},
 
 		{'Equation':[
