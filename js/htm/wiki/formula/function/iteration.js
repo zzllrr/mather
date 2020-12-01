@@ -22,7 +22,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['a^2x+ab+b']), 
             khrA(['a^3x+a^2b+ab+b']),
             khrA(['a^nx+\\frac{a^n-1}{a-1}b',
-            '递推式f-\\frac{b}{1-a} = a'+zp('x-\\frac{b}{1-a}')]),
+            '递推式f-\\frac{b}{1-a} = a'+zp('x-\\frac{b}{1-a}')
+            ]),
         ],
 
         [khrA([zp('\\frac{x}{a}')+'^{\\frac{1}b}'
@@ -31,7 +32,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['a^{b+1}x^{b^2}']), 
             khrA(['a^{b^2+b+1}x^{b^3}']),
             khrA(['a^{\\frac {b^n-1}{b-1}} x^{b^n}',
-            '递推式fa^{\\frac{1}{b-1}}='+zp('xa^{\\frac{1}{b-1}}')+'^b']),
+            '递推式fa^{\\frac{1}{b-1}}='+zp('xa^{\\frac{1}{b-1}}')+'^b'
+            ]),
         ],
 
         [khrA(['\\frac{1}{1-x}'
@@ -55,7 +57,7 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['?'
+        [khrA(['1-\\sqrt{1-x}'
             ]), 
             khrA([Eq(['-x^2+2x','x(2-x)','2x-x^2','1-(1-x)^2']),'不动点0,1']),
             khrA(['1-(1-x)^4']), 
@@ -65,7 +67,20 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
 
-        [khrA(['?'
+
+        [khrA(['1-(1-x)^2'
+            ]), 
+            khrA(['1-\\sqrt{1-x}','不动点0,1']),
+            khrA(['1-'+kroot('1-x',4)]), 
+            khrA(['1-'+kroot('1-x',8)]),
+            khrA(['1-(1-x)^{\\frac{1}{2^n}}',
+            '递推式1-f=\\sqrt{1-x}']),
+        ],
+
+
+
+
+        [khrA(['1+\\sqrt{x-1}'
             ]), 
             khrA([Eq(['x^2-2x+2','(x-1)^2+1']),'不动点1,2']),
             khrA(['(x-1)^4+1']), 
@@ -75,17 +90,7 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
 
-
-        [khrA(['?'
-            ]), 
-            khrA(['1-\\sqrt{1-x}','不动点0,1']),
-            khrA(['1-'+kroot('1-x',4)]), 
-            khrA(['1-'+kroot('1-x',8)]),
-            khrA(['1-(1-x)^{\\frac{1}{2^n}}',
-            '递推式1-f=\\sqrt{1-x}']),
-        ],
-
-        [khrA(['?'
+        [khrA(['(x-1)^2+1'
             ]), 
             khrA(['1+\\sqrt{x-1}','不动点1,2']),
             khrA(['1+'+kroot('x-1',4)]), 
@@ -98,22 +103,26 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['?'
+        [khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
             ]), 
             khrA(['\\frac{x^2}{2x-1}','不动点0,1']),
             khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^4}']), 
             khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^8}']), 
             khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^n}}',
-            '递推式1-\\frac{1}{f}='+zp('1-\\frac{1}{x}')+'^2']),
+            '递推式1-\\frac{1}{f}='+zp('1-\\frac{1}{x}')+'^2'
+            ]),
         ],
 
-        [khrA(['?'
+        [khrA(['\\frac{x^2}{2x-1}'
             ]), 
-            khrA(['不动点']),
+            khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
+                '不动点1'
+            ]),
             khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^4}']), 
             khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^8}']), 
-            khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^n}}',
-            '递推式1-\\frac{1}{f}='+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}']),
+            khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^{\\frac{1}n}}}',
+            '递推式1-\\frac{1}{f}='+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}'
+            ]),
         ],
 
 
@@ -168,7 +177,7 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['?'
+        [khrA(['g_{-1}∘h_{-1}∘g'
             ]), 
             khrA(['g_{-1}(h(g(x)))',
             '共轭函数，共轭关系，等价关系',
@@ -187,25 +196,29 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
 
-        [khrA(['?'
+        [khrA(['g_{-1}(g(x)-b)'
             ]), 
-            khrA(['g_{-1}(g(x)+b)','一般\\text{Abel}方程']),
+            khrA(['g_{-1}(g(x)+b)','一般\\text{Abel}方程','设h(x)=x+b',
+                '无不动点(b≠0时)'
+            ]),
             khrA(['g_{-1}(g(x)+2b)']), 
             khrA(['g_{-1}(g(x)+3b)']),
             khrA(['g_{-1}(g(x)+nb)','递推关系g(f)-g=b']),
         ],
 
-        [khrA(['?'
+        [khrA(['g_{-1}'+zp('\\frac{g(x)-b}{a}')
             ]), 
-            khrA(['g_{-1}(ag(x)+b)','a≠1或b=0']),
+            khrA(['g_{-1}(ag(x)+b)','a≠1或b=0','设h(x)=ax+b',
+                '不动点g_{-1}'+zp('\\frac{b}{1-a}')
+            ]),
             khrA(['g_{-1}(a^2g(x)+(a+1)b)']), 
             khrA(['g_{-1}(a^3g(x)+(a^2+a+1)b)']),
-            khrA(['g_{-1}'+zp('a^ng(x)+\\frac{a^n-1}{a-1}b'),'递推关系g(f)-ag=b    g(f)-\\frac{b}{1-a}=a'+zp('g-\\frac{b}{1-a}')]),
+            khrA(['g_{-1}'+zp('a^ng(x)+\\frac{a^n-1}{a-1}b'),'递推关系g(f)-ag=b','g(f)-\\frac{b}{1-a}=a'+zp('g-\\frac{b}{1-a}')]),
         ],
 
 
 
-        [khrA(['?'
+        [khrA(['\\sqrt{x^2-b}'
             ]), 
             khrA(['\\sqrt{x^2+b}','无不动点(b≠0时)']),
             khrA(['\\sqrt{x^2+2b}']), 
@@ -215,18 +228,23 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['?'
+        [khrA([kroot('\\frac{x^2-b}{a}')
             ]), 
-            khrA(['\\sqrt{ax^2+b}','a≠1','无不动点\\frac{b}{1-a}']),
+            khrA(['\\sqrt{ax^2+b}','a≠1','不动点'+kroot('\\frac{b}{1-a}')
+            ]),
             khrA(['\\sqrt{a^2x^2+(a+1)b}']), 
             khrA(['\\sqrt{a^3x^2+(a^2+a+1)b}']),
-            khrA(['\\sqrt{a^nx^2+\\frac{a^n-1}{a-1}b}','递推关系f^2-x^2=\\frac{b}{1-a}']),
+            khrA(['\\sqrt{a^nx^2+\\frac{a^n-1}{a-1}b}','递推关系f^2-\\frac{b}{1-a} = a'+zp('x^2-\\frac{b}{1-a}')
+            ]),
         ],
 
 
-        [khrA(['?'
+        [khrA(['T_m^{-1}(x)=\\cos(m^{-1} \\arccos x)'
             ]), 
-            khrA(['T_m(x)=\\cos(m \\arccos x)','整数m的车比雪夫多项式']),
+            khrA(['T_m(x)=\\cos(m \\arccos x)','整数m的车比雪夫多项式',
+            '在[-1,1]有m个不同实根\\cos \\frac{(2k-1)π}{2m}，k=1,2,⋯,n',
+            '不动点0'
+            ]),
             khrA(['T_{2m}(x)=\\cos(2m \\arccos x)']), 
             khrA(['T_{3m}(x)=\\cos(3m \\arccos x)']),
             khrA(['T_{nm}(x)=\\cos(nm \\arccos x)','递推关系\\arccos f=m \\arccos x']),

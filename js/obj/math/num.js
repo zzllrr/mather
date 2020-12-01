@@ -1469,9 +1469,13 @@ $Decimal.oprs('竖式/',[0.02,0.01])$\\
 						sa+='①';
 					}else{
 						//sa='0.'+'0'.repeat(-btens-dotr)+sa
-
+						console.log(sa);
 						sa=(/^0③/.test(sa)?sa.replace(/0③0*/,function(x){return x.replace(/0/g,'②')}):sa)+'0'.repeat(-btens-dotr)+'①'
 					}
+				}
+				console.log(sa);
+				if(/0③\d+\./.test(sa)){
+					sa=sa.replace('0','②')
 				}
 			}
 			
@@ -1701,7 +1705,8 @@ if(r.length<sl){
 	//console.log('实际上 r = ',r);
 }
 
-			r=/[1-9]/.test(r)?repopa(/⑤/.test(r)?r.replace('⑤','.').replace('①',''):r.replace('①','.')):'0';//r=/[1-9]/.test(r)?rep4(r.replace(/⓪/g,'0').replace(/①/g,'.')).replace(/^0+/,''):'0';
+			r=/[1-9]/.test(r)?repopa(/⑤/.test(r)?r.replace('⑤','.').replace('①',''):r.replace('①','.')):'0';
+			//r=/[1-9]/.test(r)?rep4(r.replace(/⓪/g,'0').replace(/①/g,'.')).replace(/^0+/,''):'0';
 			r=r.replace(/^0+/,'');
 			if(r[0]=='.'){
 				r=0+r
