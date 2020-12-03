@@ -2982,7 +2982,7 @@ lang['zh_cn'] = {
 'Charpit':'沙比',
 
 'Chasles':'沙勒',
-'Chebyshev':'切比雪夫',
+'Chebyshev':'切比雪夫;车比雪夫',
 'Chen Ching-Jun':'陈景润',
 'Chen Kien-Kwong':'陈建功',
 'Chen Shiing-Shen':'陈省身',

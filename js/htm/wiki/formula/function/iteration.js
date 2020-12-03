@@ -14,7 +14,7 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['递推式',
                 '不动点f(x)=x']),
 
-            khrA(['桥函数g','桥函数反函数g^{-1}']),
+            khrA(['桥函数g','桥函数反函数g_{-1}']),
 
             khrA(['拓扑共轭h','n次迭代h_n']),
 
@@ -30,8 +30,8 @@ wiki['Formula/Function/Iteration']=Kx(
 
             ]), 
 
-            khrA(['f=g_{-1}(h(g(x)))',
-                'f=g_{-1}∘h∘g'
+            khrA([Eq([['f','g_{-1}(h(g(x)))'],
+                'g_{-1}∘h∘g'])
 
             ]),
             khrA(['f_2=g_{-1}(h_2(g(x)))', 
@@ -49,10 +49,16 @@ wiki['Formula/Function/Iteration']=Kx(
                 '共轭函数，共轭关系，等价关系',
                 'f,h拓扑半共轭（g满连续映射）：'+kbr+'h∘g=g∘f',
                 'f,h拓扑共轭（同构）:'+kbr+'拓扑半共轭+g同胚',
-                '同胚：双连续'+kbr+'（双射，且f与f_{-1}都连续）'
+                '同胚：双连续'+kbr+'（双射，且f与f_{-1}都连续）',
+                '选择桥函数的方法：'+kbr+
+                piece(['观察法：观察f结构',
+                    '递推法：根据递推式结构',
+                    '不动点法：'+kbr+piece([['取x-α或\\frac{1}{x-α}','唯一不动点α'],['取\\frac{x-α}{x-β}','两个不动点时']])
+                ])
             ]),
 
-            khrA(['h=g∘f∘g_{-1}','h_n=g∘f_n∘g_{-1}']),
+            khrA(['h=g∘f∘g_{-1}'+kbr+'一般取'+kbr+'ax,ax^2,ax^3,x+a'+kbr+'等易迭代计算的函数',
+                'h_n=g∘f_n∘g_{-1}']),
 
             khrA(['h_{-1}=g∘f_{-1}∘g_{-1}','h_{-n}=g∘f_{-n}∘g_{-1}'])
 
@@ -75,7 +81,12 @@ wiki['Formula/Function/Iteration']=Kx(
 
         ],
 
-        [khrA(['g_{-1}'+zp('\\frac{g(x)-b}{a}')
+        [khrA(['g_{-1}'+zp('\\frac{g(x)-b}{a}'),
+                Eq(['g_{-1}'+zp('\\frac{g(x)}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}')),
+
+                    'g_{-1}'+zp('\\frac{g(x)-b\\frac{1-a^n}{1-a}}{a^n}'),
+
+                ])
             ]), 
             khrA(['g_{-1}(ag(x)+b)','a≠1或b=0'
             ]),
@@ -89,9 +100,15 @@ wiki['Formula/Function/Iteration']=Kx(
                 'g_{-1}'+zp('\\frac{b}{1-a}')
             ]),
 
-            khrA(['g','g_{-1}']),
-            khrA(['ax+b','a^nx+\\frac{a^n-1}{a-1}b']),
-            khrA(['\\frac{x-b}{a}','\\frac{x}{a^n}-\\frac{1-a^n}{1-a}⋅\\frac{b}{a^n}'+kbr+'=\\frac{x}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}')]),
+            khrA(['g '+kbr+'或 G(x)=g(x)-\\frac{b}{1-a}','g_{-1} '+kbr+'或 G_{-1}(x)=g_{-1}'+zp('x+\\frac{b}{1-a}')]),
+            khrA(['ax+b '+kbr+'或 ax','a^nx+\\frac{a^n-1}{a-1}b '+kbr+'或 a^nx']),
+            khrA(['\\frac{x-b}{a} '+kbr+'或 \\frac{x}{a}',
+                Eq(['\\frac{x}{a^n}-\\frac{1-a^n}{1-a}⋅\\frac{b}{a^n}',
+                '\\frac{x}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}'),
+                '\\frac{x-b\\frac{1-a^n}{1-a}}{a^n}'
+                ])+kbr+
+                ' 或 \\frac{x}{a^n}'
+            ]),
         ],
 
 
@@ -116,7 +133,10 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
         [khrA(['\\frac{x-b}{a}',
-                '\\frac{x}{a^n}-\\frac{1-a^n}{1-a}⋅\\frac{b}{a^n}'+kbr+'=\\frac{x}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}')
+                Eq(['\\frac{x}{a^n}-\\frac{1-a^n}{1-a}⋅\\frac{b}{a^n}',
+                    '\\frac{x}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}'),
+                    '\\frac{x-b\\frac{1-a^n}{1-a}}{a^n}'
+                ])
             ]), 
             khrA(['ax+b','a≠1']),
             khrA(['f_2=a^2x+ab+b',
@@ -140,7 +160,9 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
         [khrA([zp('\\frac{x}{a}')+'^{\\frac{1}b}',
-
+                Eq(['x^{\\frac{1}{b^n}}a^{\\frac{1}{b-1}'+zp('\\frac{1}{b^n}-1')+'}',
+                    zp('\\frac{x}{a^{\\frac{1-b^n}{1-b}}}')+'^{\\frac{1}{b^n}} '
+                ])
             ]), 
             khrA(['ax^b','b≠1']),
 
@@ -155,16 +177,22 @@ wiki['Formula/Function/Iteration']=Kx(
 
             khrA(['g(x)=xa^{\\frac{1}{b-1}}', 'g_{-1}(x)=xa^{-\\frac{1}{b-1}}']),
             khrA(['x^b','x^{b^n}']),
-            khrA([kroot('x','b'), kroot('x','b^n')]),
+            khrA([kroot('x','b')+'=x^{\\frac{1}{b}}', kroot('x','b^n')+'=x^{\\frac{1}{b^n}}']),
         ],
 
-        [khrA(['\\frac{1}{1-x}',
+        [khrA(['f_{-1}=\\frac{1}{1-x}',
+                piece([['x',kmod('n','0','3')], ['f_{-1}',kmod('n','1','3')], ['f',kmod('n','2','3')]])
 
             ]), 
             khrA(['1-\\frac{1}x','\\frac{x-1}x','不动点\\frac{1±\\sqrt{-3}}{2}']),
             khrA(['f_2=\\frac{1}{1-x}（恰好是反函数）', 
                 'f_3=x',
-                'f_n='+piece([['x',kmod('n','0','3')], ['f',kmod('n','1','3')], ['f_{-1}',kmod('n','2','3')]]),
+                Eq([['f_n',piece([['x',kmod('n','0','3')], ['f',kmod('n','1','3')], ['f_{-1}',kmod('n','2','3')]])],
+                    'ω^n\\frac{x+ωf+ω^2f_{-1}}{3} ',
+                    'ω^n\\frac{x+ωf-(1+ω)f_{-1}}{3} ',
+                    'ω^n\\frac{x-f_{-1}+ω(f-f_{-1})}{3} ',
+                ]),
+                '（其中ω是3次单位原根）'
             ]),
 
             khrA([
@@ -176,8 +204,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA([]),
         ],
 
-        [khrA(['1-\\frac{1}x',
-
+        [khrA(['f_{-1}=1-\\frac{1}x',
+                piece([['x',kmod('n','0','3')], ['f_{-1}',kmod('n','1','3')], ['f',kmod('n','2','3')]]),
             ]), 
             khrA(['\\frac{1}{1-x}']),
             khrA(['f_2=1-\\frac{1}x=\\frac{x-1}x（恰好是反函数）', 
@@ -278,13 +306,21 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
-                '\\frac{1}{1-'+kroot('1-\\frac{1}{x}','2^n')+'}'
+        [khrA([Eq(['x+\\sqrt{x^2-1}',
+                '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
+                'e^{\\sh ^{-1} x}'
+            ]),
+                Eq(['\\frac{1}{1-'+kroot('1-\\frac{1}{x}','2^n')+'}',
+                 '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2^n}}}',
+                ])
             ]), 
-            khrA(['\\frac{x^2}{2x-1}']),
+            khrA([Eq(['\\frac{x^2}{2x-1}',
+                '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2}}'
+                ])
+            ]),
             khrA(['f_2=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^4}',
                 'f_3=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^8}', 
-                'f_4=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^n}}',
+                'f_n=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^n}}',
             ]),
 
             khrA(['1-\\frac{1}{f_n}'+kbr+'='+zp('1-\\frac{1}{f_{n-1}}')+'^2','0,1'
@@ -296,15 +332,20 @@ wiki['Formula/Function/Iteration']=Kx(
 
         ],
 
-        [khrA(['\\frac{x^2}{2x-1}',
+        [khrA([Eq(['\\frac{x^2}{2x-1}',
+                    '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2}}' 
+                ]),
                 '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^n}}'
             ]), 
-            khrA(['\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}'
+            khrA([Eq(['x+\\sqrt{x^2-1}',
+                '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
+                'e^{\\sh ^{-1} x}'
+                ])
             ]),
 
-            khrA(['f_2=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^4}',
-                'f_3=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^8}',
-                'f_n=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{2^{\\frac{1}n}}}',
+            khrA(['f_2=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{4}}}',
+                'f_3=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{8}}}',
+                'f_n=\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2^n}}}',
 
             ]),
 
@@ -319,45 +360,67 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA([]), 
-            khrA(['ax^{2}+bx+\\frac {b^{2}-2b}{4a}'
+        [khrA(['\\frac{'+kroot('ax+\\frac {b}{2}')+'}{a}-\\frac {b}{2a}',
+            '\\frac{'+kroot('ax+\\frac {b}{2}','2^n')+'}{a}-\\frac {b}{2a}',
+            ]), 
+                khrA([Eq(['ax^{2}+bx+\\frac {b^{2}-2b}{4a}',
+                'ax^{2}+bx+\\frac {b(b-2)}{4a}',
+                'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b}{2a}'])
             ]),
 
 
-            khrA(['f_n=\\frac {2α^{2^{n}}-b}{2a}=\\frac {α^{2^{n}}-b\\/2}{a}=\\frac{'+zp('ax+\\frac{b}{2}')+'^{2^n}}{a}-\\frac{b}{2a}',
-                '其中α =\\frac {2ax+b}{2}=ax+b\\/2',
+            khrA(['f_2=\\frac{'+zp('ax+\\frac{b}{2}')+'^{4}}{a}-\\frac{b}{2a}',
+                'f_3=\\frac{'+zp('ax+\\frac{b}{2}')+'^{8}}{a}-\\frac{b}{2a}',
+                'f_n=\\frac {2A^{2^{n}}-b}{2a}=\\frac {A^{2^{n}}-b\\/2}{a}=\\frac{'+zp('ax+\\frac{b}{2}')+'^{2^n}}{a}-\\frac{b}{2a}',
+                '其中A =\\frac {2ax+b}{2}=ax+b\\/2',
             ]),
 
             khrA(['af_n+\\frac{b}2'+kbr+'='+zp('af_{n-1}+\\frac{b}{2}')+'^{2}',
                 '\\frac{-b}{2a}，\\frac{2-b}{2a}'
             ]), 
             
-            khrA(['g(x)=\\frac{x-\\frac{2-b}{2a}}{x-'+zp('\\frac{-b}{2a}')+'}=1-\\frac{2}{2ax+b}',
-                'g_{-1}(x)=\\frac{1}{a(1-x)}-\\frac{b}{2a}'
+            khrA(['g(x)=\\frac{x-\\frac{2-b}{2a}}{x-'+zp('\\frac{-b}{2a}')+'}=1-\\frac{2}{2ax+b}'+kbr+
+                '或g(x)=ax+\\frac{b}{2}',
+                'g_{-1}(x)=\\frac{1}{a(1-x)}-\\frac{b}{2a}'+kbr+
+                '或g_{-1}(x)=\\frac{x}{a}-\\frac{b}{2a}'
             ]),
-            khrA(['x(2-x)','1-(1-x)^{2^n}']), 
-            khrA([]),
+            khrA([Eq(['1-(1-x)^2','x(2-x)'])+kbr+'或x^2',
+                '1-(1-x)^{2^n}'+kbr+'或x^{2^n}'
+            ]), 
+            khrA(['1-\\sqrt{1-x}'+kbr+'或\\sqrt{x}',
+                '1-'+kroot('1-x','2^n')+kbr+'或'+kroot('x','2^n')
+            ]),
         ],
 
-        [khrA([
+
+
+
+
+        [khrA(['\\frac{'+kroot('ax+\\frac {b+4}{2}')+'}{a}-\\frac {b}{2a}',
+                '\\frac{'+kroot('ax+\\frac {b+4}{2}','2^n')+'}{a}-\\frac {b}{2a}',
             ]), 
-            khrA(['ax^{2}+bx+\\frac {b^{2}-2b-8}{4a}'
+            khrA([Eq(['ax^{2}+bx+\\frac {b^{2}-2b-8}{4a}',
+                    'ax^{2}+bx+\\frac {(b-4)(b+2)}{4a}',
+                    'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b+4}{2a}'])
             ]),
 
-            khrA(['f_n=\\frac {2α^{2^{n}}+2α ^{-2^{n}}-b}{2a}',
-                '其中α =\\frac {2ax+b± {\\sqrt {(2ax+b)^{2}-16}}}{4}',
-                '设t=\\frac {2ax+b}{2}=ax+b\\/2',
-                'α +1\\/α=t',
+            khrA(['f_2=\\frac {A^{4}+A ^{-4}}{a}-\\frac{b}{2a}',
+                'f_3=\\frac {A^{8}+A ^{-8}}{a}-\\frac{b}{2a}',
+
+                'f_n=\\frac {2A^{2^{n}}+2A ^{-2^{n}}-b}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}-\\frac{b}{2a}',
+                '其中A =\\frac {2ax+b± {\\sqrt {(2ax+b)^{2}-16}}}{4}'+kbr+
+                '设t=\\frac {2ax+b}{2}=ax+b\\/2'+kbr+
+                'A +1\\/A=t，A^2+\\frac{1}{A^2}=t^2-2',
             ]),
 
 
-            khrA(['af_n+b\\/2'+kbr+'='+zp('af_{n-1}+b\\/2')+'^2',
+            khrA(['af_n+b\\/2'+kbr+'='+zp('af_{n-1}+b\\/2')+'^2-2',
                 '\\frac{4-b}{2a}，\\frac{-2-b}{2a}'
             ]),
 
             khrA(['g(x)=ax+b\\/2','g_{-1}(x)=x\\/a-b\\/{2a}']),
-            khrA(['x^2','x^{2^n}']),
-            khrA(['\\sqrt{x}',kroot('x','2^n')]),
+            khrA(['x^2-2','?']),
+            khrA(['?','?']),
         ],
         
 
@@ -366,8 +429,11 @@ wiki['Formula/Function/Iteration']=Kx(
             ]), 
             khrA(['\\frac {ax+b}{cx+d}~有理差分方程']),
 
-            khrA(['f_n=\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac {(cx-a+α)α^{n-1}-(cx-a+β)β ^{n-1}}{(cx-a+α )α ^{n}-(cx-a+β)β ^{n}}}\\]',
-                '其中α,β =\\frac {a+d±{\\sqrt {(a-d)^{2}+4bc}}}{2}']),
+            khrA(['f_n=\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac {(cx-a+A)A^{n-1}-(cx-a+B)B ^{n-1}}{(cx-a+A )A ^{n}-(cx-a+B)B ^{n}}}\\]',
+                '其中A,B =\\frac {a+d±{\\sqrt {(a-d)^{2}+4bc}}}{2}'+kbr+
+                'A+B=a+d，AB=ad-bc'+kbr+
+                'A-B=\\sqrt {(a-d)^{2}+4bc}'
+            ]),
         
             khrA([]), 
             khrA([]),
@@ -378,7 +444,8 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA(['\\sqrt{x^2-b}'
+        [khrA(['\\sqrt{x^2-b}',
+                '\\sqrt{x^2-nb}'
             ]), 
             khrA(['\\sqrt{x^2+b}']),
 
@@ -397,7 +464,8 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA([kroot('\\frac{x^2-b}{a}')
+        [khrA([kroot('\\frac{x^2-b}{a}'),
+                kroot('\\frac{x^2}{a^n}  + \\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}'))
             ]), 
             khrA(['\\sqrt{ax^2+b}','a≠1',
             ]),
@@ -410,7 +478,9 @@ wiki['Formula/Function/Iteration']=Kx(
                 kroot('\\frac{b}{1-a}')
             ]),
 
-            khrA(['g(x)=x^2-\\frac{b}{1-a}']),
+            khrA(['g(x)=x^2-\\frac{b}{1-a}',
+                'g_{-1}(x)=\\sqrt{x+\\frac{b}{1-a}}',
+            ]),
             khrA(['ax','a^nx']), 
             khrA(['x\\/a','x\\/{a^n}']),
             
@@ -419,7 +489,7 @@ wiki['Formula/Function/Iteration']=Kx(
 
         [khrA(['T_{-m}(x)'+kbr+'=\\cos(m^{-1} \\arccos x)'
             ]), 
-            khrA(['T_m(x)=\\cos(m \\arccos x)','整数m的车比雪夫多项式',
+            khrA(['T_m(x)=\\cos(m \\arccos x)','整数m的切比雪夫多项式',
                 '在[-1,1]有m个不同实根'+kbr+'\\cos \\frac{(2k-1)π}{2m}，k=1,2,⋯,n',
             ]),
 
