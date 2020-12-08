@@ -2092,6 +2092,7 @@ lang['zh_cn'] = {
 	'Permutation Number':'排列数',
 
 	'Combinatorial': '组合',
+	'Combinator':'组合子',
 	'Permanent':'积和式',
 	'Immanant':'',
 
@@ -2340,6 +2341,7 @@ lang['zh_cn'] = {
 	'Endomorphism':'自同态',
 
 	'Holomorphic':'全纯',
+	'Isomorphic':'同构',
 
 	'Reconstruction':'重构',
 
