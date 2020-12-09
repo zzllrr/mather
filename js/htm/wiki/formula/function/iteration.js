@@ -397,6 +397,26 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
+        [khrA([]), 
+            khrA(['x^2-2']),
+            khrA(['f_2=(x^2-2)^2-2=x^4-4x^2+2', 
+                'f_3=((x^2-2)^2-2)^2=(x^2-2)^4-4(x^2-2)^2+4=x^8-8x^6+20x^4-16x^2+4',
+                'f_n=',
+            ]),
+            khrA(['f_n-1'+kbr+'=\\sqrt{f_{n-1}-1}','-1,2']),
+
+            
+             
+            khrA(['g(x)=\\frac{x-2}{x+1}=1-\\frac{3}{x+1}','g_{-1}(x)=\\frac{3}{1-x}-1=\\frac{x+2}{1-x}']),
+            khrA(['\\sqrt{x}',kroot('x','2^n')]),
+            khrA(['x^2','x^{2^n}']),
+
+
+        ],
+
+
+
+
 
         [khrA(['\\frac{'+kroot('ax+\\frac {b}{2}')+'}{a}-\\frac {b}{2a}',
             '\\frac{'+kroot('ax+\\frac {b}{2}','2^n')+'}{a}-\\frac {b}{2a}',
@@ -463,11 +483,22 @@ wiki['Formula/Function/Iteration']=Kx(
         
 
 
-        [khrA(['?'
+        [khrA([Eq(['\\frac{\\frac{bc-ad}{x-\\frac{a}{c}}-cd}{c^2}',
+                '\\frac{b-dx}{cx-a}',
+                '-\\frac{dx-b}{cx-a}',
+                '\\frac{-dx+b}{cx-a}',
+                '与原函数联系：交换a,d，并取反',
+                '-\\frac{d}{c} ⋅ \\frac{x-\\frac{b}{d}}{x-\\frac{a}{c}}',
+                ])
             ]), 
-            khrA(['\\frac {ax+b}{cx+d}~有理差分方程']),
+            khrA([Eq(['\\frac {ax+b}{cx+d}',
+                    '\\frac{a}{c} ⋅ \\frac{x+\\frac{b}{a}}{x+\\frac{d}{c}}',
+                    '\\frac{a}{c}+\\frac{b-\\frac{ad}{c}}{cx+d}',
+                    '\\frac{a}{c}+\\frac{bc-ad}{c^2x+cd}'
+                    ]),'有理差分方程']),
 
-            khrA(['f_n=\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac {(cx-a+A)A^{n-1}-(cx-a+B)B ^{n-1}}{(cx-a+A )A ^{n}-(cx-a+B)B ^{n}}}\\]',
+            khrA([
+                'f_n=\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac {(cx-a+A)A^{n-1}-(cx-a+B)B ^{n-1}}{(cx-a+A )A ^{n}-(cx-a+B)B ^{n}}}\\]',
                 '其中A,B =\\frac {a+d±{\\sqrt {(a-d)^{2}+4bc}}}{2}'+kbr+
                 'A+B=a+d，AB=ad-bc'+kbr+
                 'A-B=\\sqrt {(a-d)^{2}+4bc}'
