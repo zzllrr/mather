@@ -46,11 +46,11 @@ wiki['Formula/Function/Iteration']=Kx(
             ]),
 
             khrA(['f=g_{-1}∘h∘g'+kbr+' ⇔ g∘f=h∘g',
-                '共轭函数，共轭关系，等价关系',
-                'f,h拓扑半共轭（g满连续映射）：'+kbr+'h∘g=g∘f',
+                '\\small 共轭函数，共轭关系，等价关系',
+                'f,h拓扑半共轭'+kbr+'（g满连续映射）：'+kbr+'h∘g=g∘f',
                 'f,h拓扑共轭（同构）:'+kbr+'拓扑半共轭+g同胚',
                 '同胚：双连续'+kbr+'（双射，且f与f_{-1}都连续）',
-                '选择桥函数的方法：'+kbr+
+                '\\small 选择桥函数的方法：'+kbr+
                 piece(['观察法：观察f结构',
                     '递推法：根据递推式结构',
                     '不动点法：'+kbr+piece([['取x-α或\\frac{1}{x-α}','唯一不动点α'],['取\\frac{x-α}{x-β}','两个不动点时']])
@@ -82,7 +82,7 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
         [khrA(['g_{-1}'+zp('\\frac{g(x)-b}{a}'),
-                Eq(['g_{-1}'+zp('\\frac{g(x)}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}')),
+                '\\small '+Eq(['g_{-1}'+zp('\\frac{g(x)}{a^n}+\\frac{b}{1-a}'+zp('1-\\frac{1}{a^n}')),
 
                     'g_{-1}'+zp('\\frac{g(x)-b\\frac{1-a^n}{1-a}}{a^n}'),
 
@@ -131,6 +131,34 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA([]),
 
         ],
+
+
+        [khrA(['\\frac{x}{a}',
+                '\\frac{x}{a^n}',
+            ]), 
+            khrA(['ax']),
+            khrA(['f_2=a^2x',
+                'f_3=a^3x',
+                'f_n=a^nx',
+            
+            ]),
+
+            khrA([
+                'f_n= af_{n-1}',
+                '0（a=1时有无穷多个不动点）',
+            ]),
+
+            khrA([]),
+
+            khrA([]),
+
+            khrA([]),
+
+
+        ],
+
+
+
 
         [khrA(['\\frac{x-b}{a}',
                 Eq(['\\frac{x}{a^n}-\\frac{1-a^n}{1-a}⋅\\frac{b}{a^n}',
@@ -187,7 +215,9 @@ wiki['Formula/Function/Iteration']=Kx(
                 '周期2'
 
             ]), 
-            khrA(['-x','\\frac{1}x','-\\frac{1}x']),
+            khrA(['-x+b， \\frac{a}x，\\frac{1}x，-\\frac{1}x，\\frac {ax+b}{cx-a}等',
+                'x+y=b，xy=a，x^2+y^2=a^2',
+                 'y=f(x)，x=f(y)']),
             khrA([piece([['x',kmod('n','0','2')], ['f_{-1}',kmod('n','1','2')]])+kbr+
                  '周期2'+kbr+'自逆，x,y对称性，函数图像关于y=x对称',
                      
@@ -225,7 +255,12 @@ wiki['Formula/Function/Iteration']=Kx(
                 '=ω^{-n}'+zp('x + ω(1-\\frac{1}x)+ω^2 \\frac{1}{1-x} ')+kbr+
                 '+ω^n'+zp('x + ω^2(1-\\frac{1}x)+ω \\frac{1}{1-x}')+kbr+
                 '+x + 1-\\frac{1}{x}+\\frac{1}{1-x} ',
-                '（其中ω是3次单位原根）'+kbr+
+
+                '=ω^{-n}'+zp('x + ω(1-\\frac{1}x)+'+kxo('ω')+' \\frac{1}{1-x} ')+kbr+
+                '+ω^n'+zp('x + '+kxo('ω')+'(1-\\frac{1}x)+ω \\frac{1}{1-x}')+kbr+
+                '+x + 1-\\frac{1}{x}+\\frac{1}{1-x} ',
+
+                '其中ω是3次单位原根，'+kbr+'ω=e^{\\frac{2πi}{3}}=-1\\/2+i\\frac{\\sqrt{3}}{2}'+kbr+'ω^2='+kxo('ω')+'=-1-ω'+kbr+
                 'W(x)=\\frac{x^2+x+1}{3}'
             ]),
 
@@ -243,7 +278,9 @@ wiki['Formula/Function/Iteration']=Kx(
                 piece([['x',kmod('n','0','3')], ['f_{-1}',kmod('n','1','3')], ['f',kmod('n','2','3')]])+kbr+
                 '周期3',
             ]), 
-            khrA(['\\frac{1}{1-x}']),
+            khrA([Eq(['\\frac{1}{1-x}',
+                '1+\\frac{x}{1-x}'
+            ])]),
             khrA(['f_2=1-\\frac{1}x=\\frac{x-1}x'+kbr+'（恰好是反函数）', 
                 'f_3=x',
                 'f_n='+piece([['x',kmod('n','0','3')], ['f',kmod('n','1','3')], ['f_{-1}',kmod('n','2','3')]])+kbr+
@@ -260,6 +297,83 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA([]),
             khrA([]),
         ],
+
+
+
+
+
+
+
+
+
+        [khrA([Eq(['\\frac{x}{-bx+1}',
+            '-\\frac{1}{b}-\\frac{1}{b(bx-1)}',
+            '\\frac{1}{-b+\\frac{1}{x}}'
+            ]),
+            '\\frac{x}{-nbx+1}'
+            ]), 
+            khrA([Eq(['\\frac{x}{bx+1}',
+                '\\frac{1}{b}-\\frac{1}{b(bx+1)}',
+                '\\frac{1}{b+\\frac{1}{x}}'
+                ])
+            ]),
+
+            khrA(['f_2=\\frac{x}{2bx+1}', 
+                'f_3=\\frac{x}{3bx+1}',
+                'f_n=\\frac{x}{nbx+1}'
+            ]),
+
+            khrA([
+
+
+                '\\frac{1}{f_n}-\\frac{1}{f_{n-1}}=b',
+                '0'
+            ]),
+
+
+            khrA([]),
+            khrA([]),
+            khrA([]),
+        ],
+
+
+        [khrA([Eq(['\\frac{x}{-x+1}',
+            '-1-\\frac{1}{x-1}',
+            '\\frac{1}{-1+\\frac{1}{x}}'
+            ]),
+            '\\frac{x}{-nx+1}'
+            ]), 
+            khrA([Eq(['\\frac{x}{x+1}',
+                '1-\\frac{1}{x+1}',
+                '\\frac{1}{1+\\frac{1}{x}}'
+                ])
+            ]),
+
+            khrA(['f_2=\\frac{x}{2x+1}', 
+                'f_3=\\frac{x}{3x+1}',
+                'f_n=\\frac{x}{nx+1}'
+            ]),
+
+            khrA([
+
+
+                '\\frac{1}{f_n}-\\frac{1}{f_{n-1}}=1',
+                '0'
+            ]),
+
+
+            khrA([]),
+            khrA([]),
+            khrA([]),
+        ],
+
+
+
+
+
+
+
+
 
 
 
@@ -403,16 +517,21 @@ wiki['Formula/Function/Iteration']=Kx(
                 Eq([['f_3','x^4(x^2-2)^2-1'],'x^8-4x^6+4x^4-1','(x^2-1)^2((x^2-1)^2-2)','(x-1)^2(x+1)^2((x^2-1)^2-2)']),
                 'f_n=',
             ]),
-            khrA(['f_n-1'+kbr+'=\\sqrt{f_{n-1}-1}','Φ=\\frac{\\sqrt{5} +1}{2},1-Φ=-Φ^{-1}=\\frac{1-\\sqrt{5}}{2}']),
+            khrA(['f_n-1',
+                'Φ=\\frac{\\sqrt{5} +1}{2},1-Φ=-Φ^{-1}=\\frac{1-\\sqrt{5}}{2}',
+                '其中Φ(Φ-1)=1'+kbr+'Φ^2=1+Φ'
+                ]),
 
              
-            khrA(['g(x)=\\frac{x-2}{x+1}=1-\\frac{3}{x+1}'+kbr+
-                '或g(x)=\\frac{x+1}{x-2}=1+\\frac{3}{x-2}',
-                'g_{-1}(x)=\\frac{x+2}{1-x}=\\frac{3}{1-x}-1'+kbr+
-                '或g_{-1}(x)=\\frac{2x+1}{x-1}=2+\\frac{3}{x-1}',
+            khrA(['g(x)=\\frac{x-Φ}{x+Φ-1}'+kbr+'=1+\\frac{1-2Φ}{x+Φ-1}=1-\\frac{\\sqrt{5}}{x+Φ-1}'+kbr+
+                '或g(x)=\\frac{x+Φ-1}{x-Φ}'+kbr+'=1+\\frac{2Φ-1}{x-Φ}=1+\\frac{\\sqrt{5}}{x-Φ}',
+
+                'g_{-1}(x)=\\frac{1-2Φ}{x-1}-Φ+1=\\frac{x(1-Φ)-Φ}{x-1}'+kbr+
+                '或g_{-1}(x)=\\frac{2Φ-1}{x-1}+Φ=\\frac{Φx+Φ-1}{x-1}',
             ]),
-            khrA(['-\\frac{x(x-4)}{2x+1}'+kbr+'或',
-                '-\\frac{x(x+2)}{4x-1}'
+            khrA(['-x\\frac{ x-\\sqrt{5}-1}{ x(\\sqrt{5}-1)+1  }'+kbr+'或'+
+
+                '-\\sqrt{5}x\\frac{x  +\\sqrt{5}-1}{ (Φ+1)x^2 -x(3Φ+2) -2Φ     }'
             ]),
             khrA([
 
@@ -456,9 +575,10 @@ wiki['Formula/Function/Iteration']=Kx(
         [khrA(['\\frac{'+kroot('ax+\\frac {b}{2}')+'}{a}-\\frac {b}{2a}',
             '\\frac{'+kroot('ax+\\frac {b}{2}','2^n')+'}{a}-\\frac {b}{2a}',
             ]), 
-                khrA([Eq(['ax^{2}+bx+\\frac {b^{2}-2b}{4a}',
+            khrA([Eq(['ax^{2}+bx+\\frac {b^{2}-2b}{4a}',
                 'ax^{2}+bx+\\frac {b(b-2)}{4a}',
-                'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b}{2a}'])
+                'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b}{2a}']),
+                '直线y=x过y=f(x)顶点'
             ]),
 
 
@@ -500,7 +620,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['f_2=\\frac {A^{4}+A ^{-4}}{a}-\\frac{b}{2a}',
                 'f_3=\\frac {A^{8}+A ^{-8}}{a}-\\frac{b}{2a}',
 
-                Eq(['f_n','\\frac {2A^{2^{n}}+2A ^{-2^{n}}-b}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}-\\frac{b}{2a}',
+                Eq(['f_n',
+                    '\\frac {2A^{2^{n}}+2A ^{-2^{n}}-b}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}-\\frac{b}{2a}',
                     '\\frac {2A^{2^{n}}+2A ^{-2^{n}}-b}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}-\\frac{b}{2a}',
                 ]),
                 '其中A =\\frac {2ax+b± {\\sqrt {(2ax+b)^{2}-16}}}{4}'+kbr+
@@ -520,6 +641,54 @@ wiki['Formula/Function/Iteration']=Kx(
         
 
 
+
+
+
+
+
+        [khrA([zp('\\frac{x+b}{a}')+'^{\\frac{1}{m}}-b',
+                zp('\\frac{x+b}{a^{\\frac{1-m^n}{1-m}}}')+'^{\\frac{1}{m^n}} -b',
+            ]), 
+            khrA(['a(x+b)^m-b',
+                'm=2时，'+kbr+'直线y=x过y=f(x)顶点'
+            ]),
+
+
+            khrA(['f_2=a^{m+1}(x+b)^{m^2}-b',
+                'f_3=a^{m^2+m+1} (x+b)^{m^3}-b',
+                'f_n=a^{\\frac {m^n-1}{m-1}} (x+b)^{m^n}-b',
+
+            ]),
+
+            khrA(['f_n+b'+kbr+'=a(f_{n-1}+b)^{m}',
+                'm个不动点'
+            ]), 
+            
+            khrA(['g(x)=x+b',
+                'g_{-1}(x)=x-b'
+            ]),
+            khrA(['ax^m',
+                'a^{\\frac {m^n-1}{m-1}} x^{m^n}'
+            ]), 
+            khrA([zp('\\frac{x}{a}')+'^{\\frac{1}m}',
+                Eq(['x^{\\frac{1}{m^n}}a^{\\frac{1}{m-1}'+zp('\\frac{1}{m^n}-1')+'}',
+                    zp('\\frac{x}{a^{\\frac{1-m^n}{1-m}}}')+'^{\\frac{1}{m^n}} '
+                ]),
+            ]),
+        ],
+
+
+
+
+
+
+
+
+
+
+
+
+
         [khrA([Eq(['\\frac{\\frac{bc-ad}{x-\\frac{a}{c}}-cd}{c^2}',
                 '\\frac{b-dx}{cx-a}',
                 '-\\frac{dx-b}{cx-a}',
@@ -529,27 +698,53 @@ wiki['Formula/Function/Iteration']=Kx(
                 '-\\frac{d}{c}+\\frac{bc-ad}{c^2x-ca}'
                 ]),
                 
-                '与原函数联系：交换a,d，并取反'
+                '与原函数联系：','交换a,d，并取反',
+                '对应逆矩阵M^{-1} = \\frac{1}{ad-bc}'+zmtrx(MfS('d -b -c a'))+'= -\\frac{1}{ad-bc}'+zmtrx(MfS('-d b c -a'))+kbr+'忽略矩阵前面系数'
             ]), 
             khrA([Eq(['\\frac {ax+b}{cx+d}',
                     '\\frac{a}{c} ⋅ \\frac{x+\\frac{b}{a}}{x+\\frac{d}{c}}',
                     '\\frac{a}{c}+\\frac{b-\\frac{ad}{c}}{cx+d}',
-                    '\\frac{a}{c}+\\frac{bc-ad}{c^2x+cd}'
-                    ]),'有理差分方程']),
+                    '\\frac{a}{c}+\\frac{bc-ad}{c^2x+cd}',
+                    '\\frac{a}{c}+\\frac{\\frac{b}{c}-\\frac{ad}{c^2}}{x+\\frac{d}{c}}',
+                ]),
+                '有理差分方程','(a-d)^{2}+4bc ≠ 0 (A≠B)',
+                '对应矩阵M='+zmtrx(MfS('a b c d')),
+                '对应向量形式：M(x,1)^T'+kbr+'=(ax+b,cx+d)^T'
+            ]),
 
             khrA([
-                Eq(['f_n',
-                    '\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac {(cx-a+A)A^{n-1}-(cx-a+B)B ^{n-1}}{(cx-a+A )A ^{n}-(cx-a+B)B ^{n}}}\\]',
-                    '\\frac {a}{c}+{\\frac {bc-ad}{c}}\\[{\\frac { (cx-a)(A ^{n-1}-B ^{n-1})+A^{n}-B^{n} }{ (cx-a)(A ^{n}-B ^{n})+A^{n+1}-B^{n+1} }}\\]',
+                'f_2=\\frac {a}{c}+\\frac {bc-ad}{c} \\[{\\frac { (cx-a)\\frac{1}{A+B}+1 }{ (cx-a)+\\frac{A^2+AB+B^2}{A+B} }}\\]'+kbr+
+                '=\\frac {a}{c}+\\frac {bc-ad}{c} \\frac { cx+d }{ cx(a+d)+bc+d^2 }'+kbr+
+                '=\\frac { (a^2+bc)x+b(a+d) }{ c(a+d)x+bc+d^2 }'+kbr+
+                '对应矩阵M^2='+zmtrx([['a^2+bc','b(a+d)'],['c(a+d)','d^2+bc']]),
 
+                'f_3=\\frac {a}{c}+ \\frac {bc-ad}{c} \\[{\\frac { (cx-a)\\frac{A+B}{A^2+AB+B^2}+1 }{ (cx-a)+\\frac{(A+B)(A^2+B^2)}{A^2+AB+B^2} }}\\]'+kbr+
+                '=\\frac {a}{c}+\\frac {bc-ad}{c} \\frac { cx(a+d)+ d^2+bc}{ cx(a^2+d^2+ad+bc)+ abc+2bcd+d^3  }'+kbr+
+                '=\\frac { x(a^3+2abc+bcd) +bc(a^2+ad+d^2+bc)    }{ cx(a^2+d^2+ad+bc)+ abc+2bcd+d^3  }'+kbr+
+                '\\small 对应矩阵M^3 ='+zmtrx([['a^3+2abc+bcd','b(a^2+d^2+ad+bc)'],['c(a^2+d^2+ad+bc)','abc+2bcd+d^3']]),
+
+                '\\small '+Eq(['f_n',
+                    '\\frac {a}{c}+ \\frac {bc-ad}{c} \\[{\\frac {(cx-a+A)A^{n-1}-(cx-a+B)B ^{n-1}}{(cx-a+A )A ^{n}-(cx-a+B)B ^{n}}}\\]',
+                    '\\frac {a}{c}+ \\frac {bc-ad}{c} \\[{\\frac { (cx-a)(A ^{n-1}-B ^{n-1})+A^{n}-B^{n} }{ (cx-a)(A ^{n}-B ^{n})+A^{n+1}-B^{n+1} }}\\]',
+                    '\\frac {a}{c}+ \\frac {bc-ad}{c} \\[{\\frac { (cx-a)\\frac{A ^{n-1}-B ^{n-1}}{A^{n}-B^{n}}+1 }{ (cx-a)+\\frac{A^{n+1}-B^{n+1}}{A ^{n}-B ^{n}} }}\\]',
+                    '\\frac{[(a-B)A^n-(a-A)B^n]x+b(A^n-B^n)}{c(A^n-B^n)x + [(d-B)A^n-(d-A)B^n]}',
+                    '\\frac{[(a-B)A^n-(a-A)B^n]x+b(A^n-B^n)}{c(A^n-B^n)x + [(a-B)B^n-(a-A)A^n]}'
                     
                 ]),
+                'f 对应 矩阵M → f_n对应矩阵M^n'+kbr+
+                '\\small ='+zmtrx([['(a-B)A^n-(a-A)B^n','b(A^n-B^n)'],['c(A^n-B^n)','(a-B)B^n-(a-A)A^n']])+kbr+
+                '转化为求矩阵幂'+kbr+'（利用特征值，特征向量对角化）',
+
                 '其中A,B =\\frac {a+d±{\\sqrt {(a-d)^{2}+4bc}}}{2}'+kbr+
+                '即方程x^2-(a+d)x+ad-bc=0的两根'+kbr+
                 'A+B=a+d，AB=ad-bc'+kbr+
-                'A-B=\\sqrt {(a-d)^{2}+4bc}'
+                'A-B=\\sqrt {(a-d)^{2}+4bc}'+kbr+
+                'A^2+B^2=(A+B)^2-2AB=a^2+d^2+2bc'+kbr+
+                'A^2+AB+B^2=a^2+d^2+ad+bc'+kbr
+
             ]),
         
-            khrA([]), 
+            khrA(['不动点\\frac{a-d±\\sqrt {(a-d)^{2}+4bc} }{2c}']), 
             khrA([]),
             khrA([]), 
             khrA([]),
@@ -563,28 +758,248 @@ wiki['Formula/Function/Iteration']=Kx(
                 '-d \\frac{x-\\frac{b}{d}}{x-1}',
                 '-d+\\frac{b-d}{x-1}'
                 ]),
-                '与原函数联系：交换1,d，并取反'
+                '与原函数联系：','交换1,d，并取反',
+                '对应逆矩阵M^{-1} '+kbr+
+                '= \\frac{1}{d-b}'+zmtrx(MfS('d -b -1 1'))+kbr+
+                '= -\\frac{1}{d-b}'+zmtrx(MfS('-d b 1 -1'))+kbr+
+                '忽略矩阵前面系数'
             ]), 
             khrA([Eq(['\\frac {x+b}{x+d}',
-                    '\\frac{x+b}{x+d}',
                     '1+\\frac{b-d}{x+d}',
-                    '1+\\frac{b-d}{x+d}'
-                    ])]),
+                    '\\frac{1}{1+\\frac{d-b}{x+b}}',
+                    ]),
+                    '令a=c=1',
+                    '(1-d)^{2}+4b ≠ 0 (A≠B)',
+                    '对应矩阵M='+zmtrx(MfS('1 b 1 d'))
+                ]),
 
             khrA([
-                Eq(['f_n','1+(b-d)\\[{\\frac {(x-1+A)A^{n-1}-(x-1+B)B ^{n-1}}{(x-1+A )A ^{n}-(x-1+B)B ^{n}}}\\]',
+                'f_2=1+(b-d) \\[{\\frac { (x-1)\\frac{1}{A+B}+1 }{ (x-1)+\\frac{A^2+AB+B^2}{A+B} }}\\]'+kbr+
+                '=1+(b-d) \\frac { x+d }{ x(1+d)+b+d^2 }'+kbr+
+                '=\\frac { x(1+b)+b(1+d) }{ x(1+d)+b+d^2 }'+kbr+
+                '对应矩阵M^2='+zmtrx([['1+b','b(1+d)'],['1+d','d^2+b']]),
+
+                'f_3=1+(b-d) \\[{\\frac { (x-1)\\frac{A+B}{A^2+AB+B^2}+1 }{ (x-1)+\\frac{(A+B)(A^2+B^2)}{A^2+AB+B^2} }}\\]'+kbr+
+                '=1+(b-d) \\frac { x(1+d)+b+ d^2}{ x(1+d^2+d+b)+ b+2bd+d^3  }'+kbr+
+                '=\\frac {x(1+b+b(1+d))+ b(1+d)+b(b+d^2) }{ x(1+b+d(1+d))+ b(1+d)+d(b+d^2)  }'+kbr+
+                '=\\frac {x(1+2b+bd)+ b(1+b+d+d^2) }{ x(1+b+d+d^2)+ b+2bd+d^3  }'+kbr+
+                '对应矩阵M^3 ='+zmtrx([['1+2b+bd','b(1+d^2+d+b)'],['1+d^2+d+b','b+2bd+d^3']]),
+
+
+                '\\small '+Eq(['f_n','1+(b-d)\\[{\\frac {(x-1+A)A^{n-1}-(x-1+B)B ^{n-1}}{(x-1+A )A ^{n}-(x-1+B)B ^{n}}}\\]',
                     '1+(b-d)\\[{\\frac { (x-1)(A ^{n-1}-B ^{n-1})+A^{n}-B^{n} }{ (x-1)(A ^{n}-B ^{n})+A^{n+1}-B^{n+1} }}\\]',
-                ]),
+                    '1+ (b-d) \\[{\\frac { (x-1)\\frac{A ^{n-1}-B ^{n-1}}{A^{n}-B^{n}}+1 }{ (x-1)+\\frac{A^{n+1}-B^{n+1}}{A ^{n}-B ^{n}} }}\\]',
+                    '\\frac{[(1-B)A^n-(1-A)B^n]x+b(A^n-B^n)}{(A^n-B^n)x + [(d-B)A^n-(d-A)B^n]}',
+                    '\\frac{[(1-B)A^n-(1-A)B^n]x+b(A^n-B^n)}{(A^n-B^n)x + [(1-B)B^n-(1-A)A^n]}',
+
+                ])+kbr+
+                '\\small 对应矩阵M^n ='+zmtrx([['(1-B)A^n-(1-A)B^n','b(A^n-B^n)'],['A^n-B^n','(1-B)B^n-(1-A)A^n']]),
+
                 '其中A,B =\\frac {1+d±{\\sqrt {(1-d)^{2}+4b}}}{2}'+kbr+
+                '即方程x^2-(1+d)x+d-b=0的两根'+kbr+
                 'A+B=1+d，AB=d-b'+kbr+
-                'A-B=\\sqrt {(1-d)^{2}+4b}'
+                'A-B=\\sqrt {(1-d)^{2}+4b}'+kbr+
+                'A^2+B^2=(A+B)^2-2AB=1+d^2+2b'+kbr+
+                'A^2+AB+B^2=1+d^2+d+b'
             ]),
         
-            khrA([]), 
+            khrA(['不动点\\frac{1-d±\\sqrt {(d-1)^{2}+4b} }{2}']), 
             khrA([]),
             khrA([]), 
             khrA([]),
         ],
+
+
+
+
+
+
+
+        [khrA([
+                '\\frac{ax+b}{cx-a}',
+                
+                '与原函数联系：相等'
+            ]), 
+            khrA([Eq(['\\frac {ax+b}{cx-a}',
+                    '\\frac{a}{c} ⋅ \\frac{x+\\frac{b}{a}}{x-\\frac{a}{c}}',
+                    '\\frac{a}{c}+\\frac{b+\\frac{a^2}{c}}{cx-a}',
+                    '\\frac{a}{c}+\\frac{a^2+bc}{c^2x-ca}',
+                    '\\frac{a}{c}+\\frac{\\frac{b}{c}+\\frac{a^2}{c^2}}{x-\\frac{a}{c}}',
+                    
+                ]),
+                '令d=-a','a^{2}+bc ≠ 0 (A≠B)',
+                '对应矩阵M='+zmtrx(MfS('a b c -a'))
+            ]),
+
+            khrA([
+                'f_2=x'+kbr+
+                '对应矩阵M^2=(a^2+bc)E'+kbr+
+                '其中E是单位矩阵',
+
+                'f_3=f ~对应矩阵(a^2+bc)M',
+
+                '\\small f_n='+piece([['f',kmod('n',1,2)],['x',kmod('n',0,2)]]),
+                'f 对应 矩阵M → f_n对应矩阵M^n'+kbr+
+                '='+piece([['(a^2+bc)^{\\frac{n-1}2}M',kmod('n',1,2)],['(a^2+bc)^{\\frac{n}2}E',kmod('n',0,2)]]),
+
+                '其中A,B =±\\sqrt {a^2+bc}'+kbr+
+                '即方程x^2=a^2+bc的两根'+kbr+
+                'A+B=0，AB=-(a^2+bc)'+kbr+
+                'A-B=2\\sqrt {a^2+bc}'+kbr+
+                'A^2+B^2=(A+B)^2-2AB=2(a^2+bc)'+kbr+
+                'A^2+AB+B^2=a^2+bc'
+
+            ]),
+        
+            khrA(['f_n-\\frac{a}{c}=\\frac{\\frac{b}{c}+\\frac{a^2}{c^2}}{f_{n-1}-\\frac{a}{c}}',
+                '不动点\\frac{a±\\sqrt {a^2+bc} }{c}'+kbr+
+                '=\\frac{a}{c}±\\sqrt{\\frac{a^2}{c^2}+\\frac{b}{c}}'
+            ]), 
+            khrA([]),
+            khrA([]), 
+            khrA([]),
+        ],
+
+
+
+
+
+
+
+    
+        [khrA([Eq(['\\frac{1}{x-1}',
+            ])+kbr+
+            '与原函数联系：'+kbr+
+            '交换1,0，并取反'+kbr+
+            '对应矩阵M^{-1}='+zmtrx(MfS('011-1')),
+
+            '\\tiny '+Eq(['(-1)^n\\frac{F_{n-1}x-F_{n}}{-F_{n}x+F_{n+1}}',
+                '(-1)^n\\frac{(A^{n-1}-B^{n-1})x-(A^{n}-B^{n})}{-(A^{n}-B^{n})x+(A^{n+1}-B^{n+1})}',
+            ])+kbr+
+            '对应矩阵M^n=(-1)^n'+zmtrx(MfS('F_{n-1} -F_{n} -F_{n} F_{n+1}')),
+        ]), 
+        khrA([Eq(['\\frac {x+1}{x}',
+                '1+\\frac{1}{x}',
+                '\\frac{1}{1-\\frac{1}{x+1}}',
+
+            ]),
+            '令a=b=c=1，d=0',
+            '对应矩阵M='+zmtrx(MfS('1110'))
+        ]),
+
+        khrA([
+            'f_2=1+\\frac {x}{x+1 }'+kbr+
+            '=\\frac { 2x+1}{ x+1 }'+kbr+
+            '对应矩阵M^2='+zmtrx(MfS('2111')),
+
+            'f_3=1+\\[{\\frac { (x-1)\\frac{1}{2}+1 }{ (x-1)+\\frac{3}{2} }}\\]'+kbr+
+            '=1+\\frac { x+1}{ 2x+1}'+kbr+
+            '=\\frac {3x+2 }{ 2x+1 }'+kbr+
+            '对应矩阵M^3='+zmtrx(MfS('3221')),
+
+
+            '\\small '+Eq([['f_n',
+                '1+\\frac {(x-B)A^{n-1}-(x-A)B ^{n-1}}{(x-B )A ^{n}-(x-A)B ^{n}}'],
+                '1+\\frac {(x-1+A)A^{n-1}-(x-1+B)B ^{n-1}}{(x-1+A )A ^{n}-(x-1+B)B ^{n}}',
+                '1+\\frac { (x-1)(A ^{n-1}-B ^{n-1})+A^{n}-B^{n} }{ (x-1)(A ^{n}-B ^{n})+A^{n+1}-B^{n+1} }',
+                '1+ \\frac { (x-1)\\frac{A ^{n-1}-B ^{n-1}}{A^{n}-B^{n}}+1 }{ (x-1)+\\frac{A^{n+1}-B^{n+1}}{A ^{n}-B ^{n}} }',
+                '\\frac { (x-1)\\(\\frac{A ^{n-1}-B ^{n-1}}{A^{n}-B^{n}}+1\\)+\\frac{A^{n+1}-B^{n+1}}{A ^{n}-B ^{n}}+1 }{ (x-1)+\\frac{A^{n+1}-B^{n+1}}{A ^{n}-B ^{n}} }',
+
+
+                '\\frac { x\\frac{A ^{n+1}-B ^{n+1}}{A^{n}-B^{n}}+1 }{ x+\\frac{A^{n-1}-B^{n-1}}{A ^{n}-B ^{n}} }',
+
+                '\\frac {(A ^{n+1}-B ^{n+1})x+(A ^{n}-B ^{n}) }{(A ^{n}-B ^{n})x+ (A ^{n-1}-B ^{n-1})}',
+            ])+kbr+
+            '对应矩阵M^n='+zmtrx(MfS('F_{n+1} F_{n} F_{n} F_{n-1}')),
+
+            '其中A,B =\\frac {1±{\\sqrt {5}}}{2}=Φ，1-Φ'+kbr+
+            '即方程x^2-x-1=0的两根'+kbr+
+            'A+B=1，AB=-1'+kbr+
+            'A-B=\\sqrt {5}'+kbr+
+            'A^2+B^2=(A+B)^2-2AB=3'+kbr+
+            'A^2+AB+B^2=2'+kbr+
+            'A^n-B^n=\\sqrt{5}F_n'+kbr+
+            'F_{n+1}=F_{n}+F_{n-1}'
+        ]),
+
+        khrA(['不动点Φ，1-Φ']), 
+        khrA([]),
+        khrA([]), 
+        khrA([]),
+    ],
+
+
+
+
+
+    
+    [khrA([Eq(['\\frac {x+1}{x}',
+            '1+\\frac{1}{x}',
+            '\\frac{1}{1-\\frac{1}{x+1}}',
+
+        ])+kbr+
+        '与原函数联系：'+kbr+
+        '交换0,-1，并取反'+kbr+
+        '对应矩阵M^{-1}='+zmtrx(MfS('1110')),
+
+        '\\small '+Eq([
+            '\\frac {(A ^{n+1}-B ^{n+1})x+(A ^{n}-B ^{n}) }{(A ^{n}-B ^{n})x+ (A ^{n-1}-B ^{n-1})}',
+        ])+kbr+
+        '对应矩阵M^{-n}'+kbr+'='+zmtrx(MfS('F_{n+1} F_{n} F_{n} F_{n-1}')),
+        ]), 
+        khrA([Eq(['\\frac{1}{x-1}',
+            ]),
+            '令b=c=1，'+kbr+'d=-1，a=0',
+            '对应矩阵M='+zmtrx(MfS('011-1'))
+        ]),
+
+        khrA([
+            Eq([['f_2','\\frac {x-1}{-x+2 }'],
+            '-\\frac {x-1}{ x-2}'])+kbr+
+            '对应矩阵M^2='+zmtrx(MfS('1-1-12')),
+
+            Eq([['f_3','\\frac {-x+2  }{2x-3}'],
+            '-\\frac {x-2 }{ 2x-3 }'])+kbr+
+            '对应矩阵M^3='+zmtrx(MfS('-122-3')),
+
+        '\\small '+Eq([['f_n','(-1)^n\\frac{F_{n-1}x-F_{n}}{-F_{n}x+F_{n+1}}'],
+            '(-1)^n\\frac{(A^{n-1}-B^{n-1})x-(A^{n}-B^{n})}{-(A^{n}-B^{n})x+(A^{n+1}-B^{n+1})}',
+            ])+kbr+
+            '对应矩阵M^n=(-1)^n'+zmtrx(MfS('F_{n-1} -F_{n} -F_{n} F_{n+1}')),
+        
+
+
+        '其中A,B =\\frac {1±{\\sqrt {5}}}{2}=Φ，1-Φ'+kbr+
+        '即方程x^2-x-1=0的两根'+kbr+
+        'A+B=1，AB=-1'+kbr+
+        'A-B=\\sqrt {5}'+kbr+
+        'A^2+B^2=(A+B)^2-2AB=3'+kbr+
+        'A^2+AB+B^2=2'+kbr+
+        'A^n-B^n=\\sqrt{5}F_n'+kbr+
+        'F_{n+1}=F_{n}+F_{n-1}'
+        ]),
+
+        khrA(['不动点Φ，1-Φ']), 
+        khrA([]),
+        khrA([]), 
+        khrA([]),
+    ],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         [khrA(['\\sqrt{x^2-b}',
@@ -659,6 +1074,8 @@ wiki['Formula/Function/Iteration']=Kx(
     enwiki('Periodic_point','2020-11-27'),
     href(Hs+'www.zhihu.com/question/389575957/answer/1170540587','如何求一个函数的n次迭代? 知乎'),
     href(H+'academic.hep.com.cn/fcse/CN/chapter/978-7-04-037585-5/titlepage','动力系统引论'),
+    href(Hs+'wenku.baidu.com/view/4d5d87c589eb172ded63b77f.html','关于线性分式函数的n次迭代及其应用'),
+    href(Hs+'wenku.baidu.com/view/8701ac63a98271fe910ef912.html','函数的n次迭代与多项式递推数列通项问题'),
     inhref('explore.html?q=Problem/Problem List'),
     inhref('wiki.html?q=Formula/Sequence/Sum'),
 ]);

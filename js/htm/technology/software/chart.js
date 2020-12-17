@@ -164,6 +164,13 @@ detail(gM('Visualization & Author'),Table([i18(ZLR('Name Type Summary'))],[
 
 ],'TBrc'),1)+
 
+
+detail(gM('Effects'),Table([i18(ZLR('Name Type Summary'))],[
+
+	[href(Hs+'zoomquilt.org'),'','无限放大插画 '+href(H+'zoomquilt2.com')+' '+href(H+'arkadia.xyz')],
+
+],'TBrc'),1)+
+
 detail(gM('Aural'),Table([i18(ZLR('Name Type Summary'))],[
 
 	[href(Hs+'galaxy-of-covers.interactivethings.io','Galaxy of Covers'),'','Honoring the evolution of the 50 most popular cover songs of all time.'+github('interactivethings/galaxy-of-covers')],
