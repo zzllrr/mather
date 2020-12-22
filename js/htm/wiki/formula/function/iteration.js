@@ -646,6 +646,70 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
+        [khrA(['\\frac{'+kroot('ax+2')+'}{a}',
+                '\\frac{'+kroot('ax+2','2^n')+'}{a}',
+            ]), 
+            khrA([Eq(['ax^{2}-\\frac {2}{a}',
+                    ])
+            ]),
+
+            khrA(['f_2=\\frac {A^{4}+A ^{-4}}{a}',
+                'f_3=\\frac {A^{8}+A ^{-8}}{a}',
+
+                Eq(['f_n',
+                    '\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}',
+                ]),
+                '其中A =\\frac {ax± {\\sqrt {(ax)^{2}-4}}}{2}'+kbr+
+                '设t=ax'+kbr+
+                'A +1\\/A=t，A^2+\\frac{1}{A^2}=t^2-2',
+            ]),
+
+
+            khrA(['af_n'+kbr+'='+zp('af_{n-1}')+'^2-2',
+                '\\frac{2}{a}，-\\frac{1}{a}'
+            ]),
+
+            khrA(['g(x)=ax','g_{-1}(x)=x\\/a']),
+            khrA(['x^2-2','?']),
+            khrA(['?','?']),
+        ],
+        
+
+
+        [khrA(['ax^{2}-\\frac {2}{a}',
+        
+            '\\frac {2A^{2^{n}}+2A ^{-2^{n}}}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}',
+            '其中A =\\frac {ax± {\\sqrt {(ax)^{2}-4}}}{2}'+kbr+
+            '设t=ax'+kbr+
+            'A +1\\/A=t'+kbr+'A^2+\\frac{1}{A^2}=t^2-2',
+            ]), 
+            khrA([Eq(['\\frac{'+kroot('ax+2')+'}{a}',
+                    ])
+            ]),
+
+            khrA(['f_2=\\frac{'+kroot('ax+2','4')+'}{a}',
+                'f_3=\\frac{'+kroot('ax+2','8')+'}{a}',
+
+                Eq(['f_n',
+                    
+                    '\\frac{'+kroot('ax+2','2^n')+'}{a}',
+                ]),
+                
+            ]),
+
+
+            khrA(['af_n'+kbr+'='+kroot('af_{n-1}+2'),
+                '\\frac{2}{a}，-\\frac{1}{a}'
+            ]),
+
+            khrA(['g(x)=ax','g_{-1}(x)=\\frac{x}{a}']),
+            khrA([kroot('ax+2'),'?']),
+            khrA(['?','?']),
+        ],
+
+
+
+
         [khrA([zp('\\frac{x+b}{a}')+'^{\\frac{1}{m}}-b',
                 zp('\\frac{x+b}{a^{\\frac{1-m^n}{1-m}}}')+'^{\\frac{1}{m^n}} -b',
             ]), 
