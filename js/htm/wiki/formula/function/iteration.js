@@ -460,7 +460,7 @@ wiki['Formula/Function/Iteration']=Kx(
 
         [khrA([Eq(['x+\\sqrt{x^2-1}',
                 '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
-                'e^{\\sh ^{-1} x}'
+                'e^{\\ch ^{-1} x}'
             ]),
                 Eq(['\\frac{1}{1-'+kroot('1-\\frac{1}{x}','2^n')+'}',
                  '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2^n}}}',
@@ -491,7 +491,7 @@ wiki['Formula/Function/Iteration']=Kx(
             ]), 
             khrA([Eq(['x+\\sqrt{x^2-1}',
                 '\\frac{1}{1-'+zp('1-\\frac{1}{x}')+'^{\\frac{1}{2}}}',
-                'e^{\\sh ^{-1} x}'
+                'e^{\\ch ^{-1} x}'
                 ])
             ]),
 
@@ -543,15 +543,64 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-        [khrA([]), 
-            khrA(['x^2-2']),
-            khrA([Eq([['f_2','(x^2-2)^2-2'],'x^4-4x^2+2']), 
-                Eq([['f_3','((x^2-2)^2-2)^2'],'(x^2-2)^4-4(x^2-2)^2+4','x^8-8x^6+20x^4-16x^2+4']),
-                'f_n=',
-            ]),
-            khrA(['f_n','-1,2']),
+        [khrA(['\\sqrt{x+2}',
+                '(x+2)^{\\frac{1}{2^n}}'
+            ]), 
+            khrA(['x^2-2',
+                'A^2+\\frac{1}{A^2}'+kbr+
+                'T^2\\(\\frac{x}{2}\\)+T^2\\(-\\frac{x}{2}\\)',
 
-            
+                '其中A =\\frac {x± {\\sqrt {x^{2}-4}}}{2}'+kbr+
+                '=e^{\\ch^{-1}\\(±\\frac{x}{2}\\)}'+kbr+
+                '=T\\(\\frac{x}{2}\\)或-T\\(-\\frac{x}{2}\\)'+kbr+
+
+                '其中T(x)=x+\\sqrt {x^{2}-1}'+kbr+
+                '=e^{\\ch^{-1}(x)}'+kbr+
+
+                piece([
+                    '\\frac{1}{T(x)}=x-\\sqrt {x^{2}-1}',
+                    'T(-x)=-x+\\sqrt {x^{2}-1}',
+                    'T(-x)=-\\frac{1}{T(x)}',
+                    'T(x)T(-x)=-1',
+    
+                    'T(x)+T(-x)=2\\sqrt {x^{2}-1}',
+                    'T(x)-T(-x)=2x',
+    
+    
+                    'T(x)+\\frac{1}{T(x)}=2x',
+                    'T\\(\\frac{x}{2}\\)-T\\(-\\frac{x}{2}\\)=x',
+                    'T\\(\\frac{x}{2}\\)T\\(-\\frac{x}{2}\\)=-1'
+
+                ])
+
+                
+   
+            ]),
+            khrA([Eq([['f_2','(x^2-2)^2-2'],
+                    'x^4-4x^2+2',
+                    'A^{4}+A ^{-4}'
+                ]), 
+                Eq([['f_3','((x^2-2)^2-2)^2'],
+                    '(x^2-2)^4-4(x^2-2)^2+4','x^8-8x^6+20x^4-16x^2+4',
+                    'A^{8}+A ^{-8}'
+                ]),
+
+
+                Eq(['f_n',
+                    'A^{2^{n}}+A ^{-2^{n}}',
+                    'T^{2^{n}}\\(\\frac{x}{2}\\)+T^{2^{n}}\\(-\\frac{x}{2}\\)'
+                ]),
+                '其中'+zp('2T'+zp('\\frac{x}{2}')+'-x')+'^2-(T(x)-x)^2=-3'+kbr+
+                '='+zp('4T^2'+zp('\\frac{x}{2}')+'-T^2(x)')+'-2x'+zp('2T'+zp('\\frac{x}{2}')+'-T(x)')+kbr+
+                'A +1\\/A=x，A^2+\\frac{1}{A^2}=x^2-2',
+            ]),
+
+
+            khrA(['f_n'+kbr+'='+zp('f_{n-1}')+'^2-2',
+                '2，-1'
+            ]),
+
+
              
             khrA(['g(x)=\\frac{x-2}{x+1}=1-\\frac{3}{x+1}'+kbr+
                 '或g(x)=\\frac{x+1}{x-2}=1+\\frac{3}{x-2}',
@@ -585,7 +634,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['f_2=\\frac{'+zp('ax+\\frac{b}{2}')+'^{4}}{a}-\\frac{b}{2a}',
                 'f_3=\\frac{'+zp('ax+\\frac{b}{2}')+'^{8}}{a}-\\frac{b}{2a}',
                 'f_n=\\frac {2A^{2^{n}}-b}{2a}=\\frac {A^{2^{n}}-b\\/2}{a}=\\frac{'+zp('ax+\\frac{b}{2}')+'^{2^n}}{a}-\\frac{b}{2a}',
-                '其中A =\\frac {2ax+b}{2}=ax+b\\/2',
+                '其中A =\\frac {2ax+b}{2}=ax+b\\/2'+kbr+
+                '=T\\(\\frac{ax}{2}\\)或-T\\(-\\frac{ax}{2}\\)',
             ]),
 
             khrA(['af_n+\\frac{b}2'+kbr+'='+zp('af_{n-1}+\\frac{b}{2}')+'^{2}',
@@ -625,6 +675,7 @@ wiki['Formula/Function/Iteration']=Kx(
                     '\\frac {2A^{2^{n}}+2A ^{-2^{n}}-b}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}-\\frac{b}{2a}',
                 ]),
                 '其中A =\\frac {2ax+b± {\\sqrt {(2ax+b)^{2}-16}}}{4}'+kbr+
+                '=T\\(\\frac{2ax+b}{4}\\)或-T\\(-\\frac{2ax+b}{4}\\)'+kbr+
                 '设t=\\frac {2ax+b}{2}=ax+b\\/2'+kbr+
                 'A +1\\/A=t，A^2+\\frac{1}{A^2}=t^2-2',
             ]),
@@ -660,6 +711,7 @@ wiki['Formula/Function/Iteration']=Kx(
                     '\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}',
                 ]),
                 '其中A =\\frac {ax± {\\sqrt {(ax)^{2}-4}}}{2}'+kbr+
+                '=T\\(\\frac{ax}{2}\\)或-T\\(-\\frac{ax}{2}\\)'+kbr+
                 '设t=ax'+kbr+
                 'A +1\\/A=t，A^2+\\frac{1}{A^2}=t^2-2',
             ]),
@@ -680,6 +732,7 @@ wiki['Formula/Function/Iteration']=Kx(
         
             '\\frac {2A^{2^{n}}+2A ^{-2^{n}}}{2a}=\\frac {A^{2^{n}}+A ^{-2^{n}}}{a}',
             '其中A =\\frac {ax± {\\sqrt {(ax)^{2}-4}}}{2}'+kbr+
+            '=T\\(\\frac{ax}{2}\\)或-T\\(-\\frac{ax}{2}\\)'+kbr+
             '设t=ax'+kbr+
             'A +1\\/A=t'+kbr+'A^2+\\frac{1}{A^2}=t^2-2',
             ]), 
@@ -800,6 +853,7 @@ wiki['Formula/Function/Iteration']=Kx(
                 '转化为求矩阵幂'+kbr+'（利用特征值，特征向量对角化）',
 
                 '其中A,B =\\frac {a+d±{\\sqrt {(a-d)^{2}+4bc}}}{2}'+kbr+
+
                 '即方程x^2-(a+d)x+ad-bc=0的两根'+kbr+
                 'A+B=a+d，AB=ad-bc'+kbr+
                 'A-B=\\sqrt {(a-d)^{2}+4bc}'+kbr+
