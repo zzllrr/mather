@@ -320,7 +320,8 @@ wiki['Formula/Function/Iteration']=Kx(
 
             khrA(['f_2=\\frac{x}{2ax+1}', 
                 'f_3=\\frac{x}{3ax+1}',
-                'f_n=\\frac{x}{nax+1}'
+                'f_n=\\frac{x}{nax+1}'+kbr+
+                '\\frac{1}{na+\\frac{1}{x}}'
             ]),
 
             khrA([
@@ -515,29 +516,20 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
 
-
         [khrA([]), 
-            khrA([Eq(['x^2+1','(x+1)(x-1)'])]),
-            khrA([Eq([['f_2','(x^2-1)^2-1'],'x^4-2x^2','x^2(x^2-2)']), 
-                Eq([['f_3','x^4(x^2-2)^2-1'],'x^8-4x^6+4x^4-1','(x^2-1)^2((x^2-1)^2-2)','(x-1)^2(x+1)^2((x^2-1)^2-2)']),
+            khrA([Eq(['x^2+1'])]),
+            khrA([Eq([['f_2','(x^2+1)^2+1'],'x^4+2x^2+2','x^2(x^2+2)+2']), 
+                Eq([['f_3','(x^2(x^2+2)+2)^2+1'],'x^4(x^2+2)^2+4x^2(x^2+2)+5']),
+
                 'f_n=',
             ]),
-            khrA(['f_n-1',
-                'Φ=\\frac{\\sqrt{5} +1}{2},1-Φ=-Φ^{-1}=\\frac{1-\\sqrt{5}}{2}',
-                '其中Φ(Φ-1)=1'+kbr+'Φ^2=1+Φ'
+            khrA(['f_{n}=f_{n-1}^2+1',
+                '不动点'
                 ]),
 
              
-            khrA(['g(x)=\\frac{x-Φ}{x+Φ-1}'+kbr+'=1+\\frac{1-2Φ}{x+Φ-1}=1-\\frac{\\sqrt{5}}{x+Φ-1}'+kbr+
-                '或g(x)=\\frac{x+Φ-1}{x-Φ}'+kbr+'=1+\\frac{2Φ-1}{x-Φ}=1+\\frac{\\sqrt{5}}{x-Φ}',
-
-                'g_{-1}(x)=\\frac{1-2Φ}{x-1}-Φ+1=\\frac{x(1-Φ)-Φ}{x-1}'+kbr+
-                '或g_{-1}(x)=\\frac{2Φ-1}{x-1}+Φ=\\frac{Φx+Φ-1}{x-1}',
-            ]),
-            khrA(['-x\\frac{ x-\\sqrt{5}-1}{ x(\\sqrt{5}-1)+1  }'+kbr+'或'+
-
-                '-\\sqrt{5}x\\frac{x  +\\sqrt{5}-1}{ (Φ+1)x^2 -x(3Φ+2) -2Φ     }'
-            ]),
+            khrA([]),
+            khrA([]),
             khrA([
 
             ]),
@@ -563,10 +555,11 @@ wiki['Formula/Function/Iteration']=Kx(
         [khrA([]), 
             khrA([Eq(['x^2-1','(x+1)(x-1)'])]),
             khrA([Eq([['f_2','(x^2-1)^2-1'],'x^4-2x^2','x^2(x^2-2)']), 
-                Eq([['f_3','x^4(x^2-2)^2-1'],'x^8-4x^6+4x^4-1','(x^2-1)^2((x^2-1)^2-2)','(x-1)^2(x+1)^2((x^2-1)^2-2)']),
+                Eq([['f_3','f(f_2)'],'x^4(x^2-2)^2-1','(x^2(x^2-2)+1)(x^2(x^2-2)-1)','(x^2-1)^2((x^2-1)^2-2)','x^8-4x^6+4x^4-1',
+                    'f_2(f)','(x^2-1)^2((x^2-1)^2-2)','(x-1)^2(x+1)^2((x^2-1)^2-2)','(x-1)^2(x+1)^2(x^2-1+√2)(x^2-1-√2)']),
                 'f_n=',
             ]),
-            khrA(['f_n-1',
+            khrA(['f_n=f_{n-1}^2-1',
                 'Φ=\\frac{\\sqrt{5} +1}{2},1-Φ=-Φ^{-1}=\\frac{1-\\sqrt{5}}{2}',
                 '其中Φ(Φ-1)=1'+kbr+'Φ^2=1+Φ'
                 ]),
@@ -731,10 +724,10 @@ wiki['Formula/Function/Iteration']=Kx(
             '见下 '
             ]), 
             khrA([Eq(['Q(a,b)',
-                    'P(a,b)-\\frac{2}{a}',
-                    'ax^{2}+bx+\\frac {b^{2}-2b-8}{4a}',
-                    'ax^{2}+bx+\\frac {(b-4)(b+2)}{4a}',
-                    'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b+4}{2a}',
+                    'P(a,b)-\\tfrac{2}{a}',
+                    'ax^{2}+bx+\\tfrac {b^{2}-2b-8}{4a}',
+                    'ax^{2}+bx+\\tfrac {(b-4)(b+2)}{4a}',
+                    'a'+zp('x+\\tfrac{b}{2a}')+'^2-\\tfrac {b+4}{2a}',
 
                 ]),
                 '当\\left |ax+\\frac{b}{2}\\right |≤2时'+kbr+
@@ -824,10 +817,10 @@ wiki['Formula/Function/Iteration']=Kx(
 
 
         [khrA([Eq(['Q(a,b)',
-                'P(a,b)-\\frac{2}{a}',
-                'ax^{2}+bx+\\frac {b^{2}-2b-8}{4a}',
-                'ax^{2}+bx+\\frac {(b-4)(b+2)}{4a}',
-                'a'+zp('x+\\frac{b}{2a}')+'^2-\\frac {b+4}{2a}',
+                'P(a,b)-\\tfrac{2}{a}',
+                'ax^{2}+bx+\\tfrac {b^{2}-2b-8}{4a}',
+                'ax^{2}+bx+\\tfrac {(b-4)(b+2)}{4a}',
+                'a'+zp('x+\\tfrac{b}{2a}')+'^2-\\tfrac {b+4}{2a}',
 
             ]),
             '见上',
@@ -840,8 +833,8 @@ wiki['Formula/Function/Iteration']=Kx(
             khrA(['\\frac{'+kroot('ax+\\frac {b+4}{2}')+'}{a}-\\frac {b}{2a}',
             '\\small '+
             '当\\left | ax+\\frac{b}{2}\\right |≤2时'+kbr+Eq(['f_{-n}',
-                '\\frac{1}{2a}'+zp('4a\\cos 2^{-n}θ - b'),
-                '\\frac{1}{2a}'+zp('4a\\cos \\(2^{-n}\\arccos \\frac{2ax+b}{4}\\) - b'),
+                '\\tfrac{1}{2a}'+zp('4a\\cos 2^{-n}θ - b'),
+                '\\tfrac{1}{2a}'+zp('4a\\cos \\(2^{-n}\\arccos \\tfrac{2ax+b}{4}\\) - b'),
 
 
             ])+kbr+
@@ -849,10 +842,11 @@ wiki['Formula/Function/Iteration']=Kx(
                 '\\frac {2t^{2^{-n}}+2t^{-2^{-n}}-b}{2a}',
                 '\\frac {t^{2^{-n}}+t^{-2^{-n}}}{a}-\\frac{b}{2a}',
                 '\\frac{1}{a} '+zp('t^{2^{-n}}+t^{-2^{-n}} - \\frac{b}{2}'),
-                '\\frac{1}{a} '+zp('T^{2^{-n}}\\(\\tfrac{2ax+b}{4}\\) + T^{2^{-n}}\\(-\\tfrac{2ax+b}{4}\\) -\\frac{b}{2}'),
+               // '\\frac{1}{a} '+zp('T^{2^{-n}}\\(\\tfrac{2ax+b}{4}\\) + T^{2^{-n}}\\(-\\tfrac{2ax+b}{4}\\) -\\frac{b}{2}'),
 
 
-            ]),
+            ])+kbr+
+            '其中t=T(\\tfrac{2ax+b}{4})'
             ]), 
            
 
@@ -1701,19 +1695,20 @@ wiki['Formula/Function/Iteration']=Kx(
                 ]),
                 '\\small '+
                 '当\\left |-2x+1\\right |≤1时'+kbr+Eq(['f_{-n}',
-                    '\\frac{1}{2}+2\\cos 2^{-n}θ',
-                    '\\frac{1}{2}+2\\cos \\(2^{-n}\\arccos \\frac{2ax+b}{4}\\)',
+                    '\\tfrac{1}{2}+2\\cos 2^{-n}θ',
+                    '\\tfrac{1}{2}+2\\cos \\(2^{-n}\\arccos \\tfrac{2ax+b}{4}\\)',
 
 
                 ])+kbr+
                 '当\\left | -2x+1\\right |>1时'+kbr+Eq(['f_n',
                     '-\\frac {t^{2^{-n}}+t^{-2^{-n}}-2}{4}',
                     '-\\frac {t^{2^{-n}}+t^{-2^{-n}}}{4}+\\frac{1}{2}',
-                    '-\\frac{1}{4} '+zp('t^{2^{-n}}+t^{-2^{-n}} - 2'),
-                    '-\\frac{1}{4} '+zp('T^{2^{-n}}(-2x+1) + T^{2^{-n}}(2x-1) -2'),
+                    '-\\tfrac{1}{4} '+zp('t^{2^{-n}}+t^{-2^{-n}} - 2'),
+                    // '-\\frac{1}{4} \\left( T^{2^{-n}}(-2x+1) + T^{2^{-n}}(2x-1) -2 \\right)',
 
 
-                ])
+                ])+kbr+
+                '其中t=T(-2x+1)'
             ]), 
             khrA([Eq(['-4x^2+4x',
                     '4x-4x^2', 
@@ -1726,8 +1721,8 @@ wiki['Formula/Function/Iteration']=Kx(
                 ])
             ]),
 
-            khrA(['f_2=', 
-                'f_3=',
+            khrA(['f_2=\\sin ^2'+zp('4\\arcsin \\sqrt{x}'),
+                'f_3=\\sin ^2'+zp('8\\arcsin \\sqrt{x}'),
                 'f_n=\\sin ^2'+zp('2^n\\arcsin \\sqrt{x}')
                 
             ]),
@@ -1770,28 +1765,132 @@ wiki['Formula/Function/Iteration']=Kx(
         ],
 
 
-        [khrA([''+kbr+'='
+        [khrA(['\\frac{x}{\\sqrt{1-x^2}}',
+            '\\frac{x}{\\sqrt{1-nx^2}}'
+
             ]), 
             khrA([Eq(['\\frac{x}{\\sqrt{1+x^2}}',
                 ])
             ]),
 
-            khrA(['f_2=', 
-                'f_3=',
+            khrA(['f_2=\\frac{x}{\\sqrt{1+2x^2}}', 
+                'f_3=\\frac{x}{\\sqrt{1+3x^2}}',
                 'f_n=\\frac{x}{\\sqrt{1+nx^2}}'
                 
             ]),
-            khrA(['f_{n}',
-                '不动点'
+            khrA(['\\frac{1}{f_{n}^2}=\\frac{1}{f_{n-1}^2}+1',
+                '不动点0'
             ]),
 
-            khrA(['g(x)=','g_{-1}(x)=']),
+            khrA([]),
             khrA([]), 
             khrA([]),
             
         ],
 
-    ],'wiki TBrc').replace(/\n/g,br))
+
+        [khrA(['\\frac{x}{\\sqrt{1-bx^2}}',
+            '\\frac{x}{\\sqrt{1-bnx^2}}'
+
+            ]), 
+            khrA([Eq(['\\frac{x}{\\sqrt{1+bx^2}}',
+                ])
+            ]),
+
+            khrA(['f_2=\\frac{x}{\\sqrt{1+2bx^2}}', 
+                'f_3=\\frac{x}{\\sqrt{1+3bx^2}}',
+                'f_n=\\frac{x}{\\sqrt{1+nbx^2}}'
+                
+            ]),
+            khrA(['\\frac{1}{f_{n}^2}=\\frac{1}{f_{n-1}^2}+b',
+                '不动点0'
+            ]),
+
+            khrA([]),
+            khrA([]), 
+            khrA([]),
+            
+        ],
+    ],'wiki TBrc').replace(/\n/g,br))+
+
+
+    detail('递推式',
+
+        Table([['递推关系','f_n','f_{-n}']],[
+            ['f_n=-f_{n-1}','(-1)^nx','(-1)^nx'],
+
+
+            ['f_n=\\frac{1}{f_{n-1}}','x^{(-1)^n}','同左'],
+
+
+            ['f_n=-\\frac{1}{f_{n-1}}','(-1)^nx^{(-1)^n}','同左'],
+
+            ['f_nf_{n-1}=a','a^{\\frac{1-(-1)^n}{2}}x^{(-1)^n}','同左'],
+
+
+            ['\\frac{f_n}{f_{n-1}}=a','a^nx','\\frac{x}{a^n}'],
+
+            
+            ['f_n+f_{n-1}=a','a^{\\frac{1-(-1)^n}{2}}+(-1)^nx','同左'],
+
+
+            ['f_n-f_{n-1}=a','x+na','x-na'],
+
+
+            ['f_n=a^{f_{n-1}}','a^{⋰^{a^x}} （n次）','\\log_a({\\log_a( ⋯ \\log_a (x))}) （n次）'],
+
+
+
+
+            ['f_n^2-f_{n-1}^2=(f_n-f_{n-1})(f_n+f_{n-1})=a','\\sqrt{x^2+na}','\\sqrt{x^2-na}'],
+
+            ['f_n^2+f_{n-1}^2=a','a^{\\frac{1-(-1)^n}{2}}+(-1)^nx^2','同左'],
+
+
+
+
+
+
+            ['f_n^k-f_{n-1}^k=a','\\sqrt[k]{x^k+na}','\\sqrt[k]{x^k-na}'],
+
+            ['f_n^k+f_{n-1}^k=a','a^{\\frac{1-(-1)^n}{2}}+(-1)^nx^k','同左'],
+
+
+
+
+            []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ],'wiki TBrc')
+
+
+
+
+    )
 
     
 
