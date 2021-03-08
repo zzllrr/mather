@@ -592,7 +592,7 @@ function gM2(t,reverse, sep,f){
 
 function cacheUsage(){
 	var x=0;
-	for(item in L) {
+	for(let item in L) {
 		if(L.hasOwnProperty(item)) {
 		 	x += L.getItem(item).length;
 		}
