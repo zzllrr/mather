@@ -2204,7 +2204,7 @@ var snippet={
 			(selected?itv('snippetNew','add'):''))
 	},
 	load:function(i){
-		$('#input0').val(L['snippet'+i]||''), t=L['snippetType'+i];
+		$('#input0').val(L['snippet'+i]||'');let t=L['snippetType'+i];
 		$('.snippet').removeClass('seled').find('.snippetNew').remove();
 
 		if($('.snippet').length<i){

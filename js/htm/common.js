@@ -52,7 +52,7 @@ tooltip={
 },
 caps,
 
-hasdoodle=isdoodle;// || ishome || isdoc || iswiki || issolve,
+hasdoodle=isdoodle,// || ishome || isdoc || iswiki || issolve,
 
 oHTML=function(x,notMD,elem,cb){
     var o=$(elem||'#oHTML').hide();
@@ -206,8 +206,8 @@ questions={
 },
 
 
-solve={}, graphic={}, show={}, wiki={}
-solves={}, graphics={}, shows={}, wikis={}
+solve={}, graphic={}, show={}, wiki={},
+solves={}, graphics={}, shows={}, wikis={},
 solveThen={}, graphicThen={}, wikiThen={},
 
 
