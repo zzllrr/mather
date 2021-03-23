@@ -31,7 +31,7 @@ var Base64 = {
 	// public method for decoding
 	decode : function (input) {
 		var output = "",chr1, chr2, chr3,enc1, enc2, enc3, enc4,i = 0; 
-		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, ""); 
+		input = input.replace(/[^A-Za-z0-9+/=]/g, ""); 
 		while (i < input.length) { 
 			enc1 = this._keyStr.indexOf(input.charAt(i++));
 			enc2 = this._keyStr.indexOf(input.charAt(i++));
@@ -69,7 +69,7 @@ var Base64 = {
  
 	// private method for UTF-8 decoding
 	_utf8_decode : function (utftext) {
-		var string = "",i = 0,c = c1 = c2 = 0; 
+		var string = "",i = 0;var c  , c2 ,c3;
 		while ( i < utftext.length ) { 
 			c = utftext.charCodeAt(i); 
 			if (c < 128) {
@@ -90,7 +90,7 @@ var Base64 = {
 	} 
 }, UTF8={
 	encode:function(t){
-		return (t||'').replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"&#x$2;")});
+		return (t||'').replace(/[\u4E00-\u9FA5\uF900-\uFA2D]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"&#x$2;")});
 	},
 	decode:function(t){
 		return unescape((t||'').replace(/&#x/g,'%u').replace(/\\u/g,'%u').replace(/;/g,''));
@@ -127,7 +127,7 @@ var Base64 = {
 		if(isStr){
 			var x=(new DOMParser()).parseFromString(XML.wrapE('xml',xml),"text/xml").documentElement.childNodes;
 			//var x=$.parseXML(XML.wrapE('xml',xml)).childNodes[0].childNodes;
-			for(i=0;i<(isStr?x.length:1);i++){
+			for(var i=0;i<(isStr?x.length:1);i++){
 				var xi=x[i],nT=xi.nodeType;
 				if(nT==1){
 					str+=ZML._encode0(xi)+'+';
