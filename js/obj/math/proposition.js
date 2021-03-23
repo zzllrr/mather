@@ -181,7 +181,7 @@ var Prop={//命题 本质上是dom（html）
 
 		if(op=='∧'){//合取
 			if(D.is('.true')){
-				h=h.replace(/true/,'false');
+				var h=h.replace(/true/,'false');
 			}else if(D.is('.false')){
 				h=h.replace(/false/,'true');
 			}else if(D.is('.neg')){

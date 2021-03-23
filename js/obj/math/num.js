@@ -880,8 +880,8 @@ var Integer={/*整数 (本质是字符串)
 			
 			ln a = ln c + k ln b	类似于除法
 			*/
-			var a=aA0,b=aA1,r=1,k=0;
-			while(r){
+			var a=aA0,b=aA1,k=0;
+			while(true){
 				var qr=Integer.oprs('/',[a,b]);
 				if(qr[1]=='0'){
 					a=qr[0];
@@ -3085,7 +3085,7 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 		var r=fracOpr('-',m,n);
 		if(/^0$/.test(r)){
 			return +/[≤=≥]/.test(op)
-		}if(/^-/.test(r)){
+		}else if(/^-/.test(r)){
 			return +/[≤<]/.test(op)
 		}else{
 			return +/[≥>]/.test(op)

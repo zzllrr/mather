@@ -5129,8 +5129,8 @@ var RandomNumber={
         return RandomNumber.sign(signA)+[1,RandomNumber.Integer(digiA)].join('/')
     },
     'Propper Fraction':function(digiA,signA){
-        var x=1, s=RandomNumber.sign(signA);
-        while(x){
+        var s=RandomNumber.sign(signA);
+        while(true){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(+X[1]<+X[0]){X.reverse()}
 
@@ -5153,8 +5153,8 @@ var RandomNumber={
         return s+X[0]+'+00+'+X.slice(1).join('/') //s+X[0]+frac(X[1],X[2],'')
     },
     'Reducible Fraction':function(digiA,signA){
-        var x=1, s=RandomNumber.sign(signA);
-        while(x){
+        var s=RandomNumber.sign(signA);
+        while(true){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(FracReduct(X)!=X.join('/')){
                 return s+X.join('/')
@@ -5162,8 +5162,8 @@ var RandomNumber={
         }
     },
     'Irreducible Fraction':function(digiA,signA){
-        var x=1, s=RandomNumber.sign(signA);
-        while(x){
+        var s=RandomNumber.sign(signA);
+        while(true){
             var X=[RandomNumber.Integer(digiA), RandomNumber.Integer(digiA)];
             if(FracReduct(X)==X.join('/')){
                 return s+X.join('/')

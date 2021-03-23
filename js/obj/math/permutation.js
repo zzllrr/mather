@@ -149,9 +149,9 @@ consolelog(op,A,p);
 				if(C.length==n){break}
 				var Ai=A[i];
 				if(Ai>i+1 && C.indexOf(Ai)<0){
-					var Bi=[i+1,Ai],b=1;
+					var Bi=[i+1,Ai];
 					C.push(i+1,Ai);
-					while(b){
+					while(true){
 						var Aj=A[Bi.slice(-1)[0]-1];
 						if(Aj!=Bi[0]){
 							Bi.push(Aj);
