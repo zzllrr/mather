@@ -68,7 +68,7 @@ var Mtrx={	//矩阵
 		},
 		B:function(M){//分块：M为矩阵块组成的矩阵（4层数组） 
 			//同一行的矩阵块之间, 行数要一致（列数可不作要求），才能拼接
-			var A=[];A.t='Mtrx',m=M.length;AtoStr(A);
+			var A=[];A.t='Mtrx';var m=M.length;AtoStr(A);
 //consolelog(M);
 			for(var i=0;i<m;i++){
 				var Mi=M[i], n=Mi.length, Mi0=Mi[0];
@@ -395,16 +395,16 @@ var Mtrx={	//矩阵
 			"UL":function(A){//是否为上或下三角
 				return Mtrx.is.b1.U(A) || Mtrx.is.b1.L(A)
 			},
-			"r0":function(A){var b=0;for(var i=0;i<A.length;i++){if(/^0+$/.test(A[i].join(''))){return b}} return b},//是否存在全为0的行
-			"c0":function(A){var b=0;for(var i=0;i<A[0].length;i++){if(/^0+$/.test(Arri(A,i).join(''))){return b}} return b},//是否存在全为0的列
+			"r0":function(A){var b=0;for(var i=0;i<A.length;i++){if(/^0+$/.test(A[i].join(''))){return 1}} return b},//是否存在全为0的行
+			"c0":function(A){var b=0;for(var i=0;i<A[0].length;i++){if(/^0+$/.test(Arri(A,i).join(''))){return 1}} return b},//是否存在全为0的列
 			"rc0":function(A){return +(Mtrx.is.b1.r0(A)||Mtrx.is.b1.c0(A))},//是否存在全为0的行或列
 			"rk":function(A){//是否存在成比例的行
 					var b=0;
 					for(var i=0;i<A.length;i++){
-						if(/^0+$/.test(A[i].join(''))){return b}
+						if(/^0+$/.test(A[i].join(''))){return 1}
 					}
 					return b},
-			"ck":function(A){var b=0;for(var i=0;i<A[0].length;i++){if(/^0+$/.test(Arri(A,i).join(''))){return b}} return b},//是否存在成比例的列
+			"ck":function(A){var b=0;for(var i=0;i<A[0].length;i++){if(/^0+$/.test(Arri(A,i).join(''))){return 1}} return b},//是否存在成比例的列
 			"rck":function(A){return +(Mtrx.is.b1.r0(A)||Mtrx.is.b1.c0(A))},//是否存在成比例的行或列
 			"rck0":function(A){return +(Mtrx.is.b1.rc0(A)||Mtrx.is.b1.rck(A))},//是否存在全为0或成比例的行或列
 
@@ -2110,7 +2110,7 @@ var newj=0;
 
 					}).replace(/.+\?[LU]?/g,function(t){//自动计算倍数，将其余指定行列，化为0
 //consolelog('？');
-						var isi=/^i/.test(t), tA=t.replace(/[ijLU]/g,'').split(/.=/),is_=/-=/.test(t),isL=/L/.test(t),isU=/U/.test(t);
+						var isi=/^i/.test(t), tA=t.replace(/[ijLU]/g,'').split(/.=/),is_=/-=/.test(t),isL=/L/.test(t),isU=/U/.test(t),
 							ks=[],ts=seqsA(tA[0]),ij=+tA[1].replace(/\D/g,'')-1,C=B[0][0];
 						for(var i=0;i<ts.length;i++){
 							if(isi){
@@ -3443,4 +3443,4 @@ E		P
 
 */
 
-AtoStr=function(A){A.toStr=function(p){return Mtrx.toStr(this,p)}};
+var AtoStr=function(A){A.toStr=function(p){return Mtrx.toStr(this,p)}};

@@ -141,7 +141,7 @@ var set={//集合 本质上是数组
 			for(var i=0;i<pn;i++){
 				var s=i.toString(2),v=[];
 
-				for(j=1;j<n+1;j++){
+				for(var j=1;j<n+1;j++){
 					if(j>s.length){break}
 					if(s.slice(-j)[0]=='1'){
 						v.unshift(set.toStr(A[n-j]))
