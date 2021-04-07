@@ -307,10 +307,10 @@ function getNoiseHelper(global) {
 	return module;
 }
 
-var ecegs=Hs+'www.echartsjs.com/examples/',echref=function(text,gl,u,theme){return href(ecegs+'zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
+var ecegs=Hs+'echarts.apache.org/examples/',echref=function(text,gl,u,theme){return href(ecegs+'zh/editor.html?c='+(u||text.toLowerCase().replace(/ /g, '-'))+(gl?'&gl=1':'')+(theme?'&theme='+theme:''),text)};
 tooltip.graphic=tooltip.graphic || {};
 tooltip.graphic['Statistics/Echarts']=[detail(href(ecegs+'index.html','百度ECharts官网'),[
-	href(Hs+'www.echartsjs.com/zh/api.html','API')+'暂不支持LaTeX',
+	href(Hs+'echarts.apache.org/zh/api.html','API')+'暂不支持LaTeX',
 	'JS代码片段','用$美元符号$括起来'+sceg2('$1+2$'),
 	'回归分析'+github('ecomfe/echarts-stat'),
 
