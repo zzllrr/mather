@@ -12,7 +12,10 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 	[href(Hs+'helloacm.com/tools/math-plot-graph/','简易数学函数作图工具'),'',''],
 
 	[href(Hs+'draw.io','draw.io'),'JS + SVG','Create flow charts, process diagrams, org charts, UML diagrams, ER models, network diagrams'],
-	[href(Hs+'demo.bpmn.io/s/start','bpmn.io'),'JS + SVG',hrefA('demo.bpmn.io/@@/new',ZLR('BPMN CMMN DMN')).join(' ')],
+	[href(Hs+'demo.bpmn.io/s/start','bpmn.io'),'JS + SVG',hrefA('demo.bpmn.io/@@/new',ZLR('BPMN CMMN DMN')).join(' ')+br+
+		brA([
+			href(H+'www.bpmn-sketch-miner.ai','bpmn-sketch-miner')
+		])],
 
 	[href(Hs+'naotu.baidu.com','百度脑图'),'','Mindmap by baidu'],
 
@@ -24,7 +27,18 @@ technology['Software/Charts']=detail(gM('Charts'),Table([i18(ZLR('Tool Type Summ
 
 
 	[href(Hs+'roughjs.com','Roughjs'),'','Create graphics with a hand-drawn, sketchy, appearance '+github('pshihn/rough')],
-	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')],
+	[href(Hs+'graphviz.org','GraphViz'),'','Representing structural information as diagrams of abstract graphs and networks '+href(Hs+'sketchviz.com','SketchViz')+github('pshihn/rough')+br+
+		brA([
+			href(H+'www.webgraphviz.com','webgraphviz'),
+			href(H+'viz-js.com','viz-js'),
+			href(H+'www.ryandesign.com/canviz/','Canviz, an HTML5/Javascript canvas viewer'),
+			href(Hs+'edotor.net','edotor')
+
+		])
+	],
+
+
+	[href(Hs+'xosh.org/text-to-diagram/','Online text to diagram tools'),'',''],
 	[github('timqian/chart.xkcd'),'','xkcd styled chart lib'],
 	[href(Hs+'wiredjs.com','Wired Elements'),'','A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.'+github('wiredjs/wired-elements')],
 	[github('gangtao/sketchify'),'','turn svg graph(ECharts,AntV G2,highcharts,amcharts,xCharts) into sketchy visualization, based on Rough.js'],

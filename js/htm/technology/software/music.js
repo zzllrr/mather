@@ -12,6 +12,7 @@ technology['Software/Music']=detail(gM('Tool'),Table([i18(ZLR('Name Type Summary
 
 	[href(Hs+'musescore.com','Sheet Music - Musescore'),'JS + HTML',"Share, download and print free sheet music for piano, guitar, flute and more on the world's largest community of sheet music creators."],
 	
+	[href(H+'www.kunstderfuge.com/','古典midi'),'',''],
 
 ],'TBrc'),1)+
 
