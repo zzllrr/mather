@@ -23,8 +23,10 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 	return cache?A:(count?cnt:1)
 
 }, seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值，类型（决定终止条件）,fn是主迭代函数，fnstop是终止条件函数（返回布尔值false或者数字0，或空字符串） 递归（或迭代）次数未知 (maxl限定最多迭代次数，防止死循环)
-	var y=type||'3n+1',hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
-	if(/^\d+n[\+\-]\d+$/.test(y)){//
+	var y=type||'3n+1', yk=+y.split('n')[0], yb=+y.split('n')[1]||1,
+	 hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
+	//if(/^\d+n[\+\-]\d+$/.test(y)){//
+	if(!fn || !fnstop){//
 		/*
 			n+1：奇数->偶数 是收敛的
 			
@@ -41,8 +43,8 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 				//x=5*x+3;//5n+3 轨道1→8→1, 3→9→3, 存在更长的循环节例如5～，7～但长度都还未算出来(>8万)
 				//x=5*x-1;//5n-1 轨道1→4→1, 3→7→17→21→13→1, 存在更长的循环节例如11～但长度都还未算出来(>1万)
 				//x=5*x-3;//5n-3 轨道1→2→1, 3→12→3, 存在更长的循环节例如11～但长度都还未算出来(>1万)
-				//console.log(+y.split('n')[0],+y.split('n')[1]);
-				x=+y.split('n')[0]*x+(+y.split('n')[1])
+				
+				x=yk*x+yb
 			}
 			while(!(x%2)){
 				x=x/2
@@ -77,7 +79,68 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 
 	}
 	return t.slice(1)
+
+	
+}, seqrAmod=function(start,type,fn,fnstop,fnstopA,maxl){/*
+	
+	类似于seqrA，但函数迭代type是对3n+1的推广形式，输入形式有区别，不是表达式，而是kn+b中的系数k
+
+	当k-1|x时，
+	f(x)=x/(k-1)   如果结果仍满足k-1|x，继续迭代计算；
+
+	当x≡j (mod k-1)时，其中j是最小剩余
+	f(x)=[kx+k-1-j]/(k-1)  =  x+ (x+k-1-j)  /(k-1)   = x+1 + (x-j)/(k-1)  = x + 1 + [x/(k-1) 向下取整]   =  x  + [x/(k-1) 向上取整]
+	即x → x + [x/(k-1) 向上取整]
+
+3x+1  /2 =  x+ (x+1)/2
+	*/
+	var k=(+type)||3, k_1=k-1,
+	hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
+	
+	if(!fn || !fnstop){//
+		/*
+			n+1：奇数->偶数 是收敛的
+			
+		*/
+		var fn=function(x0){
+			var x=x0;
+			if(fnstop(x)){
+				return x
+			}else if(x%k_1){
+				var j=x % k_1;
+
+				//x+=1+(x-j)/k_1
+				x+=Math.ceil(x/k_1)
+			}
+			while(!(x%k_1)){
+				x=x/k_1
+			}
+			return x
+		},fnstop=function(x){//若x已经在A或t中则停止
+			
+
+			var j=(fnstopA||t).indexOf(x);
+			return j>0 && j<(fnstopA||t).length-1
+		}
+	}
+	var m=fn(start);
+	//console.log('m='+m);
+	t=[fnstop(m),start,m];
+	while(!t[0] && t.length<l){
+		//console.log(t);
+		m=fn(m);
+		//console.log('m = '+m);
+		if(t.indexOf(m)>0){//已存在
+			t.push(m);
+			break;
+		}
+		t.push(m);
+		t[0]=fnstop(m);
+
+	}
+	return t.slice(1)
 		
+
 }, orbits=function(type){//输出轨道【增加一个参数，chrome for循环会假死（不知原因）】
 
 	var a=[],b=[];

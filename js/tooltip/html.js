@@ -242,6 +242,7 @@ E|F|G
 
 	'Slide':[
 		href(Hs+'webslides.tv/demos/','Slide API'),
+		href(Hs+'webslides.tv/static/css/svg-icons.css','CSS'),
 		detail(gM('Structure'),[
 
 			Arrf(scegn,ZLR('section nav')).join(''),
@@ -282,8 +283,9 @@ E|F|G
 		detail(gM('Style'),[
 			sceg2(' class=""'),
 			Arrf(sceg2,ZLR('wrap embed img flexblock')).join(''),
-			gM('Text')+Arrf(sceg2,ZLR(zlr('text-','data serif separator shadow'))).join(''),
-			Arrf(sceg2,ZLR(zlr('text-','landing subtitle intro context'))).join(''),
+			gM('Text')+Arrf(sceg2,ZLR(zlr('text-','data label separator shadow slide-number'))).join(''),
+			Arrf(sceg2,ZLR(zlr('text-','landing subtitle intro quote context cols interview info pull'))).join(''),
+			Arrf(sceg2,ZLR(zlr('text-','uppercase lowercase emoji serif symbols apple'))).join(''),
 			Arrf(sceg2,ZLR(zlr('text-pull-','left right'))).join(''),
 
 
