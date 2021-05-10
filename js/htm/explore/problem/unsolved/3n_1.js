@@ -81,9 +81,19 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 	return t.slice(1)
 
 	
-}, seqrAmod=function(start,type,fn,fnstop,fnstopA,maxl){/*
+}, seqrAmod=function(start,type,fn,fnstop,fnstopA,maxl,nontrivial){/*
 	
 	类似于seqrA，但函数迭代type是对3n+1的推广形式，输入形式有区别，不是表达式，而是kn+b中的系数k
+	另外的区别1是，fn函数，遇到结果小于初值时，也会终止迭代
+	区别2是，nontrivial参数，指定结果数组长度小于maxl时，即属于平凡结果，则舍去，返回空字符串
+
+x,'3'      ~   x,'32', 49,50 , 都已验证：47,48,51, 60,70,100,111有反例
+	Arrf(function(y){return Arrf(function(x){return seqrAmod(x,'5','','','','',1)},seqA(1+120000*y,120000)).join('\n').trim()},seqA(0,100)).join('\n').trim()
+
+	saveText(Arrf(function(x){return seqrAmod(x,'3','','','','',1).join()},seqA(1,100000)).join('\n').trim(),'3.txt')
+
+
+
 
 	当k-1|x时，
 	f(x)=x/(k-1)   如果结果仍满足k-1|x，继续迭代计算；
@@ -130,13 +140,16 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 		//console.log(t);
 		m=fn(m);
 		//console.log('m = '+m);
-		if(t.indexOf(m)>0){//已存在
+		if(t.indexOf(m)>0 || m<t[1] ){//已存在  或 m<t[1] 小于初始值
 			t.push(m);
 			break;
 		}
 		t.push(m);
 		t[0]=fnstop(m);
 
+	}
+	if(nontrivial && t.length<l){
+		return ''
 	}
 	return t.slice(1)
 		
