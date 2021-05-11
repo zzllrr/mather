@@ -24,7 +24,7 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 
 }, seqrA=function(start,type,fn,fnstop,fnstopA,maxl){//递归序列: 初始值，类型（决定终止条件）,fn是主迭代函数，fnstop是终止条件函数（返回布尔值false或者数字0，或空字符串） 递归（或迭代）次数未知 (maxl限定最多迭代次数，防止死循环)
 	var y=type||'3n+1', yk=+y.split('n')[0], yb=+y.split('n')[1]||1,
-	 hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
+	 hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||10000,t=[];
 	//if(/^\d+n[\+\-]\d+$/.test(y)){//
 	if(!fn || !fnstop){//
 		/*
@@ -83,14 +83,15 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 	
 }, seqrAmod=function(start,type,fn,fnstop,fnstopA,maxl,nontrivial){/*
 	
-	类似于seqrA，但函数迭代type是对3n+1的推广形式，输入形式有区别，不是表达式，而是kn+b中的系数k
+	类似于seqrA，但函数迭代type是对3n+1的推广形式，输入形式有区别，不是表达式，而是f_{k-1}(x) = kn+b中的系数k
 	另外的区别1是，fn函数，遇到结果小于初值时，也会终止迭代
-	区别2是，nontrivial参数，指定结果数组长度小于maxl时，即属于平凡结果，则舍去，返回空字符串
+	区别2是，nontrivial参数，指定结果数组长度小于maxl（默认10000）时，即属于平凡结果，则舍去，返回空字符串
 
-x,'3'      ~   x,'32', 49,50 , 都已验证：47,48,51, 60,70,100,111有反例
-	Arrf(function(y){return Arrf(function(x){return seqrAmod(x,'5','','','','',1)},seqA(1+120000*y,120000)).join('\n').trim()},seqA(0,100)).join('\n').trim()
+3  ~   41,43, 46, 49,50 , 都已验证无反例：42,44,45, ,47,48,51~60,70,100,111有“反例”（maxl=1000时)(maxl=10000就可能不是“反例”了）
+	var n=34;
+	n++;Arrf(function(y){return Arrf(function(x){return seqrAmod(x,n,'','','','',1)},seqA(1+120000*y,120000)).join('\n').trim()},seqA(0,100)).join('\n').trim()
 
-	saveText(Arrf(function(x){return seqrAmod(x,'3','','','','',1).join()},seqA(1,100000)).join('\n').trim(),'3.txt')
+	saveText(Arrf(function(x){return seqrAmod(x,'3','','','','',1)},seqA(1,100000)).join('\n').trim(),'3.txt')
 
 
 
@@ -105,7 +106,7 @@ x,'3'      ~   x,'32', 49,50 , 都已验证：47,48,51, 60,70,100,111有反例
 3x+1  /2 =  x+ (x+1)/2
 	*/
 	var k=(+type)||3, k_1=k-1,
-	hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||1000,t=[];
+	hasfn=fn!==null,hasfn1=fnstop!==null,l=maxl||10000,t=[];
 	
 	if(!fn || !fnstop){//
 		/*
