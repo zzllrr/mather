@@ -3103,6 +3103,25 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		return sortBy.kxyz(a, b)
 
 	},
+
+	chrspace: function (x, y) {//按空格数，字母及长度排序	
+		var a = '' + x, b = '' + y;
+
+		if (a == b) { return 0 }
+		var sa=a.split(' ').length, sb=b.split(' ').length;
+		if (sa != sb) { return sa-sb }
+
+		var la = a.length, lb = b.length, m = Math.min(la, lb);
+
+		for (var i = 0; i < m; i++) {
+			var t = a[i].charCodeAt(0) - b[i].charCodeAt(0);
+			if (t) {
+				return Math.sign(t)
+			}
+		}
+		return la - lb
+	},
+
 	kxyz: function (a, b) {//按未知数排序
 		var A1 = ('' + a).replace(/[^a-zα-ω]/ig, ''), B1 = ('' + b).replace(/[^a-zα-ω]/ig, '');
 		return sortBy.chr(A1, B1)

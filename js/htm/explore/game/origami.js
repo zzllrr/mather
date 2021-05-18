@@ -12,6 +12,7 @@ explore['Game/Origami']=
 
 		[href(Hs+'www.happyfolding.com'),gM('Web'),''],
 		[href(Hs+'www.paperfolding.com'),gM('Web'),''],
+		[href(Hs+'www.polyhedra.net/zh/','polyhedra 多面体折纸模型'),gM('Web'),''],
 
 
 	],'TBrc')
