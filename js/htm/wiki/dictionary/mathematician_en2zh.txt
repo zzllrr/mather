@@ -1,0 +1,1087 @@
+Aalen,O.O.	奥伦
+Abel,N.H. 阿贝尔
+Abū Kāmil 阿布·卡米勒
+Abu'l-Wafa	阿布·瓦法
+Ackermann,W.F.	阿克曼
+Adams,J.C. 亚当斯
+Adams,J.F.	亚当斯
+Adelard of Bath	阿德拉德
+Ado,I.D. 阿多
+Agnesi,M.	阿涅西	检名
+Ahlfors,L.V.	会单号	阿尔福斯
+Aida Yasuaki	会田安明
+Airy, G. B.	艾里
+Aitken,A. C.	艾特肯
+Ajima Naonobu	安岛直圆
+Albanese,G.	阿尔巴内塞
+al-Battānī 巴塔尼
+Albert,A.A. 阿尔伯特
+Alberti,L.B. 阿尔贝蒂
+al-Bīrūnī 比鲁尼
+al Hāsib,H. 海拜什·哈西卜
+Aleksandrov,A.D. 亚历山德罗夫
+Aleksandrov,P.S. 亚历山德罗夫
+Alexander,J.W. 亚历山大
+al-Jawhari 焦赫里
+al-Karajī 凯拉吉
+al-Kāshī 卡西
+al-Khowārizmi	花拉子米
+Allendoerfer,C.B.	艾伦多弗
+al-Samaw'al 塞毛艾勒
+al-Tūsī,N.al-Dīn	纳西尔·丁·图西
+al-Uqlīdīsī 乌格里狄西
+Ampére,A.-M. 安培
+Anaxagoras 安纳萨哥拉斯
+Anderson,T.W. 安德森
+Anosov,D.V. 阿诺索夫
+Anthonisz,A.	安托尼兹
+Antiphon 安蒂丰
+Apollonius of Perga	阿波罗尼奥斯
+Appel,K. 阿佩尔
+Appell,P.-E. 阿佩尔
+Archimedes 阿基米德
+Archytas 阿契塔斯
+Argand,R. 阿尔冈
+Aristotle 亚里士多德
+Arnol'd,V.I. 阿诺尔德
+Arrow,K.J. 阿罗
+Artin,E. 阿廷
+Aryabhata I 阿耶波多第一
+Arzelà,C. 阿尔泽拉
+Askey,R.A. 阿斯基
+Atiyah,M.F. 阿蒂亚
+Babbage,C. 巴贝奇
+Babuška,I. 巴布斯卡
+Bachet,C.-G. 巴歇
+Bäcklund,A.V. 贝克隆
+Backus,J.巴克斯
+Baer,R. 白尔
+Bahadur,R.R. 巴哈杜尔
+Bailey,W.N. 贝利
+Baire,R.L. 贝尔
+Baker,A. 贝克
+Baker,A.L. 贝克
+Baker,H.F. 贝克
+Baker,T. 贝克
+Banach,S. 巴拿赫
+Bang,T. 邦
+Bargmann,V. 巴格曼
+Barnes,E.W. 巴恩斯
+Barrow,I. 巴罗
+Bauer,F.L. 鲍尔
+Bauer,G.C. 鲍尔
+Bauer,H. 鲍尔
+Bauer,M. 鲍尔
+Baxter,R.J. 巴克斯特
+Bayes,T. 贝叶斯
+Bell,E.T. 贝尔
+Bellman,R. 贝尔曼
+Beltrami,E. 贝尔特拉米
+Bendixson,I.O. 本迪克松
+Bergman,S. 伯格曼
+Berkeley,G. 伯克利
+Bernays,P. 贝尔奈斯
+Bernoulli,Daniel 丹尼尔·伯努利
+Bernoulli,Jacob I 雅各布第一·伯努利
+Bernoulli,Jacob II 雅各布第二·伯努利
+Bernoulli,John I 约翰第一·伯努利
+Bernoulli,John II 约翰第二·伯努利
+Bernoulli,John III 约翰第三·伯努利
+Bernoulli,Nicolaus I 尼古拉第一·伯努利
+Bernoulli,Nicolaus II 尼古拉第二·伯努利
+Bernstein,F. 伯恩斯坦
+Bernstein,S.N.伯恩斯坦
+Bers,L. 贝尔斯
+Bertrand,J. 贝特朗
+Bessaga,C. 贝沙加
+Bessel,F.W. 贝塞尔
+Betti,E. 贝蒂
+Bézier,P,É.	贝齐尔
+Bézout,É. 贝祖
+Bhāskara II 婆什迦罗第二
+Bhattacharyya,A. 巴塔恰里亚
+Bianchi,L. 比安基
+Bieberbach,L.	比伯巴赫
+Binet,J.P.M. 比内
+Bing,R.H. 宾
+Biot,J.-B. 毕奥
+Birch,B.J. 伯奇
+Birkhoff,G. 伯克霍夫
+Birkhoff,G.D.伯克霍夫
+Bitsadze,A.V. 比察捷
+Bjerknes,V. 皮叶克尼斯
+Blackwell,D. 布莱克韦尔
+Blaschke,W. 布拉施克
+Bloch,A. 布洛赫
+Blumenthal,L.O.布卢门塔尔
+Bochner,S. 博赫纳
+Boethius,A.M.S. 博伊西斯
+Bogolyubov,N. N. 博戈柳博夫
+Bohr,H. 玻尔
+Bolibrukh,A.A.	鲍里布鲁克
+Boltzmann,L.E.	玻耳兹曼
+Bolyai,J. 波尔约
+Bolza,O.博尔扎
+Bolzano,B. 波尔查诺
+Bombelli,R. 邦贝利
+Bombieri,E. 邦别里
+Bonnet,P.-O. 博内
+Boole,G. 布尔
+Borcherds,R.E.	博切尔兹
+Borel,A.	博雷尔
+Borel,E. 博雷尔
+Born,M.	玻恩
+Bosse,A.	博斯
+Bott,R.	博特
+Bourbaki,N. 布尔基
+Bourgain,J. 布尔甘
+Boussinesq,J.V. 布西内斯克
+Box,G. E.P. 博克斯
+Boyer,C.B. 博耶
+Bradwardine,T. 布拉德沃丁
+Brahmagupta 婆罗摩笈多
+Brauer,R.D. 布饶尔
+Bravais,A. 布拉维
+Brianchon,C.-J. 布里昂雄
+Briggs,H. 布里格斯
+Brillouin,M.L. 布里渊
+Brouncker,W. 布龙克尔
+Brouwer,L.E.J. 布劳威尔
+Browder,F.E. 布劳德
+Browder,W. 布劳德
+Brown,R. 布朗
+Bruhat,F. 布吕阿
+Brun,V. 布伦
+Bryson of Heraclea 布里松
+Bucy,R.S. 布西
+Bürgi,J. 比尔吉
+Buffon,G.L.L. 布丰
+Bunyakovskii,V.Ya.	布尼亚科夫斯基
+Burali-Forti,C. 布拉利－福尔蒂
+Burgers,J.M. 伯格斯
+Burnside,W. 伯恩赛德
+Busemann,H. 布斯曼
+Byron,Ada A.	拜伦
+Cajori,F. 卡约里
+Calabi,E. 卡拉比
+Calderón,A.P.	卡尔德龙
+Cameron,R.H.	卡梅伦
+Campanus of Novara 坎帕努斯
+Campbell,J.E. 坎贝尔
+Cantelli,F.P. 坎泰利
+Cantor,G. 康托尔
+Cantor,M.B. 康托尔
+Carathèodory,C.	卡拉泰奥多里
+Cardano,G. 卡尔达诺
+Carleman,T. 卡莱曼
+Carleson,L.A.E. 卡勒松
+Carlson,B.C. 卡尔松
+Carnot,L.N.M.卡诺
+Cartan,E.J. 嘉当
+Cartan,H.P. 嘉当
+Cartier,P.E. 卡吉耶
+Cassels,J.W.S. 卡塞尔斯
+Catalan,E.C. 卡塔兰
+Cauchy,A.-L. 柯西
+Cavalieri,B. 卡瓦列里
+Cayley,A. 凯莱
+Čech,E. 切赫
+Cesaro,E. 切萨罗
+Chan-chan Tsoo 姜立夫
+Chang Sun-Yung Alice 张圣容
+Chaplygin,S.A. 恰普雷金
+Chapman,S. 查普曼
+Charpit,P. 沙比
+Chasles,M. 沙勒
+Chebyshev,P.L. 切比雪夫
+Chen Ching-Jun	陈景润
+Chen Kien-Kwong	陈建功
+Cheng Dawei 程大位
+Chern Shiing-Shen 陈省身
+Chevalley,C. 谢瓦莱
+Chiang L.F. 姜立夫
+Cholesky,A.-L.	楚列斯基
+Chow Wei-Liang	周炜良
+Christoffel,E.B. 克里斯托费尔
+Chung Kai-Lai 钟开莱
+Chuquet,N. 许凯
+Church,A. 丘奇
+Clairaut,A.-C. 克莱罗
+Clavius,C. 克拉维乌斯
+Clliford,A.H.	克利福德
+Clliford,W.-K.	克利福德
+Cohen,P.J. 科恩
+Cohn-Vossen,S. 康福森
+Cole,F.N. 科尔
+Condorcet,M.de	孔多塞
+Connes,A. 孔涅
+Conway,J.H. 康韦
+Cooper,S.B. 库珀
+Cooper,W.W.	库珀
+Cormack,A.M.	科马克
+Cornu,M.A.	考纽
+Cotes,R. 科茨
+Courant,R.	库朗
+Cournot,A.A.	古诺
+Cox,D.R.	考克斯
+Coxeter,H.S.M.	考克斯特
+Cramer,G. 克拉默
+Cramèr,H. 克拉默
+Crelle,A.L. 克雷尔
+Cremona,A.L.G.G.	克雷莫纳
+Curtis,C.W. 柯蒂斯
+d'Alembert,J.L.R. 达朗贝尔
+da Vinci,L. 达·芬奇
+Dantzig,G.B. 丹齐格
+Darboux,G. 达布
+Darwin,C.G.	达尔文
+Darwin,G.H. 达尔文
+Davenport,H. 达文波特
+Davis,M.D. 戴维斯
+de Branges,L. 德布朗热
+de Giorgi,E. 德乔治
+de la Vallée-Poussin,C.-J. 德拉瓦莱普桑
+de Maupertuis,P.L.M.	莫佩蒂
+De Moivre,A. 棣莫弗
+De Morgan,A. 德摩根
+de Rham,G. 德拉姆
+de Sluse,R.-F. 斯吕塞
+de Vries,G. 德弗里斯
+Debreu,G. 德布鲁
+Debye,P.J.W. 德拜
+Dedekind,J.W.R. 戴德金
+Dehn,M. 德恩
+Deligne,P.R. 德利涅
+Delone,B.N. 杰洛涅
+Democritus 德谟克利特
+Denjoy,A. 当茹瓦
+Desargues,G. 德萨格
+Descartes,R.du P. 笛卡儿
+Deuring,M.F. 多伊林
+Dickson,L.E. 狄克森
+Dieudonné,J.A. 迪厄多内
+Diffie,B.W. 迪菲
+Dini,U.迪尼
+Dinostratus	狄诺斯特拉托斯
+Diophantus	丢番图
+Dirac,P.A.M. 狄拉克
+Dirichlet,P.G.	狄利克雷
+Dixon,A.C. 狄克逊
+Donaldson,S.K.	唐纳森
+Doob,J.L. 杜布
+Douglas,J. 道格拉斯
+Douglas,R.G. 道格拉斯
+Drinfel'd,V.G.	德林费尔德
+du Bois-Reymond, P. D. G. 杜布瓦雷蒙
+Duffing,G. 达芬
+Duhamel,J.M.C. 杜阿梅尔
+Dunford,N. 邓福德
+Dupin,P.C.F.迪潘
+Dürer,A. 丢勒
+Dyck,W.F.A.von	戴克
+Dynkin,E.B.	邓肯
+Dyson,F.J.	戴森
+Efimov,N.V. 叶菲莫夫
+Egorov,D.F. 叶戈罗夫
+Ehresmann,C. 埃雷斯曼
+Eilenberg,S. 艾伦伯格
+Einstein,A. 爱因斯坦
+Eisenhart,L.P. 艾森哈特
+Eisenstein,F.G.M.	艾森斯坦
+Engquist,B. 恩奎斯特
+Enriques,F. 恩里克斯
+Enskog,D. 恩斯库格
+Eratosthenes 埃拉托色尼
+Erdös,P. 埃尔德什
+Euclid of Alexandria	欧几里得
+Eudemus of Rhodes	欧德莫斯
+Eudoxus of Cnidus	欧多克索斯
+Euler,L. 欧拉
+Faddeev,L.D. 法捷耶夫
+Fagnano,G.C. 法尼亚诺
+Faltings,G. 法尔廷斯
+Fan Ky 樊畿
+Fano,G. 法诺
+Fantappiè,L. 凡塔皮耶
+Farey,J. 法里
+Farkas,J. 福科什
+Fatou,P.J.L. 法图
+Federer,H.	费德雷尔
+Fefferman,C.L. 费弗曼
+Fehlberg, E.	费尔伯格
+Feit,W.	费特
+Fejér,L. 费耶
+Feller,W. 费勒
+Feng Kang 冯康
+Fermat,P.de 费马
+Ferrari,L. 费拉里
+Ferro,S. 费罗
+Feynman,R.P. 费恩曼
+Fibonacci,L.	斐波那契
+Fields,J.C. 菲尔兹
+Fikhtengol'tz,G. M.	菲赫金戈尔兹
+Filon,L.N.G. 菲隆
+Fine,H.B. 范因
+Fink,T. 芬克
+Finsler,P. 芬斯勒
+Fiore,A.M.	费奥雷
+Fischer,E. 费舍尔
+Fisher,R.A. 费希尔
+Fitting,H.菲廷
+Floquet,A.M.G. 弗洛凯
+Fourier,J.B.J. 傅里叶
+Fraenkel,A.A.	弗伦克尔
+Frank,P. 弗兰克
+Frankl,P. 弗兰克尔
+Frattini,G. 弗拉蒂尼
+Fréchet,M.-R.	弗雷歇
+Fredholm,E.I. 弗雷德霍姆
+Freedman,M. 弗里德曼
+Frege,F.L.G. 弗雷格
+Freidlin,M.I. 弗赖德林
+Friedrichs,K.O. 弗里德里希斯
+Fresnel,A.J. 菲涅尔
+Freudenthal,H.	弗罗伊登塔尔
+Friedrichs,K.O. 弗里德里希斯
+Frisch,R. 弗里施
+Frobenius, F.G. 弗罗贝尼乌斯
+Frohlich,A.弗勒利希
+Fubini,G.富比尼
+Fuchs,I.L. 富克斯
+Fujita Takao	藤田隆夫
+Furstenberg,H. 弗斯腾伯格
+Galërkin,B.G. 伽辽金
+Galileo(Galilei) 伽利略
+Galle,J.G. 加勒
+Galois,E. 伽罗瓦
+Galton,F. 高尔顿
+Gårding,L. 戈尔丁
+Gâteaux,R.E. 加托
+Gauss,C.F. 高斯
+Gegenbauer,L. 盖根鲍尔
+Gehan,E.A. 吉亨
+Gelfand,I.M. 盖尔范德
+Gelfond,A.O.	盖尔丰德
+Gentzen,G.K.E.	根岑
+Gerard of Cremona	杰拉德
+Gerbert 热尔贝
+Gergonne,J.-D. 热尔岗
+Germain,S. 热尔曼
+Gevrey,M.J. 热夫雷
+Gibbs,J.W. 吉布斯
+Girard,A. 吉拉尔
+Girsanov,I.V. 吉尔萨诺夫
+Givens,J.W.Jr. 吉文斯
+Gleason,A.M. 格利森
+Glimm,J. 格利姆
+Gnedenko,B.V. 格涅坚科
+Gödel,K. 哥德尔
+Godunov,S.K. 戈杜诺夫
+Goldbach,C. 哥德巴赫
+Goldstein,H.H. 戈尔德施泰因
+Golubev,V.V. 戈卢别夫
+Gomory,R.E. 戈莫里
+Gordan,P.A. 戈丹
+Gordon,W. 戈登
+Gorénstein,D. 戈伦斯坦
+Gosper,B. 高斯珀
+Gosset,W.S. 戈塞特
+Gould,H.W. 古尔德
+Goursat,É.J.-B.	古尔萨
+Gowers,W.T. 高尔斯
+Gram,J.P. 格拉姆
+Grandi,G. 格兰迪
+Grassmann,H.G. 格拉斯曼
+Green,G. 格林
+Gregory,J. 格雷戈里
+Griess,R.L. 格里斯
+Griffiths,P.A. 格里菲斯
+Gromov,M. 格罗莫夫
+Gronwall,T.H. 格朗沃尔
+Grossmann,M. 格罗斯曼
+Grothendieck,A. 格罗滕迪克
+Gudermann,C. 古德曼
+Haar,A. 哈尔
+Hadamard,J.阿达马
+Haefliger,A. 黑夫利格尔
+Hahn,H. 哈恩
+Hall,M.Jr. 霍尔
+Hall,P. 霍尔
+Halley,E. 哈雷
+Halmos,P.R. 哈尔莫斯
+Hamel,G.K.W. 哈梅尔
+Hamilton,R. 哈密顿
+Hamilton,W.R. 哈密顿
+Hammerstein,A. 哈默斯坦
+Hamming,R.W. 汉明
+Hankel,H. 汉克尔
+Hardy,G.H. 哈代
+Harish-Chandra 哈里希－钱德拉
+Harnack,C.G.A. 哈纳克
+Hartogs,F. 哈托格斯
+Hasse,H. 哈塞
+Hausdorff,F. 豪斯多夫
+Hawking,S.W. 霍金
+Hayashi Tsuruichi 林鹤一
+Hayman,W.K. 海曼
+Heath,T.L. 希思
+Heaviside,O. 赫维赛德
+Heawood,P. 希伍德
+Hecke,E. 赫克
+Heegaard,P. 赫戈
+Heilbronn,H. 海尔布伦
+Heine,H.E. 海涅
+Heisenberg,W.K. 海森伯
+Hellinger,E. 黑林格
+Hellman,M.E.	赫尔曼
+Helmert,F.R. 赫尔默特
+Helmholtz,H.L.F.	亥姆霍兹
+Hensel,K. 亨泽尔
+Hermite,C. 埃尔米特
+Heron of Alexander	海伦
+Hesse,L.O.	黑塞
+Heyting,A. 海廷
+Higman,G.	希格曼
+Hilbert,D.	希尔伯特
+Hill,G.W.	希尔
+Hill,L.S. 希尔
+Hill,R. 希尔
+Hille,C.E. 希勒
+Hiong King-Lai	熊庆来
+Hipparchus 希帕科斯
+Hippasus 希帕索斯	受要林
+Hippias of Ellis 希比阿斯
+Hippocrates of Chios	希波克拉底
+Hironaka Heisuke 广中平佑
+Hirzebruch,F.E.P. 希策布鲁赫
+Hobbes,T. 霍布斯
+Hochschild,G.P.	霍赫希尔德
+Hodge,W.V.D.	霍奇
+Hölder,O.L. 赫尔德
+Holmgren,E.A. 霍姆格伦
+Hopf,E. 霍普夫
+Hopf,H. 霍普夫
+Hopfield,J.J. 霍普菲尔德
+Hopkins,W. 霍普金斯
+Hörmander,L.V. 霍尔曼德
+Horner,W.G. 霍纳
+Hotelling,H. 霍特林
+Householder,A.S. 豪斯霍尔德
+Hsiang Wu-Yi 项武义
+Hsu Pao-lu 许宝录
+Hua Loo-Keng	华罗庚
+Hudde,J. 许德
+Hukuhara Masuo	福原满洲雄
+Hunt,G.A. 亨特
+Huntington,E.V.	亨廷顿
+Hurewicz,W. 胡雷维奇
+Hurwitz,A. 赫尔维茨
+Huygens,C. 惠更斯
+Hypatia 希帕蒂娅
+Ibn al-Haytham	伊本·海塞姆
+Iitaka Shigeru	饭高茂
+Ince,E.L. 英斯
+Infeld,L. 因费尔德
+Ito Kiyosi 伊藤清
+Iwasawa Kenkichi	岩泽健吉
+Iyanaga Shokichi	弥永昌吉
+Jacobi,C.G.J. 雅可比
+Jacobson,N.	雅各布森
+Jan Stieltjes,T.	斯蒂尔切斯
+Janko,Z. 扬科
+Jevons,W.S.	杰文斯
+Jia Xian 贾宪
+John,F. 约翰
+Jones,D.S. 琼斯
+Jones,V.F.R. 琼斯
+Jordan,M.E.C. 若尔当
+Joukowski,N.Y.	茹科夫斯基
+Julia,G.M. 茹利亚
+Jung,H.W.E. 荣格
+Kac,M. 卡茨
+Kähler,E. 凯勒
+Kakutani Shizuo	角谷静夫
+Kalman,R.E. 卡尔曼
+Kamke,E. 卡姆克
+Kant,I. 康德
+Kantorovich,L.V. 康托洛维奇
+Kaplansky,I. 卡普兰斯基
+Karlin,S. 卡林
+Karpinski,L.C. 卡尔平斯基
+Kashiwara Masaki 柏原正树
+Katona,G.O.H.	卡托纳
+Kato Tosio 加藤敏夫
+Kawada Yukiyoshi 河田敬义
+Kawamata Yujiro 川又雄二郎
+Kazhdan,D. 卡日丹
+Keldysh,M.V. 凯尔迪什
+Keller,J.B. 凯勒
+Kellogg,O.D. 凯洛格
+Kelvin,Lord 开尔文勋爵（即W.汤姆森）
+Kempe,A.B.	肯普
+Kendall,D.G.	肯德尔
+Kepler,J. 开普勒
+Khatri,C.G. 卡特里
+Khayyam,Omar	奥马·海亚姆
+Khinchin,A.Ya. 辛钦
+Khot,S. 科特
+Kiang Tsai-han	江泽涵
+Kiefer,J.C. 基弗	率级夫
+Killing,W.K.J. 基灵
+Kirchhoff,G.R.	基尔霍夫
+Kleene,S.C. 克林
+Klein,F. 克莱因
+Klein,L.R. 克莱因
+Kleinberg,J. 克莱因伯格
+Kline,M. 克莱因
+Kloosterman,H.D.	克卢斯特曼
+Klügel,G.S. 克吕格尔
+Knopp,K. 克诺普
+Knuth,D.E. 克努特
+Kobayashi Shoshichi	小林昭七
+Koch,H.von	柯赫
+Kodaira Kunihiko	小平邦彦	
+Koebe,P. 克贝
+Kolmogorov,A.N. 科尔莫戈罗夫
+Kontsevich,M. 孔采维奇
+Koopmans,T.C.库普曼斯
+Korteweg,D.J. 科尔泰沃赫
+Kostant,B. 科斯坦特
+Koszul,J.-L. 科斯居尔
+Kovalevskaya,S.V. 柯瓦列夫斯卡娅
+Kravchuk,M.F. 克拉夫丘克
+Krein,M.G. 克赖因
+Kronecker,L. 克罗内克
+Krull,W. 克鲁尔
+Kruskal,M.D. 克鲁斯卡尔
+Kubota Tadahiko 洼田忠彦
+Kuhn,H.W. 库恩
+Kullback,S. 库尔贝克
+Kummer,E.E. 库默尔
+Künneth,H.L. 屈内特
+Kuratowski,K. 库拉托夫斯基
+Kurosh,A.G. 库洛什
+Kutta,M.W.	库塔
+L'Hospital,G.-F.-A.de 洛必达
+La Hire,P.de 拉伊尔
+Lacroix,S.F. 拉克鲁瓦
+Ladyzhenskaya,O.A. 拉德任斯卡娅
+Lafforgue,L. 拉福格
+Lagrange,J.L. 拉格朗日
+Laguerre,E.N.	拉盖尔
+Lalande,J.de	拉朗德
+Lambert,J.H.	兰伯特
+Lamé,G. 拉梅
+Lanchester,F.W.	兰彻斯特
+Lanczos,C. 兰乔斯
+Landau,E.G.H. 兰道
+Landen,J. 兰登
+Lang,S. 兰
+Langlands,R.P. 朗兰兹
+Laplace,P.-S.M.de 拉普拉斯
+Laurent,P.A. 洛朗
+Lavrent'ev,M.A.	拉夫连季耶夫
+Lax,P.D. 拉克斯
+Le Verrier, U. J. J.	勒维耶
+Lebesgue,H.L. 勒贝格
+Lefschetz,S. 莱夫谢茨
+Legendre,A.-M. 勒让德
+Lehmer,D.H. 莱默
+Lehmer,D.N. 莱默
+Leibler,R.A. 莱布勒	单户能检算
+Leibniz,G.W. 莱布尼茨
+Lempel,A.	伦佩尔
+Leontief,W. 列昂惕夫
+Leray,J. 勒雷
+Levenberg,K. 利文贝格
+Levi,B. 莱维
+Levi-Civita,T. 列维－奇维塔
+Levinson,N. 莱文森
+Levitan,B.M. 列维坦
+Levy,P.P. 莱维
+Lewy,H. 列维
+Li Ye (Li Yeh) 李冶
+Li Chunfeng(Li Ch'un-feng) 李淳风
+Li Shanlan 李善兰
+Lie,S. 李
+Lieb,E.H. 利布
+Liénard,A.-M. 李纳
+Lin Chia-chiao 林家翘
+Lindeberg,J.W. 林德伯格
+Lindeloef,E.L. 林德勒夫
+Lindemann,C.L.F.	林德曼
+Lindley,D.V.	林德利
+Linnik,Yu.V. 林尼克
+Lions,J.-L.	利翁斯
+Lions,P.-L.	利翁斯
+Liouville,J.	刘维尔
+Lipschitz,R.	利普希茨
+Listing,J.B.	利斯廷
+Littlewood,J.E.	李特尔伍德
+Liu Hui 刘徽
+Liu Zhuo 刘焯
+Lobachevsky,N.I. 罗巴切夫斯基
+Lojasiewicz,S. 洛雅希维奇
+Loomis,E. 卢米斯
+Lopatinskii,Ya.B.	洛帕京斯基
+Lorentz,H.A. 洛伦兹
+Lovász,L. 罗瓦兹
+Lüroth,J. 吕罗特
+Lusztig,G. 卢斯蒂格
+Luzin,N.N. 卢津
+Lyapunov,A.M. 李雅普诺夫
+Macaulay,F.S. 麦考莱
+Macdonald,I.G. 麦克唐纳
+MacLane,S. 麦克莱恩
+Maclaurin,C. 麦克劳林
+Mādhava 玛大瓦
+Magenes,E. 马格内斯
+Mantel,N. 曼特尔
+Māhāvira	马哈维拉
+Mahler,K. 马勒
+Malliavin,P. 马利亚万
+Mandelbrot,B.B.	芒德布罗
+Manin,Y.I.	马宁
+Mardešić,S. 马尔德西奇
+Margulis,G.A. 马尔古利斯
+Markov,A.A.	马尔可夫
+Markushevich,A.I. 马尔库舍维奇
+Marquardt,D.W. 马夸特
+Martin,W.T.马丁
+Martinelli,E. 马丁内利－
+Matiyasevich,Y.V.马蒂雅舍维奇
+Matsunaga Yoshisuke 松永良弼
+Maxwell,J.C.	麦克斯韦
+Mayer,W. 迈耶
+McMullen,C.T.	麦克马伦
+McShane,E.J.	麦克沙恩
+Mellin,R.H. 梅林
+Menaechmus 梅内克缪斯
+Menelaus 梅涅劳斯
+Méray,H.C.R. 梅雷
+Mercator,N. 梅卡托
+Mersenne,M. 梅森
+Meyer,P.-A. 迈耶
+Mikami Yoshio 三上义夫
+Mills,R.L. 米尔斯
+Milnor,J.W. 米尔诺
+Minfu Tan Hu 胡明复
+Minkowski,H. 闵可夫斯基
+Mittag-Leffler,M.G. 米塔－列夫勒
+Miyaoka Yoichi	宫冈洋一
+Möbius,A.F. 默比乌斯
+Monge,G. 蒙日
+Montel,P.A. 蒙泰尔
+Montgomery,D. 蒙哥马利
+Montucla,J.-É.	蒙蒂克拉
+Morawetz,C.S.	莫拉韦茨
+Mordell,L.J. 莫德尔
+Morera,G. 莫雷拉
+Morgenstern,O. 莫根施特恩
+Mori Shigefumi 森重文
+Morita Kiiti 森田纪一
+Morley,F. 莫利
+Morse,H.M.	莫尔斯
+Moser,J.K. 莫泽
+Mosteller,F. 莫斯特勒
+Mostow,G.D. 莫斯托
+Mostowski,A. 莫斯托夫斯基
+Motzkin,T.S. 莫茨金
+Moulton,F.R. 莫尔顿
+Müller,J. 米勒（即雷乔蒙塔努斯）
+Mumford,D.B. 芒福德
+Murnaghan,F.D. 默纳汉
+Murray,J.D. 默里
+Nagata Masayoshi 永田雅宜
+Naimark,M.A. 奈马克
+Nakayama Tadasi	中山正
+Napier,J. 纳皮尔
+Narayana,P. 纳拉亚纳
+Nash,J.F. 纳什
+Navier,C.-L.-M.-H. 纳维
+Néron,A. 内龙
+Neugebauer,O. 诺伊格鲍尔
+Neumann,C.G. 诺伊曼
+Nevanlinna,R.H. 奈旺林纳
+Newman,M.H.A. 纽曼
+Newton,I. 牛顿
+Neyman,J、奈曼
+Nichomachus 尼科马可斯
+Nichomedes 尼科米德
+Nieuwentijt,B. 纽文泰特
+Nirenberg,J、 尼伦伯格
+Noether,E. 爱米·诺特
+Noether,M. 马克斯·诺特
+Novikov,S.P. 诺维科夫
+Obuhov,A.M.	奥布霍夫
+Ohm,M、 欧姆
+Okounkov,A.Y. 奥昆科夫
+Ore,O.	奥尔
+Oresme,N.奥雷姆
+Orlicz,W. 奥尔利奇
+Ornstein,D.S. 奥恩斯坦
+Osgood,W. 奥斯古德
+Ostrogradsky,M.V. 奥斯特罗格拉茨基
+Otto,V. 奥托
+Oughtred,W.	奥特雷德
+Pacioli,L. 帕乔利
+Padé,H.E.	帕德
+Painlevé,P. 潘勒韦
+Palais,R. S.	帕莱
+Papakyriakopoulos,C.D.	帕帕基利亚科普洛斯
+Pappus 帕普斯
+Parent,A. 帕朗
+Pareto,V.F.D. 帕雷托
+Parmenides 巴门尼德
+Parseval des Chênes,M.-A.	帕塞瓦尔
+Pascal,B. 帕斯卡
+Pasch,M. 帕施
+Peacock,G. 皮科克
+Peano,G. 佩亚诺
+Pearson,E.S. 皮尔逊
+Pearson,K. 皮尔逊
+Peirce,B.皮尔斯
+Peirce,C.S. 皮尔斯
+Pell,J. 佩尔
+Penrose,R. 彭罗斯
+Percival,I.C. 珀西瓦尔
+Perelman,G. 佩雷尔曼
+Perron,O. 佩龙
+Petersen,J.P. 彼得森
+Peterson,K.M. 彼得松
+Petersson,H. 彼得松
+Petrov,G.I. 彼得罗夫
+Petrovsky,I.G.	彼得罗夫斯基
+Peuerbach,G. 波伊尔巴赫
+Pfaff,J.F. 普法夫
+Philolaus 费洛劳斯
+Piatetski-Shapiro,1.	皮亚捷茨基－夏皮罗
+Picard,C.E.皮卡
+Pinsker,A.G. 平斯克
+Pinsker, M.S. 平斯克
+Planck,M.K.E.L.	普朗克
+Plateau,J、A、F. 普拉托
+Plato of Tivoli 普拉托
+Plato 柏拉图
+Playfair,J. 普莱菲尔
+Plemelj,J. 普勒梅利
+Plücker,J. 普吕克
+Plutarch 普鲁塔克
+Pogorelov,A.V. 波戈列洛夫
+Poincaré,J.H. 庞加莱
+Poisson,S.-D.泊松
+Pollaczek,F. 波拉切克
+Polya,G. 波利亚
+Poncelet,J.-V. 蓬斯莱
+Pontryagin,L.S. 庞特里亚金
+Post,E.L. 波斯特
+Powell,M.J.D. 鲍威尔
+Prandtl,L. 普朗特
+Privalov,I.I. 普里瓦洛夫
+Proclus 普罗克鲁斯
+Prokhorov,Y.V. 普罗霍罗夫
+Prüfer,H.	普吕弗
+Ptolemy 托勒密
+Putnam,H.	普特南
+Pythagoras of Samos	毕达哥拉斯
+Qin Jiushao(Ch'in Chiu-shao)	秦九韶
+Quillen,D.G. 奎伦
+Qurra,T.ibn	库拉
+Radau,J.C.R. 拉道
+Rademacher,H.	拉德马赫
+Rado,R. 拉多
+Radon,J. 拉东
+Ramanujan, S. I.	拉马努金
+Ramsey,F.P. 拉姆齐
+Rankin,R. A. 兰金
+Rao,C.R. 拉奥
+Raphson,J. 拉弗森
+Ratner,M. 拉特纳
+Ray-Chaudhuri,D.K.	雷－乔杜里
+Rayleigh,Lord 瑞利勋爵（即J.W.斯特拉特）
+Razborov,A.A. 拉兹博罗夫
+Regiomontanus,J. 雷乔蒙塔努斯
+Reidemeister,K.W.F.	赖德迈斯特
+Remes,E.Ya.	列梅兹
+Rényi,A. 雷尼
+Reynolds,O. 雷诺
+Rheticus,G.J. 雷蒂库斯
+Rieatti,J.F,里卡蒂
+Ricci,C.G. 里奇
+Rieci,M. 利玛窦
+Richardson,A.R.	理查森
+Riemann,G.F.B.	黎曼
+Riesz,F. 里斯
+Ritt,J,F. 里特
+Ritz,W. 里茨
+Robert of Chester	罗伯特
+Roberval,G.P. 罗伯瓦尔
+Robin,V.G. 罗宾
+Robinson,A.	鲁宾逊
+Robinsn,G.de B.	鲁宾逊
+Robinson,J.B.	鲁宾逊
+Roch,G. 罗赫
+Rodrigues,O.罗德里格斯
+Rogers,C.A. 罗杰斯
+Rogers,L.J. 罗杰斯
+Rohrl,H. 勒尔
+Rokhlin,V.A.	罗赫林
+Rolle,M. 罗尔
+Room,T.G. 罗姆
+Rota,G.-C. 罗塔
+Roth,K.F. 罗特
+Rouché,E. 儒歇
+Royden,H.L. 罗伊登
+Rozenfeld,B.A.	罗森菲尔德
+Ruffini,P. 鲁菲尼
+Runge,C.D.T. 龙格
+Russell,B.A.W. 罗素
+Saccheri,G. 萨凯里
+Samuelson,P.A. 萨缪尔森
+Sankra Vāriyar 商羯罗·婆利耶罗
+Sasaki Shigeo 佐佐木重夫
+Sato Mikio 佐藤干夫
+Schatten,R. 沙滕
+Schauder,J.P. 绍德尔
+Schimidt,E.施密特
+Schmid,H.-L. 施密德
+Schmid,W. 施密德
+Schneider,T. 施奈德
+Schnirelmann,L.G. 施尼雷尔曼
+Schoenfeld,A.H. 舍恩菲尔德
+Schottky,F.H. 肖特基
+Schröder,F.W.K.E.	施罗德
+Schrödinger,E. 薛定谔
+Schubert,H.C.H. 舒伯特
+Schur,I. 舒尔
+Schwartz,L. 施瓦兹
+Schwarz,H.A. 施瓦茨
+Segre,C. 塞格雷
+Seidel,P.L.von	赛德尔
+Seifert,H.K.J.	塞弗特
+Seki Takakazu	关孝和
+Selberg,A.	塞尔贝格
+Serre,J.-P. 塞尔
+Severi,F. 塞韦里
+Shafarevich,I.R.	沙法列维奇
+Shannon,C.E. 香农
+Shapley,L.S. 沙普利
+Sheffer,I.M. 谢费尔
+Shelah,S. 谢拉赫
+Shilov,G.E. 希洛夫
+Shimura Goro 志村五郎
+Shnirel'man,L.G. 施尼雷尔曼
+Shoda Kenjiro 正田建次郎
+Shor,P.W. 肖尔
+Siegel,C.L.	西格尔
+Sierpiński,W. 谢尔品斯基
+Simon,H.A. 西蒙
+Simpson,T. 辛普森
+Sinai,Y.G.	西奈
+Singer,I.M. 辛格
+Sister Celine 赛琳修女
+Siu Yum-Tong	萧荫堂
+Skolem, T.A.	斯科伦
+Smale,S. 斯梅尔
+Smirnov,V.I. 斯米尔诺夫
+Smith,D.E. 史密斯
+Smogolenski,J.N. 穆尼阁
+Snell,W. 斯涅尔
+Sobolev,S.L. 索伯列夫
+Spencer,D.C. 斯潘塞
+Sperner,E. 施佩纳
+Sridhara 斯里达拉
+Stackelberg,H.F.von	施塔克尔贝格
+Staudt,K.G.C.von	施陶特
+Steenrod,N.E. 斯廷罗德
+Stein,E.M. 斯坦
+Steinberg,R. 斯坦贝格
+Steiner,J. 施泰纳
+Steinhaus,H. 施坦豪斯
+Steinitz,E. 施泰尼兹
+Steklov,V.A. 斯杰克洛夫
+Stepanov,V.V. 斯杰潘诺夫
+Stevin,S. 斯蒂文
+Stickelberger,L. 施蒂克贝格
+Stiefel,E.L. 斯蒂弗尔
+Stieltjes,T.J. 斯蒂尔切斯
+Stifel,M. 施蒂费尔
+Stirling,J. 斯特林
+Stokes,G.G. 斯托克斯
+Stone,M.H. 斯通
+Stratonovich,R.L. 斯特拉托诺维奇
+Struik,D.J. 斯特罗伊克
+Strutt,J.W.	斯特拉特
+Sturm,C.-F. 斯图姆
+Sturm,F.O.R. 施图姆
+Su Bu-Chin	苏步青
+Sudan,M.苏丹
+Suetuna Zyoiti	末纲恕一
+Sullin,D.P. 沙利文
+Susln,M.Y.苏斯林
+Swimnerton-Dyer,H.P.F. 斯温纳顿－戴尔
+Sylow.P.L.M. 西罗
+Syivester,J.J. 西尔维斯特
+Saego G. 赛格
+Saemenedi,E. 塞迈雷迪
+Saobefalvi-Nagy,B. 瑟凯法尔维－纳吉
+Talagi Teiji 高木贞治
+Tabebe Katahiro 建部贤弘
+Takesaki Masamichi	竹崎正道
+Tamarkin,J.D. 塔马金
+Taniyama Yutaka 谷山丰
+Tanmery J. 塔内里
+Tanmery,P. 塔内里
+Tao,T. 陶哲轩
+Tarski,A. 塔斯基
+Tarjan,R.E. 塔尔扬
+Tartaglia(本名 Niccolo Fontana)塔尔塔利亚
+Tate,J.T.泰特
+Tate,T.T.泰特
+Tauber,A. 陶伯
+Taylor,B. 泰勒
+Taylor,R.L.泰勒
+Teichmueller,O. 泰希米勒
+Thales of Miletus 泰勒斯
+Theaetetus 泰特托斯
+Theodorus of Cyrene 西奥多罗斯
+Theodosius of Bithynia 西奥多修斯
+Theon of Alexandria 塞翁
+Thom,R. 托姆
+Thompson,J.G. 汤普森
+Thomson,W. 汤姆森
+Thurston,W.P.瑟斯顿
+Tikhonov,A.N. 吉洪诺夫
+Tinbergen,J. 丁伯根
+Titchmarsh,E.C. 蒂奇马什
+Tits,J.L. 蒂茨
+Toda Morikazu 户田盛和
+Toeplitz,O.特普利茨
+Tomita Minoru 富田稔
+Tomelli,L. 托内利
+Torricelli,E. 托里拆利
+Tracy,C.A. 特雷西
+Treves,J.F. 特利夫斯
+Tricomi,F.G. 特里科米
+Truesdell,C.A. 特鲁斯德尔
+Tschirnhaus,E.W. 奇恩豪斯
+Tsen Chiung-tze 曾炯
+Tsen Tze-fan 郑之藩
+Tsetlin,M.L. 采特林
+Tuan Hsio-Fu 段学复
+Tucker,A.W.塔克
+Tukey,J.W. 图基
+Turán,P.图兰
+Turing,A.M. 图灵
+Turnbull,B.W. 特恩布尔
+Tutte,W.T. 塔特
+Uhlenbeck,K. 乌伦贝克
+Ulam,S.M. 乌拉姆
+Ulugh Beg 乌鲁伯格
+Urbanik,K. 乌尔班尼克
+Urysohn,P.S.乌雷松
+Valiant,L. 瓦利安特
+Valiron,G. 瓦利龙
+van der Corput,J.G. 范德科普
+van der Pol,B. 范德波尔
+van der Waerden,B.L. 范德瓦尔登
+van Kampen,E.R. 范坎彭
+van Schooten,F.范斯霍滕
+Vandermonde,A.T. 范德蒙德
+Varadhan,S.R.S. 瓦拉德汉
+Varāhamihira 瓦拉哈米希拉
+Veblen,O. 维布伦
+Venn,J. 维恩
+Veronese,G. 韦罗内塞
+Viehweg,E. 费外
+Vieta,F. 韦达
+Vietoris,L. 菲托里斯
+Ville,J. 维尔
+Vinogradov,I.M. 维诺格拉多夫
+Viterbi,A. 维特比
+Viviani,V. 维维亚尼
+Voevodsky,V. 沃耶沃茨基
+Volterra,V. 沃尔泰拉
+von Mises,R. 冯·米泽斯
+von Neumann,J. 冯·诺依曼
+Wagner,D.H. 瓦格纳
+Wald,A. 瓦尔德
+Wall,C.T.C. 沃尔
+Wallis,J. 沃利斯
+Walras,L. 瓦尔拉
+Walsh,J.E. 沃尔什
+Walsh,J.L. 沃尔什
+Wang Hao 王浩
+Wang Hsien-Chung 王宪钟
+Wang Shianghaw	王湘浩
+Wang Xiaotong	王孝通
+Wantzel,P.-L.	旺策尔
+Waring,E. 华林
+Watson,J.D. 沃森
+Weber,H. 韦伯
+Wedderburn,J.H.M. 韦德伯恩
+Weierstrass, K.	魏尔斯特拉斯
+Weil,A. 韦伊
+Wentzell,A.D.	温策尔
+Werner,J. 维尔纳
+Werner,W. 维尔纳
+Wessel,C. 韦塞尔
+Weyl,H. 外尔
+Whewell,W. 休厄尔
+Whitehead,A.N. 怀特黑德
+Whitehead,G.W. 怀特黑德
+Whitehead,J.H.G. 怀特黑德
+Whitney,H. 惠特尼
+Whittaker,E.T. 惠特克
+Whyburn,G.T. 怀伯恩
+Widom,H. 维德姆
+Wiener,N. 维纳
+Wigderson,A. 威格德森
+Wigner,E.P. 维格纳
+Wilder,R.L. 怀尔德
+Wiles,A. 怀尔斯
+Wilkes,S.S. 威尔克斯
+Willmore,T.J. 威尔莫
+Wiman,A. 威曼
+Wintner,A. 温特纳
+Wishart,J. 威沙特
+Wilson,R.M.	威尔逊
+Witt,E. 维特
+Witten,E. 威顿
+Wittgenstein,L.	维特根斯坦
+Wolf,R. 沃尔夫
+Wren,C. 雷恩
+Wronski,H.J.M. 朗斯基
+Wu Hung-Hsi 伍鸿熙
+Wu Wen-Tsün	吴文俊
+Wylie,A. 伟烈亚力
+Xu Guangqi (Hsü Kuang-ch'i) 徐光启
+Yang Chen-Ning	杨振宁
+Yang Ko-Chuen	杨武之
+Yates,F.耶茨
+Yau Shing-Tung	丘成桐
+Yoccoz,J.-C. 约柯兹
+Yosida Kosaku	吉田耕作
+Youden,W.J. 尤登
+Young,J.R. 杨
+Young,J.W. 杨
+Linnik,Yu V. 林尼克
+Yuk Wing Lee 李郁荣
+Yukawa Hideki 汤川秀树
+Yushkevich,A.P.	尤什凯维奇
+Zabusky,N.J. 扎布斯基
+Zadeh,L.A. 扎德
+Zariski,O. 扎里斯基
+Zeeman,E.C. 塞曼
+Zeilberger,D. 才奥伯格
+Zelmanov,E.I. 泽尔曼诺夫
+Zeno of Elea 芝诺
+Zermelo,E.F.F. 策梅洛
+Zeuthen,H.G. 措伊滕
+Zhu Shijie (Chu Shih-Chieh)	朱世杰
+Zhukovsky,N.E. 茹科夫斯基
+Zippin,L. 齐平
+Ziv,J. 齐夫
+Zorn,M. 佐恩
+Zu Chongzhi 祖冲之
+Zygmund,A. 齐格蒙德
