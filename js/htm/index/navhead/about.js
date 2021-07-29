@@ -12,13 +12,13 @@ $(function(){
 		'Open Access':['Open','Free','CC'],
 		'Consensus & Cooperation':['Kind','Pally','Peace-loving','Non-discriminatory']
 	};
-	
+
 	oHTML(
 
 		subtabs(gM(['Version','Setting','Hotkey','Whitepaper','Project Progress','Licence','Donate','About zzllrr']),[
-			
+
 			//version
-			fieldseth('V2021.5.11',
+			fieldseth('V2021.7.29',
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo data-z data-z-event="pointer">zzllrr Mather</h1>'+
 						imgSRC+'logo.jpg" width=150 />'+
@@ -37,12 +37,12 @@ $(function(){
 
 						)+
 						gM('Summarytip')
-						
+
 					)
-	
+
 				)
 			),
-	
+
 			//setting
 
 			fieldseth(gM('Browser Cache'),[
@@ -52,11 +52,11 @@ $(function(){
 				gM('Export File')+itv('" id="CacheDownload','file_download'),
 				gM('Clear Cache')+itv('" id="CacheClear','clear_all')
 				].join(br)
-	
-	
+
+
 			),
-	
-	
+
+
 			//hotkey
 
 			fieldseth(gM('Textarea'),
@@ -120,7 +120,7 @@ Table('',[
 Table('',[
 	[scHotk('Ctrl + B'),XML.wrapE('b',gM('Bold')),sceg('**ABC**')],
 	[scHotk('Ctrl + I'),XML.wrapE('i',gM('Italic')),sceg('*ABC*')],
-	[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__')], 
+	[scHotk('Ctrl + U'),SCtv('underline',gM('Underline')),sceg('__ABC__')],
 	[scHotk('Ctrl + K'),SCtv('underline',gM('href')),sceg('['+gM('Title')+'](http://)')],
 
 	[scHotk('Ctrl + Q'),gM('Blockquote'),sceg('> ABC')],
@@ -141,15 +141,15 @@ Table('',[
 	[
 		scHotk('↓'),gM('Move Down'),
 	],
-	[	
+	[
 		scHotk('Ctrl + C'),gM('Copy'),
 	],
 	[
 		scHotk('Ctrl + V'),gM('Paste'),
 	],
-	
 
-	
+
+
 	[
 		scHotk('Esc'),gM('Hide')+' | '+gM('Toggle'),
 	],
@@ -174,7 +174,7 @@ Table('',[
 	],
 	[
 		scHotk('U'),gM('Undo / Redo'),
-	],	
+	],
 	[
 		scHotk('V'),gM('Layer Toggle'),
 	],
@@ -187,22 +187,22 @@ Table('',[
 ])),
 			//whitepaper
 			fieldseth(gM('Aims'),gM('Aimstip'))+
-			
+
 			fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
 				Table('',tableT([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public')),
 				'&nbsp;✔&nbsp;,'.repeat(14).split(',')]),'TBrc','alignc')
 			)+
-	
+
 			fieldseth(gM('Vision'),gM('Visiontip')+
-				
+
 				Table([[gM('Program'),gM('Localized Name'),gM('Vision')]],
 					[['Mather',gM('Mather'),gM('International Standard Open-Sourced Math Tool Program by Experts')],
 					['zzllrr Mather',gM('zzllrr Mather'),gM('Customized Math Tool Program based on Mather by zzllrr')],
 					['? Mather','? '+gM('Mather'),gM('Customized Math Tool Program based on Mather by someone')]],'TBrc')
 			)+
-	
+
 			fieldseth(gM('Mather Protocol'),
-	
+
 				ol(Arrf(function(i){return gM(i)+SCtv('mg20',Arrf(function(x){return XML.wrapE('label',strchkbx0+chked+' disabled /> '+gM(x))},protocol_keywords[i]).join(''))},[
 					'Organism',
 					'Offline Computation & Online Connection',
@@ -211,7 +211,7 @@ Table('',[
 					'Consensus & Cooperation'
 				]))
 			),
-	
+
 			//progress
 
 			[
@@ -219,85 +219,85 @@ Table('',[
 					[
 						[gM('Solve'),meter(30),
 							'#'+gM(ZLR('Systematized Detailed Stepwise')).join(', #')],
-					
+
 						[gM('Graphic'),meter(70),
 							'#'+gM(ZLR('Multipath Convenient Layered')).join(', #')],
-							
+
 						[gM('Show'),meter(85),
 							'#'+gM(ZLR('Efficient Semantical Automatic')).join(', #')],
-							
+
 						[gM('Wiki'),meter(20),
 							'#'+gM(ZLR('Compact Structural Semantical')).join(', #')],
-					
+
 						[gM('Teaching'),meter(10),
 							'#'+gM(ZLR('Reusable Hierarchical Functional')).join(', #')],
-					
+
 						[gM('Academic'),meter(8),
 							'#'+gM(ZLR('Flexible Intelligent l10n')).join(', #')],
-							
+
 						[gM('Technology'),meter(20),
 							'#'+gM(ZLR('Extendable Customizable Efficient')).join(', #')],
 
 						[gM('Science'),meter(10),
 							'#'+gM(ZLR('Structural Unambiguous Inspiring')).join(', #')],
-							
+
 						[gM('Culture'),meter(15),
 							'#'+gM(ZLR('Systematized Interpretable Inspiring')).join(', #')],
-							
+
 
 				]),
-		
+
 				Table([gM(['Key Technology','Progress','Technology Decomposition'])],
 					[
 						[gM('Text Editor'),meter(80),
 							'#'+ZLR('LaTeX Markdown MathML HTML Unicode/AsciiMath').join(', #')],
-						
+
 						[gM('Offline Automatic Translator'),meter(20),
 							'#'+gM(ZLR('Glossary Grammar Corpus Context Linguistics l10n i18n')).join(', #')],
-							
+
 						[gM('Semantical Information Compression'),meter(30),
 							'#'+gM(ZLR('Parameterization Functionalization Programmatic Semantical')).join(', #')],
-							
+
 						[gM('Symbolic Calculation'),meter(20),
 							'#'+[gM('Computer Algebra System')+'(CAS)'].concat(gM(['Automatic Reasoning','Automatic Proof'])).join(', #')],
-							
+
 						[gM('Numerical Calculation'),meter(10),
 							'#'+['OpenGL','WebGL','WebAssembly','Service Worker','Web Worker'].join(', #')],
-							
+
 						[gM('Audio Synthesis'),meter(5),
 							'#'+gM(ZLR('Speech Sound Music')).join(', #')],
-							
+
 						[gM('Visualization'),meter(75),
 							'#'+gM(ZLR('Animation Video 2D 3D VR AR')).join(', #')],
-		
+
 						[gM('Open AI'),meter(0),
 							'#'+gM(ZLR('Universal Kind Peace-loving Non-discriminatory Decentralization')).join(', #')],
 				]),
-		
+
 				Table([gM(['Key Technology','Related Standardization','Degree.','Related Organization'])],
 					[
 						[gM('Math Graphics Library'),'#'+ZLR('WebGL OpenGL').concat(['OpenGL ES','Vulkan']).join(', #'),
 							meter(70),
 							'#'+ZLR('Khronos').join(', #')],
-						
+
 						['JS '+gM('Math Function Library'),'#'+ZLR('ECMAScript(ES)').join(', #'),
 							meter(30),
 							'#'+ZLR('ECMA').join(', #')],
-						
+
 						[gM('Math Expression'),'#'+ZLR('MathML SVG XML CSS XSL HTML XHTML DOM').join(', #').replace('CSS,','CSS<br>'),
 							meter(50),
 							'#'+ZLR('W3C WHATWG').join(', #')],
-		
+
 						[gM('Semantical Information Compression'),'#'+['ISO/IEC/IEEE 31320'].join(', #'),
 							meter(50),
 							'#'+['ISO','IEC','IEEE'].join(', #')],
 				])
 			].join(br),
-	
-	
+
+
 			Table([gM(['Type','Licence','Local File'])],[
 				[gM('Content'),
-	
+
 					href(Hs+'creativecommons.org/licenses/by/4.0/', gM('Creative Commons')+'(CC BY 4.0)'),
 					ul([
 						href('CODE_OF_CONDUCT.md',gM('Terms'))
@@ -311,45 +311,45 @@ Table('',[
 						href('css','CSS')
 					])
 				],
-			
+
 			],'TBrc'),
-			
-	
+
+
 			//donate
 			DCtv('alignc pd10',
 				DCtv('donatip red',gM('zzllrr Mather')+' '+gM('donatip'))+
-	
-			
+
+
 				XML.wrapE('h2', gM('donatip0'))+
 				`<div id=donaCN>
 					<div class=pd10>
 						<img src="img/Weixinpay.jpg" title="微信赞赏" />
-	
+
 						<div id=donaWeixin><img src="img/F1weixinPay.jpg" title="微信赞赏" /></div>
 					</div>
 					<div id=donaQR>
 						<div class=via>
-	
+
 							<img src="img/Alipay.png" title="支付宝" class=alipayImg />
 							<img src="img/QQpay.png" title="QQ钱包" class=qqpayImg />
 							</div>
 						<span id=donaV2aliPay class=donaV2 title="支付宝赞赏"></span>
 						<span id=donaV2qqPay class=donaV2 title="QQ钱包"></span>
-						
+
 					</div>
-	
+
 				</div>
-	
+
 				<div id=donaAbroad>
 					<img src="img/jiaohang.png" id=Jiaohang title="Bank of Communication" class=jiaohang />
 					<a href="https://www.paypal.me/zzllrr/8" target=_blank><img src="img/paypal_dona.gif" id=Paypal title="Paypal" /></a>
-	
+
 					<div class=pay></div>
 					</div>
-	
+
 				`
 			),
-	
+
 			//about zzllrr
 
 			ul([
@@ -360,9 +360,9 @@ Table('',[
 				href(HOM.ZRL,'小乐阅读zzllrr RSS Reader')+'（Google Chrome APP）作者',
 				href(HOM.ZMATHER,'小乐数学zzllrr Mather')+'（Open Source Software）作者',
 				gM('Contact')+': '+href(GMAIL,'zzllrr@gmail.com'),
-				
+
 			])+DCtv('alignc pd10',gM('WeChat')+'<div id=weixinZQR>'+dc),
-	
+
 		])
 	,1);
 
@@ -430,7 +430,7 @@ Table('',[
 					};
 					//reader.readAsDataURL(f);
 					reader.readAsText(f);
-					
+
 
 				}
 			}
