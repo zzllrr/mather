@@ -2016,7 +2016,7 @@ function dataURItoBlob(dataURI) {
 }
 
 function H_u(t) { return (t || '').replace(/[\?&]utm_.+=.*&utm_.+=.*&utm_.+=[^#]*/, '') }
-function H_w(t) { return (t || '').replace(/^https*:[/]{2}/, '') }
+function H_w(t) { return (t || '').replace(/^[^\?]+(https*:[/]{2})/, '$1').replace(/^https*:[/]{2}/, '') }
 function H_w1(t) { return (t || '').replace(/^http:[/]{2}/, '') }
 function H_W(t) { return H_w(t).replace(/[/\?].*$/, '') }
 function H_W1(t) { return H_W(t).replace(/.+\.(.*\.co.*)/, '$1') }
