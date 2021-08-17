@@ -16,10 +16,10 @@ detail(ksc('a+b, ab, a^n+b^n'),
 
 				
 
-			])+br+'当a>b≥1时，即a-b≥1，也即a≥b+1≥2，则a-1≥1'+br+
+			])+br+'当a≥b+1≥2时，a-1≥1'+br+
 			ksc([
 
-				'0 < a-b ≤ (a-b)^2,a+b ≤ a^2-b^2,1+2ab,2a+b^2 ≤ a^2+b^2 < (a+b)^2,2a^2',
+				'0 < a-b ≤ \\{(a-b)^2,a+b \\}≤\\{ a^2-b^2,1+2ab,2a+b^2\\} ≤ a^2+b^2 < \\{(a+b)^2,2a^2\\}',
 
 				'b ≤ b^2 < 2b^2 < a^2+b^2 ',
 
@@ -27,7 +27,7 @@ detail(ksc('a+b, ab, a^n+b^n'),
 
 				
 
-			])
+			]).join(br+br)
 
 		
 		),
@@ -50,7 +50,7 @@ detail(ksc('a+b, ab, a^n+b^n'),
 				'a^n+b^n≥2(ab)^{n\\/2}',
 				
 
-			])+br+'a≥b时'+br+
+			]).join(br+br)+br+'a≥b时'+br+
 			ksc([
 
 				'0≤a-b',
@@ -69,7 +69,7 @@ detail(ksc('a+b, ab, a^n+b^n'),
 				'a^n-b^n≥2(ab)^{n\\/2}',
 				
 
-			])
+			]).join(br+br)
 
 		
 		),

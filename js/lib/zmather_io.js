@@ -3176,7 +3176,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 
 	}).on('click','#reverseLine,#reversePerLine',function(){
-		var v=$('#input0').val(),vA=v.split(brn); 
+		var v=$('#input0').val()||'',vA=v.split(brn); 
 		if(this.id=='reverseLine'){
 			vA.reverse()
 		}else{
