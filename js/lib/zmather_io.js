@@ -9,7 +9,8 @@
 */
 
 
-var SBSi=[zlr('Num',' 1 2 3'),
+var SBSi=[zlr('Subject',' 1'),
+	zlr('Num',' 1 2 3'),
 	zlr('ABC',' 1 2 3'),
 	zlr('DEF',' 1 2 3'),
 	zlr('Operator',' 1 2'),
@@ -18,6 +19,21 @@ var SBSi=[zlr('Num',' 1 2 3'),
 	zlr('Misc',' 1 2 3 4')
 ].join(' '),
 SBS={
+	Subject:[
+		['²³⁰ᵐⁿπθλζ∇','⁻¹₀ˣʸαβγξΔ'],
+		['√∫′∑㏑°∠△','∛∬∂∏㏒∟⊥▱'],
+		['∵⇒⋯→↔✓','∴⇔⋮←↕✘'],
+		['×÷≥≠≈⊆⋂','±≤≡∈∅⊂⋃'],
+
+
+	],
+	Subject1:[
+		['∞','ℵ'],
+
+
+	],
+
+
 
 	Num:[['⁰¹²³⁴⁵⁶⁷⁸⁹','₀₁₂₃₄₅₆₇₈₉'],
 		['⁺⁻⁼⁽⁾%‰‱','₊₋₌₍₎'],
@@ -2446,9 +2462,9 @@ $(function(){
 				dc+
 				DCtv('onbox" hidden id="editText',[
 					DCtv('editTextBox',[
-						gM('By')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+						gM('By')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' '),
-							strtxt+'id=lineByChar />',
+							strtxt+'id=lineByChar tip="Linebreak by Character" />',
 						strbtn+gM('Merge Line.1')+'" id=lineMerge tip="Line.1 Merge" />'+
 						strbtn+gM('Split Line.1')+'" id=lineSplit tip="Line.1 Split" />'
 						]
@@ -2486,11 +2502,11 @@ $(function(){
 					DCtv('editTextBox hidden',[
 					
 
-						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
 							strtxt+'id=replaceWithChar />',
 
-						strbtn+gM('Replace')+'" id=Replace />'+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';'}[x]||x)) },
+						strbtn+gM('Replace')+'" id=Replace />'+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
 							strtxt+'id=replaceByChar />',
 

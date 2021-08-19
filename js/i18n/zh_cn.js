@@ -1061,6 +1061,7 @@ lang['zh_cn'] = {
 	'Coding':'编码',
 	'QRcode': '二维码',
 
+	'Unicode':'统一码',
 	'Snippet': '片段',
 	'Char': '字符',
 	'Character': '字符',
