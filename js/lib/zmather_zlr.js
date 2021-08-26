@@ -858,7 +858,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 				}
 				return eval(x0.replace(x00, o1[x00])) 
 			})
-			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
+			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '').replace(/([^'"])×([^'"])/g, '$1*$2')) }))
 
 			//	.replace(/≠/g,'=\\not\\mathrlap{}').replace(/≢/g,'≡\\not\\mathrlap{}')
 			// fix latex ≠ bug
