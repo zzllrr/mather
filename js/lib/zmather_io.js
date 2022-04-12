@@ -3161,7 +3161,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 
 	}).on('click','#Replace',function(){
-		var T=$('#input0'),v=T.val(),
+		var T=$('#input0'),v=T.val()||'',
 		t0=$('#replaceByChar').val(), t1=$('#replaceWithChar').val(),
 		isreg=$('#replaceRegexp').prop('checked'),
 		iscase=$('#replaceCaseSensitive').prop('checked');
