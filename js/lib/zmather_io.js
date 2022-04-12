@@ -2774,9 +2774,8 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			me.next().after(itv('snippetNew','add'));
 		}
 		pa.addClass('seled').siblings().removeClass('seled').find('.snippetNew').remove();
-
-		$('#input0Type').val(Meleo[t]||t);//.change();
 		$('#input0').val(L['snippet'+i]);
+		$('#input0Type').val(Meleo[t]||t).change();
 
 	}).on('change keyup mouseup', '.snippetName',function(){
 
@@ -3004,6 +3003,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 	}).on('click','#removeHTMLEditor',function(e){
 		$('#HTMLEditor img').remove()
 		
+
+	}).on('click','#SVGCopy',function(e){
+		var MJ=$('#input0Preview .MathJax');
+		copy2clipboard(MJ.html())
 
 	}).on('click','#downloadPreview',function(e){
 
@@ -3584,7 +3587,8 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		if(isSVG && $('#displayMode').length<1){
 			me.after(
 				itv('" id=displayMode tip="Display / Inline','wrap_text')+
-				itv('seled" id=SVGLinkMode tip="SVG Link','link')
+				itv('seled" id=SVGLinkMode tip="toggle SVG Link','link')+
+				itv('seled" id=SVGCopy tip="Copy SVG Code','content_copy')
 			)
 		}
 		$('#displayMode,#SVGLinkMode').toggle($(this).val()=='SVG')
@@ -3606,8 +3610,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			if(s.length){
 				s.eq(0).find('.snippetName').click();
 			}else if($('#input0').val()==''){
+				
 				$('#input0Type').val(o).change();
 			}
+			
 			
 
 			$('#iTextFold').not('.seled').click();
