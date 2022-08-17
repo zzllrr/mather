@@ -11,6 +11,8 @@ Table([i18(ZLR('Name Type Summary'))],[
 	[href(Hs+'www.mathcity.org','Math City'),'','help students to learn mathematics. This site contains material for the students of F.Sc., B.Sc., M.Sc., M.Phil. and Ph.D, in the subject of mathematics'],
 	[href(Hs+'www.intmath.com','Interactive Math'),'',''],
 
+	[href(Hs+'www.cut-the-knot.org','cut the knot'),'','by Alexander Bogomolny，涉及算术、代数、几何学、概率、三角学、视觉错觉'],
+
 	[href(Hs+'mathvault.ca','Math Vault'),'','Learn Higher Mathematics The Online Way. '+hrefA('mathvault.ca/math-test/','Math Test')],
 
 	[href(Hs+'www.aurelienalvarez.org','维度影片数学教授网站'),'','作者Aurélien Alvarez 是2010年达朗贝尔奖获奖影片《维度：数学漫步》的主要作者之一，目前担任里昂高师数学教授'],
@@ -32,7 +34,7 @@ Table([i18(ZLR('Name Type Summary'))],[
 	
 detail(gM('Reference'),Table([i18(ZLR('Name Type Author Summary'))],[
 
-	[],
+	[enwiki0('Category:Mathematics popularizers')],
 
 
 	

@@ -14,6 +14,7 @@ Table([i18(ZLR('Name Type Features'))],[
 	
 	[href(Hs+'mathvault.ca/math-glossary','Math Glossary'),'','The Definitive Glossary of Higher Mathematical Jargon'],
 	[enwiki('Mathematics'),'','Wikipedia'],
+  [href(Hs+'primes.utm.edu/glossary/home.php','Prime Glossary')]
 ],'TBrc');
 
 

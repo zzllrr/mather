@@ -897,7 +897,6 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 [gM2("Birkhoff conjecture",'',br,enwiki0),gM("Integrable Systems"),"",""],
 [gM2("Bloch–Beilinson conjectures",'',br,enwiki0),gM("Number Theory"),"",""],
 [gM2("Bloch–Kato conjecture",'',br,enwiki0),gM("Algebraic K–theory"),"",gM2("Norm residue isomorphism theorem")],
-[gM2("Bloch–Kato conjecture for special values",'',br,enwiki0),gM("Algebraic K–theory"),"",gM2("Norm residue isomorphism theorem")+br+'推广了'+gM2('Milnor conjecture')+br+gM2('Tamagawa number conjecture')],
 [gM2("Bochner–Riesz conjecture",'',br,enwiki0),gM("Harmonic analysis"),"",""+br+"⇒"+gM2("Restriction conjecture")+br+"⇒"+gM2("Kakeya Maximal Function conjecture")+br+"⇒"+gM2("Kakeya Dimension conjecture")],
 [gM2("Bombieri–Lang conjecture",'',br,enwiki0),gM("Diophantine Geometry"),"",""],
 [gM2("Borel conjecture",'',br,enwiki0),gM("Geometric topology"),"",""],
@@ -1034,7 +1033,9 @@ function tuple(I,J,Z){//利用前25个素数(2,3,5除外)，进行模运算(a(=3
 
 
 
-],'TBrc'))+
+],'TBrc')+
+enwiki('List_of_conjectures','2022-8-13')
+)+
 
 detail(gM('Unsolved Conjecture')+' 2',
 Table([i18(ZLR('Name Field Content Relation'))],[

@@ -9,7 +9,7 @@ explores={index:['Topic','Problem','Pitfall','Thinking','Game'],
 		'Topic List',
 		
 		{'Short Notes':[
-
+			'Area',
 			'Foldable Solids',
 			'Cuboid Surface Area',
 			'Two Buckets',
