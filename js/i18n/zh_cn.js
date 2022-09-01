@@ -110,7 +110,7 @@ lang['zh_cn'] = {
 
 	'Officer':'军官',
 	'Student': '学生',
-	'Parent': '父母',
+	'Parents': '父母',
 	'Teacher': '老师',
 	'Schoolgirl':'女生',
 	'Schoolboy':'男生',
@@ -1925,9 +1925,11 @@ lang['zh_cn'] = {
 	'Pentagon':'五边形',
 	'Hexagon':'六边形',
 	'Hex':'六边形',
+	'Heptagon':'七边形',
+	'Octagon':'八边形',
 	'Enneagon':'九边形',
 	'Nonagon':'九边形',
-
+	'Decagon':'十边形',
 	'Sextic':'六次',
 	'Fish Bladder':'鱼鳔形',
 	'Parabola': '抛物线',

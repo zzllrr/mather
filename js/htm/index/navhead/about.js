@@ -19,7 +19,7 @@ $(function(){
 
 			//version
 
-			fieldseth('V2022.8.17',
+			fieldseth('V2022.9.1',
 
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo data-z data-z-event="pointer">zzllrr Mather</h1>'+
@@ -191,7 +191,7 @@ Table('',[
 			fieldseth(gM('Aims'),gM('Aimstip'))+
 
 			fieldseth(gM('User')+' '+gM('or')+' '+gM('Participant'),
-				Table('',tableT([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parent Amateur Public')),
+				Table('',tableT([gM(ZLR('Student Teacher Engineer Enthusiast Geek Mathematician Researcher Educator Scholar Philosopher Artist Parents Amateur Public')),
 				'&nbsp;✔&nbsp;,'.repeat(14).split(',')]),'TBrc','alignc')
 			)+
 

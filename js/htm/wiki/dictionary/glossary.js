@@ -42,7 +42,7 @@ if(/q=Dictionary\/Glossary/.test(location.href)){
 			
 			for(var i=0, l=vA.length;i<l;i++){
 				var t=vA[i], gt=gM(t);
-				A.push(SCtv('GlossaryIndex', t)+SCtv('GlossaryTranslation', gt==t?'':'【'+gt+'】')+SCtv('pd2 opac', [
+				A.push(SCtv('GlossaryIndex', t)+SCtv('GlossaryTranslation', gt==t?'':'【'+gt+'】')+SCtv('pd2', [
 					enwiki(t.replace(/ /g,'_')),					
 					href(Hs+'mathworld.wolfram.com/'+t.replace(/OverscriptBox\[([A-Z]), _\]/g,'Q-Bar')
 						.replace(/(\d)\//g,'$1Over')
