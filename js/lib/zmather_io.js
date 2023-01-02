@@ -2273,6 +2273,33 @@ var OverCanvas=function(t){
 	$('#Pointer').click();
 
 
+}, MathSVG4Weixin=function(MJ){
+	if(!$('#SVGLinkMode').is('.seled')){
+
+	  /* https://www.jb51.net/article/166239.htm
+
+
+标签里的background的url()里，地址不能加引号，单引号双引号都不行，否则会被微信编辑器过滤掉。
+标签里不能有id属性
+不能有style script a标签
+
+涉及动画，需要给涉及到的元素的 <g> 设置style="outline:none"，包括 <g> 内的所有子 <g> 
+
+	  */
+	  
+	  MJ.find('use').each(function(){
+		  var id=$(this).attr('xlink:href');
+		  $(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /,''))
+	  });
+	  MJ.find('defs, style, script, a').remove();
+	  MJ.find('svg').removeAttr('aria-hidden role focusable');
+	  MJ.find('g').removeAttr('data-mml-node data-mjx-texclass');
+	  MJ.find('[stroke="currentColor"]').removeAttr('stroke');
+	  MJ.find('[fill="currentColor"]').removeAttr('fill');
+	  
+	}
+	MJ.find('style, script, a').remove();
+	MJ.children('mjx-assistive-mml').remove();	//删除MathML，因为微信公众号中粘贴时，MathML会被作为普通文本，需要避免冗余添加
 }, preDisplay=function(){
 	$('.imgHTMLEditor').toggle($('#toggleHTMLEditor').is('.seled'));
 	try{
@@ -2332,30 +2359,7 @@ var OverCanvas=function(t){
 				  //
 				  //  Error or not
 				  //
-				  if(!$('#SVGLinkMode').is('.seled')){
-
-					/* https://www.jb51.net/article/166239.htm
-
-
-标签里的background的url()里，地址不能加引号，单引号双引号都不行，否则会被微信编辑器过滤掉。
-标签里不能有id属性
-不能有style script a标签
-
-涉及动画，需要给涉及到的元素的 <g> 设置style="outline:none"，包括 <g> 内的所有子 <g> 
-
-					*/
-					var MJ=$('#input0Preview .MathJax');
-					MJ.find('use').each(function(){
-						var id=$(this).attr('xlink:href');
-						$(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /,''))
-					});
-					MJ.find('defs, style, script, a').remove();
-					MJ.find('svg').removeAttr('aria-hidden role focusable');
-					MJ.find('g').removeAttr('data-mml-node data-mjx-texclass');
-					MJ.find('[stroke="currentColor"]').removeAttr('stroke');
-					MJ.find('[fill="currentColor"]').removeAttr('fill');
-				  }
-				  
+				  MathSVG4Weixin($('#input0Preview .MathJax'))
 				});
 				
 			}
@@ -2654,6 +2658,7 @@ $(function(){
 
 				itv('" id=downloadPreview tip="Download HTML File','file_download')+
 
+				itv('" id=SVGCopy tip="Copy Code','content_copy')+
 
 				itv('" id=alignPreview tip="Center Align','format_align_center')+
 
@@ -2949,7 +2954,6 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			copy2clipboard(m[0].outerHTML)
 		}
 
-
 	}).on('click','#toggleHTMLEditor',function(e){
 		var me=$(this).toggleClass('seled');
 		$('#HTMLEditor,.imgHTMLEditor').toggle(me.is('.seled'))
@@ -3005,8 +3009,16 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		
 
 	}).on('click','#SVGCopy',function(e){
-		var MJ=$('#input0Preview .MathJax');
-		copy2clipboard(MJ.html())
+		var iP=$('#input0Preview'), MJ=iP.children();
+		if(MJ.is('.MathJax')){
+			copy2clipboard(MJ.html())
+		}else{
+			if(MJ.is('svg')){
+				MathSVG4Weixin(MJ)
+
+			}
+			copy2clipboard(iP.html())
+		}
 
 	}).on('click','#downloadPreview',function(e){
 
@@ -3526,6 +3538,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			tv=v;
 		}
 
+		
 		var ii=ZLR(Mele).indexOf(v),i=$('.snippet.seled').index()+1, p=ii>-1?ZLR(Meles)[ii]:v;
 		//console.log(v,p);
 		L['snippetType'+i]=p;
@@ -3574,7 +3587,8 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			$('.inputTip.inputTypeTip').last().prevAll().remove();
 
 		}
-		
+		$('#displayMode,#SVGLinkMode').toggle($('#output0Type').val()=='SVG');
+
 		if($('#preview.seled').length){
 			preDisplay()
 		}
@@ -3587,11 +3601,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		if(isSVG && $('#displayMode').length<1){
 			me.after(
 				itv('" id=displayMode tip="Display / Inline','wrap_text')+
-				itv('seled" id=SVGLinkMode tip="toggle SVG Link','link')+
-				itv('seled" id=SVGCopy tip="Copy SVG Code','content_copy')
+				itv('seled" id=SVGLinkMode tip="toggle SVG Link','link')
 			)
 		}
-		$('#displayMode,#SVGLinkMode').toggle($(this).val()=='SVG')
+
+		$('#displayMode,#SVGLinkMode').toggle(me.val()=='SVG')
 	
 	}).on('click','#send2textBox',function(){
 

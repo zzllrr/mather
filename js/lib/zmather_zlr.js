@@ -25,9 +25,9 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	imgPre = new RegExp(imgPreReg, 'gi'), imgPreRe = new RegExp('^' + imgPreReg, 'gi'),
 
 	hanziCoreRe = /[\u4E00-\u9FA5\uFF00-\uFFFF]/g, hanziRe = /[^\x00-\xff]/g,//含中文标点	注意使用test时，正则有全局g时，需重置hanziRe.lastIndex=0
-	enPunc = /[,\.\?!\/\-_:;'"\(\)\[\]\{\}]/g, enPhrase = /^[a-z]+ [a-z ]+$/i,
+	enPunc = /[,\.\?!\/\-_:;'"`\(\)\[\]\{\}]/g, enPhrase = /^[a-z]+ [a-z ]+$/i,
 	hanziPunc = /[，。？！—：；‘’“”（）【】]/g,
-	punc = /[,\.\?!\/\-_:;'"\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
+	punc = /[,\.\?!\/\-_:;'"`\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
 	fontReData = /^data.+font[/].{40,}/i, imgPreReData = /^data.+image\/.{40,}/gi, txtPreReData = /^data.+text\/plain/gi,
 	fontHan = '{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microsoft Yahei","微软正黑体":"Microsoft JhengHei","楷体":"KaiTi","新宋体":"NSimSun","仿宋":"FangSong"},"OS X":{"苹方":"PingFang SC","$黑体":"STHeiti","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","冬青黑体简":"Hiragino Sans GB","兰亭黑-简":"Lantinghei SC","翩翩体-简":"Hanzipen SC","手札体-简":"Hannotate SC","宋体-简":"Songti SC","娃娃体-简":"Wawati SC","魏碑-简":"Weibei SC","行楷-简":"Xingkai SC","雅痞-简":"Yapi SC","圆体-简":"Yuanti SC"},"office":{"幼圆":"YouYuan","隶书":"LiSu","$细黑":"STXihei","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$彩云":"STCaiyun","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","@舒体":"FZShuTi","@姚体":"FZYaoti"},"open":{"思源黑体":"Source Han Sans CN","思源宋体":"Source Han Serif SC","文泉驿微米黑":"WenQuanYi Micro Hei"},"hanyi":{"!旗黑":"HYQihei 40S","!旗黑":"HYQihei 50S","!旗黑":"HYQihei 60S","!大宋简":"HYDaSongJ","!楷体":"HYKaiti","!家书简":"HYJiaShuJ","!PP体简":"HYPPTiJ","!乐喵体简":"HYLeMiaoTi","!小麦体":"HYXiaoMaiTiJ","!程行体":"HYChengXingJ","!黑荔枝":"HYHeiLiZhiTiJ","!雅酷黑W":"HYYaKuHeiW","!大黑简":"HYDaHeiJ","!尚魏手书W":"HYShangWeiShouShuW"},"fangzheng":{"@粗雅宋#":"FZYaSongS-B-GB","@报宋#":"FZBaoSong-Z04S","@粗圆#":"FZCuYuan-M03S","@大标宋#":"FZDaBiaoSong-B06S","@大黑#":"FZDaHei-B02S","@仿宋#":"FZFangSong-Z02S","@黑体#":"FZHei-B01S","@琥珀#":"FZHuPo-M04S","@楷体#":"FZKai-Z03S","@隶变#":"FZLiBian-S02S","@隶书#":"FZLiShu-S01S","@美黑#":"FZMeiHei-M07S","@书宋#":"FZShuSong-Z01S","@舒体#":"FZShuTi-S05S","@水柱#":"FZShuiZhu-M08S","@宋黑#":"FZSongHei-B07S","@宋三#":"FZSong","@魏碑#":"FZWeiBei-S03S","@细等线#":"FZXiDengXian-Z06S","@细黑一#":"FZXiHei I-Z08S","@细圆#":"FZXiYuan-M01S","@小标宋#":"FZXiaoBiaoSong-B05S","@行楷#":"FZXingKai-S04S","@姚体#":"FZYaoTi-M06S","@中等线#":"FZZhongDengXian-Z07S","@准圆#":"FZZhunYuan-M02S","@综艺#":"FZZongYi-M05S","@彩云#":"FZCaiYun-M09S","@隶二#":"FZLiShu II-S06S","@康体#":"FZKangTi-S07S","@超粗黑#":"FZChaoCuHei-M10S","@新报宋#":"FZNew BaoSong-Z12S","@新舒体#":"FZNew ShuTi-S08S","@黄草#":"FZHuangCao-S09S","@少儿#":"FZShaoEr-M11S","@稚艺#":"FZZhiYi-M12S","@细珊瑚#":"FZXiShanHu-M13S","@粗宋#":"FZCuSong-B09S","@平和#":"FZPingHe-S11S","@华隶#":"FZHuaLi-M14S","@瘦金书#":"FZShouJinShu-S10S","@细倩#":"FZXiQian-M15S","@中倩#":"FZZhongQian-M16S","@粗倩#":"FZCuQian-M17S","@胖娃#":"FZPangWa-M18S","@宋一#":"FZSongYi-Z13S","@剪纸#":"FZJianZhi-M23S","@流行体#":"FZLiuXingTi-M26S","@祥隶#":"FZXiangLi-S17S","@粗活意#":"FZCuHuoYi-M25S","@胖头鱼#":"FZPangTouYu-M24S","@卡通#":"FZKaTong-M19S","@艺黑#":"FZYiHei-M20S","@水黑#":"FZShuiHei-M21S","@古隶#":"FZGuLi-S12S","@幼线#":"FZYouXian-Z09S","@启体#":"FZQiTi-S14S","@小篆体":"FZXiaoZhuanTi-S13T","@硬笔楷书#":"FZYingBiKaiShu-S15S","@毡笔黑#":"FZZhanBiHei-M22S","@硬笔行书#":"FZYingBiXingShu-S16S"}}'.replace(/!/g, '汉仪').replace(/@/g, '方正').replace(/#/g, '简体').replace(/\$/g, '华文'),
 
@@ -37,7 +37,42 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	imgReg = '(avif|bmp|gif|ico|jpeg|jpg|apng|png|svg|webp)',
 	hrefImgRe = new RegExp('\\S*\\.' + imgReg + '[\\?\\&]*.*', 'i'), textImgRe = new RegExp('(file|ftp|https?):[/]+[^\'"\\s\\(\\)]*\\.' + imgReg, 'gi'),
 	digiReg = /^\d+(\.\d)?$/,
-	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}]/g, '\\$&') },
+	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}\|]/g, '\\$&') },
+
+
+	NumExp=function(x){// 区间符号[(,)]或具体数值，多个条件并取使用英文逗号, 负无穷用(,或(-,表示, 正无穷用,)或+)表示
+		var A=x.replace(/[\[\(][^\]\)]+[\]\)]/g, t=>t.replace(/,/g,';')).split(','), l=A.length;
+
+		return {
+			test:function(t){
+				var d=+t;
+				for(var i=0;i<l;i++){
+					
+					var Ai=A[i];
+					if(/[\[\(]/.test(Ai)){
+						var B=Ai.replace(/\(-?;/,'(-Infinity;').replace(/;\+?\)/,';+Infinity)')
+							.replace(/[\[\(\)\]]/g,'').split(';').map(j=>+j),
+							A0=Ai[0], A1=Ai.substr(-1),
+							B0=B[0], B1=B.slice(-1)[0];
+
+//console.log(d, x, A0,A1,B0,B1, A0=='[' && d==B0 , A1==']' && d==B1 , B.indexOf(d)>-1 , d<B0 , d>B1);
+
+
+						if(A0=='[' && d==B0 || A1==']' && d==B1 || !(B.indexOf(d)>-1 || d<B0 || d>B1)){return 1}
+
+
+					}else{
+						if(d==+Ai){
+							return 1
+						}
+					}
+				}
+
+				return 0
+			}
+
+		}
+	},
 
 	ruby=function(s,top,a1){// a1 a2 a3 a4
 		return XML.wrapE('ruby',s+XML.wrapE('rt',top||(a1?a1.replace(/.\d/g,function(x){return ['aāáǎà','oōóǒò','eēéěè','iīíǐì','uūúǔù','üǖǘǚǜ']['aoeiuv'.indexOf(x[0])][+x[1]]}):'')))
@@ -592,7 +627,7 @@ function gM2(t,reverse, sep,f){
 
 function cacheUsage(){
 	var x=0;
-	for(let item in L) {
+	for(item in L) {
 		if(L.hasOwnProperty(item)) {
 		 	x += L.getItem(item).length;
 		}
@@ -858,13 +893,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 				}
 				return eval(x0.replace(x00, o1[x00])) 
 			})
-			.replace(/\$[^\$]+\$/g, function (x) {
-				var y=x.replace(/\$/g, '');
-				if(/×/.test(y) && !/['"]/.test(y)){
-					y=y.replace(/×/g,'*')
-				}
-				return eval(y) 
-			}))
+			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
 
 			//	.replace(/≠/g,'=\\not\\mathrlap{}').replace(/≢/g,'≡\\not\\mathrlap{}')
 			// fix latex ≠ bug
@@ -2022,7 +2051,7 @@ function dataURItoBlob(dataURI) {
 }
 
 function H_u(t) { return (t || '').replace(/[\?&]utm_.+=.*&utm_.+=.*&utm_.+=[^#]*/, '') }
-function H_w(t) { return (t || '').replace(/^[^\?]+(https*:[/]{2})/, '$1').replace(/^https*:[/]{2}/, '') }
+function H_w(t) { return (t || '').replace(/^https*:[/]{2}/, '') }
 function H_w1(t) { return (t || '').replace(/^http:[/]{2}/, '') }
 function H_W(t) { return H_w(t).replace(/[/\?].*$/, '') }
 function H_W1(t) { return H_W(t).replace(/.+\.(.*\.co.*)/, '$1') }
@@ -4069,11 +4098,20 @@ function detectZoom (){
 }
 
 function copy2clipboard(t){
-    $('body').append('<input id=zzllrrclip hidden type=text value="'+t+'" />');
+	$('#zzllrrclip').remove();
+    $('body').append('<input id=zzllrrclip style="width:1px" type=text />');
     $('#zzllrrclip').select();
-    document.execCommand('copy', false, null);
+    //document.execCommand('copy', false, null);
+	document.addEventListener("copy", function a(n) {
+		n.preventDefault();
+		n.clipboardData.setData("text/html", t);
+		n.clipboardData.setData("text/plain", t)
+		document.removeEventListener("copy", a)
+	});
+	document.execCommand("copy");
     $('#zzllrrclip').remove();
 }
+
 
 var Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
 	Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));

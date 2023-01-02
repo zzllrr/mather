@@ -325,7 +325,7 @@ function dayOrNight(){
 	}
 	
 }
-
+/*
 function copy2clipboard(t){
 
     toolTip('<input type=text value="" />');
@@ -336,7 +336,7 @@ function copy2clipboard(t){
     $('#bar input').remove();
     toolTip(gM('copiedtip'));
 }
-
+*/
 
 function mathsimp(x,tostr){
     if(math){

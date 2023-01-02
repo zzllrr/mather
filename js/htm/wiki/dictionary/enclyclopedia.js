@@ -15,6 +15,7 @@ wiki['Enclyclopedia']=Table([i18(ZLR('Name Type Features'))],[
 	
 	[href(Hs+'planetmath.org','Planet Math'),'','website hosted by the University of Waterloo Faculty of Mathematics '+github('planetmath')],
 
+	[href(Hs+'mathpron.github.io','Mathematicians'),'','数学家读音词典 '+github('mathpron')],
 
 
 	

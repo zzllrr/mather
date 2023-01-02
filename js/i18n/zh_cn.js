@@ -2470,6 +2470,7 @@ lang['zh_cn'] = {
 
 	'Moduli':'模',
 
+	'intersection':'交集;交',
 	'Union':'并',
 	'Unitary':'酉',
 

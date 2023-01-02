@@ -1675,17 +1675,20 @@ dc+
 
 	$('#copy2clipboard').on('click',function(){
 
-		//$('#outputCode').click();
+		$('#outputCode').removeClass('seled');
 		tileToolCode($('#'+L.drawShapeNow));
 		$('#CodeOut').addClass('opa0').show();
+		
+		//$('#codetext').select();
+		//document.execCommand('copy', false, null);
 
-		$('#codetext').select();
-		document.execCommand('copy', false, null);
+		copy2clipboard($('#codetext').val());
+
 		toolTip(gM('copiedtip'));
 
 		$('#CodeOut').hide().removeClass('opa0');
 
-	})
+	});
 	$('#copy2input').on('click',function(){
 		var iT=$('#input0Type');
 		if(!/Markdown|HTML|SVG/.test(iT.val())){
@@ -1763,7 +1766,11 @@ dc+
 		//saveText(L.cap1,gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
 		var x=[];
 		$('#capsdiv').nextAll().each(function(){
-			x.push(this.outerHTML)
+			var me=$(this);
+			if(me.is('textarea')){
+				me.text(me.val())
+			}
+			x.push(this.outerHTML.replace(/<[^<]+ hidden[^<]+<\/[a-z]+>/g,''))
 		});
 		saveText(csslib.markdown+x.join('\n'),gM('zzllrr Mather')+'-'+gM('Doodle')+'_'+Time.now()+'.html');
 	});
@@ -2072,7 +2079,31 @@ dc+
 			*/
 
 			if(id=='Eraser' || id=='Copy'){
-				$('#svgToolOpt').show()
+				$('#svgToolOpt').show();
+
+				if(id=='Copy'){
+					/*
+					仅复制焦点svg
+					var svgID=L.drawShapeNow || $('#Caps > svg').last().attr('id');
+					if(svgID){
+						var obj=$('#'+svgID), objstyle=obj.attr('style');
+						obj.removeAttr('style');
+						copy2clipboard(obj[0].outerHTML);
+						obj.attr('style', objstyle)
+					}
+					*/
+					//复制所有元素，合并为一个完整SVG
+
+					var x='<svg width="'+$('#caps').width()+'" height="'+$('#caps').height()+'"';
+					$('#capsdiv').nextAll().each(function(){
+						var me=$(this);
+						if(me.is('textarea')){
+							x+=(me.val())
+						}
+					});0
+
+
+				}
 			}
 
 			if(/Pointer|Eraser|scr|Copy/.test(id)){
@@ -2302,15 +2333,18 @@ dc+
 		}
 
 	}).on('mousewheel','#capsdiv~*', function (e) {
-		var me=$(this),id=this.id, z=+(this.style.transform||'').replace(/.*rotateZ\(([-\d\.]+)deg\).*/,'$1')||0;
-		var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
-                  (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+		if(e.altKey){
 
-		if(L.drawShapeNow==id){
-			this.style.transform='rotateZ('+parseInt(z+delta)+'deg)';
-			e.stopPropagation();
+
+			var me=$(this),id=this.id, z=+(this.style.transform||'').replace(/.*rotateZ\(([-\d\.]+)deg\).*/,'$1')||0;
+			var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+					(e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+
+			if(L.drawShapeNow==id){
+				this.style.transform='rotateZ('+parseInt(z+delta)+'deg)';
+				e.stopPropagation();
+			}
 		}
-		
 	});
 
 
