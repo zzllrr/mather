@@ -17,11 +17,16 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 		[href(Hs+'desmos.com/api/v1.3/docs/index.html#document-collected-examples','Examples'),href(Hs+'desmos.com/api/','API')].join(' ')],
 
 
+
 	[href(Hs+'mathway.com/graph','MathWay Graph'),gM('Web'),'更加高级的函数支持'],
 
 	[href(Hs+'www.netpad.net.cn/svg.html','网络画板'),'',href(Hs+'www.netpad.net.cn/resource_web','教学资源包')],
 
 	[github('mathjax/MathJax-demos-web'),gM('Web'),'MathJaX Demos, TEX + CHTML + SVG + MathML'],
+
+	
+	[href(Hs+'tikzcd.yichuanshen.de','tikzcd Editor for quiver(category theory)'),gM('Web'),''],
+	[href(Hs+'q.uiver.app','quiver(q.uiver.app)'),gM('Web'),''],
 
 
 	[href(H+'magma.maths.usyd.edu.au/calc/','Magma'),gM('Web'),gM(['Algebra','Number Theory','Algebraic Geometry','Algebraic Combinatorics'])],
@@ -53,7 +58,7 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 	[github('arguiot/Descartes'),'JS + PNG','A small plotting JavaScript library, made for '+github('arguiot/TheoremJS')+' - Math framework'],
 	[href(Hs+'kisonecat.com/phase-plot/','Phase Plot'),'JS + GLSL','Plot complex functions'+github('kisonecat/phase-plot')],
 	[github('josdejong/mathjs'),'',' 数学JS插件，支持多种运算，有各种扩展增强版本 '+href(Hs+'jsbin.com/devacu/edit?html,output','在线演示')
-		+ul(hrefA('https://mathjs.org/docs',ZLR('expressions/syntax.html reference/functions.html')))],
+		+ul(hrefA('mathjs.org/docs',ZLR('expressions/syntax.html reference/functions.html')))],
 
 	[github('benfred/contour_plot','','Contour Plot'),'D3 Plugin',gM('Contour')+' - draw contour plots of 2D functions'],
 
@@ -61,6 +66,7 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 
 	[github('Khan/KAS'), '','KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
 
+	[github('sonoisa','xyjax-v3/xyjax-v3.html'),'','an almost Xy-pic compatible extension for MathJax(old version only?)'],
 
 	[github('HarryStevens/geometric'),'','Geometric.js - library for doing geometry'],
 

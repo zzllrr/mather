@@ -738,7 +738,7 @@ p是偶数时（即p=2, 忽略讨论）令m=p/2 = k-1则mod('m!(m-1)!',(-1)^(m+1
 	
 },PrimeA=function(x,nth,gt){/*	小于n的素数表
 	参数nth	布尔逻辑值1或0，指定返回第n个素数
-		但如果nth是大于1的正整数，则指定返回前n个素数（数组）
+		但如果nth是大于1的正整数，则指定返回前x个素数（数组）
 		
 		gt 指定返回大于gt的素数
 	*/
@@ -917,7 +917,7 @@ p是偶数时（即p=2, 忽略讨论）令m=p/2 = k-1则mod('m!(m-1)!',(-1)^(m+1
 	}
 	return t
 
-},PrimeNumerator=function(A,m){/*利用几个质数倒数代数和的分子，一般还是质数，生成数列
+},PrimeNumerator=function(A,m){/*利用几个质数倒数代数和的分子，一般还是质数（但也存在反例，含比已知参数（质数），更大的质因子），生成数列
 m指定从A中选m个数作为一个组合
 2 3 5 → 
 1/2+1/3+1/5的分子3*5+2*5+2*3=31
@@ -947,6 +947,30 @@ m指定从A中选m个数作为一个组合
 			t.push(Ai+' → '+ti.sort(sortBy.num));
 		}
 	}
+	return t
+
+},PrimeGen=function(n, onlyNeedLast){/*利用1+前n个质数倒数代数和的分子，一般是质数（但也存在反例），生成数列
+	参数onlyNeedLast，指定是否只需要最后一个结果
+
+*/
+	var A=PrimeA(n,2),t=[];
+
+	for(var i=1;i<=n;i++){
+		if(onlyNeedLast){i=n}
+		var Ai=A.slice(0,i),T=times(Ai), TA=Ai.map(i=>T/i), m=i, ti=[];
+		for(var j=Math.pow(2,m)-1;j>=0;j--){
+
+			var s=(ZLR(0,m+1)+j.toString(2)).substr(-m), os=Arrf(function(k){return k.replace('1','+').replace('0','-')},s.split('')), r=Integer.oprs(os,[T].concat(TA));
+
+			//console.log(j, s, os, TA, r);
+			if(r<0){r=-r}
+			if(r!=1){
+				ti.push(r);
+			}
+		}
+		t.push(Ai+' → '+ti.sort(sortBy.num));
+	}
+
 	return t
 
 		

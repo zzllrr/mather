@@ -37,7 +37,7 @@ tooltip['API']=[
 		]},
 		
 		{'prime.js':[{'实体':''},
-			{'素数集合':'PrimeA PrimeAlist PrimeAlistRowland PrimeAlistBC PrimeNumerator'},
+			{'素数集合':'PrimeA PrimeAlist PrimeAlistRowland PrimeAlistBC PrimeNumerator PrimeGen'},
 			{'识别':'isPrime feet1'},
 			{'因子分解':'tMod factor2 factor factorA factorA2n factors cntfactors Rho Factor odd odd_5'},
 

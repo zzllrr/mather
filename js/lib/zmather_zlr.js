@@ -1757,7 +1757,26 @@ array命令下		()	[]	\{\}	||	\|
 	scegc = function (s, substr, c) { var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 	scegn = function (s, substr, c) { var v = '' + s; return SCtv('eg node' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="'+s, XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 	
-	zMath = function (v) { return SCtv('zMath" title="' + v, v) };
+	zMath = function (v) { return SCtv('zMath" title="' + v, v) },
+	
+	begin={
+		cd:function(A){
+			return '\\begin{CD}\n'+A.map((i,ii)=>{return i.map((j,jj)=>{return (ii%2 ^ jj%2?'@':'')+j}).join(' ')}).join(kbr+brn)+'\n\\end{CD}'
+		},
+
+		xy:function(A){// sonoisa.github.io/xyjax-v3/xyjax-v3.html
+			return '\\begin{xy}\n\\xymatrix{'+A.join(kbr+brn+'& ')+'\n}\n\\end{xy}'
+		},
+
+		tikzcd:function(NodeA,ArrowA){
+			return '\\begin{tikzcd}\n'+NodeA.map(i=>i.join(' & ')).join(kbr+brn)+
+				+'\n'+ArrowA.map(i=>'\\arrow['+i+']').join(brn)+'\n\\end{tikzcd}'
+		}
+
+	}
+	
+	
+;
 
 
 

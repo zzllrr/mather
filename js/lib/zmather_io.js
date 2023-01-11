@@ -1156,7 +1156,33 @@ SBS={
 		zlrA3("$mtrx([",[
 			"['A~~~','\\\\stackrel {1}⟶','B'],['↑\\\\footnotesize{4}','',' ~~↓\\\\footnotesize2'],['D~~~','\\\\stackrel {3}⟵','C']",
 			"['','A',''],['','~~↑\\\\footnotesize{1}',''],['D\\\\stackrel{4}←','O','\\\\stackrel {2}→B'],['','~~↓\\\\footnotesize3',''],['','C','']",
-			],"],'.','.','')$")
+			],"],'.','.','')$"),
+
+		[],
+
+		
+		zlrA3("$begin.",[
+			"cd([['A','>a>>','B'],['VbVV','','AAcA'],['C','=','D']",
+			"xy([",
+
+/*
+U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
+ & X \times_Z Y \ar[d]^q \ar[r]_p & X \ar[d]_f \\
+ & Y \ar[r]^g & Z
+*/
+
+			"tikzcd([],["
+
+
+
+
+			],"])$"),
+
+/* 
+@>>> 代表右箭头、@<<< 代表左箭头、@VVV 代表下箭头、@AAA 代表上箭头、@= 代表水平双实线、@| 代表竖直双实线、@.代表没有箭头。
+在连续的>（或<、A、V）符号 之间任意插入文字即代表该箭头的注释文字。
+
+*/
 	],
 	
 
@@ -1364,7 +1390,7 @@ SBS={
 
 
 
-	'Sum':[['\\Sigma','\\Pi','\\sum','\\prod']
+	'Sum':[['\\Sigma','\\Pi','\\sum','\\prod','∑','Σ']
 	].concat(
 		Arrf($A,[
 			zlrA3("sum('i',0,'+','f',",[0,1,3,6],",'')").concat("sum('','i+j=10','','f',0,'')"),
@@ -1632,7 +1658,7 @@ SBS={
 },SBSFn=[],
 
 //下列涉及LaTeX
-zx=function(t,o){return katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{}).replace(/\n/g,' ')},
+zx=function(t,o){return katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{throwOnError:false}).replace(/\n/g,' ')},
 zxdet=function(A,spacing){return zx(zdet(A,spacing))},
 zxmtrx=function(A,spacing,parts){return zx(zmtrx(A,spacing,parts))},
 zxul=function(A){return zx(piece(Arrf(ZLR,A)))},
@@ -2163,7 +2189,7 @@ sbsTbl=function(){
 				.replace(/^[a-z]{4,}/g,'')
 				.replace('\\tilde~','~')
 				.replace(/^(\*|\[b\])/,''),
-				SCtv('symboln',zx(c.replace(/math(.lap)/,'$1').replace(/phantom/,'p')
+				SCtv('symboln',zx(c.replace(/math(.lap)/,'$1').replace(/phantom/,'p'),{throwOnError:false, displayMode:true}
 				)));
 		}
 		s+=DCtv('clear')+dc;

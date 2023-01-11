@@ -8,17 +8,17 @@
 wiki['Concept/Number/Prime/Structure']=Kx(
 
 
-detail('素数表'+num('1" id="primeBegin',1,50000)+'~'+num('100" id="primeEnd',1,50000)+'<label>'+strchkbx0+'id=primeNO />序号</label>'+
+detail(gM('Prime-Number Table')+num('1" id="primeBegin',1,50000)+'~'+num('100" id="primeEnd',1,50000)+'<label>'+strchkbx0+'id=primeNO />序号</label>'+
 	'<select id=primeform>'+Options(['form','binary','binary2'],['形式','二进制','二进制1-[01]*1']).join('')+'</select>',
 	'<div id=primes>'+dc)+
 
-detail('素数结构表 '+zx(kxo('ab')),Table([['截尾a','末位b=1','末位b=3','末位b=7','末位b=9','编码','16进制']],PrimeAlist(1500)
+detail(gM('Prime-Number Structure Table')+zx(kxo('ab')),Table([['截尾a','末位b=1','末位b=3','末位b=7','末位b=9','编码','16进制']],PrimeAlist(1500)
 /*[
 		[1,1,3,7,9],[2,'',3,'',9],[3,1,'',7,''],[4,1,3,7,''],[5,'',3,'',9],[6,1,'',7,''],[7,1,3,'',9],[8,'',3,'',9],[9,'','',7,''],[10,1,3,7,9],[11,'',3,'',''],[12,'','',7,''],[13,1,'',7,9]
 	].concat(PrimeAlist(1000))
 	*/
 	,'TBrc wiki'))+
-detail('素数结构表 '+zx('∏p_i+p'),Table([['分布','表格结构','表格区域素数个数','备注']],[
+detail(gM('Prime-Number Structure Table')+zx('∏p_i+p'),Table([['分布','表格结构','表格区域素数个数','备注']],[
 	[Table('',[[2,1],[1,3],[2,5]],'TBI1J1'),'','',''],
 	[Table('',[['2⋅3',1,5],[1,7,11],[2,13,17],[3,19,23],[4,scbox('25='+msup(5,2)),29],
 		//[5,31,scbox('35=5⋅7')],[6,37,41],[7,43,47],[8,scbox('49='+msup(7,2)),53],[9,scbox('55=5⋅11'),59]
@@ -94,7 +94,7 @@ detail('素数结构表 '+zx('∏p_i+p'),Table([['分布','表格结构','表格
 
 ],'wiki'))+
 
-detail('素数结构表 '+zx('2p_k+∏p_i'),Table([['奇素数>6','3','5','7','11','13','17','19','23','29','31','37','41','43','47','53','59','61','67','71','73','79','83','89','97','101','103']],
+detail(gM('Prime-Number Structure Table')+zx('2p_k+∏p_i'),Table([['奇素数>6','3','5','7','11','13','17','19','23','29','31','37','41','43','47','53','59','61','67','71','73','79','83','89','97','101','103']],
 	[[7,1].concat(copyA('',24)),
 	[11,5,1].concat(copyA('',24)),
 	[13,7,3].concat(copyA('',24)),
@@ -243,6 +243,11 @@ n n+1 an gcd(n+1,an)
 	
 	
 */
++detail(gM('Prime-Number Structure Table')+zx('∏p_i\\(1+∑\\(±1\\/{p_i}\\)\\)=∏p_i+\\displaystyle∑_j\\(±\\frac{∏p_i}{p_j}\\)'+'=∏p_i+'+sum('j','1','','\\(±'+prod('','i≠j','','p_i',0,'')+'\\)',0,'')),
+
+num('10" id="primeGen',1,50000)+'实验结果：输入10，得到的数有2045个（其中1376个是合数），素数占比32.71%'+
+'<div id=primesGen>'+dc
+)
 
 
 );
@@ -278,6 +283,10 @@ $(function(){
 			},B);
 		}
 		$('#primes').html(B.join(br));
+	}).on('click change keyup','#primeGen',function(){
+		var n=+$(this).val()||1;
+		$('#primesGen').html(PrimeGen(n).join(br));
+
 	})
 	
 });
