@@ -66,6 +66,8 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 
 	[github('Khan/KAS'), '','KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
 
+	[href(Hs+'mathigon.io'),'TS',''],
+
 	[github('sonoisa','xyjax-v3/xyjax-v3.html'),'','an almost Xy-pic compatible extension for MathJax(old version only?)'],
 
 	[github('HarryStevens/geometric'),'','Geometric.js - library for doing geometry'],

@@ -800,6 +800,11 @@ $(function(){
         loadHTML(eval(d));
     }
 
+
+    //$('head').append(ZLR('polypad-cn').map(i=>'<script src="js/lib/'+i+'.js" defer></script>').join('')); 本地运行时会受到跨域CORS政策限制，无法加载，所以此方案无效
+
+
+
     $('#panel').prepend('<div id=menu>'+
         DCtv('abscenter" hidden id="QRCODE')+
         '<span id=bar>&nbsp;'+sc+
@@ -842,9 +847,21 @@ $(function(){
         '<svg id=DesmosScientificCalculator tip="Desmos Scientific Calculator" viewBox="0 0 512 512"><title>Scientific Calculator</title><g clip-path="url(#scientific_svg__clip-path)"><path class="des_c1" d="M0 331.1h512V475H0z"></path><path class="des_c3" d="M0-.77h512v513.54H0zm467 82.89C467 59.41 453.59 46 430.88 46H82.12C59.41 46 46 59.41 46 82.12v348.76C46 453.59 59.41 467 82.12 467h348.76c22.71 0 36.12-13.41 36.12-36.12z"></path><path class="des_c3" d="M0 173.67h512v18H0zM0 320.33h512v18H0z"></path></g><path class="des_c3" d="M159.5 99.66v-38h19v38h38.25v19.68H178.5v38h-19v-38h-38.25V99.66zM121.2 246.08h95.6v19.67h-95.6z"></path><path d="M216.8 371.88v19.67h-95.6v-19.67zm0 41.4V433h-95.6v-19.72z" class="des_c2"></path></svg>'+
       
       
+      (isedi || isdoodle?
+        sc+
+        '<span id=Mathigon>'+
+        '<svg id=MathigonPolypad tip="Mathigon Polypad" viewBox="0 0 36 36"><path d="m17 31v-12l-12 12z" fill="#fd8c00"></path><path d="m4 4.5v13 13l13-13z" fill="#cd0e66"></path><path d="m31 5-12 12h12" fill="#22ab24"></path><path d="m31 18h-13v13h13" fill="#0f82f2"></path></svg>'+
+   
+      '':'')+
       
         sc+
+
+
+
+
+
         itv('" id=DoodleOpen tip="Doodle','palette')+
+        itv('" id=EditorOpen tip="Editor','edit')+
         itv('" id=WidgetOpen tip="Launch','launch')+
         itv('" id=WidgetOn tip="Close','close')+
 
@@ -884,6 +901,7 @@ $(function(){
                 $('#widget').show().html('<div id='+tid+'>'+dc);
                 $('#widget').children().width($(window).width()).height($(window).height()*0.8);
 
+                var tid0=$('#'+tid)[0];
                 if(pid=='Geogebra'){
                     var ggbApp = new GGBApplet({
                         "appName": id,
@@ -896,7 +914,7 @@ $(function(){
 
                 }else if(pid=='Desmos'){
     
-                    var calculator = Desmos[id]($('#'+tid)[0]);
+                    var calculator = Desmos[id](tid0);
                     /*
                     calculator.updateSettings && 
                     calculator.updateSettings({
@@ -908,6 +926,11 @@ $(function(){
 
                     //calculator.setExpression({id:'graph1', latex:'y=x^2'});
 
+
+
+                }else if(pid=='Mathigon'){
+
+                    Polypad.create(tid0, {apiKey: 'test'})
                 }
 
             }
@@ -925,11 +948,8 @@ $(function(){
     });
 
 
-    $('#WidgetOpen').on('click',function(){
-        open('widget.html')
-    });
-    $('#DoodleOpen').on('click',function(){
-        open('doodle.html')
+    $('#WidgetOpen,#DoodleOpen,#EditorOpen').on('click',function(){
+        open(this.id.replace(/Open/,'').toLowerCase()+'.html')
     });
 
     $('#SplitWindow').on('click',function(e){
