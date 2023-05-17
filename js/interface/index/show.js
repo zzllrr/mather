@@ -8,7 +8,7 @@ var showTool = [
     'IL LaTeX MD HTML',
     'D2 D3 Canvas SVG RF',
     'Echarts Zdog Rough Lego',
-    'JS I18 EN YAML'
+    'JS I18 EN YAML MathBox'
 ];
 shows = {
     index: ZLR('Document Slide Speech Sound Image Video 3D VR AR'),

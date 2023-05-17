@@ -484,6 +484,32 @@ function all2html(type,V,dom){
             trust:true
         });
 
+    }else if(/MathBox/i.test(iv)){
+  
+        try{
+            var id=ivl+Random(12,1)+Time.now5();
+
+            w.html('<div id='+id+'></div>');
+
+
+           //console.log(id, v);
+            var options={
+                element: $('#'+id)[0],
+            };
+            var root = MathBox.mathBox(options);
+            //console.log(root);
+
+            //console.log(v);
+            eval(XML.decode(v));
+
+            //w.addClass('lego');
+        }catch(e){
+            //console.log(e);
+            w.html(v)
+        }
+
+
+
     }else if(/Lego/i.test(iv)){
   
         try{
@@ -509,6 +535,7 @@ function all2html(type,V,dom){
             console.log(e);
             w.html(v)
         }
+
 
     }else if(/Rough/i.test(iv)){// Rough Canvas
   

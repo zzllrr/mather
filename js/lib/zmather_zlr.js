@@ -12,8 +12,8 @@ var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'w
 	iswiki=/wiki\.html/.test(loch),
 	issolve=/solve\.html/.test(loch),
 	isedi=/editor\.html/.test(loch),
-	Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog Lego Rough',
-	Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D3 D2 ZD LG RF',
+	Mele='LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML SVG Canvas Echarts Markdown YAML I18N EN JavaScript 3D 2D Zdog MathBox Lego Rough',
+	Meles='LA AM UM CM PM SV CV EC MD YM I18 EN JS D3 D2 ZD MB LG RF',
 	Mele2='LT LX LTX TEX IL YML',
 	Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'};
 	
@@ -27,7 +27,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	hanziCoreRe = /[\u4E00-\u9FA5\uFF00-\uFFFF]/g, hanziRe = /[^\x00-\xff]/g,//含中文标点	注意使用test时，正则有全局g时，需重置hanziRe.lastIndex=0
 	enPunc = /[,\.\?!\/\-_:;'"`\(\)\[\]\{\}]/g, enPhrase = /^[a-z]+ [a-z ]+$/i,
 	hanziPunc = /[，。？！—：；‘’“”（）【】]/g,
-	punc = /[,\.\?!\/\-_:;'"`\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
+	punc = /[,\\\.\?!\/\-_:;'"`\(\)\[\]\{\}，。？！—：；‘’“”（）【】]/g,
 	fontReData = /^data.+font[/].{40,}/i, imgPreReData = /^data.+image\/.{40,}/gi, txtPreReData = /^data.+text\/plain/gi,
 	fontHan = '{"windows":{"宋体":"SimSun","黑体":"SimHei","微软雅黑":"Microsoft Yahei","微软正黑体":"Microsoft JhengHei","楷体":"KaiTi","新宋体":"NSimSun","仿宋":"FangSong"},"OS X":{"苹方":"PingFang SC","$黑体":"STHeiti","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","冬青黑体简":"Hiragino Sans GB","兰亭黑-简":"Lantinghei SC","翩翩体-简":"Hanzipen SC","手札体-简":"Hannotate SC","宋体-简":"Songti SC","娃娃体-简":"Wawati SC","魏碑-简":"Weibei SC","行楷-简":"Xingkai SC","雅痞-简":"Yapi SC","圆体-简":"Yuanti SC"},"office":{"幼圆":"YouYuan","隶书":"LiSu","$细黑":"STXihei","$楷体":"STKaiti","$宋体":"STSong","$仿宋":"STFangsong","$中宋":"STZhongsong","$彩云":"STCaiyun","$琥珀":"STHupo","$新魏":"STXinwei","$隶书":"STLiti","$行楷":"STXingkai","@舒体":"FZShuTi","@姚体":"FZYaoti"},"open":{"思源黑体":"Source Han Sans CN","思源宋体":"Source Han Serif SC","文泉驿微米黑":"WenQuanYi Micro Hei"},"hanyi":{"!旗黑":"HYQihei 40S","!旗黑":"HYQihei 50S","!旗黑":"HYQihei 60S","!大宋简":"HYDaSongJ","!楷体":"HYKaiti","!家书简":"HYJiaShuJ","!PP体简":"HYPPTiJ","!乐喵体简":"HYLeMiaoTi","!小麦体":"HYXiaoMaiTiJ","!程行体":"HYChengXingJ","!黑荔枝":"HYHeiLiZhiTiJ","!雅酷黑W":"HYYaKuHeiW","!大黑简":"HYDaHeiJ","!尚魏手书W":"HYShangWeiShouShuW"},"fangzheng":{"@粗雅宋#":"FZYaSongS-B-GB","@报宋#":"FZBaoSong-Z04S","@粗圆#":"FZCuYuan-M03S","@大标宋#":"FZDaBiaoSong-B06S","@大黑#":"FZDaHei-B02S","@仿宋#":"FZFangSong-Z02S","@黑体#":"FZHei-B01S","@琥珀#":"FZHuPo-M04S","@楷体#":"FZKai-Z03S","@隶变#":"FZLiBian-S02S","@隶书#":"FZLiShu-S01S","@美黑#":"FZMeiHei-M07S","@书宋#":"FZShuSong-Z01S","@舒体#":"FZShuTi-S05S","@水柱#":"FZShuiZhu-M08S","@宋黑#":"FZSongHei-B07S","@宋三#":"FZSong","@魏碑#":"FZWeiBei-S03S","@细等线#":"FZXiDengXian-Z06S","@细黑一#":"FZXiHei I-Z08S","@细圆#":"FZXiYuan-M01S","@小标宋#":"FZXiaoBiaoSong-B05S","@行楷#":"FZXingKai-S04S","@姚体#":"FZYaoTi-M06S","@中等线#":"FZZhongDengXian-Z07S","@准圆#":"FZZhunYuan-M02S","@综艺#":"FZZongYi-M05S","@彩云#":"FZCaiYun-M09S","@隶二#":"FZLiShu II-S06S","@康体#":"FZKangTi-S07S","@超粗黑#":"FZChaoCuHei-M10S","@新报宋#":"FZNew BaoSong-Z12S","@新舒体#":"FZNew ShuTi-S08S","@黄草#":"FZHuangCao-S09S","@少儿#":"FZShaoEr-M11S","@稚艺#":"FZZhiYi-M12S","@细珊瑚#":"FZXiShanHu-M13S","@粗宋#":"FZCuSong-B09S","@平和#":"FZPingHe-S11S","@华隶#":"FZHuaLi-M14S","@瘦金书#":"FZShouJinShu-S10S","@细倩#":"FZXiQian-M15S","@中倩#":"FZZhongQian-M16S","@粗倩#":"FZCuQian-M17S","@胖娃#":"FZPangWa-M18S","@宋一#":"FZSongYi-Z13S","@剪纸#":"FZJianZhi-M23S","@流行体#":"FZLiuXingTi-M26S","@祥隶#":"FZXiangLi-S17S","@粗活意#":"FZCuHuoYi-M25S","@胖头鱼#":"FZPangTouYu-M24S","@卡通#":"FZKaTong-M19S","@艺黑#":"FZYiHei-M20S","@水黑#":"FZShuiHei-M21S","@古隶#":"FZGuLi-S12S","@幼线#":"FZYouXian-Z09S","@启体#":"FZQiTi-S14S","@小篆体":"FZXiaoZhuanTi-S13T","@硬笔楷书#":"FZYingBiKaiShu-S15S","@毡笔黑#":"FZZhanBiHei-M22S","@硬笔行书#":"FZYingBiXingShu-S16S"}}'.replace(/!/g, '汉仪').replace(/@/g, '方正').replace(/#/g, '简体').replace(/\$/g, '华文'),
 
@@ -801,7 +801,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' }, itvc=function (c) {return itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace')},
 	spanmi=function(t,v,c){return '<span class="mi-span'+(c?' '+c:'')+'" mi='+t+'>'+v+sc},
 	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
-	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~', brn='\n',
+	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~', brn='\n', brt='\t',
 	brA=function(A,js){return (js?$js(A):A).join(br)}, hrA=function(A,js){return (js?$js(A):A).join(hr)},
 	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
 	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
@@ -3088,6 +3088,52 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	return A
 
+}, SetOpr={
+	AnB:function(A,B,caseOn){
+		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
+		for(var i=0,An=A.length;i<An;i++){
+			var t=A[i], ft=f(t);
+			if(!C.includes(t) && fB.includes(ft)){
+				C.push(t)
+			}
+		}		
+		
+		return C
+	},
+	AuB:function(A,B,caseOn){
+		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
+		for(var i=0,An=A.length;i<An;i++){
+			var t=A[i], ft=f(t);
+			if(!C.includes(t)){
+				C.push(t)
+			}
+		}		
+		for(var i=0,Bn=B.length;i<Bn;i++){
+			var t=B[i], ft=f(t);
+			if(!C.includes(t)){
+				C.push(t)
+			}
+		}	
+		return C
+	},
+	AoB:function(A,B,caseOn){
+		return  SetOpr.AuB(SetOpr.A_B(A,B,caseOn),SetOpr.A_B(B,A,caseOn),caseOn)
+	},
+	A_B:function(A,B,caseOn){
+		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
+		for(var i=0,An=A.length;i<An;i++){
+			var t=A[i], ft=f(t);
+			if(!C.includes(t) && !fB.includes(ft)){
+				C.push(t)
+			}
+		}		
+		
+		return C
+	},
+	B_A:function(A,B,caseOn){
+		return SetOpr.A_B(B,A,caseOn)
+	}
+
 
 
 	//下列涉及排序、去重
@@ -3307,14 +3353,14 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 }, optgrp = function (t,v) {//返回字符串
 	return '<optgroup label="'+t+'">'+v+'</optgroup>'
 }, OptGrps = function (A, getI18) {//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
-	var s = '';
+	var s = '', i18k=k=>getI18 && k!='LaTeX' && k!='JavaScript' && k!='MathBox' ?gM(k):k;
 	for (var i = 0, l = A.length; i < l; i++) {
 		var a = A[i];
 		$.each(a, function (x, v) {
-			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(function (k) { return '<option value="' + k + '">' + (getI18 && k!='LaTeX' && k!='JavaScript'?gM(k):k) + '</option>' },
+			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(function (k) { return '<option value="' + k + '">' + i18k(k) + '</option>' },
 				ZLR(v)) : Arrf(function (j) {
 					var tv=j.t || j.v;
-					return '<option value="' + (j.v || j.t) + '"' + (j.s ? seled : '') + '>' + (getI18 && tv!='LaTeX' && tv!='JavaScript'?gM(tv):tv) + '</option>'
+					return '<option value="' + (j.v || j.t) + '"' + (j.s ? seled : '') + '>' + i18k(tv) + '</option>'
 				}, v)).join('') + '</optgroup>'
 		});
 	}

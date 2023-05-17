@@ -140,8 +140,8 @@
 	background: rgba(162,195,97,.1);
 }
 [name=tool]:checked + span:not(:hover){
-	background: rgba(255,255,0,.5);
-	color:rgba(1,1,1,.2)
+	background: rgba(205,25,1,.5);
+    color: rgba(255,255,255,1);
 }
 textarea.seled,.snippet.seled{
 	border:solid 1px yellow;

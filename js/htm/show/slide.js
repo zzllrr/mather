@@ -28,7 +28,7 @@ $(function () {
 			$('main').after('<footer role="contentinfo">'+sf+
 		  '</footer>')
 		}
-consolelog(s);
+//consolelog(s);
 		if(s){
 			$.ajax({type:'get',url: s, success:function(x){
 				if(/MD|MARKDOWN/.test(tp) || /\.MD|\.MARKDOWN/i.test(s)){

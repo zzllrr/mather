@@ -41,6 +41,7 @@ technology['Software/Math']=detail('Web / APP',Table([i18(ZLR('Tool Type Summary
 		href(Hs+'www.sosmath.com/cyberexam/cyber.html','prepare for a test')+', ....'],
 
 
+	[href(Hs+'www.math3d.org','Math 3D'),gM('Web'),'user-friendly 3d graphing calculator for the web. Create, share, and animate 3d mathematical scenes'],
 	[href(H+'www.mathcurve.com','Math Curve'),gM('Web'),''],
 	[href(H+'www.2dcurves.com','2D Curves'),gM('Web'),''],
 	[href(Hs+'jsxgraph.org','JSXGraph'),gM('Web'),'interactive geometry, function plotting, charting, and data visualization'+href(Hs+('jsxgraph.org/wiki/index.php/Category:Examples'),'Examples')],
@@ -63,6 +64,8 @@ detail('JS',Table([i18(ZLR('Tool Type Summary'))],[
 	[github('benfred/contour_plot','','Contour Plot'),'D3 Plugin',gM('Contour')+' - draw contour plots of 2D functions'],
 
 	[href(H+'sylvester.jcoglan.com/docs.html','Sylvester'),'','Vector, Matrix, Line, Plane '+github('jcoglan/sylvester')],
+
+	[github('unconed/mathbox'), '','Math Box '+github('Khan/kmath')],
 
 	[github('Khan/KAS'), '','KAS from khan academy, lightweight CAS for comparing expressions and equations '+github('Khan/kmath')],
 

@@ -1263,6 +1263,982 @@ var v=new Zdog.Vector({ x: 1, z: 2, y: Zdog.TAU/4 })`,0),
 
 	].join(br),
 
+	
+	'MathBox':[
+
+		'mathbox '+github('unconed/mathbox'),
+		detail('Demo',[
+			gM('Grid')+scegj(`mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.camera.position.set(2.3, 1, 2);
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox.cartesian({
+				range: [[-2, 2], [-1, 1], [-1, 1]],
+				scale: [2, 1, 1],
+			  });
+			  view.grid({
+				divideX: 20,
+				width: 5,
+				opacity: 0.3,
+			  });
+			  view.grid({
+				axes: "xz",
+				divideX: 10,
+				divideY: 5,
+				width: 5,
+				opacity: 0.8,
+			  });`,10),
+
+
+			'xyzw'+scegj(`mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.camera.position.set(2.3, 1, 2);
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox.cartesian({
+				range: [[-6, 6], [-1, 1], [-1, 1]],
+				scale: [6, 1, 1],
+			  });
+		  
+			  view.interval({
+				width: 128,
+				expr: function (emit, x, i, time) {
+				  var d = Math.sin((x + time) * 2);
+		  
+				  emit(x, 0);
+				  emit(x, d * .5);
+				},
+				items: 2,
+				channels: 2,
+			  });
+			  view.line({
+				color: 0x3090FF,
+				width: 10,
+			  });`,10),
+
+
+			gM('Feedback')+scegj(`mathbox = mathBox({
+				plugins: ['core', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox
+			  .set({
+				focus: 3
+			  })
+			  .rtt({
+				type: 'float',
+			  })
+			  .camera({
+				lookAt: [0, 0, 0]
+				}, {
+				position: function(t){
+					return [Math.cos(t)*3, 0, Math.sin(t)*3]
+				}
+			  })
+			  .compose({
+				color: '#fcfbfa',
+				zWrite: false,
+			  })
+			  .cartesian({
+				range: [[-2, 2], [-1, 1], [-1, 1]],
+				scale: [2, 1, 1],
+			  }).grid({
+				divideX: 2,
+				divideY: 2,
+				opacity: .25,
+			  });
+		  
+			  mathbox.compose({
+				color: '#fff',
+			  });`,10),
+
+			gM('Vector')+scegj(`mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+				camera: {
+				  fov: 30,
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.camera.position.set(0, 0, 6);
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox.set('focus', 6).cartesian({
+				range: [[-2, 2], [-1, 1], [-1, 1]],
+				scale: [2, 1, 1],
+			  });
+		  
+			  view.interval({
+				id: 'sampler',
+				width: 64,
+				expr: function (emit, x, i, t) {
+				  y = Math.sin(x + t) + (i%2)*Math.sin(x * 400000 + t * 5 + x * x * 10000)*.05;
+				  emit(x, y);
+				  emit(x, -y);
+				},
+				items: 2,
+				channels: 2,
+			  });
+		  
+			  view.vector({
+				points: '#sampler',
+				color: 0x3090FF,
+				width: 4,
+				start: true,
+			  });`,10),
+
+			gM('Camera')+scegj(`mathbox = mathBox({
+				plugins: ['core'],
+			  });
+			  three = mathbox.three;
+		  
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox.cartesian({
+				range: [[-1, 1], [-1, 1], [-1, 1]],
+				scale: [1, 1, 1],
+			  });
+		  
+			  var camera = view.camera({
+				lookAt: [0, 0, 0],
+			  }, {
+				position: function (t) { return [-3 * Math.cos(t) + 1, .4 * Math.cos(t * .381) + 1, -3 * Math.sin(t) + 1] },
+			  });
+		  
+			  view
+				.transform({
+				  position: [0, .5, 0]
+				})
+				  .grid({
+					axes: [1, 3],
+					width: 2,
+					color: 0xb0b0b0,
+					depth: .5
+				  })
+				.end()
+				.transform({
+				  position: [0, -.5, 0]
+				})
+				  .grid({
+					axes: [1, 3],
+					width: 2,
+					color: 0x2fff90,
+					depth: .5
+				  })
+				.end()`,10),
+
+
+				gM('helix')+scegj(`mathbox = mathBox({
+					plugins: ['core', 'controls', 'cursor'],
+					controls: {
+					  klass: THREE.OrbitControls
+					},
+				  });
+				  three = mathbox.three;
+			  
+				  three.camera.position.set(2.3, 1, 2);
+				  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+			  
+				  view = mathbox.cartesian({
+					range: [[-6, 6], [-1, 1], [-1, 1]],
+					scale: [6, 1, 1],
+				  });
+			  
+				  view.axis({
+					width: 5,
+					start: true,
+					end: true,
+				  });
+			  
+				  view.interval({
+					width: 128,
+					expr: function (emit, x, i, time) {
+					  var theta = x + time;
+					  var a = Math.cos(theta);
+					  var b = Math.sin(theta);
+			  
+					  emit(x, a, b);
+					  emit(x, -a, -b);
+					},
+					items: 2,
+					channels: 3,
+				  });
+			  
+				  view.line({
+					color: 0x3090FF,
+					width: 10,
+					size: 2.5,
+					start: true,
+					end: true,
+				  });
+			  `,10),
+			  
+			  
+			  gM('Spread')+scegj(`
+			  mathbox = mathBox({
+					plugins: ['core', 'controls', 'cursor'],
+					controls: {
+					  klass: THREE.OrbitControls
+					},
+				  });
+				  three = mathbox.three;
+			  
+				  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+			  
+				  view = mathbox
+				  .camera({
+					proxy: true,
+					position: [2.3, 1, 2],
+				  })
+				  .cartesian({
+					range: [[-6, 6], [-1, 1], [-1, 1]],
+					scale: [6, 1, 1],
+				  });
+			  
+				  view.area({
+					width: 16,
+					height: 16,
+					expr: function (emit, x, y, i, j, t) {
+					  var d = Math.sin((x + y + t));
+			  
+					  emit(0);
+					  emit(.5 + d * .5);
+					},
+					items: 2,
+					channels: 1,
+				  });
+				  view.swizzle({
+					order: 'yx',
+				  });
+				  view.spread({
+					unit: 'absolute',
+					width:  [.1, 0,  0],
+					height: [ 0, 0,.25],
+				  });
+				  view.vector({
+					color: 0x3090FF,
+					width: 10,
+				  });
+			  
+			  
+			  `,10),
+			  
+			  
+
+			gM('Shapes')+scegj(`mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls,
+				  parameters: {
+					noZoom: true
+				  },
+				},
+				camera: {
+				  fov: 20,
+				},
+				loop: {
+				  start: window == window.top,
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.camera.position.set(2, 2, 4);
+			  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+		  
+			  view = mathbox.set({scale: 500, 'focus': 5}).cartesian({
+				range: [[-2, 2], [-1, 1], [-1, 1]],
+				scale: [3.5, 1, 1],
+			  });
+		  
+			  view.voxel({
+				data: [
+					   -1, -1, -.5, -.75, -.75, -1.2, -.4, -.6, -1.5, 0, 0, 0, 
+					   -1,  1, -.5, -.75,  .75, -1.2, -.4,  .6, -1.5, 0, 0, 0, 
+						1,  1, -.5,  .75,  .75, -1.2,  .4,  .6, -1.5, 0, 0, 0, 
+						1, -1, -.5,  .75, -.75, -1.2,  .4, -.6, -1.5, 0, 0, 0, 
+		  
+					   -1, -1,  .5, -.75, -.75,  1.2, -.4, -.6,  1.5, 0, 0, 0, 
+					   -1,  1,  .5, -.75,  .75,  1.2, -.4,  .6,  1.5, 0, 0, 0, 
+						1,  1,  .5,  .75,  .75,  1.2,  .4,  .6,  1.5, 0, 0, 0, 
+						1, -1,  .5,  .75, -.75,  1.2,  .4, -.6,  1.5, 0, 0, 0, 
+					  ],
+				width: 4,
+				height: 2,
+				depth: 1,
+				items: 4,
+				channels: 3,
+			  });
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [-.8, .4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.point({
+				  color: 0x3090FF,
+				  size: 3,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Point'],
+				})
+				.label({
+				  offset: [0, -140],
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [0, .4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.line({
+				  color: 0x3090FF,
+				  size: 3,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Line'],
+				})
+				.label({
+				  offset: [0, -140],
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [.8, .4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.surface({
+				  color: 0x3090FF,
+				  shaded: true,
+				  width: 3,
+				})
+				.surface({
+				  color: 0x3090FF,
+				  fill: false,
+				  lineX: true,
+				  lineY: true,
+				  width: 3,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Surface'],
+				})
+				.label({
+				  offset: [0, -140],
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [-.8, -.4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.vector({
+				  color: 0x3090FF,
+				  width: 3,
+				  start: true,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Vector'],
+				})
+				.label({
+				  offset: [0, -140],
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [0, -.4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.strip({
+				  color: 0x0090FF,
+				  width: 3,
+				  shaded: true,
+				})
+				.strip({
+				  color: 0x3090FF,
+				  width: 3,
+				  fill: false,
+				  line: true,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Strip'],
+				})
+				.label({
+				  offset: [0, -140],        
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  
+			  view
+			  .transform({
+				pass: 'eye',
+				position: [.8, -.4, -4],
+				scale: [1/6, 1/6, 1/6],
+			  })
+				.face({
+				  color: 0x3090FF,
+				  width: 3,
+				  line: false,
+				  shaded: true,
+				})
+				.face({
+				  color: 0x3090FF,
+				  width: 3,
+				  fill: false,
+				  line: true,
+				})
+				.array({
+				  data: [0, 0, 0],
+				  channels: 3,
+				})
+				.text({
+				  data: ['Face'],
+				})
+				.label({
+				  offset: [0, -140],
+				  zIndex: 1,
+				  color: 'black',
+				});
+		  `,0),
+
+		  	gM('Cylindrical')+scegj(` var mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  var three = mathbox.three;
+		  
+			  three.camera.position.set(5.5, .5, -2.3);
+			  three.renderer.setClearColor(new THREE.Color(0x000000), 1.0);
+		  
+			  var objs = null
+			  var time = 0
+			  var scrub = 0
+			  three.on('update', function () {
+				clock = three.Time.frames / 60
+				time = clock
+		  
+				t = Math.max(clock, 0) / 2
+				t = t < .5 ? t * t : t - .25
+		  
+				scrub = t
+		  
+				f = t / 8;
+				c = Math.cos(f);
+				s = Math.sin(f);
+				view.set('quaternion', [0, -s, 0, c]);
+		  
+				t = Math.max(clock - 4, 0) / 2
+				t = t < .5 ? t * t : t - .25
+		  
+				f = t / 3.71;
+				c = Math.cos(f);
+				s = Math.sin(f);
+		  
+				if (objs)
+				  objs.set('quaternion', [-s, 0, 0, c]);
+			  });
+		  
+			  view = mathbox
+				.unit({
+				  scale: 600,
+				})
+				.polar({
+				  range: [[-π, π], [0, 1], [-1, 1]],
+				  scale: [2, 2, 2],
+				});
+		  
+			  view
+			  .transform({
+				position: [0, .5, 0],
+			  })
+			  .grid({
+				unitX: π / 6,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 6,
+				divideY: 10,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .2,
+			  })
+		  
+			  view
+			  .transform({
+				position: [0, .5, 0],
+			  })
+			  .grid({
+				unitX: π / 3,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 3,
+				divideY: 3,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .2,
+			  })
+		  
+			  view
+			  .transform({
+				position: [0, 1, 0],
+			  })
+			  .grid({
+				unitX: π / 3,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 3,
+				divideY: 3,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .36,
+			  })
+		  
+			  view.interval({
+				centered: true,
+				axis: 'z',
+				width: 512,
+				history: 64,
+				expr: function (emit, x, i) {
+				  j = Math.floor(i/2);
+				  theta = scrub * (1 + Math.sin(j * j * j + j) * .5) * 4;
+				  rad = Math.sin(j * 12 + j * j) * .5 + Math.sin((j * .018 + 1 + Math.sin(j) * .3) * time);
+				  emit(theta, rad * .5, x / π);
+				},
+				channels: 3,
+			  });
+			  view.split({
+				axis: 'width',
+				length: 2,
+			  });
+			  view.spread({
+				unit: 'absolute',
+				width: [0, 0, .03/π, 0],
+				id: 'split',
+			  });
+			  view.transpose({
+				order: "xzyw",
+				id: 'strips',
+			  });
+		  
+			  view
+			  .transform({
+				classes: ['surface'],
+				position: [0, .75, 0],
+				scale: [1, 1, π],
+			  })
+			  .surface({
+				width: 2,
+				zBias: 2,
+				color: 0x1550FF,
+				fill:  false,
+				lineY: true,
+			  });
+			  view
+			  .transform({
+				classes: ['surface'],
+				position: [0, .75, 0],
+				scale: [1, 1, π],
+			  })
+			  .surface({
+				width: 2,
+				color: 0x2070FF,
+				shaded: true
+			  });
+		  
+			  objs = mathbox.select('transform.surface');
+		  `,10),
+		  
+		 	gM('Cylindrical Stream')+scegj(`var mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  var three = mathbox.three;
+		  
+			  three.camera.position.set(5.5, .5, -2.3);
+			  three.renderer.setClearColor(new THREE.Color(0x000000), 1.0);
+		  
+			  var objs = null
+			  var time = 0
+			  three.on('update', function () {
+				clock = three.Time.frames / 60
+				time = clock
+		  
+				t = Math.max(clock, 0) / 2
+				t = t < .5 ? t * t : t - .25
+			
+				f = t / 8;
+				c = Math.cos(f);
+				s = Math.sin(f);
+				view.set('quaternion', [0, -s, 0, c]);
+		  
+				t = Math.max(clock - 4, 0) / 2
+				t = t < .5 ? t * t : t - .25
+		  
+				f = t / 3.71;
+				c = Math.cos(f);
+				s = Math.sin(f);
+		  
+				if (objs)
+				  objs.set('quaternion', [-s, 0, 0, c]);
+			  });
+		  
+			  view = mathbox
+				.unit({
+				  scale: 720,
+				  focus: 4,
+				})
+				.polar({
+				  range: [[-π, π], [0, 1], [-1, 1]],
+				  scale: [2, 2, 2],
+				});
+		  
+			  view
+			  .transform({
+				position: [0, .5, 0],
+			  })
+			  .grid({
+				unitX: π / 6,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 6,
+				divideY: 10,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .2,
+			  })
+		  
+			  view
+			  .transform({
+				position: [0, .5, 0],
+			  })
+			  .grid({
+				unitX: π / 3,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 3,
+				divideY: 3,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .2,
+			  })
+		  
+			  view
+			  .transform({
+				position: [0, 1, 0],
+			  })
+			  .grid({
+				unitX: π / 3,
+				baseX: 2,
+				zWrite: false,
+				detailX: 81,
+				divideX: 3,
+				divideY: 3,
+				axes: 'xz',
+				blending: 'add',
+				color: 0x00F0B0,
+				opacity: .36,
+			  })
+		  
+			  view.interval({
+				centered: true,
+				axis: 'z',
+				width: 512,
+				history: 64,
+				fps: 60,
+				expr: function (emit, x, i, t) {
+				  j = Math.floor(i/2);
+				  theta = t / 2 * (1 + Math.sin(j * j * j + j) * .5) * 4;
+				  rad = Math.sin(j * 12 + j * j) * .5 + Math.sin((j * .018 + 1 + Math.sin(j) * .3) * t / 2);
+				  emit(theta, rad * .5, x / π);
+				},
+				channels: 3,
+			  });
+			  view.split({
+				axis: 'width',
+				length: 2,
+			  });
+			  view.spread({
+				unit: 'absolute',
+				width: [0, 0, .02, 0],
+				depth: [0, 0, .01, 0],
+				id: 'split',
+			  });
+			  view.transpose({
+				order: "xzyw",
+				id: 'strips',
+			  });
+		  
+			  view
+			  .transform({
+				classes: ['surface'],
+				position: [0, .75, 0],
+				scale: [1, 1, π],
+			  })
+				.surface({
+				  width: 1.5,
+				  zBias: 2,
+				  color: 0x3070FF,
+				  points: '<',
+				  fill:  false,
+				  lineY: true,
+				});
+		  
+			  view
+			  .transform({
+				classes: ['surface'],
+				position: [0, .75, 0],
+				scale: [1, 1, π],
+			  })
+				.shader({
+				  code: [
+					"uniform vec4 dataResolution;",
+					"vec4 getPosition(vec4 xyzw);",
+					"vec4 getColor(vec4 xyzw) {",
+					"  return vec4(mix(vec3(1.0), vec3(1.0, 2.0, 1.5), mod(xyzw.z, 3.0) / 2.0) * (1.0 - vec3(xyzw.y * dataResolution.y)), 1.0);",
+					"}",
+				  ].join("\n")
+				})
+				.resample()
+				.surface({
+				  width: 2,
+				  color: 0x3090FF,
+				  points: '<<',
+				  colors: '<',
+				  shaded: true
+				});
+		  
+			  objs = mathbox.select('transform.surface');
+		  `,10),
+
+			gM('Scatter')+scegj(`mathbox = mathBox({
+				plugins: ['core', 'controls', 'cursor'],
+				controls: {
+				  klass: THREE.OrbitControls
+				},
+			  });
+			  three = mathbox.three;
+		  
+			  three.camera.position.set(2.3, 1, 2);
+			  three.controls.maxDistance = 5;
+			  three.renderer.setClearColor(new THREE.Color(0xFAFAF8), 1.0);
+		  
+			  view = mathbox
+			  .set({
+				scale: 360
+			  })
+			  .cartesian({
+				range: [[0, 2], [0, 1], [0, 1]],
+				scale: [2, 1, 1],
+			  });
+		  
+			  var colors = {
+				x: 0xFF4136,   // red
+				y: 0xFFDC00,   // yellow
+				z: 0x0074D9,   // blue
+				xy: 0xFF851B,  // orange
+				xz: 0xB10DC9,  // purple
+				yz: 0x2ECC40,  // green
+				xyz: 0x654321, // brown
+			  }
+		  
+			  view.scale({
+				divide: 5,
+				origin: [0,0,1,0],
+				axis: "x",
+			  }).text({
+				live: false,
+				data: [0, "½", 1, "1½", 2]
+			  }).label({
+				color: colors.x,
+			  })
+		  
+			  view.scale({
+				divide: 3,
+				origin: [0,0,1,0],
+				axis: "y",
+			  }).text({
+				live: false,
+				data: [0, "½", 1]
+			  }).label({
+				color: colors.y,
+				offset: [-16, 0]
+			  })
+		  
+			  view.scale({
+				divide: 3,
+				origin: [2,0,0,0],
+				axis: "z",
+			  }).text({
+				live: false,
+				data: [0, "½", 1]
+			  }).label({
+				color: colors.z,
+				offset: [16, 0]
+			  })
+		  
+		  
+			  view.grid({
+				axes: "xy",
+				divideX: 3,
+				divideY: 3
+			  })
+			  .grid({
+				axes: "xz",
+				divideX: 3,
+				divideY: 3,
+			  })
+			  .grid({
+				axes: "yz",
+				divideX: 3,
+				divideY: 3,
+			  })
+		  
+			  var n = 32; // number of data points
+			  view.array({
+				id: 'data',
+				width: n,
+				items: 1,
+				channels: 3, // 3 spacial dimensions
+				live: false,
+				expr: function (emit) {
+				  emit(Math.random()*2, Math.random(), Math.random())
+				},
+			  }).point({
+				color: 0x222222,
+				size: 12,
+			  });
+		  
+			  view.swizzle({
+				source: '#data',
+				order: "xyww"
+			  }).point({
+				color: colors.xy,
+				size: 7,
+			  });
+		  
+			  view.swizzle({
+				source: '#data',
+				order: "xwzw"
+			  }).point({
+				color: colors.xz,
+				size: 7,
+			  });
+		  
+			  view.swizzle({
+				source: '#data',
+				order: "wyzw"
+			  }).point({
+				color: colors.yz,
+				size: 7,
+			  });
+		  
+			  view.transform({
+				position: [0, 1.01, 0],
+			  }).swizzle({
+				source: '#data',
+				order: "xwww"
+			  }).point({
+				color: colors.x,
+				size: 7,
+			  });
+		  
+			  view.transform({
+				position: [2.01, 0, 0],
+			  }).swizzle({
+				source: '#data',
+				order: "wyww"
+			  }).point({
+				color: colors.y,
+				size: 7,
+			  });
+		  
+			  view.transform({
+				position: [0, 1.01, 0],
+			  }).swizzle({
+				source: '#data',
+				order: "wwzw"
+			  }).point({
+				color: colors.z,
+				size: 7,
+			  });
+		  `,10),
+
+
+
+
+
+		
+		].join(br)),
+
+
+	].join(br),
+
 
 		
 	'Lego':[

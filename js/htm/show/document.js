@@ -36,4 +36,9 @@ $(function () {
 
     }
 
+    sTo(function(){
+        $('.mathbox-loader').parent().remove();
+        
+    },1000);
+
 });

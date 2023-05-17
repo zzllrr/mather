@@ -2216,7 +2216,7 @@ sbsTbl=function(){
 	$('#struc').append(str+strPg.replace('∧','∨')+dc);
 	$('#istruc').append(str2+'</table>');
 
-	$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide();	
+	if($('#ITextLaTeXBox').length){$('.sbsTbl > tbody > tr, .sbsTbl > div').not('.Symboli:not(.Symboli_)').hide()}
 };
 
 
@@ -2432,7 +2432,7 @@ $(function(){
 						gM('Webpage Editor')+
 						'":"Markdown HTML CSS"},{"'+
 						gM('Graphics')+
-						'":"Canvas SVG Echarts Zdog Lego Rough 2D 3D"},{"'+
+						'":"Canvas SVG Echarts Zdog Lego MathBox Rough 2D 3D"},{"'+
 						gM('Show')+
 						'":"Slide VR AR"},{"'+
 				
@@ -2485,7 +2485,8 @@ $(function(){
 						strbtn+'α" id=sbson tip=UnicodeCharacter class=tool />'+
 						strbtn+'ƒ" id=funcson tip=Function class=tool />'+
 						strbtn+'∑" id=strucon tip=Structure class=tool />'+
-						strbtn+'?" id=randon tip=Random class=tool />'
+						strbtn+'?" id=randon tip=Random class=tool />'+
+						strbtn+'✍" id=handon tip=Draw class=tool />'
 					)+
 					itvc('rotate180" id="tClear2')+
 					
@@ -2612,6 +2613,19 @@ $(function(){
 
 				].join(''))+
 
+
+				DCtv('onbox" hidden id="hand',[
+					DCtv('handBox',[
+						
+						'<iframe id=myscript hidden style="width:600px;height:500px;border:0"></iframe>'
+
+						]
+					).join(''),
+
+
+				].join(''))+
+
+
 				DCtv('onbox" id="ITextLaTeXBox',
 					DCtv('TextLaTeXBox" id="iTextLaTeXBox',
 						DCtv('iTextLaTeX" hidden id="isbs')+
@@ -2649,7 +2663,7 @@ $(function(){
 				gM('Webpage Editor')+
 				'":"Markdown HTML"},{"'+
 				gM('Graphics')+
-				'":"Canvas SVG Echarts Zdog Lego Rough"},{"'+
+				'":"Canvas SVG Echarts Zdog Lego Rough MathBox"},{"'+
 				gM('Show')+
 				'":"Slide VR AR"}]'
 				),1
@@ -2768,7 +2782,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		if(/Canvas|JavaScript|HTML|3D/.test(p)){
 			p='JavaScript';
 		}
-		sbsTbltd(this,e,'input'+$('#input1.seled').length,p);
+		sbsTbltd(this,e, $('#input1').length?'input'+$('#input1.seled').length:"textLaTeX",p);
 
 	}).on('click', '.sbsTblPg',function(e){
 		var me=$(this),pa=me.parent(),pc=pa.children(), i=me.index(),
@@ -3788,7 +3802,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				$('#input1').val('');
 				$('#cClear').toggle();
 
-			}else if(/sbs|funcs|struc|editText|rand/.test(id)){
+			}else if(/sbs|funcs|struc|editText|rand|hand/.test(id)){
 
 				me.siblings('.seled.tool').removeClass('seled').each(function(){
 					var tid=this.id.replace(/on$/,'');
@@ -3806,6 +3820,17 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				if(/struc/.test(id)){
 					$('#istruc .Sts.seled').click();
 					$('#struc .sbsTbl > *').hide();
+				}
+
+				if(/hand/.test(id)){
+					console.log(id, $('#myscript').not('[src]').length);
+					$('#myscript').before('<div>...</div>');
+					
+					$('#myscript').not('[src]').attr('src', Hs+"webdemo.myscript.com/views/math/index.html");
+					sTo(function(){
+						$('#myscript').prev().remove();
+						$('#myscript').toggle(se);
+					},1000)
 				}
 
 			}
