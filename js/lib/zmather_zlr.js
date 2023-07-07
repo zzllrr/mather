@@ -38,7 +38,7 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	hrefImgRe = new RegExp('\\S*\\.' + imgReg + '[\\?\\&]*.*', 'i'), textImgRe = new RegExp('(file|ftp|https?):[/]+[^\'"\\s\\(\\)]*\\.' + imgReg, 'gi'),
 	digiReg = /^\d+(\.\d)?$/,
 	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}\|]/g, '\\$&') },
-
+	dblChr2Arr=function(t){var A=[];for(var a of t){A.push(a)} return A},//return t.replace(/../g,'$& ').trim().split(' ')},
 
 	NumExp=function(x){// 区间符号[(,)]或具体数值，多个条件并取使用英文逗号, 负无穷用(,或(-,表示, 正无穷用,)或+)表示
 		var A=x.replace(/[\[\(][^\]\)]+[\]\)]/g, t=>t.replace(/,/g,';')).split(','), l=A.length;
@@ -2015,6 +2015,32 @@ function tableArr(jQExp, type) {//type=str/arr/csv
 		t = t.join('\n')
 	}
 	return t;
+}
+
+function tableArrLnk(rowSzl, colSzl, lnkSzl) {
+	var A=[];
+	Node(rowSzl).each(function(){
+		var a=[];
+		if(isArr(colSzl)){
+			a=colSzl.map(i=>$(this).find(i).text().replace(/[\s]+/g,' ').trim())
+		}else{
+			(colSzl?$(this).find(colSzl):$(this).children()).each(function(){
+				$(this).find('div,span').not('.prependSpace').addClass('prependSpace').prepend('&nbsp;');
+				a.push($(this).text().replace(/[\s]+/g,' ').trim())
+			});
+		}
+		
+		var lnk=$(this).find(lnkSzl ||'a[href]');
+		if(lnk.length<1){lnk=$(this).filter('a[href]')}
+		if(lnk.length<1){lnk=$(this).parent().filter('a[href]')}
+		if(lnk.length<1){lnk=$(this).parent().parent().filter('a[href]')}
+		if(lnk.length<1){lnk=$(this).parent().parent().parent().filter('a[href]')}
+
+		lnk=lnk.attr('href')||'';
+		a.push(lnk);
+		A.push(a.join(brt))
+	});
+	return A.join(brn)
 }
 
 function isArr(obj, dim) { return obj instanceof Array && (dim ? obj[0] instanceof Array : 1) } //Object.prototype.toString.call(obj) === '[object Array]'} //x instanceof Array
@@ -4064,6 +4090,116 @@ function md2html(str, sep) {
 
 
 	return s.replace(/^\n+/, '').replace(/\n+$/, '\n').replace(/\n/g, sep === undefined ? br : sep)
+
+}
+
+function toggleMath(obj){
+	var formula=zlr3(':contains(','$ \\[ \\( \\begin{',')',','), hed=$('.entryHead > .entryTitle, .date + .summary, .head > .navWeb1'),
+	tex2span=function(t, inlineOnly){
+		var t1=t;
+		if(!inlineOnly){
+			t1=t1.replace(/\$\$[^\$]+\$\$/g, function(f){
+				if(/\)\./.test(f)){// ignore jquery $().
+					return f
+				}
+				var s=f.replace(/\$/g,'').replace(/latex/,'').replace(/\\$/,'').trim();
+				return DC+'ZMath title="'+s+'">'+s+dc
+			});
+		}
+
+		return t1.replace(/\$[^\$]+\$(?!\$)/g, function(f){
+				var s=f.replace(/\$/g,'').replace(/latex/,'').replace(/\\$/,'').trim();
+				return SC+'ZMath title="'+s+'">'+s+sc
+			}).replace(/\\\(.+\\\)/g, function(f){
+				var fa=split(f,/\\\)/g)[1], s=Arrf(function(x){if(x){var xA=x.split('\\(');
+					return xA.length>1?xA[0]+SC+'ZMath xa=2 title="'+xA[1]+'">'+xA[1]+sc:SC+'ZMath xa=1 title="'+x+'">'+x+sc
+					}else{return ''}}, fa);
+				return s.join('')
+
+			}).replace(/\\\[.+\\\]/g, function(f){
+				var fa=split(f,/\\\]/g)[1], s=Arrf(function(x){if(x){var xA=x.split('\\[');
+					
+						return xA.length>1?xA[0]+DC+'ZMath xa=2 title="'+xA[1]+'">'+xA[1]+dc:DC+'ZMath xa=1 title="'+x+'">'+x+dc
+					}else{return ''}}, fa);
+				return s.join('')
+
+			}).replace(/\\begin\{equation\}.+\\end\{equation\}/g, function(f){
+				var fa=split(f,/\\end\{equation\}/g)[1], s=Arrf(function(x){var xA=x.split('\\begin\\{equation\\}');
+					return xA.length>1?xA[0]+SC+'ZMath title="'+xA[1]+'">'+xA[1]+sc:SC+'ZMath title="'+x+'">'+x+sc}, fa);
+				return s.join('')
+			});
+
+	};
+
+	var o=$(obj||'.articleBody'), oZ=o.find('.ZMath');
+	if(!oZ.length){
+
+		o.find(formula).add(o).not('pre,code').each(function(){
+		//	if(o.children().length<1){
+				$(this).contents().filter(function(){return this.nodeType==3 && $(this).parents('pre,code').length<1}).each(function(){
+					var t0=this.nodeValue, t1=tex2span(this.nodeValue);
+					if(t0!=t1){
+						//console.log(t0);
+						//console.log(t1);
+						$(this).after(t1);
+						$(this).remove();
+					}
+				})
+		//	}
+		});
+		oZ=o.find('.ZMath')
+	}
+//consolelog(hed.length);
+	hed.not(':has(.Zmath)').html(function(i,v){return v.replace(/\$[^\$]+\$(?!\$)/g, function(f){
+		//consolelog('f = ',f);
+		var s=f.replace(/\$/g,'').replace(/\\$/g,'').trim();
+
+		
+
+		return SCtv('ZMath" title="'+s,s)
+	})})
+
+//consolelog('obj  = ', obj);
+	if(obj){
+		oZ.add(o.parents('.sele').find('.entryHead > .entryTitle, .date + .summary, .head > .navWeb1').find('.ZMath')).each(function(){
+			var z=$(this),t=this.title, tx=$(this).text();
+			
+			if(z.find('.katex').length){
+				
+				
+				
+				//z.text(t);
+				
+				
+				if(obj){
+					
+					//z.replaceWith(t)
+					z.text(t)
+				}
+			}else{
+				
+				
+				//consolelog('katex.render','obj', tx);
+				
+				katex.render(tx, this, {
+				    throwOnError: false
+				});
+			}
+			
+		});
+	}else{
+		oZ.add(hed.find('.ZMath')).each(function(){
+			var z=$(this),t=this.title, tx=$(this).text().replace(/\\$/g,'').trim();
+			if(!z.find('.katex').length){
+				//consolelog('katex.render', tx);
+				katex.render(tx, this, {
+				    throwOnError: false
+				});
+			}
+		});
+	}
+	
+
 
 }
 
