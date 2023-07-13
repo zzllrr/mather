@@ -906,10 +906,10 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			//add math function names in katex.js ,"\\arccot","\\arcsec","\\arccsc","\\sech","\\csch","\\sinc","\\si","\\Si","\\ci","\\Ci","\\Shi","\\sgn","\\cis","\\arccis","\\Arg"
 
 			//extension 
-			.replace(/\\b (\{[^\{\}]+\})/g,'\\pmb {\\red$1}')	//加粗斜体红色
+			.replace(/\\b (\{[^\{\}]+\})/g,'\\pmb {\\red {$1}}')	//加粗斜体红色
 			.replace(/\\b ([^\{}])/g,'\\pmb {\\red{$1}}')	//加粗斜体红色(单个字)
-			.replace(/\\r (\{[^\{\}]+\})/g,'\\textbf \\red $1')	//加粗正体红色
-			.replace(/\\r ([^\{}])/g,'\\textbf \\red{$1}')	//加粗正体红色(单个字)
+			.replace(/\\r (\{[^\{\}]+\})/g,'\\textbf{ \\red $1}')	//加粗正体红色
+			.replace(/\\r ([^\{}])/g,'\\textbf{ \\red{$1}}')	//加粗正体红色(单个字)
 			.replace(/\\d /g,'\\hskip{0.1em}\\text{d}')	//微分d
 
 			.replace(/\\Rt/g,'\\text{Rt△}')	//直角三角形
@@ -969,7 +969,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		return /x/.test(t) ? t : (['xleftarrow', 'xleftrightarrow', 'xrightarrow', 'xLeftarrow', 'xLeftrightarrow', 'xRightarrow', 'xlongequal',
 			'xhookleftarrow', 'xhookrightarrow', 'xtwoheadleftarrow', 'xtwoheadrightarrow', 'xleftharpoonup', 'xrightharpoonup', 'xleftharpoondown', 'xrightharpoondown',
 			'xleftrightharpoons', 'xrightleftharpoons', 'xtofrom', 'xfromto', 'xmapsfrom', 'xmapsto'
-		]['←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄⇆↤↦'.indexOf(t || '=')] || t)
+		]['←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄⇆↤↦'.indexOf(t || '=')] || t)+'{}'
 	},
 
 	kxo = function (t, p, t2) {
