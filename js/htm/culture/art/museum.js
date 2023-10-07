@@ -7,6 +7,10 @@
 culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 
 	[href(Hs+'momath.org/explore/exhibits/','Museum of Mathematics - MoMath'),'',href(Hs+'momath.org/gallery/','Photo Gallery')+' '+href(Hs+'mathmidway.org/mm2go/exhibits.php','Math Midway 2 Go - mm2go (Exhibits)')],
+		
+	[href(Hs+'mathematical-models.org/cn/models','DAMM 数学模型数字档案'),'',''],
+		
+		https://digital.deutsches-museum.de/en/digital-catalogue/hitlist/?searchTerm=&hasMedia=false&orderByField=score&orderDirection=true&filterCollection=true&filterLibrary=false&filterArchive=false&collection[name]=Mathematische%20Instrumente,%20Analogger%C3%A4te%20und%20-rechner&collection[value]=415
 
 	[href(Hs+'gallery.bridgesmathart.org','bridges math art'),'','Mathematical Art Galleries, he online home of the mathematical art exhibitions from the annual Bridges Conference, Joint Mathematics Meetings (JMM), and ICERM Illustrating Mathematics program; as well as the Bridges Conference Short Film Festival and Bridges Conference Fashion Show'],
 	
@@ -31,7 +35,7 @@ culture['Art/Museum']=Table([i18(ZLR('Name Type Features'))],[
 	[href(Hs+'www.vmfa.museum','Verginia 美国弗吉尼亚美术馆'),'',''],
 	[href(H+'www.montargisvr.com','中国旅法勤工俭学蒙达尔纪纪念馆'),'',''],
 
-	
+
 
 	[href(Hs+'artsandculture.google.com','Google Culture Institute'),'',''],
 

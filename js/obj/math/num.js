@@ -3282,4 +3282,19 @@ Math.sqrt(Number(444444444444444444444444444444444444444444444444444444444444444
 		return isneg+pp(A.join('/'))+'^('+B.join('/')+')';
 	}
 
-};
+}, Fibonacci=(n,iniA)=>{var A=iniA||[1,1],f=()=>{var l=A.length;A[l]=A[l-2]+A[l-1]};new Array(n).fill(0).forEach(f);return A},
+//斐波那契数列
+Fibonacci2=(n,iniA)=>{var [a,b]=iniA||[1,1],f=()=>{[a,b]=[b,a+b]};new Array(n).fill(0).forEach(f);return [a,b]}
+
+/* 数组初始化的写法 
+
+' '.repeat(n).split('')
+new Array(n).fill(0)
+
+
+*/
+
+
+
+
+;

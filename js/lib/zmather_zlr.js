@@ -2672,6 +2672,33 @@ function jSon2attr(json) {
 	});
 	return str.trim();
 }
+function jSon2arr(json, AxB){
+	var A=[], B=[];
+	for(var i in json){
+		if(AxB){
+			A.push([i,json[i]])
+		}else{
+			A.push(i);
+			B.push(json[i])
+		}
+	}
+	return AxB?A:[A,B]
+}
+function jSonV2K(json){
+	var o={};
+	for(var i in json){
+		o[json[i]]=i
+	}
+	return o
+}
+function jSonFindKey(json,v){
+	for(var i in json){
+		if(json[i]==v){
+			return i
+		}
+	}
+	return null
+}
 
 function urlTran(urls) {
 	var tArr = urls.match(/\S+/gi);

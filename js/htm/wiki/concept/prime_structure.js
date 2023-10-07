@@ -249,7 +249,12 @@ num('10" id="primeGen',1,50000)+'实验结果：输入10，得到的数有2045�
 '<div id=primesGen>'+dc
 )
 
++detail(gM('Prime-Number Structure Table')+'mod P_n #',
 
+num('5" id="primeGenByMod',1,500)+'实验结果：输入5，得到的数有240个（其中186个是合数），素数占比22.08%'+
+'<div id=primesGenByMod>'+dc
+
+)
 );
 
 $(function(){
@@ -286,6 +291,19 @@ $(function(){
 	}).on('click change keyup','#primeGen',function(){
 		var n=+$(this).val()||1;
 		$('#primesGen').html(PrimeGen(n).join(br));
+
+	}).on('click change keyup','#primeGenByMod',function(){
+		var n=+$(this).val()||10, PnA=PrimeA(n,2);
+
+/*		[[Pn, mod Pn, Pn#, mod Pn#]]
+
+
+*/
+		$('#primesGenByMod').html(Table([['n','Pn', 'mod Pn', 'Pn#', 'mod Pn#']],
+		
+			PrimeGenByMod(n).map((v,i)=>[i+1, PnA[i], '±1'+(i>1?',±2'+(i==3?'±3':(i>3?',⋯,±'+(PnA[i]-1)/2:'')):''), PnA.slice(0,i+1).join('·'), '±'+v.join(',±')])
+		
+			,'TBrc'));
 
 	})
 	

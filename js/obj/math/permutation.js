@@ -400,7 +400,7 @@ return BigInt((FactbTrim0(t-BigInt(1))*t+'').replace(/0+$/,''))
 
 	return FactbTrim0((t-BigInt(1)),d)*s
 
-},Fact=function(n){//阶乘 n<22时
+},Fact=function(n){//阶乘 n<22时	reduce改写：seqA(1,n).reduce((i,j)=>i*j)		Fibonacci: var fi=n=>{var A=[1,1],f=()=>{var c=A[0]+A[1];A[0]=A[1];A[1]=c};' '.repeat(n).split('').forEach(f);return A}
 	var t=+n||0;
 	if(t<=0 || t==1){return 1}
 	return Fact(t-1)*t
