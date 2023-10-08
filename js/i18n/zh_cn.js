@@ -4185,7 +4185,7 @@ lang['zh_cn'] = {
 'Titchmarsh':'蒂奇马什',
 'Tits':'蒂茨',
 
-'Toeplitz':'特普利茨',
+'Toeplitz':'托普利茨',
 'Tonelli':'托内利',
 
 'Torricelli':'托里拆利',
