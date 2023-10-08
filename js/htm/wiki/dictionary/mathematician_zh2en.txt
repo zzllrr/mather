@@ -923,7 +923,7 @@
 特里科米	F. G. Tricomi	(1897-1978)
 特利夫斯	J. F. Trèves	(1930-)
 特鲁斯德尔	C. A. Truesdell	(1919-2000)
-特普利茨	O. Toeplitz	(1881-1940)
+托普利茨	O. Toeplitz	(1881-1940)
 藤田隆夫	Fujita Takao	(1949)
 图兰	P. Turán 	(1910-1976)
 图基	J. W. Tukey	(1915-2000)

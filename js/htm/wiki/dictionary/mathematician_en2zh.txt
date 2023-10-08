@@ -956,7 +956,7 @@ Tinbergen,J. 丁伯根
 Titchmarsh,E.C. 蒂奇马什
 Tits,J.L. 蒂茨
 Toda Morikazu 户田盛和
-Toeplitz,O.特普利茨
+Toeplitz,O.托普利茨
 Tomita Minoru 富田稔
 Tomelli,L. 托内利
 Torricelli,E. 托里拆利

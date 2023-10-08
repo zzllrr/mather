@@ -2481,7 +2481,7 @@ $(function(){
 						'":"I18N EN"},{"'+
 
 						gM('Data')+' | '+gM('Text')+
-						'":"TXT TSV CSV XML YAML JSON"}]')
+						'":"TXT TSV CSV XML YAML JSON Excel"}]')
 					)
 					)+'</select>'+
 					itvc('rotate180" id="tClear')+
@@ -2502,7 +2502,7 @@ $(function(){
 					
 					
 					'<input type="file" id=inputSnippetFile hidden />'+
-
+					'<select id=loccFileUTF hidden>'+Options('utf16le,utf16be,utf32le,utf32be,utf64le,ascii,utf7,utf8'.split(','),'','utf8').join('')+'</select>'+
 
 					DCtv('resize" id="snippets',
 						Arrf(function(i){return snippet.Str(L['snippetName'+i]||gM('Snippet'),
@@ -3426,9 +3426,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		var v=$(this).val(),p=$('#input0Type').val(), vt=v.trim();
 		var s=$('.snippet.seled'), i=s.index()+1, l0=(L['snippet'+i]||'').trim();
-		L['snippet'+i]=v;
+		L['snippet'+i]=v;// 这里会有exceed_quota的可能
 		
-		if(l0!=vt && $('#preview').is('.seled') && vt){
+		if(l0!=vt && $('#preview').is('.seled') && vt && !/Excel|CSV|TSV|TXT/i.test(p)){
 
 			preDisplay();
 		}
@@ -3609,6 +3609,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 	}).on('change','#input0Type', function(){
 	
 		var v=$(this).val()||'TXT', it=$('#input0Tip > [data-tool="'+v+'"]'), tv=tooltip[v];
+		$('#loccFileUTF').toggle(/Excel/i.test(v))
+		
+
+
 		if(v=='Echarts'){
 			tv=tooltip.graphic['Statistics/Echarts']
 		}
@@ -3667,7 +3671,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		}
 		$('#displayMode,#SVGLinkMode').toggle($('#output0Type').val()=='SVG');
 
-		if($('#preview.seled').length){
+		if($('#preview.seled').length && !/Excel|CSV|TSV|TXT/i.test(v)){
 			preDisplay()
 		}
 
@@ -3716,11 +3720,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		$('#inputSnippetFile').click()
 
 	}).on('change','#inputSnippetFile',function(){
-		var v=$(this).val();
+		var v=$(this).val(), utfType=$('#loccFileUTF').val();
 		if(v){
 			var files=this.files, fl=files.length, l=+L.snippets||1;
 			for(var i=0;i<fl;i++){
-				var f=files[i], s=f.size, ext=f.type.replace(/(text|application)[/]/,''), m=f.name;
+				var f=files[i], s=f.size, ext=f.type.replace(/(text|application)[/]/,''), m=f.name, exceed1M=s/1000/1000>1;
 
 //console.log(f,m,s,ext);
 				ext=ext.toUpperCase();
@@ -3735,21 +3739,55 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 						s=sizeKB(s)
 					}
 */
-					var reader=new FileReader();
-					reader.onload = function(e){
-						//var txt = this.result;
-						var txt=e.target.result;
 
-						L['snippet'+(l+1)]=txt;
+				if(/EXCEL|VND.OPENXMLFORMATS-OFFICEDOCUMENT.SPREADSHEETML.SHEET/i.test(ext)){
+					ext='Excel';
+					//console.log(ext, utfType);
+					xlsxReader(f,function(t){
+						//console.log(t.SheetNames);
+						var x=XLSX.utils.sheet_to_csv(t.Sheets[t.SheetNames[0]],{ FS: "\t" });
+						$('#input0').val(x);
+
+
+				/*		
+						L['snippet'+(l+1)]=x;
 						
 						L['snippetName'+(l+1)]=m;
 
 						L['snippetType'+(l+1)]=ext;
 						L.snippets=l+1;
 						snippet.load(l+1);
+				*/
+
+					},utfType);
+
+				}else{
+
+
+					var reader=new FileReader();
+					reader.onload = function(e){
+						//var txt = this.result;
+						var txt=e.target.result;
+
+						L['snippet'+(l+1)]=exceed1M?'':txt;
+						
+						L['snippetName'+(l+1)]=m;
+
+						L['snippetType'+(l+1)]=ext;
+						L.snippets=l+1;
+						snippet.load(l+1);
+
+						if(exceed1M){
+							$('#input0').val(txt);
+						}
 					};
 					//reader.readAsDataURL(f);
 					reader.readAsText(f);
+
+				}
+
+
+
 
 			}
 		}

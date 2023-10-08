@@ -2700,6 +2700,31 @@ function jSonFindKey(json,v){
 	return null
 }
 
+function xlsxReader(file, cb, utf){
+    var reader=new FileReader();
+    reader.onload=function(e){
+        var d=e.target.result;
+		//console.log(this.result);
+		//console.log(d);
+		if(utf){
+			// cptable.utils.magic 查看编码
+			//d=cptable.utils.decode(65001,d);
+
+			d=cptable.utils.decode(jSonFindKey(cptable.utils.magic,utf)*1,d);
+			//console.log('utf',d);
+		}
+		//console.log(utf, d);
+		if(XLSX){
+			//console.log('XLSX.read');
+			var wb=XLSX.read(d,{type:'binary'});//, codepage: codepage||936
+			//https://docs.sheetjs.com/docs/miscellany/errors/#data-issues
+			if(cb) cb(wb);
+		}
+
+    };reader.readAsBinaryString(file)
+
+}
+
 function urlTran(urls) {
 	var tArr = urls.match(/\S+/gi);
 	if (!tArr) { return '' }
