@@ -5,7 +5,7 @@
  */
 
 var showTool = [
-    'IL LaTeX MD HTML',
+    'IL LaTeX MD Markmap HTML',
     'D2 D3 Canvas SVG RF',
     'Echarts Zdog Rough Lego',
     'JS I18 EN YAML MathBox'

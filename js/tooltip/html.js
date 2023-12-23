@@ -205,7 +205,9 @@ E|F|G
 
 	].join(br),
 
-
+	'Markmap':[
+		href(Hs+'markmap.js.org/repl','Markmap')
+	].join(br),
 
 	//HTML
 

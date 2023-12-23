@@ -13,7 +13,7 @@ https://jrmf.org/public/files/activities/ActivitiesListAug2019.pdf booklet中链
 https://jrmf.org/more-resources
 
 	*/
-
+	[href(Hs+'theconversation.com/how-many-people-need-to-be-in-a-room-for-two-to-share-a-birthday-its-fewer-than-you-think-heres-why-218250','4个经典反直觉案例')],
 	[href(H+'www.geometrygames.org','geometry games'),'','Topology and Geometry Software by Jeff Weeks'],
 ],'TBrc'))+
 

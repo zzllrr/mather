@@ -158,6 +158,12 @@ code, pre{
 
 
 
+#mindmap {
+	display: block;
+	width: 100vw;
+	height: 100vh;
+}
+
 #oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
@@ -1088,7 +1094,7 @@ input[len="2"]{
 	padding:1px;
 }
 .multinput{
-	-webkit-appearance:radio
+	appearance:radio
 }
 
 @keyframes hue {

@@ -60,11 +60,20 @@ oHTML=function(x,notMD,elem,cb){
     //o.html(notMD?x:replaceNodeInner(x,'MD', md2html));
     //console.log('oHTML',x);
     if(notMD){
+
         var t=replaceNodeInner(x,'i18', gM,1);
         t=replaceNodeInner(t,'i18n', gM,1);
         t=replaceNodeInner(t,'en', GM,1);
+
         o.html(t)
         //o.html(replaceNodeInner(x,'i18', gM,1));
+    }else if(/<markmap>/i.test(x)){
+
+        o.html('<svg id="mindmap"></svg>'+XML.wrapE('style',csslib['markmap-toolbar'])+jslib['markmap-lib']+jslib['markmap-view']+jslib['markmap-toolbar']);
+
+        sTo(function(){
+            o.append(jslib['markmap-data'](x.replace(/<\/?markmap>/ig,'')))
+        },800)
 
     }else{
         o.html(replaceNodeInner(x,'MD', md2html,1));
@@ -450,9 +459,9 @@ var rng2=function(t,neg){
 
 
 function all2html(type,V,dom){
-    var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||'').toUpperCase(),ivl=iv.toUpperCase();
+    var w=$(dom), v=V||w.html(), vA=v.split('\n'), iv=(type||''),ivl=iv.toUpperCase();
     //console.log(V,type);
-    if(/UNICODE_MATH|UM/.test(iv)){
+    if(/UNICODE_MATH|UM/.test(ivl)){
         var Dp=$('.level.seled[data-i=Display]'),l=Dp.length;
         if(l){
         //	Dp.next().find('.task').click();
@@ -461,17 +470,17 @@ function all2html(type,V,dom){
             w.html(asc2unicode(v).split('\n').join(br));
         }
         
-    }else if(/MARKDOWN|MD/.test(iv)){
+    }else if(/MARKDOWN|MD|MARKUP|MARKMAP/.test(ivl)){
         w.html(md2html(v));
        // console.log(v);
 
-    }else if(/JAVASCRIPT|JS/.test(iv)){
+    }else if(/JAVASCRIPT|JS/.test(ivl)){
         try{
             w.html(Arrfc([eval,XML.decode],vA).join(br))
         }catch(e){
             w.html(v)
         }
-    }else if(/LATEX|LA|LT|LX|TEX|LTX|IL/.test(iv)){
+    }else if(/LATEX|LA|LT|LX|TEX|LTX|IL/.test(ivl)){
         var x=sub2n(v,1);
         try{
             x=kx(x)
@@ -480,7 +489,7 @@ function all2html(type,V,dom){
         }
         katex.render(x, w[0], {
             throwOnError: false,
-            displayMode: iv!='IL',
+            displayMode: ivl!='IL',
             trust:true
         });
 
@@ -557,7 +566,7 @@ function all2html(type,V,dom){
             w.html(v)
         }
 
-    }else if(/RF/i.test(iv)){// Rough SVG
+    }else if(/RF/i.test(ivl)){// Rough SVG
   
         try{
             var id=ivl+Random(12,1)+Time.now5();
@@ -585,7 +594,7 @@ function all2html(type,V,dom){
             w.html(v)
         }
 
-    }else if(/ZD/.test(iv)){
+    }else if(/ZD/.test(ivl)){
   
         try{
             var id=ivl+Random(12,1)+Time.now5();
@@ -627,14 +636,14 @@ function all2html(type,V,dom){
         }
 */
 
-    }else if(/^SV/.test(iv)){
+    }else if(/^SV/.test(ivl)){
         if(!w.is('svg')){
             w.html('<svg xmlns="'+xmlns+'" xmlns:xlink="'+xmlnsxlink+'" version="1.1">'+v+'</svg>');
         }else{
 
         }
         
-    }else if(/CANVAS|CV/.test(iv)){
+    }else if(/CANVAS|CV/.test(ivl)){
         try{
             var cvs=w;
             if(!w.is('canvas')){
@@ -648,33 +657,33 @@ function all2html(type,V,dom){
             w.html(v)
         }
         
-    }else if(iv=='YAML'){
+    }else if(ivl=='YAML'){
         var x=jsyaml.load(v);
         w.html(XML.wrapE('pre',XML.wrapE('code',jSoff(x))));//txa
 
-    }else if(/I18/.test(iv)){
+    }else if(/I18/.test(ivl)){
 
         w.text(gM(v));
 
-    }else if(/EN/i.test(iv)){
+    }else if(/EN/i.test(ivl)){
         //w.text(function(i,v){return gM(v)});
         w.text(GM(v,'','en'));
 
-    }else if(/ECHARTS|EC/.test(iv)){
+    }else if(/ECHARTS|EC/.test(ivl)){
 //consolelog(v);
         w.empty();
         Graphic.drawSVG('echarts',v,'',w);
     
-    }else if(iv=='CODE'){
+    }else if(ivl=='CODE'){
         w.html(XML.wrapE('pre',XML.wrapE('code',XML.encode(v))));
 
-    }else if(/HTML|SLIDE/.test(iv)){
+    }else if(/HTML|SLIDE/.test(ivl)){
         w.html(v);
         w.find(ZLR(Mele+' '+Meles+' '+Mele2).join(',')).each(function(){
             all2html(this.nodeName,$(this).text(),this);
         });
-    }else if(/[TC]SV/.test(iv)){
-        if(iv=='TSV' || v.indexOf('\t')>-1){
+    }else if(/[TC]SV/.test(ivl)){
+        if(ivl=='TSV' || v.indexOf('\t')>-1){
             vA=Arrf(function(x){return x.split('\t')},vA);
         }else{
             vA=Arrf(csv2A,vA);

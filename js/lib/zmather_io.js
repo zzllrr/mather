@@ -2468,7 +2468,7 @@ $(function(){
 						gM('Math Formula')+
 						'":"LaTeX Ascii_Math Unicode_Math Content_MathML Presentation_MathML"},{"'+
 						gM('Webpage Editor')+
-						'":"Markdown HTML CSS"},{"'+
+						'":"Markdown Markmap HTML CSS"},{"'+
 						gM('Graphics')+
 						'":"Canvas SVG Echarts Zdog Lego MathBox Rough 2D 3D"},{"'+
 						gM('Show')+
@@ -3108,6 +3108,10 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		}else if(p=='Markdown'){
 			t=csslib.katex+csslib.markdown+v1
+
+		}else if(p=='Markmap'){
+			hd=csslib.katex+jslib['katex'];
+			t='<svg id="mindmap"></svg>'+csslib.markmap+jslib['d3']+jslib['markmap-lib']+jslib['markmap-view']+jslib['markmap-toolbar']+jslib['markmap-data'](v)
 
 		}else if(/Echarts/.test(p)){
 			t=jslib[tp]+jslib[tp+'_eval'](v)

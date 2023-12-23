@@ -139,6 +139,46 @@ var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /
 	myChart.setOption(o);
 `)},
 		'd3':referf(unpkg('d3')),
+		'markmap-lib':referf(delivr('markmap-lib','browser/index')),
+		'markmap-view':referf(delivr('markmap-view','browser/index')),
+		'markmap-toolbar':referf(delivr('markmap-toolbar','index')),
+		'markmap-data':(t,getOptions, jsonOptions)=>'<textarea id=input0 class=hidden>'+`${t}
+		`+'</textarea>'+XML.wrapE('script',`
+			var getOptions=${getOptions||'i=>i'}, jsonOptions=${JSON.stringify(jsonOptions||{})};
+			var mm=markmap.Markmap.create(
+				"svg#mindmap",
+				(getOptions || markmap.deriveOptions)(jsonOptions),
+				(new markmap.Transformer()).transform(document.getElementById('input0').innerText).root
+
+			);
+
+			
+
+			setTimeout(function(){
+				document.body.append(markmap.Toolbar.create(mm).el);
+				var katexElements = document.querySelectorAll('.katex');
+
+				// 遍历 katex 元素
+				katexElements.forEach(function(katexElement) {
+				// 查找包含 markmap-foreign 类的父元素
+				var markmapForeignElement = katexElement.closest('.markmap-foreign');
+
+				if (markmapForeignElement) {
+					var originalWd = markmapForeignElement.getAttribute('width');
+
+					// 宽度乘以 1.05
+					if (originalWd) {
+						var newWd = parseInt(parseInt(originalWd) * 1.05);
+						markmapForeignElement.setAttribute('width', newWd);
+					}
+				}
+				});
+
+
+			},800);
+				
+			`)
+		,
 
 		'function-plot':referf(unpkg('function-plot','function-plot')),
 
@@ -239,9 +279,60 @@ body:not(.night) .bdb{
 .hidden{
 	display:none
 }
-	`),
-	};
 
+[id]:not(:hover)>.mkdnhead{
+    opacity:0
+}
+[id]:hover>.mkdnhead{
+    opacity:1
+}
+
+.mkdnhead{text-decoration:none}
+	`),
+		'markmap-toolbar':`
+	.mm-toolbar:hover {--un-border-opacity:1;border-color:rgba(156,163,175,var(--un-border-opacity));
+	}
+	.mm-toolbar svg {display:block;
+	}
+	.mm-toolbar a {display:inline-block;text-decoration:none;
+	}
+	.mm-toolbar-brand > img {width:1rem;height:1rem;vertical-align:middle;
+	}
+	.mm-toolbar-brand > span {padding-left:0.25rem;padding-right:0.25rem;
+	}
+	.mm-toolbar-brand:not(:first-child), .mm-toolbar-item:not(:first-child) {margin-left:0.25rem;
+	}
+	.mm-toolbar-brand > *, .mm-toolbar-item > * {
+		min-width: 20px;
+		height: 20px;
+		line-height: 20px;cursor:pointer;text-align:center;font-size:0.75rem;line-height:1rem;--un-text-opacity:1;color:rgba(156,163,175,var(--un-text-opacity));
+	}
+	.mm-toolbar-brand.active > *, .mm-toolbar-brand:hover > *, .mm-toolbar-item.active > *, .mm-toolbar-item:hover > * {--un-text-opacity:1;color:rgba(31,41,55,var(--un-text-opacity));
+	}
+	.mm-toolbar-brand.active,
+		.mm-toolbar-brand:hover,
+		.mm-toolbar-item.active,
+		.mm-toolbar-item:hover {border-radius:0.25rem;--un-bg-opacity:1;background-color:rgba(229,231,235,var(--un-bg-opacity));
+	}
+	.mm-toolbar-brand.active, .mm-toolbar-item.active {--un-bg-opacity:1;background-color:rgba(209,213,219,var(--un-bg-opacity));
+	}
+	.mm-toolbar {display:flex;user-select:none;align-items:center;border-width:1px;--un-border-opacity:1;border-color:rgba(209,213,219,var(--un-border-opacity));border-radius:0.25rem;border-style:solid;--un-bg-opacity:1;background-color:rgba(255,255,255,var(--un-bg-opacity));padding:0.25rem;line-height:1;
+		position:absolute;bottom:20px;right:20px;
+	}
+		`
+};
+
+csslib.markmap=csslib.markdown+csslib['markmap-toolbar']+XML.wrapE('style', `
+* {
+	margin: 0;
+	padding: 0;
+}
+#mindmap {
+	display: block;
+	width: 100vw;
+	height: 100vh;
+}
+`);
 
 $.expr[':'].bottom = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('bottom') == '0px' };
 $.expr[':'].top = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('top') == '0px' };
@@ -3313,6 +3404,11 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		} else {
 			return A1 - B1
 		}
+	},
+	freq: function(A, ascend){// 按数组元素频率排序（ascend不为真，默认降序），最终会去重
+		var B=Array.from(new Set(A)).map(i=>[i, A.filter(j=>j==i).length]);
+		B.sort((a,b)=>ascend?a[1]-b[1]:b[1]-a[1]);
+		return B.map(i=>i[0])
 	}
 
 }, sort2 = function (A, sortBys, cols, addNumCol, addValue) {/*二维数组排序（表格排序）
@@ -3782,6 +3878,14 @@ function linear2nest(Arr) {//平面线性二维数组[[相对层级,内容]+] �
 function precode(t){
 	return XML.wrapE('pre', XML.wrapE('code',t))
 }
+
+function md2katex(str){
+	return str.replace(/\$[^\$]+\$/g, function (x) {
+		var k = x.replace(/^.|.$/g, ''), z = zx(k)
+		return z
+	});	
+}
+
 function md2html(str, sep) {
 	var codeblockA = [], headA = [], listA = [], listOU = {},
 		lnk = {}, footlnk = {}, footlnkA = [],
@@ -3833,7 +3937,7 @@ function md2html(str, sep) {
 
 	while(/<math .+alttext=".+">[\s\S]+<\/math>/.test(s)){// 替换mathml 为 katex
 		var t=s.split('</math>'), t0=t[0].split('<math ');
-		console.log(s.substr(t0[0].length,t[0].length-t0[0].length+7), '\n\n',t0[1].replace(/.+alttext="([^"]+)".+/,'$1'));
+		//console.log(s.substr(t0[0].length,t[0].length-t0[0].length+7), '\n\n',t0[1].replace(/.+alttext="([^"]+)".+/,'$1'));
 		s=s.replace(s.substr(t0[0].length,t[0].length-t0[0].length+7), '$'+t0[1].replace(/.+alttext="([^"]+)".+/,'$1')+'$')
 	}
 
