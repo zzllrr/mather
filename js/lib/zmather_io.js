@@ -2337,7 +2337,7 @@ var OverCanvas=function(t){
 	$('#Pointer').click();
 
 
-}, MathSVG4Weixin=function(MJ){
+}, MathSVG4Weixin=function(MJ, notFillBlue){
 	if(!$('#SVGLinkMode').is('.seled')){
 
 	  /* https://www.jb51.net/article/166239.htm
@@ -2352,14 +2352,21 @@ var OverCanvas=function(t){
 	  */
 	  
 	  MJ.find('use').each(function(){
-		  var id=$(this).attr('xlink:href');
-		  $(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /,''))
+		  var id=$(this).attr('xlink:href'), tr=$(this).attr('transform')||'';
+		  $(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /, (tr?'transform="'+tr+'"':'')))
 	  });
 	  MJ.find('defs, style, script, a').remove();
 	  MJ.find('svg').removeAttr('aria-hidden role focusable');
+	  MJ.find('g:empty, path[d=""]').remove();
 	  MJ.find('g').removeAttr('data-mml-node data-mjx-texclass');
 	  MJ.find('[stroke="currentColor"]').removeAttr('stroke');
 	  MJ.find('[fill="currentColor"]').removeAttr('fill');
+	  MJ.find('.mjx-solid').attr({fill:"none","stroke-width":"70"}).removeAttr('class');
+	  if(!notFillBlue){
+		 MJ.find('path,rect,polygon,line,circle,ellipse').attr('fill','#0080ff'); // 统一设为蓝色以兼容夜间模式
+	  }
+
+	  MJ[0].innerHTML=MJ[0].innerHTML; //强制刷新渲染
 	  
 	}
 	MJ.find('style, script, a').remove();
@@ -2375,9 +2382,12 @@ var OverCanvas=function(t){
 		var i=iv[0],o=ov[0],v=$('#input0').val().trim(),w=$('#input0Preview');
 
 
-		if(iv==ov && ov!='HTML'){
+		if(iv==ov && !/SVG|HTML/ig.test(ov)){
 			w.add('#previewTool').hide();
-			
+
+		}else if(iv==ov && o=='S'){
+			w.html(v);
+
 		}else if(iv=='LaTeX' && o!='H'){
 			var x=v, kxx=kx(sub2n(v,1));
 
@@ -2427,7 +2437,6 @@ var OverCanvas=function(t){
 				});
 				
 			}
-
 			
 		}else if(o=='H'){
 			w.add('#previewTool').show();
@@ -3087,15 +3096,61 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		
 
 	}).on('click','#SVGCopy',function(e){
-		var iP=$('#input0Preview'), MJ=iP.children();
+		var iP=$('#input0Preview'), iP0=iP.html(), MJ=iP.children();
+//		console.log(MJ.length);
 		if(MJ.is('.MathJax')){
+			
+			
+			/*
+//  https://github.com/mdnice/markdown-nice/
+			var mjx = MJ[0], html = mjx.innerHTML, html0=html;
+			var solveWeChatMath = () => {
+//				console.log('solveWeChatMath ',html);
+				  if (!mjx.hasAttribute("jax")) {
+					return;
+				  }
+			  
+				  // mjx.removeAttribute("data");
+				  mjx.removeAttribute("jax");
+				  mjx.removeAttribute("display");
+				  mjx.removeAttribute("tabindex");
+				  mjx.removeAttribute("ctxtmenu_counter");
+				  const svg = mjx.firstChild;
+				  const width = svg.getAttribute("width");
+				  const height = svg.getAttribute("height");
+				  svg.removeAttribute("width");
+				  svg.removeAttribute("height");
+				  svg.style.width = width;
+				  svg.style.height = height;
+			};
+			var solveHtml = () => {
+//console.log('solveHtml 开始 ',html);
+				html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
+				html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
+				html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
+				html = html.replace(/mjx-container/g, "section");
+				html = html.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
+				html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
+
+//				console.log('solveHtml 结束 ',html);
+				return html;
+			};
+			var copyWechat = () => {
+				solveWeChatMath();
+				copy2clipboard(solveHtml());				
+				mjx.innerHTML = html0;
+			};
+
+			//copyWechat();
+			*/
+
 			copy2clipboard(MJ.html())
 		}else{
-			if(MJ.is('svg')){
-				MathSVG4Weixin(MJ)
-
+			if(MJ.is('svg') && $('#input0Type').val()+ $('#input0Type').val()=='SVGSVG' ){
+				MathSVG4Weixin(MJ,1)
 			}
-			copy2clipboard(iP.html())
+			copy2clipboard(iP.html());
+			iP.html(iP0);
 		}
 
 	}).on('click','#downloadPreview',function(e){
@@ -3630,9 +3685,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		L['snippetType'+i]=p;
 
 		$('.snippet.seled').attr('data-type',p);
-		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML').indexOf(v);
+		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML SVG').indexOf(v);
 		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML SVG'),
-			i<0?[[0]]:[[0,2,4,6],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4]][i])
+			i<0?[[0]]:[[0,2,4,6],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4], [6]][i])
 		)));
 		$('.inputTypeTip').remove();
 
