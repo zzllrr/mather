@@ -148,7 +148,7 @@ function mUp(e,Last,drawshape){
 					}
 
 					if($t.is('path')){
-						code+="rc.path('"+SVGPath.toFull(ps,lt,tp)+"'"+opt+")"
+						code+="rc.path('"+svgf.pathFun.toFull(ps,lt,tp)+"'"+opt+")"
 					}
 
 					if(code){
@@ -826,7 +826,7 @@ return
 				}
 
 				if($t.is('path')){
-					code+="rc.path('"+SVGPath.toFull(ps)+"'"+opt+")"
+					code+="rc.path('"+svgf.pathFun.toFull(ps)+"'"+opt+")"
 				}
 
 				if(code){
@@ -1052,65 +1052,13 @@ return
 
 
 var SVGPath={
-	toFull:function(x, lt, tp){// 可选偏移量 lt, tp，用于计算最终绝对坐标
-		var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
-		/*
-		while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
-			xs=xs.replace(/L *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'L$1 L$2')
-		}
-		*/
-	// 对连续命令，显示完整
-		while(/L *([-\d\.]+ +){3,}/.test(xs)){
-			xs=xs.replace(/L *(([-\d\.]+ +){2})([-\d\.])/g,'L$1 L$3')
-		}
-	
-		while(/T *([-\d\.]+ +){3,}/.test(xs)){
-			//xs=xs.replace(/T *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'T$1 T$2')
-			//xs=xs.replace(/T *([\d\.]+ +){2}([\d\.])/g,'T$1 T$2')
-			xs=xs.replace(/T *(([-\d\.]+ +){2})([-\d\.])/g,'T$1 T$3')
-		}
-	
-		while(/S *([-\d\.]+ +){5,}/.test(xs)){
-			xs=xs.replace(/S *(([-\d\.]+ +){4})([-\d\.])/g,'S$1 S$3')
-		}
-	
-		while(/Q *([-\d\.]+ +){5,}/.test(xs)){
-			xs=xs.replace(/Q *(([-\d\.]+ +){4})([-\d\.])/g,'Q$1 Q$3')
-		}
-	
-	
-		while(/C *([-\d\.]+ +){7,}/.test(xs)){
-			xs=xs.replace(/C *(([-\d\.]+ +){6})([-\d\.])/g,'C$1 C$3')
-		}
-	
-		while(/A *([-\d\.]+ +){8,}/.test(xs)){
-			xs=xs.replace(/A *(([-\d\.]+ +){7})([-\d\.])/g,'A$1 A$3')
-		}
-		if(lt || tp){
-
-			xs=xs.replace(/([LMT]) *([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3')
-			.replace(/C *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'C'+lt+'+$1 '+tp+'+$2 '+lt+'+$3 '+tp+'+$4 '+lt+'+$5 '+tp+'+$6 ')
-			.replace(/([QS]) *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3 '+lt+'+$4 '+tp+'+$5')
-			//贝塞尔函数，控制点平移后，失真，有误
-			.replace(/(A *([-\d\.]+ +){5})([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$3 '+tp+'+$4')
-			.replace(/H *([-\d\.]+)/g,'H'+lt+'+$1')
-			.replace(/V *([-\d\.]+)/g,'V'+tp+'+$1')
-			.replace(/[-\d\.]+\+[-\d\.]+/g, function(xy){var ab=xy.split('+');return +ab[0]+(+ab[1])})
-
-
-		}
-
-		return xs
-	},
-
-
 	toLego:function(x,lt,tp,WD2,HT2,swd,opt){
 		/*注意，Lego坐标系（同Canvas），
 			path 转成 legra命令
 		*/
 
 		
-		var xs=SVGPath.toFull(x);
+		var xs=svgf.pathFun.toFull(x);
 	//console.log('d=',xs);
 
 		var cs=split(xs, /[A-Z]/g), cs0=cs[0],
@@ -1207,7 +1155,7 @@ var SVGPath={
 			return Arrf(function(t,i){return i%2?',y:'+(+t-HT2)+'},':'{x:'+(+t-WD2)}, x.split(/[, +]/)).join('')
 		}
 		
-		var xs=SVGPath.toFull(x);
+		var xs=svgf.pathFun.toFull(x);
 	//console.log('d=',xs);
 
 		var cs=split(xs, /[A-Z]/g), cs0=cs[0],

@@ -451,7 +451,7 @@ $(function () {
 					'<div id=svgTextDetail>'+txa('','" id="svgTextDetails')+dc+
 				
 					detail('<input type=button id=clrTextBox value="'+gM('Clear')+'" />'+
-						'<select id=TextBoxType>'+Options(ZLR('LaTeX Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />'+strbtn+' + " id=TextBoxGo2 />',
+						'<select id=TextBoxType>'+Options(ZLR('LaTeX LaTeX2SVG Markdown HTML SVG CSS Canvas Echarts'),'','LaTeX').join('')+'</select>'+strbtn+' OK " id=TextBoxGo />'+strbtn+' + " id=TextBoxGo2 />',
 						txa('','" id="TextBox')+
 						detail(gM('Editor')+SCtv('ediHot" for="HTML',Arrf(function(x){return strbtn+gM(x)+'" data-v='+x+' />'},ZLR('widget editor document slide index')).join('')),
 						
@@ -1177,6 +1177,7 @@ dc+
 					detail(gM('Option'),[
 						'<label>'+strchkbx0+'id=ignoreHiddenElement'+chked+' />'+gM('ignoreHiddenElement')+'</label>',
 						'<label>'+strchkbx0+'id=svg2path />'+gM('Transform to Path')+'</label>',
+						'<label>'+strchkbx0+'id=svg4all />'+gM('All Elements')+'</label>'
 						].join(br)
 					)
 				+
@@ -1313,6 +1314,7 @@ dc+
 		}else{
 			f.parent().hide();
 		}
+		if(!$('#TextBox').val()){$('#svgTEXTBox').attr('open','')}
 	})
 	;
 
@@ -1675,8 +1677,10 @@ dc+
 
 	$('#copy2clipboard').on('click',function(){
 
+		var allCode=$('#svg4all').prop('checked');
+
 		$('#outputCode').removeClass('seled');
-		tileToolCode($('#'+L.drawShapeNow));
+		tileToolCode($('#'+(L.drawShapeNow || 'Caps > *:last')),'', allCode);
 		$('#CodeOut').addClass('opa0').show();
 		
 		//$('#codetext').select();
@@ -1698,6 +1702,7 @@ dc+
 
 	})
 	$('#copyAll2input').on('click',function(){
+		/*
 		var a=[];
 		$('#capsimg + div').nextAll().each(function(){
 			//a.push($(this).prop('outerHTML'))
@@ -1710,7 +1715,15 @@ dc+
 			}
 			$('#input0').val(function(i,v){return v+a.join('\n')}).change();
 		}
+		*/
 
+		tileToolCode($('#'+(L.drawShapeNow || 'Caps > *:last')),'', 1);
+		
+		var iT=$('#input0Type');
+		if(!/Markdown|HTML|SVG/.test(iT.val())){
+			iT.val('SVG').change()
+		}
+		$('#input0').val(function(i,v){return v+brn+$('#codetext').val()}).change();
 	})
 
 	$('#outputCode').on('click',function(){
@@ -1719,19 +1732,20 @@ dc+
 			$('#CodeOut').fadeOut();
 			me.removeClass('seled');
 		}else{
-			tileToolCode($('#'+L.drawShapeNow));
+			var allCode=$('#svg4all').prop('checked');
+			tileToolCode($('#'+(L.drawShapeNow || 'Caps > *:last')),'',allCode);
 			$('#CodeOut').fadeIn();
 			me.addClass('seled');
 		}
 	});
 
 	$('.radio[name=codeout], #CodeOut input').on('click',function(){
-		var me=$(this);
+		var me=$(this), allCode=$('#svg4all').prop('checked');
 		if(me.is('.radio')){
 			me.addClass('seled').siblings('.radio').removeClass('seled')
 		}
-
-		tileToolCode($('#'+L.drawShapeNow));
+		
+		tileToolCode($('#'+(L.drawShapeNow || 'Caps > *:last')),'',allCode);
 
 	});
 
@@ -2093,14 +2107,14 @@ dc+
 					}
 					*/
 					//复制所有元素，合并为一个完整SVG
-
+					//以下代码未完善，在outputCode按钮中实现
 					var x='<svg width="'+$('#caps').width()+'" height="'+$('#caps').height()+'"';
 					$('#capsdiv').nextAll().each(function(){
 						var me=$(this);
 						if(me.is('textarea')){
 							x+=(me.val())
 						}
-					});0
+					});
 
 
 				}
@@ -2553,25 +2567,28 @@ dc+
 					cb();
 				} else if (src.trim().indexOf('\n') < 0) {
 					src = src.trim();
+					if(imgPreRe.test(src)){
 
-					var sne = picSrcNameExt(src), img = new Image();
-					me.css('background', 'url(' + src + ') bottom right/contain no-repeat')
-						.attr({ 'data-name': sne[1], 'data-no': 0, 'data-size': 0, 'data-sz': 0, 'data-ext': sne[2], 'data-bg': src, 'data-src': src });
-					img.onload = function () {
-						var w = this.width;
-						var h = this.height;
-						var s = w + '×' + h;
-						$('.imgurl[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
-						$(this).attr({ 'data-wxh': s, 'data-src': this.src });
+						var sne = picSrcNameExt(src), img = new Image();
+						me.css('background', 'url(' + src + ') bottom right/contain no-repeat')
+							.attr({ 'data-name': sne[1], 'data-no': 0, 'data-size': 0, 'data-sz': 0, 'data-ext': sne[2], 'data-bg': src, 'data-src': src });
+						img.onload = function () {
+							var w = this.width;
+							var h = this.height;
+							var s = w + '×' + h;
+							$('.imgurl[data-bg="' + this.src + '"]').attr({ 'data-w': w, 'data-h': h, 'data-wxh': s });
+							$(this).attr({ 'data-wxh': s, 'data-src': this.src });
+	
+							cb;
+						};
+						img.onerror = function () {
+							me.val(src);
+						}
+						img.src = src;
 
-						cb;
-					};
-					img.onerror = function () {
-						me.val(src);
+					}else{
+						me.css('background', 'none').removeAttr('data-bg data-src');
 					}
-					img.src = src;
-
-
 					
 				}
 
@@ -3076,6 +3093,38 @@ function clk_popout(obj) {
 			if(iT=='SVG'){
 				$e.html(/<svg/.test(v)?v:'<svg viewBox="0 0 200 200" width='+A[2]+' height='+A[3]+'>'+v+'</svg>')
 			}
+			if(iT=='LaTeX2SVG'){
+				var w=$e, kxx=kx(sub2n(v,1));
+				var options = MathJax.getMetricsFor(w[0]);
+				options.display = true;
+
+				//console.log(options);
+/*
+	containerWidth:198
+	display:true
+	em:24
+	ex:12.966666666666667
+	family:""
+	format:"TeX"
+	lineWidth:1000000
+	scale:1
+*/
+
+				//MathJax.tex2svg 返回node  示例：MathJax.tex2svg('\\frac{1}{x^2-1}', {display: true});
+				MathJax.tex2svgPromise(kxx, options).then(function (node) {
+				  //console.log(node);
+				  w[0].appendChild(node);
+				}).catch(function (err) {
+				  w[0].appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+				}).then(function () {
+				  //  Error or not
+				  //console.log($e.html(),'\n Mathjax↓');
+				  //console.log($('#'+eid+' .MathJax').html());
+				  MathSVG4Weixin($('#'+eid+' .MathJax'),1)
+				});
+			}
+
+
 			if(iT=='Echarts'){
 				Graphic.drawSVG(it,v,eid);
 			}

@@ -179,14 +179,12 @@ table {
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit; }
+  box-sizing: inherit; }
 
 audio,
 canvas,
@@ -361,7 +359,8 @@ webslides.js will add .ws-ready automatically. Don't worry :) -- */
   -webkit-overflow-scrolling: touch;
   height: 100vh;
   overflow-x: hidden;
-  overflow-y: scroll; }
+  overflow-y: scroll; 
+}
   #webslides::-webkit-scrollbar {
     display: none; }
 
@@ -376,7 +375,6 @@ input:focus,
 textarea:focus,
 button {
   text-decoration: none;
-  -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out; }
 
 p a:active {
@@ -403,12 +401,10 @@ nav a[rel='external'] em,
     z-index: -1; }
   .shadow:after {
     right: 2.4rem;
-    -webkit-transform: rotate(3deg);
-            transform: rotate(3deg); }
+    transform: rotate(3deg); }
   .shadow:before {
     left: 2.4rem;
-    -webkit-transform: rotate(-3deg);
-            transform: rotate(-3deg); }
+    transform: rotate(-3deg); }
 
 /*=== 1.1 WRAP/CONTAINER === */
 .wrap,
@@ -512,11 +508,7 @@ Just 5 basic animations:
 .fadeIn, .fadeInUp, .zoomIn, .slideInLeft, and .slideInRight
 https://github.com/daneden/animate.css */
 /*-- fadeIn -- */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+
 @keyframes fadeIn {
   from {
     opacity: 0; }
@@ -524,122 +516,71 @@ https://github.com/daneden/animate.css */
     opacity: 1; } }
 
 .fadeIn {
-  -webkit-animation: fadeIn 1s;
-          animation: fadeIn 1s; }
+  animation: fadeIn 1s; }
 
 /*-- fadeInUp -- */
-@-webkit-keyframes fadeInUp {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0); }
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-            transform: none; } }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0); }
+    transform: translate3d(0, 100%, 0); }
   to {
     opacity: 1;
-    -webkit-transform: none;
-            transform: none; } }
+    transform: none; } }
 
 .fadeInUp {
-  -webkit-animation: fadeInUp 1s;
-          animation: fadeInUp 1s; }
+  animation: fadeInUp 1s; }
 
 /*-- zoomIn -- */
-@-webkit-keyframes zoomIn {
-  from {
-    -webkit-transform: scale3d(0.3, 0.3, 0.3);
-            transform: scale3d(0.3, 0.3, 0.3); }
-  50% {
-    opacity: 1; } }
+
 @keyframes zoomIn {
   from {
-    -webkit-transform: scale3d(0.3, 0.3, 0.3);
-            transform: scale3d(0.3, 0.3, 0.3); }
+    transform: scale3d(0.3, 0.3, 0.3); }
   50% {
     opacity: 1; } }
 
 .zoomIn {
-  -webkit-animation: zoomIn 1s;
-          animation: zoomIn 1s; }
+  animation: zoomIn 1s; }
 
 /*-- slideInLeft -- */
-@-webkit-keyframes slideInLeft {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
-    visibility: visible; }
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+
 @keyframes slideInLeft {
   from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
     visibility: visible; }
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    transform: translate3d(0, 0, 0); } }
 
 .slideInLeft {
-  -webkit-animation: slideInLeft 1s;
-          animation: slideInLeft 1s;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both; }
+  animation: slideInLeft 1s;
+  animation-fill-mode: both; }
 
 /*-- slideInRight -- */
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
-    visibility: visible; }
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+
 @keyframes slideInRight {
   from {
-    -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
     visibility: visible; }
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    transform: translate3d(0, 0, 0); } }
 
 .slideInRight {
-  -webkit-animation: slideInRight 1s;
-          animation: slideInRight 1s;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both; }
+  animation: slideInRight 1s;
+  animation-fill-mode: both; }
 
 /* Animated Background (Matrix) */
-@-webkit-keyframes anim {
-  0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0); }
-  100% {
-    -webkit-transform: translateY(-1200px);
-            transform: translateY(-1200px); } }
+
 @keyframes anim {
   0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0); }
+    transform: translateY(0); }
   100% {
-    -webkit-transform: translateY(-1200px);
-            transform: translateY(-1200px); } }
+    transform: translateY(-1200px); } }
 
 /* Duration */
 .slow {
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s; }
-  .slow + .slow {
-    -webkit-animation-duration: 5s;
-            animation-duration: 5s; }
+  animation-duration: 4s; }
+.slow + .slow {
+    nimation-duration: 5s; }
 
 /*=== 1.3 Responsive Media (videos, iframe...) === */
 .embed {
@@ -735,11 +676,8 @@ https://github.com/daneden/animate.css */
 Auto-fill & Equal height === */
 .grid {
   clear: both;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto; }
   .grid:after {
@@ -748,19 +686,14 @@ Auto-fill & Equal height === */
     content: '';
     display: table; }
   .grid > .column {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-flex: 1;
-        -ms-flex: auto;
-            flex: auto;
+    flex: auto;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     padding: 2.4rem;
     position: relative;
-    -webkit-transition: .3s;
     transition: .3s;
     width: 100%; }
   .grid.vertical-align .column {
@@ -834,7 +767,6 @@ ul.description {
     padding-bottom: .8rem;
     padding-top: .8rem;
     position: relative;
-    -webkit-transition: .3s;
     transition: .3s; }
   ul.description li:hover {
     padding-left: .4rem; }
@@ -1127,10 +1059,8 @@ h1 span {
 /* -- Magazine Two Columns -- */
 @media (min-width: 768px) {
   .text-cols {
-    -webkit-column-count: 2;
-            column-count: 2;
-    -webkit-column-gap: 4.8rem;
-            column-gap: 4.8rem;
+    column-count: 2;
+    column-gap: 4.8rem;
     text-align: left; }
   .text-landing + .text-cols {
     margin-top: 3.2rem; } }
@@ -1280,7 +1210,6 @@ header,
 footer,
 #navigation {
   padding: 2.4rem;
-  -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
   width: 100%; }
 
@@ -1343,8 +1272,6 @@ header[role='banner'] {
 =========================================== */
 /*=== 4.1. Navbars === */
 nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -1370,8 +1297,6 @@ nav[role='navigation'] ul li {
   margin-left: 0; }
 
 nav[role='navigation'] li a {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -1400,15 +1325,14 @@ nav.aligncenter ul,
 nav.navbar ul li {
   /*====full float li a ====*/
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto; }
+      flex: 1 1 auto;
+        }
 
 @media (max-width: 568px) {
   nav.navbar ul {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-flow: column wrap;
-            flex-flow: column wrap;
+    flex-flow: column wrap;
     padding: 0; }
   nav.navbar li a {
     -webkit-box-pack: start;
@@ -1422,25 +1346,20 @@ Vertically and horizontally centered
 /* Fade transition to all slides.
 * = All HTML elements will have those styles.*/
 section * {
-  -webkit-animation: fadeIn .6s ease-in-out;
-          animation: fadeIn .6s ease-in-out; }
+  animation: fadeIn .6s ease-in-out; }
 
 section .background,
 section .light,
 section .dark {
-  -webkit-animation-duration: 0s;
-          animation-duration: 0s; }
+  animation-duration: 0s; }
 
 /*=== Section = Slide === */
 section,
 .slide {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1583,16 +1502,14 @@ form[class*='bg-'] {
 
 @media (max-width: 1023px) {
   [class*='background-'] {
-    -webkit-animation: fadeIn ease-in .2;
-            animation: fadeIn ease-in .2;
+    animation: fadeIn ease-in .2;
     opacity: .2; }
   .background-video {
     opacity: .8; } }
 
 /*=== Animated Background Image === */
 .background.anim {
-  -webkit-animation: anim 80s linear infinite;
-          animation: anim 80s linear infinite;
+  animation: anim 80s linear infinite;
   background-position: center top;
   background-repeat: repeat;
   background-size: 100%;
@@ -1606,8 +1523,7 @@ form[class*='bg-'] {
 
 /* === 5.2 Counter / Navigation Slides  === */
 #navigation {
-  -webkit-animation: fadeIn 8s;
-          animation: fadeIn 8s;
+  animation: fadeIn 8s;
   bottom: 0;
   left: 0;
   margin-left: auto;
@@ -1653,8 +1569,7 @@ a#previous {
 
 @media (max-width: 1024px) {
   #navigation {
-    -webkit-animation: fadeIn 6s;
-            animation: fadeIn 6s;
+    animation: fadeIn 6s;
             /*
     background: url("../images/swipe.svg") no-repeat center top;
     */
@@ -1669,11 +1584,8 @@ Blocks Links li>a = .flexblock.blink (.blink required)
 ================================================================= */
 .flexblock {
   clear: both;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
   padding: 0; }
@@ -1684,27 +1596,21 @@ Blocks Links li>a = .flexblock.blink (.blink required)
     display: table; }
   .flexblock li,
   .flexblock.blink li > a {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     margin: 0;
     padding: 2.4rem;
     position: relative; }
   .flexblock li {
     -webkit-box-flex: 1;
-        -ms-flex: auto;
-            flex: auto;
+    flex: auto;
     text-align: left;
-    -webkit-transition: .3s;
     transition: .3s;
     width: 100%; }
     .flexblock li:hover {
-      -webkit-transform: translateY(-0.2rem);
-              transform: translateY(-0.2rem); }
+        transform: translateY(-0.2rem); }
     @media (min-width: 600px) {
       .flexblock li {
         width: 50%; } }
@@ -1907,8 +1813,7 @@ About, Philosophy...
     height: 1px;
     position: relative; }
   .specs li:hover {
-    -webkit-transform: translateX(0.2rem);
-            transform: translateX(0.2rem); }
+    transform: translateX(0.2rem); }
   .specs li span,
   .specs li svg {
     display: block;
@@ -1937,8 +1842,7 @@ About, Philosophy...
   text-align: left;
   width: 100%; }
   .flexblock.reasons li:hover {
-    -webkit-transform: translateY(-0.2rem);
-            transform: translateY(-0.2rem); }
+    transform: translateY(-0.2rem); }
   .flexblock.reasons li:after {
     bottom: -2.4rem;
     content: '';
@@ -1979,11 +1883,8 @@ img size recommended:800x600px
       margin-left: -.5em;
       position: absolute;
       top: .4rem;
-      -webkit-transform: rotate(135deg);
-              transform: rotate(135deg);
-      -webkit-transform-origin: 0 0;
-              transform-origin: 0 0;
-      -webkit-transition: .1s;
+      transform: rotate(135deg);
+      transform-origin: 0 0;
       transition: .1s;
       width: 0; }
   .flexblock.gallery li:hover figcaption:before {
@@ -2040,12 +1941,9 @@ img size recommended:800x600px
 .overlay {
   bottom: 0;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
   -webkit-box-pack: center;
@@ -2056,7 +1954,6 @@ img size recommended:800x600px
   position: absolute;
   right: 0;
   top: 0;
-  -webkit-transition: all .3s linear;
   transition: all .3s linear;
   width: 100%;
   z-index: 2; }
@@ -2139,13 +2036,11 @@ li:hover .overlay {
     .flexblock.plans > li:hover,
     .flexblock.plans > li:nth-child(2) {
       position: relative;
-      -webkit-transform: scale(1.08);
-              transform: scale(1.08);
+      transform: scale(1.08);
       z-index: 2; }
     .flexblock.plans:hover li:nth-child(2):not(:hover) {
       position: relative;
-      -webkit-transform: scale(1);
-              transform: scale(1);
+      transform: scale(1);
       z-index: 1; } }
 
 /*===========================================
@@ -2155,12 +2050,9 @@ CV / News
 .flexblock.activity {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .flexblock.activity li {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+    flex: 1;
     position: relative;
     width: auto; }
   .flexblock.activity p {
@@ -2192,24 +2084,19 @@ CV / News
 7. Promos/Offers (pricing, tagline, CTA...)
 =============================================== */
 .cta {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+  -ms-flex-pack: center;
+  justify-content: center;
+}
 
 .number,
 .cta .benefit {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -2273,13 +2160,10 @@ CV / News
 =========================================== */
 .work {
   clear: both;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   text-align: left; }
   h1 + .work,
   h2 + .work,
@@ -2287,15 +2171,12 @@ CV / News
   p + .work {
     margin-top: 4.8rem; }
   .work li {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+    flex: 1;
     list-style: none;
     margin: 0;
     position: relative; }
   .work p {
     margin-bottom: 0;
-    -webkit-transition: .3s;
     transition: .3s; }
   .work li a {
     display: block;
@@ -2379,7 +2260,6 @@ CV / News
   font-weight: 400;
   margin-bottom: .8rem;
   margin-left: 0;
-  -webkit-transition: .3s;
   transition: .3s;
   width: 100%; }
   .toc li li {
@@ -2416,12 +2296,9 @@ CV / News
 [class*='card-'],
 [class*='card-'] > a {
   clear: both;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
           flex-direction: row;
   position: relative; }
 
@@ -2472,16 +2349,14 @@ CV / News
 
 [class*='card-'] .flex-content,
 [class*='card-'] blockquote {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center; 
+  }
 
 .flex-content p {
   position: relative; }
@@ -2527,7 +2402,6 @@ CV / News
   [class*='card-'] > a {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-flow: column;
             flex-flow: column; }
   .card figure,
   .card header {
@@ -2671,10 +2545,9 @@ input[type='tel'],
 input[type='url'],
 input[type='search'],
 input[type='password'] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-radius: 0; }
+  appearance: none;
+  border-radius: 0; 
+}
 
 input,
 button,
@@ -2758,8 +2631,7 @@ select:focus {
 a.button:hover,
 button[type='submit']:hover,
 input[type='submit']:hover {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01); }
+  transform: scale(1.01); }
 
 :disabled,
 button:disabled:hover {
@@ -2891,7 +2763,6 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
           align-items: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
           flex-direction: row;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -2921,8 +2792,7 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
     -ms-flex-item-align: auto;
         align-self: auto;
     -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
+        flex: 0 1 auto;
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
@@ -2943,7 +2813,6 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
       height: 25vh;
       overflow: hidden;
       position: relative;
-      -webkit-transition: .3s;
       transition: .3s; }
       @media screen and (max-width: 567px) {
         #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
@@ -2955,12 +2824,10 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
         #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
           height: 50vw; } }
       #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom:hover {
-        -webkit-transform: scale(1.02);
-                transform: scale(1.02);
+        transform: scale(1.02);
         z-index: 2; }
       #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom.current {
-        -webkit-transform: scale(1.08);
-                transform: scale(1.08); }
+        transform: scale(1.08); }
     #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom > .zoom-layer {
       background: transparent;
       cursor: pointer;
@@ -2969,36 +2836,25 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
       width: 100%; }
   #webslides-zoomed .column > .wrap-zoom > .slide {
     clip: rect(0 auto auto 0);
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
     left: 0;
     position: absolute;
     top: 0;
-    -webkit-transform: scale(0.25) translate(-150%, -150vh);
-            transform: scale(0.25) translate(-150%, -150vh); }
+    transform: scale(0.25) translate(-150%, -150vh); }
     @media screen and (orientation: portrait), screen and (max-width: 768px) and (orientation: landscape) {
       #webslides-zoomed .column > .wrap-zoom > .slide {
-        -webkit-transform: scale(0.5) translate(-50%, -50%);
-                transform: scale(0.5) translate(-50%, -50%); } }
+        transform: scale(0.5) translate(-50%, -50%); } }
     @media (max-aspect-ratio: 2 / 3) {
       #webslides-zoomed .column > .wrap-zoom > .slide {
-        -webkit-transform: scale(0.5) translate(-50%, -50%);
-                transform: scale(0.5) translate(-50%, -50%); } }
+        transform: scale(0.5) translate(-50%, -50%); } }
   #webslides-zoomed .column {
     opacity: 0;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-    -webkit-transition: opacity .4s, -webkit-transform .4s;
-    transition: opacity .4s, -webkit-transform .4s;
+    transform: scale(1.2);
     transition: opacity .4s, transform .4s;
-    transition: opacity .4s, transform .4s, -webkit-transform .4s;
-    -webkit-transition-delay: .2s;
-            transition-delay: .2s; }
+    transition-delay: .2s; }
   #webslides-zoomed.in .column {
     opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1); }
+    transform: scale(1); }
 
 .text-slide-number {
   display: inline-block;
@@ -3006,10 +2862,8 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
   text-align: center; }
 
 #webslides {
-  -webkit-transition: -webkit-filter .3s;
-  transition: -webkit-filter .3s;
   transition: filter .3s;
-  transition: filter .3s, -webkit-filter .3s; }
+ }
   #webslides.disabled, #webslides.zooming {
     position: fixed;
     width: 100%;
@@ -3032,8 +2886,7 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
   * {
     background: transparent !important;
     color: #000 !important;
-    -webkit-filter: none !important;
-            filter: none !important;
+    filter: none !important;
     text-shadow: none !important; }
   html,
   body,
@@ -3046,13 +2899,10 @@ Solution: stackoverflow.com/questions/34250282/flexbox-safari-bug-flex-wrap
     overflow-y: auto !important; }
   section,
   .slide {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
     height: auto !important; }
   section * {
-    -webkit-animation: none;
-            animation: none; }
+    animation: none; }
   table,
   figure {
     page-break-inside: avoid; }
@@ -3070,8 +2920,7 @@ body {
   color: #333; }
 
 :focus {
-  -webkit-box-shadow: 0 0 2px #96bbee;
-          box-shadow: 0 0 2px #96bbee; }
+  box-shadow: 0 0 2px #96bbee; }
 
 svg {
   fill: currentColor; }
@@ -3114,11 +2963,6 @@ ins {
   background-color: rgba(221, 238, 255, 0.8);
   color: inherit; }
 
-::-moz-selection {
-  background-color: rgba(221, 238, 255, 0.8); }
-
-::-webkit-selection {
-  background-color: rgba(221, 238, 255, 0.8); }
 
 ::selection {
   background-color: rgba(221, 238, 255, 0.8); }
@@ -3126,12 +2970,10 @@ ins {
 pre {
   background: #fff;
   border: 1px solid rgba(0, 20, 80, 0.1);
-  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08); }
 
 pre:hover {
-  -webkit-box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08); }
 
 code,
 [class*='bg-'] pre {
@@ -3189,7 +3031,6 @@ Slides - Backgrounds <section class="bg-primary">
 
 /* BG Apple Keynote*/
 .bg-apple {
-  background: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(50%, #1a2028), to(#293845));
   background: linear-gradient(to bottom, #000 0%, #1a2028 50%, #293845 100%); }
 
 /*Font Color*/
@@ -3223,7 +3064,6 @@ Slides - Backgrounds <section class="bg-primary">
 
 /*Covers/Longforms...*/
 .bg-trans-gradient {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.8)), to(transparent));
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%); }
 
 /*Horizontal Gradient*/
@@ -3232,7 +3072,6 @@ Slides - Backgrounds <section class="bg-primary">
 
 /*Vertical Gradient*/
 .bg-gradient-v {
-  background: -webkit-gradient(linear, left bottom, left top, from(#62b), to(#32b));
   background: linear-gradient(to top, #62b 0%, #32b 100%); }
 
 /*Radial Gradient*/
@@ -3241,14 +3080,12 @@ Slides - Backgrounds <section class="bg-primary">
 
 /*White Gradient (vertical)*/
 .bg-gradient-white {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f2f4f6), to(#fff));
   background: linear-gradient(180deg, #f2f4f6 0, #fff 100%);
   color: #333;
   text-shadow: none; }
 
 /*Gray Gradient (horizontal)*/
 .bg-gradient-gray {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #f7f9fb), to(#dee2e6));
   background: linear-gradient(90deg, #f7f9fb 0, #dee2e6 100%);
   color: #333;
   text-shadow: none; }
@@ -3267,7 +3104,6 @@ Slides - Backgrounds <section class="bg-primary">
 
 .shadow:before,
 .shadow:after {
-  -webkit-box-shadow: 0 16px 24px rgba(0, 20, 80, 0.3);
           box-shadow: 0 16px 24px rgba(0, 20, 80, 0.3); }
 
 /*============================
@@ -3367,8 +3203,7 @@ Features & Clients List
 
 .features li:hover,
 .clients li:hover {
-  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.02), 0 4px 16px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 8px 16px rgba(0, 20, 80, 0.02), 0 4px 16px rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.02), 0 4px 16px rgba(0, 0, 0, 0.08); }
 
 /*============================
 .flexblock with border
@@ -3421,7 +3256,6 @@ flexblock.steps
 Items: You can use for settings, drag&drop, close/delete...
 =========================================================== */
 .specs li:after {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 20, 80, 0)), color-stop(50%, rgba(0, 20, 80, 0.2)), to(rgba(0, 20, 80, 0)));
   background: linear-gradient(to right, rgba(0, 20, 80, 0) 0%, rgba(0, 20, 80, 0.2) 50%, rgba(0, 20, 80, 0) 100%); }
 
 .specs li:last-child:after {
@@ -3431,7 +3265,6 @@ Items: You can use for settings, drag&drop, close/delete...
 Why/Steps/Motivation/Reasons -  Decimal/Numbers
 =========================================================== */
 .reasons li:after {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 20, 80, 0)), color-stop(50%, rgba(0, 20, 80, 0.2)), to(rgba(0, 20, 80, 0)));
   background: linear-gradient(to right, rgba(0, 20, 80, 0) 0%, rgba(0, 20, 80, 0.2) 50%, rgba(0, 20, 80, 0) 100%); }
 
 .reasons li:last-child:after {
@@ -3456,15 +3289,13 @@ Gallery li+.overlay+image
 =========================================== */
 .gallery li {
   background-color: rgba(0, 20, 80, 0.06);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.03);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.03); }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.03); }
 
 .gallery li figcaption {
   background-color: #fff; }
 
 .flexblock.gallery li:hover {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08); }
 
 .gallery li footer {
   border-top: 1px solid rgba(0, 20, 80, 0.1); }
@@ -3490,12 +3321,10 @@ Plans / Pricing
 
 .plans > li:hover,
 .plans > li:nth-child(2) {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
 
 .plans:hover li:nth-child(2):not(:hover) {
-  -webkit-box-shadow: none;
-          box-shadow: none; }
+  box-shadow: none; }
 
 .plans li h2 {
   background-color: rgba(0, 20, 80, 0.5);
@@ -3544,18 +3373,15 @@ LOGOS
 /* --- Images (black logo/image) --- */
 img.blacklogo {
   background: none;
-  -webkit-filter: grayscale(100%) brightness(10%) contrast(100%);
-          filter: grayscale(100%) brightness(10%) contrast(100%); }
+  filter: grayscale(100%) brightness(10%) contrast(100%); }
 
 /* --- Images (gray logo/image) --- */
 img.graylogo {
-  -webkit-filter: grayscale(100%) brightness(10%) contrast(10%);
-          filter: grayscale(100%) brightness(10%) contrast(10%); }
+  filter: grayscale(100%) brightness(10%) contrast(10%); }
 
 /* --- Images (white Logo/Image) --- */
 img.whitelogo {
-  -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
+  filter: brightness(0) invert(1); }
 
 /* --- Logo/Images Hover --- */
 li:hover img.blacklogo,
@@ -3563,9 +3389,7 @@ li:hover img.graylogo,
 img.blacklogo:hover,
 img.graylogo:hover {
   background: none;
-  -webkit-filter: grayscale(0%);
-          filter: grayscale(0%);
-  -webkit-transition: all .6s ease;
+  filter: grayscale(0%);
   transition: all .6s ease; }
 
 /*=========================================================
@@ -3588,16 +3412,13 @@ Cards
 /*== Ficaption Cards === */
 [class*='card'] figcaption,
 [class*='card'] figcaption a {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.2)));
   background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
   color: #fff; }
 
 /*===CTA (Call to Action - Numbers, Price, Promo...)  ===== */
 @media (min-width: 768px) {
   .cta .benefit {
-    -o-border-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent) 1 100%;
-       border-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(50%, rgba(0, 0, 0, 0.4)), to(transparent)) 1 100%;
-       border-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent) 1 100%;
+    border-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent) 1 100%;
     border-left-width: 1px;
     border-style: solid; } }
 
@@ -3629,8 +3450,7 @@ Browser (Screenshots)
   border: 1px solid rgba(0, 20, 80, 0.1); }
 
 .browser:hover {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
 
 /*=== Topbar === */
 .browser:before {
@@ -3652,8 +3472,7 @@ textarea {
 input:focus,
 textarea:focus {
   background-color: #fff;
-  -webkit-box-shadow: 0 0 5px #51cbee;
-          box-shadow: 0 0 5px #51cbee; }
+  box-shadow: 0 0 5px #51cbee; }
 
 input:focus::-moz-placeholder {
   color: #ddd; }
@@ -3665,8 +3484,7 @@ a.button,
 [class*='badge-'],
 button[type='submit'],
 input {
-  -webkit-box-shadow: 0 10px 16px -8px rgba(0, 20, 80, 0.3);
-          box-shadow: 0 10px 16px -8px rgba(0, 20, 80, 0.3); }
+  box-shadow: 0 10px 16px -8px rgba(0, 20, 80, 0.3); }
 
 button,
 input,
@@ -3736,8 +3554,7 @@ legend {
 /* Inputs/Buttons - hover */
 input:hover,
 select:hover {
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
 
 /* App Store Badges */
 [class*='badge-'] {
@@ -3783,12 +3600,10 @@ Slides Index
 
 #webslides-zoomed .column > .wrap-zoom {
   background-color: #f7f9fb;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.04);
   color: #333; }
   #webslides-zoomed .column > .wrap-zoom:hover {
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08);
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08); }
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08); }
   #webslides-zoomed .column > .wrap-zoom.current {
     border: 0.6rem solid rgba(0, 20, 255, 0.2); }
 

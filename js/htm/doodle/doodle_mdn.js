@@ -330,6 +330,7 @@ function mDn(e){
 }
 
 function ltwh(t){return {left:t[0],top:t[1],width:t[2],height:t[3]}}
+function LTWH(o){return ZLR('left top width height').map(i=>+$(o).css(i).replace('px','').replace('auto','0'))}
 
 function idStyle(id,A,shp, zi, noclass){
 	//xmlns="'+xmlns+'" 
@@ -1158,25 +1159,55 @@ function tileToolCap(t, val){
 
 
 
-function tileToolCode(obj,returnValue){
-	var a=[],o=$(obj),t, nohid=$('#ignoreHiddenElement').prop('checked'), spath=$('#svg2path').prop('checked'),
-		jsf=$('#code_API').is('.seled'), nat=$('#code_Native').is('.seled'), user=$('#code_UserInput').is('.seled');
-	if($('#code_Canvas').is('.seled')){
+function tileToolCode(obj,returnValue,allCode){
+	//console.log(obj,returnValue,allCode);
+	var a=[], o=$(obj), oLTWH=LTWH(o), t='',
+		[nohid, spath, svg4all]=ZLR('ignoreHiddenElement svg2path svg4all').map(i=>$('#'+i).prop('checked')),
+		[jsf, nat, user, canv]=ZLR('API Native UserInput Canvas').map(i=>$('#code_'+i).is('.seled'));
+
+	if(allCode && svg4all){
+		var allLTWH=[0,0,0,0];
+		$('#capsdiv ~ *').not('.capfromTextarea.capLaTeX2SVG').each(function(){
+			var iLTWH=LTWH(o);console.log(o,iLTWH);
+			t+=tileToolCode(this,1)+brn;
+			allLTWH[2]=Math.max(allLTWH[2], parseInt(iLTWH[0]+iLTWH[2]));
+			allLTWH[3]=Math.max(allLTWH[3], parseInt(iLTWH[1]+iLTWH[3]));
+		});
+		t='<svg viewBox="0 0 '+allLTWH[2]+' '+allLTWH[3]+'" width='+allLTWH[2]+' height='+allLTWH[3]+'>'+t+'</svg>';
+		$('#capsdiv ~ .capfromTextarea.capLaTeX2SVG').each(function(){
+			t+=tileToolCode(this,1)+brn;
+		});
+
+	}else if(canv){
 		t=L.canvasCode+'\n// lego\n'+L.legoCode+'\n// rough\n'+L.roughCode
 		
-	}else if(o.is('svg')){
+	}else if(o.is('svg')){// 单个svg，其子元素改成绝对坐标的code输出
+		
+		var sF=o=>{
+			var a=[], iLTWH=LTWH(o);
+			o.children().filter(function(){var me=$(this); return !nohid || !me.is('.hidden') || me.css('display')=='inline'}).each(function(){//不能使用 .hidden 否则无法选到未隐藏的此类元素
+
+				var toh=svgf.rlt2abs(this, iLTWH[0], iLTWH[1]);
+				//var toh=this.outerHTML;
+				a.push(jsf?svgf.obj2js(this,spath):toh);
+		
+			});
+			t+=jsf?(t?'+\n':'')+svgf.obj2js(o).replace('childplaceholder','\n'+a.join('+\n')+'\n'):a.join('')+brn;
+	
+		};
+		
 
 		/*
 		jQuery bug 选择器 ':visible' 针对SVG中元素，无法区分是否可见（都认为是可见）
-
 		*/
-		o.children().filter(function(){var me=$(this); return !nohid || !me.is('.hidden') || me.css('display')=='inline'}).each(function(){//不能使用 .hidden 否则无法选到未隐藏的此类元素
-			//a.push(this.outerHTML.replace(/\n/g,''))
-			a.push(jsf?svgf.obj2js(this,spath):this.outerHTML.replace(/\n/g,''))
-	
-		});
-		//t='<svg viewBox="0 0 '+o.width()+' '+o.height()+'" width=90% height=200px>'+a.join('')+'</svg>';
-		t=jsf?svgf.obj2js(o).replace('childplaceholder','\n'+a.join('+\n')+'\n'):'<svg viewBox="0 0 '+o.width()+' '+o.height()+'" width=90% height=200px>'+a.join('')+'</svg>';
+		sF(o);
+
+		if(!jsf){
+			//t = '<svg viewBox="0 0 '+oLTWH[2]+' '+oLTWH[3]+'" width='+oLTWH[2]+' height='+oLTWH[3]+' transform="translate('+oLTWH[0]+','+oLTWH[1]+')">'+t+'</svg>'
+
+			t = oLTWH[0]+oLTWH[1]?'<svg transform="translate('+oLTWH[0]+','+oLTWH[1]+')">'+t+'</svg>':XML.wrapE(t,svg)
+		}
+
 
 	}else if(o.is('span.zdog')){
 
@@ -1187,7 +1218,17 @@ function tileToolCode(obj,returnValue){
 		$('#TextBoxType').val(ot);
 		$('#TextBox').val(oc);
 		if(nat){
-			t=o[0].outerHTML
+			if(ot=='LaTeX2SVG'){
+				t=o.children().children()[0].outerHTML;
+				if(oLTWH[0] || oLTWH[1]){
+					t=svgf.strFun.newAttr(t, {transform:'translate('+oLTWH[0]+','+oLTWH[1]+')'})
+					//t=svgf.rlt2abs(o.children().children()[0], oLTWH[0], oLTWH[1]);
+					//t=
+				}
+			}else{
+				
+				t=o[0].outerHTML
+			}
 		}else if(user){
 			t=oc
 		}else{

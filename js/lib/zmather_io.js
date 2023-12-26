@@ -2379,8 +2379,9 @@ var OverCanvas=function(t){
 			iv='LaTeX';
 			$('#input0Type').val(iv);
 		}
-		var i=iv[0],o=ov[0],v=$('#input0').val().trim(),w=$('#input0Preview');
-
+		var i=iv[0],o=ov[0],v=$('#input0').val().trim(),w=$('#input0Preview').show();
+		
+		$('#previewTool').show();
 
 		if(iv==ov && !/SVG|HTML/ig.test(ov)){
 			w.add('#previewTool').hide();
@@ -2403,7 +2404,7 @@ var OverCanvas=function(t){
 
 
 
-			w.html(x).add('#previewTool').show();
+			w.html(x);
 
 			if(o=='S' && v && MathJax){
 				//console.log(w[0]);
@@ -2439,7 +2440,7 @@ var OverCanvas=function(t){
 			}
 			
 		}else if(o=='H'){
-			w.add('#previewTool').show();
+			
 			if(v){
 				$('#input0Preview').css('min-height',$('#input0').height()-15+'px');
 				all2html(iv,v,w);
@@ -3146,7 +3147,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 			copy2clipboard(MJ.html())
 		}else{
-			if(MJ.is('svg') && $('#input0Type').val()+ $('#input0Type').val()=='SVGSVG' ){
+			if(MJ.is('svg') && $('#input0Type').val()+ $('#output0Type').val()=='SVGSVG' ){
 				MathSVG4Weixin(MJ,1)
 			}
 			copy2clipboard(iP.html());
@@ -3688,7 +3689,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		var i=ZLR('LaTeX Ascii_Math Unicode_Math Presentation_MathML Content_MathML SVG').indexOf(v);
 		$('#output0Type').html(optgrp(gM('Output Format')+':', Options(set.opr1('取',ZLR('HTML Ascii_Math Unicode_Math LaTeX Presentation_MathML Content_MathML SVG'),
 			i<0?[[0]]:[[0,2,4,6],[0,2,3,4,5], [0,1,3,4,5], [0,2,3,5], [0,2,3,4], [6]][i])
-		)));
+		).join(brn)));
 		$('.inputTypeTip').remove();
 
 		var opti=$(this).find('option[value='+v+']').parent().index(),
@@ -3728,11 +3729,16 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 			$('.inputTip.inputTypeTip').last().prevAll().remove();
 
 		}
+
+		$('#output0Type').val($('#output0Type option:eq(0)').val()).change();
+		/*
 		$('#displayMode,#SVGLinkMode').toggle($('#output0Type').val()=='SVG');
+
 
 		if($('#preview.seled').length && !/Excel|CSV|TSV|TXT/i.test(v)){
 			preDisplay()
 		}
+		*/
 
 	}).on('change','#output0Type', function(){
 		var me=$(this), v=me.val(), isSVG=v=='SVG';

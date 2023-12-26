@@ -2316,6 +2316,134 @@ function svgAs(svg, base64) {
 }
 
 var svgf = {
+	numFun:{
+		AddbyParity: function(str,lt,tp){
+			
+			var regex = /\b\d+\b/g, od=0;
+			var result = str.replace(regex, function(match) {
+				od++;
+				var newNumber = +match + (od % 2 === 1 ? lt : tp);
+				return newNumber.toString();
+			});		
+			return result;
+		}
+	},
+	strFun:{
+		replaceTagname: (t, newTag)=>{
+			var x=t;
+			x=x.replace(new RegExp('<'+ot,'i'), '<'+newTag).replace(new RegExp('<\\/'+ot,'i'), '</'+newTag)
+			return x
+		},
+		replaceAttr: (t, attrs)=>{
+			var x=t;
+			for(var i in attrs){
+				var reg=new RegExp(' '+i+'="[^"]+"');
+				x=x.replace(reg, ' '+i+'="'+attrs[i]+'"');
+				if(!reg.test(x)){
+					x=x.replace(' ',' '+i+'="'+attrs[i]+'" ')
+				}
+			}
+			return x
+		},
+		removeAttr: (t, attrstr)=>{
+			var x=t;
+			for(var i in ZLR(attrstr)){
+				x=x.replace(new RegExp(' '+i+'="[^"]+"'), '')
+			}
+			return x
+		},
+		newAttr: (t, attrs)=>{
+			var x=t;
+			for(var i in attrs){
+				x=x.replace(' ', ' '+i+'="'+attrs[i]+'" ')
+			}
+			return x
+		},
+		addAttr: (t, attrs)=>{
+			var x=t;
+			for(var i in attrs){
+				var reg=new RegExp(' '+i+'="[^"]+"');
+				if(!reg.test(x)){
+					x=x.replace(' ', ' '+i+'="'+attrs[i]+'" ')
+				}else{
+					x=x.replace(reg, ' '+i+'="'+attrs[i]+'"');
+				}
+			}
+			return x
+		},
+	},
+	pathFun:{
+		toFull:function(x, lt, tp){// 可选偏移量 lt, tp，用于计算最终绝对坐标
+			var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
+			/*
+			while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
+				xs=xs.replace(/L *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'L$1 L$2')
+			}
+			*/
+		// 对连续命令，显示完整
+			while(/L *([-\d\.]+ +){3,}/.test(xs)){
+				xs=xs.replace(/L *(([-\d\.]+ +){2})([-\d\.])/g,'L$1 L$3')
+			}
+		
+			while(/T *([-\d\.]+ +){3,}/.test(xs)){
+				//xs=xs.replace(/T *([\d\.]+ +[\d\.]+) +([\d\.]+ +[\d\.]+)/g,'T$1 T$2')
+				//xs=xs.replace(/T *([\d\.]+ +){2}([\d\.])/g,'T$1 T$2')
+				xs=xs.replace(/T *(([-\d\.]+ +){2})([-\d\.])/g,'T$1 T$3')
+			}
+		
+			while(/S *([-\d\.]+ +){5,}/.test(xs)){
+				xs=xs.replace(/S *(([-\d\.]+ +){4})([-\d\.])/g,'S$1 S$3')
+			}
+		
+			while(/Q *([-\d\.]+ +){5,}/.test(xs)){
+				xs=xs.replace(/Q *(([-\d\.]+ +){4})([-\d\.])/g,'Q$1 Q$3')
+			}
+		
+		
+			while(/C *([-\d\.]+ +){7,}/.test(xs)){
+				xs=xs.replace(/C *(([-\d\.]+ +){6})([-\d\.])/g,'C$1 C$3')
+			}
+		
+			while(/A *([-\d\.]+ +){8,}/.test(xs)){
+				xs=xs.replace(/A *(([-\d\.]+ +){7})([-\d\.])/g,'A$1 A$3')
+			}
+			if(lt || tp){
+	
+				xs=xs.replace(/([LMT]) *([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3')
+				.replace(/C *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'C'+lt+'+$1 '+tp+'+$2 '+lt+'+$3 '+tp+'+$4 '+lt+'+$5 '+tp+'+$6 ')
+				.replace(/([QS]) *([-\d\.]+) +([-\d\.]+) +([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$2 '+tp+'+$3 '+lt+'+$4 '+tp+'+$5')
+				//贝塞尔函数，控制点平移后，失真，有误
+				.replace(/(A *([-\d\.]+ +){5})([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$3 '+tp+'+$4')
+				.replace(/H *([-\d\.]+)/g,'H'+lt+'+$1')
+				.replace(/V *([-\d\.]+)/g,'V'+tp+'+$1')
+				.replace(/[-\d\.]+\+[-\d\.]+/g, function(xy){var ab=xy.split('+');return +ab[0]+(+ab[1])})
+	
+	
+			}
+	
+			return xs
+		},
+		toPath:function(tg, oih, A, lt, tp){ // 转成path元素
+			var f=svgf.pathFun.toAttr[tg], ss=svgf.strFun, a=ss.replaceAttr, t=ss.replaceTagname, m=ss.removeAttr, ts={
+
+				polygon: '',
+				rect: 'x y width height',
+				circle: 'cx cy r',
+				line: 'x1 y1 x2 y2',
+				ellipse: 'cx cy rx ry',
+
+			};
+			return t(a(m(oih,ts[tg]), {d:f(A, lt, tp)}),'path')
+		},
+		toAttr:{
+			polygon: function(d, lt, tp){return Arrf(function(x,i){(i?(i==2?'L':''):'M')+((i%2?tp:lt)||0)+(+x)},d.split(/[ ,]+/)).join(' ')+'z'},
+			rect: function(A, lt, tp){return `M${A[0]+(lt||0)} ${A[1]+(tp||0)} H${A[0]+A[2]+(lt||0)} V${A[1]+A[3]+(tp||0)} H${A[0]+(lt||0)} V${A[1]+(tp||0)}`},
+			circle: function(A, lt, tp){return `M${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)} A${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]+A[2]+(tp||0)}  ${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)}`},
+			line: function(A, lt, tp){return `M${A[0]} ${A[1]} L${A[2]} ${A[3]}`},
+			ellipse: function(A, lt, tp){return `M${A[0]} ${A[1]-A[3]} A${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]+A[2]}  ${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]-A[3]}`}
+
+		}
+	},
 	marker:function(id,rx,ry,w,h,vBox,chd){
 		return '<marker id='+id+' refX='+(rx||8)+' refY='+(ry||5)+' markerWidth='+(w||4)+' markerHeight='+(h||4)+' viewBox="'+(vBox||'0 0 10 10')+'">'+chd+'</marker>'
 	},
@@ -2374,8 +2502,77 @@ var svgf = {
 			+'" from="'+(from===undefined?3000:from)+'" to="'+(to===undefined?0:to)
 			+'" dur="'+(dur||10)+'s" repeatCount="'+(cnt||'indefinite')+'" />'
 	},
+	rlt2abs: function(obj, left, top, path, haschd){// 相对坐标改为绝对值
+		var o=$(obj), ot=o[0].tagName.toLowerCase(), oih=o[0].outerHTML, lt=left||0, tp=top||0,
+		ssr=svgf.strFun.replaceAttr, spt=svgf.pathFun.toPath, snA=svgf.numFun.AddbyParity,
+		os={
+			marker:function() {
+				var id=o.attr('id'), rx=+o.attr('refX'), ry=+o.attr('refY'), w=o.attr('markerWidth'), h=o.attr('markerHeight'), vBox=o.attr('viewBox'),
+					chd=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'markerplaceholder';
+				return svgf.strFun.replaceAttr(oih, {refX:rx+lt, refY:ry+tp})
+
+			},
+			path: function() {
+				var d=o.attr('d'), newd=svgf.pathFun.toFull(d,lt,tp);
+				return ssr(oih, {d:newd})
+
+			},
+			g: function(){
+				var tf=o.attr('transform')||'translate(0,0)', newtf=tf.replace(/translate\([^\)]+\)/, 
+					function(x){return 'translate('+x.replace(/.+\(|\)/g,'').split(',').map((i,ii)=>+i+(ii?tp:lt))+')'});
+				return ssr(oih, {transform:newtf})
+			}, 
+			polygon: function() {
+				var d=o.attr('points'), newd=snA(d,lt,tp);
+				return path?spt(ot,oih, d, lt, tp):ssr(oih, {points:newd})
+
+			}, 
+			text: function() {
+				var [y,x,ftsz]=ZLR('y x font-size').map(i=>+o.attr(i));
+				return ssr(oih, {x:x+lt, y:y+tp})
+
+			}, 
+			rect: function () {
+				var [x,y,wd,ht]=ZLR('x y width height').map(i=>+o.attr(i));
+				return path?spt(ot,oih, [x,y,wd,ht], lt, tp):ssr(oih, {x:x+lt, y:y+tp})
+
+			}, 
+			circle: function () {
+				var [cx,cy,r]=ZLR('cx cy r').map(i=>+o.attr(i));
+				return path?spt(ot,oih, [cx,cy,r], lt, tp):ssr(oih, {cx:cx+lt, cy:cy+tp})
+
+			}, 
+			line: function () {
+				var [x1,y1,x2,y2]=ZLR('x1 y1 x2 y2').map(i=>+o.attr(i));
+				return path?spt(ot,oih, [x1,y1,x2,y2], lt, tp):ssr(oih, {x1:x1+lt, y1:y1+tp, x2:x2+lt, y2:y2+tp})
+
+			}, 
+			ellipse: function () {
+				var [cx,cy,rx,ry]=ZLR('cx cy rx ry').map(i=>+o.attr(i));
+				return path?spt(ot,oih, [cx,cy,rx,ry], lt, tp):ssr(oih, {cx:cx+lt, cy:cy+tp})
+			},
+			svg: function (){
+
+
+			},
+			defs:function (){
+
+			}
+		};
+		console.log(ot);
+		if(os[ot]){
+			return os[ot]()
+		}else{
+			return ''
+		}
+		 
+	},
+
 	obj2js: function (obj, path, haschd) {
-		var o=$(obj), os={
+		var o=$(obj), ot=o[0].tagName.toLowerCase(), 
+			strk=o.attr('stroke')||'',fil=o.attr('fil')||'', tf=o.attr('transform')||'',
+		 	stf=strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":''),
+		os={
 			marker:function(){
 				var id=o.attr('id'), rx=o.attr('refX'), ry=o.attr('refY'), w=o.attr('markerWidth'), h=o.attr('markerHeight'), vBox=o.attr('viewBox'),
 					chd=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'markerplaceholder';
@@ -2383,58 +2580,60 @@ var svgf = {
 
 			},
 			path: function () {
-				var d=o.attr('d'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
-				return `svgf.path('${d}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				var d=o.attr('d');
+				return `svgf.path('${d}','${stf}')`
 
 			}, 
 			polygon: function () {
-				var d=o.attr('points'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				var d=o.attr('points');
 				if(path){
-					return `svgf.path('${Arrf(function(x,i){i?(i==2?'L'+x:x):'M'+x},d.split(/[ ,]+/)).join(' ')+'z'}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+					return `svgf.path('${Arrf(function(x,i){i?(i==2?'L'+x:x):'M'+x},d.split(/[ ,]+/)).join(' ')+'z'}','${stf}')`
 				}
-				return `svgf.polygon('${d}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				return `svgf.polygon('${d}','${stf}')`
 
 			}, 
 			text: function () {
-				var text=o.text(), yxSize=[o.attr('y'),o.attr('x'),o.attr('font-size')], strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
-				return `svgf.text('${text.replace(/'/g,"\\'")}',[${yxSize}],'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				var text=o.text(), yxSize=ZLR('y x font-size').map(i=>+o.attr(i));
+				return `svgf.text('${text.replace(/'/g,"\\'")}',[${yxSize}],'${stf}')`
 
 			}, 
 			rect: function () {
-				var x=+o.attr('x'), y=+o.attr('y'),w=+o.attr('width'),h=+o.attr('height'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				var [x,y,w,h]=ZLR('x y width height').map(i=>+o.attr(i));
 				if(path){
-					return `svgf.path('M${x} ${y} H${x+w} V${y+h} H${x} V${y}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+					return `svgf.path('M${x} ${y} H${x+w} V${y+h} H${x} V${y}','${stf}')`
 				}
-				return `svgf.rect(${x},${y},${w},${h},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				return `svgf.rect(${x},${y},${w},${h},'${stf}')`
 
 			}, 
 			circle: function () {
-				var cx=+o.attr('cx'), cy=+o.attr('cy'),r=+o.attr('r'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				var [cx,cy,r]=ZLR('cx cy r').map(i=>+o.attr(i));
 				if(path){
-					return `svgf.path('M${cx} ${cy-r} A${r} ${r} 0 1 1 ${cx} ${cy+r}  ${r} ${r} 0 1 1 ${cx} ${cy-r}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+					return `svgf.path('M${cx} ${cy-r} A${r} ${r} 0 1 1 ${cx} ${cy+r}  ${r} ${r} 0 1 1 ${cx} ${cy-r}','${stf}')`
 				}
-				return `svgf.circle(${cx},${cy},${r},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				return `svgf.circle(${cx},${cy},${r},'${stf}')`
 
 			}, 
 			line: function () {
-				var x1=o.attr('x1'), y1=o.attr('y1'),x2=o.attr('x2'),y2=o.attr('y2'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				var [x1,y1,x2,y2]=ZLR('x1 y1 x2 y2').map(i=>+o.attr(i));
 				if(path){
-					return `svgf.path('M${x1} ${y1} L${x2} ${y2}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+					return `svgf.path('M${x1} ${y1} L${x2} ${y2}','${stf}')`
 				}
-				return `svgf.line(${x1},${y1},${x2},${y2},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				return `svgf.line(${x1},${y1},${x2},${y2},'${stf}')`
 
 			}, 
 			ellipse: function () {
-				var cx=+o.attr('cx'), cy=+o.attr('cy'),rx=+o.attr('rx'),ry=+o.attr('ry'), strk=o.attr('stroke'),fil=o.attr('fil'), tf=o.attr('transform');
+				var [cx,cy,rx,ry]=ZLR('cx cy rx ry').map(i=>+o.attr(i));
 				if(path){
-					return `svgf.path('M${cx} ${cy-ry} A${rx} ${ry} 0 1 1 ${cx} ${cy+ry}  ${rx} ${ry} 0 1 1 ${cx} ${cy-ry}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+					return `svgf.path('M${cx} ${cy-ry} A${rx} ${ry} 0 1 1 ${cx} ${cy+ry}  ${rx} ${ry} 0 1 1 ${cx} ${cy-ry}','${stf}')`
 				}
-				return `svgf.ellipse(${cx},${cy},${rx},${ry},'${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`
+				return `svgf.ellipse(${cx},${cy},${rx},${ry},'${stf}')`
 			}, 
 			svg: function () {
-				var id=o.attr('id'), wd=o.attr('width')||o.width(), ht=o.attr('height')||o.height(), w=o.attr('stroke-width')||'', vBox=o.attr('viewBox'), 
-					v=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'childplaceholder', strk=o.attr('stroke')||'',fil=o.attr('fil'), tf=o.attr('transform');
-				return `svgf.id('${id+(wd||ht?'" width="'+wd+'" height="'+ht+'"':'')}',${v},'${vBox||1}','${w}','${strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":'')}')`.replace(/,'','',''\)$/,')')
+				var id=o.attr('id')||o.closest('[id]').attr('id'), 
+					wd=o.attr('width')||o.width(), ht=o.attr('height')||o.height(), 
+					w=o.attr('stroke-width')||'', vBox=o.attr('viewBox'), 
+					v=haschd?"'"+o.html().replace(/'/g,"\\'")+"'":'childplaceholder';
+				return `svgf.id('${id+(wd||ht?'" width="'+wd+'" height="'+ht+'"':'')}',${v},'${vBox||1}','${w}','${stf}')`.replace(/,'','',''\)$/,')')
 
 			},
 			g: function () {
@@ -2445,9 +2644,13 @@ var svgf = {
 				return "'"+o.html()+"'"
 			}
 		};
+		console.log(ot);
+		if(os[ot]){
+			return os[ot]()
+		}else{
+			return ''
+		}
 		
-		//console.log(o[0].tagName.toLowerCase(), os[o[0].tagName.toLowerCase()]);
-		return os[o[0].tagName.toLowerCase()]()
 	},
 
 }, svgs = {

@@ -223,7 +223,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   padding: 10px;
   border-radius: 50%;
@@ -232,8 +231,6 @@
 
 .mathbox-loader.mathbox-exit {
   opacity: 0;
-  -webkit-transition:
-    opacity .15s ease-in-out;
   transition:
     opacity .15s ease-in-out;
 }
@@ -264,7 +261,6 @@
   width: 140px;
   height: 100px;
   margin: 0 auto 10px;
-  -webkit-perspective: 200px;
   perspective: 200px;
 }
 
@@ -274,18 +270,15 @@
   top: 0;
   bottom: 0;
   right: 0;
-  -webkit-transform-style: preserve-3d;
-  transform-style:         preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .mathbox-logo > :nth-child(1) {
-  -webkit-transform: rotateZ(22deg) rotateX(24deg) rotateY(30deg);
-  transform:         rotateZ(22deg) rotateX(24deg) rotateY(30deg);
+  transform: rotateZ(22deg) rotateX(24deg) rotateY(30deg);
 }
 
 .mathbox-logo > :nth-child(2) {
-  -webkit-transform: rotateZ(11deg) rotateX(12deg) rotateY(15deg) scale3d(.6, .6, .6);
-  transform:         rotateZ(11deg) rotateX(12deg) rotateY(15deg) scale3d(.6, .6, .6);
+  transform: rotateZ(11deg) rotateX(12deg) rotateY(15deg) scale3d(.6, .6, .6);
 }
 
 .mathbox-logo > div > div {
@@ -301,18 +294,15 @@
 }
 
 .mathbox-logo > div > :nth-child(1) {
-  -webkit-transform: scale(0.5, 0.5);
-  transform:         rotateX(30deg) scale(0.5, 0.5);
+  transform: rotateX(30deg) scale(0.5, 0.5);
 }
 
 .mathbox-logo > div > :nth-child(2) {
-  -webkit-transform: rotateX(90deg) scale(0.42, 0.42);
-  transform:         rotateX(90deg) scale(0.42, 0.42);
+  transform: rotateX(90deg) scale(0.42, 0.42);
 }
 
 .mathbox-logo > div > :nth-child(3) {
-  -webkit-transform: rotateY(90deg) scale(0.35, 0.35);
-  transform:         rotateY(90deg) scale(0.35, 0.35);
+  transform: rotateY(90deg) scale(0.35, 0.35);
 }
 
 .mathbox-logo > :nth-child(1) > :nth-child(1) {
