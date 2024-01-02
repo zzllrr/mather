@@ -1797,7 +1797,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 
 
-},asc2unicode=function(s){//将普通字符转成专门字符
+},asc2unicode=function(s, fromLaTeX){//将普通字符转成专门字符	fromLaTeX指定，按LaTeX语法将命令转成Unicode字符
 	var t=s.replace(/[\.。]{3}/g,'⋯').replace(/beta/g,'β').replace(/zeta/g,'ζ');
 		
 	$.each(SBS.Latex,function(k,v){
@@ -1807,11 +1807,25 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		//	}else{
 		//		t=t.replace(new RegExp(v,'g'),k)
 			//	}
-			t=t.replace(new RegExp(' '+v+' ','g'),' '+k+' ')
+			if(fromLaTeX){
+				t=t.replace(new RegExp('(\\b|\\\\)'+v+'\\b','g'),k);
+				ZLR('C H P Q N R Z').map((i,ii)=>{
+					t=t.replace(new RegExp('\\mathbb\\{'+i+'\\}','g'),'ℂℍℙℚℕℝℤ'[ii])
+				})
+				   
+			}else{
+
+				t=t.replace(new RegExp(' '+v+' ','g'),' '+k+' ')
+			}
 		}else{
 			return false
 		}
 	});
+
+
+	if(fromLaTeX){
+		t=t.replace(/[\^|_]\{?\d+\}?/g,i=>n2sub(i.substring(1),i[0]=='^').replace(/[\{\}]/g,''))
+	}
 	
 	return t
 

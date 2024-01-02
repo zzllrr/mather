@@ -20,7 +20,7 @@ var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'w
 if (typeof BigInt == 'undefined') {
 	var BigInt = function (x) { return +x }
 }
-var uri = '^(blob|file|ftp|https?):.+', uriRe = new RegExp(uri, 'i'), dataRe = /^data:.+[/].+;.+/,
+var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uriReg = /(blob|file|ftp|qvp|https?):[\S]+/ig, dataRe = /^data:[\S]+[/][\S]+;[\S]+/,
 	imgPreReg = '(blob|data|file|ftp|https?):.+',
 	imgPre = new RegExp(imgPreReg, 'gi'), imgPreRe = new RegExp('^' + imgPreReg, 'gi'),
 
@@ -3018,6 +3018,17 @@ function xlsxReader(file, cb, utf){
     };reader.readAsBinaryString(file)
 
 }
+
+
+function txtReader(file, cb){
+	var reader = new FileReader();
+	reader.onload = function(e){
+		var d=e.target.result;
+		cb && cb(d);		
+	}
+	reader.readAsText(file);
+}
+
 
 function urlTran(urls) {
 	var tArr = urls.match(/\S+/gi);

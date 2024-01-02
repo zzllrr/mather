@@ -772,7 +772,7 @@ Poincaré,J.H. 庞加莱
 Poisson,S.-D.泊松
 Pollaczek,F. 波拉切克
 Polya,G. 波利亚
-Poncelet,J.-V. 蓬斯莱
+Poncelet,J.-V. 彭赛列
 Pontryagin,L.S. 庞特里亚金
 Post,E.L. 波斯特
 Powell,M.J.D. 鲍威尔
@@ -1055,6 +1055,7 @@ Wronski,H.J.M. 朗斯基
 Wu Hung-Hsi 伍鸿熙
 Wu Wen-Tsün	吴文俊
 Wylie,A. 伟烈亚力
+W. W. Rouse Ball    劳斯·鲍尔
 Xu Guangqi (Hsü Kuang-ch'i) 徐光启
 Yang Chen-Ning	杨振宁
 Yang Ko-Chuen	杨武之
