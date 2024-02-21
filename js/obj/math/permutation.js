@@ -502,8 +502,9 @@ return BigInt((FactbTrim0(t-BigInt(1))*t+'').replace(/0+$/,''))
 	}
 	return a
 
-},RandomCombinA=function(A,m){//生成某个集合的随机组合子集（随机选m个元素）
-	return ArrI(A,RandomCombinN(A.length,m),1)
+},RandomCombinA=function(A,m,sort){//生成某个集合的随机组合子集（随机选m个元素）
+	var B=ArrI(A,RandomCombinN(A.length,m),1);
+	return sort?B.sort(sortBy.numInt):B
 
 
 

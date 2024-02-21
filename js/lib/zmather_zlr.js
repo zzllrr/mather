@@ -322,7 +322,7 @@ body:not(.night) .bdb{
 		`
 };
 
-csslib.markmap=csslib.markdown+csslib['markmap-toolbar']+XML.wrapE('style', `
+csslib.markmap=csslib.markdown+XML.wrapE('style', csslib['markmap-toolbar']+`
 * {
 	margin: 0;
 	padding: 0;

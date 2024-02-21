@@ -1419,6 +1419,7 @@ lang['zh_cn'] = {
 	'Scale': '缩放',
 	'Skew': '扭曲',
 	'Translate': '平移;翻译',
+	'Translate.Math': '平移',
 	'Transitive':'传递',
 
 	'Rotate': '旋转',

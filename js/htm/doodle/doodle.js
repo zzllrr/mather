@@ -635,7 +635,7 @@ DCtv('lightgray" id="CssTransform',
 	dc+
 
 
-	'<div id=CssTranslate><img class=translate>'+gM('translate.Math')+
+	'<div id=CssTranslate><img class=translate>'+gM('translate')+
 		'<span>x'+sc+num('0" id=cssTranslateX')+
 		'<span>y'+sc+num('0" id=cssTranslateY')+
 		'<span>z'+sc+num('0" id=cssTranslateZ')+

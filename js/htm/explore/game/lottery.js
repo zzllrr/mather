@@ -31,15 +31,22 @@ explore['Game/Lottery']=XML.wrapE('style',
 		`.ltr_txta{min-width:400px;height:300px}`
 	)+
 	detail('双色球（6红+1蓝）',
-	'<div><textarea id=ltr_my_result class=ltr_txta>'+
-		'3 15 17 24 32 + 4 7 20 30 31 ; 3 12,5 7 12 24 29 + 11 22 23 26 28 ; 9 11,5 15 17 19 30 + 3 4 8 21 23 ; 7 16,5 6 11 13 24 + 3 20 31 32 33 ; 1 14,5 6 19 20 22 + 2 7 10 18 32 ; 8 2,4 13 14 23 33 + 7 10 22 25 29 ; 6 4,3 11 14 27 31 + 4 6 9 20 32 ; 10 13,2 9 18 24 25 + 7 14 17 27 30 ; 5 15,1 2 4 11 22 + 10 14 19 20 29 ; 1 14,8 9 10 21 30 + 2 4 16 28 31 ; 2 9,2 10 16 20 21 + 8 12 22 23 29 ; 4 10,1 2 20 28 29 + 10 13 15 25 32 ; 5 13,4 7 16 24 29 + 6 9 21 30 32 ; 7 15,5 12 13 19 25 + 2 7 15 17 24 ; 11 16,2 11 23 26 27 + 4 15 17 29 32 ; 8 12,17 23 27 30 31 + 11 20 21 25 33 ; 3 6'.replace(/,/g,'\n')+
-		'</textarea>'+strbtn+'←'+gM('AppendTo')+'" id=ltr_add2my /> <textarea id=ltr_result class=ltr_txta></textarea>'+dc+
-		'<p><label hidden>期号<input type=number id=ltr_vol value='+
+	'<div><textarea id=ltr_my_result class="ltr_txta seled">'+
+		'</textarea>'+strbtn+'←'+gM('AppendTo')+'" id=ltr_add2my />'+
+		strbtn+gM('Clear')+'×" id=ltr_clear /> <textarea id=ltr_result class=ltr_txta></textarea>'+dc+
+		'<details><summary><label>期号<input type=number id=ltr_vol defaultwidth value='+
 		T[3]+('00'+(T[1]*3+(T[2]<3||T[2]==3 && T[0]==0?0:(T[2]>5||T[2]==5 && T[0]==4?2:1 )))).substr(-3)+
-		'/></label><label>'+href(H+'www.jslottery.com/trend?locale=zh-CN','开奖号码')+
-		' <input type=text id=ltr_last_result value="9 13 14 19 22 25 2" /><label hidden>联网'+
-		strchkbx0+'id=ltr_lastOnline'+chked+' /></label>'+
-		strbtn+gM('Check')+'" id=ltr_chk /></label></p><p><label>胆 '+
+		' /></label><label>'+href(H+'www.jslottery.com/trend?locale=zh-CN','开奖号码')+
+		' <input type=text id=ltr_last_result placeholder="红球 蓝球" /><label hidden>联网'+
+		strchkbx0+'id=ltr_lastOnline'+chked+' /></label><label>'+
+		strbtn+gM('Check')+'" class=ltr_chk /></label></summary>'+
+		'历史100期 <textarea id=ltr_his_result style="width: 202px; height: 444px;">'+
+		'</textarea></details><p>'+
+		'红球 <label>包含 <input type=text id=ltr_flt_red_in placeholder="数字以逗号或空格隔开" /></label>'+
+		'<label>不含 <input type=text id=ltr_flt_red_ex placeholder="数字以逗号或空格隔开" /></label></p><p>'+
+		'蓝球 <label>包含 <input type=text id=ltr_flt_blue_in placeholder="数字以逗号或空格隔开" /></label>'+
+		'<label>不含 <input type=text id=ltr_flt_blue_ex placeholder="数字以逗号或空格隔开" /></label>'+
+		'</p><p><label>胆 '+
 		num('5" id="ltr_dan',1,5)+'</label><label>拖 '+
 		num('5" id="ltr_tuo',2,6)+'<label>+ '+
 		strchkbx0+'class=ltr_addBlue'+chked+'/> '+gM('Blue')+' '+
@@ -59,8 +66,8 @@ explore['Game/Lottery']=XML.wrapE('style',
 
 		'<p>单式 '+
 		strbtn+gM('Random')+'" id=ltr_randDS /><label>'+
-		num('5" class="bets',1,100)+gM('Bet')+'</label>'+
-		
+		num('5" class="bets',1,100)+gM('Bet')+'</label><label>'+
+		strchkbx0+'class=ltr_cover'+chked+' /> 尽可能覆盖全部数字 </label>'+
 		strbtn+gM('Predict')+'" id=ltr_predictDS />'+
 		strbtn+gM('Statistics')+'" id=ltr_statiDS />'+
 		'</p>'
@@ -68,14 +75,48 @@ explore['Game/Lottery']=XML.wrapE('style',
 	
 
 $(function(){
+	$('[id^=ltr_rand]').before('<label>'+strbtn+gM('Check')+'" class=ltr_chk /></label>');
+	$('#ltr_his_result').val(L['ltr_his_result']||'');
 
+	var ltr_fltA=function(blue){
+		var a=seqA(1,blue?16:33), A=['in','ex'].map(i=>$('#ltr_flt_'+(blue?'blue':'red')+'_'+i).val().trim().split(/\D+/g).map(i=>+i));
+		return a.filter(i=>(!A[0][0]||A[0].includes(i)) && (!A[1][0]||!A[1].includes(i)) )
+	};
 
 	$('body').on('click','#ltr_randDS',function(){
-		var s='';
+		var s='', iscover=$('.ltr_cover').prop('checked'),
+			A=new Set(ltr_fltA()), A0=new Set(A), A1=new Set,
+			B=new Set(ltr_fltA(1)), B0=new Set(B), B1=new Set;
 		for(var i=0,l=+$(this).next().children().val();i<l;i++){
-			s+=RandomCombinA(seqA(1,33),6).join(' ')+' ; '+Random(16)+'\n'
+			var C=RandomCombinA([...A],6,1), D=RandomCombinA([...B],1);
+			s+=C.join(' ')+' ; '+D[0]+'\n';
+
+			if(iscover && i<l-1){
+				C.map(i=>{A.delete(i); A1.add(i)});
+				D.map(i=>{B.delete(i); B1.add(i)});
+
+				if(B.size < 1){
+					B=new Set(B0);
+					B1=new Set;
+				}
+
+				if(A.size < 6){
+					if(A.size){
+						A=new Set([...A].concat(RandomCombinA([...A1],6-A.size,1)));
+
+					}else{
+						A=new Set(A0);
+						A1=new Set;
+					}
+				}
+
+			}
+
+
+
+
 		}
-		$('#ltr_result').val(s)
+		$('.ltr_txta.seled').val(s)
 
 	}).on('click','#ltr_add2my',function(){
 		var s='',my=$('#ltr_result').val().trim().split('\n');
@@ -95,26 +136,40 @@ $(function(){
 			$('#ltr_my_result').val(function(i,v){return (v.trim()?v+'\n':'')+A.join(' ; ')})
 		}
 
+	}).on('click','#ltr_clear',function(){
+		$('.ltr_txta.seled').val('')
+
+
+
+	}).on('click','.ltr_txta',function(){
+		$('.ltr_txta').removeClass('seled');
+		$(this).addClass('seled');
+
+
+	}).on('click change','#ltr_his_result',function(){
+		L['ltr_his_result'] = $(this).val()
 
 	}).on('click','#ltr_randDT',function(){
 		var d=+$('#ltr_dan').val(), t=+$('#ltr_tuo').val(), s='',pap=$(this).parent().prev();
 		for(var i=0,l=+$(this).next().val();i<l;i++){
-			var A=RandomCombinA(seqA(1,33),d+t);
-			s+=A.slice(0,d).join(' ')+' + '+A.slice(d).join(' ')+(pap.find(':checked').length?' ; '+RandomCombinA(seqA(1,16),+pap.find('.blues').val()).join(' '):'')+'\n';
+			var A=RandomCombinA(ltr_fltA(),d+t,1);
+			s+=A.slice(0,d).join(' ')+' + '+A.slice(d).join(' ')+(pap.find(':checked').length?' ; '+
+			RandomCombinA(ltr_fltA(1),+pap.find('.blues').val(),1).join(' '):'')+'\n';
 		}
-		$('#ltr_result').val(s)
+		$('.ltr_txta.seled').val(s)
 
 	}).on('click','#ltr_randFSred',function(){
 		var pap=$(this).parent().prev(),s='';
 		for(var i=0,l=+$(this).next().val();i<l;i++){
-			s+=RandomCombinA(seqA(1,33),+$('#ltr_FSred').val()).join(' ')+(pap.find(':checked').length?' ; '+RandomCombinA(seqA(1,16),+pap.find('.blues').val()).join(' '):'')+'\n'
+			s+=RandomCombinA(ltr_fltA(),+$('#ltr_FSred').val(),1).join(' ')+(pap.find(':checked').length?' ; '+
+			RandomCombinA(ltr_fltA(1),+pap.find('.blues').val(),1).join(' '):'')+'\n'
 		}
-		$('#ltr_result').val(s)
+		$('.ltr_txta.seled').val(s)
 
 	}).on('click','#ltr_randFSblue',function(){
 		var pap=$(this).parent().prev(),s='';
 		for(var i=0,l=+$(this).next().val();i<l;i++){
-			s+=RandomCombinA(seqA(1,16),+pap.find('.blues').val()).join(' ')+'\n'
+			s+=RandomCombinA(ltr_fltA(1),+pap.find('.blues').val(),1).join(' ')+'\n'
 		}
 		$('#ltr_result').val(s)
 	
@@ -152,7 +207,7 @@ s=A.join(brn);
 		$('#ltr_result').val(s);
 
 
-	}).on('click','#ltr_chk',function(){
+	}).on('click','.ltr_chk',function(){
 		var p=$(this).parent(), txt=$('#ltr_my_result').val().trim().replace(/^0/,''), isonline=$('#ltr_lastOnline').prop('checked'), chkprize=function(x){
 			/*
 			胆拖	5+(2, 4+(3, 3+(4, 2+(5, 1+(6,
@@ -178,7 +233,8 @@ s=A.join(brn);
 			if(A.length<7){
 				return x+' 号码有误'
 			}
-			var rst=$('#ltr_last_result').val().trim().replace(/^0/,'').split(/\D+0?/), red=rst.slice(0,6), blue=rst[6];
+			var rst100=$('#ltr_his_result').val().trim();
+			var rst=($('#ltr_last_result').val().trim()||rst100.split(brn).slice(-1)[0]).replace(/^0/,'').split(/\D+0?/), red=rst.slice(0,6), blue=rst[6];
 			if(rst.length<7){
 				return x+' 开奖号码有误'
 			}
@@ -192,14 +248,14 @@ s=A.join(brn);
 						r++
 					}
 				}
-				if(r<3){
+				if(r<3 || r==3 && !b){
 					if(b){
 						return x+' 中蓝（六等奖，5元）'
 					}
 					return x+' 未中奖'
 				}else{
 					var s=x+' 中'+r+'红'+(b?' + 蓝':'');
-					if(r==3 || r==4 && !b){
+					if(r==3 && b || r==4 && !b){
 						return s+'（五等奖，10元）'
 					}
 					if(r==4 && b || r==5 && !b){
@@ -350,14 +406,20 @@ s=A.join(brn);
 			});
 			*/
 
-			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.unshift(m.BasicNumber.sort())}); return A})
+			Admin.testAjax2(H+'www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.unshift(m.BasicNumber.sort().concat(m.SpecialNumber[0]))}); return A})
+			
+			
+			
+			
+			
+			
 			/* Echarts 极坐标 
 
-			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){Arrf(function(z){if(i%5==0){A.push([100-i,z])}},m.BasicNumber.sort())}); return jSoff(A)})
+			Admin.testAjax2(H+'www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){Arrf(function(z){if(i%5==0){A.push([100-i,z])}},m.BasicNumber.sort())}); return jSoff(A)})
 			
 
 			获取近100期
-			Admin.testAjax2('http://www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.push(m.BasicNumber.sort())}); return jSoff(A)})
+			Admin.testAjax2(H+'www.jslottery.com/trend?locale=zh-CN','script',function(x){var A=[],y=eval(x.split('function shuangSeQiu() {')[1].split('var trIndex = 3;')[0]+'data'); $.each(y,function(i,m){A.push(m.BasicNumber.sort())}); return jSoff(A)})
 			
 
 
@@ -403,8 +465,14 @@ s=A.join(brn);
 
 			*/
 		}else{
+			var A=Arrf(chkprize,txt.split(brn)).filter(i=>/元/.test(i));
+			if(A.length){
+				A.push('共中奖'+A.map(i=>+i.replace(/.+\D(\d+)元.*/,'$1')).reduce((i,j)=>i+j)+'元')
+			}else{
+				A.push('未中奖')
+			}
 
-			$('#ltr_result').val(Arrf(chkprize,txt.split('\n')).join('\n'));
+			$('#ltr_result').val(A.join(brn));
 		}
 		
 

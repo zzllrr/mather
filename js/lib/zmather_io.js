@@ -2369,8 +2369,14 @@ var OverCanvas=function(t){
 		  var id=$(this).attr('xlink:href'), tr=$(this).attr('transform')||'';
 		  $(this).replaceWith($(id)[0].outerHTML.replace(/id="[^"]+" /, (tr?'transform="'+tr+'"':'')))
 	  });
-	  MJ.find('defs, style, script, a').remove();
+	  MJ.find('defs, style, script, a, deepl-alert').remove();
 	  MJ.find('svg').removeAttr('aria-hidden role focusable');
+	  MJ.find('[width*=ex]').each(function(){
+		var me=$(this);
+		me.attr('width', 10*(+me.attr('width').replace('ex','')) );
+		me.attr('height', 10*(+me.attr('height').replace('ex','')) );
+
+	});
 	  MJ.find('g:empty, path[d=""]').remove();
 	  MJ.find('g').removeAttr('data-mml-node data-mjx-texclass');
 	  MJ.find('[stroke="currentColor"]').removeAttr('stroke');

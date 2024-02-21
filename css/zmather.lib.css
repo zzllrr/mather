@@ -57,7 +57,7 @@
 		height:200px;
 	}
 
-	input[type="number"]{
+	input[type="number"]:not([defaultwidth]){
 		max-width: 4rem;
 	}
 	.tool:hover{
