@@ -31,7 +31,7 @@ solves={index:['Number','Sequence','Series','Function','Permutation','Vector','M
 		]},
 		{'Classification':[
 			{'Positive Integer':[
-				{'Power':['幂的末位…底数,幂,末几位“27 5 3', '$a^b÷c的余数$…a,b,c“27 5 3']},
+				{'Power':['求连续幂…底数,最高次幂“27 5','幂的末位…底数,幂,末几位“27 5 3', '幂的位值周期…底数,第几位(倒数则用负整数)“27 -3', '$a^b÷c的余数$…a,b,c“27 5 3']},
 				{'约数与倍数':['Greatest Common Divisor…a b c—GCD“18 27', 'Least Common Multiple…a b c—LCM“18 27', '辗转相除法']},
 				{'Divide':[
 					{'数位':[

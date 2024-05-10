@@ -489,9 +489,23 @@ solve['number']=function(inputValue, uriA){
 	}
 
 
+	if(sel(uriA,'幂的位值周期')){//底数,第几位（倒数则用负整数）
+		rS=rS.concat(Arrf(function(x){
+				var xs=x.split(/[, ]/);
+				if(xs.length<2){
+					xs.push(-1)
+				}
+
+				var p=periodOfDigitsOfPower.apply(null,xs);
+				//console.log(xs.join(' ')+'\n '+p.join(' -- '));
+				return xs[0]+sup('n')+'的第'+p[0]+'位数字周期是'+p[2]+' 长度为'+p[1]
+			},VA));
+				
+	}
+	
 	if(sel(uriA,'幂的末位')){//底数,幂,末几位
 		rS=rS.concat(Arrf(function(x){
-				var xs=x.split(/\D/);
+				var xs=x.split(/\D+/);
 				if(xs.length<3){
 					xs.push(1)
 				}
@@ -499,7 +513,15 @@ solve['number']=function(inputValue, uriA){
 			},VA));
 	}
 
-
+	if(sel(uriA,'求连续幂')){//底数,最高幂次
+		rS=rS.concat(Arrf(function(x){
+				var xs=x.split(/\D+/);
+				if(xs.length<3){
+					xs.push(1)
+				}
+				return kxA(seqA(1,xs[1]).map(i=>[xs[0]+sup(i,1), BigInt(xs[0])**BigInt(i)]), 1)
+			},VA));
+	}
 
 	var Idivide=function(x0,x1,d,no){//区间[x0,x1]	被d整除 no指定不能被d整除
 		var m=+d,n0=Math.ceil(x0/m),n1=Math.floor(x1/m),n=n1-n0+1,S1=m*(n0+n1)*n/2,S0=(x0+x1)*(x1-x0+1)/2;

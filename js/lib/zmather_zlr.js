@@ -356,6 +356,9 @@ $.expr[':'].creator = function (obj) { return $(obj)[0].localName == 'creator' }
 $.fn.extend({
 	twinkle: function () {
 		return $(this).fadeTo('slow', 0).fadeTo('slow', 1);
+	},
+	find2: function(szl){
+		return $(this).find(szl.split(',').find(i=>$(this).find(i).length>0));
 	}
 });
 
@@ -2009,7 +2012,7 @@ function Scroll(t) {
 
 function titleRe(t) { document.title = t }
 
-function Node(node) {
+function nodeFromSzl(node) {
 	var t = $(node);
 	$('iframe').each(function () {
 		try {
@@ -2025,6 +2028,11 @@ function Node(node) {
 	});
 	return t;
 }
+
+function nodeFromSzl2(node) {
+	return $(node.split(',').find(i=>$(i).length>0));
+}
+
 function uniPush(A, x, ord) {//ord指定按序插入：0不考虑原数组是否升序降序 1：已知A升序 -1：已知A降序
 	if (A.indexOf(x) < 0) {
 		if (ord) {
@@ -2055,9 +2063,9 @@ function uniPush(A, x, ord) {//ord指定按序插入：0不考虑原数组是否
 function attr2dataset(t) {
 	return t.replace(/data-(.+)/, 'dataset.$1').replace(/-[^-]+/g, function (a) { return a.substr(1, 1).toUpperCase() + a.substr(2) })
 }
-function urlArr(jQExp, attr, attr2) {
+function urlArr(jQExp, attr, attr2, szl2) {
 	var jQ = jQExp || 'a[href]:has(img)', t = [], a, s;
-	Node(jQ).each(function () {
+	(szl2?nodeFromSzl2:nodeFromSzl)(jQ).each(function () {
 		if (attr) {
 			if (attr == 'style') {
 				s = $(this).attr(attr) || '';
@@ -2081,10 +2089,16 @@ function urlArr(jQExp, attr, attr2) {
 	});
 	return t;
 }
+
+function txtArr(jQExp, szl2){
+	var jQ = jQExp || 'p';
+	return (szl2?nodeFromSzl2:nodeFromSzl)(jQ).map((i,m)=>$(m).text()).get()
+}
+
 function tableArr(jQExp, type) {//type=str/arr/csv
 	var jQ = jQExp || 'table', typ = type || 'str', isCSV = typ == 'CSV', isA = typ == 'arr', t = [];
 
-	Node(jQ).children().each(function () {
+	nodeFromSzl(jQ).children().each(function () {
 		$(this).children().each(function () {
 			var s = [];
 			$(this).children().each(function () {
@@ -2110,7 +2124,7 @@ function tableArr(jQExp, type) {//type=str/arr/csv
 
 function tableArrLnk(rowSzl, colSzl, lnkSzl) {
 	var A=[];
-	Node(rowSzl).each(function(){
+	nodeFromSzl(rowSzl).each(function(){
 		var a=[];
 		if(isArr(colSzl)){
 			a=colSzl.map(i=>$(this).find(i).text().replace(/[\s]+/g,' ').trim())

@@ -120,11 +120,25 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 	return B
 
 
+},firstDigitsOfPower=function(m,n,k){//幂的首位数： 底数m，幂n，开头k位
+	//(a+b)^n = a^n+na^{n-1}b +...  ，当nb<a时，可以用a^n近似(a+b)^n的开头数字
+	var t=1n, ml=(''+m).length;
+	if(ml<8){
+	    for(var i=0;i<+n;i++){
+	        t*=BigInt(m);
+	    }
+	    return (t+ZLR(0,+k-1)).substr(0,+k)
+	}
+	var bl=(BigInt(m)/BigInt(n)).length, a=(''+m).substr(0, ml-bl+1);
+	
+	return firstDigitsOfPower(a,n,k)
+	//return (t+ZLR(0,+k-1)).substr(0,+k)
+
 },lastDigitsOfPower=function(m,n,k){//幂的末位数： 底数m，幂n，末k位
-	var t=1;
+	var t=1n;
     for(var i=0;i<+n;i++){
-        t*=+m;
-        t%=Math.pow(10,+k+1);
+        t*=BigInt(m);
+        t%=10n ** (BigInt(k)+1n);
     }
 	return (ZLR(0,+k-1)+t).substr(-(+k))
 
@@ -137,8 +151,56 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 	}
 	return t
 
+},period=(t, ignoreFirst0s, pl, withComma)=>{//序列周期（尾部可以不是完整周期），无周期则返回原始序列（周期长度超过pl则显示周期长度：数字）；ignoreFirst0s 指定忽略开头的多个连续的0
+	var s=isArr(t)?t.join(withComma?',':''):''+t;
+	if(ignoreFirst0s){s=s.replace(/^0+/,'')}
+	for(var i=1,l=s.length;i<l;i++){
+		var si=s.substr(0,i),sil=si.length, se=s.replace(new RegExp('^('+si+')\\1+'),'');
+		//console.log(i,si,se);
+		if(se.length<sil && si.indexOf(se)==0){return si}
+	}
+	var sl=s.length;
+	return pl && sl>pl?sl:s
+		
+},periodOfDigitsOfPower=(b, position)=>{//底数b的各幂次的第position位数（第1位索引是1，倒数第n位索引是-n）周期长度及周期串（长度超过150则不显示）
+	//position为空，则返回末10位周期数组 [[位置, 周期长度, 周期数字串]]
+	var c=5200, l=10, pl=150, A=[], B, s;
+	if(position){
+		if(position<0){
+			A=seqA(1,c).map(i=>lastDigitsOfPower(b,i,-position)[0]);
+		}else{
+			A=seqA(1,c).map(i=>firstDigitsOfPower(b,i,position)[position-1]);
+		}
+			
+		s=period(A,1,pl);
+		return [position, isStr(s)?s.length:s, isStr(s)?s:'']
 
-
+		
+	}else{
+		A=seqA(1,c).map(i=>lastDigitsOfPower(b,i,l));
+		
+		B=seqA(-1,l,'',-1).map(i=>[i, period(A.map(a=>a.slice(i)[0]), 1, pl)]);
+		
+		B=B.map(i=>[i[0],isStr(i[1])?i[1].length:i[1], isStr(i[1])?i[1]:''])
+	}
+	return B
+		
+		/* 
+			示例：
+			2的幂的幂，个位数的周期
+			seqA(1,10).map(i=>periodOfDigitsOfPower(2**i,-1))
+			
+			
+			seqA(1,40).map(i=>periodOfDigitsOfPower(2n**BigInt(i),-2))
+			
+			
+			seqA(1,40).map(i=>periodOfDigitsOfPower(i,-2))
+	对应数列	oeis.org/A253389
+			
+			
+			
+			
+			*/
 
 },tMod=function(n){//个位尾数分解为两个位数乘积
 	return [zlrA('0',seqA(0,10)).concat(zlrA2(seqA(2,4,'',2),'5')),['11','37','99'],['12','26','34','48','67','89'],['13','79'],['14','22','27','38','46','69','88'],
