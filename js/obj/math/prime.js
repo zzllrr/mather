@@ -151,20 +151,68 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 	}
 	return t
 
-},period=(t, ignoreFirst0s, pl, withComma)=>{//序列周期（尾部可以不是完整周期），无周期则返回原始序列（周期长度超过pl则显示周期长度：数字）；ignoreFirst0s 指定忽略开头的多个连续的0
-	var s=isArr(t)?t.join(withComma?',':''):''+t;
+},period=(t, ignoreFirst0s, pl, withComma, strictLvl)=>{//序列周期（尾部可以不是完整周期），无周期则返回原始序列（）；
+	/*
+		pl		周期长度阈值：
+					超过pl，则返回负的周期长度：负数
+					
+		ignoreFirst0s 指定忽略开头的多个连续的0
+		withComma，原序列数组是否使用逗号隔开
+		strictLvl	0  开头可以不属于周期、结尾可以不是完整周期
+						（开头不属于周期子集时，返回数组[开头, 周期]）
+						
+					1  开头必需属于周期（即周期起点从头开始）、结尾可以不是完整周期
+					2  开头必需属于周期（即周期起点从头开始）、结尾必须是完整周期
+					
+				
+	*/
+	var s=isArr(t)?t.join(withComma?',':''):''+t, sl,
+		r=isArr(t)?([].concat(t)).reverse().join(withComma?',':''):(''+t).split('').reverse().join('');
 	if(ignoreFirst0s){s=s.replace(/^0+/,'')}
-	for(var i=1,l=s.length;i<l;i++){
-		var si=s.substr(0,i),sil=si.length, se=s.replace(new RegExp('^('+si+')\\1+'),'');
-		//console.log(i,si,se);
-		if(se.length<sil && si.indexOf(se)==0){return si}
+	
+	
+	for(var i=1,l=Math.floor(s.length/2);i<=l;i++){
+		var si=s.substr(0,i), sil=si.length;
+		var se=s.replace(new RegExp('^('+si+')\\1+'),'');
+		sl = se.length;
+	//	console.log(i,si, sl);
+	//	console.log(sl<sil, si.indexOf(se),  strictLvl);
+		if(sl<sil && si.indexOf(se)==0){
+			 
+			if(sl==0 || strictLvl!=2){
+				return si
+			}
+			
+		}
 	}
-	var sl=s.length;
-	return pl && sl>pl?sl:s
+	
+	if(!strictLvl){
+		for(var i=1,l=Math.floor(s.length/2);i<=l;i++){
+			var si=r.substr(0,i), sil=si.length;
+			var se=r.replace(new RegExp('^('+si+')\\1+'),'');
+			sl = se.length;
+		//	console.log(i,si,se);
+			if(sl<=sil){
+				if(si.indexOf(se)==0){
+					return s.substr(0,sil)
+				}
+				return [s.substr(0,sl), s.substr(sl, sil) ]
+			}
+		}
 		
-},periodOfDigitsOfPower=(b, position)=>{//底数b的各幂次的第position位数（第1位索引是1，倒数第n位索引是-n）周期长度及周期串（长度超过150则不显示）
-	//position为空，则返回末10位周期数组 [[位置, 周期长度, 周期数字串]]
-	var c=5200, l=10, pl=150, A=[], B, s;
+	}
+	sl=s.length;
+	return pl && sl>pl || strictLvl==2 ?-sl:s
+		
+},periodOfDigitsOfPower=(b, position, opts)=>{//底数b的各幂次的第position位数，周期长度，周期串
+	/* position		为空，则返回末10位周期数组 [[位置, 周期长度, 周期串]]
+					（第1位索引是1，倒数第n位索引是-n）
+		opts		指定可选参数[c幂次上限, l末几位, pl周期长度阈值, ignoreFirst0s忽略前面的零]
+			
+					pl周期长度阈值（长度超过pl，则不显示周期串）
+		
+	*/
+	var c=opts?opts[0]:5200, l=opts?opts[1]:10, pl=opts?opts[2]:150, ignoreFirst0s=opts?opts[3]:1, A=[], B, s;
 	if(position){
 		if(position<0){
 			A=seqA(1,c).map(i=>lastDigitsOfPower(b,i,-position)[0]);
@@ -172,14 +220,15 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 			A=seqA(1,c).map(i=>firstDigitsOfPower(b,i,position)[position-1]);
 		}
 			
-		s=period(A,1,pl);
-		return [position, isStr(s)?s.length:s, isStr(s)?s:'']
+		s=period(A,ignoreFirst0s,pl);
+		//console.log(s);
+		return [position, isStr(s)?s.length:(isArr(s)?s.map(i=>i.length):s), isStr(s)||isArr(s)?s:'']
 
 		
 	}else{
 		A=seqA(1,c).map(i=>lastDigitsOfPower(b,i,l));
 		
-		B=seqA(-1,l,'',-1).map(i=>[i, period(A.map(a=>a.slice(i)[0]), 1, pl)]);
+		B=seqA(-1,l,'',-1).map(i=>[i, period(A.map(a=>a.slice(i)[0]), ignoreFirst0s, pl)]);
 		
 		B=B.map(i=>[i[0],isStr(i[1])?i[1].length:i[1], isStr(i[1])?i[1]:''])
 	}
