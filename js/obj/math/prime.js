@@ -176,28 +176,56 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 		var se=s.replace(new RegExp('^('+si+')\\1+'),'');
 		sl = se.length;
 	//	console.log(i,si, sl);
-	//	console.log(sl<sil, si.indexOf(se),  strictLvl);
+	//	
 		if(sl<sil && si.indexOf(se)==0){
-			 
+			 //console.log(se);
 			if(sl==0 || strictLvl!=2){
 				return si
 			}
 			
 		}
 	}
-	
+
 	if(!strictLvl){
 		for(var i=1,l=Math.floor(s.length/2);i<=l;i++){
 			var si=r.substr(0,i), sil=si.length;
 			var se=r.replace(new RegExp('^('+si+')\\1+'),'');
 			sl = se.length;
-		//	console.log(i,si,se);
-			if(sl<=sil){
-				if(si.indexOf(se)==0){
-					return s.substr(0,sil)
+		//console.log(si, se);
+			if(sl<=l){//sl<=sil
+				//console.log(i,si,se);
+				for(var j=0;j<sl;j++){
+					var sub_se=se.substr(0,sl-j);
+					if(si.indexOf(sub_se)==0){
+						if( sl==sil && j==0){
+							var ps=s.substr(0,sil), tp=period(ps,'','','',2);
+							return isStr(tp)?tp:ps
+						}else{
+							var pa=[s.substr(0,j), s.substr(j, sil)], ps=pa[1], tp=period(ps,'','','',2);
+						
+							
+							//console.log(j, pa, tp);
+							if(isStr(tp)){
+								pa = [pa[0].replace(new RegExp('('+tp+')\\1+$'),'').replace(new RegExp(tp+'$'),''), tp];
+								ps = pa[1]
+							}
+							
+								
+							for(var k=1;k<=pa[0].length;k++){
+								if(ps.lastIndexOf(pa[0].substr(-k)) + k < ps.length){
+									return [s.substr(0,pa[0].length-k+1), s.substr(pa[0].length-k+1, pa[1].length)]
+								}
+							}
+							
+							
+							return pa[0]+pa[1].substr(0,pa[1].length-pa[0].length)
+						
+						}		
+					}
 				}
-				return [s.substr(0,sl), s.substr(sl, sil) ]
+				
 			}
+			
 		}
 		
 	}
@@ -234,7 +262,7 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 	}
 	return B
 		
-		/* 
+/* 
 			示例：
 			2的幂的幂，个位数的周期
 			seqA(1,10).map(i=>periodOfDigitsOfPower(2**i,-1))
@@ -243,13 +271,12 @@ var gcd=function(A,p){/*辗转相除法 求最大公约数
 			seqA(1,40).map(i=>periodOfDigitsOfPower(2n**BigInt(i),-2))
 			
 			
-			seqA(1,40).map(i=>periodOfDigitsOfPower(i,-2))
-	对应数列	oeis.org/A253389
+			seqA(1,30).map(i=>periodOfDigitsOfPower(i,-2).join(' ').replace(/.+\D/,''))
+				对应数列	oeis.org/A253389
 			
-			
-			
-			
-			*/
+			seqA(1,30).map(i=>periodOfDigitsOfPower(i,-3).join(' ').replace(/.+\D/,''))	
+				对应数列	oeis.org/A372698
+*/
 
 },tMod=function(n){//个位尾数分解为两个位数乘积
 	return [zlrA('0',seqA(0,10)).concat(zlrA2(seqA(2,4,'',2),'5')),['11','37','99'],['12','26','34','48','67','89'],['13','79'],['14','22','27','38','46','69','88'],
