@@ -36,6 +36,8 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 
 	imgReg = '(avif|bmp|gif|ico|jpeg|jpg|apng|png|svg|webp)',
 	hrefImgRe = new RegExp('\\S*\\.' + imgReg + '[\\?\\&]*.*', 'i'), textImgRe = new RegExp('(file|ftp|https?):[/]+[^\'"\\s\\(\\)]*\\.' + imgReg, 'gi'),
+
+	htmlcodeRe = /&#\d+;/g,
 	digiReg = /^\d+(\.\d)?$/,
 	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}\|]/g, '\\$&') },
 	dblChr2Arr=function(t){var A=[];for(var a of t){A.push(a)} return A},//return t.replace(/../g,'$& ').trim().split(' ')},
@@ -2063,9 +2065,9 @@ function uniPush(A, x, ord) {//ord指定按序插入：0不考虑原数组是否
 function attr2dataset(t) {
 	return t.replace(/data-(.+)/, 'dataset.$1').replace(/-[^-]+/g, function (a) { return a.substr(1, 1).toUpperCase() + a.substr(2) })
 }
-function urlArr(jQExp, attr, attr2, szl2) {
+function urlArr(jQExp, attr, attr2) {
 	var jQ = jQExp || 'a[href]:has(img)', t = [], a, s;
-	(szl2?nodeFromSzl2:nodeFromSzl)(jQ).each(function () {
+	nodeFromSzl(jQ).each(function () {
 		if (attr) {
 			if (attr == 'style') {
 				s = $(this).attr(attr) || '';
@@ -2287,7 +2289,7 @@ function H_o(u,o) {
 	return obj;
 }
 
-function html2txt(h) { return $('<b>' + h + '</b>').text().trim() }
+function html2txt(h, method2) { return method2?(new DOMParser()).parseFromString(h, 'text/html').documentElement.textContent:$('<b>' + h + '</b>').text().trim() }
 function html2html(h) { return $('<div>' + h + dc).html().trim() }
 function csv2A(t){
 	var X=t.replace(/("")+/g,function(x){return 'zZlLrR'.repeat(x.length/2)});

@@ -19,7 +19,7 @@ $(function(){
 
 			//version
 
-			fieldseth('V2024.5.11',
+			fieldseth('V2024.7.3',
 
 				DCtv('alignc',
 					DCtv('floatl','<h1 class=logo data-z data-z-event="pointer">zzllrr Mather</h1>'+

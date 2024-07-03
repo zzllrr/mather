@@ -1,4 +1,4 @@
-.bold{font-weight:bold}
+﻿.bold{font-weight:bold}
 .italic,.var,.unknown{font-style:italic}
 .underline.overline.through{text-decoration:underline overline line-through}
 .underline.overline{text-decoration:underline overline}
@@ -317,6 +317,11 @@ body:not(.night) .bdb{
 }
 li,#wiki{
 	padding:2px
+}
+thead{
+	position: sticky;
+	top: 0;
+	background: gainsboro;
 }
 .subtools summary, .edit > thead tr{
 	padding-bottom:6px
