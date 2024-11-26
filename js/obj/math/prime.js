@@ -1193,7 +1193,11 @@ PrimeGenByMod(5)[4].filter(i=>!isPrime(i) && i>1).map(factor)
 		if(fact){
 			return t+'×'+s.toString()
 		}else{
-			t+='×'+factor(s);
+			var t2=isPrime(s,1);
+			if(t2==1){
+				return [t,s].sort(sortBy.numInt).join('×')
+			}
+			t+='×'+t2+'×'+factor(s/BigInt(t2));
 			return t.split('×').sort(sortBy.numInt).join('×')
 		}
 	}

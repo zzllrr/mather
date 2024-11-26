@@ -271,8 +271,23 @@ var n31=function(x, cache, count){//返回3n+1 / 2^k 迭代序列，支持大整
 		//console.log(n);
 	}
 	return 'A='+A.join('; ')+'\n\nB='+B.join('; ')
-};
 
+}, kx_b_cycles=(k,b)=>{// f(x)=x/2（x偶数时） 或 kx+b（x奇数时）其中k,b都是奇数，得到循环节
+	var f0=x=>x/2, f1=x=>k*x+b, f00=i=>{var x=i;while(x%2==0){x=f0(x)} return x},B=[],C=[], f=(i,j)=>{var x=i,A=[]; while(x!=1 && A.length<(j||1000)){x=f00(x%2?f1(x):x);if(C.includes(x) || A.includes(x)||x==i){if(C.includes(x)){A.push(x)} else if(A.includes(x)){C.push(x);var D=A.slice(A.indexOf(x));B.push(D.slice(D.indexOf(Math.min(...D))).concat(D.slice(0,D.indexOf(Math.min(...D)))))} break}else{A.push(x)}} return [i].concat(A)};var A=Array.from({length:1000}, (_,i) => 2*i+1).map(i=>f(i)); for(var i=0;i<A.length;i++){for(var j=i+1;j<A.length;j++){if(A[i].length>500 || A[j].includes(A[i][0])){A.splice(i,1);i--;break} if(A[j].includes(A[i][0])){}}} 
+	return B.sort((i,j)=>i.length-j.length).map(i=>i+'')
+
+}, kx_b_cycles_cnt=(k,b)=>kx_b_cycles(k,b).length;
+/*
+
+Math.max(...seqA(1,500,'',2).map(i=>kx_b_cycles_cnt(3,i)))
+35
+Math.max(...seqA(1,1000,'',2).map(i=>kx_b_cycles_cnt(3,i)))
+60
+
+Math.max(...seqA(1,50,'',2).map(i=>kx_b_cycles_cnt(5,i)))
+17
+
+*/
 
 explore['Problem/Unsolved/3n+1']=function(){
 
@@ -284,9 +299,9 @@ explore['Problem/Unsolved/3n+1']=function(){
 			
 		}
 	}
-	return detail('奇数→kn+b 偶数→除以2',s)+num('3" id="k_kn_b',3,1000)+
+	return detail('奇数→kn+b 偶数→除以2',s)+num('3" id="k_kn_b',3,1001,2)+
 		'n<label class=numsign>+</label>'+
-		num('1" id="b_kn_b',-1000,1000)+
+		num('1" id="b_kn_b',-1001,1001,2)+
 		'<div id=knb>'+dc+
 
 		detail(gM('Notes 1'),
@@ -502,7 +517,8 @@ $(function(){
 	$('body').on('click change keyup','#k_kn_b,#b_kn_b',function(){
 		var k=+$('#k_kn_b').val(),b=+$('#b_kn_b').val(),knb=k+'n'+(b<0?b:'+'+b);
 		$('#b_kn_b').prev().text(b<0?'':'+');
-		$('#knb').html(detail(knb+'轨道',DCtv('scroll',orbits(knb).join(br))));//+detail(knb+'图','')
+		//$('#knb').html(detail(knb+'轨道',DCtv('scroll',orbits(knb).join(br))));//+detail(knb+'图','')
+		$('#knb').html(detail(knb+'循环节',DCtv('scroll',kx_b_cycles(k,b).join(br)), 1));//+detail(knb+'图','')
 	});
 });
 

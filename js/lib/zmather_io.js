@@ -18,6 +18,28 @@ var SBSi=[zlr('Subject',' 1'),
 	zlr('Arrow',' 1 2 3 4 5'),
 	zlr('Misc',' 1 2 3 4')
 ].join(' '),
+SBS0={ABC:[[
+		'𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙',
+		'𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍',
+		'𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁',
+		'𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵',
+		'𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩',
+		'𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ',
+		'𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅',
+		'𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ',
+		'𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉'
+	],[
+		'𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳',
+		'𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧',
+		'𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛',
+		'𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏',
+		'𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃',
+		'𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷',
+		'𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟',
+		'𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫',
+		'𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣'
+	]]
+},
 SBS={
 	Subject:[
 		['²³⁴ᵐⁿπθλζ∇','⁻¹₀ˣʸαβγξΔ'],
@@ -43,77 +65,71 @@ SBS={
 	],
 
 	Num1:[
-		
-		['⒈⒉⒊⒋⒌⒒⒓⒔⒕⒖','⒍⒎⒏⒐⒑⒗⒘⒙⒚⒛'],
-		['⑴⑵⑶⑷⑸⑾⑿⒀⒁⒂','⑹⑺⑻⑼⑽⒃⒄⒅⒆⒇'],
-		['⓵⓶⓷⓸⓹⑪⑫⑬⑭⑮㉑㉒㉓㉔㉕','⓺⓻⓼⓽⓾⑯⑰⑱⑲⑳'],
-		['㉖㉗㉘㉙㉚㊱㊲㊳㊴㊵㊻㊼㊽㊾㊿','㉛㉜㉝㉞㉟㊶㊷㊸㊹㊺'],
-		['➊➋➌➍➎⓫⓬⓭⓮⓯','➏➐➑➒➓⓰⓱⓲⓳⓴'],
-	],
+			'⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛',
+			'⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇',
+			'⓵⓶⓷⓸⓹⓺⓻⓼⓽⓾⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕',
+			'㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿',
+			'➊➋➌➍➎➏➐➑➒➓⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴'
+	].map(i=>abc2Arr5(i)),
 
 	Num2:[
-
-		['⅟½⅓⅔ ⅗⅘⅙⅚','¼¾⅕⅖ ⅛⅜⅝⅞'],
-		['㋀㋁㋂㋃㋄㋊㋋','㋅㋆㋇㋈㋉'],
-		['㏠㏡㏢㏣㏤㏪㏫㏬㏭㏮㏴㏵㏶㏷㏸㏾','㏥㏦㏧㏨㏩㏯㏰㏱㏲㏳㏹㏺㏻㏼㏽'],
-		['㍙㍚㍛㍜㍝㍣㍤㍥㍦㍧㍭㍮㍯㍰㍘','㍞㍟㍠㍡㍢㍨㍩㍪㍫㍬'],
-	],
+		'⅟½⅓⅔ ¼¾⅕⅖ ⅗⅘⅙⅚⅛⅜⅝⅞',
+		'㋀㋁㋂㋃㋄㋅㋆㋇㋈㋉㋊㋋',
+		'㏠㏡㏢㏣㏤㏥㏦㏧㏨㏩㏪㏫㏬㏭㏮㏯㏰㏱㏲㏳㏴㏵㏶㏷㏸㏹㏺㏻㏼㏽',
+		'㍙㍚㍛㍜㍝㍞㍟㍠㍡㍢㍣㍤㍥㍦㍧㍨㍩㍪㍫㍬㍭㍮㍯㍰㍘'
+	].map(i=>abc2Arr5(i)),
 
 	Num3:[
-		['一二三四五六七八九十百千万亿兆〇','壹贰叁肆伍陆柒捌玖拾佰仟萬亿兆零'],
-		['㊀㊁㊂㊃㊄㈠㈡㈢㈣㈤','㊅㊆㊇㊈㊉㈥㈦㈧㈨㈩'],
-		['甲乙丙丁戊子丑寅卯 申酉戌亥','己庚辛壬癸辰巳午未'],
-		['㆙㆚㆛㆜ ㆖㆗㆘','㆒㆓㆔㆕ ㆝㆞㆟']
-	],
+		'一二三四五六七八九十壹贰叁肆伍陆柒捌玖拾百千万亿兆佰仟萬亿兆',
+		'㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩',
+		'甲乙丙丁戊己庚辛壬癸子丑寅卯 辰巳午未申酉戌亥',
+		'㆙㆚㆛㆜ ㆒㆓㆔㆕ ㆖㆗㆘㆝㆞㆟'
+	].map(i=>abc2Arr5(i)),
 
 
 	ABC:[
-		['αβγδελμνξουφχψω','ζηθικπρςστ'],
-		['ΑΒΓΔΕΛΜΝΞΟΥΦΧΨΩ','ΖΗΘΙΚΠΡ΢ΣΤ'],
+		'αβγδεζηθικλμνξοπρςστυφχψω',
+		'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡ΢ΣΤΥΦΧΨΩ',
 
 	//	Arrf(fCC,[seqA(913,25), seqA(945,25)])
 	//	Arrf(fCC,[seqA(65,26),seqA(97,26)]),
 	//	Arrf(fCC,[seqA(8560,16),seqA(8544,16)]),
 
-		['ℵℶℷℸ℘°℃℉ð₴','∞∝∅⍉⌀∂∇¬∀∃'],
-		['ƒℎæœＣ₵açþÞ','ℲℏÆŒϹ∁āÇÐß'],
+		'ℵℶℷℸ℘∞∝∅⍉⌀°℃℉ð₴∂∇¬∀∃',
+		'ƒℎæœＣℲℏÆŒϹ₵açþÞ∁āÇÐß',
 
-	],
+	].map(i=>abc2Arr5(i)),
 
 
 	ABC1:[
 
-		['ⅰⅱⅲⅳⅴⅺⅻ','ⅵⅶⅷⅸⅹⅼⅽⅾⅿ'],
-		['ⅠⅡⅢⅣⅤⅪⅫ','ⅥⅦⅧⅨⅩⅬⅭⅮⅯ'],
-		['ℂℍℙℚ ℭℌℑℜ','ℕℝℤℨ'],
-		['ℬℰℱℋ ℯℊℴℓ','ℐℒℳℛ'],
-		
-
-		['⍶⍺ϐϒϕ⍳⍸⍴ϱ','ϵ⍷ℇϑϴ⍵⍹ϖ∂∇'],
-
-		['ᴬᴮᒼᴰᴱᴷᴸᴹᴺᴼᵁ៴ᵂ  ',' ᴳᴴᴵᴶᴾ ᴿ  ᙆ'],
-		['ᵃᵇᶜᵈᵉᵏˡᵐⁿᵒᵘᵛʷˣʸ','ᶠᵍʰⁱʲᵖ ʳˢᵗz'],
-		['ₐ ₑₒᵣᵪᵧᵦᵨᵩ','  ᵤᵥₓ'],
-		['␆␇␈␘␍␛␗␃␌␜␞␏␎␁␠','␡␐␙␅␄␝␉␊␕␤␂␚␖␟␋'],
+		'ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ',
+		'ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫⅬⅭⅮⅯ',
+		'ℂℍℙℚ ℕℝℤℨℭℌℑℜ',
+		'ℬℰℱℋ ℐℒℳℛℯℊℴℓ',
+		'⍶⍺ϐϒϕϵ⍷ℇϑϴ⍳⍸⍴ϱ⍵⍹ϖ∂∇',
+		'ᴬᴮᒼᴰᴱ ᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾ ᴿ  ᵁ៴ᵂ  ᙆ',
+		'ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖ ʳˢᵗᵘᵛʷˣʸz',
+		'ₐ ₑₒᵣ  ᵤᵥₓᵪᵧᵦᵨᵩ',
+		'␆␇␈␘␍␡␐␙␅␄␛␗␃␌␜␝␉␊␕␤␞␏␎␁␠␂␚␖␟␋'
 	
 		//	['+-	=.%|\\$<>,;^_~\'"&*/:?@#!删空',' '],		ℏ
 	
 			//['aāáǎàċ','äůâãă'],
 				
-	],
+	].map(i=>abc2Arr5(i)),
 
 
 
 	ABC2:[
-		['ａｂｃｄｅｋｌｍｎｏｕｖｗｘｙ','ｆｇｈｉｊｐｑｒｓｔｚ'],
-		['ＡＢＣＤＥＫＬＭＮＯＵＶＷＸＹ','ＦＧＨＩＪＰＱＲＳＴＺ'],
 		// Arrf(fCC,[seqA(65345,26),seqA(65313,26)]),
 		// Arrf(fCC,[seqA(9372,52),seqA(9424,26)]),
-
-		['⒜⒝⒞⒟⒠⒦⒧⒨⒩⒪⒰⒱⒲⒳⒴','⒡⒢⒣⒤⒥⒫⒬⒭⒮⒯⒵'],
-		['ⓐⓑⓒⓓⓔⓚⓛⓜⓝⓞⓤⓥⓦⓧⓨ','ⓕⓖⓗⓘⓙⓟⓠⓡⓢⓣⓩ'],
-		['ⒶⒷⒸⒹⒺⓀⓁⓂⓃⓄⓊⓋⓌⓍⓎ','ⒻⒼⒽⒾⒿⓅⓆⓇⓈⓉⓏ'],
-	],
+		'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ',
+		'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ',
+		'⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵',
+		'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ',
+		'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ'
+	].map(i=>abc2Arr5(i)),
 
 
 /* https://www.cnblogs.com/XiaoJun6/p/13070475.html
@@ -124,30 +140,9 @@ SBS={
 
 */
 
-	ABC3:[
-		['𝐀𝐁𝐂𝐃𝐄𝐊𝐋𝐌𝐍𝐎𝐔𝐕𝐖𝐗𝐘','𝐅𝐆𝐇𝐈𝐉𝐏𝐐𝐑𝐒𝐓𝐙'],
-		['𝐴𝐵𝐶𝐷𝐸𝐾𝐿𝑀𝑁𝑂𝑈𝑉𝑊𝑋𝑌','𝐹𝐺𝐻𝐼𝐽𝑃𝑄𝑅𝑆𝑇𝑍'],
-		['𝑨𝑩𝑪𝑫𝑬𝑲𝑳𝑴𝑵𝑶𝑼𝑽𝑾𝑿𝒀','𝑭𝑮𝑯𝑰𝑱𝑷𝑸𝑹𝑺𝑻𝒁'],
-		['𝒜ℬ𝒞𝒟ℰ𝒦ℒℳ𝒩𝒪𝒰𝒱𝒲𝒳𝒴','ℱ𝒢ℋℐ𝒥𝒫𝒬ℛ𝒮𝒯𝒵'],
-		['𝓐𝓑𝓒𝓓𝓔𝓚𝓛𝓜𝓝𝓞𝓤𝓥𝓦𝓧𝓨','𝓕𝓖𝓗𝓘𝓙𝓟𝓠𝓡𝓢𝓣𝓩'],
-		['𝔄𝔅ℭ𝔇𝔈𝔎𝔏𝔐𝔑𝔒𝔘𝔙𝔚𝔛𝔜','𝔉𝔊ℌℑ𝔍𝔓𝔔ℜ𝔖𝔗ℨ'],
-		['𝕬𝕭𝕮𝕯𝕰𝕶𝕷𝕸𝕹𝕺𝖀𝖁𝖂𝖃𝖄','𝕱𝕲𝕳𝕴𝕵𝕻𝕼𝕽𝕾𝕿𝖅'],
-		['𝔸𝔹ℂ𝔻𝔼𝕂𝕃𝕄ℕ𝕆𝕌𝕍𝕎𝕏𝕐','𝔽𝔾ℍ𝕀𝕁ℙℚℝ𝕊𝕋ℤ'],
-		['𝙰𝙱𝙲𝙳𝙴𝙺𝙻𝙼𝙽𝙾𝚄𝚅𝚆𝚇𝚈','𝙵𝙶𝙷𝙸𝙹𝙿𝚀𝚁𝚂𝚃𝚉']
+	ABC3:SBS0.ABC[0].map(i=>abc2Arr5(dblChr2Arr(i))),
 
-	].map(i=>i.map(dblChr2Arr)),
-
-	ABC4:[
-		['𝐚𝐛𝐜𝐝𝐞𝐤𝐥𝐦𝐧𝐨𝐮𝐯𝐰𝐱𝐲','𝐟𝐠𝐡𝐢𝐣𝐩𝐪𝐫𝐬𝐭𝐳'],
-		['𝑎𝑏𝑐𝑑𝑒𝑘𝑙𝑚𝑛𝑜𝑢𝑣𝑤𝑥𝑦','𝑓𝑔ℎ𝑖𝑗𝑝𝑞𝑟𝑠𝑡𝑧'],
-		['𝒂𝒃𝒄𝒅𝒆𝒌𝒍𝒎𝒏𝒐𝒖𝒗𝒘𝒙𝒚','𝒇𝒈𝒉𝒊𝒋𝒑𝒒𝒓𝒔𝒕𝒛'],
-		['𝒶𝒷𝒸𝒹ℯ𝓀𝓁𝓂𝓃ℴ𝓊𝓋𝓌𝓍𝓎','𝒻ℊ𝒽𝒾𝒿𝓅𝓆𝓇𝓈𝓉𝓏'],
-		['𝓪𝓫𝓬𝓭𝓮𝓴𝓵𝓶𝓷𝓸𝓾𝓿𝔀𝔁𝔂','𝓯𝓰𝓱𝓲𝓳𝓹𝓺𝓻𝓼𝓽𝔃'],
-		['𝔞𝔟𝔠𝔡𝔢𝔨𝔩𝔪𝔫𝔬𝔲𝔳𝔴𝔵𝔶','𝔣𝔤𝔥𝔦𝔧𝔭𝔮𝔯𝔰𝔱𝔷'],
-		['𝖆𝖇𝖈𝖉𝖊𝖐𝖑𝖒𝖓𝖔𝖚𝖛𝖜𝖝𝖞','𝖋𝖌𝖍𝖎𝖏𝖕𝖖𝖗𝖘𝖙𝖟'],
-		['𝕒𝕓𝕔𝕕𝕖𝕜𝕝𝕞𝕟𝕠𝕦𝕧𝕨𝕩𝕪','𝕗𝕘𝕙𝕚𝕛𝕡𝕢𝕣𝕤𝕥𝕫'],
-		['𝚊𝚋𝚌𝚍𝚎𝚔𝚕𝚖𝚗𝚘𝚞𝚟𝚠𝚡𝚢','𝚏𝚐𝚑𝚒𝚓𝚙𝚚𝚛𝚜𝚝𝚣']
-	].map(i=>i.map(dblChr2Arr)),
+	ABC4:SBS0.ABC[1].map(i=>abc2Arr5(dblChr2Arr(i))),
 
 	DEF:[
 		['āáǎàaēéěèeūúǔùu','ōóǒòoīíǐìiǖǘǚǜü'],
@@ -160,7 +155,7 @@ SBS={
 		[['p','t','k','f','s', 'θ','ʃ','tʃ', 'n','m',  'h' ,'j','l','ℓ','r' ],['b','d','ɡ','v','z',  'ð','ʒ','dʒ', 'ŋ' ,'w']],
 
 	],
-	DEF1:[].concat(Arrf(function(t,i){return [Latin(t,true).join('').replace('É','ÉG')
+	DEF1:[].concat(Arrf(t=>[Latin(t,true).join('').replace('É','ÉG')
 				.replace('Ĺ','ḰĹḾ').replace('Ó','ÓṔ').replace('Ú','ÚẂ')
 				.replace('Č','ČAIOD')
 				.replace('Ù','ÙẀ')
@@ -176,9 +171,9 @@ SBS={
 				.replace('ï','ḧï').replace('ÿ','ẅẍÿẗ')
 				
 			
-	]},entity.slice(4,9))),
+	],entity.slice(4,9))),
 
-	DEF2:Arrf(function(t,i){return [Latin(t,true).join('')
+	DEF2:Arrf(t=>[Latin(t,true).join('')
 				.replace('Ů','ŮWY')
 				.replace('Ŷ','ŶẐ')
 				.replace('Ũ','ŨṼ')
@@ -187,12 +182,12 @@ SBS={
 				.replace('ů','ůẘẙ')
 				.replace('ŷ','ŷẑ')
 				.replace('ũ','ũṽ')
-	]},entity.slice(9)).concat([['Ḡ    ḆḎHḴḺṈṞṮẔ','ḡāēōūḇḏẖḵḻṉṟṯẕ']]),
+	],entity.slice(9)).concat([['Ḡ    ḆḎHḴḺṈṞṮẔ','ḡāēōūḇḏẖḵḻṉṟṯẕ']]),
 		
 	DEF3:[['ṨḄḌḤḲḶṂṆṚṢṬṾẈẒṲ','ṩḅḍḥḳḷṃṇṛṣṭṿẉẓṳ'],
 			['₠₡₢₣₤₥₦₧₨₩','₪₫€₭₮₯₰₱₲₳']],
 
-	DEF4:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))]},seqA(13184,5,'',20)),
+	DEF4:Arrf((x,i)=>[fCC(seqA(x,10)),fCC(seqA(x+10,(i==4?4:10)).concat(i==4?seqA(13169,6):[]))],seqA(13184,5,'',20)),
 		
 	
 
@@ -312,15 +307,15 @@ SBS={
 		
 	],
 
-	Misc:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632,4,'',20)),
+	Misc:Arrf(x=>[fCC(seqA(x,10)),fCC(seqA(x+10,10))],seqA(9632,4,'',20)),
 
-	Misc1:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*4,5,'',20)),
+	Misc1:Arrf(x=>[fCC(seqA(x,10)),fCC(seqA(x+10,10))],seqA(9632+20*4,5,'',20)),
 
-	Misc2:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*9,5,'',20)),
+	Misc2:Arrf(x=>[fCC(seqA(x,10)),fCC(seqA(x+10,10))],seqA(9632+20*9,5,'',20)),
 
-	Misc3:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(9632+20*14,5,'',20)),
+	Misc3:Arrf(x=>[fCC(seqA(x,10)),fCC(seqA(x+10,10))],seqA(9632+20*14,5,'',20)),
 
-	Misc4:Arrf(function(x,i){return [fCC(seqA(x,10)),fCC(seqA(x+10,10))]},seqA(8962,3,'',20)).concat(
+	Misc4:Arrf(x=>[fCC(seqA(x,10)),fCC(seqA(x+10,10))],seqA(8962,3,'',20)).concat(
 		[['卍卐⌘','']]
 	),
 
@@ -341,766 +336,592 @@ SBS={
  𝒶𝔞𝕒āáǎàċäåâãă
 */
 
+
 	Latex:{
 
-'Α':'Alpha',
-'Β':'Beta',
-'Γ':'Gamma',
-'Δ':'Delta',
-'Ε':'Epsilon',
-'Ζ':'Xeta',
-'Η':'Eta',
-'Θ':'Theta',
-'Ι':'Iota',
-'Κ':'Kappa',
-'Λ':'Lambda',
-'Μ':'Mu',
-'Ν':'Nu',
-'Ξ':'Xi',
-'Ο':'Omikron',
-'Π':'Pi',
-'Ρ':'Rho',
-'΢':'Zelta',//实际无此字母，暂以Zelta命名
-'Σ':'Sigma',
-'Τ':'Tau',
-'Υ':'Upsilon',
-'Φ':'Phi',
-'Χ':'Chi',
-'Ψ':'Psi',
-'Ω':'Omega',
-'Ϝ':'Digamma',//
 
-'α':'alpha',
-'β':'beta',
-'γ':'gamma',
-'δ':'delta',
-'ε':'epsilon',
-'ζ':'zeta',
-'η':'eta',
-'θ':'theta',
-'ι':'iota',
-'κ':'kappa',
-'λ':'lambda',
-'μ':'mu',
-'ν':'nu',
-'ξ':'xi',
-'ο':'omikron',
-'π':'pi',
-'ρ':'rho',
-//'ς':'zelta',//实际无此字母，暂以Zelta命名
-'σ':'sigma',
-'τ':'tau',
-'υ':'upsilon',
-'φ':'phi',
-'χ':'chi',
-'ψ':'psi',
-'ω':'omega',
-'ϝ':'digamma',
-
-'ϵ':'varepsilon',
-
-
-'ϑ':'vartheta',
-
-'ϰ':'varkappa',
-
-'ϖ':'varpi',
-
-'ϱ':'varrho',
-
-
-'ς':'varsigma',
-
-
-'ϕ':'varphi',
-
-
-'ı':'imath',
-'ȷ':'jmath',
-
-
-'ℵ':'aleph',
-'ℶ':'beth',
-'ℷ':'gimel',
-'ℸ':'daleth',
-
-'ð':'eth',
-
-
-
-
-'ℬ':'mathscr{B}',
-'ℰ':'mathscr{E}',
-'ℱ':'mathscr{F}',
-'ℋ':'mathscr{H}',
-'ℐ':'mathscr{J}',
-'ℒ':'mathscr{L}',
-'ℳ':'mathscr{M}',
-'ℛ':'mathscr{R}',
-'ℯ':'mathscr{e}',
-'ℊ':'mathscr{g}',
-'ℴ':'mathscr{o}',
-
-'ℭ':'mathfrak{C}',
-'ℌ':'mathfrak{H}',
-'ℑ':'mathfrak{J}',
-'ℜ':'mathfrak{R}',
-'ℨ':'mathfrak{Z}',
-
-
-
-
-'ℂ':'mathbb{C}',
-'ℍ':'mathbb{H}',
-'ℕ':'mathbb{N}',
-'ℙ':'mathbb{P}',
-'ℚ':'mathbb{Q}',
-'ℝ':'mathbb{R}',
-'ℤ':'mathbb{Z}',
-
-
-
-
-'ℝ':'mathbb{R}',
-'ℎ':'mathit{h}',//mathnormal 
-'Ｃ':'mathbf{C}',
-'Ϲ':'mathsf{C}',
-'∁':'mathtt{C}',	// complement
-
-'⊺':'intercal',
-'a':'mathrm{a}',
-	
-	
-'ā':'bar{a}',
-'á':'acute{a}',
-'ǎ':'check{a}',
-'à':'grave{a}',
-'ċ':'dot{c}',
-'ä':'ddot{a}',
-'ů':'mathring{u}',
-'â':'hat{a}',
-'ã':'tilde{a}',
-'ă':'breve{a}',
-
-
-'†':'dag',
-'‡':'ddag',
-
-'∡':'measuredangle',
-'∢':'sphericalangle',
-'⋄':'diamond',
-'◊':'Diamond',	//lozenge
-'⧫':'blacklozenge',
-'♢':'diamonds',	//diamondsuit	
-
-'♣':'clubs',	//clubsuit
-'♠':'spades',
-'♡':'hearts',
-'✠':'maltese',
-
-'♮':'natural',
-'♯':'sharp',
-'♭':'flat',
-
-'⋆':'star',
-'★':'bigstar',
-
-'∙':'bullet',
-
-'℧':'mho',
-'╱':'diagup',
-'╲':'diagdown',
-'∖':'setminus',
-
-'⟨':'langle',
-'⟩':'rangle',
-
-'{':'lbrace',
-'}':'rbrace',
-
-'[':'lbrack',
-']':'rbrack',
-
-'|':'lvert',
-'|':'llvert',
-
-'∧':'land',
-'∨':'lor',
-'¬':'neg',	//lnot
-
-'⊼':'barwedge',
-'⩞':'doublebarwedge',
-
-'¥':'yen',
-'£':'pounds',
-
-'⊛':'circledast',
-'⊚':'circledcirc',
-'⊝':'circleddash',
-'®':'circledR',
-'Ⓢ':'circledS',
-'§':'text{\\S}',
-'¶':'text{\\P}',
-
-'■':'blacksquare',
-'□':'square',	// Box
-'⊡':'boxdot',
-'⊟':'boxminus',
-'⊞':'boxplus',
-'⊠':'boxtimes',
-
-'≀':'wr',	//wreath product  圈积
-
-'⅟':kfrac('1/n').substr(1),
-'½':kfrac('1/2').substr(1),
-'⅓':kfrac('1/3').substr(1),
-'⅔':kfrac('2/3').substr(1),
-'¼':kfrac('1/4').substr(1),
-'¾':kfrac('3/4').substr(1),
-'⅕':kfrac('1/5').substr(1),
-'⅖':kfrac('2/5').substr(1),
-'⅗':kfrac('3/5').substr(1),
-'⅘':kfrac('4/5').substr(1),
-'⅙':kfrac('1/6').substr(1),
-'⅚':kfrac('5/6').substr(1),
-'⅛':kfrac('1/8').substr(1),
-'⅜':kfrac('3/8').substr(1),
-'⅝':kfrac('5/8').substr(1),
-'⅞':kfrac('7/8').substr(1),
-
-'㏒':'log',
-'㏑':'ln',
-
-'func_tri':[zlr2('sech csch cth th sh ch','⁻¹'),'sech csch cth th sh ch',
-		zlr('arc','sin cos tan cot sec csc'),'sin cos tan cot sec csc'
-		],
-		//injlim	
-'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr sinc si Si ci Ci Shi',
-
-/*
-'struc':{//结构
-
-	
-},
-*/
-//∘°度数
-
-//\,, \:, \;, \quad, \qquad 空格由小到大
-// 排版 equation, gather, align split alignat{n} 		gathered,aligned, alignedat intertext
-// numberwithin eqref subequations 
-
-		'±':'pm',
-		'∓':'mp',
-		'×':'times',
-		'÷':'div',
-
-		'⋇':'divideontimes',
-		'∣':'mid',
-		'∤':'nmid',
-		'⋅':'cdot',	//cdotp centerdot
-
-
-
-
-		'∘':'circ',
-		'∗':'ast',
-		'⨀':'bigodot',
-		'⨂':'bigotimes',
-		'⨁':'bigoplus',
-
-		'⊕':'oplus',
-		'⊖':'ominus',
-		'⊗':'otimes',
-		'⊘':'oslash',
-		'⊙':'odot',
-
-		'≡':'equiv',
-		'≠':'ne',	// \ne \not= \neq
-
-	//	'≠':'=\\not\\mathrlap{}',
-
-/*
-		bug	 不等号被Katex显示成 / = 		写成		=\not\mathrlap{}
-	
-2≠3\\
-2\neq3\\
-2\ne3\\
-
-*/
-
-		'✓':'checkmark',
-
-
-		'≪':'ll',
-		'≫':'gg',
-		'⋘':'lll',
-		'⋙':'ggg',
-
-		'≤':'leq',
-		'≥':'geq',
-
-		'≦':'leqq',
-		'≧':'geqq',
-			
-		'└':'llcorner',
-		'┘':'lrcorner',
-
-		'⋉':'ltimes',
-		'⋊':'rtimes',
-
-		'≈':'approx',
-		'≃':'simeq',
-		'≅':'cong',
-		
-		
-		'∝':'propto',
-		
-		'∑':'sum',
-		'∏':'prod',
-		'∐':'coprod',
-		'∐':'amalg',
-			
-		'√':'sqrt',
-		'∛':'sqrt[3]',
-		'∜':'sqrt[4]',
-
-		'∅':'varnothing',
-		'∅':'empty',
-		'∅':'emptyset',
-		'∈':'in',
-		'∉':'notin',
-		'⊂':'subset',
-		'⊃':'supset',
-		'⊆':'subseteq',
-		'⊇':'supseteq',
-		'⋒':'Cap',	// doublecap
-		'∩':'cap',
-		'⋓':'Cup',	// doublecup
-		'∪':'cup',
-		'⊓':'sqcap',
-		'⊔':'sqcup',
-		'⊏':'sqsubset',
-		'⊐':'sqsupset',
-		'⊑':'sqsubseteq',
-		'⊒':'sqsupseteq',
-		'⋢':'notsqsubseteq',
-		'⋣':'notsqsupseteq',
-		'⋤':'sqsubsetnoteq',
-		'⋥':'sqsupsetnoteq',
-
-		'⋂':'bigcap',
-		'⋃':'bigcup',
-		'⋁':'bigvee',
-		'⋀':'bigwedge',
-		'⨄':'biguplus',
-		'⨆':'bigsqcup',
-		'◯':'bigcirc',
-
-		
-		'.':'ldotp',
-		
-		'…':'ldots',	//dotsc	dotso
-		'⋯':'cdots',	//dotsb	dotsm	idotsint
-		'⋱':'ddots',
-		'⋮':'vdots',
-		'⋰':'iddots',
-
-		'∵':'because',
-		'∴':'therefore',
-		'∀':'forall',
-		'∃':'exists',
-		'∄':'nexists',
-
-		'≯':'not>',
-		'̸⊄':'not\\subset',
-
-
-		'⊥':'bot',
-		'∠':'angle',
-		'°':'^\\circ',
-		
-		'′':'prime',
-		'″':"''",
-		'‴':"'''",
-		'‵':'backprime',
-		'∫':'int',
-		'∬':'iint',
-		'∭':'iiint',
-		'∬∬':'iiiint',
-		'∮':'oint',
-		'∯':'oiint',
-		'∰':'oiiint',
-		'∞':'infty',
-		'∇':'nabla',
-		'∂':'partial',
-
-		'Ⅎ':'Finv',
-			
-		'ℜ':'Re',
-		'ℜ':'real',
-		'ℑ':'Im',
-		'ℑ':'image',
-
-		'ℓ':'ell',
-		'ℏ':'hbar',
-		'ℏ':'hslash',
-
-		'℘':'wp',
-		'℘':'weierp',
-		'⅁':'Game',
-
-		'ø':'text{\\o}',
-		'Ø':'text{\\O}',
-
-		'ı':'text{\\i}',
-		'ȷ':'text{\\j}',
-
-
-		'å':'text{\\aa}',
-		'Å':'text{\\AA}',
-		'æ':'text{\\ae}',
-		'Æ':'text{\\AE}',
-		'œ':'text{\\oe}',
-		'Œ':'text{\\OE}',
-
-		'ß':'text{\\ss}',
-
-		
-
-		'↑':'uparrow',
-		'↓':'downarrow',
-		'⇑':'Uparrow',
-		'⇓':'Downarrow',
-
-		'→':'rightarrow',
-		'←':'leftarrow',
-		'⇒':'Rightarrow',
-		'⇐':'Leftarrow',
-		'⟶':'longrightarrow',
-		'⟵':'longleftarrow',
-		'⟹':'Longrightarrow',
-		'⟸':'Longleftarrow',
-		
-		'→':'to',
-		'←':'gets',
-		
-		'↔':'leftrightarrow',
-		'↮':'notleftrightarrow',
-		
-		'￫':'vec{}',
-		
-		'⎰':'lmoustache',
-		'⎱':'rmoustache',
-		'⌈':'lceil',
-		'⌉':'rceil',
-		'⌊':'lfloor',
-		'⌋':'rfloor',
-		
-		
-		
-
-
-
-
-
-
-'↺':'circlearrowleft',
-'↻':'circlearrowright',
-'↶':'curvearrowleft',
-'↷':'curvearrowright',
-'⇓':'Darr',
-'⇓':'dArr',
-'↓':'darr',
-'⇠':'dashleftarrow',
-'⇢':'dashrightarrow',
-'↓':'downarrow',
-'⇓':'Downarrow',
-'⇊':'downdownarrows',
-'⇃':'downharpoonleft',
-'⇂':'downharpoonright',
-'←':'gets',
-'⇔':'Harr',
-'⇔':'hArr',
-'↔':'harr',
-'↩':'hookleftarrow',
-'↪':'hookrightarrow',
-'⟺':'iff',
-'⟸':'impliedby',
-'⟹':'implies',
-'⇐':'Larr',
-'⇐':'lArr',
-'←':'larr',
-'⇝':'leadsto',
-'←':'leftarrow',
-'⇐':'Leftarrow',
-'↢':'leftarrowtail',
-'↽':'leftharpoondown',
-'↼':'leftharpoonup',
-'⇇':'leftleftarrows',
-'↔':'leftrightarrow',
-'⇔':'Leftrightarrow',
-'⇆':'leftrightarrows',
-'⇋':'leftrightharpoons',
-'↭':'leftrightsquigarrow',
-'⇚':'Lleftarrow',
-'⟵':'longleftarrow',
-'⟸':'Longleftarrow',
-'⟷':'longleftrightarrow',
-'⟺':'Longleftrightarrow',
-'⟼':'longmapsto',
-'⟶':'longrightarrow',
-'⟹':'Longrightarrow',
-'↫':'looparrowleft',
-'↬':'looparrowright',
-'⇔':'Lrarr',
-'⇔':'lrArr',
-'↔':'lrarr',
-'↰':'Lsh',
-'↦':'mapsto',
-'↗':'nearrow',
-'↚':'nleftarrow',
-'⇍':'nLeftarrow',
-'↮':'nleftrightarrow',
-'⇎':'nLeftrightarrow',
-'↛':'nrightarrow',
-'⇏':'nRightarrow',
-'↖':'nwarrow',
-'⇒':'Rarr',
-'⇒':'rArr',
-'→':'rarr',
-'↾':'restriction',
-'→':'rightarrow',
-'⇒':'Rightarrow',
-'↣':'rightarrowtail',
-'⇁':'rightharpoondown',
-'⇀':'rightharpoonup',
-'⇄':'rightleftarrows',
-'⇌':'rightleftharpoons',
-'⇉':'rightrightarrows',
-'⇝':'rightsquigarrow',
-'⇛':'Rrightarrow',
-'↱':'Rsh',
-'↘':'searrow',
-'↙':'swarrow',
-'→':'to',
-'↞':'twoheadleftarrow',
-'↠':'twoheadrightarrow',
-'⇑':'Uarr',
-'⇑':'uArr',
-'↑':'uarr',
-'↑':'uparrow',
-'⇑':'Uparrow',
-'↕':'updownarrow',
-'⇕':'Updownarrow',
-'↿':'upharpoonleft',
-'↾':'upharpoonright',
-'⇈':'upuparrows',
-
-'≈':'approx',
-'≊':'approxeq',
-'≍':'asymp',
-'∍':'backepsilon',
-'∽':'backsim',
-'⋍':'backsimeq',
-'≬':'between',
-'⋈':'bowtie',
-'≏':'bumpeq',
-'≎':'Bumpeq',
-'≗':'circeq',
-
-':':'colon',
-':≈':'colonapprox',
-'::≈':'Colonapprox',
-':−':'coloneq',
-'::−':'Coloneq',
-':=':'coloneqq',
-'::=':'Coloneqq',
-':∼':'colonsim',
-'::∼':'Colonsim',
-'≅':'cong',
-'⋞':'curlyeqprec',
-'⋟':'curlyeqsucc',
-'⋎':'curlyvee',
-'⋏':'curlywedge',
-
-'⊣':'dashv',
-'::':'dblcolon',
-'≐':'doteq',
-'≑':'Doteq',
-'≑':'doteqdot',
-
-'∔':'dotplus',
-
-'≖':'eqcirc',
-'−:':'eqcolon',
-'−::':'Eqcolon',
-'=:':'eqqcolon',
-'=::':'Eqqcolon',
-'≂':'eqsim',
-'⪖':'eqslantgtr',
-'⪕':'eqslantless',
-'≡':'equiv',
-'≒':'fallingdotseq',
-'⌢':'frown',
-'≥':'ge',
-'≥':'geq',
-'≧':'geqq',
-'⩾':'geqslant',
-'≫':'gg',
-'⋙':'ggg',
-'⋙':'gggtr',
-'>':'gt',
-
-'⋗':'gtrdot',
-'⪆':'gtrapprox',
-'⋛':'gtreqless',
-'⪌':'gtreqqless',
-'≷':'gtrless',
-'≳':'gtrsim',
-'∈':'in',
-'∈':'isin',
-'⋈':'Join',
-
-'<':'lt',
-'⋖':'lessdot',
-
-'⩽':'leqslant',
-'⪅':'lessapprox',
-'⋚':'lesseqgtr',
-'⪋':'lesseqqgtr',
-'≶':'lessgtr',
-'≲':'lesssim',
-'≪':'ll',
-'⋘':'lll',
-'⋘':'llless',
-
-'∣':'mid',
-'⊨':'models',
-'⊸':'multimap',
-'∋':'owns',	//ni
-'‖':'parallel',
-'⊥':'perp',
-'⋔':'pitchfork',
-'≺':'prec',
-'⪷':'precapprox',
-'≼':'preccurlyeq',
-'⪯':'preceq',
-'≾':'precsim',
-'∝':'propto',
-'≓':'risingdotseq',
-'∣':'shortmid',
-'∥':'lVert',	//shortparallel
-'∼':'sim',
-'≃':'simeq',
-'⌢':'smallfrown',
-'⌣':'smallsmile',
-'⌣':'smile',
-'⊏':'sqsubset',
-'⊑':'sqsubseteq',
-'⊐':'sqsupset',
-'⊒':'sqsupseteq',
-'⋐':'Subset',
-'⊂':'subset',
-'⊂':'sub',
-'⊆':'subseteq',
-'⊆':'sube',
-'⫅':'subseteqq',
-'≻':'succ',
-'⪸':'succapprox',
-'≽':'succcurlyeq',
-'⪰':'succeq',
-'≿':'succsim',
-'⋑':'Supset',
-'⊃':'supset',
-'⊇':'supseteq',
-'⊇':'supe',
-'⫆':'supseteqq',
-'≈':'thickapprox',
-'∼':'thicksim',
-'⊴':'trianglelefteq',
-'≜':'triangleq',
-'⊵':'trianglerighteq',
-'∝':'varpropto',
-'△':'vartriangle',	//bigtriangleup
-'▽':'triangledown',	//bigtriangledown
-'◃':'triangleleft',
-'▹':'triangleright',
-
-'⊲':'lhd',	//vartriangleleft
-'⊳':'rhd',	//vartriangleright
-
-'▲':'blacktriangle',
-'▼':'blacktriangledown',
-'◀':'blacktriangleleft',
-'▶':'blacktriangleright',
-
-'⋋':'leftthreetimes',
-'⋌':'rightthreetimes',
-
-':':'vcentcolon',
-'⊢':'vdash',
-'⊨':'vDash',
-'⊩':'Vdash',
-'⊪':'Vvdash',
-
-'⪊':'gnapprox',
-'⪈':'gneq',
-'≩':'gneqq',
-'⋧':'gnsim',
-'':'gvertneqq',
-'⪉':'lnapprox',
-'⪇':'lneq',
-'≨':'lneqq',
-'⋦':'lnsim',
-'':'lvertneqq',
-'≆':'ncong',
-'̸​=':'ne',
-'̸​=':'neq',
-'≱':'ngeq',
-'':'ngeqq',
-'':'ngeqslant',
-'≯':'ngtr',
-'≰':'nleq',
-'':'nleqq',
-'':'nleqslant',
-'≮':'nless',
-'∤':'nmid',
-'∈/​':'notin',
-'̸​':'notni',
-'∦':'nparallel',
-'⊀':'nprec',
-'⋠':'npreceq',
-'':'nshortmid',
-'':'nshortparallel',
-'≁':'nsim',
-'⊈':'nsubseteq',
-'':'nsubseteqq',
-'⊁':'nsucc',
-'⋡':'nsucceq',
-'⊉':'nsupseteq',
-'':'nsupseteqq',
-'⋪':'ntriangleleft',
-'⋬':'ntrianglelefteq',
-'⋫':'ntriangleright',
-'⋭':'ntrianglerighteq',
-'⊬':'nvdash',
-'⊭':'nvDash',
-'⊯':'nVDash',
-'⊮':'nVdash',
-'⪹':'precnapprox',
-'⪵':'precneqq',
-'⋨':'precnsim',
-'⊊':'subsetneq',
-'⫋':'subsetneqq',
-'⪺':'succnapprox',
-'⪶':'succneqq',
-'⋩':'succnsim',
-'⊋':'supsetneq',
-'⫌':'supsetneqq',
-'':'varsubsetneq',
-'':'varsubsetneqq',
-'':'varsupsetneq',
-'':'varsupsetneqq'
+'‴':"'''",
+'″':"''",
+'^{\\\\circ}':'°',
+'zeta':'ζ',
+'zelta':'ς',//实际无此字母，暂以Zelta命名
+'yen':'¥',
+'wr':'≀',	//圈积 wreath product
+'wp':'℘',
+'weierp':'℘',
+'vec{}':'￫',
+'vdots':'⋮',
+'vdash':'⊢',
+'vcentcolon':':',
+'vartriangleright':'⊳',
+'vartriangleleft':'⊲',
+'vartriangle':'△',
+'vartheta':'ϑ',
+'varsupsetneqq':'',
+'varsupsetneq':'',
+'varsubsetneqq':'',
+'varsubsetneq':'',
+'varsigma':'ς',
+'varrho':'ϱ',
+'varpropto':'∝',
+'varpi':'ϖ',
+'varphi':'ϕ',
+'varnothing':'∅',
+'varkappa':'ϰ',
+'varepsilon':'ϵ',
+'vDash':'⊨',
+'upuparrows':'⇈',
+'upharpoonright':'↾',
+'upharpoonleft':'↿',
+'updownarrow':'↕',
+'uparrow':'↑',
+'uarr':'↑',
+'twoheadrightarrow':'↠',
+'twoheadleftarrow':'↞',
+'trianglerighteq':'⊵',
+'triangleright':'▹',
+'triangleq':'≜',
+'trianglelefteq':'⊴',
+'triangleleft':'◃',
+'triangledown':'▽',
+'to':'→',
+'times':'×',
+'tilde{a}':'ã',
+'thicksim':'∼',
+'thickapprox':'≈',
+'therefore':'∴',
+'text{\\ss}':'ß',
+'text{\\j}':'ȷ',
+'text{\\i}':'ı',
+'text{\\S}':'§',
+'text{\\P}':'¶',
+'text{\\O}':'Ø',
+'text{\\OE}':'Œ',
+'text{\\AE}':'Æ',
+'text{\\AA}':'Å',
+'swarrow':'↙',
+'supsetneqq':'⫌',
+'supsetneq':'⊋',
+'supseteqq':'⫆',
+'supseteq':'⊇',
+'supset':'⊃',
+'supe':'⊇',
+'sum':'∑',
+'succsim':'≿',
+'succnsim':'⋩',
+'succneqq':'⪶',
+'succnapprox':'⪺',
+'succeq':'⪰',
+'succcurlyeq':'≽',
+'succapprox':'⪸',
+'succ':'≻',
+'subsetneqq':'⫋',
+'subsetneq':'⊊',
+'subseteqq':'⫅',
+'subseteq':'⊆',
+'subset':'⊂',
+'sube':'⊆',
+'sub':'⊂',
+'star':'⋆',
+'square':'□',
+'sqsupsetnoteq':'⋥',
+'sqsupseteq':'⊒',
+'sqsupset':'⊐',
+'sqsubsetnoteq':'⋤',
+'sqsubseteq':'⊑',
+'sqsubset':'⊏',
+'sqrt[4]':'∜',
+'sqrt[3]':'∛',
+'sqrt':'√',
+'sqcup':'⊔',
+'sqcap':'⊓',
+'sphericalangle':'∢',
+'spades':'♠',
+'smile':'⌣',
+'smallsmile':'⌣',
+'smallfrown':'⌢',
+'simeq':'≃',
+'sim':'∼',
+'sigma':'σ',
+'shortparallel':'∥',
+'shortmid':'∣',
+'sharp':'♯',
+'setminus':'∖',
+'searrow':'↘',
+'rtimes':'⋊',
+'rmoustache':'⎱',
+'risingdotseq':'≓',
+'rightthreetimes':'⋌',
+'rightsquigarrow':'⇝',
+'rightrightarrows':'⇉',
+'rightleftharpoons':'⇌',
+'rightleftarrows':'⇄',
+'rightharpoonup':'⇀',
+'rightharpoondown':'⇁',
+'rightarrowtail':'↣',
+'rightarrow':'→',
+'rhd':'⊳',
+'rfloor':'⌋',
+'restriction':'↾',
+'real':'ℜ',
+'rceil':'⌉',
+'rbrack':']',
+'rbrace':'}',
+'rarr':'→',
+'rangle':'⟩',
+'propto':'∝',
+'prod':'∏',
+'prime':'′',
+'precsim':'≾',
+'precnsim':'⋨',
+'precneqq':'⪵',
+'precnapprox':'⪹',
+'preceq':'⪯',
+'preccurlyeq':'≼',
+'precapprox':'⪷',
+'prec':'≺',
+'pounds':'£',
+'pm':'±',
+'pitchfork':'⋔',
+'perp':'⊥',
+'partial':'∂',
+'parallel':'‖',
+'owns':'∋',
+'otimes':'⊗',
+'oslash':'⊘',
+'oplus':'⊕',
+'ominus':'⊖',
+'oint':'∮',
+'oiint':'∯',
+'oiiint':'∰',
+'odot':'⊙',
+'nwarrow':'↖',
+'nvdash':'⊬',
+'nvDash':'⊭',
+'ntrianglerighteq':'⋭',
+'ntriangleright':'⋫',
+'ntrianglelefteq':'⋬',
+'ntriangleleft':'⋪',
+'nsupseteqq':'',
+'nsupseteq':'⊉',
+'nsucceq':'⋡',
+'nsucc':'⊁',
+'nsubseteqq':'',
+'nsubseteq':'⊈',
+'nsim':'≁',
+'nshortparallel':'',
+'nshortmid':'',
+'nrightarrow':'↛',
+'npreceq':'⋠',
+'nprec':'⊀',
+'nparallel':'∦',
+'notsqsupseteq':'⋣',
+'notsqsubseteq':'⋢',
+'notni':'̸​',
+'notleftrightarrow':'↮',
+'notin':'∉',
+'notin':'∈/​',
+'not\\subset':'̸⊄',
+'not>':'≯',
+'not=':'≠',
+'nmid':'∤',
+'nless':'≮',
+'nleqslant':'',
+'nleqq':'',
+'nleq':'≰',
+'nleftrightarrow':'↮',
+'nleftarrow':'↚',
+'ni':'∋',
+'ngtr':'≯',
+'ngeqslant':'',
+'ngeqq':'',
+'ngeq':'≱',
+'nexists':'∄',
+'neq':'≠',
+'neq':'̸​=',
+'neg':'¬',
+'nearrow':'↗',
+'ne':'≠',
+'ne':'̸​=',
+'ncong':'≆',
+'natural':'♮',
+'nabla':'∇',
+'nVdash':'⊮',
+'nVDash':'⊯',
+'nRightarrow':'⇏',
+'nLeftrightarrow':'⇎',
+'nLeftarrow':'⇍',
+'multimap':'⊸',
+'mp':'∓',
+'models':'⊨',
+'mid':'∣',
+'mho':'℧',
+'measuredangle':'∡',
+'mathtt{C}':'∁',
+'mathsf{C}':'Ϲ',
+'mathscr{o}':'ℴ',
+'mathscr{g}':'ℊ',
+'mathscr{e}':'ℯ',
+'mathscr{R}':'ℛ',
+'mathscr{M}':'ℳ',
+'mathscr{L}':'ℒ',
+'mathscr{J}':'ℐ',
+'mathscr{H}':'ℋ',
+'mathscr{F}':'ℱ',
+'mathscr{E}':'ℰ',
+'mathscr{B}':'ℬ',
+'mathrm{a}':'a',
+'mathring{u}':'ů',
+'mathnormal':'ℎ',
+'mathit{h}':'ℎ',
+'mathfrak{Z}':'ℨ',
+'mathfrak{R}':'ℜ',
+'mathfrak{J}':'ℑ',
+'mathfrak{H}':'ℌ',
+'mathfrak{C}':'ℭ',
+'mathbf{C}':'Ｃ',
+'mathbb{Z}':'ℤ',
+'mathbb{R}':'ℝ',
+'mathbb{Q}':'ℚ',
+'mathbb{P}':'ℙ',
+'mathbb{N}':'ℕ',
+'mathbb{H}':'ℍ',
+'mathbb{C}':'ℂ',
+'mapsto':'↦',
+'maltese':'✠',
+'lvertneqq':'',
+'lvert':'|',
+'ltimes':'⋉',
+'lt':'<',
+'lrcorner':'┘',
+'lrarr':'↔',
+'lozenge':'◊',
+'lor':'∨',
+'looparrowright':'↬',
+'looparrowleft':'↫',
+'longrightarrow':'⟶',
+'longmapsto':'⟼',
+'longleftrightarrow':'⟷',
+'longleftarrow':'⟵',
+'log':'㏒',
+'lnsim':'⋦',
+'lnot':'¬',
+'lneqq':'≨',
+'lneq':'⪇',
+'lnapprox':'⪉',
+'ln':'㏑',
+'lmoustache':'⎰',
+'llvert':'|',
+'llless':'⋘',
+'lll':'⋘',
+'llcorner':'└',
+'ll':'≪',
+'lhd':'⊲',
+'lfloor':'⌊',
+'lesssim':'≲',
+'lessgtr':'≶',
+'lesseqqgtr':'⪋',
+'lesseqgtr':'⋚',
+'lessdot':'⋖',
+'lessapprox':'⪅',
+'leqslant':'⩽',
+'leqq':'≦',
+'leq':'≤',
+'leftthreetimes':'⋋',
+'leftrightsquigarrow':'↭',
+'leftrightharpoons':'⇋',
+'leftrightarrows':'⇆',
+'leftrightarrow':'↔',
+'leftleftarrows':'⇇',
+'leftharpoonup':'↼',
+'leftharpoondown':'↽',
+'leftarrowtail':'↢',
+'leftarrow':'←',
+'leadsto':'⇝',
+'le':'≤',
+'ldots':'…',
+'ldotp':'.',
+'lceil':'⌈',
+'lbrack':'[',
+'lbrace':'{',
+'larr':'←',
+'langle':'⟨',
+'land':'∧',
+'lVert':'∥',
+'jmath':'ȷ',
+'isin':'∈',
+'intercal':'⊺',
+'int':'∫',
+'infty':'∞',
+'in':'∈',
+'implies':'⟹',
+'impliedby':'⟸',
+'imath':'ı',
+'image':'ℑ',
+'iint':'∬',
+'iiint':'∭',
+'iiiint':'∬∬',
+'iff':'⟺',
+'idotsint':'⋯',
+'iddots':'⋰',
+'hslash':'ℏ',
+'hookrightarrow':'↪',
+'hookleftarrow':'↩',
+'hearts':'♡',
+'hbar':'ℏ',
+'hat{a}':'â',
+'harr':'↔',
+'gvertneqq':'',
+'gtrsim':'≳',
+'gtrless':'≷',
+'gtreqqless':'⪌',
+'gtreqless':'⋛',
+'gtrdot':'⋗',
+'gtrapprox':'⪆',
+'gt':'>',
+'grave{a}':'à',
+'gnsim':'⋧',
+'gneqq':'≩',
+'gneq':'⪈',
+'gnapprox':'⪊',
+'gimel':'ℷ',
+'gggtr':'⋙',
+'ggg':'⋙',
+'gg':'≫',
+'gets':'←',
+'geqslant':'⩾',
+'geqq':'≧',
+'geq':'≥',
+'ge':'≥',
+'frown':'⌢',
+'forall':'∀',
+'flat':'♭',
+'fallingdotseq':'≒',
+'exists':'∃',
+'eth':'ð',
+'equiv':'≡',
+'eqslantless':'⪕',
+'eqslantgtr':'⪖',
+'eqsim':'≂',
+'eqqcolon':'=:',
+'eqcolon':'−:',
+'eqcirc':'≖',
+'emptyset':'∅',
+'empty':'∅',
+'ell':'ℓ',
+'downharpoonright':'⇂',
+'downharpoonleft':'⇃',
+'downdownarrows':'⇊',
+'downarrow':'↓',
+'doublecup':'⋓',
+'doublecap':'⋒',
+'doublebarwedge':'⩞',
+'dot{c}':'ċ',
+'dotso':'…',
+'dotsm':'⋯',
+'dotsc':'…',
+'dotsb':'⋯',
+'dotplus':'∔',
+'doteqdot':'≑',
+'doteq':'≐',
+'divideontimes':'⋇',
+'div':'÷',
+'diamondsuit':'♢',
+'diamonds':'♢',
+'diamond':'⋄',
+'diagup':'╱',
+'diagdown':'╲',
+'ddot{a}':'ä',
+'ddots':'⋱',
+'ddag':'‡',
+'dblcolon':'::',
+'dashv':'⊣',
+'dashrightarrow':'⇢',
+'dashleftarrow':'⇠',
+'darr':'↓',
+'daleth':'ℸ',
+'dag':'†',
+'curvearrowright':'↷',
+'curvearrowleft':'↶',
+'curlywedge':'⋏',
+'curlyvee':'⋎',
+'curlyeqsucc':'⋟',
+'curlyeqprec':'⋞',
+'cup':'∪',
+'coprod':'∐',
+'cong':'≅',
+'complement':'∁',
+'colonsim':':∼',
+'coloneqq':':=',
+'coloneq':':−',
+'colonapprox':':≈',
+'colon':':',
+'clubsuit':'♣',
+'clubs':'♣',
+'circleddash':'⊝',
+'circledcirc':'⊚',
+'circledast':'⊛',
+'circledS':'Ⓢ',
+'circledR':'®',
+'circlearrowright':'↻',
+'circlearrowleft':'↺',
+'circeq':'≗',
+'circ':'∘',
+'check{a}':'ǎ',
+'checkmark':'✓',
+'centerdot':'⋅',
+'cdots':'⋯',
+'cdotp':'⋅',
+'cdot':'⋅',
+'cap':'∩',
+'bumpeq':'≏',
+'bullet':'∙',
+'breve{a}':'ă',
+'boxtimes':'⊠',
+'boxplus':'⊞',
+'boxminus':'⊟',
+'boxdot':'⊡',
+'bowtie':'⋈',
+'bot':'⊥',
+'blacktriangleright':'▶',
+'blacktriangleleft':'◀',
+'blacktriangledown':'▼',
+'blacktriangle':'▲',
+'blacksquare':'■',
+'blacklozenge':'⧫',
+'bigwedge':'⋀',
+'bigvee':'⋁',
+'biguplus':'⨄',
+'bigtriangleup':'△',
+'bigtriangledown':'▽',
+'bigstar':'★',
+'bigsqcup':'⨆',
+'bigotimes':'⨂',
+'bigoplus':'⨁',
+'bigodot':'⨀',
+'bigcup':'⋃',
+'bigcirc':'◯',
+'bigcap':'⋂',
+'between':'≬',
+'beth':'ℶ',
+'because':'∵',
+'bar{a}':'ā',
+'barwedge':'⊼',
+'backsimeq':'⋍',
+'backsim':'∽',
+'backprime':'‵',
+'backepsilon':'∍',
+'asymp':'≍',
+'ast':'∗',
+'approxeq':'≊',
+'approx':'≈',
+'angle':'∠',
+'amalg':'∐',
+'aleph':'ℵ',
+'acute{a}':'á',
+'^\\circ':'°',
+'Zelta':'΢',//实际无此字母，暂以Zelta命名
+'Xi':'Ξ',
+'Xeta':'Ζ',
+'Vvdash':'⊪',
+'Vdash':'⊩',
+'Upsilon':'Υ',
+'Updownarrow':'⇕',
+'Uparrow':'⇑',
+'Uarr':'⇑',
+'Theta':'Θ',
+'Tau':'Τ',
+'Supset':'⋑',
+'Subset':'⋐',
+'Sigma':'Σ',
+'Rsh':'↱',
+'Rrightarrow':'⇛',
+'Rightarrow':'⇒',
+'Rho':'Ρ',
+'Re':'ℜ',
+'Rarr':'⇒',
+'Psi':'Ψ',
+'Pi':'Π',
+'Phi':'Φ',
+'Omikron':'Ο',
+'Omega':'Ω',
+'Nu':'Ν',
+'Mu':'Μ',
+'Lsh':'↰',
+'Lrarr':'⇔',
+'Longrightarrow':'⟹',
+'Longleftrightarrow':'⟺',
+'Longleftarrow':'⟸',
+'Lleftarrow':'⇚',
+'Leftrightarrow':'⇔',
+'Leftarrow':'⇐',
+'Larr':'⇐',
+'Lambda':'Λ',
+'Kappa':'Κ',
+'Join':'⋈',
+'Iota':'Ι',
+'Im':'ℑ',
+'Harr':'⇔',
+'Gamma':'Γ',
+'Game':'⅁',
+'Finv':'Ⅎ',
+'Eta':'Η',
+'Eqqcolon':'=::',
+'Eqcolon':'−::',
+'Epsilon':'Ε',
+'Downarrow':'⇓',
+'Doteq':'≑',
+'Digamma':'Ϝ',
+'Diamond':'◊',
+'Delta':'Δ',
+'Darr':'⇓',
+'Cup':'⋓',
+'Colonsim':'::∼',
+'Coloneqq':'::=',
+'Coloneq':'::−',
+'Colonapprox':'::≈',
+'Chi':'Χ',
+'Cap':'⋒',
+'Bumpeq':'≎',
+'Box':'□',
+'Beta':'Β',
+'Alpha':'Α',
+
+		'⅟':kfrac('1/n').substr(1),
+		'½':kfrac('1/2').substr(1),
+		'⅓':kfrac('1/3').substr(1),
+		'⅔':kfrac('2/3').substr(1),
+		'¼':kfrac('1/4').substr(1),
+		'¾':kfrac('3/4').substr(1),
+		'⅕':kfrac('1/5').substr(1),
+		'⅖':kfrac('2/5').substr(1),
+		'⅗':kfrac('3/5').substr(1),
+		'⅘':kfrac('4/5').substr(1),
+		'⅙':kfrac('1/6').substr(1),
+		'⅚':kfrac('5/6').substr(1),
+		'⅛':kfrac('1/8').substr(1),
+		'⅜':kfrac('3/8').substr(1),
+		'⅝':kfrac('5/8').substr(1),
+		'⅞':kfrac('7/8').substr(1),
+
+
+		'func_tri':[zlr2('sech csch cth th sh ch','⁻¹'),'sech csch cth th sh ch',
+				zlr('arc','sin cos tan cot sec csc'),'sin cos tan cot sec csc'
+				],
+				//injlim	
+		'func':'# & % exp log ln lg arg gcd max min sup inf lim limsup liminf sin cos tan cot sec csc sh ch th cth tg ctg cotg tanh cosec arcsin arccos arctan arctg arcctg det dim deg hom ker Pr sinc si Si ci Ci Shi',
+
+				/*
+				'struc':{//结构
+
+					
+				},
+				*/
+				//∘°度数
+
+				//\,, \:, \;, \quad, \qquad 空格由小到大
+				// 排版 equation, gather, align split alignat{n} 		gathered,aligned, alignedat intertext
+				// numberwithin eqref subequations 
 
 	}
 
@@ -1575,23 +1396,23 @@ U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
 
 
 //zlrA3("\\math",ZLR('rm bb it bf sf tt'),"{A}"),
-	'Font':[zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('Bbb bf frak it rm')),"','')$"),
-		zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('sf tt bm bold')),"','')$"),
-		zlrA3("$kxc('",Arrf(function(x){return x+"','"+x},ZLR('boldsymbol')),"','')$").concat([
+	'Font':[zlrA3("$kxc('",Arrf(x=>x+"','"+x,ZLR('Bbb bf frak it rm')),"','')$"),
+		zlrA3("$kxc('",Arrf(x=>x+"','"+x,ZLR('sf tt bm bold')),"','')$"),
+		zlrA3("$kxc('",Arrf(x=>x+"','"+x,ZLR('boldsymbol')),"','')$").concat([
 			'a \\pmb b c'
 		]),
 	
 	],
 	
-	'Math Font':Arrf($A,[zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('bb bf cal')),"')"),
-		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('frak it rm')),"')"),
-		zlrA3("kxc('math",Arrf(function(x){return x+"','"+x},ZLR('scr sf')),"')").concat("kxf('mathrm')")
+	'Math Font':Arrf($A,[zlrA3("kxc('math",Arrf(x=>x+"','"+x,ZLR('bb bf cal')),"')"),
+		zlrA3("kxc('math",Arrf(x=>x+"','"+x,ZLR('frak it rm')),"')"),
+		zlrA3("kxc('math",Arrf(x=>x+"','"+x,ZLR('scr sf')),"')").concat("kxf('mathrm')")
 
 	]),
 	
 	'Text Font':Arrf($A,[
-		zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR(' bf it sf')),"','text')"),
-		zlrA3("kxc('text",Arrf(function(x){return x+"','"+x},ZLR('rm normal tt')),"','text')"),
+		zlrA3("kxc('text",Arrf(x=>x+"','"+x,ZLR(' bf it sf')),"','text')"),
+		zlrA3("kxc('text",Arrf(x=>x+"','"+x,ZLR('rm normal tt')),"','text')"),
 	
 	]),
 
@@ -1619,11 +1440,11 @@ U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
 
 	'Margin':[zlrA('\\backslash',[',\\,',':\\:',';\\;']).concat('\\tilde~'),
 
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' q'),'quad')),
+		Arrf(x=>x+'\\'+x,zlrA2(ZLR(' q'),'quad')),
 	],
 	'Margin Space':[
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('thin med thick'),'space')),
-		Arrf(function(x){return x+'\\'+x},zlrA2(ZLR(' en nobreak'),'space')),
+		Arrf(x=>x+'\\'+x,zlrA2(ZLR('thin med thick'),'space')),
+		Arrf(x=>x+'\\'+x,zlrA2(ZLR(' en nobreak'),'space')),
 		['1\\mathinner{\\text{inner}}2','1\\mathpunct{.}2'],
 	],
 
@@ -1635,8 +1456,8 @@ U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
 	],
 
 	'Negative Margin':[
-		['\\backslash!\\!'].concat(Arrf(function(x){return x+'\\'+x},zlrA2(ZLR('negthick'),'space'))),
-		Arrf(function(x){return x+'\\'+x},zlrA3('neg',ZLR('thin med'),'space')),
+		['\\backslash!\\!'].concat(Arrf(x=>x+'\\'+x,zlrA2(ZLR('negthick'),'space'))),
+		Arrf(x=>x+'\\'+x,zlrA3('neg',ZLR('thin med'),'space')),
 		zlrA3('\\math',ZLR('l c r'),'lap{A}')
 	],
 
@@ -1717,17 +1538,17 @@ U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
 },SBSFn=[],
 
 //下列涉及LaTeX
-zx=function(t,o){return katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{throwOnError:false}).replace(/\n/g,' ')},
-zxdet=function(A,spacing){return zx(zdet(A,spacing))},
-zxmtrx=function(A,spacing,parts){return zx(zmtrx(A,spacing,parts))},
-zxul=function(A){return zx(piece(Arrf(ZLR,A)))},
-zxsum=function(i,b,t,v,p){return zx(lrp('',sum(i,b,t,v,p,''),'',''))},
-zxprod=function(i,b,t,v,p){return zx(lrp('',prod(i,b,t,v,p,''),'',''))},
-zxfrac=function(t,b,zM){return zx(frac(t,b,zM))},
-zxroot=function(t,n){return zx(root(t,n,'',''))},
-zxmod=function(a,b,m,neg){return zx(mod(a,b,m,neg,'',''))},
-zxEq=function(A,noteA,style,eqClass){return Eq(Arrf(zx,A),noteA,style,eqClass)},
-zxdetail=function(s,v,o){return detail(zx(s),zx(v),o)},
+zx=(t,o)=>katex.renderToString(kx(isArr(t)?t.join(kbr2):t),o||{throwOnError:false}).replace(/\n/g,' '),
+zxdet=(A,spacing)=>zx(zdet(A,spacing)),
+zxmtrx=(A,spacing,parts)=>zx(zmtrx(A,spacing,parts)),
+zxul=(A)=>zx(piece(Arrf(ZLR,A))),
+zxsum=(i,b,t,v,p)=>zx(lrp('',sum(i,b,t,v,p,''),'','')),
+zxprod=(i,b,t,v,p)=>zx(lrp('',prod(i,b,t,v,p,''),'','')),
+zxfrac=(t,b,zM)=>zx(frac(t,b,zM)),
+zxroot=(t,n)=>zx(root(t,n,'','')),
+zxmod=(a,b,m,neg)=>zx(mod(a,b,m,neg,'','')),
+zxEq=(A,noteA,style,eqClass)=>Eq(Arrf(zx,A),noteA,style,eqClass),
+zxdetail=(s,v,o)=>detail(zx(s),zx(v),o),
 
 
 //下列涉及DOM
@@ -1736,18 +1557,18 @@ OH=function(txt,cols){var isA=isArr(txt), t=isA && txt.length==1 && txt[0].index
 },
 
 //下列涉及输入编码
-$2v=function(str,A){/*将含$字符串，替换为变量
+$2v=(str,A)=>{/*将含$字符串，替换为变量
 	*/
 	if(isArr(str)){
-		return Arrf(function(s){return $2v(s,A)}, str)
+		return Arrf(s=>$2v(s,A), str)
 	}else{
-		return str.replace(/\$\d+/g,function(t){return isArr(A)?A[+t.substr(1)]:A})
+		return str.replace(/\$\d+/g,t=>isArr(A)?A[+t.substr(1)]:A)
 	}
 
 
 
 //下列涉及函数编程API
-},fun2str=function(name,val,p){//参数p是完整点.路径
+},fun2str=(name,val,p)=>{//参数p是完整点.路径
 	var tp=typeof val;
 	if(tp == 'object'){//遍历对象属性
 		if(val instanceof RegExp){
@@ -1767,7 +1588,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		if(/【.+】/.test(c)){
 			var A=c.match(/【.+】[^\n]+/g);
 			//consolelog(A);
-			eg2=Arrf(function(x){var x0=x.split('】')[0]+'】', x1=x.split('】 ')[1];return x0+sceg2(x1)}, A).join(br);
+			eg2=Arrf(x=>{var x0=x.split('】')[0]+'】', x1=x.split('】 ')[1];return x0+sceg2(x1)}, A).join(br);
 			c=c.replace(/【.+】[^\n]+/g,'');
 		}
 		return sceg2(name+'()','', p?p+'.':'')+eg2+
@@ -1776,13 +1597,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		return sceg2(name,'',p?p+'.':'')+XML.encode(val)
 	}
 
-},API=function(A){/* A是JSON数组
-	A=[{'zlr':[{'颜色':'a b c'},{'组件':'d e f'}]},{'io':[]}]
-	
-	bug OH(API([{'zlr':[{'颜色':[{'整数':'gcd'},{'数组':'Arrf'}]},{'组件':'lcm'}]},{'io':[]}]))
-	*/
-	var t='';
-	return Arrf(function(x){
+},API=A=>Arrf(x=>{
 		var s='',u=[];
 		//consolelog('x=',x);
 		$.each(x,function(jsname,funcA){
@@ -1795,75 +1610,136 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 						//consolelog(grp,funcs);
 						u.push(detail(grp,API(funcs)))
 					}else{
-						u.push(detail(grp,Arrf(function(i){return fun2str(i,eval(i))},ZLR(funcs)).join(br)));
+						u.push(detail(grp,Arrf(i=>fun2str(i,eval(i)),ZLR(funcs)).join(br)));
 					}
 				});
 			}else if(tp ==  'string'){
-				u.push(detail(jsname,Arrf(function(i){return fun2str(i,eval(i))},ZLR(funcA)).join(br)));
+				u.push(detail(jsname,Arrf(i=>fun2str(i,eval(i)),ZLR(funcA)).join(br)));
 			}
 		});
 		return u.join(br);
 	},A).join(br)
 
-
+/* A是JSON数组
+	A=[{'zlr':[{'颜色':'a b c'},{'组件':'d e f'}]},{'io':[]}]
+	
+	bug OH(API([{'zlr':[{'颜色':[{'整数':'gcd'},{'数组':'Arrf'}]},{'组件':'lcm'}]},{'io':[]}]))
+	*/
 	
 
 
 //下列涉及规范化字符、预处理
 
 
-},n2sub=function(n,sup){//数字转Unicode上下标
+,n2sub=(n,sup)=>{//数字转Unicode上下标
 	var S0=SBS.Num[0][0],S1=SBS.Num[0][1],i=S0.indexOf('⁰');
-	return (n+'').replace(/./g,function(t){return /\d/.test(t)?(sup?S0:S1)[i+(+t)]:(sup?'⁺⁻⁼⁽⁾':'₊₋₌₍₎')['+-=()'.indexOf(t)]||t})
+	return (n+'').replace(/./g,t=>/\d/.test(t)?(sup?S0:S1)[i+(+t)]:(sup?'⁺⁻⁼⁽⁾':'₊₋₌₍₎')['+-=()'.indexOf(t)]||t)
 
-},sub2n=function(s,latex){//上下标字符转成普通字符 latex指定转换为latex
+},sub2n=(s,latex)=>{//上下标字符转成普通字符 latex指定转换为latex
 	var S0=SBS.Num[0][0],S1=SBS.Num[0][1],regS0=new RegExp('['+S0+']+','g'),regS1=new RegExp('['+S1+']+','g');
-	if(latex){return s.replace(regS0,function(t){return sup(sub2n(t),'')}).replace(regS1,function(t){return sub(sub2n(t),'')})}
-	return s.replace(/./g,function(t){return /[⁺⁻⁼₊₋₌⁽⁾₍₎]/.test(t)?'+-=+-=()()'['⁺⁻⁼₊₋₌⁽⁾₍₎'.indexOf(t)]:(''+Math.max(S0.indexOf(t),S1.indexOf(t))).replace(/-1/,t)})
+	if(latex){return s.replace(regS0,t=>sup(sub2n(t),'')).replace(regS1,t=>sub(sub2n(t),''))}
+	return s.replace(/./g,t=>/[⁺⁻⁼₊₋₌⁽⁾₍₎]/.test(t)?'+-=+-=()()'['⁺⁻⁼₊₋₌⁽⁾₍₎'.indexOf(t)]:(''+Math.max(S0.indexOf(t),S1.indexOf(t))).replace(/-1/,t))
 
 
 
-},asc2unicode=function(s, fromLaTeX){//将普通字符转成专门字符	fromLaTeX指定，按LaTeX语法将命令转成Unicode字符
-	var t=s.replace(/[\.。]{3}/g,'⋯').replace(/beta/g,'β').replace(/zeta/g,'ζ');
-		
-	$.each(SBS.Latex,function(k,v){
+},asc2unicode=(s, fromLaTeX, removeDollars)=>{//将普通字符转成专门字符	fromLaTeX指定，按LaTeX语法将命令转成Unicode字符  removeDollars 移除美元符号
+	var t=s.replace(/[\.。]{3}/g,'⋯').replace(/beta/g,'β').replace(/zeta/g,'ζ'), SL=SBS.Latex, keys = Object.keys(SL);
+ 
+	keys.sort((a, b) => b.length - a.length);
+
+	for(var k of keys){
 		if(/[a-z]{2,}/i.test(t)){
-		//	if(v=='in'){
-				
-		//	}else{
-		//		t=t.replace(new RegExp(v,'g'),k)
-			//	}
+			var v=SL[k];
+			
 			if(fromLaTeX){
-				t=t.replace(new RegExp('(\\b|\\\\)'+v+'\\b','g'),k);
+
+				//t=t.replace(new RegExp('(\\b|\\\\)'+regReg(k)+'\\b','g'),v);
+				t=t.replace(new RegExp(regReg(k),'g'),v);
+/*
 				ZLR('C H P Q N R Z').map((i,ii)=>{
 					t=t.replace(new RegExp('\\mathbb\\{'+i+'\\}','g'),'ℂℍℙℚℕℝℤ'[ii])
 				})
-				   
+*/				   
+				if(/mathfrak\{[CHNPQRZ ,_\^\d]+\}/.test(t)){
+					t=t.replace(/\\*mathfrak\{[CHNPQRZ ,_\^\d]+\}/g, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:dblChr2Arr(SBS0.ABC[0][7])[i.charCodeAt(0)-65]).join('')
+						
+					});
+				}
+
+				if(/mathfrak\{[CHJZ ,_\^\d]+\}/.test(t)){
+					t=t.replace(/\\*mathfrak\{[CHJZ ,_\^\d]+\}/g, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:dblChr2Arr(SBS0.ABC[0][5])[i.charCodeAt(0)-65]).join('')
+						
+					});
+				}
+				if(/mathbf\{[a-z ,_\^\d]+\}/i.test(t)){
+					t=t.replace(/\\*mathbf\{[a-z ,_\^\d]+\}/ig, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:(dblChr2Arr(SBS0.ABC[+(i.charCodeAt(0)>=97)][0])[i.charCodeAt(0)-(i.charCodeAt(0)>=97?97:65)])).join('')
+					})
+				}
+				if(/mathit\{[a-z ,_\^\d]+\}/i.test(t)){
+					t=t.replace(/\\*mathit\{[a-z ,_\^\d]+\}/ig, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:(dblChr2Arr(SBS0.ABC[+(i.charCodeAt(0)>=97)][1])[i.charCodeAt(0)-(i.charCodeAt(0)>=97?97:65)])).join('')
+					});
+				}
+				if(/mathsf\{[a-z ,_\^\d]+\}/i.test(t)){//暂未找到该字体对应的Unicode字符，暂以mathbf代替
+					t=t.replace(/\\*mathsf\{[a-z ,_\^\d]+\}/ig, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:(dblChr2Arr(SBS0.ABC[+(i.charCodeAt(0)>=97)][0])[i.charCodeAt(0)-(i.charCodeAt(0)>=97?97:65)])).join('')
+					});
+				}
+				
+				if(/mathcal\{[a-z ,_\^\d]+\}/i.test(t)){
+					t=t.replace(/\\*mathcal\{[a-z ,_\^\d]+\}/ig, x=>{
+						var xs=x.replace(/.+\{/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:(dblChr2Arr(SBS0.ABC[+(i.charCodeAt(0)>=97)][3])[i.charCodeAt(0)-(i.charCodeAt(0)>=97?97:65)])).join('')
+					});
+				}
+				
+				if(/\{ *\\?bf [a-z ,_\^\d]+\}/i.test(t)){
+					t=t.replace(/\{ *\\*bf [a-z ,_\^\d]+\}/ig, x=>{
+						var xs=x.replace(/\{ *\\*bf/,'').replace(/\}/,'').replace(/ /g,'');
+						return xs.split('').map(i=>/[,_\^\d]/.test(i)?i:(dblChr2Arr(SBS0.ABC[+(i.charCodeAt(0)>=97)][0])[i.charCodeAt(0)-(i.charCodeAt(0)>=97?97:65)])).join('')
+					})
+				}
+				
 			}else{
 
-				t=t.replace(new RegExp(' '+v+' ','g'),' '+k+' ')
+				t=t.replace(new RegExp(' '+k+' ','g'),' '+v+' ')
 			}
 		}else{
-			return false
+			break
 		}
-	});
+	}
+
 
 
 	if(fromLaTeX){
-		t=t.replace(/[\^|_]\{?\d+\}?/g,i=>n2sub(i.substring(1),i[0]=='^').replace(/[\{\}]/g,''))
+		
+
+		t=t.replace(/[\^|_]\{?[\d\+-]+\}?/g,i=>n2sub(i.substring(1),i[0]=='^')
+			.replace(/[\{\}]/g,''))
+			.replace(/\\/g,'');
+			
+			
 	}
 	
+	if(removeDollars){
+		t=t.replace(/\$/g,'')
+	}
 	return t
 
 	
-},opfrac=function(x){//分数显式表示
-	return x.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')	// 分数
+},opfrac=x=>x.replace(/(\d+)\/(\d+)/g,'\\frac{\\displaystyle{}$1}{\\displaystyle{}$2}')	//分数显式表示
 
-},optrim=function(x){//省略运算符
-	return x.replace(/(\d)[×‧](\D)/g,'$1$2') //省略数与非数之间的乘号
+,optrim=x=>x.replace(/(\d)[×‧](\D)/g,'$1$2') //省略数与非数之间的乘号 //省略运算符
 
-},opreplace=function(x){//运算符规范化预处理	算术运算
-	return x.replace(/[]/g,'').replace(/​/g,'')	//不可见字符
+,opreplace=x=>x.replace(/[]/g,'').replace(/​/g,'')	//不可见字符
 		.replace(/ |&#8194;/g,' ')	//非标空格
 		.replace(/[乘乖✖ⅹ╳‧][以于与]?/ig,'*').replace(/&#10008;/g,'*')
 		.replace(/ʸ/g,'^y')
@@ -1877,8 +1753,8 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		.replace(/[三3]次根号下?/g,'∛').replace(/[四4]次根号下?/g,'∜').replace(/根号下?/g,'√')
 		.replace(/log/g,'㏒').replace(/ln/g,'㏑').replace(/!{2,}/g,'‼')
 		
-
-},opreplace0=function(x,standard){/*运算符规范化预处理	常量（不含变量）运算
+//运算符规范化预处理	算术运算
+,opreplace0=(x,standard)=>{/*运算符规范化预处理	常量（不含变量）运算
 	参数standard 指定按*,/ 标准写法
 	*/
 	if(standard){
@@ -1889,15 +1765,13 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		.replace(/[\*]/ig,'×')
 		.replace(/[\/]/g,'÷')
 
-},opreplace1=function(x){//运算符规范化预处理	数论函数
-	return x.replace(/PI|[π]/ig,'Π')//小于n的素数个数函数Π(n)
+},opreplace1=x=>x.replace(/PI|[π]/ig,'Π')//小于n的素数个数函数Π(n) //运算符规范化预处理	数论函数
 
-},opreplace2=function(x){//运算符规范化预处理	矩阵运算
-	return x.replace(/\^T|'/g,'†')//转置（共轭转置）
+,opreplace2=x=>x.replace(/\^T|'/g,'†')//转置（共轭转置）
 		.replace(/\^?\*/g,'*')	//伴随矩阵
-		.replace(/^\(?⁻¹?\)?/g,'⁻')	//逆（广义逆）
+		.replace(/^\(?⁻¹?\)?/g,'⁻')	//逆（广义逆） //运算符规范化预处理	矩阵运算
 
-},opreplace3=function(x, formathjs){//运算符规范化预处理	微积分运算	参数formathjs指定按mathjs的风格
+,opreplace3=(x, formathjs)=>{//运算符规范化预处理	微积分运算	参数formathjs指定按mathjs的风格
 	var t=opreplace(x).replace(/[′']{3}/g,'‴').replace(/[′']+/g,'″').replace(/‵{3}/g,'‷').replace(/‵+/g,'″')
 		.replace(/∫{3}/g,'∭').replace(/∫+/g,'∬').replace(/∮{3}/g,'∰').replace(/∮+/g,'∯')
 		//.replace(/d([xyt])/g,'ⅾ$1')//暂用罗马数字ⅾd，表示微分算符
@@ -1909,45 +1783,38 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		
 
 
-},opreplace6=function(x){//运算符规范化预处理	集合运算
-	return x.replace(/[补]/g,'-')
-		.replace(/[⋂交\*]/g,'∩').replace(/[⋃并\+]/g,'∪')
+},opreplace6=x=>x.replace(/[补]/g,'-')
+		.replace(/[⋂交\*]/g,'∩').replace(/[⋃并\+]/g,'∪') //运算符规范化预处理	集合运算
 
 
-},opreplace7=function(x){//运算符规范化预处理	逻辑命题运算
-	return re(x.replace(/[与非]/g,'↑').replace(/[或非]/g,'↓')
+,opreplace7=x=>re(x.replace(/[与非]/g,'↑').replace(/[或非]/g,'↓')
 		.replace(/异或/,'⊕')
 		.replace(/[┐┒┓非不]/g,'¬')
 		
 		.replace(/[⋀Λ且与]|合取/g,'∧').replace(/[⋁或]|析取/g,'∨'))
 
 		.replace(/¬永真蕴含于/g,'⇍').replace(/¬永真蕴含/g,'⇏').replace(/¬等价/g,'⇎').replace(/¬等值/g,'↮').replace(/¬蕴含/g,'↛')
-		.replace(/永真蕴含于/g,'⇐').replace(/永真蕴含/g,'⇒').replace(/等价/g,'⇔').replace(/等值/g,'↔').replace(/蕴含/g,'→')
+		.replace(/永真蕴含于/g,'⇐').replace(/永真蕴含/g,'⇒').replace(/等价/g,'⇔').replace(/等值/g,'↔').replace(/蕴含/g,'→')	//运算符规范化预处理	逻辑命题运算
 
 
-
-},opreNumRlt=function(x){//关系符规范化预处理		数字关系
-	return re(x.replace(/不等于/g,'≠')
+,opreNumRlt=x=>re(x.replace(/不等于/g,'≠')
 		.replace(/〉/g,'>').replace(/〈/g,'<'))
 		.replace(/大于等于/g,'≥').replace(/小于等于/g,'≤')
-		.replace(/等于|＝/g,'=')
+		.replace(/等于|＝/g,'=')	//关系符规范化预处理		数字关系
 
-},opreplace16=function(x){//关系符规范化预处理		集合关系
-	return x.replace(/不真包含于/g,'⊄')
-		.replace(/真包含于/g,'⊂').replace(/不包含于/g,'⊈')
+,opreplace16=x=>x.replace(/不真包含于/g,'⊄')
+		.replace(/真包含于/g,'⊂').replace(/不包含于/g,'⊈')	//关系符规范化预处理		集合关系
 
-},opreSeqsA=function(x){/* 序列间隔符预处理
-	*/
-	return x.replace(/[ ，]/g,',')
+,opreSeqsA=x=>x.replace(/[ ，]/g,',')	// 序列间隔符预处理
 	
-},simOpr=function(s){//简化矩阵运算表达式
-	return s.replace(/\+\-/g,'-').replace(/([\+\- ^])1([A-Z])/g,'$1$2').replace(/[\+\-]0I/g,'').replace(/\(A\)/g,'A')
+	
+,simOpr=s=>s.replace(/\+\-/g,'-').replace(/([\+\- ^])1([A-Z])/g,'$1$2').replace(/[\+\-]0I/g,'').replace(/\(A\)/g,'A')	//简化矩阵运算表达式
 
 
 
 //下列涉及信息提取
 
-},exp2arr=function(str){//表达式内部（子元素按逗号,分隔） to 数组 
+,exp2arr=str=>{//表达式内部（子元素按逗号,分隔） to 数组 
 	var A=str.split(','),i=-1,chkpairs=function(s,p){//i标记数组中第几个元素括号成对出现（合规）chkpairs检查括号是否成对出现
 		if(p){
 			return s.length-s.replace(new RegExp('\\'+p,'g'),'').length
@@ -1978,7 +1845,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	}
 	return A
 
-},exp2coe=function(exp,regX,otherVars){/*表达式提取未知量前面的系数
+},exp2coe=(exp,regX,otherVars)=>{/*表达式提取未知量前面的系数
 	regX：未知量的正则表达式字符串
 	otherVars：其它未知量变量字母串
 	
@@ -2007,7 +1874,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 // 二维数组平面化
 
 
-},Mtrx2str=function(A,tbClass,bds){//与矩阵字符串化略有区别，多了递归
+},Mtrx2str=(A,tbClass,bds)=>{//与矩阵字符串化略有区别，多了递归
 
 	var m=A.length,n=A[0].length,B=[];
 	for(var i=0;i<m;i++){
@@ -2022,7 +1889,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 
 	return Table('',B,tbClass||'bd0 alignc',bds)
 
-},sbsTbltd=function(T,e,textareaId,ityp){//LaTeX输入面板功能
+},sbsTbltd=(T,e,textareaId,ityp)=>{//LaTeX输入面板功能
 	var td=$(T),tr=td.parent(),me=td.children('span'),t=me.text(),iTyp=ityp||'LaTeX', istd=me.is('td'),
 		mult=tr.is('.Operator9'), fn=td.is('.Fns'), st=td.is('.Sts'), shft=e.shiftKey || $('#Shift').is('.seled');//排版
 	
@@ -2091,7 +1958,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 			if(t){
 				if(t.indexOf('$')>-1){
 					if(!shft){
-						t=t.replace(/\$[^\$]+\$/g,function(x){return eval(x.replace(/\$/g,''))});
+						t=t.replace(/\$[^\$]+\$/g, x=>eval(x.replace(/\$/g,'')));
 					}else{
 
 					}
@@ -2134,7 +2001,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 		
 		
 	}else if(iTyp=='LaTeX' && !isArr(t)){//字符	istd
-		var tl=SL[t];
+		var tl=jSonV2K(SL)[t];
 		
 ////consolelog(tl,t);
 		if(tl && !shft && t=='≠'){
@@ -2166,7 +2033,7 @@ $2v=function(str,A){/*将含$字符串，替换为变量
 	//i.focus();
 },
 
-sbsTbl=function(){
+sbsTbl=()=>{
 
 	// LaTeX支持
 	//SBS
@@ -2178,7 +2045,7 @@ sbsTbl=function(){
 			if(c==' '){
 				return ''
 			}
-			var tl=SL[c];
+			var tl=jSonV2K(SL)[c];
 			return '<td'+(tl?' title="'+(tl[0]=='^'?tl:'\\'+tl)+'"':'')+'>'+SCtv('symbol'+si,c)+'</td>'
 		},f5=function(i,j){
 			var isstr=isStr(A[0]), x=isstr?A[j].substr(i*5,5).split(''):A[j].slice(i*5,i*5+5);
@@ -2241,7 +2108,7 @@ sbsTbl=function(){
 		str2+='<tr class="Symboli'+(i>2?' hidden':'')+'" data-ii="'+(i+1)+'">';
 		for(var j=0;j<S.length;j++){
 			var K=S[j],A=FUNCS[K];
-			str+=Arrf(function(x){return strK(K,ZLR(x))},A).join('');
+			str+=Arrf(x=>strK(K,ZLR(x)),A).join('');
 			str2+='<td class=Fns>'+SCtv('symboli" data-i="'+K, gM(K.replace(/^Set$/,'Set.1')))+'</td>'
 
 		}
@@ -2282,7 +2149,7 @@ sbsTbl=function(){
 			var K=S[j],A=STRUC[K];
 			//str+=strK(K,A);
 			//consolelog(K,A);
-			str+=Arrf(function(x){return strK(K,x)},A).join('');
+			str+=Arrf(x=>strK(K,x),A).join('');
 			
 			A=A[0];
 			
@@ -2304,26 +2171,26 @@ $.each(FUNCS,function(i,v){SBSFn=SBSFn.concat(Arrf(ZLR,v.join(' ')))});
 var SBSFUN=SBS.Latex.func_tri.concat(SBS.Latex.func.replace(/.+% |log ln |sin .+ arcctg /g,'')+
 			' Arg ㏒ ㏑').join(' ');
 var snippet={
-	Ini:function(){
+	Ini:()=>{
 		L.snippets=L.snippets||1;
 		L.snippetName1=L.snippetName1 || gM('Snippet');
 		L.snippetType1=L.snippetType1 || 'LA';
 		L.snippet1=L.snippet1 || '';
 	},
-	Save:function(){
+	Save:()=>{
 		var s=$('.snippet.seled'), i=s.index()+1, p=$('#input0Type').val();
 		L['snippetName'+i]=s.find('.snippetName').text();
 		L['snippetType'+i]=ZLR(Meles)[ZLR(Mele).indexOf(p)]||p;
 		L['snippet'+i]=$('#input0').val();
 		L['snippets']=$('.snippet').length;
 	},
-	Str:function(name,type,selected){
+	Str:(name,type,selected)=>{
 		return DCtv('snippet'+(selected?' seled':'')+'" data-type="'+type,
 				SCtv('snippetName" contentEditable="true',name)+
 				(itv('snippetSend" tip="copy2input',$('#send2textBox').is(':visible')?'arrow_upward':''))+
 			(selected?itv('snippetNew','add'):''))
 	},
-	load:function(i){
+	load:i=>{
 		$('#input0').val(L['snippet'+i]||'');let t=L['snippetType'+i];
 		$('.snippet').removeClass('seled').find('.snippetNew').remove();
 
@@ -2335,7 +2202,7 @@ var snippet={
 
 		$('#input0Type').val(Meleo[t]||t).change();
 	},
-	Del:function(i){
+	Del:i=>{
 		var s=$('.snippet.seled'), x=i || s.index()+1, l=$('.snippet').length;
 		if(x){
 			for(var j=x;j<=l;j++){
@@ -2367,7 +2234,7 @@ snippet.Ini();
 
 
 
-var OverCanvas=function(t){
+var OverCanvas=t=>{
 
 	var iT=$('#input0Type').val();
 	L.drawShapeNow='';
@@ -2377,7 +2244,7 @@ var OverCanvas=function(t){
 	$('#Pointer').click();
 
 
-}, MathSVG4Weixin=function(MJ, notFillBlue){
+}, MathSVG4Weixin=(MJ, notFillBlue)=>{
 	if(!$('#SVGLinkMode').is('.seled')){
 
 	  /* https://www.jb51.net/article/166239.htm
@@ -2417,7 +2284,7 @@ var OverCanvas=function(t){
 	}
 	MJ.find('style, script, a').remove();
 	MJ.children('mjx-assistive-mml').remove();	//删除MathML，因为微信公众号中粘贴时，MathML会被作为普通文本，需要避免冗余添加
-}, preDisplay=function(){
+}, preDisplay=()=>{
 	$('.imgHTMLEditor').toggle($('#toggleHTMLEditor').is('.seled'));
 	try{
 		var iv=$('#input0Type').val(),ov=$('#output0Type').val();
@@ -2561,8 +2428,8 @@ $(function(){
 					'<select id=loccFileUTF hidden>'+Options('utf16le,utf16be,utf32le,utf32be,utf64le,ascii,utf7,utf8'.split(','),'','utf8').join('')+'</select>'+
 
 					DCtv('resize" id="snippets',
-						Arrf(function(i){return snippet.Str(L['snippetName'+i]||gM('Snippet'),
-							L['snippetType'+i]||'LA',i==1)}, 
+						Arrf(i=>snippet.Str(L['snippetName'+i]||gM('Snippet'),
+							L['snippetType'+i]||'LA',i==1), 
 						seqA(1,+L.snippets||1)).join('')
 					)
 				+dc
@@ -2587,7 +2454,7 @@ $(function(){
 				dc+
 				DCtv('onbox" hidden id="editText',[
 					DCtv('editTextBox',[
-						gM('By')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
+						gM('By')+Arrf(x=>SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)),
 							ZLR('Comma Semicolon Space Tab')).join(' '),
 							strtxt+'id=lineByChar tip="Linebreak by Character" />',
 						strbtn+gM('Merge Line.1')+'" id=lineMerge tip="Line.1 Merge" />'+
@@ -2627,11 +2494,11 @@ $(function(){
 					DCtv('editTextBox hidden',[
 					
 
-						gM('With')+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
+						gM('With')+Arrf(x=>SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)),
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
 							strtxt+'id=replaceWithChar />',
 
-						strbtn+gM('Replace')+'" id=Replace />'+Arrf(function(x){return SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)) },
+						strbtn+gM('Replace')+'" id=Replace />'+Arrf(x=>SCtv('hotk" data-v="'+x, gM({Comma:',',Semicolon:';',Space:'Space.1'}[x]||x)),
 							ZLR('Comma Semicolon Space Tab')).join(' ')+br+
 							strtxt+'id=replaceByChar />',
 
@@ -2648,7 +2515,7 @@ $(function(){
 						gM('Clone')+': ',
 						XML.wrapE('label',gM('Line.1')+' / '+gM('Selection')+strchkbx0+'id=RepeatSelection />'),
 
-						Arrf(function(x){return strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />'},ZLR('2 3 5 7 11')).join('')
+						Arrf(x=>strbtn+'×'+x+'" tip=Repeat id=Repeat'+x+' />',ZLR('2 3 5 7 11')).join('')
 						]
 					).join(''),
 				].join(''))+
@@ -2846,11 +2713,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 		var me=$(this), t=me.attr('data-tool'),i0=$('#input0'),pa=me.parents('.inputTip'), tl=pa.attr('data-tool');
 		if(tl=='Matrix' && t=='line Merge'){
-			i0.val(function(i,x){return '['+Arrf(function(s){
+			i0.val(function(i,x){return '['+Arrf(s=>{
 					var isfsi=/=\s*[^0]/.test(s), a=s, b=isfsi?exp2coe(s,'='):'';
 					if(/x\d/i.test(s)){
 						var deg=+max(s.match(/x\d/ig).join(',').replace(/x/ig,'').split(','));
-						a=Arrf(function(x){return exp2coe(s,'x'+deg)}, seqA(1,deg)).join(' ')
+						a=Arrf(x=>exp2coe(s,'x'+deg), seqA(1,deg)).join(' ')
 					}else if(/.+[xyz].+[xyz]/i.test(s)){
 						a=[exp2coe(s,'x','yz'),exp2coe(s,'y','xz'),exp2coe(s,'z','xy')].join(' ')
 					}else{
@@ -3103,11 +2970,11 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 	}).on('click','#linebreak',function(e){
 		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
-		$('#input0').val(function(i,v){return Arrf(function(x){return x.lastIndexOf(t)==x.length-t.length?x:x+t},v.split(brn)).join(brn)+brn}).change();
+		$('#input0').val(function(i,v){return Arrf(x=>x.lastIndexOf(t)==x.length-t.length?x:x+t,v.split(brn)).join(brn)+brn}).change();
 
 	}).on('click','#linebreakEqual',function(e){
 		var p=$('#input0Type').val(), shifton=$('#Shift').is('.seled'), t=p=='LaTeX'?(shifton?kbr2:kbr):(p=='HTML'?br:'\n');
-		$('#input0').val(function(i,v){return Arrf(function(x,i){return (i && x[0]!='='?'=':'')+(x.lastIndexOf(t)==x.length-t.length?x:x+t)},v.split(brn)).join(brn)+brn}).change();
+		$('#input0').val(function(i,v){return Arrf((x,i)=>(i && x[0]!='='?'=':'')+(x.lastIndexOf(t)==x.length-t.length?x:x+t),v.split(brn)).join(brn)+brn}).change();
 
 	}).on('click','#zoomHTMLEditor',function(e){
 		$('#HTMLEditor img').css('zoom',function(i,v){var x=+v||1, me=$(this),z=me.attr('data-zooming')||'out';
@@ -3395,7 +3262,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		if(this.id=='reverseLine'){
 			vA.reverse()
 		}else{
-			vA=Arrf(function(x){return x.split('').reverse().join('')}, vA)
+			vA=Arrf(x=>x.split('').reverse().join(''), vA)
 		}
 
 		$('#input0').val(vA.join(brn));
@@ -3415,7 +3282,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 
 		}else{
-			i.val(iv.replace(/[^\n]+(\n|$)/g,function(x){return x.repeat(n)}));
+			i.val(iv.replace(/[^\n]+(\n|$)/g, x=>x.repeat(n)));
 
 		}
 
@@ -3462,25 +3329,25 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 		
 
 		if(id=='randInt'){
-			t=Arrf(function(){return Random(num1-num0+1)+num0-1},seqA(1,q)).join(',')
+			t=Arrf(()=>Random(num1-num0+1)+num0-1,seqA(1,q)).join(',')
 		}else if(id=='randDeci'){
-			t=Arrf(function(){return Random(num1-num0)+num0-1+Math.random()},seqA(1,q)).join(',')
+			t=Arrf(()=>Random(num1-num0)+num0-1+Math.random(),seqA(1,q)).join(',')
 		}else if(id=='randBigInt'){
-			t=Arrf(function(){return Random(9)+Arrf(function(){return Random(10)-1}, 
-				seqA(1,Random(num1-num0+1)+num0-1)).join('')},seqA(1,q)).join(',')
+			t=Arrf(()=>Random(9)+Arrf(()=>Random(10)-1, 
+				seqA(1,Random(num1-num0+1)+num0-1)).join(''),seqA(1,q)).join(',')
 		}else if(id=='randCombinIndex'){
-			t=Arrf(function(){return jSoff(RandomCombinN(num0,num1))},seqA(1,q)).join(',')
+			t=Arrf(()=>jSoff(RandomCombinN(num0,num1)),seqA(1,q)).join(',')
 		}else if(id=='randCombin'){
-			t=Arrf(function(){return jSoff(RandomCombinA(txt.split(','),q))},seqA(1,q2)).join(',')
+			t=Arrf(()=>jSoff(RandomCombinA(txt.split(','),q)),seqA(1,q2)).join(',')
 		}else if(id=='randPermut'){
-			t=Arrf(function(){return jSoff(RandomCombinA(txt.split(','),txt.split(',').length))},seqA(1,num1)).join(',')
+			t=Arrf(()=>jSoff(RandomCombinA(txt.split(','),txt.split(',').length)),seqA(1,num1)).join(',')
 		}else if(id=='randSequence'){
 			t=jSoff(seqA(num1,q,prop?'geo':'',num0))
 		}else if(id=='randColor'){
 			if(prop){
-				t=Arrf(function(){return RandomColor()},seqA(1,q)).join(',')
+				t=Arrf(()=>RandomColor(),seqA(1,q)).join(',')
 			}else{
-				t=Arrf(function(){return hex2rgba(RandomColor())},seqA(1,q)).join(',')
+				t=Arrf(()=>hex2rgba(RandomColor()),seqA(1,q)).join(',')
 			}
 		}
 
@@ -3698,9 +3565,9 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 
 			if(v=='LaTeX'){
 				tv+=br;
-				$.each(SBS.Latex,function(i,j){
+				$.each(jSonV2K(SBS.Latex),function(i,j){
 					if(!/func/.test(i)){
-						tv+=sceg2(i)+' : '+sceg2('\\'+j+' ')+br
+						tv+=sceg2(j)+' : '+sceg2('\\'+i+' ')+br
 					}
 				});
 			}
@@ -3762,7 +3629,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				tv+=br;
 				$.each(SBS.Latex,function(i,j){
 					if(!/func/.test(i)){
-						tv+=sceg2(i)+' : '+sceg2('\\'+j+' ')+br
+						tv+=sceg2(j)+' : '+sceg2('\\'+i+' ')+br
 					}
 				});
 			}
@@ -3854,7 +3721,7 @@ itv('tool" tip=Shift id="Shift','keyboard_capslock')+
 				if(/EXCEL|VND.OPENXMLFORMATS-OFFICEDOCUMENT.SPREADSHEETML.SHEET/i.test(ext)){
 					ext='Excel';
 					//console.log(ext, utfType);
-					xlsxReader(f,function(t){
+					xlsxReader(f,(t)=>{
 						//console.log(t.SheetNames);
 						var x=XLSX.utils.sheet_to_csv(t.Sheets[t.SheetNames[0]],{ FS: "\t" });
 						$('#input0').val(x);

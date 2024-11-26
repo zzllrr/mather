@@ -17,9 +17,7 @@ var L=localStorage,sch=location.search, H = 'http://', Hs = 'https://', w3c = 'w
 	Mele2='LT LX LTX TEX IL YML',
 	Meleo={'IL':'Inline LaTeX','LX':'LaTeX','TEX':'LaTeX','YML':'YAML'};
 	
-if (typeof BigInt == 'undefined') {
-	var BigInt = function (x) { return +x }
-}
+
 var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uriReg = /(blob|file|ftp|qvp|https?):[\S]+/ig, dataRe = /^data:[\S]+[/][\S]+;[\S]+/,
 	imgPreReg = '(blob|data|file|ftp|https?):.+',
 	imgPre = new RegExp(imgPreReg, 'gi'), imgPreRe = new RegExp('^' + imgPreReg, 'gi'),
@@ -39,14 +37,30 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 
 	htmlcodeRe = /&#\d+;/g,
 	digiReg = /^\d+(\.\d)?$/,
-	regReg = function (t) { return t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}\|]/g, '\\$&') },
-	dblChr2Arr=function(t){var A=[];for(var a of t){A.push(a)} return A},//return t.replace(/../g,'$& ').trim().split(' ')},
+	regReg = t=>t.replace(/[\^\$\*\.\+\-\?\!\(\)\[\]\{\}\|]/g, '\\$&'),
+	dblChr2Arr=(t)=>{var A=[];for(var a of t){A.push(a)} return A},
+	abc2Arr5=(t, inv)=>{
+		if(inv){
+			if(isArr(t[0])){
+				return [t[0].slice(0,5),t[1].slice(0,5),t[0].slice(5,10),t[1].slice(5,10),t[0].slice(10,15),t[1].slice(10,15)].map(i=>i.join('')).join('')
+			}else{
+				return t[0].substr(0,5)+t[1].substr(0,5)+t[0].substr(5,5)+t[1].substr(5,5)+t[0].substr(10,5)+t[1].substr(10,5)
+			}
+		}else{
+			if(isArr(t)){
+				return [[].concat(t.slice(0,5),t.slice(10,15),t.slice(20,25)), [].concat(t.slice(5,10),t.slice(15,20),t.slice(25,30))]
+			}else{
+				return [t.substr(0,5)+t.substr(10,5)+t.substr(20,5), t.substr(5,5)+t.substr(15,5)+t.substr(25,5)]
+			}
+		}
+		
+	},
 
-	NumExp=function(x){// 区间符号[(,)]或具体数值，多个条件并取使用英文逗号, 负无穷用(,或(-,表示, 正无穷用,)或+)表示
+	NumExp=(x)=>{// 区间符号[(,)]或具体数值，多个条件并取使用英文逗号, 负无穷用(,或(-,表示, 正无穷用,)或+)表示
 		var A=x.replace(/[\[\(][^\]\)]+[\]\)]/g, t=>t.replace(/,/g,';')).split(','), l=A.length;
 
 		return {
-			test:function(t){
+			test:(t)=>{
 				var d=+t;
 				for(var i=0;i<l;i++){
 					
@@ -76,16 +90,15 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 		}
 	},
 
-	ruby=function(s,top,a1){// a1 a2 a3 a4
-		return XML.wrapE('ruby',s+XML.wrapE('rt',top||(a1?a1.replace(/.\d/g,function(x){return ['aāáǎà','oōóǒò','eēéěè','iīíǐì','uūúǔù','üǖǘǚǜ']['aoeiuv'.indexOf(x[0])][+x[1]]}):'')))
-	},
+	ruby=(s,top,a1)=>XML.wrapE('ruby',s+XML.wrapE('rt',top||(a1?a1.replace(/.\d/g,x=>['aāáǎà','oōóǒò','eēéěè','iīíǐì','uūúǔù','üǖǘǚǜ']['aoeiuv'.indexOf(x[0])][+x[1]]):''))),
+
 	sTo=setTimeout,sTi=setInterval,
 	oneDay = 24 * 3600 * 1000,
 	Engin = {
-		bd: function (html, u) {
+		bd: (html, u)=>{
 			var bd = $(XML.wrapE('div', (html || '')));
 
-			bd.find(zlr2('img :image', '[src]', ',')).each(function () {
+			bd.find(zlr2('img :image', '[src]', ',')).each(function() {
 				var me = $(this), s0 = me.attr('file') || me.attr('data-original') || me.attr('src'), s = H_a(s0, u);
 				if (s != s0) { me.attr('src', s) }
 			});
@@ -93,15 +106,15 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 			bd.find('form').attr('method', '');
 			bd.find(':button, :submit').attr('disabled', 'disabled');
 			var ZBD = '#ZBD' + Time.now5() + ' ';
-			bd.attr('id', 'ZBD').find('style').html(function (i, v) {
+			bd.attr('id', 'ZBD').find('style').html(function(i, v) {
 				return ZBD + v.trim().replace(/[\},(\*\/)][\n\s]+/g, '$&' + ZBD).trim();
 			});
 
 			bd.find(zlr3('[on', 'click load', ']', ',')).removeAttr(zlr('on', 'click load'));
 			bd.find(zlr3('a[href', '^="javascript:" ="#"', ']', ',')).removeAttr('href');
-			bd.find('a[href]').not('[href^="#"]').attr('target', '_blank').not(zlr3('[href^=', 'http "mailto:"', ']', ',')).attr('href', function (i, v) { return H_a(v, u) });
+			bd.find('a[href]').not('[href^="#"]').attr('target', '_blank').not(zlr3('[href^=', 'http "mailto:"', ']', ',')).attr('href', function(i, v) { return H_a(v, u) });
 
-			bd.find('object').has('embed[src]').each(function () {
+			bd.find('object').has('embed[src]').each(function() {
 				var em = $(this).find('embed[src]'), src = em.attr('src'), wd = em.attr('width'), ht = em.attr('height');
 				$(this).replaceWith('<iframe src="' + src + '" style="width:' + (wd || 500) + 'px;height:' + (ht || 400) + 'px" >');
 			});
@@ -109,37 +122,33 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 			return bd;
 		},
 
-		bdLoadHtml: function (html, aB) {
+		bdLoadHtml: (html, aB)=>{
 			aB.html(html || '');
 			return Engin
 		}
 
-	}, git=function(x,githubio){
-		return Hs+(githubio!==undefined?x+'.github.io/'+githubio:'github.com/'+x)
+	}, git=(x,githubio)=>Hs+(githubio!==undefined?x+'.github.io/'+githubio:'github.com/'+x)
 
-	}, delivr=function(x,y,type){
-		return Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
+	, delivr=(x,y,type)=>Hs+'cdn.jsdelivr.net/npm/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
 
-	}, unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js', unpkg=function(x,y,type){
-		return Hs+'unpkg.com/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
+	, unpkgTmp=Hs+'unpkg.com/@/dist/@.min.js'
+	, unpkg=(x,y,type)=>Hs+'unpkg.com/'+x+'/dist/'+(y||x+'.min')+'.'+(type||'js')
 
-	}, referf=function(x,y,type){
-		return type=='css'?'<link rel="stylesheet" href="' + x+'"'+(y||'')+'>':(
+	, referf=(x,y,type)=>type=='css'?'<link rel="stylesheet" href="' + x+'"'+(y||'')+'>':(
 			type=='js'||!type?'<script src="'+x+'"'+(y||'')+'></script>':''
 		)
-	}, refer=function(A){
-		return detail(gM('Reference'),ol(A))
+	, refer=A=>detail(gM('Reference'),ol(A))
 
-	}, jslib={
+	, jslib={
 		'katex':referf(delivr('katex')),
 		'echarts':referf(delivr('echarts'))+referf(unpkg('echarts-gl')),
 		// www.npmjs.com/package/echarts
-		'echarts_eval':function(t){return '<div id=echarts0 style="width:90%;height:600px">'+
+		'echarts_eval':t=>'<div id=echarts0 style="width:90%;height:600px">'+
 	t+dc+XML.wrapE('script',
 `	var d=document.getElementById('echarts0'),dt=d.innerText,o=eval(dt);
 	var myChart = echarts.init(d);
 	myChart.setOption(o);
-`)},
+`),
 		'd3':referf(unpkg('d3')),
 		'markmap-lib':referf(delivr('markmap-lib','browser/index')),
 		'markmap-view':referf(delivr('markmap-view','browser/index')),
@@ -161,7 +170,7 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 				var katexElements = document.querySelectorAll('.katex');
 
 				// 遍历 katex 元素
-				katexElements.forEach(function(katexElement) {
+				katexElements.forEach(katexElement=>{
 				// 查找包含 markmap-foreign 类的父元素
 				var markmapForeignElement = katexElement.closest('.markmap-foreign');
 
@@ -188,13 +197,13 @@ var uri = '^(blob|file|ftp|qvp|https?):[\S]+', uriRe = new RegExp(uri, 'i'), uri
 
 		'lego':referf(unpkg('legra')),
 
-		'canvas_eval':function(t){return '<div id=js hidden>'+t+dc+
+		'canvas_eval':t=>'<div id=js hidden>'+t+dc+
 	'<canvas id=cvs width="300" height="300"></canvas>'+
 	XML.wrapE('script',
 `
 	var C=document.getElementById('cvs'),c=C.getContext('2d'),ct=document.getElementById('js').innerText;
 	eval(ct);
-`)},
+`),
 		//'aframe':referf(delivr('aframe','aframe-master')),
 		//'aframe':referf(unpkg('aframe')),
 		//'aframe':referf(Hs+'aframe.io/releases/0.9.2/aframe.min.js'),
@@ -336,27 +345,27 @@ csslib.markmap=csslib.markdown+XML.wrapE('style', csslib['markmap-toolbar']+`
 }
 `);
 
-$.expr[':'].bottom = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('bottom') == '0px' };
-$.expr[':'].top = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('top') == '0px' };
-$.expr[':'].left = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('left') == '0px' };
-$.expr[':'].right = function (obj) { return $(obj).css('position') == 'fixed' && $(obj).css('right') == '0px' };
+$.expr[':'].bottom = function(obj) { return $(obj).css('position') == 'fixed' && $(obj).css('bottom') == '0px' };
+$.expr[':'].top = function(obj) { return $(obj).css('position') == 'fixed' && $(obj).css('top') == '0px' };
+$.expr[':'].left = function(obj) { return $(obj).css('position') == 'fixed' && $(obj).css('left') == '0px' };
+$.expr[':'].right = function(obj) { return $(obj).css('position') == 'fixed' && $(obj).css('right') == '0px' };
 
-$.expr[':'].fixed = function (obj) { return $(obj).length ? $(obj).css('position') == 'fixed' : false };
-$.expr[':'].abs = function (obj) { return $(obj).css('position') == 'absolute' };
+$.expr[':'].fixed = function(obj) { return $(obj).length ? $(obj).css('position') == 'fixed' : false };
+$.expr[':'].abs = function(obj) { return $(obj).css('position') == 'absolute' };
 
-$.expr[':'].encoded = function (obj) { return /:?encoded/i.test($(obj)[0].localName) };
-$.expr[':'].number = function (obj) { return $(obj).attr('type') == 'number' };
-$.expr[':'].range = function (obj) { return $(obj).attr('type') == 'range' };
-$.expr[':'].color = function (obj) { return $(obj).attr('type') == 'color' };
-$.expr[':'].date = function (obj) { return $(obj).attr('type') == 'date' };
-$.expr[':'].time = function (obj) { return $(obj).attr('type') == 'time' };
+$.expr[':'].encoded = function(obj) { return /:?encoded/i.test($(obj)[0].localName) };
+$.expr[':'].number = function(obj) { return $(obj).attr('type') == 'number' };
+$.expr[':'].range = function(obj) { return $(obj).attr('type') == 'range' };
+$.expr[':'].color = function(obj) { return $(obj).attr('type') == 'color' };
+$.expr[':'].date = function(obj) { return $(obj).attr('type') == 'date' };
+$.expr[':'].time = function(obj) { return $(obj).attr('type') == 'time' };
 
-$.expr[':'].search = function (obj) { return $(obj).attr('type') == 'search' };
-$.expr[':'].commentRss = function (obj) { return /commentRss/i.test($(obj)[0].localName) };
-$.expr[':'].creator = function (obj) { return $(obj)[0].localName == 'creator' };
+$.expr[':'].search = function(obj) { return $(obj).attr('type') == 'search' };
+$.expr[':'].commentRss = function(obj) { return /commentRss/i.test($(obj)[0].localName) };
+$.expr[':'].creator = function(obj) { return $(obj)[0].localName == 'creator' };
 
 $.fn.extend({
-	twinkle: function () {
+	twinkle: function(){
 		return $(this).fadeTo('slow', 0).fadeTo('slow', 1);
 	},
 	find2: function(szl){
@@ -373,9 +382,9 @@ function GM(txt,fromLang,toLang) {
 	var l0=fromLang||H_o().lang || L.lang || 'zh_cn', l1=toLang||'en';
 	//分词. 多源词.0 .1 .2 
 	if(isArr(txt)){
-		return Arrf(function (i) { return GM(i, l0, l1) }, txt) 
+		return Arrf(i=>GM(i, l0, l1), txt) 
 	}
-	var A=split(txt,/\.\d*/g), f=function(x){
+	var A=split(txt,/\.\d*/g), f=x=>{
 		var t='',xA=x.split('.'), y=x[0],yi=+x[1]||0, xi=-1;
 		$.each(lang[l0],function(i,v){
 			if(x==v){
@@ -395,9 +404,8 @@ function GM(txt,fromLang,toLang) {
 		if(A[1].length==2 && A[1][1]==''){
 			return f(A[1][0])||A[1][0]
 		}
-		//console.log(concat(A[1],A[0].concat('')));
-		//return Arrf(f,concat(A[1],A[0].concat(''))).join(/zh/.test(toLang)?'':' ')
-		return Arrf(function(x){return GM(x,l0,l1)},concat(A[1],A[0].concat(''))).join(/zh/.test(toLang)?'':' ')
+
+		return Arrf(x=>GM(x,l0,l1),concat(A[1],A[0].concat(''))).join(/zh/.test(toLang)?'':' ')
 	}else{
 		if(/ /.test(txt)){
 			return Arrf(f, txt.split(' ')).join(/zh/.test(toLang)?'':' ')
@@ -410,7 +418,8 @@ function GM(txt,fromLang,toLang) {
 
 }
 function gM(mesg, str, o) {
-	if (isArr(mesg)) { return Arrf(function (i) { return gM(i, str, o) }, mesg) }
+
+	if (isArr(mesg)) { return mesg.map(i=>gM(i, str, o)) }
 	
 	var msg = '' + mesg, m0=msg[0] || '', m1=(msg || '').substr(1),
 		M = m0 + m1, M_=m0.toUpperCase()+m1, O = o || i18n, x = O ? O[msg] || O[M] || O[M_] || '' : '';
@@ -440,7 +449,7 @@ function gM(mesg, str, o) {
 
 	
 	if(iscn && !x && / of /.test(msg)){
-		return msg.replace(/(.+) of (.+)/, function(t){var A=t.split(' of '); return gM(A[1]) + gM(A[0])})
+		return msg.replace(/(.+) of (.+)/, t=>{var A=t.split(' of '); return gM(A[1]) + gM(A[0])})
 	}
 
 	if (!x && /[a-z]+2[a-z]/i.test(msg)) {
@@ -451,14 +460,14 @@ function gM(mesg, str, o) {
 		x = gM(msg.replace(/([a-z])([A-Z])/g, '$1 $2'), str, o)
 	}
 	if (!x && / & /.test(msg)) {
-		x = Arrf(function (t) { return gM(t, str, o) }, msg.split(' & ')).join(' & ');
+		x = Arrf(t=>gM(t, str, o), msg.split(' & ')).join(' & ');
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
 			x = x.replace(/ & /g, '与')
 		}
 	}
 	if (!x && /[^ ]&[^ ]/.test(msg)) {
-		x = Arrf(function (t) { return gM(t, str, o) }, msg.split('&')).join('&');
+		x = Arrf(t=>gM(t, str, o), msg.split('&')).join('&');
 	}
 
 	if (!x && / /.test(msg)) {
@@ -469,15 +478,15 @@ function gM(mesg, str, o) {
 		if (O[msg1]) {
 			x = gM(msg0, str, o) + ' ' + gM(msg1, str, o)
 		} else {
-			x = Arrf(function (t) { return gM(t, str, o) }, msg.split(' ')).join(' ');
+			x = Arrf(t=>gM(t, str, o), msg.split(' ')).join(' ');
 		}
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
-			x = x.replace(/. ./g, function (x) { return /[a-z] [a-z]/i.test(x) ? x : x.replace(/ /g, '') })
+			x = x.replace(/. ./g, x=>/[a-z] [a-z]/i.test(x) ? x : x.replace(/ /g, ''))
 		}
 	}
 	if (!x && /[-]/.test(msg)) {
-		x = Arrf(function (t) { return gM(t, str, o) }, msg.split(/[-]/)).join('-');
+		x = Arrf(t=>gM(t, str, o), msg.split(/[-]/)).join('-');
 		hanziRe.lastIndex = 0;
 		if (hanziRe.test(x)) {
 			x = x.replace(/[-](\D)/g, '$1')
@@ -485,7 +494,7 @@ function gM(mesg, str, o) {
 	}
 
 	if (!x && /[–]/.test(msg)) {
-		x = Arrf(function (t) { return gM(t, str, o) }, msg.split(/[–]/)).join('–');
+		x = Arrf(t=>gM(t, str, o), msg.split(/[–]/)).join('–');
 	}
 
 	if (!x && /\./.test(msg)) {// .无需翻译
@@ -648,7 +657,7 @@ function gM(mesg, str, o) {
 		//可拆开翻译的前缀
 
 		if (/^(Pseudo)/i.test(msg)) {// 6字开头
-			var t=msg.substr(6).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.substr(6).replace(/./,x=>x.toUpperCase()), ot=O[t];
 	
 			if(ot){
 				return gM(msg.substr(0,6), str, o) + ot
@@ -658,7 +667,7 @@ function gM(mesg, str, o) {
 
 		
 		if (/^(Quasi|Multi|Hyper|Super|Ultra|Arc)/i.test(msg)) {// 5字开头
-			var t=msg.replace(/Arc/i,'$&.1').substr(5).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.replace(/Arc/i,'$&.1').substr(5).replace(/./,x=>x.toUpperCase()), ot=O[t];
 	
 			if(ot){
 				return gM(msg.replace(/Arc/i,'$&.1').substr(0,5), str, o) + ot
@@ -667,7 +676,7 @@ function gM(mesg, str, o) {
 
 
 		if (/^([SDH]emi|Poly|Anti|Auto)/i.test(msg)) {// 4字开头
-			var t=msg.substr(4).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.substr(4).replace(/./,x=>x.toUpperCase()), ot=O[t];
 
 			if(ot){
 				return gM(msg.substr(0,4), str, o) + ot
@@ -676,7 +685,7 @@ function gM(mesg, str, o) {
 		}
 
 		if (/^(Su[bp]|Non|Tri|Uni)/i.test(msg)) {// 3字开头
-			var t=msg.substr(3).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.substr(3).replace(/./,x=>x.toUpperCase()), ot=O[t];
 	
 			if(ot){
 				return gM(msg.substr(0,3), str, o) + ot
@@ -686,7 +695,7 @@ function gM(mesg, str, o) {
 
 
 		if (/^([UI][mn]|Ab)/i.test(msg)) {// 2字开头
-			var t=msg.substr(2).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.substr(2).replace(/./,x=>x.toUpperCase()), ot=O[t];
 	
 			if(ot){
 				return '不' + ot
@@ -694,7 +703,7 @@ function gM(mesg, str, o) {
 				
 		}
 		if (/^(Bi)/i.test(msg)) {// 2字开头
-			var t=msg.substr(2).replace(/./,function(x){return x.toUpperCase()}), ot=O[t];
+			var t=msg.substr(2).replace(/./,x=>x.toUpperCase()), ot=O[t];
 	
 			if(ot){
 				return gM(msg.substr(0,2), str, o) + ot
@@ -881,46 +890,42 @@ var HOM = {
 };
 
 var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkbx0 = '<input type=checkbox ', strbtn = '<input type=button value="', btnGo = strbtn + 'GO" class=vipurl />',
-	num = function (x, min, max) { return '<input type=number value="' + (x||0) + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + ' />' },
-	colorbx = function (v) { return '<input type=color value="'+(v||'')+'" />' },
-	rng = function (v,min,max) { return '<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />' },
+	num = (x, min, max, step)=>'<input type=number value="' + (x||0) + '" min="'+(min||0)+'"' + (max ? ' max="' + max +'"' : '') + (step ? ' step="' + step +'"' : '') + ' />',
+	colorbx = v=>'<input type=color value="'+(v||'')+'" />',
+	rng = (v,min,max)=>'<input type=range value="'+(v||0)+'" min="'+(min||0)+'" max="'+(max||0)+'" />',
 	imgSRC = '<img src="img/', prog = imgSRC + 'loading.gif" width=16 class=prog />', chked = ' checked', seled = ' selected', 
-	strtxt='<input type=text ', txtreadonly = function (x,id) { return strtxt+'readonly value="' + fnq(x) + '" id="'+id+'" />' },
-	meter = function (i, low, optimum, high) { return '<meter min=0 max=100' + (low || low === 0 ? ' low=' + low : '') + (optimum || optimum === 0 ? ' optimum=' + optimum : '') + (high || high === 0 ? ' high=' + high : '') + ' value=' + i + ' />' },
-	bgfrom = '-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto = '), to(', grad = function (t) {
-		//return '-webkit-gradient(radial, 20 20, 0, 20 20, 50, from(white), to(white), color-stop(.9,'+t+'))'
-		return '-webkit-linear-gradient(top, white, ' + t + ' 20%, ' + t + ' 80%, white)'
-	},
-	fcb = function (c, b, t) { return isArr(t)?Arrf(function(x){return fcb(c,b,x)},t) : '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}' },
-	txa = function (t, c) { return '<textarea' + (c ? ' class="' + c + '"' : '') + '>' + (t||'') + '</textarea>' },
-	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return SCtv(t,x)},v)} return SC + '"' + t + '">' + (v || '') + sc },
-	itv = function (t, v) { return '<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>' }, itvc=function (c) {return itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace')},
-	spanmi=function(t,v,c){return '<span class="mi-span'+(c?' '+c:'')+'" mi='+t+'>'+v+sc},
-	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = function (t, v) { if(isArr(v)){return Arrf(function(x){return DCtv(t,x)},v)} return DC + '"' + t + '">' + (v || '') + dc },
+	strtxt='<input type=text ', txtreadonly = (x,id)=>strtxt+'readonly value="' + fnq(x) + '" id="'+id+'" />',
+	meter = (i, low, optimum, high)=>'<meter min=0 max=100' + (low || low === 0 ? ' low=' + low : '') + (optimum || optimum === 0 ? ' optimum=' + optimum : '') + (high || high === 0 ? ' high=' + high : '') + ' value=' + i + ' />',
+	bgfrom = '-webkit-gradient(linear, 0% 0%, 0% 100%, from(', bgto = '), to(', grad = t=>'-webkit-linear-gradient(top, white, ' + t + ' 20%, ' + t + ' 80%, white)',
+	fcb = (c, b, t)=>isArr(t)?Arrf(x=>fcb(c,b,x),t) : '\\fcolorbox{' + c + '}{' + (b || 'transparent') + '}{' + t + '}',
+	txa = (t, c)=>'<textarea' + (c ? ' class="' + c + '"' : '') + '>' + (t||'') + '</textarea>',
+	SC = '<span class=', sc = '</span>', sC = sc + SC, SCtv = (t, v)=>{if(isArr(v)){return Arrf(x=>SCtv(t,x),v)} return SC + '"' + t + '">' + (v || '') + sc },
+	itv = (t, v)=>'<i class="mi' + (t?' '+t:'') + '">' + (v || '') + '</i>', itvc=(c)=>itv('Clear'+(c?' '+c:'')+'" tip="Clear','backspace'),
+	spanmi=(t,v,c)=>'<span class="mi-span'+(c?' '+c:'')+'" mi='+t+'>'+v+sc,
+	DC = '<div class=', dc = '</div>', dC = dc + DC, DCtv = (t, v)=>{if(isArr(v)){return Arrf(x=>DCtv(t,x),v)} return DC + '"' + t + '">' + (v || '') + dc },
 	br = '<br/>', hr = '<hr/>', kbr = '\\\\ ', kbr2 = '\\\\ ~ \\\\ ~', brn='\n', brt='\t',
-	brA=function(A,js){return (js?$js(A):A).join(br)}, hrA=function(A,js){return (js?$js(A):A).join(hr)},
-	kbrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(br) },
-	khrA = function (A) { return Arrf(function (x) { return '$' + x + '$' }, A).join(hr) },
-	i18=function(x){return isArr(x)?Arrf(i18,x):XML.wrapE('i18',x)},	
-	I18=function(x,A){return (isArr(x)?x.join('\n'):x)+'\n'+XML.wrapE('i18',isArr(x)?x[0]:x)+(A?'\n'+A.join('\n'):'')},
-	fieldset = function (s, v, c) { return '<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>' },
-	fieldseth = function (s, v, c, h) { return '<fieldset class=rem13' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>' },
-	subtabs = function (hA,vA,seli) { if(seli==-1){
-		return DCtv('subtabs',DCtv('subtabheads', SCtv('subtabhead',hA).join(''))+DCtv('subtab',vA).join(''))
+	brA=(A,js)=>(js?$js(A):A).join(br), hrA=(A,js)=>(js?$js(A):A).join(hr),
+	kbrA = A=>Arrf(x=>'$' + x + '$', A).join(br),
+	khrA = A=>Arrf(x=>'$' + x + '$', A).join(hr),
+	i18=x=>isArr(x)?Arrf(i18,x):XML.wrapE('i18',x),	
+	I18=(x,A)=>(isArr(x)?x.join(brn):x)+brn+XML.wrapE('i18',isArr(x)?x[0]:x)+(A?brn+A.join(brn):''),
+	fieldset = (s, v, c)=>'<fieldset' + (c ? ' ' + c : '') + '><legend>' + s + '</legend>' + v + '</fieldset>',
+	fieldseth = (s, v, c, h)=>'<fieldset class=rem13' + (c ? ' ' + c : '') + '><legend>' + XML.wrapE('h'+(h||3),s) + '</legend>' + v + '</fieldset>',
+	subtabs = (hA,vA,seli)=>{
+		if(seli==-1){
+			return DCtv('subtabs',DCtv('subtabheads', SCtv('subtabhead',hA).join(''))+DCtv('subtab',vA).join(''))
 		}else{var j=seli||0;
-		return DCtv('subtabs',DCtv('subtabheads', Arrf(function(x,i){return SCtv('subtabhead'+(i==j?' seled':''),x)},hA).join(''))+Arrf(function(x,i){return DCtv('subtab'+(i==j?'':' hidden'),x)},vA).join(''))
+			return DCtv('subtabs',DCtv('subtabheads', Arrf((x,i)=>SCtv('subtabhead'+(i==j?' seled':''),x),hA).join(''))+Arrf((x,i)=>DCtv('subtab'+(i==j?'':' hidden'),x),vA).join(''))
 		}
 	},
-	detail = function (s, v, o, c, cs) { return '<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary'+(cs?' '+cs:'')+'>' + s + '</summary>' + (v||'') + '</details>' },
-	zdetail = function (s, v, notsk, notvk, notEdit, o) {
-		return detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
+	detail = (s, v, o, c, cs)=>'<details' + (o ? ' open' : '') + (c ? ' ' + c : '') + '><summary'+(cs?' '+cs:'')+'>' + s + '</summary>' + (v||'') + '</details>',
+	zdetail = (s, v, notsk, notvk, notEdit, o)=>detail(notsk ? s : ksc(s), notvk ? v : kdc(v) + (notEdit ? '' :
 			detail(gM('Edit') + strbtn + gM('Default') + '" class="katexv0" />',
-				txa(v, 'katexv" data-katex="' + v) + br + strtxt+'class=katexvrule />' + strbtn + gM('Replace') + '" class="katexvreplace" />' + strbtn + 'GO" class="katexvgo" />')), o)
-	},
-	kdetail = function (s, v, notsk, notvk) { return zdetail(s, v, notsk, notvk, 1) },
+				txa(v, 'katexv" data-katex="' + v) + br + strtxt+'class=katexvrule />' + strbtn + gM('Replace') + '" class="katexvreplace" />' + strbtn + 'GO" class="katexvgo" />')), o),
+	kdetail = (s, v, notsk, notvk)=>zdetail(s, v, notsk, notvk, 1),
 
-	jdetail = function (A, i18nObj, subTool, uri) {
-		var f = function (t, subtool) {
+	jdetail = (A, i18nObj, subTool, uri)=>{
+		var f = (t, subtool)=>{
 			if (isStr(t)) {
 				var tool = t.replace(/[…—“][\S\s]+/, ''), ts = t.split('…'),
 				title = ts.length > 1 ? ts[1].replace(/[—“].+[\s\S]*/, '') : '',
@@ -936,44 +941,43 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 					/^\$.+\$$/.test(m) ? zx(fnv0(m)) : m) : SCtv('level ' + (subtool || '') + '" data-i="' + tool, gM(tool, '', i18nObj))
 			}
 			if (isArr(t)) {
-				return Arrf(function (x) { return f(x, subtool) }, t).join('')
+				return Arrf(x=>f(x, subtool), t).join('')
 			}
 			if (isObj(t)) {
-				var y = ''; $.each(t, function (i, v) {
+				var y = ''; $.each(t, function(i, v) {
 					y += detail(gM(i, '', i18nObj), f(v, subtool), '', 'data-i="' + i + '"')
 				}); return y
 			}
-		}; return Arrf(function (x) { return f(x, subTool) }, A).join('')
+		}; return Arrf(x=>f(x, subTool), A).join('')
 	},
 
-	fdetail = function (f, A) {
-		return DCtv('fdetail', eval('(function' + f + ')("' + ('' + A[0]).replace(/,/g, '","') + '")') +
+	fdetail = (f, A)=>DCtv('fdetail', eval('(function' + f + ')("' + ('' + A[0]).replace(/,/g, '","') + '")') +
 			strtxt+'class=katexf data-katexf="' + f + '" placeholder="' + A.join(';') + '" value="' + A[0] + '" />' +
-			strbtn + gM('Parameter') + '" class="katexv1" />')
-	},
-	mark = function (v, t) { return '<mark title="' + (t || 'API') + '">' + v + '</mark>' }, del = function (s) { return XML.wrapE('del', s) },
-	href = function (url, text, title) { return '<a href="' + url + '" target="_blank" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer external">' + (text || url) + '</a>' },
-	hrefA= function(u,A,sub){return Arrf(function(X){var x=X.toLowerCase(); return href(Hs+(sub?x+'.'+u:(/@@/.test(u)?u.replace(/@@/g,x):u+'/'+x)),X.replace(/.+#/,''))},A)},
-	inhref = function (url, text, title) { return '<a href="' + url + '" ' + (title ? 'title="' + title + '" ' : '') + '>' + (text || url) + '</a>' },
-	ol = function (A, c, start) { return '<ol class="alignl ' + (c != null ? c : '') + '"' + (start != null ? ' start=' + start : '') + '>' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ol>' }, kol = function (A, c, start) { return ol(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c, start) },
-	ul = function (A, c) { return '<ul class="alignl ' + (c != null ? c : '') + '">' + Arrf(function (t) { return XML.wrapE('li', t) }, A).join('') + '</ul>' }, kul = function (A, c) { return ul(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), c) },
-	dl = function (A, B, c) { return '<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(function (t) { return XML.wrapE('dt', t) }, A), Arrf(function (t) { return XML.wrapE('dd', t) }, B)).join('') + '</dl>' }, kdl = function (A, B, c) { return dl(Arrf(function (x) { return x || x === 0 ? '$' + x + '$' : x }, A), B, c) },
+			strbtn + gM('Parameter') + '" class="katexv1" />'),
 
-	$js=function(x,encode){return x instanceof Array ?Arrf(function(t){return $js(t,encode)},x):'$$$'+(encode?x.trim().replace(/\\/g,'\\\\'):x.trim())+'$$$'},
-	$A = function (A) { return Arrf(function (x) { return x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : '') }, A) },
-	tinyA=function(A, size){return A.length==0?[]:Arrf(function(x){return '\\'+ZLR('tiny scriptsize footnotesize small normalsize large Large LARGE huge Huge')[size!==undefined?size:3]+' '+$A(x)},A)},
-	encodeLatex = function (t) { return ('' + t).replace(/[\{\}]/g, '\\$&') },
-	$B = function (A, esc) { return Arrf(function (x) { return x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')) }, A) },
+	mark = (v, t)=>'<mark title="' + (t || 'API') + '">' + v + '</mark>', del = s=>XML.wrapE('del', s),
+	href = (url, text, title)=>'<a href="' + url + '" target="_blank" ' + (title ? 'title="' + title + '" ' : '') + 'rel="noopener noreferrer external">' + (text || url) + '</a>',
+	hrefA= (u,A,sub)=>Arrf(X=>{var x=X.toLowerCase(); return href(Hs+(sub?x+'.'+u:(/@@/.test(u)?u.replace(/@@/g,x):u+'/'+x)),X.replace(/.+#/,''))},A),
+	inhref = (url, text, title)=>'<a href="' + url + '" ' + (title ? 'title="' + title + '" ' : '') + '>' + (text || url) + '</a>',
+	ol = (A, c, start)=>'<ol class="alignl ' + (c != null ? c : '') + '"' + (start != null ? ' start=' + start : '') + '>' + Arrf(t=>XML.wrapE('li', t), A).join('') + '</ol>', kol = (A, c, start)=>ol(Arrf(x=>x || x === 0 ? '$' + x + '$' : x, A), c, start),
+	ul = (A, c)=>'<ul class="alignl ' + (c != null ? c : '') + '">' + Arrf(t=>XML.wrapE('li', t), A).join('') + '</ul>', kul = (A, c)=>ul(Arrf(x=>x || x === 0 ? '$' + x + '$' : x, A), c),
+	dl = (A, B, c)=>'<dl class="alignl ' + (c != null ? c : '') + '">' + concat(Arrf(t=>XML.wrapE('dt', t), A), Arrf(t=>XML.wrapE('dd', t), B)).join('') + '</dl>', kdl = (A, B, c)=>dl(Arrf(x=>x || x === 0 ? '$' + x + '$' : x, A), B, c),
 
-	Kx = function (t) { return t.replace(/\${3}[^\$]*\${3}/g, function (x) {var t=x.substr(3, x.length - 6);return t? '㆖'+t+'㆘':''})
-		.replace(/\$\$[^\$]+\$\$/g, function (x) { return kdc(x.substr(2, x.length - 4)) })
-		.replace(/\$[^\$]+\$/g, function (x) { return ksc(x.substr(1, x.length - 2)) })
-		.replace(/㆖[^㆖㆘]+㆘/g, function (x) { return ksc($A(x.substr(1, x.length - 2))) })
-	},
-	KxA = function (A) { return ksc(A.join(kbr2)) },
-	kx = function (t) {
+	$js=(x,encode)=>x instanceof Array ?Arrf((t)=>$js(t,encode),x):'$$$'+(encode?x.trim().replace(/\\/g,'\\\\'):x.trim())+'$$$',
+	$A = A=>Arrf(x=>x instanceof Array ? $A(x) : (x || x === 0 ? '$' + x + '$' : ''), A),
+	tinyA=(A, size)=>A.length==0?[]:Arrf(x=>'\\'+ZLR('tiny scriptsize footnotesize small normalsize large Large LARGE huge Huge')[size!==undefined?size:3]+' '+$A(x),A),
+	encodeLatex = t=>('' + t).replace(/[\{\}]/g, '\\$&'),
+	$B = (A, esc)=>Arrf(x=>x instanceof Array ? $B(x, esc) : (esc ? encodeLatex(x) : (x || x === 0 ? '{' + x + '}' : '')), A),
+
+	Kx = t=>t.replace(/\${3}[^\$]*\${3}/g, x=>{var t=x.substr(3, x.length - 6);return t? '㆖'+t+'㆘':''})
+		.replace(/\$\$[^\$]+\$\$/g, x=>kdc(x.substr(2, x.length - 4)))
+		.replace(/\$[^\$]+\$/g, x=>ksc(x.substr(1, x.length - 2)))
+		.replace(/㆖[^㆖㆘]+㆘/g, x=>ksc($A(x.substr(1, x.length - 2))))
+	,
+	KxA = A=>ksc(A.join(kbr2)),
+	kx = t=>{
 		var s = re(('' + t).replace(/−/g, '-').replace(/​/g, '').replace(/[ ]/g, ' ')
-			.replace(/\$[^\x00-\xff][^\$]+\$/g, function (x) {
+			.replace(/\$[^\x00-\xff][^\$]+\$/g, x=>{
 				var x0=x.replace(/\$/g, ''), x00=x0.split('(')[0], x01=x0.substr(x00.length+1).replace(/\)$ */,''), o0={
 					'竖式':'Decimal.oprs',
 					'竖式+':'Decimal.oprs',
@@ -989,11 +993,11 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 				}
 				return eval(x0.replace(x00, o1[x00])) 
 			})
-			.replace(/\$[^\$]+\$/g, function (x) { return eval(x.replace(/\$/g, '')) }))
+			.replace(/\$[^\$]+\$/g, x=>eval(x.replace(/\$/g, ''))))
 
 			//	.replace(/≠/g,'=\\not\\mathrlap{}').replace(/≢/g,'≡\\not\\mathrlap{}')
 			// fix latex ≠ bug
-			//	.replace(/\\not([^\\ ])/g,function(x){return '$1\\not\\mathrlap{}'})		// fix latex ≠ bug V0.10.0
+			//	.replace(/\\not([^\\ ])/g,x=>'$1\\not\\mathrlap{}')		// fix latex ≠ bug V0.10.0
 
 			.replace(/≢/g, '\\not \\mathrlap{} \\negthickspace \\negthickspace ≡')	// fix latex ≢ bug	V0.10.1				katex bug:	table元素中使用katex，不等号会错位	字体显示≢会丢失 删除线
 
@@ -1021,7 +1025,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
 			.replace(/(\{[^\}]+\}|.) *\\\/ *(\{[^\}]+\}|.)/g, '\\frac{$1}{$2}')				//无嵌套分数形式	a\/b  <=> \frac{a}{b}
 			.replace(/(\{[^\}]+\}|.) *\\t\/ *(\{[^\}]+\}|.)/g, '\\tfrac{$1}{$2}')				//无嵌套分数形式	a\t/b  <=> \tfrac{a}{b}
-			.replace(/[√∛∜](-?[\d\.]+|\{[^\}]+\})/g, function(x){var i='√∛∜'.indexOf(x[0]);return '\\sqrt'+(i?'['+(i+2)+']':'')+'{'+x.substr(1)+'}'})
+			.replace(/[√∛∜](-?[\d\.]+|\{[^\}]+\})/g, x=>{var i='√∛∜'.indexOf(x[0]);return '\\sqrt'+(i?'['+(i+2)+']':'')+'{'+x.substr(1)+'}'})
 
 
 		;
@@ -1051,9 +1055,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 	},
-	kxf = function (t, v) { return '\\text{' + t + '}' + (v ? zp(v) : '') },//不使用mathrm，因为它忽略空格
-	kxA = function (A, b) { return b ? '\\begin{array}{}' + Arrf(function (x) { return x instanceof Array ? x.join(' & ') : x }, A).join('\\\\ ') + ' \\end{array}' : A.join('\\\\ ') },
-	kxc = function (t, p, pfx) {
+	kxf = (t, v)=>'\\text{' + t + '}' + (v ? zp(v) : ''),//不使用mathrm，因为它忽略空格
+	kxA = (A, b)=>b ? '\\begin{array}{}' + Arrf(x=>x instanceof Array ? x.join(' & ') : x, A).join('\\\\ ') + ' \\end{array}' : A.join('\\\\ '),
+	kxc = (t, p, pfx)=>{
 		var c = ('' + t).charCodeAt(0), g = 'ΑΒΓΔΕϜΦΗΙ΢ΚΛΜΝΟΡΠΘΣΤΥΞΩΧΨΖ'[c > 90 ? c - 97 : c - 65], a = 'ℵℶℷℸ'[c > 90 ? c - 97 : c - 65];
 		return p == 'a' ? a : (p == 'g' ? (c > 90 ? g.toLowerCase() : g) : '\\' + (pfx === undefined ? 'math' + (p || 'bb') : pfx + (pfx === 'text' && p === '' ? '' : p || 'bf')) + '{' + t + '}')
 	},/*
@@ -1061,81 +1065,83 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		text: '' bf             it rm     sf normal tt
 		'' : Bbb bf 	   frak	it rm     sf		tt bm bold boldsymbol
 */
-	kos = function (t) {
-		return /x/.test(t) ? t : (['xleftarrow', 'xleftrightarrow', 'xrightarrow', 'xLeftarrow', 'xLeftrightarrow', 'xRightarrow', 'xlongequal',
+	kos = t=>/x/.test(t) ? t : (['xleftarrow', 'xleftrightarrow', 'xrightarrow', 'xLeftarrow', 'xLeftrightarrow', 'xRightarrow', 'xlongequal',
 			'xhookleftarrow', 'xhookrightarrow', 'xtwoheadleftarrow', 'xtwoheadrightarrow', 'xleftharpoonup', 'xrightharpoonup', 'xleftharpoondown', 'xrightharpoondown',
 			'xleftrightharpoons', 'xrightleftharpoons', 'xtofrom', 'xfromto', 'xmapsfrom', 'xmapsto'
-		]['←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄⇆↤↦'.indexOf(t || '=')] || t)+'{}'
-	},
+		]['←↔→⇐⇔⇒=↩↪↞↠↼⇀↽⇁⇋⇌⇄⇆↤↦'.indexOf(t || '=')] || t)+'{}',
 
-	kxo = function (t, p, t2) {
-		return '\\' + ['overline', 'overleftarrow', 'overleftrightarrow', 'overrightarrow', 'overlinesegment', 'overleftharpoon', 'overrightharpoon', 'Overleftarrow', 'Overrightarrow',
+	kxo = (t, p, t2)=>'\\' + ['overline', 'overleftarrow', 'overleftrightarrow', 'overrightarrow', 'overlinesegment', 'overleftharpoon', 'overrightharpoon', 'Overleftarrow', 'Overrightarrow',
 			'overbrace', 'overgroup', 'widehat', 'widetilde', 'widecheck', 'xlongequal']['-←↔→I↼⇀⇐⇒{(<~>='.indexOf(p || '-')]
-			+ (p == '=' ? '[' + t + ']{' + (t2 || '') + '}' : '{' + (t || '') + '}') + (p == '{' && t2 ? '^{\\text{' + t2 + '}}' : '')
-	},
-	kxu = function (t, p, t2) {
-		return '\\' + (['underline', 'underleftarrow', 'underleftrightarrow', 'underrightarrow', 'underlinesegment', 'underleftharpoon', 'underrightharpoon', 'Underleftarrow', 'Underrightarrow',
+			+ (p == '=' ? '[' + t + ']{' + (t2 || '') + '}' : '{' + (t || '') + '}') + (p == '{' && t2 ? '^{\\text{' + t2 + '}}' : ''),
+
+	kxu = (t, p, t2)=>'\\' + (['underline', 'underleftarrow', 'underleftrightarrow', 'underrightarrow', 'underlinesegment', 'underleftharpoon', 'underrightharpoon', 'Underleftarrow', 'Underrightarrow',
 			'underbrace', 'undergroup', 'uhat', 'utilde', 'ucheck', 'xlongequal']['-←↔→I↼⇀⇐⇒{(<~>='.indexOf((p || '-').replace('_', '-'))])
-			+ (p == '=' && t2 ? '[' + t2 + ']' : '{' + (t || '') + '}') + (p == '{' && t2 ? '_{\\text{' + t2 + '}}' : '')
-	},
-	kancel = function (t, p) { return '\\' + (p == '-' ? 'sout' : (p || '') + 'cancel') + '{' + t + '}' },
+			+ (p == '=' && t2 ? '[' + t2 + ']' : '{' + (t || '') + '}') + (p == '{' && t2 ? '_{\\text{' + t2 + '}}' : ''),
+			
+	kancel = (t, p)=>'\\' + (p == '-' ? 'sout' : (p || '') + 'cancel') + '{' + t + '}',
 
-	boxed = function (t) { return '\\boxed{' + t + '}' }, hp = function (t) { return '\\hphantom{' + (t || 0) + '}' },
-	kbox = function (t, p, pfx) { return boxed(kxc(t, p || 'bf', pfx || 'text')) },
+	boxed = t=>'\\boxed{' + t + '}', hp = t=>'\\hphantom{' + (t || 0) + '}',
+	kbox = (t, p, pfx)=>boxed(kxc(t, p || 'bf', pfx || 'text')),
 
-	ksc = function (t) { return isArr(t)?Arrf(ksc,t):SCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t) }, 
-	kdc = function (t) { return isArr(t)?Arrf(kdc,t):DCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t) },
-	ksz = function (t, n) { return '\\' + ['tiny', 'scriptsize', 'footnotesize', 'small', 'normalsize', 'large', 'Large', 'LARGE', 'huge', 'Huge'][(n || 0) + 4] + ' ' + t },
+	ksc = t=>isArr(t)?Arrf(ksc,t):SCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t), 
+	kdc = t=>isArr(t)?Arrf(kdc,t):DCtv('katex0" data-katex0="'+t.replace(/^\$|\$/g,'').trim(), t),
+	ksz = (t, n)=>'\\' + ['tiny', 'scriptsize', 'footnotesize', 'small', 'normalsize', 'large', 'Large', 'LARGE', 'huge', 'Huge'][(n || 0) + 4] + ' ' + t,
 
 
-	kroot = function (t, n) { return root(t, n || '', '', '') },
-	kfrac = function (t, p, tiny) {
+	kroot = (t, n)=>root(t, n || '', '', ''),
+	kfrac = (t, p, tiny)=>{
 		if (t instanceof Array) { return frac(t[0], t[1], tiny || '') }
-		if (p) { return ('' + t).replace(/(\d+|[a-zα-ω])\/(\d+|[a-zα-ω])/ig, function (x) { return kfrac(x, '', tiny || '') }) }
+		if (p) { return ('' + t).replace(/(\d+|[a-zα-ω])\/(\d+|[a-zα-ω])/ig, x=>kfrac(x, '', tiny || '')) }
 		return /\//.test(t) && t.split('/').length==2 ? (t[0] == '-' ? '-' : '') + frac(t.split('/')[0].replace('-', ''), t.split('/')[1], tiny || '') : t
 	},
-	kfraczp = function (t, tiny, T) { return kfrac(zp(t) + (T ? '^{' + T + '}' : ''), 1, tiny || '') },
-	kxAfrac = function (A, p) { return Arrf(function (x) { return kfrac(x, 1) }, A).join(kbr2) },
+	kfraczp = (t, tiny, T)=>kfrac(zp(t) + (T ? '^{' + T + '}' : ''), 1, tiny || ''),
+	kxAfrac = (A, p)=>Arrf(x=>kfrac(x, 1), A).join(kbr2),
 
 
-	sup = function (v, zM) { return arguments.length == 2 ? '^{' + v + '}' : XML.wrapE('sup', v) }, sub = function (v, zM) { return arguments.length == 2 ? '_{' + v + '}' : XML.wrapE('sub', v) },
-	msub = function (m, v, r2l, zM) { var s = SCtv('inblk', v != null ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'); return arguments.length == 4 ? (r2l ? '' : M) + '_{' + v + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + XML.wrapE('sub', v != null ? v : m.substr(1)) + (r2l ? s : '')) },
-	msup = function (m, v, r2l, zM) { var s = SCtv('inblk', v != null ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'); return arguments.length == 4 ? (r2l ? '' : M) + '^{' + v + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + XML.wrapE('sup', v != null ? v : m.substr(1)) + (r2l ? s : '')) },
-	msups = function (A, zM) { return Arrf(arguments.length == 2 ? function (a, b) { return (('' + a).length == 1 ? a : '{' + a + '}') + '^' + (('' + b).length == 1 ? b : '{' + b + '}') } : msup, A, '-cp2') },
-	msubs = function (A, zM) { return Arrf(arguments.length == 2 ? function (a, b) { return (('' + a).length == 1 ? a : '{' + a + '}') + '_' + (('' + b).length == 1 ? b : '{' + b + '}') } : msub, A, '-cp2') },
-	ksups = function (a, n) { return msups(copyA(a, n), '') }, ksubs = function (a, n) { return msubs(copyA(a, n), '') },
-	subsup = function (b, t, zM) { return arguments.length == 3 ? '_' + (('' + b).length == 1 ? b : '{' + b + '}') + '^' + (('' + t).length == 1 ? t : '{' + t + '}') : SCtv('scbox', SCtv('inblk alignl', sub(t) + br + sup(b))) },
-	msubsup = function (m, b, t, r2l, zM) { var s = SCtv('inblk', b ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'), B = (('' + b).length == 1 ? b : '{' + b + '}'); return arguments.length == 5 ? (r2l ? '' : M) + '_' + B + '^{' + t + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + SCtv('inblk alignl', sub(t) + br + sup(b || m.substr(1))) + (r2l ? s : '')) },
-	Msubsup = function (M, b, t) { var s = SCtv('inblk large', M); return SCtv('scbox', s + SCtv('inblk alignl', sub(t) + br + sup(b == null ? '' : b))) },
+	sup = function(v, zM){return arguments.length == 2 ? '^{' + v + '}' : XML.wrapE('sup', v)}, 
+	sub = function(v, zM){return arguments.length == 2 ? '_{' + v + '}' : XML.wrapE('sub', v)},
+	msub = function(m, v, r2l, zM){var s = SCtv('inblk', v != null ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'); return arguments.length == 4 ? (r2l ? '' : M) + '_{' + v + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + XML.wrapE('sub', v != null ? v : m.substr(1)) + (r2l ? s : '')) },
+	msup = function(m, v, r2l, zM){var s = SCtv('inblk', v != null ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'); return arguments.length == 4 ? (r2l ? '' : M) + '^{' + v + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + XML.wrapE('sup', v != null ? v : m.substr(1)) + (r2l ? s : '')) },
+	msups = function(A, zM){return Arrf(arguments.length == 2 ? (a, b)=>(('' + a).length == 1 ? a : '{' + a + '}') + '^' + (('' + b).length == 1 ? b : '{' + b + '}') : msup, A, '-cp2')},
+	msubs = function(A, zM){return Arrf(arguments.length == 2 ? (a, b)=>(('' + a).length == 1 ? a : '{' + a + '}') + '_' + (('' + b).length == 1 ? b : '{' + b + '}') : msub, A, '-cp2')},
+	ksups = (a, n)=>msups(copyA(a, n), ''), 
+	ksubs = (a, n)=>msubs(copyA(a, n), ''),
+	subsup = function(b, t, zM){return arguments.length == 3 ? '_' + (('' + b).length == 1 ? b : '{' + b + '}') + '^' + (('' + t).length == 1 ? t : '{' + t + '}') : SCtv('scbox', SCtv('inblk alignl', sub(t) + br + sup(b)))},
+	msubsup = function(m, b, t, r2l, zM){var s = SCtv('inblk', b ? m : m[0]), M = (('' + m).length == 1 ? m : '{' + m + '}'), B = (('' + b).length == 1 ? b : '{' + b + '}'); return arguments.length == 5 ? (r2l ? '' : M) + '_' + B + '^{' + t + '}' + (r2l ? M : '') : SCtv('scbox', (r2l ? '' : s) + SCtv('inblk alignl', sub(t) + br + sup(b || m.substr(1))) + (r2l ? s : '')) },
+	Msubsup = (M, b, t)=>{var s = SCtv('inblk large', M); return SCtv('scbox', s + SCtv('inblk alignl', sub(t) + br + sup(b == null ? '' : b))) },
 
-	subReg = function (v, b, u) { var t = u ? v.replace(u, function (t) { return sup(t) }) : v; return b ? t.replace(b, function (t) { return sub(t) }) : t },
+	subReg = (v, b, u)=>{var t = u ? v.replace(u, sup) : v; return b ? t.replace(b, sub) : t },
 
-	scRed = function (v) { return SCtv('red', v) }, scGain = function (v) { return SCtv('gainsboro', v) }, scHotk = function (v) { return SCtv('hotk', v) },
-	sci = function () { var ar = arguments, s = Array().join.apply(ar); return SCtv('inblk', s) },
-	scit = function (v) { return SCtv('bdt inblk notm', v) }, scib = function (v) { return SCtv('bdb inblk notm', v) }, scil = function (v) { return SCtv('bdl inblk notm', v) }, scir = function (v) { return SCtv('bdr inblk notm', v) },
-	scbt = function (v, brad) { return SCtv('bdb bdt' + (arguments.length > 1 ? ' brad' : ''), v) }, sclr = function (v) { return SCtv('bdl bdr' + (arguments.length > 1 ? ' brad' : ''), v) },//参数brad 是border radius
-	scbox = function (v, b) { return SCtv('bdl bdr bdb bdt scbox ' + (b || ''), v) }, scblr = function (v, b) { return SCtv('bdl bdr bdb scbox inblk' + (b || ''), v) }, sctlr = function (v, b) { return SCtv('bdl bdr bdt scbox inblk' + (b || ''), v) },
-	tmb = function (t, m, b, v) { return SCtv('inblk alignc', sub(t) + br + m + br + sup(b)) + sci(v) },//tmb=function(t,m,b,v){return SCtv('inblk alignc',SCtv('small',t)+DCtv('large',m)+SCtv('vat small',b))+sci(v)},
-	lim = function (n, x, v, ud, zM) {
+	scRed = v=>SCtv('red', v), scGain = v=>SCtv('gainsboro', v), scHotk = v=>SCtv('hotk', v),
+	sci = function(){ var ar = arguments, s = Array().join.apply(ar); return SCtv('inblk', s) },
+	scit = v=>SCtv('bdt inblk notm', v),
+	scib = v=>SCtv('bdb inblk notm', v),
+	scil = v=>SCtv('bdl inblk notm', v),
+	scir = v=>SCtv('bdr inblk notm', v),
+	scbt = function(v, brad){return SCtv('bdb bdt' + (arguments.length > 1 ? ' brad' : ''), v)}, 
+	sclr = function(v){return SCtv('bdl bdr' + (arguments.length > 1 ? ' brad' : ''), v)},	//参数brad 是border radius
+	scbox = (v, b)=>SCtv('bdl bdr bdb bdt scbox ' + (b || ''), v), scblr = (v, b)=>SCtv('bdl bdr bdb scbox inblk' + (b || ''), v), sctlr = (v, b)=>SCtv('bdl bdr bdt scbox inblk' + (b || ''), v),
+	tmb = (t, m, b, v)=>SCtv('inblk alignc', sub(t) + br + m + br + sup(b)) + sci(v),
+	lim = function(n, x, v, ud, zM){
 		var x0 = (x == null ? '' : '' + x).replace(/[\+-]$/, ''), lr = /[\+-]$/.test(x) && !/^[\+-]/.test(x) ? x.substr(-1) : '', t5 = arguments.length >= 5,
 		ntox0 = '{' + n + ' \\to ' + (x0 || (/^[\+-]$/.test(x) ? x : '') + '∞') + (lr ? '^' + lr : '') + '}'; //ud=u(p) d(own) s(up) i(nf) ''
 		return t5 ? (/[ud]/.test(ud) ? '\\underset' + [ntox0 + '{\\', 'line{\\lim}}\\,'].join(ud == 'u' ? 'over' : 'under') : '\\lim' + (/[si]/.test(ud) ? (ud == 's' ? 'sup' : 'inf') : '') +
 			'\\limits_' + ntox0) + v : SCtv('inblk alignc', (ud == 'u' ? scit('lim') : (ud == 'd' ? scib('lim') : 'lim')) + br + sup(n + '→' + (x0 || (/^[\+-]$/.test(x) ? x : '') + '∞') + (lr ? sup(lr) : ''))) + (v || '')
 	},
 
-	sum = function (i, b, t, v, p, zM) {
+	sum = function(i, b, t, v, p, zM){
 		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['sum', 'bigcup', 'mathop{+}', 'bigvee', 'sup', 'max', 'bigoplus'][p || 0] + (!zM ? '\\limits' : '') +
 			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
 			v + '}' : SCtv('inblk alignc', sub(t == '+' ? '∞' : t) + br + ['∑', '∪', '+', '⋁', 'sup', 'max', '⊕'][p || 0] + br + sup(i ? i + '=' + b : b)) + sci(v)
 	},
 
-	prod = function (i, b, t, v, p, zM) {
+	prod = function(i, b, t, v, p, zM){
 		return arguments.length >= 6 ? '\\' + (!zM ? 'display' : 'text') + 'style{\\' + ['prod', 'bigcap', 'mathop{×}', 'coprod', 'bigwedge', 'inf', 'min', 'bigodot', 'bigotimes'][p || 0] + (!zM ? '\\limits' : '') +
 			'_{' + (i ? i + '=' + b : (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}' : (b == '-' ? b + '∞' : b))) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') +
 			v + '}' : SCtv('inblk alignc', sub(t == '+' ? '∞' : t) + br + ['∏', '∩', '×', '∐', '∧', 'inf', 'min', '⊙', '⊗'][p || 0] + br + sup(i ? i + '=' + b : b)) + sci(v)
 	},
 
-	intl = function (fA, b, t, d, p, zM) {
+	intl = function(fA, b, t, d, p, zM){
 		var s=/, /.test(d)?'∧':'';
 		if(p==-1){
 			return fA+orifun(b, t)
@@ -1150,7 +1156,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	},
 
 
-	iint = function (fA, b, t, d,p,zM) {
+	iint = (fA, b, t, d,p,zM)=>{
 		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['','int','iint', 'iiint'][p || 2] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:'')) + '}' + (t||t===0  ? '^{' + t + '}' : '') + (isArr(fA)?
@@ -1159,7 +1165,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			zlrA3('\\mathrm{d}{',(d || 'xyz'.substr(0,p || 2).split('').join()).split(','), '}').join(s))))+'}' 
 	},
 
-	oint = function (fA, b, t, d,p,zM) {
+	oint = (fA, b, t, d,p,zM)=>{
 		var s=/, /.test(d)?'∧':'';
 		return  '\\' + (!zM||zM==1 ? 'display' : 'text') + 'style{\\' + ['oint','oint','oiint','oiiint'][p || 0] + (!zM ? '\\nolimits' : (zM==1?'\\limits':'')) +
 			'_{' + (b instanceof Array ? '\\substack{' + b.join('\\\\ ') + '}':(b||b==0?b:'')) + '}' + (t||t===0  ? '^{' + t + '}' : '') +
@@ -1170,16 +1176,15 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 
-	orifun =function(x0,x1){
-		return '\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\ '+x0+'}'
-	},
-	difn = function (f, x, p, g) { var d = (p ? '∂' : '\\mathrm{d}') + ' ', 
+	orifun =(x0,x1)=>'\\LARGE|\\normalsize\\substack{'+(x1||'')+'\\\\\\\\ '+x0+'}',
+
+	difn = (f, x, p, g)=>{var d = (p ? '∂' : '\\mathrm{d}') + ' ', 
 		dx= +g>1?d + (x || 'x'):d,
 		dg = +g>1? '^{' + g + '}' : (isArr(x)?'^{' +x.length+'}':''),
 		dg_= +g>1 ? '^{' + g + '}' : (isArr(x)?x.join(d):(x || 'x'));
 		return ' \\tfrac{' + d + dg + (f || '') + '}{' + dx + dg_ + '}' },
 
-	Opr = function (i, b, t, v, p) { return '\\mathop{' + p + '}\\limits' + '_{' + (i ? i + '=' + b : (b=='-'?'-∞':b)) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') + (v || '') },
+	Opr = (i, b, t, v, p)=>'\\mathop{' + p + '}\\limits' + '_{' + (i ? i + '=' + b : (b=='-'?'-∞':b)) + '}' + (t ? '^{' + (t == '+' ? '∞' : t) + '}' : '') + (v || ''),
 	/* katex 不支持 ⋰ (已使用\iddots 命令修复) ∱∲∳ \idotsint 多重积分 ∫⋅⋅⋅∫ 与MathJax区别
 	
 	 http://www.cnblogs.com/suerchen/p/4833381.html
@@ -1187,8 +1192,8 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 	 https://www.cnblogs.com/Coolxxx/p/5982439.html
 	 */
 
-	mfrac = function (A, zM) { return Arrf(zM ? function (a, b) { return '\\' + (zM || '') + 'frac {\\displaystyle ' + a + '}{\\displaystyle ' + b + '}' } : frac, A, '-cp2') },
-	mfracs = function (A, b, infMid, infEnd, ops, zM) {//连分式 b0+a0/(b1+a1/(b2+a2/...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++
+	mfrac = (A, zM)=>Arrf(zM ? (a, b)=>'\\' + (zM || '') + 'frac {\\displaystyle ' + a + '}{\\displaystyle ' + b + '}': frac, A, '-cp2'),
+	mfracs = function(A, b, infMid, infEnd, ops, zM){//连分式 b0+a0/(b1+a1/(b2+a2/...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++
 		var An = A.length, B = [].concat(b), Bn = b.length, t = '', a6 = arguments.length >= 6;//Bn比An大1，否则如相等，则最外层分式之前无内容
 		if (Bn == An) {
 			B = [''].concat(b);
@@ -1210,7 +1215,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		}
 	},
 
-	mroots = function (A, B, infMid, infEnd, ops, Aisindex, zM) {//连根式 b0+a0√(b1+a1√(b2+a2√...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++	Aisindex指定数组A是根次，而不是倍数
+	mroots = function(A, B, infMid, infEnd, ops, Aisindex, zM){//连根式 b0+a0√(b1+a1√(b2+a2√...)) ops指定连接符序列：+(默认),-,+-,-+,+--,-++	Aisindex指定数组A是根次，而不是倍数
 		var An = A.length, Bn = B.length, t = '', a7 = arguments.length == 7;//Bn比An大1
 		if (Bn == 2) {
 			var op = /^..$/.test(ops) ? ops[0] : (ops || '+').substr(-1);
@@ -1228,21 +1233,20 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		}
 	},
 
-	re = function (t) {
-		return ('' + t).replace(/>=/g, '≥').replace(/<=/g, '≤').replace(/=\//g, '≠').replace(/-=/g, '≡').replace(/≡\//g, '≢')
+	re = t=>('' + t).replace(/>=/g, '≥').replace(/<=/g, '≤').replace(/=\//g, '≠').replace(/-=/g, '≡').replace(/≡\//g, '≢')
 			.replace(/←→|<->/g, '↔').replace(/->/g, '→').replace(/-</g, '←').replace(/↔\//g, '↮').replace(/→\//g, '↛').replace(/←\//g, '↚')
-			.replace(/<=>/g, '⇔').replace(/=>/g, '⇒').replace(/=</g, '⇐').replace(/⇔\//g, '⇎').replace(/⇒\//g, '⇏').replace(/⇐\//g, '⇍')
-	},
-	rel = function (A, rA, style) {//通用模板
+			.replace(/<=>/g, '⇔').replace(/=>/g, '⇒').replace(/=</g, '⇐').replace(/⇔\//g, '⇎').replace(/⇒\//g, '⇏').replace(/⇐\//g, '⇍'),
+
+	rel = (A, rA, style)=>{//通用模板
 		var l = A.length, r = style ? br : ' ', s = '';
-		Arrf(function (t, i) { if (i) { s += r + rA[i - 1] + ' ' + t } else { s = t } }, A)
+		Arrf((t, i)=>{if (i) { s += r + rA[i - 1] + ' ' + t } else { s = t } }, A)
 		return s
 	},
-	binom = function (n, m, p) { return p == 'C' ? 'C_{' + n + '}^{' + m + '}' : (p == 'c' ? '{' + n + ' \\choose ' + m + '}' : '\\' + (p || '') + 'binom{' + n + '}{' + m + '}') },//p=t d '' c (for choose)
-	mod = function (a, b, m, neg, pow, zM) { var a6 = arguments.length == 6, M = ('' + m).length == 1 ? m : '{' + m + '}'; return (isArr(a) ? a.join('≡') : a) + (neg ? (a6 ? kx('≢') : '≢') : '≡') + b + (a6 ? (pow ? ' ~ (\\mathrm{pow} ~ ' + M + ')' : '\\pmod ' + M) : ' (' + (pow ? 'pow' : 'mod') + ' ' + m + ')') },	//'\\not\\equiv '
-	kmod = function (a, b, m, neg, pow) { return mod(a, b, m, neg, pow, '') },
-	imply = function (A, b, single, neg, inv, style) { var isA = isArr(A), s = inv ? (single ? '←' : '⇐') : (single ? '→' : '⇒'), l = A.length, r = style ? br : ' '; return (isArr(A) ? A.slice(0, l - 1).join(r + s + ' ') : A) + r + (neg ? (inv ? (single ? '↚' : '⇍') : (single ? '↛' : '⇏')) : s) + ' ' + (isA ? A[l - 1] : b) },
-	eqv = function (A, b, n, neg, style, m) {/*
+	binom = (n, m, p)=>p == 'C' ? 'C_{' + n + '}^{' + m + '}' : (p == 'c' ? '{' + n + ' \\choose ' + m + '}' : '\\' + (p || '') + 'binom{' + n + '}{' + m + '}'),//p=t d '' c (for choose)
+	mod = function(a, b, m, neg, pow, zM){var a6 = arguments.length == 6, M = ('' + m).length == 1 ? m : '{' + m + '}'; return (isArr(a) ? a.join('≡') : a) + (neg ? (a6 ? kx('≢') : '≢') : '≡') + b + (a6 ? (pow ? ' ~ (\\mathrm{pow} ~ ' + M + ')' : '\\pmod ' + M) : ' (' + (pow ? 'pow' : 'mod') + ' ' + m + ')') },	//'\\not\\equiv '
+	kmod = (a, b, m, neg, pow)=>mod(a, b, m, neg, pow, ''),
+	imply = (A, b, single, neg, inv, style)=>{var isA = isArr(A), s = inv ? (single ? '←' : '⇐') : (single ? '→' : '⇒'), l = A.length, r = style ? br : ' '; return (isArr(A) ? A.slice(0, l - 1).join(r + s + ' ') : A) + r + (neg ? (inv ? (single ? '↚' : '⇍') : (single ? '↛' : '⇏')) : s) + ' ' + (isA ? A[l - 1] : b) },
+	eqv = (A, b, n, neg, style, m)=>{/*
 	equivalent等价关系
 	n是符号编号
 	0 =
@@ -1266,14 +1270,14 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		var c = ['=↔⇔≡~≈≋≃≅', '≠↮⇎≢≁≉ ≄≇'], isA = isArr(A), s = c[0][n || 0], l = A.length, r = style ? br : ' ';
 		return (isA ? A.slice(0, l - 1).join(r + s + ' ') : A) + r + (neg ? c[1][n || 0] : s) + ' ' + (isA ? A[l - 1] : b) + (n == 3 && m ? ' (mod ' + m + ')' : '')
 	},
-	eq0 = function (A, n, m) {/*
+	eq0 = (A, n, m)=>{/*
 	等于0
 	
 	参数n指定等号样式，当n=3时，m是mod m
 */
 		return eqv(isArr(A) ? [].concat(A, 0) : [A, 0], '', n) + (n == 3 ? ' \\pmod {' + m + '}' : '')	//' (mod '+m+')'
 	},
-	lt = function (A, b, nm, style) {/*
+	lt = (A, b, nm, style)=>{/*
 	nm是数组[连续的符号编号, 类别序号]
 		符	号	编	号
 		0	1	2	3	4	5	6	7	8	9	a	b	c	d	e	f	g	h	i	j
@@ -1286,9 +1290,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 */
 		var c = [], isA = isArr(A), r = style ? br : ' ';
-		return isA ? rel(A, Arrf(function (t) { return c[nm[1]][+t || parseInt(t, 36)] }, nm[0].split('')), style) : A + r + c[nm ? nm[1] : 0][nm ? nm[0] || parseInt(+nm[0], 36) : 0] + ' ' + b
+		return isA ? rel(A, Arrf(t=>c[nm[1]][+t || parseInt(t, 36)], nm[0].split('')), style) : A + r + c[nm ? nm[1] : 0][nm ? nm[0] || parseInt(+nm[0], 36) : 0] + ' ' + b
 	},
-	gt = function (A, b, nm, style) {/*
+	gt = (A, b, nm, style)=>{/*
 	nm是数组[连续的符号编号, 类别序号]
 		符	号	编	号
 		0	1	2	3	4	5	6	7	8	9	a	b	c	d	e	f	g	h	i	j
@@ -1299,10 +1303,10 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 */
 		var c = [], isA = isArr(A), r = style ? br : ' ';
-		return isA ? rel(A, Arrf(function (t) { return c[nm[1]][+t || parseInt(t, 36)] }, nm[0].split('')), style) : A + r + c[nm ? nm[1] : 0][nm ? nm[0] || parseInt(+nm[0], 36) : 0] + ' ' + b
+		return isA ? rel(A, Arrf(t=>c[nm[1]][+t || parseInt(t, 36)], nm[0].split('')), style) : A + r + c[nm ? nm[1] : 0][nm ? nm[0] || parseInt(+nm[0], 36) : 0] + ' ' + b
 
 	},
-	aligned=function(A,leftElement){
+	aligned=(A,leftElement)=>{
 		var a=[].concat(A);
 		if(leftElement){
 			a[1]=a[0]+' & '+a[1];
@@ -1315,9 +1319,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		'\\end{aligned}'].join(brn)
 	},
 
-	eq = function (t, m, b) { var k = kos(m); return (t || b) ? '\\' + k + (b ? '[' + b + ']' : '') + '{' + (t || '') + '}' : (/x/.test(k) ? '\\' + k : k) },
-	eqM = function (A, m) { return A.join(eq('', '', '\\mod ' + m)) },
-	Eq = function (A, noteA, style, eqClass) {
+	eq = (t, m, b)=>{var k = kos(m); return (t || b) ? '\\' + k + (b ? '[' + b + ']' : '') + '{' + (t || '') + '}' : (/x/.test(k) ? '\\' + k : k) },
+	eqM = (A, m)=>A.join(eq('', '', '\\mod ' + m)),
+	Eq = (A, noteA, style, eqClass)=>{
 		/*
 		A 等值	数组元素，如也是数组，则在等号两侧
 		noteA 备注
@@ -1354,7 +1358,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		}
 		return isline ? a.join(' ') : '\\begin{aligned}' + a.join(' \\\\ ') + ' \\end{aligned}'
 	},
-	EqA = function (A, lr, splitter) {/* 对齐方程组(不等式组)
+	EqA = (A, lr, splitter)=>{/* 对齐方程组(不等式组)
 	A是二维数组(已按对齐要求分割),或者一维数组(方程的数组,需按splitter分割)
 	lr 指定大括号0{ 1} 2{} 3''
 	splitter是对齐标志(正则表达式) 默认按多元一次线性方程(或不等式)组	split('123x+4y=23',/[a-z≤≥<>=≠≡≢]/g)
@@ -1366,7 +1370,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		} else {
 			var spA = A.join('').replace(/[^a-z]/g, '').split('').sort().join('').replace(/(.)\1+/g, '$1').split('').concat('=');	//Arrf(String.fromCharCode,seqA(97,26))
 			c = spA.length;
-			Arrf(function (x, i) {
+			Arrf((x, i)=>{
 
 				B[i] = split(kx(x), sp, 1);
 				if (B[i][0].length != c) {
@@ -1391,7 +1395,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			c *= 2;
 
 		}
-		return s0 + '\\begin{alignedat}{' + c + '}' + Arrf(function (x) { return x.join(' & ') }, B).join(kbr) + '\\end{alignedat}' + s1
+		return s0 + '\\begin{alignedat}{' + c + '}' + Arrf(x=>x.join(' & '), B).join(kbr) + '\\end{alignedat}' + s1
 		/*
 		   10&x &  +3 &y & =& 0\\
 		   3&x & + 12 &  y & =&1 0 \\
@@ -1402,7 +1406,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 	},
-	Table = function (thead, t, bd, tbodyClass, theadClass) {	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
+	Table = (thead, t, bd, tbodyClass, theadClass)=>{	//bd 指定边框风格（或其他class） thead是数组，末项（n>1时）是列标题，前n-1项是行标题
 		/*
 			bd：表格class（控制表格边框 或 水平对齐）
 			
@@ -1467,9 +1471,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 		var th = '', b = '</tbody></table>', colh = '', edi = /edit/.test(bd),
 			bds = /dash|dot|dou|set|ridge|solid/.test(bd) ? bd.match(/solid|dash|dot|double|groove|inset|outset|ridge/g).join(' ') : '',
-			span=/spani\d+j\d+/.test(bd)?Arrf(function(x){return Arrf(Number,x.split(/\D+/g))}, bd.match(/spani\d+j\d+i\d+j\d+/g)):'',
-			Span=/Spani\d+j\d+/.test(bd)?Arrf(function(x){return Arrf(Number,x.split(/\D+/g))}, bd.match(/Spani\d+j\d+i\d+j\d+/g)):'',
-			r = [], isA = t instanceof Array, A = isA ? t : t.split('\n'), n = A.length, m = (isA ? (n?A[0]:[]) : A[0].split('\t')).length;
+			span=/spani\d+j\d+/.test(bd)?Arrf(x=>Arrf(Number,x.split(/\D+/g)), bd.match(/spani\d+j\d+i\d+j\d+/g)):'',
+			Span=/Spani\d+j\d+/.test(bd)?Arrf(x=>Arrf(Number,x.split(/\D+/g)), bd.match(/Spani\d+j\d+i\d+j\d+/g)):'',
+			r = [], isA = t instanceof Array, A = isA ? t : t.split(brn), n = A.length, m = (isA ? (n?A[0]:[]) : A[0].split(brt)).length;
 
 		if (thead) {
 			var thn = thead.length;
@@ -1521,7 +1525,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 
 			for (var i = 0; i < n; i++) {
-				var ri = [], Ai = isA ? A[i] : A[i].split('\t');
+				var ri = [], Ai = isA ? A[i] : A[i].split(brt);
 				Arr.push(Ai)
 			}
 
@@ -1609,7 +1613,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 
 		//console.log(span);
 		for (var i = 0; i < n; i++) {
-			var ri = [], Ai = isA ? A[i] : A[i].split('\t');
+			var ri = [], Ai = isA ? A[i] : A[i].split(brt);
 			for (var j = 0; j < m; j++) {
 				var c = '';
 				if (bd) {
@@ -1696,7 +1700,7 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 		}
 		return /scroll/.test(bd) ? DCtv('scroll', a + r.join('') + b) : a + r.join('') + b
 	},
-	mtrx = function (v, lr, lcr, spacing, parts) {/* 参数 lr, lcr，
+	mtrx = function(v, lr, lcr, spacing, parts){/* 参数 lr, lcr，
 		在latex下 用于设置括号类型：
 matrix命令下	p() b[] B{} v|| V‖‖ 
 array命令下		()	[]	\{\}	||	\|
@@ -1718,7 +1722,7 @@ array命令下		()	[]	\{\}	||	\|
 		var al = arguments.length, r = v.length, c = (v[0] instanceof Array ? v[0] : '1').length, I = [], J = [], A;
 		if (parts) {
 
-			A = Arrf(function (t) { return t instanceof Array ? t.join(' & ') : t }, v);
+			A = Arrf(t=>t instanceof Array ? t.join(' & ') : t, v);
 			if (/I/.test(parts)) {
 				I = Arrf(Number, parts.match(/I\d+(_\d+)*/g)[0].substr(1).split('_'));
 			}
@@ -1743,13 +1747,13 @@ array命令下		()	[]	\{\}	||	\|
 			}
 			if (/[CD]/.test(parts)) {// bug 0 1 0 0 0 0 1 0 0 0 0 1 a b c d&CD3_1
 				var D = antidiff(Arrf(Number, parts.match(/[CD]+\d+(_\d+)*/g)[0].replace(/[CD]/g, '').split('_'))), D2 = [].concat(D);
-				Arrf(function (t) { uniPush(D, t, 1) }, I);
-				Arrf(function (t) { uniPush(D2, t, 1) }, J);
+				Arrf(t=>{uniPush(D, t, 1) }, I);
+				Arrf(t=>{uniPush(D2, t, 1) }, J);
 				I = D;
 				if (/C/.test(parts)) {
 					var s = D.slice(-1)[0];
 					
-					J = Arrf(function (x) { return s - x }, D2).reverse();
+					J = Arrf(x=>s - x, D2).reverse();
 					J = J.slice(1).concat(s);
 				} else {
 					J = D2;
@@ -1764,7 +1768,7 @@ array命令下		()	[]	\{\}	||	\|
 				if (J.slice(-1)[0] != c) {
 					J.push(c);
 				}
-				J = Arrf(function (t) { return 'c'.repeat(t) }, diff(J));
+				J = Arrf(t=>'c'.repeat(t), diff(J));
 				J = concat(J.slice(0, J.length - 1), vline).join('') + J.slice(-1)[0];
 			} else {
 				J = 'c'.repeat(c);
@@ -1775,25 +1779,24 @@ array命令下		()	[]	\{\}	||	\|
 			}
 
 
-			//	Arrf(function(t){A[t]='\\hline '+A[t]},I);
 
-			Arrf(function (t, i) { A[t] = '\\h' + ((hline[i] || hline[0]) == '.' ? 'dash' : '') + 'line ' + A[t] }, I);
-			//	console.log(J);
+			Arrf((t, i)=>{A[t] = '\\h' + ((hline[i] || hline[0]) == '.' ? 'dash' : '') + 'line ' + A[t] }, I);
+
 			return (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\left' + (lr || '[') + ' \\begin{array}{' + J + '}' +
 				A.join(' \\\\ ') +
 				' \\end{array}' + ' \\right' + (lcr || ']')
 
 		}
 
-		return al > 3 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{' + (lr == '.' ? '' : (lr || 'b')) + 'matrix}' + Arrf(function (x) { return x instanceof Array ? x.join(' & ') : x }, v).join(' \\\\ ') + ' \\end{' + (lcr == '.' ? '' : (lcr || 'b')) +
+		return al > 3 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{' + (lr == '.' ? '' : (lr || 'b')) + 'matrix}' + Arrf(x=>x instanceof Array ? x.join(' & ') : x, v).join(' \\\\ ') + ' \\end{' + (lcr == '.' ? '' : (lcr || 'b')) +
 			'matrix}' : SCtv('mtrx' + (lr || '') + ' inblk align' + (lcr || lr || 'c'), v instanceof Array ? Table('', v) : v)
 	},
-	zmtrx = function (A, spacing, parts,lr,lcr) { return mtrx(A, lr||'', lcr||'', spacing, parts) },
-	kmtrx = function (A, fracOff, parts,lr,lcr) { var t = mtrx((Mfn ? Arrf(function (a) { return isArr(a) ? Arrf(function (x) { return Mfn.fromStr(x).toStr(1) }, a) : Mfn.fromStr(a).toStr(1) }, A) : A), lr||'', lcr||'', /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
+	zmtrx = (A, spacing, parts,lr,lcr)=>mtrx(A, lr||'', lcr||'', spacing, parts),
+	kmtrx = (A, fracOff, parts,lr,lcr)=>{var t = mtrx((Mfn ? Arrf(a=>isArr(a) ? Arrf(x=>Mfn.fromStr(x).toStr(1), a) : Mfn.fromStr(a).toStr(1), A) : A), lr||'', lcr||'', /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', parts); return fracOff ? t : kfrac(t, 1, 't') },
 
-	zstrx = function (t, p) { return Arrf(function (x) { return ZLR(x, '', p == undefined ? ' ' : '') }, t.split(';')) },
-	zarray = function (A, spacing, parts) { return mtrx(A, '.', '.', spacing, parts) },
-	tableT = function (A) {/* Transpose	转置 */
+	zstrx = (t, p)=>Arrf(x=>ZLR(x, '', p == undefined ? ' ' : ''), t.split(';')),
+	zarray = (A, spacing, parts)=>mtrx(A, '.', '.', spacing, parts),
+	tableT = A=>{/* Transpose	转置 */
 		var B = [], m = A.length, n = A[0].length;
 		for (var j = 0; j < n; j++) {
 			B.push([]);
@@ -1803,7 +1806,7 @@ array命令下		()	[]	\{\}	||	\|
 		}
 		return B
 	},
-	tableL = function (A, row, col) {/* 一维数组Line	转成二维表格（指定列数或行数） 分组 */
+	tableL = (A, row, col)=>{/* 一维数组Line	转成二维表格（指定列数或行数） 分组 */
 		var B = [], l = A.length, n = col || Math.ceil(l / row), m = row || Math.ceil(l / col), c = 0;
 
 		for (var i = 0; i < m; i++) {
@@ -1818,56 +1821,85 @@ array命令下		()	[]	\{\}	||	\|
 		}
 		return B
 	},
-	ztable = function (A, nobox, spacing) { var t = mtrx(A, '.', '.', spacing || '', 'rc  _'); return nobox ? t : boxed(t) },
-	det = function (A, spacing, tiny) { var al = arguments.length; return al >= 2 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{vmatrix}' + Arrf(function (x) { return kfrac(x.join(' & '), 1, tiny || '') }, A).join(' \\\\ ')
-		.replace(/⋰/g,'\\iddots') + '\\end{vmatrix}' : SCtv('bdl bdr inblk alignc', Table('', A)) },
-	zdet = function (A, spacing) { return det(Arrf(ZLR, A), spacing) },
-	kdet = function (A, fracOff) { return det(A, /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', fracOff ? '' : 't') },
 
-	lp = function (l, v, zM) { var t = arguments.length == 1, t3 = arguments.length >= 3; return zM ? '\\left' + (l || '\\{') + v + '\\right.' : (!t && !l ? '' : SCtv('inblk xxlarge', t ? '{' : l)) + SCtv('inblk alignl', t ? l : v) },
-	rp = function (v, r, zM) { return arguments.length == 3 ? '\\left.' + v + '\\right' + (r || '\\{') : SCtv('inblk alignr', v) + (r === '' ? '' : SCtv('inblk xxlarge', r || '}')) },
-	lrp = function (l, v, r, zM) { var t = arguments.length == 1, t4 = arguments.length >= 4; return t4 ? (l || '\\' + (zM || 'bigg') + 'l(') + v + (r || '\\' + (zM || 'bigg') + 'r)') : SCtv('inblk xxlarge', t ? '(' : l) + sci(t ? l : v) + SCtv('inblk xxlarge', t ? ')' : r) },
-	lrpfrac = function (a, b, l, r) { return lrp(l || '', frac(a, b, 'd'), r || '', '') }, genfrac = function (a, b, l, r, size, linethick) { return '\\genfrac' + (l || '(') + (r || ')') + '{' + (linethick === undefined ? '' : linethick + 'pt') + '}{' + (size || 0) + '}{' + a + '}{' + b + '}' },
-	zp = function (v, c, l, r) {
+	tableAug = function(){/* 二维数组拼接 */
+
+		var As=arguments, A = As[0], l = As.length, n = A.length, m=A[0].length, B=[].concat(A);
+
+		for (var k = 1; k < l; k++) {
+			var a = As[k];
+			for (var j = 0; j < n; j++) {
+				B[j]=B[j].concat(a[j])
+			}
+		}
+		return B
+	},
+
+	tableCut = (A,r,c)=>{/* 二维数组剪切，按每r行，或每c列，重新拼接，重组 */
+		var B=[], m=A.length, n=A[0].length;
+		if(r){
+			B=subMtrx(A,1, r, 1, n);
+			for (var i = 1; i < n/r; i++) {
+				B=tableAug(B, subMtrx(A,r*i+1, r*(i+1), 1, n));
+			}
+
+		}else{
+			for (var i = 0; i < n/c; i++) {
+				B=B.concat(subMtrx(A,1,m, c*i+1, c*(i+1)));
+			}
+		}
+		return B
+
+	},
+
+
+
+	ztable = (A, nobox, spacing)=>{var t = mtrx(A, '.', '.', spacing || '', 'rc  _'); return nobox ? t : boxed(t) },
+	det = function(A, spacing, tiny){var al = arguments.length; return al >= 2 ? (spacing?'\\def\\arraystretch{'+spacing+'}':'')+'\\begin{vmatrix}' + Arrf(x=>kfrac(x.join(' & '), 1, tiny || ''), A).join(' \\\\ ')
+		.replace(/⋰/g,'\\iddots') + '\\end{vmatrix}' : SCtv('bdl bdr inblk alignc', Table('', A)) },
+	zdet = (A, spacing)=>det(Arrf(ZLR, A), spacing),
+	kdet = (A, fracOff)=>det(A, /frac/.test(A) || !fracOff && /\//.test(A) ? 1.5 : '', fracOff ? '' : 't'),
+
+	lp = function(l, v, zM){var t = arguments.length == 1, t3 = arguments.length >= 3; return zM ? '\\left' + (l || '\\{') + v + '\\right.' : (!t && !l ? '' : SCtv('inblk xxlarge', t ? '{' : l)) + SCtv('inblk alignl', t ? l : v) },
+	rp = function(v, r, zM){return arguments.length == 3 ? '\\left.' + v + '\\right' + (r || '\\{') : SCtv('inblk alignr', v) + (r === '' ? '' : SCtv('inblk xxlarge', r || '}'))},
+	lrp = function(l, v, r, zM){var t = arguments.length == 1, t4 = arguments.length >= 4; return t4 ? (l || '\\' + (zM || 'bigg') + 'l(') + v + (r || '\\' + (zM || 'bigg') + 'r)') : SCtv('inblk xxlarge', t ? '(' : l) + sci(t ? l : v) + SCtv('inblk xxlarge', t ? ')' : r) },
+	lrpfrac = (a, b, l, r)=>lrp(l || '', frac(a, b, 'd'), r || '', ''), genfrac = (a, b, l, r, size, linethick)=>'\\genfrac' + (l || '(') + (r || ')') + '{' + (linethick === undefined ? '' : linethick + 'pt') + '}{' + (size || 0) + '}{' + a + '}{' + b + '}',
+	zp = (v, c, l, r)=>{
 		if (v === '') { return '' } var A = ['(', ')', '[', ']', '|', '/', '\\{', '\\}', '\\|', '\\langle', '\\rangle', '\\backslash', '\\lfloor', '\\rfloor', '\\lceil', '\\rceil', '\\uparrow', '\\updownarrow', '\\downarrow', '\\Uparrow', '\\Updownarrow', '\\Downarrow'],
 			t = '()[]|/{}‖<>\\⌊⌋⌈⌉↑↕↓⇑⇕⇓';
 		return lrp('\\left' + (c ? (A[t.indexOf(c[0])] || c[0]) : (l || '(')) + ' ', v, '\\right' + (c ? (A[t.indexOf(c[1] || c[0])] || c[0]) : (r || ')')) + ' ', '')
 	},
-	pp = function (v, c, l, r) { if (v === '') { return '' } return (c ? c[0] : (l || '(')) + v + (c ? c[1] : (r || ')')) },
-	big = function (size, lr, lmr) {return '\\'+(['big','Big','bigg','Bigg'][size||0]+(lmr||''))+'()[]{}'[lr||0].replace(/[\{\}]/g,'\\$&') },
-	frac = function (t, b, zM) { var nob = b == undefined, t3 = arguments.length >= 3; return t3 ? '\\' + (/^[td]$/.test(zM) ? zM : '') + 'frac{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + t + '}{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + b + '}' : SCtv('inblk alignc', SCtv('alignc', nob ? t[0] : t) + DCtv('fracline') + SCtv('alignc', nob ? t[1] : b)) },
+	pp = (v, c, l, r)=>{if (v === '') { return '' } return (c ? c[0] : (l || '(')) + v + (c ? c[1] : (r || ')')) },
+	big = (size, lr, lmr)=>'\\'+(['big','Big','bigg','Bigg'][size||0]+(lmr||''))+'()[]{}'[lr||0].replace(/[\{\}]/g,'\\$&'),
+	frac = function(t, b, zM){var nob = b == undefined, t3 = arguments.length >= 3; return t3 ? '\\' + (/^[td]$/.test(zM) ? zM : '') + 'frac{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + t + '}{' + (zM == 't' ? '' : '\\displaystyle{}') + (zM == 'p' ? '∂' : '') + b + '}' : SCtv('inblk alignc', SCtv('alignc', nob ? t[0] : t) + DCtv('fracline') + SCtv('alignc', nob ? t[1] : b)) },
 
-	root = function (t, n, s, zM) {
+	root = function(t, n, s, zM){
 		return arguments.length >= 4 ? '\\sqrt' + (n && +n != 2 ? '[' + n + ']' : '') + '{' + t + '}' : SCtv('rootleft inblk notm" data-size="' + (s || 1), DCtv('rootleftline" data-index="' +
 			(n && !/^[234]$/.test(n) ? n : '')) +
 			SCtv('symbol', /^[34]$/.test(n) ? '∛∜'[+n - 3] : '√')) + sci(DCtv('fracline') + t)
 	},
 
-	piece = function (A, r) { return arguments.length >= 2 ? mtrx(A, ['\\{', '.', '\\{'][+r], (+r ? '\\}' : '.'), '', ' ') : '\\begin{cases} ' + (A[0] instanceof Array ? Arrf(function (a) { return a[0] + (a[1] ? ' & ' + a[1] : '') }, A) : A).join(' \\\\ ') + ' \\end{cases}' },
+	piece = function(A, r){return arguments.length >= 2 ? mtrx(A, ['\\{', '.', '\\{'][+r], (+r ? '\\}' : '.'), '', ' ') : '\\begin{cases} ' + (A[0] instanceof Array ? Arrf(a=>a[0] + (a[1] ? ' & ' + a[1] : ''), A) : A).join(' \\\\ ') + ' \\end{cases}'},
 
 
 
-	sceg = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || '') , XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	sceg2 = function (s, substr, hiddenpre, hiddensuf) { var v = '' + s; return SCtv('eg eg2" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || ''), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	scegj = function (s, substr, c) { var v = '' + s; return SCtv('eg js' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="' + fnq('' + s), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	scegc = function (s, substr, c) { var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
-	scegn = function (s, substr, c) { var v = '' + s; return SCtv('eg node' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="'+s, XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	sceg = (s, substr, hiddenpre, hiddensuf)=>{var v = '' + s; return SCtv('eg" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || '') , XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	sceg2 = (s, substr, hiddenpre, hiddensuf)=>{var v = '' + s; return SCtv('eg eg2" tip=copy2input data-eg="' + (hiddenpre || '') + fnq('' + s)+ (hiddensuf || ''), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	scegj = (s, substr, c)=>{var v = '' + s; return SCtv('eg js' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="' + fnq('' + s), XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	scegc = (s, substr, c)=>{var v = '' + s; return SCtv('eg' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="&lt;' + fnq('' + s) + ' /&gt;&&', XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
+	scegn = (s, substr, c)=>{var v = '' + s; return SCtv('eg node' + (c ? ' ' + c : '') + '" tip=copy2input data-eg="'+s, XML.encode(typeof substr == 'number' ? (substr < 0 ? v.substr(substr) : v.substr(0, substr)) : v)) },
 	
-	zMath = function (v) { return SCtv('zMath" title="' + v, v) },
+	zMath = v=>SCtv('zMath" title="' + v, v),
 	
 	begin={
-		cd:function(A){
-			return '\\begin{CD}\n'+A.map((i,ii)=>{return i.map((j,jj)=>{return (ii%2 ^ jj%2?'@':'')+j}).join(' ')}).join(kbr+brn)+'\n\\end{CD}'
-		},
+		cd:A=>'\\begin{CD}\n'+A.map((i,ii)=>{return i.map((j,jj)=>{return (ii%2 ^ jj%2?'@':'')+j}).join(' ')}).join(kbr+brn)+'\n\\end{CD}',
 
-		xy:function(A){// sonoisa.github.io/xyjax-v3/xyjax-v3.html
-			return '\\begin{xy}\n\\xymatrix{'+A.join(kbr+brn+'& ')+'\n}\n\\end{xy}'
-		},
+		xy:A=>'\\begin{xy}\n\\xymatrix{'+A.join(kbr+brn+'& ')+'\n}\n\\end{xy}', // sonoisa.github.io/xyjax-v3/xyjax-v3.html
+		
 
-		tikzcd:function(NodeA,ArrowA){
-			return '\\begin{tikzcd}\n'+NodeA.map(i=>i.join(' & ')).join(kbr+brn)+
-				+'\n'+ArrowA.map(i=>'\\arrow['+i+']').join(brn)+'\n\\end{tikzcd}'
-		}
+		tikzcd:(NodeA,ArrowA)=>'\\begin{tikzcd}\n'+NodeA.map(i=>i.join(' & ')).join(kbr+brn)+
+				+brn+ArrowA.map(i=>'\\arrow['+i+']').join(brn)+'\n\\end{tikzcd}'
+		
 
 	}
 	
@@ -1878,7 +1910,7 @@ array命令下		()	[]	\{\}	||	\|
 
 var FNS = {
 	'share': 'addthis Share.ico'
-}, Random = function (n, digits) {//从1～n中随机选1个数字		指定digits，则随机给出一个n位10进制数（文本形式）
+}, Random = (n, digits)=>{//从1～n中随机选1个数字		指定digits，则随机给出一个n位10进制数（文本形式）
 	if (digits) {
 		var s = '' + Math.round(Math.random() * (10 - 1) + 1);
 		for (var i = 1; i < n; i++) {
@@ -1887,7 +1919,7 @@ var FNS = {
 		return s
 	}
 	return Math.round(Math.random() * (n - 1) + 1)
-}, RandomColor = function (i) {
+}, RandomColor = i=>{
 	var c = '#' + ('00000' + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).substr(-6);
 	if (i > 1) {
 		return [c].concat(RandomColor(i - 1))
@@ -1900,9 +1932,9 @@ var FNS = {
 function zlr(pre, s, sep) { var t = (sep === undefined ? ' ' : sep) + pre; return pre + s.split(' ').join(t) }
 function zlr2(s, suf, sep) { var t = suf + (sep === undefined ? ' ' : sep); return s.split(' ').join(t) + suf }
 function zlr3(pre, s, suf, sep) { return zlr(pre, zlr2(s, suf), sep) }
-function zlrA(pre, A) { return Arrf(function (t) { return pre + t }, A) }
-function zlrA2(A, suf) { return Arrf(function (t) { return t + suf }, A) }
-function zlrA3(pre, A, suf) { return Arrf(function (t) { return pre + t + suf }, A) }
+function zlrA(pre, A) { return Arrf(t=>pre + t, A) }
+function zlrA2(A, suf) { return Arrf(t=>t + suf, A) }
+function zlrA3(pre, A, suf) { return Arrf(t=>pre + t + suf, A) }
 
 
 function ZLR(s0, s1, s) {
@@ -1920,7 +1952,7 @@ function ZLR(s0, s1, s) {
 	}
 }
 function copyA(s, n) {
-	//return ZLR(s+'\n',n).trim().split('\n')
+
 	var a = [];
 	for (var i = 0; i < n; i++) {
 		a.push(s);
@@ -1946,7 +1978,7 @@ function pathTxt(t, single) {
 }
 function replaceNodeInner(str,node,f,ignoreCase){
 	return str.replace(new RegExp('<'+node+'>([\\s\\S](?!<\\/'+node+'>))+[\\s\\S]?<\\/'+node+'>','g'+(ignoreCase?'i':'')),
-		function(t){var nl=node.length;return f(t.substr(nl+2,t.length-nl*2-5).trim())}
+		t=>{var nl=node.length;return f(t.substr(nl+2,t.length-nl*2-5).trim())}
 	);
 }
 
@@ -2016,7 +2048,7 @@ function titleRe(t) { document.title = t }
 
 function nodeFromSzl(node) {
 	var t = $(node);
-	$('iframe').each(function () {
+	$('iframe').each(function() {
 		try {
 			//if(this.contentDocument){
 			t = t.add($(this.contentDocument.body).find(node));
@@ -2063,11 +2095,11 @@ function uniPush(A, x, ord) {//ord指定按序插入：0不考虑原数组是否
 	}
 }
 function attr2dataset(t) {
-	return t.replace(/data-(.+)/, 'dataset.$1').replace(/-[^-]+/g, function (a) { return a.substr(1, 1).toUpperCase() + a.substr(2) })
+	return t.replace(/data-(.+)/, 'dataset.$1').replace(/-[^-]+/g, a=>a.substr(1, 1).toUpperCase() + a.substr(2))
 }
 function urlArr(jQExp, attr, attr2) {
 	var jQ = jQExp || 'a[href]:has(img)', t = [], a, s;
-	nodeFromSzl(jQ).each(function () {
+	nodeFromSzl(jQ).each(function() {
 		if (attr) {
 			if (attr == 'style') {
 				s = $(this).attr(attr) || '';
@@ -2083,7 +2115,7 @@ function urlArr(jQExp, attr, attr2) {
 			} else {
 				a = (eval('this.' + attr2dataset(attr2)) || '').trim()
 			}
-			a += '\t';
+			a += brt;
 		} else {
 			a = ''
 		}
@@ -2100,10 +2132,10 @@ function txtArr(jQExp, szl2){
 function tableArr(jQExp, type) {//type=str/arr/csv
 	var jQ = jQExp || 'table', typ = type || 'str', isCSV = typ == 'CSV', isA = typ == 'arr', t = [];
 
-	nodeFromSzl(jQ).children().each(function () {
-		$(this).children().each(function () {
+	nodeFromSzl(jQ).children().each(function() {
+		$(this).children().each(function() {
 			var s = [];
-			$(this).children().each(function () {
+			$(this).children().each(function() {
 				var td = $(this).text().trim();
 				if (isCSV) {
 					if (/"/.test(td)) {
@@ -2115,11 +2147,11 @@ function tableArr(jQExp, type) {//type=str/arr/csv
 				}
 				s.push(td);
 			})
-			t.push(isA ? s : s.join(isCSV ? ',' : '\t'))
+			t.push(isA ? s : s.join(isCSV ? ',' : brt))
 		})
 	});
 	if (typ != 'arr') {
-		t = t.join('\n')
+		t = t.join(brn)
 	}
 	return t;
 }
@@ -2181,7 +2213,7 @@ function fnx(k) { return k.replace(/^<!\[CDATA\[|\]{2}>$/g, '') }
 function fnr(k) { return k.replace(/\\/g, '\\\\') }
 function fnq(k) { return k.replace(/"/g, '&#34;') }
 function fnv0(k) { return k.replace(/^\$|\$$/g, '') }
-function fnv(k) { return k.replace(/\$[^\$]+\$/g, function (t) { return eval(fnv0(t)) }) }
+function fnv(k) { return k.replace(/\$[^\$]+\$/g, t=>eval(fnv0(t))) }
 
 
 function fns(webid, url, title, smry, pic) {
@@ -2270,7 +2302,7 @@ function H_o(u,o) {
 	var search = url.substring(url.lastIndexOf('?') + 1);
 	var obj = {};
 	var reg = /([^?&=]+)=([^?&=]*)/g;
-	search.replace(reg, function (rs, $1, $2) {
+	search.replace(reg, (rs, $1, $2)=>{
 		var name = fn1($1);
 		var val = '' + fn1($2);
 		obj[name] = val;
@@ -2292,7 +2324,7 @@ function H_o(u,o) {
 function html2txt(h, method2) { return method2?(new DOMParser()).parseFromString(h, 'text/html').documentElement.textContent:$('<b>' + h + '</b>').text().trim() }
 function html2html(h) { return $('<div>' + h + dc).html().trim() }
 function csv2A(t){
-	var X=t.replace(/("")+/g,function(x){return 'zZlLrR'.repeat(x.length/2)});
+	var X=t.replace(/("")+/g,x=>'zZlLrR'.repeat(x.length/2));
 	while(/"/.test(X)){
 		if(/^[^"]*,"[^"]*"[^,]/.test(X) || /^"[^"]*"[^,]/.test(X)){
 			X=X.replace(/"([^"]*)"/,'$1')
@@ -2304,7 +2336,7 @@ function csv2A(t){
 	}
 	X=X.replace(/zZlLrR/g,'"');
 
-	return Arrf(function(x){return x.replace(/ZzLlRr/g,',')},X.split(','))
+	return Arrf(x=>x.replace(/ZzLlRr/g,','),X.split(','))
 }
 
 function saveText(t, filename) {
@@ -2333,10 +2365,10 @@ function svgAs(svg, base64) {
 
 var svgf = {
 	numFun:{
-		AddbyParity: function(str,lt,tp){
+		AddbyParity: (str,lt,tp)=>{
 			
 			var regex = /\b\d+\b/g, od=0;
-			var result = str.replace(regex, function(match) {
+			var result = str.replace(regex, match=>{
 				od++;
 				var newNumber = +match + (od % 2 === 1 ? lt : tp);
 				return newNumber.toString();
@@ -2389,7 +2421,7 @@ var svgf = {
 		},
 	},
 	pathFun:{
-		toFull:function(x, lt, tp){// 可选偏移量 lt, tp，用于计算最终绝对坐标
+		toFull:(x, lt, tp)=>{// 可选偏移量 lt, tp，用于计算最终绝对坐标
 			var xs=x.toUpperCase();// SVG Path中的小写字母的命令是相对偏移，这里为简化起见，不考虑支持
 			/*
 			while(/L( *[\d\.]+ +[\d\.]+){2,}/.test(xs)){
@@ -2432,14 +2464,14 @@ var svgf = {
 				.replace(/(A *([-\d\.]+ +){5})([-\d\.]+) +([-\d\.]+)/g,'$1'+lt+'+$3 '+tp+'+$4')
 				.replace(/H *([-\d\.]+)/g,'H'+lt+'+$1')
 				.replace(/V *([-\d\.]+)/g,'V'+tp+'+$1')
-				.replace(/[-\d\.]+\+[-\d\.]+/g, function(xy){var ab=xy.split('+');return +ab[0]+(+ab[1])})
+				.replace(/[-\d\.]+\+[-\d\.]+/g, xy=>{var ab=xy.split('+');return +ab[0]+(+ab[1])})
 	
 	
 			}
 	
 			return xs
 		},
-		toPath:function(tg, oih, A, lt, tp){ // 转成path元素
+		toPath:(tg, oih, A, lt, tp)=>{ // 转成path元素
 			var f=svgf.pathFun.toAttr[tg], ss=svgf.strFun, a=ss.replaceAttr, t=ss.replaceTagname, m=ss.removeAttr, ts={
 
 				polygon: '',
@@ -2452,73 +2484,73 @@ var svgf = {
 			return t(a(m(oih,ts[tg]), {d:f(A, lt, tp)}),'path')
 		},
 		toAttr:{
-			polygon: function(d, lt, tp){return Arrf(function(x,i){(i?(i==2?'L':''):'M')+((i%2?tp:lt)||0)+(+x)},d.split(/[ ,]+/)).join(' ')+'z'},
-			rect: function(A, lt, tp){return `M${A[0]+(lt||0)} ${A[1]+(tp||0)} H${A[0]+A[2]+(lt||0)} V${A[1]+A[3]+(tp||0)} H${A[0]+(lt||0)} V${A[1]+(tp||0)}`},
-			circle: function(A, lt, tp){return `M${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)} A${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]+A[2]+(tp||0)}  ${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)}`},
-			line: function(A, lt, tp){return `M${A[0]} ${A[1]} L${A[2]} ${A[3]}`},
-			ellipse: function(A, lt, tp){return `M${A[0]} ${A[1]-A[3]} A${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]+A[2]}  ${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]-A[3]}`}
+			polygon: (d, lt, tp)=>Arrf((x,i)=>{(i?(i==2?'L':''):'M')+((i%2?tp:lt)||0)+(+x)},d.split(/[ ,]+/)).join(' ')+'z',
+			rect: (A, lt, tp)=>`M${A[0]+(lt||0)} ${A[1]+(tp||0)} H${A[0]+A[2]+(lt||0)} V${A[1]+A[3]+(tp||0)} H${A[0]+(lt||0)} V${A[1]+(tp||0)}`,
+			circle: (A, lt, tp)=>`M${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)} A${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]+A[2]+(tp||0)}  ${A[2]} ${A[2]} 0 1 1 ${A[0]+(lt||0)} ${A[1]-A[2]+(tp||0)}`,
+			line: (A, lt, tp)=>`M${A[0]} ${A[1]} L${A[2]} ${A[3]}`,
+			ellipse: (A, lt, tp)=>`M${A[0]} ${A[1]-A[3]} A${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]+A[2]}  ${A[2]} ${A[3]} 0 1 1 ${A[0]} ${A[1]-A[3]}`
 
 		}
 	},
-	marker:function(id,rx,ry,w,h,vBox,chd){
+	marker:(id,rx,ry,w,h,vBox,chd)=>{
 		return '<marker id='+id+' refX='+(rx||8)+' refY='+(ry||5)+' markerWidth='+(w||4)+' markerHeight='+(h||4)+' viewBox="'+(vBox||'0 0 10 10')+'">'+chd+'</marker>'
 	},
-	path: function (d, strk,fil) {
+	path: (d,strk,fil)=>{
 		if(isArr(d)){
-			return Arrf(function(x){return svgf.path(x, strk, fil)},d)
+			return Arrf(x=>svgf.path(x, strk, fil),d)
 		}
 		return '<path d="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></path>'
 	}, 
-	polygon: function (d, strk,fil) {
+	polygon: (d,strk,fil)=>{
 		if(isArr(d)){
-			return Arrf(function(x){return svgf.polygon(x, strk, fil)},d)
+			return Arrf(x=>svgf.polygon(x, strk, fil),d)
 		}
 		return '<polygon points="' + d + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></polygon>'
 	}, 
-	text: function (text, yxSize, strk, fil) {
+	text: (text, yxSize, strk, fil)=>{
 		if(isArr(text,2)){
-			return Arrf(function(x){return svgf.text.apply(null, x)},text)
+			return Arrf(x=>svgf.text.apply(null, x),text)
 		}
 		return '<text y="' + (yxSize ? yxSize[0] : 22) + '" x="' + (yxSize ? yxSize[1] : 6) + '" font-size="' + (yxSize ? yxSize[2] : 16) + '"'+(strk?' stroke="'+(strk||'white')+'"':'')+' fill="'+(fil||'white')+'">' + text + '</text>'
 	}, 
-	rect: function (x, y, w, h, strk,fil) {
+	rect: (x, y, w, h, strk,fil)=>{
 		if(isArr(x,2)){
-			return Arrf(function(i){return svgf.rect.apply(null, i)},x)
+			return Arrf(i=>svgf.rect.apply(null, i),x)
 		}
 		return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + (h || w) + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></rect>'
 	}, 
-	circle: function (cx, cy, r, strk,fil) {
+	circle: (cx, cy, r, strk,fil)=>{
 		if(isArr(cx,2)){
-			return Arrf(function(x){return svgf.circle.apply(null, x)},cx)
+			return Arrf(x=>svgf.circle.apply(null, x),cx)
 		}
 		return '<circle r="' + (r||1) + '" cx="' + cx + '" cy="' + cy + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></circle>'
 	}, 
-	line: function (x1, y1, x2, y2, strk, fil) {
+	line: (x1, y1, x2, y2, strk, fil)=>{
 		if(isArr(x1,2)){
-			return Arrf(function(x){return svgf.line.apply(null, x)},x1)
+			return Arrf(x=>svgf.line.apply(null, x),x1)
 		}
 		return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></line>'
 	}, 
-	ellipse: function (cx, cy, rx, ry, strk, fil) {
+	ellipse: (cx, cy, rx, ry, strk, fil)=>{
 		if(isArr(cx,2)){
-			return Arrf(function(x){return svgf.ellipse.apply(null, x)},cx)
+			return Arrf(x=>svgf.ellipse.apply(null, x),cx)
 		}
 		return '<ellipse rx="' + rx+ '" ry="' + ry + '" cx="' + cx + '" cy="' + cy + '" stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'"></ellipse>'
 	}, 
-	id: function (id,v,noVieWBox,w, strk, fil) {
+	id: (id,v,noVieWBox,w, strk, fil)=>{
 		if(isArr(id,2)){
-			return Arrf(function(x){return svgf.id.apply(null, x)},id)
+			return Arrf(x=>svgf.id.apply(null, x),id)
 		}else if(isArr(id)){
-			return Arrf(function(x){return svgf.id(x,v,noVieWBox,w)},id)
+			return Arrf(x=>svgf.id(x,v,noVieWBox,w),id)
 		}
 		return '<svg id="' + id+ '"' + (noVieWBox?'':' viewBox="0 0 30 30"') + ' stroke="'+(strk||'white')+'" fill="'+(fil||'none')+'" stroke-width="'+(w||2)+'">'+(v||'')+'</svg>'
 	},
-	ani: function(id, attr,from,to,dur,cnt){
+	ani: (id, attr,from,to,dur,cnt)=>{
 		return '<animate xlink:href="#'+id+'" attributeName="'+(attr||'stroke-dashoffset')
 			+'" from="'+(from===undefined?3000:from)+'" to="'+(to===undefined?0:to)
 			+'" dur="'+(dur||10)+'s" repeatCount="'+(cnt||'indefinite')+'" />'
 	},
-	rlt2abs: function(obj, left, top, path, haschd){// 相对坐标改为绝对值
+	rlt2abs: (obj, left, top, path, haschd)=>{// 相对坐标改为绝对值
 		var o=$(obj), ot=o[0].tagName.toLowerCase(), oih=o[0].outerHTML, lt=left||0, tp=top||0,
 		ssr=svgf.strFun.replaceAttr, spt=svgf.pathFun.toPath, snA=svgf.numFun.AddbyParity,
 		os={
@@ -2535,7 +2567,7 @@ var svgf = {
 			},
 			g: function(){
 				var tf=o.attr('transform')||'translate(0,0)', newtf=tf.replace(/translate\([^\)]+\)/, 
-					function(x){return 'translate('+x.replace(/.+\(|\)/g,'').split(',').map((i,ii)=>+i+(ii?tp:lt))+')'});
+					x=>'translate('+x.replace(/.+\(|\)/g,'').split(',').map((i,ii)=>+i+(ii?tp:lt))+')');
 				return ssr(oih, {transform:newtf})
 			}, 
 			polygon: function() {
@@ -2548,30 +2580,30 @@ var svgf = {
 				return ssr(oih, {x:x+lt, y:y+tp})
 
 			}, 
-			rect: function () {
+			rect: function() {
 				var [x,y,wd,ht]=ZLR('x y width height').map(i=>+o.attr(i));
 				return path?spt(ot,oih, [x,y,wd,ht], lt, tp):ssr(oih, {x:x+lt, y:y+tp})
 
 			}, 
-			circle: function () {
+			circle: function() {
 				var [cx,cy,r]=ZLR('cx cy r').map(i=>+o.attr(i));
 				return path?spt(ot,oih, [cx,cy,r], lt, tp):ssr(oih, {cx:cx+lt, cy:cy+tp})
 
 			}, 
-			line: function () {
+			line: function() {
 				var [x1,y1,x2,y2]=ZLR('x1 y1 x2 y2').map(i=>+o.attr(i));
 				return path?spt(ot,oih, [x1,y1,x2,y2], lt, tp):ssr(oih, {x1:x1+lt, y1:y1+tp, x2:x2+lt, y2:y2+tp})
 
 			}, 
-			ellipse: function () {
+			ellipse: function() {
 				var [cx,cy,rx,ry]=ZLR('cx cy rx ry').map(i=>+o.attr(i));
 				return path?spt(ot,oih, [cx,cy,rx,ry], lt, tp):ssr(oih, {cx:cx+lt, cy:cy+tp})
 			},
-			svg: function (){
+			svg: function(){
 
 
 			},
-			defs:function (){
+			defs:function(){
 
 			}
 		};
@@ -2584,7 +2616,7 @@ var svgf = {
 		 
 	},
 
-	obj2js: function (obj, path, haschd) {
+	obj2js: (obj, path, haschd)=>{
 		var o=$(obj), ot=o[0].tagName.toLowerCase(), 
 			strk=o.attr('stroke')||'',fil=o.attr('fil')||'', tf=o.attr('transform')||'',
 		 	stf=strk+(tf?'" transform="'+tf:'')+(fil?",'"+fil+"'":''),
@@ -2595,25 +2627,25 @@ var svgf = {
 				return `svgf.marker('${id}',${rx},${ry},${w},${h},'${vBox}',${chd})`
 
 			},
-			path: function () {
+			path: function() {
 				var d=o.attr('d');
 				return `svgf.path('${d}','${stf}')`
 
 			}, 
-			polygon: function () {
+			polygon: function() {
 				var d=o.attr('points');
 				if(path){
-					return `svgf.path('${Arrf(function(x,i){i?(i==2?'L'+x:x):'M'+x},d.split(/[ ,]+/)).join(' ')+'z'}','${stf}')`
+					return `svgf.path('${Arrf((x,i)=>{i?(i==2?'L'+x:x):'M'+x},d.split(/[ ,]+/)).join(' ')+'z'}','${stf}')`
 				}
 				return `svgf.polygon('${d}','${stf}')`
 
 			}, 
-			text: function () {
+			text: function() {
 				var text=o.text(), yxSize=ZLR('y x font-size').map(i=>+o.attr(i));
 				return `svgf.text('${text.replace(/'/g,"\\'")}',[${yxSize}],'${stf}')`
 
 			}, 
-			rect: function () {
+			rect: function() {
 				var [x,y,w,h]=ZLR('x y width height').map(i=>+o.attr(i));
 				if(path){
 					return `svgf.path('M${x} ${y} H${x+w} V${y+h} H${x} V${y}','${stf}')`
@@ -2621,7 +2653,7 @@ var svgf = {
 				return `svgf.rect(${x},${y},${w},${h},'${stf}')`
 
 			}, 
-			circle: function () {
+			circle: function() {
 				var [cx,cy,r]=ZLR('cx cy r').map(i=>+o.attr(i));
 				if(path){
 					return `svgf.path('M${cx} ${cy-r} A${r} ${r} 0 1 1 ${cx} ${cy+r}  ${r} ${r} 0 1 1 ${cx} ${cy-r}','${stf}')`
@@ -2629,7 +2661,7 @@ var svgf = {
 				return `svgf.circle(${cx},${cy},${r},'${stf}')`
 
 			}, 
-			line: function () {
+			line: function() {
 				var [x1,y1,x2,y2]=ZLR('x1 y1 x2 y2').map(i=>+o.attr(i));
 				if(path){
 					return `svgf.path('M${x1} ${y1} L${x2} ${y2}','${stf}')`
@@ -2637,14 +2669,14 @@ var svgf = {
 				return `svgf.line(${x1},${y1},${x2},${y2},'${stf}')`
 
 			}, 
-			ellipse: function () {
+			ellipse: function() {
 				var [cx,cy,rx,ry]=ZLR('cx cy rx ry').map(i=>+o.attr(i));
 				if(path){
 					return `svgf.path('M${cx} ${cy-ry} A${rx} ${ry} 0 1 1 ${cx} ${cy+ry}  ${rx} ${ry} 0 1 1 ${cx} ${cy-ry}','${stf}')`
 				}
 				return `svgf.ellipse(${cx},${cy},${rx},${ry},'${stf}')`
 			}, 
-			svg: function () {
+			svg: function() {
 				var id=o.attr('id')||o.closest('[id]').attr('id'), 
 					wd=o.attr('width')||o.width(), ht=o.attr('height')||o.height(), 
 					w=o.attr('stroke-width')||'', vBox=o.attr('viewBox'), 
@@ -2652,7 +2684,7 @@ var svgf = {
 				return `svgf.id('${id+(wd||ht?'" width="'+wd+'" height="'+ht+'"':'')}',${v},'${vBox||1}','${w}','${stf}')`.replace(/,'','',''\)$/,')')
 
 			},
-			g: function () {
+			g: function() {
 				/*
 				var A=[];o.children().each(function(){A.push(os[this.tagName.toLowerCase()]())});
 				return A.join('+')
@@ -2685,28 +2717,28 @@ var svgf = {
 
 },
 	Time = {
-		now: function (TDA) {
+		now: TDA=>{
 			var d = new Date(), t = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '_' + d.toTimeString().substr(0, 8).replace(/:/g, '.');
 			if (/Time|Date/.test(TDA)) { t = t.split('_')[TDA == 'Time' ? 1 : 0] }
 			return t;
 		},
-		now5: function (t) { var d = t || new Date(); return (d.getTime() + '').substr(5) },
-		YMD: function (t, TDA) {
+		now5: t=>{var d = t || new Date(); return (d.getTime() + '').substr(5) },
+		YMD: (t, TDA)=>{
 			var d = t || new Date(), t = [d.getFullYear(), (d.getMonth() + 1), d.getDate()].join('-') + '_' + [('0' + d.getHours()).substr(-2), ('0' + d.getMinutes()).substr(-2)].join(':');
 			if (/Time|Date/.test(TDA)) { t = t.split('_')[TDA == 'Time' ? 1 : 0] }
 			return t;
 		},
-		fromZH: function (t) {
+		fromZH: t=>{
 			if (/^星期/.test(t)) {
-				return Date.parse(t.replace(/星期., /, '').replace(/\S+月/, function (s) {
+				return Date.parse(t.replace(/星期., /, '').replace(/\S+月/, (s)=>{
 					return ZLR('Jan Feb Mar Apr May Jun Jul Aug Sept Oct Nov Dec')[ZLR('一 二 三 四 五 六 七 八 九 十 十一 十二').indexOf(s.replace('月', ''))]
 				}))
 			} else {
 				return Date.parse(t)
 			}
 		},
-		lastM: function (t) { var d = t || new Date(), m = d.getMonth(), jan = m == 0; return d.getFullYear() + (jan ? -1 : 0) + '-' + (jan ? 12 : d.getMonth()) },
-		lastDate: function (fmt, tim, t) {
+		lastM: t=>{var d = t || new Date(), m = d.getMonth(), jan = m == 0; return d.getFullYear() + (jan ? -1 : 0) + '-' + (jan ? 12 : d.getMonth()) },
+		lastDate: (fmt, tim, t)=>{
 			var tm = (t || new Date()).getTime(), d0 = new Date(), d1 = new Date(), tO = { "y": 0, "M": 0, "w": 0, "d": 0, "H": 0, "m": 0, "s": 0, "S": 0 }, y = 0, m = 0, d = 0, ys = 0;
 			if (/\d/.test(tim)) {
 				//tim = \d+[yMwdHmsS]
@@ -2750,11 +2782,11 @@ var svgf = {
 				for (var k in o) {
 					var r = new RegExp(k, 'g'), ok = o[k];
 					if (r.test(fmt)) {
-						fmt = fmt.replace(r, function (t) { return t.length == 1 ? ok : ('00' + ok).substr(-1 * t.length) })
+						fmt = fmt.replace(r, t=>t.length == 1 ? ok : ('00' + ok).substr(-1 * t.length))
 					}
 				}
 
-				fmt = fmt.replace(/y+/g, function (t) { return (d1.getFullYear() + '').substr(4 - t.length) });
+				fmt = fmt.replace(/y+/g, t=>(d1.getFullYear() + '').substr(4 - t.length));
 
 				return fmt.replace(/A[/]P/g, (HH < 12 ? 'A' : 'P') + 'M').replace(/上[/]下午/g, (HH < 12 ? '上' : '下') + '午')
 					.replace(/D{3}/g, (d1 + '').split(' ')[0]).replace(/D/g, week[d1.getDay() + ''])
@@ -2762,7 +2794,7 @@ var svgf = {
 			}
 			return d1
 		},
-		week: function (t, deltaDays) {
+		week: (t, deltaDays)=>{
 			var d = new Date();
 
 			d.setTime(Date.parse(t || d) + (deltaDays || 0) * oneDay);
@@ -2776,7 +2808,7 @@ var svgf = {
 			}
 			return A.concat([y, d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds()])
 		},
-		reg: function (t) {
+		reg: t=>{
 			var o = {
 				"M": "[个個]?(Month|月)",
 				"S": "(milli|ms|毫秒)",
@@ -2792,24 +2824,24 @@ var svgf = {
 				"Sun": 0, "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6
 			};
 
-			var s = t.replace(/公元/g, '').replace(/(周+|期|拜)[天日一二三四五六七八九]/, function (t) { return t + ' ' }).trim()
+			var s = t.replace(/公元/g, '').replace(/(周+|期|拜)[天日一二三四五六七八九]/, t=>t + ' ').trim()
 				.replace(/一十/g, '十').replace(/廿/g, '二十').replace(/卅/g, '三十')
-				.replace(/[二三四五]十[一二三四五六七八九]/g, function (t) { return '' + n[t.substr(0, 1)] + n[t.substr(-1)] })
-				.replace(/[二三四五]十/g, function (t) { return '' + n[t.substr(0, 1)] + 0 })
-				.replace(/十[一二三四五六七八九]/g, function (t) { return '1' + n[t.substr(-1)] })
-				.replace(/十/g, '10').replace(/[〇零元一二三四五六七八九]/g, function (t) { return n[t] })
-				.replace(/[13]刻/, function (t) { return 15 * Number(t.substr(0, 1)) + '分钟' });
+				.replace(/[二三四五]十[一二三四五六七八九]/g, t=>'' + n[t.substr(0, 1)] + n[t.substr(-1)])
+				.replace(/[二三四五]十/g, t=>'' + n[t.substr(0, 1)] + 0)
+				.replace(/十[一二三四五六七八九]/g, t=>'1' + n[t.substr(-1)])
+				.replace(/十/g, '10').replace(/[〇零元一二三四五六七八九]/g, t=>n[t])
+				.replace(/[13]刻/, t=>15 * Number(t.substr(0, 1)) + '分钟');
 
 			if (/[点點时時]/.test(s) && !/小/.test(s)) {
 				s = s.replace(/[点點时時分]/g, ':').replace(/半/g, '30').replace(/整/g, '00')
-					.replace(/[13]刻/g, function (t) { return 15 * n[t.substr(0, 1)] }).replace(/毫?秒/g, '');
+					.replace(/[13]刻/g, t=>15 * n[t.substr(0, 1)]).replace(/毫?秒/g, '');
 			}
 
 			s = s.replace(/半/g, 0.5);
 
 			var tim = (s.match(/[01]?\d(:[0-5]?\d)+/) || [''])[0];
 			if (!tim & /[01]?\d:/.test(s)) { tim = s.match(/[01]?\d:/)[0] + '00' }
-			if (tim && /下午|晚|夜|PM/i.test(s)) { tim = tim.replace(/^\d+/, function (t) { return Number(t) < 12 ? Number(t) + 12 : t }) }
+			if (tim && /下午|晚|夜|PM/i.test(s)) { tim = tim.replace(/^\d+/, t=>Number(t) < 12 ? Number(t) + 12 : t) }
 
 			var yr = (s.match(/\d{4}/) || [''])[0], ys, ms, ds;
 			if (yr) { s = s.replace(/\d{4}[-年/]?/, '') }
@@ -2912,11 +2944,11 @@ var svgf = {
 
 			return (yr || Time.lastDate('yyyy')) + '-' + Time.lastDate('MM-dd ') + tim;
 		},
-		local: function (d, timOrDat) {
+		local: (d, timOrDat)=>{
 			if (d && timOrDat) { return timOrDat == 'Date' ? d.toLocaleDateString() : d.toLocaleTimeString() }
 			return (d || new Date()).toLocaleString().replace(/:00$/, '').replace(/:00 /, ' ');
 		},
-		lite: function (d) {
+		lite: d=>{
 			var n = new Date();
 			if (d.getFullYear() != n.getFullYear()) { return d.toLocaleDateString() }
 			var today = Date.parse((new Date()).toDateString());
@@ -2929,7 +2961,7 @@ var svgf = {
 			return d.toLocaleDateString().replace(/\D*20\d+\D*/, '');
 
 		},
-		str2date: function (s, func, timOrDat) {
+		str2date: (s, func, timOrDat)=>{
 			var tm = new Date();
 			tm.setTime(Date.parse(s));
 			if (func) {
@@ -2968,7 +3000,7 @@ function jSon2str(json) { //json is an array
 	var str = '[';
 	for (var i in json) {
 		var tmp = '{';
-		$.each(json[i], function (j, n) {
+		$.each(json[i], function(j, n) {
 			tmp += '"' + j + '":"' + n + '",';
 		});
 		str += tmp.replace(/,$/, '') + '},';
@@ -2977,7 +3009,7 @@ function jSon2str(json) { //json is an array
 }
 function jSon2attr(json) {
 	var str = '';
-	$.each(json, function (j, n) {
+	$.each(json, function(j, n) {
 		str += j + '="' + n + '" ';
 	});
 	return str.trim();
@@ -3012,7 +3044,7 @@ function jSonFindKey(json,v){
 
 function xlsxReader(file, cb, utf){
     var reader=new FileReader();
-    reader.onload=function(e){
+    reader.onload=e=>{
         var d=e.target.result;
 		//console.log(this.result);
 		//console.log(d);
@@ -3038,13 +3070,18 @@ function xlsxReader(file, cb, utf){
 
 function txtReader(file, cb){
 	var reader = new FileReader();
-	reader.onload = function(e){
+	reader.onload = e=>{
 		var d=e.target.result;
 		cb && cb(d);		
 	}
 	reader.readAsText(file);
 }
 
+function begin0(i, digits){
+
+
+
+}
 
 function urlTran(urls) {
 	var tArr = urls.match(/\S+/gi);
@@ -3093,16 +3130,16 @@ function urlTran(urls) {
 			}
 		}
 	}
-	var t = tArr.join(' ').match(/\S+/gi).join('\n');
+	var t = tArr.join(' ').match(/\S+/gi).join(brn);
 	if (patt1.test(t)) { return urlTran(t) } else { return t }
 }
 
-function hex2rgba(h, a, arr) {
+function hex2rgba(h, a, arr){
 	var Arr = [parseInt(h.substr(1, 2), 16), parseInt(h.substr(3, 2), 16), parseInt(h.substr(5, 2), 16), isNaN(+a) ? 1 : +a];
 	if (arr) { return Arr }
 	return 'RGBA(' + Arr.join(',') + ')';
 }
-function rgb2hex(r, g, b) {//r*256^2 + g*256 + b = r*2^16 + g*2^8+ b
+function rgb2hex(r, g, b){//r*256^2 + g*256 + b = r*2^16 + g*2^8+ b
 	return '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).substring(1);
 }
 
@@ -3139,7 +3176,8 @@ function bodyFocus() {
 	$('body').focus();
 }
 function imgdatasrc(src, u) { return src ? '<img data-src="' + H_a(src, u || '') + '" />' : '' }
-var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不到，则新建tr、td，扩充为大表
+
+var OffSet = (obj, r, c, build)=>{//表格单元格偏移，如果找不到，则新建tr、td，扩充为大表
 	var p = obj.parent(), pi = p.index(), pp = p.parent(), ppc = pp.children(), ppcl = ppc.length, tr = ppc.eq(pi + r), i = obj.index(), pcl = p.children().length;
 	if (build) {
 		var tds = c > 0 ? Math.max(i + c + 1, pcl) : pcl - Math.min(i + c, 0), tdsAdd = tds - pcl;
@@ -3166,16 +3204,15 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 	return tr.children().eq(tdsAdd ? (c > 0 ? tds - 1 : 0) : i + c);
 
 }, Admin = {
-	testAjax: function (t) { $.ajax({ type: 'get', url: t, success: function (d) { saveText(d, '123.txt') } }) },
-	testAjax2: function (t,e,f) { $.ajax({ type: 'get', url: t, success: function (d) { var x=$(d).find(e).text();console.log(f?f(x):x) } }) }
-}, fCC = function (A) {
-	return String.fromCharCode.apply(null, A)
-}, sizeKB = function (sz) {
+	testAjax: t=>{$.ajax({ type: 'get', url: t, success: function(d) { saveText(d, '123.txt') } }) },
+	testAjax2: (t,e,f)=>{ $.ajax({ type: 'get', url: t, success: function(d) { var x=$(d).find(e).text();console.log(f?f(x):x) } }) }
+}, fCC = A=>String.fromCharCode.apply(null, A), 
+sizeKB = sz=>{
 	var s=sz||0;
 	s=s/1024;
 	if(s>=1024){s=(s/1024).toFixed(1)+'MB'}else{s=s.toFixed(1)+'KB'}
 	return s
-}, seqA = function (start, n, type, step) {//序列: 初始值，个数n，类型，步长	参数 n小于0时，逆序
+}, seqA = (start, n, type, step)=>{//序列: 初始值，个数n，类型，步长	参数 n小于0时，逆序
 	/*
 	var isBig=typeof start=='bigint', t=[],y=type||'arith',p=step==undefined?(isBig?1n:1):step, N=n>=0?n:-n;
 	for(var i=(isBig?0n:0);i<N;i++){
@@ -3191,35 +3228,35 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 	}
 
 	return t
-}, seqsA = function (s) {//连续序列：缩写 ,~
-	var t = s.replace(/\d+~\d+/g, function (t) { var tA = t.split('~'); return seqA(+tA[0], +tA[1] - (+tA[0]) + 1).join() })
-		.replace(/[A-z]~[A-z]/g, function (t) { var tA = t.split('~'), t0 = tA[0].charCodeAt(0), t1 = tA[1].charCodeAt(0); return fCC(seqA(t0, t1 - t0 + 1)).split('').join() })
+}, seqsA = s=>{//连续序列：缩写 ,~
+	var t = s.replace(/\d+~\d+/g, (t)=>{var tA = t.split('~'); return seqA(+tA[0], +tA[1] - (+tA[0]) + 1).join() })
+		.replace(/[A-z]~[A-z]/g, (t)=>{var tA = t.split('~'), t0 = tA[0].charCodeAt(0), t1 = tA[1].charCodeAt(0); return fCC(seqA(t0, t1 - t0 + 1)).split('').join() })
 		.split(',')
 	return t
-}, diff = function (a) {
-	var A = [].concat(a); Arrf(function (t, i) { if (i) { A[A.length - i] -= A[A.length - i - 1] } }, A); return A //差分运算
-}, antidiff = function (a) {
-	var A = [].concat(a); Arrf(function (t, i) { if (i) { A[i] = t + A[i - 1] } }, A); return A //		累计求和（逆差分运算）
+}, diff = a=>{
+	var A = [].concat(a); Arrf((t, i)=>{if (i) { A[A.length - i] -= A[A.length - i - 1] } }, A); return A //差分运算
+}, antidiff = (a)=>{
+	var A = [].concat(a); Arrf((t, i)=>{if (i) { A[i] = t + A[i - 1] } }, A); return A //		累计求和（逆差分运算）
 
-}, Arri = function (A, i) {//提取矩阵第i列（从0开始编号）	负数表示从最后1列往前
+}, Arri = (A, i)=>{//提取矩阵第i列（从0开始编号）	负数表示从最后1列往前
 	var t = [];
 	for (var j = 0; j < A.length; j++) { t.push(A[j][i < 0 ? A[j].length + i : i]) }
 	return t
-}, ArrI = function (A, a, start) {//提取数组元素，按照索引集和起始偏移
+}, ArrI = (A, a, start)=>{//提取数组元素，按照索引集和起始偏移
 	var t = [];
 	for (var j = 0; j < a.length; j++) { t.push(A[a[j] - (start || 0)]) }
 	return t
-}, subMtrx = function (A, i1, i2, j1, j2) {//提取矩阵的子矩阵，编号从1开始
-	var t = [], J2 = j2 == undefined ? A[0].length : j2;//t.t='Mtrx'
-	for (var i = i1 - 1; i < i2; i++) {
+}, subMtrx = (A, i1, i2, j1, j2)=>{//提取矩阵的子矩阵，编号从1开始
+	var t = [], m=Math.min(A.length, i2), m0=Math.max(i1,1), n=Math.min(A[0].length, j2), n0=Math.max(j1,1);//t.t='Mtrx'
+	for (var i = m0 - 1; i < m; i++) {
 		var ti = [];
-		for (var j = j1 - 1; j < J2; j++) { ti.push(A[i][j]) }
+		for (var j = n0 - 1; j < n; j++) { ti.push(A[i][j]) }
 		t.push(ti);
 	}
 	return t
-}, Arrf = function (f, A, rtnTyp) {//数组函数，循环次数确定
+}, Arrf = function(f, A, rtnTyp){//数组函数，循环次数确定
 	if (A.length < 1) { return [] }
-	var ty = rtnTyp || 'arr', g = function (j, k) {
+	var ty = rtnTyp || 'arr', g = function (j, k){
 		var t, ar = arguments, an = ar.length;
 		if (ty == '-cp2') {
 			for (var i = an - 1; i > 0; i--) {
@@ -3253,8 +3290,8 @@ var OffSet = function (obj, r, c, build) {//表格单元格偏移，如果找不
 					用window[函数名]，区分是否全局函数
 
 
-var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[i]=t+A[i-1]}},A);A		累计求和（逆差分运算）
-var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A	差分运算
+var A=[2,3,4,5,7];Arrf((t,i)=>{if(i){A[i]=t+A[i-1]}},A);A		累计求和（逆差分运算）
+var A=[2,3,4,5,7];Arrf((t,i)=>{if(i){A[A.length-i]-=A[A.length-i-1]}},A);A	差分运算
 
 					*/
 
@@ -3269,11 +3306,11 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 				t += f(ar[i])
 			} else if (ty == 'cp1') {/*一元迭代(递归)，返回数组（每次迭代都有步骤记录，此时数组A是形式需要：只需要满足迭代次数等于A.length）
 				典型例子：
-					等差数列（过程）		Arrf(function(t){return tn+2n},[0].concat(Array(10)),'cp1')
-					等比数列 （过程）	Arrf(function(t){return tn*2n},[1].concat(Array(10)),'cp1')
-					Fibonacci 斐波那契数列（过程） Arri(Arrf(function(t){return !t?[0n,1n]:[t[1],t[0]+t[1]]},Array(10),'cp1'),1)
-					阶乘数列	Arri(Arrf(function(t){return !t?[1n,1n]:[t[0]+1n,(t[0]+1n)*t[1]]},Array(10),'cp1'),1)
-等差前n项和（过程） Arrf(function(t){return !t?[1]:t.concat(t[t.length-1]+5)},Array(10),'cp1')
+					等差数列（过程）		Arrf(t=>tn+2n,[0].concat(Array(10)),'cp1')
+					等比数列 （过程）	Arrf(t=>tn*2n,[1].concat(Array(10)),'cp1')
+					Fibonacci 斐波那契数列（过程） Arri(Arrf(t=>!t?[0n,1n]:[t[1],t[0]+t[1]],Array(10),'cp1'),1)
+					阶乘数列	Arri(Arrf(t=>!t?[1n,1n]:[t[0]+1n,(t[0]+1n)*t[1]],Array(10),'cp1'),1)
+等差前n项和（过程） Arrf(t=>!t?[1]:t.concat(t[t.length-1]+5),Array(10),'cp1')
 
 高阶差分（过程）		Arrf(diff,[[2,4,5,8,10]].concat(Array(10)),'cp1')
 高阶逆差分（过程） Arrf(antidiff,[[2,4,5,8,10]].concat(Array(10)),'cp1')
@@ -3285,12 +3322,12 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 				}
 			} else if (ty == 'cp2') {/*二元迭代(递归)，返回一个数（上次迭代结果，与数组中下一个元素，二元运算）
 				
-					Fibonacci 斐波那契 Arrf(function(t){return !t?[1n,1n]:[t[1],t[0]+t[1]]},Array(10),'cp2')[1]
-					阶乘 Arrf(function(s,t){return s*t},seqA(1,7),'cp2')
+					Fibonacci 斐波那契 Arrf(t=>!t?[1n,1n]:[t[1],t[0]+t[1]],Array(10),'cp2')[1]
+					阶乘 Arrf((s,t)=>s*t,seqA(1,7),'cp2')
 					gcd
 					lcm
 
-等差前n项和 Arrf(function(t){return !t?[1]:t.concat(t[t.length-1]+5)},Array(10),'cp2')
+等差前n项和 Arrf(t=>!t?[1]:t.concat(t[t.length-1]+5),Array(10),'cp2')
 高阶逆差分 Arrf(antidiff,[[2,4,5,8,10]].concat(Array(10)),'cp2')
 高阶差分 Arrf(diff,[[2,4,5,8,10]].concat(Array(10)),'cp2')
 				*/
@@ -3302,18 +3339,18 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		return t
 	}; return g.apply(null, [f].concat(A))
 
-}, Arrfc = function (fA, x, p) {//多重函数迭代（从右向左迭代）	p是函数序列，均支持的参数
+}, Arrfc = (fA, x, p)=>{//多重函数迭代（从右向左迭代）	p是函数序列，均支持的参数
 	var up = p === undefined, xisArr = isArr(x), t = xisArr ? [].concat(x) : x, fn = fA.length;
 
 	for (var i = 0; i < fn; i++) {
 		if (xisArr) {
-			t = Arrf(up ? fA[fn - 1 - i] : function (s) { return fA[fn - 1 - i](s, p) }, t)
+			t = Arrf(up ? fA[fn - 1 - i] : s=>fA[fn - 1 - i](s, p), t)
 		} else {
 			t = up ? fA[fn - 1 - i](t) : fA[fn - 1 - i](t, p)
 		}
 	}
 	return t
-}, ArrfcA = function (fA, A, p) {//多重函数（数组函数）递归（从左到右） 	初始值A是多层数组，递归后降维
+}, ArrfcA = (fA, A, p)=>{//多重函数（数组函数）递归（从左到右） 	初始值A是多层数组，递归后降维
 	/*
 		[f0,f1,f2] A[[[0],[0]],[[1],[1]]]
 		f0()
@@ -3335,21 +3372,17 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		//return ArrfcA([fA[0]],a,p)
 		return fA[0](a, p)
 	}
-}, Arr1 = function (A) {//数组每个元素都加1
-	return Arrf(function (t) { return t + 1 }, A)
-}, Arr_1 = function (A) {//数组每个元素都减1
-	return Arrf(function (t) { return t - 1 }, A)
-}, max = function (A) {
-	return Arrf(Math.max, Arrf(function (x) { return x || 0 }, A), 'cp2')
-}, min = function (A) {
-	return Arrf(Math.min, Arrf(function (x) { return x || 0 }, A), 'cp2')
+}, Arr1 = A=>Arrf(t=>t + 1, A) //数组每个元素都加1
+, Arr_1 = A=>Arrf(t=>t - 1, A) //数组每个元素都减1
+, max = A=>Math.max(...A) //A=>Arrf(Math.max, Arrf(x=>x || 0, A), 'cp2')
+, min = A=>Math.min(...A) //A=>Arrf(Math.min, Arrf(x=>x || 0, A), 'cp2')
 
-}, cartestian = function (A, typ) {//笛卡尔乘积 序列化	typ指定括号类型，用于字符串输出括号风格
+, cartestian = (A, typ)=>{//笛卡尔乘积 序列化	typ指定括号类型，用于字符串输出括号风格
 	var t = [A.slice(0)], n = A.length, tmp = new Array(n), tp = typ || '()';
 	for (var i = 0; i < n; i++) {//维数
 		var Ai = A[i], Ain = Ai.length, AA = [];
 		for (var j = 0; j < t.length; j++) {
-			var tj = t[j], arr = Arrf(function (a) { var tt = [].concat(tj); tt[i] = a; return tt }, Ai);
+			var tj = t[j], arr = Arrf(a=>{ var tt = [].concat(tj); tt[i] = a; return tt }, Ai);
 			//arr.t='Set_Cartesian'; 注意concat会丢失arr.t信息
 			AA = AA.concat(arr);
 		}
@@ -3360,7 +3393,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	return t
 
-}, countA = function (A, noParse, index) {/*对数组中元素进行计数		参数noParse 指定不强制转换成同一类型（例如字符串与数字），进行判断相同
+}, countA = (A, noParse, index)=>{/*对数组中元素进行计数		参数noParse 指定不强制转换成同一类型（例如字符串与数字），进行判断相同
 		参数index指定，同时返回原索引(第一次出现)
 	返回二维数组：去重数组，相应重数数组, 索引数组（如指定index参数）。
 	
@@ -3381,7 +3414,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	return index ? [a, b, x] : [a, b]
 
-}, concat = function () {//数组中元素分别字符串拼接，得到新数组
+}, concat = function() {//数组中元素分别字符串拼接，得到新数组
 	var ar = arguments, arl = ar.length, n = 1, t = [];
 	for (var i = 0; i < arl; i++) {
 		var ai = ar[i];
@@ -3403,10 +3436,9 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		t.push(s)
 	}
 	return t
-}, cartt = function (A) {//笛卡尔乘积 序列化后拼接为字符串数组
-	return Arrf(function (t) { return t.join('') }, cartestian(A))
+}, cartt = A=>Arrf(t=>t.join(''), cartestian(A)) //笛卡尔乘积 序列化后拼接为字符串数组
 
-}, carttNext = function (A, Al) {/*笛卡尔乘积 求下一个索引数组，并赋值给A		如果成功返回1；如果下一个不存在，则返回0
+, carttNext = (A, Al)=>{/*笛卡尔乘积 求下一个索引数组，并赋值给A		如果成功返回1；如果下一个不存在，则返回0
 	参数A是当前索引数组，Al是各分量的索引区间长度，构成的数组
 	*/
 	var l = A.length;
@@ -3420,7 +3452,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 	}
 	return 0
-}, carttPrev = function (A, Al) {/*笛卡尔乘积 求上一个索引数组，并赋值给A		如果成功返回1；如果上一个不存在，则返回0
+}, carttPrev = (A, Al)=>{/*笛卡尔乘积 求上一个索引数组，并赋值给A		如果成功返回1；如果上一个不存在，则返回0
 	参数A是当前索引数组，Al是各分量的索引区间长度，构成的数组
 	*/
 	var l = A.length;
@@ -3435,11 +3467,10 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	}
 	return 0
 
-}, subwd = function (t, len) {/*字符串t，截取前len个字符，但如果正好在单词内部截取，则再往前截取，使得单词完整
-	*/
-	return t.length>len?(t[101]==' '?t.substr(0,len):t.substring(0,t.substr(0,len).lastIndexOf(' '))):t
+}, subwd = (t, len)=>t.length>len?(t[101]==' '?t.substr(0,len):t.substring(0,t.substr(0,len).lastIndexOf(' '))):t
+/*字符串t，截取前len个字符，但如果正好在单词内部截取，则再往前截取，使得单词完整	*/
 	
-}, split = function (t, r, noshift) {/*字符串t，按(中缀)正则split分成两个数组 A[匹配到的分隔符数组A[0], 被分割后得到的数组A[1]]
+, split = (t, r, noshift)=>{/*字符串t，按(中缀)正则split分成两个数组 A[匹配到的分隔符数组A[0], 被分割后得到的数组A[1]]
 	如果不匹配返回字符串本身
 	如果A[1]首项为空，shift一下（未指定noshift的默认情况下）
 	*/
@@ -3476,7 +3507,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		return [ops, A]
 	}
 	return t
-}, snake = function (AB) {//蛇形拼接两数组，过滤掉空字符串	主要用于处理split后的数组
+}, snake = AB=>{//蛇形拼接两数组，过滤掉空字符串	主要用于处理split后的数组
 	var A = [], n = AB[1].length;
 	for (var j = 0; j < n; j++) {
 		for (var i = 1; i >= 0; i--) {
@@ -3488,7 +3519,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	return A
 
 }, SetOpr={
-	AnB:function(A,B,caseOn){
+	AnB:(A,B,caseOn)=>{
 		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
 		for(var i=0,An=A.length;i<An;i++){
 			var t=A[i], ft=f(t);
@@ -3499,7 +3530,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		
 		return C
 	},
-	AuB:function(A,B,caseOn){
+	AuB:(A,B,caseOn)=>{
 		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
 		for(var i=0,An=A.length;i<An;i++){
 			var t=A[i], ft=f(t);
@@ -3515,10 +3546,8 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}	
 		return C
 	},
-	AoB:function(A,B,caseOn){
-		return  SetOpr.AuB(SetOpr.A_B(A,B,caseOn),SetOpr.A_B(B,A,caseOn),caseOn)
-	},
-	A_B:function(A,B,caseOn){
+	AoB:(A,B,caseOn)=>SetOpr.AuB(SetOpr.A_B(A,B,caseOn),SetOpr.A_B(B,A,caseOn),caseOn),
+	A_B:(A,B,caseOn)=>{
 		var C=[], f=caseOn?i=>i:i=>(''+i).toLowerCase(), fA=A.map(f), fB=B.map(f);
 		for(var i=0,An=A.length;i<An;i++){
 			var t=A[i], ft=f(t);
@@ -3529,15 +3558,13 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		
 		return C
 	},
-	B_A:function(A,B,caseOn){
-		return SetOpr.A_B(B,A,caseOn)
-	}
+	B_A:(A,B,caseOn)=>SetOpr.A_B(B,A,caseOn)
 
 
 
 	//下列涉及排序、去重
 
-}, Uniq = function (s,useSet) {//字符或数字（数组，逗号隔开）去重，结果会自动排序（useSet等于2时不排序）	此方法去重不彻底，换成 Array.from(new Set([])).sort().join(',')
+}, Uniq = (s,useSet)=>{//字符或数字（数组，逗号隔开）去重，结果会自动排序（useSet等于2时不排序）	此方法去重不彻底，换成 Array.from(new Set([])).sort().join(',')
 	if(useSet){//只返回去重后的排序数组，不join
 		if(useSet==2){return Array.from(new Set(isStr(s)?s.split(','):s))}
 		return Array.from(new Set(isStr(s)?s.split(','):s)).sort()
@@ -3545,15 +3572,25 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	return (','+s.split(',').sort().join(',,') + ',').replace(/(,[^,]+,)\1+/g, '$1').replace(/,{2,}/g, ',').replace(/^,|,$/g, '')
 
 }, sortBy = {
-	random: function(a,b){return Random(3)-2},	//随机排序
-	numInt: function (a, b) { var r = (BigInt(a) - BigInt(b)).toString(); return /^-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//大整数数字大小排序
-	num: function (a, b) { var r = minus ? minus([a, b]) : a - b; return /-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//普通数字大小排序
-	abs: function (a, b) { var t = Math.abs(+a) - Math.abs(+b); return t || (+a) - (+b) },	//数字绝对值大小排序
-	len: function (x, y) {//按长度排序 长度相同时
+	random: (a,b)=>Random(3)-2,	//随机排序
+	numInt: (a, b)=>{var r = (BigInt(a) - BigInt(b)).toString(); return /^-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) },	//大整数数字大小排序
+	num: (a, b)=>{
+		var r = a-b;
+		try{
+			r = minus ? minus([a, b]) : r; 
+		} catch (error) {
+			
+		} finally {
+			return /-/.test(r) ? -1 : (/^0$/.test(r) ? 0 : 1) 
+		}
+		
+	},	//普通数字大小排序
+	abs: (a, b)=>{var t = Math.abs(+a) - Math.abs(+b); return t || (+a) - (+b) },	//数字绝对值大小排序
+	len: (x, y)=>{//按长度排序 长度相同时
 		var a = '' + x, b = '' + y;
 		return a.length - b.length
 	},
-	lenchr: function (x, y) {//按长度及字母排序
+	lenchr: (x, y)=>{//按长度及字母排序
 		var a = '' + x, b = '' + y, l = a.length - b.length;
 
 		if (l) {
@@ -3561,11 +3598,11 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 		return a - b
 	},
-	chr: function (x, y) {//按字母排序	也就是默认的Array.sort()	此处有误，字符相减得到NaN
+	chr: (x, y)=>{//按字母排序	也就是默认的Array.sort()	此处有误，字符相减得到NaN
 		var a = '' + x, b = '' + y;
 		return a - b
 	},
-	chrlen: function (x, y) {//按字母及长度排序	
+	chrlen: (x, y)=>{//按字母及长度排序	
 		var a = '' + x, b = '' + y;
 
 		if (a == b) { return 0 }
@@ -3579,7 +3616,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 		return la - lb
 	},
-	chrlen2: function (x, y) {//按字母及长度排序	大小写不敏感
+	chrlen2: (x, y)=>{//按字母及长度排序	大小写不敏感
 		var a = '' + x, b = '' + y;
 
 		if (a == b) { return 0 }
@@ -3593,7 +3630,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 		return la - lb
 	},
-	chrnum: function (a, b) { //数字排在字母后，同含字母，按未知数排序；同为数字，比较数字大小
+	chrnum: (a, b)=>{//数字排在字母后，同含字母，按未知数排序；同为数字，比较数字大小
 		if (/^\d+$/.test(a)) {
 			if (/^\d+$/.test(b)) {
 				return sortBy.num(a, b)
@@ -3604,7 +3641,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 	},
 
-	chrspace: function (x, y) {//按空格数，字母及长度排序	
+	chrspace: (x, y)=>{//按空格数，字母及长度排序	
 		var a = '' + x, b = '' + y;
 
 		if (a == b) { return 0 }
@@ -3622,11 +3659,11 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		return la - lb
 	},
 
-	kxyz: function (a, b) {//按未知数排序
+	kxyz: (a, b)=>{//按未知数排序
 		var A1 = ('' + a).replace(/[^a-zα-ω]/ig, ''), B1 = ('' + b).replace(/[^a-zα-ω]/ig, '');
 		return sortBy.chr(A1, B1)
 	},
-	monomial: function (a, b) {//按单项式幂次降序
+	monomial: (a, b)=>{//按单项式幂次降序
 
 		var A1 = Polynomial.opr1('^', a), B1 = Polynomial.opr1('^', b);
 		if (A1 == B1) {
@@ -3635,13 +3672,13 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 			return A1 - B1
 		}
 	},
-	freq: function(A, ascend){// 按数组元素频率排序（ascend不为真，默认降序），最终会去重
+	freq: (A, ascend)=>{// 按数组元素频率排序（ascend不为真，默认降序），最终会去重
 		var B=Array.from(new Set(A)).map(i=>[i, A.filter(j=>j==i).length]);
 		B.sort((a,b)=>ascend?a[1]-b[1]:b[1]-a[1]);
 		return B.map(i=>i[0])
 	}
 
-}, sort2 = function (A, sortBys, cols, addNumCol, addValue) {/*二维数组排序（表格排序）
+}, sort2 = (A, sortBys, cols, addNumCol, addValue)=>{/*二维数组排序（表格排序）
 	参数
 	sortBys	规则数组 指定各列排序规则
 		如果不是数组，则所有参与排序的列cols，都按此规则排序
@@ -3657,17 +3694,15 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	*/
 	var cA = cols || [0], sA = isArr(sortBys) ? sortBys : copyA(sortBys ? sortBys : (/[^\d\/\.,-]/.test(A.toString()) ? sortBy.chr : sortBy.num), cols ? cols.length : 1);
 
-	//	console.log(arguments);
-	//	console.log(sA);
 	if (addNumCol) {
-		Arrf(function (a, i) { a.push(i + 1) }, A);
+		Arrf((a, i)=>{a.push(i + 1) }, A);
 	}
 	if (addValue) {
-		Arrf(function (a) { a.push(1) }, A);
+		Arrf((a)=>{a.push(1) }, A);
 	}
 	//	console.log(sA);
 	var n = A[0].length;
-	A.sort(function (a, b) {
+	A.sort((a, b)=>{
 		for (var i in cA) {
 			//		console.log(cA[i], sA[cA[i]]);
 			//	var j=cA[i],sj=sA[j],aj=a[j],bj=b[j],r=sj(aj,bj);
@@ -3685,7 +3720,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 
 }, compressBy={
-	prefix:function(v, decompress){
+	prefix:(v, decompress)=>{
 		var vA=v.split(brn);
 		if(decompress){
 			for(var i=0;i<vA.length-1;i++){
@@ -3740,10 +3775,10 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		return vA
 	}
 
-}, Latin = function (t, caps) {
-	var f = function (i) { var s = html2txt('&' + String.fromCharCode(i) + t + ';'); if (/;/.test(s)) { s = '' } return s };
+}, Latin = (t, caps)=>{
+	var f = i=>{var s = html2txt('&' + String.fromCharCode(i) + t + ';'); if (/;/.test(s)) { s = '' } return s };
 	return Arrf(f, seqA(65 + 32 * (+!caps), 26))
-}, Options = function (A, tB, selev) {//返回数组
+}, Options = (A, tB, selev)=>{//返回数组
 	if (tB) {
 		var B = tB == 1 ? gM(A) : tB, n = B.length, C = copyA('">', n), s = A.indexOf(selev || '');
 		if (selev && s > -1) {
@@ -3751,18 +3786,18 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 		}
 		return concat(copyA('<option value="', n), A, C, B, copyA('</option>', n));
 	}
-	var f = function (i) { return i ? '<option value="' + i + '"' + (selev && i == selev ? seled : '') + '>' + i + '</option>' : '' };
+	var f = i=>i ? '<option value="' + i + '"' + (selev && i == selev ? seled : '') + '>' + i + '</option>' : '';
 	return Arrf(f, A)
 
-}, optgrp = function (t,v) {//返回字符串
+}, optgrp = (t,v)=>{//返回字符串
 	return '<optgroup label="'+t+'">'+v+'</optgroup>'
-}, OptGrps = function (A, getI18) {//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
+}, OptGrps = (A, getI18)=>{//返回字符串	A=[{'label1':[{'t':'','v':'','s':1},]},]
 	var s = '', i18k=k=>getI18 && k!='LaTeX' && k!='JavaScript' && k!='MathBox' ?gM(k):k;
 	for (var i = 0, l = A.length; i < l; i++) {
 		var a = A[i];
-		$.each(a, function (x, v) {
-			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(function (k) { return '<option value="' + k + '">' + i18k(k) + '</option>' },
-				ZLR(v)) : Arrf(function (j) {
+		$.each(a, (x, v)=>{
+			s += '<optgroup label="' + x + '">' + (isStr(v) ? Arrf(k=>'<option value="' + k + '">' + i18k(k) + '</option>',
+				ZLR(v)) : Arrf((j)=>{
 					var tv=j.t || j.v;
 					return '<option value="' + (j.v || j.t) + '"' + (j.s ? seled : '') + '>' + i18k(tv) + '</option>'
 				}, v)).join('') + '</optgroup>'
@@ -3771,20 +3806,20 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	return s
 
 }, entity = ZLR('scr fr opf bar acute caron grave dot uml ring circ tilde breve'), printF = {
-	'table': function (tbl, separateStyle, blankStyle) {
+	'table': (tbl, separateStyle, blankStyle)=>{
 		var t = [];
-		$(tbl).children().each(function () {
-			$(this).children().each(function () {
+		$(tbl).children().each(function() {
+			$(this).children().each(function() {
 				var s = '';
-				$(this).children().each(function () {
-					s += ($(this).text().trim() || blankStyle || '') + (separateStyle == '' ? '' : (separateStyle || '\t'))
+				$(this).children().each(function() {
+					s += ($(this).text().trim() || blankStyle || '') + (separateStyle == '' ? '' : (separateStyle || brt))
 				})
 				t.push(s)
 			})
 		});
-		return t.join('\n');
+		return t.join(brn);
 	}
-}, isSupportFontFamily = function (f) {
+}, isSupportFontFamily = (f)=>{
 	if (typeof f != 'string') {
 		return false;
 	}
@@ -3807,7 +3842,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 	ctx.textAlign = 'center';
 	ctx.fillStyle = 'black';
 	ctx.textBaseline = 'middle';
-	var getFontData = function (f) {
+	var getFontData = (f)=>{
 		// 清除
 		ctx.clearRect(0, 0, width, height);
 		// 设置字体
@@ -3816,7 +3851,7 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 		var data = ctx.getImageData(0, 0, width, height).data;
 
-		return [].slice.call(data).filter(function (value) {
+		return [].slice.call(data).filter((value)=>{
 			return value != 0;
 		});
 	};
@@ -3827,18 +3862,18 @@ var A=[2,3,4,5,7];Arrf(function(t,i){if(i){A[A.length-i]-=A[A.length-i-1]}},A);A
 
 
 function cell2rows(t, colA, sepA, blanklines) {//单元格拆为多行	colA：需要拆行的列号数组(列号从0开始)  sepA：相应拆行标识符	blanklines间隔空行数
-	var A = Arrf(function (x) { return x.split('\t') }, t.split('\n')), l = blanklines;
+	var A = Arrf(x=>x.split(brt), t.split(brn)), l = blanklines;
 	//console.log(colA,sepA);
 	for (var i = 0; i < A.length; i++) {
 		//console.log('a= '+A[i],A);
-		var a = A[i], m = a.length, b = Arrf(function (x, j) { return x.split(sepA[j]) }, ArrI(a, colA)), n = max(Arrf(function (x) { return x.length }, b));
+		var a = A[i], m = a.length, b = Arrf((x, j)=>x.split(sepA[j]), ArrI(a, colA)), n = max(Arrf(x=>x.length, b));
 		//console.log('b= '+b,n);
 		if (n > 1) {
-			Arrf(function (x, j) { a[x] = b[j][0] }, colA);
+			Arrf((x, j)=>{a[x] = b[j][0] }, colA);
 
 			for (var ii = 0; ii < n; ii++) {
 				var B = copyA('', m);
-				Arrf(function (x, j) {
+				Arrf((x, j)=>{
 					B[x] = b[j][ii + 1] || '';
 				}, colA);
 				A.splice(i + ii + 1, 0, B);
@@ -3852,24 +3887,24 @@ function cell2rows(t, colA, sepA, blanklines) {//单元格拆为多行	colA：�
 			i += l;
 		}
 	}
-	return Arrf(function (s) { return s.join('\t') }, A).join('\n')
+	return Arrf(s=>s.join(brt), A).join(brn)
 
 }
 
 function cell2cols(t, colA, sepA, fixedA) {//单元格拆为多列	colA：需要拆列的列号数组(列号从0开始)  sepA：相应拆列标识符	fixedA各拆列数目
-	var A = Arrf(function (x) { return x.split('\t') }, t.split('\n')), B = fixedA;
+	var A = Arrf(x=>x.split(brn), t.split(brn)), B = fixedA;
 
 	if (!B) {
-		B = Arrf(function (x, j) { return max(Arrf(function (y) { return y.split(sepA[j]).length }, Arri(A, x))) }, colA);
+		B = Arrf((x, j)=>max(Arrf(y=>y.split(sepA[j]).length, Arri(A, x))), colA);
 	}
 
 	for (var i = 0; i < A.length; i++) {
 		for (var ii = 0; ii < colA.length; ii++) {
 			var j = colA[ii], a = A[i][j].split(sepA[ii]);
-			A[i][j] = a.concat(copyA('', B[ii] - a.length)).join('\t')
+			A[i][j] = a.concat(copyA('', B[ii] - a.length)).join(brt)
 		}
 	}
-	return Arrf(function (s) { return s.join('\t') }, A).join('\n')
+	return Arrf(s=>s.join(brt), A).join(brn)
 
 }
 
@@ -3879,7 +3914,7 @@ function cell2cols(t, colA, sepA, fixedA) {//单元格拆为多列	colA：需要
 function n2Zh(m, big, currency) {//数字转中文	[数字, 大小写, 货币单位]
 	var AB = ('' + m).split('.'), A = AB[0].replace(/^-/g, ''), B = AB.length == 2 ? AB[1] : '', SN = big ? "零壹贰叁肆伍陆柒捌玖拾佰仟萬亿兆" : "〇一二三四五六七八九十百千万亿兆", K = SN.substr(10, 6), S = '';
 	for (var i = 0; i < A.length; i++) {
-		var j = Math.floor(i / 4), k = i % 4, n = A[A.length - i - 1], t = n.replace(/\d/, function (s) { return SN[s] });
+		var j = Math.floor(i / 4), k = i % 4, n = A[A.length - i - 1], t = n.replace(/\d/, s=>SN[s]);
 		S = (n == '0' ? (k > 0 && A[A.length - i] != '0' ? t : '') : (n == '1' && k == 1 && i == A.length - 1 ? '' : t) + (k > 0 ? K[k - 1] : '')) + (j > 0 && k == 0 ? K[j + 2] : '') + S
 	}
 	if (currency) {
@@ -3891,7 +3926,7 @@ function n2Zh(m, big, currency) {//数字转中文	[数字, 大小写, 货币单
 	}
 	K = '角分厘毫丝忽';
 	for (var i = 0; i < B.length; i++) {
-		var n = B[i], t = n.replace(/\d/, function (s) { return SN[s] });
+		var n = B[i], t = n.replace(/\d/, s=>SN[s]);
 		if (currency) {
 			S += n == '0' ? (B[i + 1] && B[i + 1] != '0' ? t : '') : t + (i < 5 ? K[i] : '')
 		} else {
@@ -3912,13 +3947,13 @@ function n2Zh(m, big, currency) {//数字转中文	[数字, 大小写, 货币单
 
 }
 function Zh2n(s) {//中文字符转成数字 只做简单替换处理
-	return (s + '').replace(/[零壹贰叁肆伍陆柒捌玖]/gi, function (t) { return '零壹贰叁肆伍陆柒捌玖'.indexOf(t) })
-		.replace(/[〇一二三四五六七八九]/gi, function (t) { return '〇一二三四五六七八九'.indexOf(t) })
-		.replace(/[０１２３４５６７８９]/gi, function (t) { return '０１２３４５６７８９'.indexOf(t) })
-		.replace(/[oO点两俩／拾佰仟萬]/g, function (t) { return '00.22/十百千万'['oO点两俩／拾佰仟萬'.indexOf(t)] })
-		.replace(/^[百千万]/g, function (t) { return 1 + ZLR(0, '百千万'.indexOf(t) + 2) })
-		.replace(/[十百千万]$/g, function (t) { return ZLR(0, '十百千万'.indexOf(t) + 1) }).replace(/亿$/, '00000000').replace(/兆$/, '000000')
-		.replace(/[百千万]\D/g, function (t) { return ZLR(0, '百千万'.indexOf(t[0]) + 2) + t.substr(1) })
+	return (s + '').replace(/[零壹贰叁肆伍陆柒捌玖]/gi, t=>'零壹贰叁肆伍陆柒捌玖'.indexOf(t))
+		.replace(/[〇一二三四五六七八九]/gi, t=>'〇一二三四五六七八九'.indexOf(t))
+		.replace(/[０１２３４５６７８９]/gi, t=>'０１２３４５６７８９'.indexOf(t))
+		.replace(/[oO点两俩／拾佰仟萬]/g, t=>'00.22/十百千万'['oO点两俩／拾佰仟萬'.indexOf(t)])
+		.replace(/^[百千万]/g, t=>1 + ZLR(0, '百千万'.indexOf(t) + 2))
+		.replace(/[十百千万]$/g, t=>ZLR(0, '十百千万'.indexOf(t) + 1)).replace(/亿$/, '00000000').replace(/兆$/, '000000')
+		.replace(/[百千万]\D/g, t=>ZLR(0, '百千万'.indexOf(t[0]) + 2) + t.substr(1))
 		.replace(/[百千万](.)/g, '$1')
 		.replace(/([1-9])十([1-9])/g, '$1$2')
 		.replace(/([1-9])[十]/, '$10')
@@ -3962,9 +3997,10 @@ function dbc2sbc(str) {
 	return result;
 }
 function zh2big(s, big2zh) {
-	var zh_s = '皑蔼碍爱翱袄奥坝罢摆败颁办绊帮绑镑谤剥饱宝报鲍辈贝钡狈备惫绷笔毕毙闭边编贬变辩辫鳖瘪濒滨宾摈饼拨钵铂驳卜补布参蚕残惭惨灿苍舱仓沧厕侧册测层诧搀掺蝉馋谗缠铲产阐颤场尝长偿肠厂畅钞车彻尘陈衬撑称惩诚骋痴迟驰耻齿炽冲虫宠畴踌筹绸丑橱厨锄雏础储触处传疮闯创锤纯绰辞词赐聪葱囱从丛凑窜错达带贷担单郸掸胆惮诞弹当挡党荡档捣岛祷导盗灯邓敌涤递缔点垫电淀钓调迭谍叠钉顶锭订东动栋冻斗犊独读赌镀锻断缎兑队对吨顿钝夺鹅额讹恶饿儿尔饵贰发罚阀珐矾钒烦范贩饭访纺飞废费纷坟奋愤粪丰枫锋风疯冯缝讽凤肤辐抚辅赋复负讣妇缚该钙盖干赶秆赣冈刚钢纲岗皋镐搁鸽阁铬个给龚宫巩贡钩沟构购够蛊顾剐关观馆惯贯广规硅归龟闺轨诡柜贵刽辊滚锅国过骇韩汉号阂鹤贺横轰鸿红后壶护沪户哗华画划话怀坏欢环还缓换唤痪焕涣黄谎挥辉毁贿秽会烩汇讳诲绘荤浑伙获货祸击机积饥讥鸡绩缉极辑级挤几蓟剂济计记际继纪夹荚颊贾钾价驾歼监坚笺间艰缄茧检碱硷拣捡简俭减荐槛鉴践贱见键舰剑饯渐溅涧将浆蒋桨奖讲酱胶浇骄娇搅铰矫侥脚饺缴绞轿较秸阶节茎惊经颈静镜径痉竞净纠厩旧驹举据锯惧剧鹃绢杰洁结诫届紧锦仅谨进晋烬尽劲荆觉决诀绝钧军骏开凯颗壳课垦恳抠库裤夸块侩宽矿旷况亏岿窥馈溃扩阔蜡腊莱来赖蓝栏拦篮阑兰澜谰揽览懒缆烂滥捞劳涝乐镭垒类泪篱离里鲤礼丽厉励砾历历沥隶俩联莲连镰怜涟帘敛脸链恋炼练粮凉两辆谅疗辽镣猎临邻鳞凛赁龄铃凌灵岭领馏刘浏龙聋咙笼垄拢陇楼娄搂篓芦卢颅庐炉掳卤虏鲁赂禄录陆驴吕铝侣屡缕虑滤绿峦挛孪滦乱抡轮伦仑沦纶论萝罗啰逻锣箩骡骆络妈玛码蚂马骂吗买麦卖迈脉瞒馒蛮满谩猫锚铆贸么霉没镁门闷们锰梦谜弥觅绵缅庙灭悯闽鸣铭谬谋亩钠纳难挠脑恼闹你拟馁腻撵捻酿鸟聂啮镊镍柠狞宁拧泞钮纽脓浓农疟诺欧鸥殴呕沤盘庞国爱赔喷鹏骗飘频贫苹凭评泼颇扑铺朴谱脐齐骑岂启气弃讫牵扦钎铅迁签签谦钱钳潜浅谴堑枪呛墙蔷强抢锹桥乔侨翘窍窃钦亲轻氢倾顷请庆琼穷趋区躯驱龋颧权劝却鹊让饶扰绕热韧认纫荣绒软锐闰润洒萨鳃赛伞丧骚扫涩杀纱筛晒闪陕赡缮伤赏烧绍赊摄慑设绅审婶肾渗声绳胜圣师狮湿诗尸时蚀实识驶势释饰视试适寿兽枢输书赎属术树竖数帅双谁税顺说硕烁丝饲耸怂颂讼诵擞苏诉肃虽绥岁孙损笋缩琐锁獭挞台抬摊贪瘫滩坛谭谈叹汤烫涛绦腾誊锑题体屉条贴铁厅听烃铜统头图涂团颓蜕脱鸵驮驼椭洼袜弯湾顽万网韦违围为潍维苇伟伪纬谓卫温闻纹稳问瓮挝蜗涡窝呜钨乌诬无芜吴坞雾务误锡牺袭习铣戏细虾辖峡侠狭厦锨鲜纤咸贤衔闲显险现献县馅羡宪线厢镶乡详响项萧销晓啸蝎协挟携胁谐写泻谢锌衅兴汹锈绣虚嘘须许绪续轩悬选癣绚学勋询寻驯训讯逊压鸦鸭哑亚讶阉烟盐严颜阎艳厌砚彦谚验鸯杨扬疡阳痒养样瑶摇尧遥窑谣药爷页业叶一医铱颐遗仪彝蚁艺亿忆义诣议谊译异绎荫阴银饮隐樱婴鹰应缨莹萤营荧蝇颖哟拥佣痈踊咏涌优忧邮铀犹游诱舆鱼渔娱与屿语吁御狱誉预驭鸳渊辕园员圆缘远愿约跃钥岳粤悦阅云郧匀陨运蕴酝晕韵杂灾载攒暂赞赃脏凿枣灶责择则泽贼赠扎札轧铡闸诈斋债毡盏斩辗崭栈战绽张涨帐账胀赵蛰辙锗这贞针侦诊镇阵挣睁狰帧郑证织职执纸挚掷帜质钟终种肿众诌轴皱昼骤猪诸诛烛瞩嘱贮铸筑驻专砖转赚桩庄装妆壮状锥赘坠缀谆浊兹资渍踪综总纵邹诅组钻致钟么为只凶准启板里雳余链泄';
-	var zh_t = '皚藹礙愛翺襖奧壩罷擺敗頒辦絆幫綁鎊謗剝飽寶報鮑輩貝鋇狽備憊繃筆畢斃閉邊編貶變辯辮鼈癟瀕濱賓擯餅撥缽鉑駁蔔補佈參蠶殘慚慘燦蒼艙倉滄廁側冊測層詫攙摻蟬饞讒纏鏟産闡顫場嘗長償腸廠暢鈔車徹塵陳襯撐稱懲誠騁癡遲馳恥齒熾沖蟲寵疇躊籌綢醜櫥廚鋤雛礎儲觸處傳瘡闖創錘純綽辭詞賜聰蔥囪從叢湊竄錯達帶貸擔單鄲撣膽憚誕彈當擋黨蕩檔搗島禱導盜燈鄧敵滌遞締點墊電澱釣調叠諜疊釘頂錠訂東動棟凍鬥犢獨讀賭鍍鍛斷緞兌隊對噸頓鈍奪鵝額訛惡餓兒爾餌貳發罰閥琺礬釩煩範販飯訪紡飛廢費紛墳奮憤糞豐楓鋒風瘋馮縫諷鳳膚輻撫輔賦複負訃婦縛該鈣蓋幹趕稈贛岡剛鋼綱崗臯鎬擱鴿閣鉻個給龔宮鞏貢鈎溝構購夠蠱顧剮關觀館慣貫廣規矽歸龜閨軌詭櫃貴劊輥滾鍋國過駭韓漢號閡鶴賀橫轟鴻紅後壺護滬戶嘩華畫劃話懷壞歡環還緩換喚瘓煥渙黃謊揮輝毀賄穢會燴彙諱誨繪葷渾夥獲貨禍擊機積饑譏雞績緝極輯級擠幾薊劑濟計記際繼紀夾莢頰賈鉀價駕殲監堅箋間艱緘繭檢堿鹼揀撿簡儉減薦檻鑒踐賤見鍵艦劍餞漸濺澗將漿蔣槳獎講醬膠澆驕嬌攪鉸矯僥腳餃繳絞轎較稭階節莖驚經頸靜鏡徑痙競淨糾廄舊駒舉據鋸懼劇鵑絹傑潔結誡屆緊錦僅謹進晉燼盡勁荊覺決訣絕鈞軍駿開凱顆殼課墾懇摳庫褲誇塊儈寬礦曠況虧巋窺饋潰擴闊蠟臘萊來賴藍欄攔籃闌蘭瀾讕攬覽懶纜爛濫撈勞澇樂鐳壘類淚籬離裏鯉禮麗厲勵礫曆歷瀝隸倆聯蓮連鐮憐漣簾斂臉鏈戀煉練糧涼兩輛諒療遼鐐獵臨鄰鱗凜賃齡鈴淩靈嶺領餾劉瀏龍聾嚨籠壟攏隴樓婁摟簍蘆盧顱廬爐擄鹵虜魯賂祿錄陸驢呂鋁侶屢縷慮濾綠巒攣孿灤亂掄輪倫侖淪綸論蘿羅囉邏鑼籮騾駱絡媽瑪碼螞馬罵嗎買麥賣邁脈瞞饅蠻滿謾貓錨鉚貿麽黴沒鎂門悶們錳夢謎彌覓綿緬廟滅憫閩鳴銘謬謀畝鈉納難撓腦惱鬧妳擬餒膩攆撚釀鳥聶齧鑷鎳檸獰甯擰濘鈕紐膿濃農瘧諾歐鷗毆嘔漚盤龐國愛賠噴鵬騙飄頻貧蘋憑評潑頗撲鋪樸譜臍齊騎豈啓氣棄訖牽扡釺鉛遷簽籤謙錢鉗潛淺譴塹槍嗆牆薔強搶鍬橋喬僑翹竅竊欽親輕氫傾頃請慶瓊窮趨區軀驅齲顴權勸卻鵲讓饒擾繞熱韌認紉榮絨軟銳閏潤灑薩鰓賽傘喪騷掃澀殺紗篩曬閃陝贍繕傷賞燒紹賒攝懾設紳審嬸腎滲聲繩勝聖師獅濕詩屍時蝕實識駛勢釋飾視試適壽獸樞輸書贖屬術樹豎數帥雙誰稅順說碩爍絲飼聳慫頌訟誦擻蘇訴肅雖綏歲孫損筍縮瑣鎖獺撻臺擡攤貪癱灘壇譚談歎湯燙濤縧騰謄銻題體屜條貼鐵廳聽烴銅統頭圖塗團頹蛻脫鴕馱駝橢窪襪彎灣頑萬網韋違圍爲濰維葦偉僞緯謂衛溫聞紋穩問甕撾蝸渦窩嗚鎢烏誣無蕪吳塢霧務誤錫犧襲習銑戲細蝦轄峽俠狹廈鍁鮮纖鹹賢銜閑顯險現獻縣餡羨憲線廂鑲鄉詳響項蕭銷曉嘯蠍協挾攜脅諧寫瀉謝鋅釁興洶鏽繡虛噓須許緒續軒懸選癬絢學勳詢尋馴訓訊遜壓鴉鴨啞亞訝閹煙鹽嚴顔閻豔厭硯彥諺驗鴦楊揚瘍陽癢養樣瑤搖堯遙窯謠藥爺頁業葉壹醫銥頤遺儀彜蟻藝億憶義詣議誼譯異繹蔭陰銀飲隱櫻嬰鷹應纓瑩螢營熒蠅穎喲擁傭癰踴詠湧優憂郵鈾猶遊誘輿魚漁娛與嶼語籲禦獄譽預馭鴛淵轅園員圓緣遠願約躍鑰嶽粵悅閱雲鄖勻隕運蘊醞暈韻雜災載攢暫贊贓髒鑿棗竈責擇則澤賊贈紮劄軋鍘閘詐齋債氈盞斬輾嶄棧戰綻張漲帳賬脹趙蟄轍鍺這貞針偵診鎮陣掙睜猙幀鄭證織職執紙摯擲幟質鍾終種腫衆謅軸皺晝驟豬諸誅燭矚囑貯鑄築駐專磚轉賺樁莊裝妝壯狀錐贅墜綴諄濁茲資漬蹤綜總縱鄒詛組鑽緻鐘麼為隻兇準啟闆裡靂餘鍊洩';
-	return s.replace(hanziRe, function (t) { return (big2zh ? zh_s[zh_t.indexOf(t)] : zh_t[zh_s.indexOf(t)]) || t })
+	var zh_s = '绠斗撰钊鸾娅只纭颀茂嫔荡垛巨谷关侪卷绌俪污哗辉昵鸡绣汇饪槟尽冲啧迹隽叙它托幂咨筝荞闵舍迹症诠争删恒邬祯周个幂说厘辟吓挂回征制鉴占赞叹讨众系莺采别态随颞复颜靓系尴松干注志标宁碱飙面于财发产愈卫烟确匮内脏睑纾并皑蔼碍爱翱袄奥坝罢摆败颁办绊帮绑镑谤剥饱宝报鲍辈贝钡狈备惫绷笔毕毙闭边编贬变辩辫鳖瘪濒滨宾摈饼拨钵铂驳卜补布参蚕残惭惨灿苍舱仓沧厕侧册测层诧搀掺蝉馋谗缠铲产阐颤场尝长偿肠厂畅钞车彻尘陈衬撑称惩诚骋痴迟驰耻齿炽冲虫宠畴踌筹绸丑橱厨锄雏础储触处传疮闯创锤纯绰辞词赐聪葱囱从丛凑窜错达带贷担单郸掸胆惮诞弹当挡党荡档捣岛祷导盗灯邓敌涤递缔点垫电淀钓调迭谍叠钉顶锭订东动栋冻斗犊独读赌镀锻断缎兑队对吨顿钝夺鹅额讹恶饿儿尔饵贰发罚阀珐矾钒烦范贩饭访纺飞废费纷坟奋愤粪丰枫锋风疯冯缝讽凤肤辐抚辅赋复负讣妇缚该钙盖干赶秆赣冈刚钢纲岗皋镐搁鸽阁铬个给龚宫巩贡钩沟构购够蛊顾剐关观馆惯贯广规硅归龟闺轨诡柜贵刽辊滚锅国过骇韩汉号阂鹤贺横轰鸿红后壶护沪户哗华画划话怀坏欢环还缓换唤痪焕涣黄谎挥辉毁贿秽会烩汇讳诲绘荤浑伙获货祸击机积饥讥鸡绩缉极辑级挤几蓟剂济计记际继纪夹荚颊贾钾价驾歼监坚笺间艰缄茧检碱硷拣捡简俭减荐槛鉴践贱见键舰剑饯渐溅涧将浆蒋桨奖讲酱胶浇骄娇搅铰矫侥脚饺缴绞轿较秸阶节茎惊经颈静镜径痉竞净纠厩旧驹举据锯惧剧鹃绢杰洁结诫届紧锦仅谨进晋烬尽劲荆觉决诀绝钧军骏开凯颗壳课垦恳抠库裤夸块侩宽矿旷况亏岿窥馈溃扩阔蜡腊莱来赖蓝栏拦篮阑兰澜谰揽览懒缆烂滥捞劳涝乐镭垒类泪篱离里鲤礼丽厉励砾历历沥隶俩联莲连镰怜涟帘敛脸链恋炼练粮凉两辆谅疗辽镣猎临邻鳞凛赁龄铃凌灵岭领馏刘浏龙聋咙笼垄拢陇楼娄搂篓芦卢颅庐炉掳卤虏鲁赂禄录陆驴吕铝侣屡缕虑滤绿峦挛孪滦乱抡轮伦仑沦纶论萝罗啰逻锣箩骡骆络妈玛码蚂马骂吗买麦卖迈脉瞒馒蛮满谩猫锚铆贸么霉没镁门闷们锰梦谜弥觅绵缅庙灭悯闽鸣铭谬谋亩钠纳难挠脑恼闹你拟馁腻撵捻酿鸟聂啮镊镍柠狞宁拧泞钮纽脓浓农疟诺欧鸥殴呕沤盘庞国爱赔喷鹏骗飘频贫苹凭评泼颇扑铺朴谱脐齐骑岂启气弃讫牵扦钎铅迁签签谦钱钳潜浅谴堑枪呛墙蔷强抢锹桥乔侨翘窍窃钦亲轻氢倾顷请庆琼穷趋区躯驱龋颧权劝却鹊让饶扰绕热韧认纫荣绒软锐闰润洒萨鳃赛伞丧骚扫涩杀纱筛晒闪陕赡缮伤赏烧绍赊摄慑设绅审婶肾渗声绳胜圣师狮湿诗尸时蚀实识驶势释饰视试适寿兽枢输书赎属术树竖数帅双谁税顺说硕烁丝饲耸怂颂讼诵擞苏诉肃虽绥岁孙损笋缩琐锁獭挞台抬摊贪瘫滩坛谭谈叹汤烫涛绦腾誊锑题体屉条贴铁厅听烃铜统头图涂团颓蜕脱鸵驮驼椭洼袜弯湾顽万网韦违围为潍维苇伟伪纬谓卫温闻纹稳问瓮挝蜗涡窝呜钨乌诬无芜吴坞雾务误锡牺袭习铣戏细虾辖峡侠狭厦锨鲜纤咸贤衔闲显险现献县馅羡宪线厢镶乡详响项萧销晓啸蝎协挟携胁谐写泻谢锌衅兴汹锈绣虚嘘须许绪续轩悬选癣绚学勋询寻驯训讯逊压鸦鸭哑亚讶阉烟盐严颜阎艳厌砚彦谚验鸯杨扬疡阳痒养样瑶摇尧遥窑谣药爷页业叶一医铱颐遗仪彝蚁艺亿忆义诣议谊译异绎荫阴银饮隐樱婴鹰应缨莹萤营荧蝇颖哟拥佣痈踊咏涌优忧邮铀犹游诱舆鱼渔娱与屿语吁御狱誉预驭鸳渊辕园员圆缘远愿约跃钥岳粤悦阅云郧匀陨运蕴酝晕韵杂灾载攒暂赞赃脏凿枣灶责择则泽贼赠扎札轧铡闸诈斋债毡盏斩辗崭栈战绽张涨帐账胀赵蛰辙锗这贞针侦诊镇阵挣睁狰帧郑证织职执纸挚掷帜质钟终种肿众诌轴皱昼骤猪诸诛烛瞩嘱贮铸筑驻专砖转赚桩庄装妆壮状锥赘坠缀谆浊兹资渍踪综总纵邹诅组钻致钟么为只凶准启板里雳余链泄';
+	var zh_t = '綆㪷譔釗鸞婭祇紜頎懋嬪盪垜鉅穀関儕捲絀儷汙譁煇暱鷄綉匯飪檳儘衝嘖蹟雋敘牠託冪諮箏蕎閔捨跡癥詮爭刪恆鄔禎週箇冪説釐闢嚇掛迴徵製鑑佔讚嘆討眾繫鶯採別態隨顳復顏靚係尷鬆乾註誌標寧硷飆麵於財髮產癒衞菸確匱內臟瞼紓並皚藹礙愛翺襖奧壩罷擺敗頒辦絆幫綁鎊謗剝飽寶報鮑輩貝鋇狽備憊繃筆畢斃閉邊編貶變辯辮鼈癟瀕濱賓擯餅撥缽鉑駁蔔補佈參蠶殘慚慘燦蒼艙倉滄廁側冊測層詫攙摻蟬饞讒纏鏟産闡顫場嘗長償腸廠暢鈔車徹塵陳襯撐稱懲誠騁癡遲馳恥齒熾沖蟲寵疇躊籌綢醜櫥廚鋤雛礎儲觸處傳瘡闖創錘純綽辭詞賜聰蔥囪從叢湊竄錯達帶貸擔單鄲撣膽憚誕彈當擋黨蕩檔搗島禱導盜燈鄧敵滌遞締點墊電澱釣調叠諜疊釘頂錠訂東動棟凍鬥犢獨讀賭鍍鍛斷緞兌隊對噸頓鈍奪鵝額訛惡餓兒爾餌貳發罰閥琺礬釩煩範販飯訪紡飛廢費紛墳奮憤糞豐楓鋒風瘋馮縫諷鳳膚輻撫輔賦複負訃婦縛該鈣蓋幹趕稈贛岡剛鋼綱崗臯鎬擱鴿閣鉻個給龔宮鞏貢鈎溝構購夠蠱顧剮關觀館慣貫廣規矽歸龜閨軌詭櫃貴劊輥滾鍋國過駭韓漢號閡鶴賀橫轟鴻紅後壺護滬戶嘩華畫劃話懷壞歡環還緩換喚瘓煥渙黃謊揮輝毀賄穢會燴彙諱誨繪葷渾夥獲貨禍擊機積饑譏雞績緝極輯級擠幾薊劑濟計記際繼紀夾莢頰賈鉀價駕殲監堅箋間艱緘繭檢堿鹼揀撿簡儉減薦檻鑒踐賤見鍵艦劍餞漸濺澗將漿蔣槳獎講醬膠澆驕嬌攪鉸矯僥腳餃繳絞轎較稭階節莖驚經頸靜鏡徑痙競淨糾廄舊駒舉據鋸懼劇鵑絹傑潔結誡屆緊錦僅謹進晉燼盡勁荊覺決訣絕鈞軍駿開凱顆殼課墾懇摳庫褲誇塊儈寬礦曠況虧巋窺饋潰擴闊蠟臘萊來賴藍欄攔籃闌蘭瀾讕攬覽懶纜爛濫撈勞澇樂鐳壘類淚籬離裏鯉禮麗厲勵礫曆歷瀝隸倆聯蓮連鐮憐漣簾斂臉鏈戀煉練糧涼兩輛諒療遼鐐獵臨鄰鱗凜賃齡鈴淩靈嶺領餾劉瀏龍聾嚨籠壟攏隴樓婁摟簍蘆盧顱廬爐擄鹵虜魯賂祿錄陸驢呂鋁侶屢縷慮濾綠巒攣孿灤亂掄輪倫侖淪綸論蘿羅囉邏鑼籮騾駱絡媽瑪碼螞馬罵嗎買麥賣邁脈瞞饅蠻滿謾貓錨鉚貿麽黴沒鎂門悶們錳夢謎彌覓綿緬廟滅憫閩鳴銘謬謀畝鈉納難撓腦惱鬧妳擬餒膩攆撚釀鳥聶齧鑷鎳檸獰甯擰濘鈕紐膿濃農瘧諾歐鷗毆嘔漚盤龐國愛賠噴鵬騙飄頻貧蘋憑評潑頗撲鋪樸譜臍齊騎豈啓氣棄訖牽扡釺鉛遷簽籤謙錢鉗潛淺譴塹槍嗆牆薔強搶鍬橋喬僑翹竅竊欽親輕氫傾頃請慶瓊窮趨區軀驅齲顴權勸卻鵲讓饒擾繞熱韌認紉榮絨軟銳閏潤灑薩鰓賽傘喪騷掃澀殺紗篩曬閃陝贍繕傷賞燒紹賒攝懾設紳審嬸腎滲聲繩勝聖師獅濕詩屍時蝕實識駛勢釋飾視試適壽獸樞輸書贖屬術樹豎數帥雙誰稅順說碩爍絲飼聳慫頌訟誦擻蘇訴肅雖綏歲孫損筍縮瑣鎖獺撻臺擡攤貪癱灘壇譚談歎湯燙濤縧騰謄銻題體屜條貼鐵廳聽烴銅統頭圖塗團頹蛻脫鴕馱駝橢窪襪彎灣頑萬網韋違圍爲濰維葦偉僞緯謂衛溫聞紋穩問甕撾蝸渦窩嗚鎢烏誣無蕪吳塢霧務誤錫犧襲習銑戲細蝦轄峽俠狹廈鍁鮮纖鹹賢銜閑顯險現獻縣餡羨憲線廂鑲鄉詳響項蕭銷曉嘯蠍協挾攜脅諧寫瀉謝鋅釁興洶鏽繡虛噓須許緒續軒懸選癬絢學勳詢尋馴訓訊遜壓鴉鴨啞亞訝閹煙鹽嚴顔閻豔厭硯彥諺驗鴦楊揚瘍陽癢養樣瑤搖堯遙窯謠藥爺頁業葉壹醫銥頤遺儀彜蟻藝億憶義詣議誼譯異繹蔭陰銀飲隱櫻嬰鷹應纓瑩螢營熒蠅穎喲擁傭癰踴詠湧優憂郵鈾猶遊誘輿魚漁娛與嶼語籲禦獄譽預馭鴛淵轅園員圓緣遠願約躍鑰嶽粵悅閱雲鄖勻隕運蘊醞暈韻雜災載攢暫贊贓髒鑿棗竈責擇則澤賊贈紮劄軋鍘閘詐齋債氈盞斬輾嶄棧戰綻張漲帳賬脹趙蟄轍鍺這貞針偵診鎮陣掙睜猙幀鄭證織職執紙摯擲幟質鍾終種腫衆謅軸皺晝驟豬諸誅燭矚囑貯鑄築駐專磚轉賺樁莊裝妝壯狀錐贅墜綴諄濁茲資漬蹤綜總縱鄒詛組鑽緻鐘麼為隻兇準啟闆裡靂餘鍊洩';
+	return s.replace(hanziRe, t=>(big2zh ? zh_s[zh_t.indexOf(t)] : zh_t[zh_s.indexOf(t)]) || t)
+		.replace(hanziCoreRe, t=>(big2zh ? zh_s[zh_t.indexOf(t)] : zh_t[zh_s.indexOf(t)]) || t)
 }
 
 function txt2audio(t, spd, pit, per, lan, eng) {/*spd=[0~9] pit=[0~9] per=[0~4]
@@ -3996,7 +4032,7 @@ function txt2audio(t, spd, pit, per, lan, eng) {/*spd=[0~9] pit=[0~9] per=[0~4]
 	}
 }
 function txt2A(t) {
-	var splitA = function (A, k) {
+	var splitA = (A, k)=>{
 		var B = [].concat(A);
 		for (var i = 0; i < B.length; i++) {
 			var s = B[i].trim(), sA = s.split(k), sAl = sA.length;
@@ -4013,7 +4049,7 @@ function txt2A(t) {
 		A = splitA(A, kA[i]);
 	}
 
-	return A.filter(function (v, i) { return v.trim() != '' })
+	return A.filter((v, i)=>v.trim() != '')
 }
 function ubb2html(t0, webview) {
 
@@ -4021,57 +4057,57 @@ function ubb2html(t0, webview) {
 	var tA = ZLR('b bold i italic u h\\w sub sup center cite code dfn em kbd samp strong var big del mark pre strike ul ol p q s wbr list \\* quote');
 
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[\\/?' + tA[i] + '\\]', 'gi'), function (w) { return w.replace('[', '<').replace(']', '>').replace(/list|\*/g, 'li').replace('quote', 'q').replace('bold', 'b').replace('italic', 'i') });
+		t = t.replace(new RegExp('\\[\\/?' + tA[i] + '\\]', 'gi'), w=>w.replace('[', '<').replace(']', '>').replace(/list|\*/g, 'li').replace('quote', 'q').replace('bold', 'b').replace('italic', 'i'));
 	}
 
 	tA = ZLR('red green blue white purple yellow violet brown black pink orange gold #\\w*');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[\\/?' + tA[i] + '\\]', 'gi'), function (w) { return w.substr(1, 1) == '/' ? '</font>' : w.replace('[' + tA[i] + ']', '<font color=' + tA[i] + '>') });
+		t = t.replace(new RegExp('\\[\\/?' + tA[i] + '\\]', 'gi'), w=>w.substr(1, 1) == '/' ? '</font>' : w.replace('[' + tA[i] + ']', '<font color=' + tA[i] + '>'));
 	}
 
 	tA = ZLR('img image');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<img src="' + w.replace(r0, '') + '" />' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<img src="' + w.replace(r0, '') + '" />');
 	}
 
 	tA = ZLR('url download ref refer');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return a0 + w.replace(r0, '') + '">' + w.replace(r0, '') + a1 });
-		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return a0 + w.split(']')[0].split('=')[1] + '">' + w.replace(r0, '') + a1 });
+		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>a0 + w.replace(r0, '') + '">' + w.replace(r0, '') + a1);
+		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>a0 + w.split(']')[0].split('=')[1] + '">' + w.replace(r0, '') + a1);
 	}
 
 	tA = ZLR('fly move');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<marquee direction=right behavior=scroll scrollamount=10 scrolldelay=200>' + w.replace(r0, '') + '</marquee>' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<marquee direction=right behavior=scroll scrollamount=10 scrolldelay=200>' + w.replace(r0, '') + '</marquee>');
 	}
 
 	tA = ZLR('left right');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<p align=' + w.split(']')[0].substr(1) + '>' + w.replace(r0, '') + '</p>' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<p align=' + w.split(']')[0].substr(1) + '>' + w.replace(r0, '') + '</p>');
 	}
 
 	tA = ZLR('color size font');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<font ' + w.split(']')[0].substr(1).replace(/^font/i, 'face') + '>' + w.replace(r0, '') + '</font>' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<font ' + w.split(']')[0].substr(1).replace(/^font/i, 'face') + '>' + w.replace(r0, '') + '</font>');
 	}
 
 	tA = ZLR('align');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<p ' + w.split(']')[0].substr(1) + '>' + w.replace(r0, '') + '</p>' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<p ' + w.split(']')[0].substr(1) + '>' + w.replace(r0, '') + '</p>');
 	}
 
 	tA = ZLR('rm mp dir qt');
 	for (var i = tA.length - 1; i > -1; i--) {
-		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), function (w) { return '<video controls=controls width=' + w.split(']')[0].split('=')[1].replace(',', ' height=') + ' src="' + w.replace(r0, '') + '">' + w.replace(r0, '') + '</video>' });
+		t = t.replace(new RegExp('\\[' + tA[i] + '=[^\\]]*?\\].*?\\[\\/' + tA[i] + '\\]', 'gi'), w=>'<video controls=controls width=' + w.split(']')[0].split('=')[1].replace(',', ' height=') + ' src="' + w.replace(r0, '') + '">' + w.replace(r0, '') + '</video>');
 	}
 
-	t = t.replace(/\[list=[^\]]*?\].*?\[\/list\]/gi, function (w) { return '<ol type=' + w.split(']')[0].split('=')[1] + '>' + w.replace(r0, '') + '</ol>' });
-	t = t.replace(/\[w\].*?\[\/w\]/gi, function (w) {
+	t = t.replace(/\[list=[^\]]*?\].*?\[\/list\]/gi, w=>'<ol type=' + w.split(']')[0].split('=')[1] + '>' + w.replace(r0, '') + '</ol>');
+	t = t.replace(/\[w\].*?\[\/w\]/gi, (w)=>{
 		var w0 = w.substr(3, w.length - 7), wb = webview ? 'webview' : 'iframe';
 		return '<' + wb + ' src="' + u + '" style="width:98%;height:500px" />'
 	});
-	t = t.replace(/\[email\].*?\[\/email\]/gi, function (w) { return a0 + 'mailto:' + w.replace(r0, '') + '">' + w.replace(r0, '') + a1 });
-	t = t.replace(/\[email=[^\]]*?\].*?\[\/email\]/gi, function (w) { return a0 + 'mailto:' + w.split(']')[0].split('=')[1] + '">' + w.replace(r0, '') + a1 });
+	t = t.replace(/\[email\].*?\[\/email\]/gi, w=>a0 + 'mailto:' + w.replace(r0, '') + '">' + w.replace(r0, '') + a1);
+	t = t.replace(/\[email=[^\]]*?\].*?\[\/email\]/gi, w=>a0 + 'mailto:' + w.split(']')[0].split('=')[1] + '">' + w.replace(r0, '') + a1);
 	return t;
 }
 
@@ -4081,8 +4117,8 @@ function fixed4(d) {
 }
 
 function linear2nest(Arr) {//平面线性二维数组[[相对层级,内容]+] 转成 立体嵌套对象[[索引,子对象数组[[索引,子对象数组[索引,索引]],[索引]]]+]
-	var A = Arrf(function (i, ii) { return i.concat(ii) }, Arr);//第三列添加自然索引（以0开始计数）
-	var f = function (a) {
+	var A = Arrf((i, ii)=>i.concat(ii), Arr);//第三列添加自然索引（以0开始计数）
+	var f = (a)=>{
 		var al = a.length, m = min(Arri(a, 0)), B = [], C = [];
 		for (var i = 0; i < al; i++) {
 			if (!i || a[i][0] == m) {
@@ -4110,7 +4146,7 @@ function precode(t){
 }
 
 function md2katex(str){
-	return str.replace(/\$[^\$]+\$/g, function (x) {
+	return str.replace(/\$[^\$]+\$/g, (x)=>{
 		var k = x.replace(/^.|.$/g, ''), z = zx(k)
 		return z
 	});	
@@ -4120,7 +4156,7 @@ function md2html(str, sep) {
 	var codeblockA = [], headA = [], listA = [], listOU = {},
 		lnk = {}, footlnk = {}, footlnkA = [],
 		mlnk = {}, mA = [], mlnkA = [],
-		s = '\n' + str + '\n';
+		s = brn + str + brn;
 
 	s=replaceNodeInner(s,'js', eval);
 	s=replaceNodeInner(s,'en', GM);
@@ -4128,7 +4164,7 @@ function md2html(str, sep) {
 	s=replaceNodeInner(s,'i18', gM);
 
 	while (/\n\[[^\]]+\]:.+/.test(s)) {
-		s = s.replace(/\n\[[^\]]+\]:.+/, function (x) {
+		s = s.replace(/\n\[[^\]]+\]:.+/, (x)=>{
 			var k = x.split(']:')[0].substr(2), v = x.replace(/\n\[[^\]]+\]:/, '').replace(/ +/g, ' ').trim(), isfoot = /^\^/.test(k);
 			if (isfoot) {
 				footlnk[k.substr(1)] = v
@@ -4142,14 +4178,14 @@ function md2html(str, sep) {
 
 
 	while (/```[^`]+```/.test(s)) {
-		s = s.replace(/```[^`]+```/, function (t) {
+		s = s.replace(/```[^`]+```/, (t)=>{
 			codeblockA.push(t.replace(/`/g, ''));
 			return '<codeblockquote>' + (codeblockA.length - 1) + '</codeblockquote>'
 		});
 	}
 
 	while (/\$\$[\s\S]+\$\$/.test(s)) {//JS 	$$2+3$$	$$1+2+3$$	$$zx(f)$$
-		s = s.replace(/\$\$[^\$]+\$\$/, function (x) {
+		s = s.replace(/\$\$[^\$]+\$\$/, (x)=>{
 
 			var t = x.replace(/^..|..$/g, '');
 			/*
@@ -4172,7 +4208,7 @@ function md2html(str, sep) {
 	}
 
 	while (/\$[^\$]+\$#.+#/.test(s)) {
-		s = s.replace(/\$[^\$]+\$#.+#/, function (x) {
+		s = s.replace(/\$[^\$]+\$#.+#/, (x)=>{
 			var k = x.substr(1).split('$')[0], t = x.replace(/\$[^\$]+\$/, '').replace(/^.|.$/g, ''), z = zx(k);
 			mlnk[t] = z;
 			mlnkA.push(z);
@@ -4181,13 +4217,13 @@ function md2html(str, sep) {
 		});
 	}
 	while (/\$@[^\$]+@\$/.test(s)) {
-		s = s.replace(/\$@[^\$]+@\$/, function (x) {
+		s = s.replace(/\$@[^\$]+@\$/, (x)=>{
 			var t = x.replace(/^..|..$/g, '');
 			return 'katex#' + mlnkA.indexOf(mlnk[t]) + '#' //mlnk[t]
 		});
 	}
 	while (/\$[^\$]+\$/.test(s)) {
-		s = s.replace(/\$[^\$]+\$/, function (x) {
+		s = s.replace(/\$[^\$]+\$/, (x)=>{
 			var k = x.replace(/^.|.$/g, ''), z = zx(k), i = mA.indexOf(k);
 			if (i < 0) {
 				i = mA.length;
@@ -4202,17 +4238,17 @@ function md2html(str, sep) {
 
 
 	while (/\n> +./.test(s)) {
-		s = s.replace(/\n> +.+(\n> +.+)*/, function (x) {
-			return XML.wrapE('blockquote', x.replace(/\n> +/g, '\n').replace(/^\n/, ''))
+		s = s.replace(/\n> +.+(\n> +.+)*/, (x)=>{
+			return XML.wrapE('blockquote', x.replace(/\n> +/g, brn).replace(/^\n/, ''))
 		})
 	}
 
 
 	if (/\n[ \t]*([\-\*\+]|\d+\.) .+/.test(s)) {//ol ul
-		var fou = function (str) {
+		var fou = (str)=>{
 
 			var listA = [], ouA = [];
-			var st = str.replace(/\n[ \t]*([\-\*\+]|\d+\.) .+/g, function (x) {
+			var st = str.replace(/\n[ \t]*([\-\*\+]|\d+\.) .+/g, (x)=>{
 				var t = x.trim(), n = x.split(/[\-\*\+]|\d+\./)[0].length - 1, ht = t.replace(/([\-\*\+]|\d+\.) */, '');
 				listA.push([n, ht]);
 				var oui = 'uo'[+/^\d/.test(t[0])] + 'l';
@@ -4223,13 +4259,13 @@ function md2html(str, sep) {
 			});
 
 			while (/\n<[uo]lli\d+>\d+\n(?!<[uo]lli\d+>\d+)/.test(st)) {
-				st = st.replace(/\n<[uo]lli\d+>\d+\n.+/, function (x) {
-					var xA = x.trim().split('\n');
+				st = st.replace(/\n<[uo]lli\d+>\d+\n.+/, (x)=>{
+					var xA = x.trim().split(brn);
 					if (/<[uo]lli\d+>\d+/.test(xA[1])) {
-						return '\n' + xA.join('#\n')
+						return brn + xA.join('#\n')
 					} else {
-						listA[+xA[0].split('>')[1]][1] += '\n' + xA[1]
-						return '\n' + xA[0]
+						listA[+xA[0].split('>')[1]][1] += brn + xA[1]
+						return brn + xA[0]
 					}
 				})
 			}
@@ -4239,9 +4275,9 @@ function md2html(str, sep) {
 			var ne = linear2nest(listA);
 
 
-			var g = function (x) {
+			var g = (x)=>{
 				return x.replace(/^\[ \]/, strchkbx0 + 'disabled />').replace(/^\[x\]/i, strchkbx0 + 'disabled' + chked + ' />')
-			}, f = function (x) {
+			}, f = (x)=>{
 				if (isArr(x)) {
 
 					var s = g(listA[x[0]][1]), x1 = x.slice(1);
@@ -4255,21 +4291,21 @@ function md2html(str, sep) {
 			return (ouA[0] == 'ul' ? ul : ol)(Arrf(f, ne));
 
 		};
-		s = s.replace(/(\n[ \t]*([\-\*\+]|\d+\.) .+)+/g, function (x) {
-			return '\n' + fou(x)
+		s = s.replace(/(\n[ \t]*([\-\*\+]|\d+\.) .+)+/g, (x)=>{
+			return brn + fou(x)
 		});
 	};
 
 	if (/-+ *:?\|:?-+/.test(s)) {
 		//Table
-		var ftb = function (x) {
-			var sep, sepi, A = Arrf(function (t, i) {
+		var ftb = (x)=>{
+			var sep, sepi, A = Arrf((t, i)=>{
 				if (!/[^-\|:]/.test(t)) {
 					sep = t;
 					sepi = i;
 				}
 				return t.replace(/^\||\|$/g, '').split('|')
-			}, x.replace(/^\n|\n$/g, '').split('\n')),
+			}, x.replace(/^\n|\n$/g, '').split(brn)),
 				sepA = sep.replace(/^\||\|$/g, '').split('|'), cols = sepA.length;
 
 			var c = '';
@@ -4285,7 +4321,7 @@ function md2html(str, sep) {
 
 			if (/:/.test(sep)) {
 
-				c += ' ' + Arrf(function (k, j) {
+				c += ' ' + Arrf((k, j)=>{
 					var a = 'l';
 					if (/^:.+:$/.test(k)) {
 						a = 'c'
@@ -4306,56 +4342,55 @@ function md2html(str, sep) {
 
 	s = s.replace(/\n(-{3,}|\*{3,}|_{3,})\n/g, '\n<hr />\n').replace(/\n(-{3,}|\*{3,}|_{3,})$/g, '\n<hr />')
 
-		.replace(/\n#+ .+/g, function (x) {
+		.replace(/\n#+ .+/g, (x)=>{
 			var t = x.trim(), n = t.split(' ')[0].length, ht = t.replace(/^#+ | #+$/g, '');
 			headA.push([n, ht]);
 			var hi = 'TOChi' + (headA.length - 1);
-			//return '\n' + inhref('#' + hi + '" class="mkdnhead', '<h' + n + ' id=' + hi + '>' + ht + '</h' + n + '>')
-			return '\n' + '<h' + n + ' id=' + hi + '>' + inhref('#' + hi + '" class="mkdnhead', '# ')+
+			return brn + '<h' + n + ' id=' + hi + '>' + inhref('#' + hi + '" class="mkdnhead', '# ')+
 			 ht +  inhref('#TOChi0" class="mkdnhead', ' ↑')+ '</h' + n + '>'
 		})
 
-		.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g, function (x) {
+		.replace(/\*{3}[^\*\n].*[^\\\n]\*{3}/g, (x)=>{
 			return '<b><i>' + x.replace(/^...|...$/g, '').trim() + '</i></b>'
 		})
 
-		.replace(/\*{2}[^\*\n].*[^\\\n]\*{2}/g, function (x) {
+		.replace(/\*{2}[^\*\n].*[^\\\n]\*{2}/g, (x)=>{
 			return '<b>' + x.replace(/^..|..$/g, '').trim() + '</b>'
 		})	//strong
 
-		.replace(/\*[^\\\* \n][^\\\*\n]*\*/g, function (x) {
+		.replace(/\*[^\\\* \n][^\\\*\n]*\*/g, (x)=>{
 			return '<i>' + x.replace(/^.|.$/g, '').trim() + '</i>'
 		})	//em
 
 
-		.replace(/__[^ \n_][^_]*[^\\\n_]__/g, function (x) {
+		.replace(/__[^ \n_][^_]*[^\\\n_]__/g, (x)=>{
 			return scib(x.replace(/^..|..$/g, '').trim())
 		})	//underline
 
-		.replace(/_[^\\\_\n]+_/g, function (x) {
+		.replace(/_[^\\\_\n]+_/g, (x)=>{
 			return '<i>' + x.replace(/^.|.$/g, '').trim() + '</i>'
 		})	//em 2
 
 
-		.replace(/~~.+[^\\\n]~~/g, function (x) {
+		.replace(/~~.+[^\\\n]~~/g, (x)=>{
 			return '<del>' + x.replace(/^..|..$/g, '').trim() + '</del>'
 		})
 
-		.replace(/==.+[^\\\n]==/g, function (x) {
+		.replace(/==.+[^\\\n]==/g, (x)=>{
 			return '<mark>' + x.replace(/^..|..$/g, '').trim() + '</mark>'
 		})
 
-		.replace(/`[^`\\\n]+`/g, function (x) {
+		.replace(/`[^`\\\n]+`/g, (x)=>{
 			return '<q>' + x.replace(/^.|.$/g, '').trim() + '</q>'
 		})
 
 
-		.replace(/\!\[[^\]]*\]\([^\)]+\)/g, function (x) {
+		.replace(/\!\[[^\]]*\]\([^\)]+\)/g, (x)=>{
 			var t = x.replace(/\!\[.+\]/, '').replace(/^.|.$/g, ''), u = t.split(' ')[0];
 			return '<img src="' + u + '" alt="' + x.split('(')[0].replace(/^..|.$/g, '') + '"' + (/ /.test(t) ? ' title="' + t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') + '"' : '') + ' />';
 		})
 
-		.replace(/\[<img src=[^\]]+\]\([^\)]+\)/g, function (x) {
+		.replace(/\[<img src=[^\]]+\]\([^\)]+\)/g, (x)=>{
 			var t = x.replace(/.+\(|\)/g, ''), u = t.split(' ')[0],
 				hf = uriRe.test(u) ? href : inhref;
 				//console.log(x.split('(')[0].replace(/^.|.$/g, ''));
@@ -4363,7 +4398,7 @@ function md2html(str, sep) {
 			return hf(u, x.split('(')[0].replace(/^.|.$/g, ''), / /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '')
 		})
 
-		.replace(/\[[^\]\^]+\]\([^\)]+\)/g, function (x) {// 暂不支持链接文字中含有()
+		.replace(/\[[^\]\^]+\]\([^\)]+\)/g, (x)=>{// 暂不支持链接文字中含有()
 			var t = x.replace(/\[.+\]/, '').replace(/^.|.$/g, ''), u = t.split(' ')[0], hf = uriRe.test(u) ? href : inhref;
 			return hf(u, x.split('(')[0].replace(/^.|.$/g, ''), / /.test(t) ? t.replace(/[^ ]+ /, '').replace(/^"|"$/g, '') : '')
 		})
@@ -4375,15 +4410,15 @@ function md2html(str, sep) {
 		.replace(/\n?(<.?blockquote>)\n?/g, '$1')
 
 
-		.replace(/<\S+@\S+\.\>/g, function (x) {
+		.replace(/<\S+@\S+\.\>/g, (x)=>{
 			var t = x.replace(/^.|.$/g, '');
 			return href('mailto:' + t, t)
 		})
-		.replace(/<[^>\s]+[:\/\.\?\&][^>\s]+>/g, function (x) {
+		.replace(/<[^>\s]+[:\/\.\?\&][^>\s]+>/g, (x)=>{
 			var t = x.replace(/^.|.$/g, ''), hf = uriRe.test(t) ? href : inhref;
 			return hf(t)
 		})
-		.replace(/\[[^\]\^]+\] *\[[^\s\]\^]+\]/g, function (x) {
+		.replace(/\[[^\]\^]+\] *\[[^\s\]\^]+\]/g, (x)=>{
 			var t = x.replace(/^.|.$/g, '').split(/\] *\[/), lnkt = lnk[t[1]];
 
 			if (lnkt) {
@@ -4395,7 +4430,7 @@ function md2html(str, sep) {
 				return x.replace(/\] *\[/, ']?[')
 			}
 		})
-		.replace(/\[\^[^\]]+\]/g, function (x) {
+		.replace(/\[\^[^\]]+\]/g, (x)=>{
 			var t = x.replace(/^..|.$/g, ''), lnkt = footlnk[t];
 
 
@@ -4419,35 +4454,35 @@ function md2html(str, sep) {
 	if (/\[U?TOC\]/.test(s) && headA.length) {
 		var ne = linear2nest(headA), toc = SCtv('bold',gM('Contents'));
 
-		var f = function (x, u) {
+		var f = (x, u)=>{
 			if (isArr(x)) {
 				var s = headA[x[0]][1], x1 = x.slice(1);
-				return inhref('#TOChi' + x[0], s) + (x.length > 1 ? (u ? ul : ol)(Arrf(function (y) { return f(y, u) }, x1)) : '');
+				return inhref('#TOChi' + x[0], s) + (x.length > 1 ? (u ? ul : ol)(Arrf(y=>f(y, u), x1)) : '');
 			} else {
 				return inhref('#TOChi' + x, headA[x][1])
 			}
 		};
 
 		s = s.replace(/\[TOC\]/g, detail(toc,ol(Arrf(f, ne)),1,'id=TOCcontents'));
-		s = s.replace(/\[UTOC\]/g, detail(toc,ul(Arrf(function (y) { return f(y, 1) }, ne)),1,'id=TOCcontents'));
+		s = s.replace(/\[UTOC\]/g, detail(toc,ul(Arrf(y=>f(y, 1) , ne)),1,'id=TOCcontents'));
 	}
 
 
 
 	if (codeblockA.length) {
-		s = s.replace(/<codeblockquote>\d+<.codeblockquote>/g, function (x) {
+		s = s.replace(/<codeblockquote>\d+<.codeblockquote>/g, (x)=>{
 			return precode(XML.encode(codeblockA[+x.replace(/\D/g, '')]))
 		});
 	}
 
 	if (footlnkA.length) {
 
-		s += '\n' + Arrf(function (x, i) { return '[' + (i + 1) + '] ' + footlnk[x] }, footlnkA).join('\n')
+		s += brn + Arrf((x, i)=>'[' + (i + 1) + '] ' + footlnk[x], footlnkA).join(brn)
 	}
 
 	if (mA.length) {
 		var kA = [];
-		s = s.replace(/\n*katex#\d+#\n*/g, function (x) {
+		s = s.replace(/\n*katex#\d+#\n*/g, (x)=>{
 			var i = +x.replace(/\D/g, ''), isblk = /^\n/.test(x) && /\n$/.test(x);
 			if (isblk) {
 				var k = kA.indexOf(i);
@@ -4471,20 +4506,20 @@ function md2html(str, sep) {
 	}
 
 
-	//s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,function(t){setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
-	s=replaceNodeInner(s,'JS', function(t){setTimeout(function(){eval(t)},100);return ''});
+	//s=s.replace(/<JS>([\s\S](?!<\/JS>))+.?<\/JS>/g,t=>{setTimeout(function(){eval(t.substr(4,t.length-9).trim())},100);return ''});
+	s=replaceNodeInner(s,'JS', t=>{setTimeout(function(){eval(t)},100);return ''});
 
 
-	return s.replace(/^\n+/, '').replace(/\n+$/, '\n').replace(/\n/g, sep === undefined ? br : sep)
+	return s.replace(/^\n+/, '').replace(/\n+$/, brn).replace(/\n/g, sep === undefined ? br : sep)
 
 }
 
 function toggleMath(obj){
 	var formula=zlr3(':contains(','$ \\[ \\( \\begin{',')',','), hed=$('.entryHead > .entryTitle, .date + .summary, .head > .navWeb1'),
-	tex2span=function(t, inlineOnly){
+	tex2span=(t, inlineOnly)=>{
 		var t1=t;
 		if(!inlineOnly){
-			t1=t1.replace(/\$\$[^\$]+\$\$/g, function(f){
+			t1=t1.replace(/(\$\$[^\$]+\$\$)|(\$+[^\$]+\\tag[^\$]+\$+)/g, f=>{
 				if(/\)\./.test(f)){// ignore jquery $().
 					return f
 				}
@@ -4493,24 +4528,24 @@ function toggleMath(obj){
 			});
 		}
 
-		return t1.replace(/\$[^\$]+\$(?!\$)/g, function(f){
+		return t1.replace(/\$[^\$]+\$(?!\$)/g, f=>{
 				var s=f.replace(/\$/g,'').replace(/latex/,'').replace(/\\$/,'').trim();
 				return SC+'ZMath title="'+s+'">'+s+sc
-			}).replace(/\\\(.+\\\)/g, function(f){
-				var fa=split(f,/\\\)/g)[1], s=Arrf(function(x){if(x){var xA=x.split('\\(');
+			}).replace(/\\\(.+\\\)/g, f=>{
+				var fa=split(f,/\\\)/g)[1], s=Arrf(x=>{if(x){var xA=x.split('\\(');
 					return xA.length>1?xA[0]+SC+'ZMath xa=2 title="'+xA[1]+'">'+xA[1]+sc:SC+'ZMath xa=1 title="'+x+'">'+x+sc
 					}else{return ''}}, fa);
 				return s.join('')
 
-			}).replace(/\\\[.+\\\]/g, function(f){
-				var fa=split(f,/\\\]/g)[1], s=Arrf(function(x){if(x){var xA=x.split('\\[');
+			}).replace(/\\\[.+\\\]/g, f=>{
+				var fa=split(f,/\\\]/g)[1], s=Arrf(x=>{if(x){var xA=x.split('\\[');
 					
 						return xA.length>1?xA[0]+DC+'ZMath xa=2 title="'+xA[1]+'">'+xA[1]+dc:DC+'ZMath xa=1 title="'+x+'">'+x+dc
 					}else{return ''}}, fa);
 				return s.join('')
 
-			}).replace(/\\begin\{equation\}.+\\end\{equation\}/g, function(f){
-				var fa=split(f,/\\end\{equation\}/g)[1], s=Arrf(function(x){var xA=x.split('\\begin\\{equation\\}');
+			}).replace(/\\begin\{equation\}.+\\end\{equation\}/g, f=>{
+				var fa=split(f,/\\end\{equation\}/g)[1], s=Arrf(x=>{var xA=x.split('\\begin\\{equation\\}');
 					return xA.length>1?xA[0]+SC+'ZMath title="'+xA[1]+'">'+xA[1]+sc:SC+'ZMath title="'+x+'">'+x+sc}, fa);
 				return s.join('')
 			});
@@ -4536,19 +4571,19 @@ function toggleMath(obj){
 		oZ=o.find('.ZMath')
 	}
 //consolelog(hed.length);
-	hed.not(':has(.Zmath)').html(function(i,v){return v.replace(/\$[^\$]+\$(?!\$)/g, function(f){
+	hed.not(':has(.Zmath)').html((i,v)=>v.replace(/\$[^\$]+\$(?!\$)/g, f=>{
 		//consolelog('f = ',f);
 		var s=f.replace(/\$/g,'').replace(/\\$/g,'').trim();
 
 		
 
 		return SCtv('ZMath" title="'+s,s)
-	})})
+	}))
 
 //consolelog('obj  = ', obj);
 	if(obj){
 		oZ.add(o.parents('.sele').find('.entryHead > .entryTitle, .date + .summary, .head > .navWeb1').find('.ZMath')).each(function(){
-			var z=$(this),t=this.title, tx=$(this).text();
+			var z=$(this),t=this.title, tx=$(this).text(), dpmode=/\{align(ed)?\}/.test(tx);
 			
 			if(z.find('.katex').length){
 				
@@ -4563,23 +4598,23 @@ function toggleMath(obj){
 					z.text(t)
 				}
 			}else{
-				
-				
-				//consolelog('katex.render','obj', tx);
+
 				
 				katex.render(tx, this, {
-				    throwOnError: false
+				    throwOnError: false,
+				    displayMode:dpmode
 				});
 			}
 			
 		});
 	}else{
 		oZ.add(hed.find('.ZMath')).each(function(){
-			var z=$(this),t=this.title, tx=$(this).text().replace(/\\$/g,'').trim();
+			var z=$(this),t=this.title, tx=$(this).text().replace(/\\$/g,'').trim(), dpmode=/\{align(ed)?）\}/.test(tx);
 			if(!z.find('.katex').length){
-				//consolelog('katex.render', tx);
+
 				katex.render(tx, this, {
-				    throwOnError: false
+				    throwOnError: false,
+				    displayMode:dpmode
 				});
 			}
 		});
@@ -4593,10 +4628,10 @@ function xhrcb(src, cb) {
 	//cb(length,type)
 	var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', src, true);
-	xhr.onerror = function () {
+	xhr.onerror = function() {
 		xhr.abort();
 	};
-	xhr.onreadystatechange = function () {
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200 || xhr.status == 206) {
 				var s = xhr.getResponseHeader('Content-Length') || 0, t = (xhr.getResponseHeader('Content-Type') || '').replace(/image[/]/, '').replace('x-icon', 'ico').replace(/[;\+].*/, '');
@@ -4651,7 +4686,7 @@ function blking(t, Neg) {
 }
 function textareaAdd(str, obj, newline, sellen) {
 	var O = $(obj), ov = O.val(), sS = O[0].selectionStart, sE = O[0].selectionEnd,
-		v = ov.substr(0, sS) + (newline && sS?'\n':'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
+		v = ov.substr(0, sS) + (newline && sS?brn:'')+(str || '') + (sE == ov.length ? '' : ov.substr(sE)),
 		t=v.length;
 	O.val(v);
 	if(sellen==-1){
@@ -4700,5 +4735,93 @@ function copy2clipboard(t){
 }
 
 
-var Melef=function(x){var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
-	Arrf(function(v,i){Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
+var Melef=x=>{var t=Meleo[x]||'';return SCtv('Mele'+(t?'" tip="'+t+'." title="'+t:''),x)};
+	Arrf((v,i)=>{Meleo[ZLR(Meles)[i]]=v}, ZLR(Mele));
+
+var Mstat=A=>{//基本数字数组的统计
+	var cntA=countA(A), sortA=[].concat(A).sort(sortBy.num) ,s={};
+	s.count = A.length;
+	s.uniqcount = cntA[0].length;
+
+	s.total = +antidiff(A).slice(-1)[0];	//Arrf((a,b)=>a+b,A,'cp2')
+	s.average = s.total/s.count;
+	s.geomean = Math.exp(Arrf((a,b)=>a+b,A.map(Math.log),'cp2')/s.count); //使用对数函数数值更稳定，Math.pow(Arrf((a,b)=>a*b,A,'cp2'), 1/s.count);
+	s.harmean = s.count/Arrf((a,b)=>a+b,A.map(i=>1/i),'cp2');
+
+	s.max = max(A);
+	s.min = min(A);
+	s.range = s.max-s.min;
+
+	s.mostcount = max(cntA[1]);
+	s.leastcount = min(cntA[1]);
+	s.mostfreq = s.mostcount/s.count;
+	s.leastfreq = s.leastcount/s.count;
+	s.freq = cntA;
+
+	s.sort = sortA;
+
+
+	s.most = cntA[0].filter((i,j)=>cntA[1][j]==s.mostcount).join(', ');
+	s.least = cntA[0].filter((i,j)=>cntA[1][j]==s.leastcount).join(', ');
+
+	s.median = s.count%2?sortA[(s.count-1)/2]:(sortA[s.count/2-1]+sortA[s.count/2])/2;
+	s.quartile1 = s.count%2?sortA[(s.count-(s.count%4))/4]:(sortA[(s.count-(s.count%4))/4-1]+sortA[(s.count-(s.count%4))/4])/2;
+	s.quartile3 = s.count%2?sortA[(s.count-(s.count%4))/4+(s.count%4)-1]:(sortA[3*(s.count-(s.count%4))/4-1]+sortA[3*(s.count-(s.count%4))/4])/2;
+	s.iqr = s.quartile3-s.quartile1;
+	s.quantiles=[s.min, s.quartile1, s.median, s.quartile3, s.max];
+
+	s.var = Math.hypot.apply(null,A.map(i=>i-s.average))/s.count;
+	s.std = Math.sqrt(s.var);
+	s.mad = Arrf((a,b)=>a+b, A.map(i=>Math.abs(i-s.average)),'cp2')/s.count;
+
+
+	return s
+
+}, CombinN=function(n,m){//生成组合数索引 [,,,]+		从0开始计数
+	var t=[];
+	if(m==0){
+		return []
+	}
+	if(m==1){
+		return seqA(0,n)
+	}
+	Arrf(function(i){
+		t=t.concat(Arrf(function(j){return [i].concat(Arrf(function(k){return k+i+1},j))},CombinN(n-1-i,m-1)));
+	},seqA(0,n-m+1));
+	return t
+
+
+}, Mstat_combin=A=>{// 组合数统计, A是二维数组，元素（一维数组）中的数字不要求按大小顺序出现
+
+	var B=A.map(i=>i.sort(sortBy.num)), cntA=countA(A), cntB=countA(B), s={};
+	s.count = A.length;
+	s.uniqcount = cntB[0].length;
+	s.numbers = cntA[0];
+	s.numberscount = cntA[0].length;
+	s.freq = cntA;
+	s.predict = 1;
+
+
+	var Union=(...a)=> [...new Set(a.flat())], Inter=(...a)=>{
+		if (a.length === 0) return [];
+		
+		var result = new Set(a[0]);
+		for (let array of a) {
+		  result = new Set([...result].filter(x => array.includes(x)));
+		}
+		return Array.from(result);
+	};
+
+
+	var intersect=(A,n)=>CombinN(A.length,n).map(i=>Inter(...i.map(j=>A[j]))), 
+		union=(A,n)=>CombinN(A.length,n).map(i=>Union(...i.map(j=>A[j])));
+
+	s.intersect = n=>intersect(B,n);
+	s.intersect2 = intersect(B,2);
+
+	s.union = n=>union(B,n);;
+	s.union2 = union(B,2);
+
+	return s
+
+};
