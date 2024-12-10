@@ -3140,8 +3140,8 @@ lang['zh_cn'] = {
 
 
 'Eratosthenes':'埃拉托色尼',
-'Erdos':'厄多斯',
-'Erdős':'厄多斯',
+'Erdos':'埃尔德什',
+'Erdős':'埃尔德什',
 'Escher':'艾舍尔',
 'Euclid':'欧几里得',
 'Eudemus':'欧德莫斯',
