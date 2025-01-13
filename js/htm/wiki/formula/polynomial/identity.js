@@ -107,7 +107,7 @@ detail('多项式恒等式（因式分解公式）',Table([ZLR('名称 记法 = 
 	
 			kbrA(['用四元数模来证明',
 			'|a+bi+cj+dk||w+xi+yj+zk|',
-			'=|(a+bi+cj+dk)(w+xi+yi+zk)|',
+			'=|(a+bi+cj+dk)(w+xi+yj+zk)|',
 			'=|(aw-bx-cy-dz)+(ax+bw+cz-dy)i',
 			'+(ay-bz+cw+dx)j+(az+by-cx+dw)k|'
 			]),
