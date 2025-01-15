@@ -1019,8 +1019,9 @@ var strop = '</option><option value=', strradio0 = '<input type=radio ', strchkb
 			.replace(/\\\[/g,'\\left[')
 			.replace(/\\\]/g,'\\right]')
 
-
-			.replace(/iddots/g,'kern3mu \\raisebox2mu{.}\\kern1mu\\raisebox7mu{.}\\kern1mu\\raisebox13mu{.}\\kern4mu')
+//\newcommand\iddots{\mathinner{\kern{1.2mu}\raisebox{2mu}{.}\kern{3mu}\raisebox{7.4mu}{.}\kern{3mu}\raisebox{12.8mu}{.}\kern{1.2mu}}}
+// https://github.com/KaTeX/KaTeX/issues/1223 
+			.replace(/iddots/g,'ddots')	//暂不支持
 		//	.replace(/(inj|proj) ?(lim)/g, 'mathrm{$1~$2}')
 			.replace(/FUNC([A-Za-z]+)/g, '\\mathrm{$1}')		//函数字体FUNC* <=> \\mathrm{*}
 			.replace(/(\{[^\}]+\}|.) *\\\/ *(\{[^\}]+\}|.)/g, '\\frac{$1}{$2}')				//无嵌套分数形式	a\/b  <=> \frac{a}{b}
@@ -3237,8 +3238,13 @@ sizeKB = sz=>{
 	var A = [].concat(a); Arrf((t, i)=>{if (i) { A[A.length - i] -= A[A.length - i - 1] } }, A); return A //差分运算
 }, antidiff = (a)=>{
 	var A = [].concat(a); Arrf((t, i)=>{if (i) { A[i] = t + A[i - 1] } }, A); return A //		累计求和（逆差分运算）
+}, antidiffs =(a, trimLR=0, ini=0)=>a.reduce((acc, val) => [...acc, acc[acc.length - 1] + val], [ini]).slice(trimLR==-1, a.length+1-(trimLR==1) )	//记录每一次累计和,trimLR (0不修剪去掉数组前后值,-1去掉开头初始值,1去掉末尾值)
 
-}, Arri = (A, i)=>{//提取矩阵第i列（从0开始编号）	负数表示从最后1列往前
+,sumA=A=>A.reduce((i, j) => i + j, 0) //求和
+,prodA=A=>A.reduce((i, j) => i * j, 1) //求积
+
+	
+, Arri = (A, i)=>{//提取矩阵第i列（从0开始编号）	负数表示从最后1列往前
 	var t = [];
 	for (var j = 0; j < A.length; j++) { t.push(A[j][i < 0 ? A[j].length + i : i]) }
 	return t

@@ -93,7 +93,7 @@ oHTML=function(x,notMD,elem,cb){
             if($(this).parents('.wiki').length<1){
                 var t=$(this).text();
                 katex.render(kx(t), this, {
-                    throwOnError: true,
+                    throwOnError: 0,
                     displayMode: $(this).is('div,td'),
                     
 					trust:true
@@ -1573,7 +1573,7 @@ $(function(){
                             var t=$(this).text();
                            // console.log($(this).is('div,td'),);
                             katex.render(kx(t), this, {
-                                throwOnError: true,
+                                throwOnError: 0,
                                 displayMode: $(this).is('div,td'),
                                 trust:true
                             });
@@ -1582,7 +1582,7 @@ $(function(){
                         var t=td.text();
                         if(td.length){
                             katex.render(kx(t), td[0], {
-                                throwOnError: true,
+                                throwOnError: 0,
                                 displayMode: $(td).is('div,td'),
                                 trust:true
                             });
@@ -1594,7 +1594,7 @@ $(function(){
                     me.find('.katex0').each(function(){
                         var t=$(this).text();
                         katex.render(kx(t), this, {
-                            throwOnError: true,
+                            throwOnError: 0,
                             displayMode: $(this).is('div,td'),
                             trust:true
                         });
@@ -1602,7 +1602,7 @@ $(function(){
                 }else{
                     var t=me.text()
                     katex.render(kx(t), this, {
-                        throwOnError: true,
+                        throwOnError: 0,
                         displayMode: true,
                         trust:true
                     });
@@ -1621,7 +1621,7 @@ $(function(){
         var me=$(this), v=me.prevAll('.katexv').val().trim(), k0=me.parent().prevAll('.katex0');
         if(v){
             katex.render(kx(v), k0[0], {
-                throwOnError: true,
+                throwOnError: 0,
                 displayMode: true,
                 trust:true
             });
@@ -1639,7 +1639,7 @@ $(function(){
         kf.prev('details').attr('open','').find('.katex0').each(function(){
             var t=$(this).text();
             katex.render(kx(t), this, {
-                throwOnError: true,
+                throwOnError: 0,
                 displayMode: false,
                 trust:true
             });
