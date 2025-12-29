@@ -2049,10 +2049,28 @@ function titleRe(t) { document.title = t }
 
 function nodeFromSzl(node) {
 	var t = $(node);
+	$('*').filter(function(){return this.shadowRoot}).each(function(){
+		t = t.add($(this.shadowRoot).find(node))
+
+	});
+
+	/*
+针对mode：false的shadowRoot，需要在dom加载前植入下面脚本，才能获取元素
+
+Element.prototype._attachShadow = Element.prototype.attachShadow
+Element.prototype.attachshadow = function(){return this._attachShadow({mode: open'})}
+	*/
+
+
 	$('iframe').each(function() {
 		try {
 			//if(this.contentDocument){
 			t = t.add($(this.contentDocument.body).find(node));
+			$(this.contentDocument.body).find('*').filter(function(){return this.shadowRoot}).each(function(){
+				t = t.add($(this.shadowRoot).find(node))
+
+			});
+
 			//console.log(node, t.length, this.src);
 			//}
 		} catch (e) {
@@ -2365,6 +2383,9 @@ function svgAs(svg, base64) {
 }
 
 var svgf = {
+	toURL:(svgstr, base64, width,height,unWrapURL)=>((unWrapURL?'':'url("')+`data:image/svg+xml`+
+		(base64?';base64,'+Base64.encode(svgstr):`,<svg xmlns='${xmlns}' width='${width}' height='${height}'>${svgstr}</svg>`)+(unWrapURL?'':'")')).replace(/<|>/g,fn0),
+
 	numFun:{
 		AddbyParity: (str,lt,tp)=>{
 			
@@ -2693,7 +2714,7 @@ var svgf = {
 				return "'"+o.html()+"'"
 			}
 		};
-		console.log(ot);
+		//console.log(ot);
 		if(os[ot]){
 			return os[ot]()
 		}else{
